@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coctelería · Isla Brunch Bar</title>
+<meta name="description" content="Carta de coctelería de Isla Brunch Bar. Firmas Don Julio, cócteles tropicales, mojitos y cervezas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#0B2B26;
+    --panel:#123832;
+    --panel-line: rgba(201,162,75,0.18);
+    --gold:#C9A24B;
+    --gold-soft: rgba(201,162,75,0.55);
+    --coral:#FF6B4A;
+    --cream:#F3ECDD;
+    --sea:#7FA79C;
+    --radius: 18px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(120% 60% at 50% 0%, rgba(255,107,74,0.10), transparent 60%),
+      var(--night);
+    color:var(--cream);
+    font-family:'Manrope', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  a{color:inherit;}
+  .wrap{max-width:640px;margin:0 auto;padding:0 20px;}
+
+  /* ---------- decorative wave divider (signature element) ---------- */
+  .shoreline{
+    width:100%;
+    height:34px;
+    display:block;
+    margin:0 auto;
+  }
+  .shoreline path{
+    fill:none;
+    stroke:url(#goldFade);
+    stroke-width:1.4;
+    stroke-linecap:round;
+  }
+
+  /* ---------- top bar / nav ---------- */
+  .topbar{
+    position:sticky;
+    top:0;
+    z-index:50;
+    backdrop-filter: blur(10px);
+    background:rgba(11,43,38,0.86);
+    border-bottom:1px solid var(--panel-line);
+  }
+  .topbar-inner{
+    max-width:640px;
+    margin:0 auto;
+    padding:12px 16px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .brandrow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+  .brandline{
+    display:flex;
+    align-items:baseline;
+    justify-content:center;
+    gap:8px;
+  }
+  .brandline .mark{
+    font-family:'Fraunces', serif;
+    font-size:15px;
+    letter-spacing:0.28em;
+    color:var(--gold);
+  }
+  .brandline .sep{color:var(--sea); opacity:0.6; font-size:12px;}
+
+  .langswitch{
+    position:absolute;
+    right:0;
+    display:flex;
+    gap:2px;
+    border:1px solid var(--panel-line);
+    border-radius:100px;
+    padding:2px;
+    background:rgba(18,56,50,0.6);
+  }
+  .langswitch button{
+    font-family:'Manrope',sans-serif;
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:0.04em;
+    color:var(--sea);
+    background:transparent;
+    border:none;
+    padding:5px 9px;
+    border-radius:100px;
+    cursor:pointer;
+    transition: all .2s ease;
+  }
+  .langswitch button.active{
+    color:var(--night);
+    background:var(--gold);
+  }
+
+  .navpills{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    padding-bottom:2px;
+  }
+  .navpills::-webkit-scrollbar{display:none;}
+  .navpills a{
+    flex:0 0 auto;
+    font-size:11.5px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--sea);
+    padding:7px 13px;
+    border:1px solid var(--panel-line);
+    border-radius:100px;
+    white-space:nowrap;
+    transition: all .25s ease;
+  }
+  .navpills a.active, .navpills a:hover{
+    color:var(--night);
+    background:var(--gold);
+    border-color:var(--gold);
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:56px 20px 30px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero .frond{
+    position:absolute;
+    opacity:0.16;
+    z-index:0;
+  }
+  .frond.left{ top:-10px; left:-60px; width:220px; transform:rotate(-12deg);}
+  .frond.right{ bottom:-30px; right:-70px; width:240px; transform:scaleX(-1) rotate(-18deg);}
+  .hero-content{position:relative; z-index:1;}
+  .eyebrow{
+    font-size:11.5px;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--coral);
+    margin:0 0 14px;
+  }
+  .hero h1{
+    font-size:clamp(40px, 12vw, 56px);
+    line-height:0.95;
+    margin:0;
+    color:var(--cream);
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--gold);
+  }
+  .hero p.sub{
+    max-width:360px;
+    margin:18px auto 0;
+    font-size:14.5px;
+    line-height:1.6;
+    color:var(--sea);
+  }
+
+  /* ---------- sections ---------- */
+  section.menu{
+    padding:6px 20px 8px;
+  }
+  .section-head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    margin:44px 0 18px;
+    scroll-margin-top:96px;
+  }
+  .section-head .eyebrow-num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--gold-soft);
+    font-size:13px;
+  }
+  .section-head h2{
+    font-size:26px;
+    margin:2px 0 0;
+    color:var(--cream);
+  }
+  .section-note{
+    font-size:12.5px;
+    color:var(--sea);
+    margin:-10px 0 18px;
+    line-height:1.5;
+  }
+
+  .card{
+    background:linear-gradient(180deg, var(--panel), rgba(18,56,50,0.6));
+    border:1px solid var(--panel-line);
+    border-radius:var(--radius);
+    padding:16px 18px;
+    margin-bottom:12px;
+    opacity:0;
+    transform:translateY(14px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .card.in{opacity:1; transform:translateY(0);}
+  .card.featured{
+    border-color:var(--gold-soft);
+    background:linear-gradient(180deg, rgba(201,162,75,0.10), rgba(18,56,50,0.55));
+  }
+  .card-row{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+  }
+  .thumb{
+    width:64px;
+    height:64px;
+    flex:0 0 auto;
+    border-radius:14px;
+    object-fit:cover;
+    border:1px solid var(--gold-soft);
+    background:var(--panel);
+  }
+  .card-info{
+    flex:1;
+    min-width:0;
+  }
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:12px;
+  }
+  .card-top h3{
+    font-size:17.5px;
+    margin:0;
+    color:var(--cream);
+    line-height:1.25;
+  }
+  .featured .card-top h3{color:var(--gold);}
+  .price{
+    font-family:'Fraunces', serif;
+    font-size:16px;
+    color:var(--gold);
+    white-space:nowrap;
+    flex:0 0 auto;
+  }
+  .ingredients{
+    margin:8px 0 0;
+    font-size:11.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--sea);
+    line-height:1.6;
+  }
+
+  /* simple beer/mojito list rows for shorter items */
+  .simple-list{
+    background:var(--panel);
+    border:1px solid var(--panel-line);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .simple-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:13px 18px;
+    border-bottom:1px solid var(--panel-line);
+    font-size:14.5px;
+  }
+  .simple-row:last-child{border-bottom:none;}
+  .simple-row .price{font-size:14.5px;}
+
+  /* ---------- footer ---------- */
+  footer{
+    text-align:center;
+    padding:50px 20px 60px;
+    margin-top:20px;
+  }
+  footer .mark{
+    font-family:'Fraunces', serif;
+    letter-spacing:0.3em;
+    font-size:14px;
+    color:var(--gold);
+  }
+  footer p{
+    font-size:12px;
+    color:var(--sea);
+    margin:10px 0 0;
+    line-height:1.7;
+  }
+
+  @media (min-width:520px){
+    .hero h1{font-size:64px;}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="goldFade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#C9A24B" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#C9A24B" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#C9A24B" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brandrow">
+      <div class="brandline">
+        <span class="mark">ISLA</span><span class="sep">/</span><span class="mark">BRUNCH BAR</span>
+      </div>
+      <div class="langswitch" id="langswitch">
+        <button data-lang="es" class="active">ES</button>
+        <button data-lang="en">EN</button>
+        <button data-lang="fr">FR</button>
+      </div>
+    </div>
+    <nav class="navpills" id="navpills">
+      <a href="#firmas" data-i18n="nav_firmas">Firmas Don Julio</a>
+      <a href="#tropicales" data-i18n="nav_tropicales">Tropicales</a>
+      <a href="#mojitos" data-i18n="nav_mojitos">Mojitos</a>
+      <a href="#cervezas" data-i18n="nav_cervezas">Cervezas</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <svg class="frond left" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 250 C95 180 60 140 15 110 C55 120 85 145 100 190 C100 140 80 95 40 55 C85 70 105 110 108 155 C118 105 115 60 90 15 C130 45 135 100 118 150 C140 115 165 100 195 95 C160 130 140 165 128 200 C118 225 108 240 100 250Z" stroke="#C9A24B" stroke-width="1.2" fill="none"/>
+  </svg>
+  <svg class="frond right" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 250 C95 180 60 140 15 110 C55 120 85 145 100 190 C100 140 80 95 40 55 C85 70 105 110 108 155 C118 105 115 60 90 15 C130 45 135 100 118 150 C140 115 165 100 195 95 C160 130 140 165 128 200 C118 225 108 240 100 250Z" stroke="#C9A24B" stroke-width="1.2" fill="none"/>
+  </svg>
+  <div class="hero-content">
+    <p class="eyebrow" data-i18n="hero_eyebrow">Isla Brunch Bar · Coctelería</p>
+    <h1 data-i18n-html="hero_h1">Sabor de <em>isla</em>,<br>ritmo de bar.</h1>
+    <p class="sub" data-i18n="hero_sub">Tequila Don Julio, ron oscuro y fruta de verdad — cada copa con un pie en el trópico y otro en la barra de alto standing.</p>
+  </div>
+</header>
+
+<svg class="shoreline" viewBox="0 0 400 34" preserveAspectRatio="none">
+  <path d="M0 17 Q 25 2, 50 17 T 100 17 T 150 17 T 200 17 T 250 17 T 300 17 T 350 17 T 400 17"/>
+</svg>
+
+<main class="wrap">
+
+  <section class="menu" id="firmas">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow-num" data-i18n="sec_firmas_eyebrow">Colección</p>
+        <h2 data-i18n="sec_firmas_title">Firmas Don Julio</h2>
+      </div>
+    </div>
+    <p class="section-note" data-i18n="sec_firmas_note">Nuestra selección insignia con Tequila Don Julio, en distintas expresiones.</p>
+
+    <div class="card featured">
+      <div class="card-row">
+        <img class="thumb" src="img/don-julio-palomo-tamarindo.jpg" alt="Don Julio Palomo de Tamarindo" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Don Julio Palomo de Tamarindo</h3><span class="price">10,50 €</span></div>
+          <p class="ingredients" data-i18n="ing_don-julio-palomo-tamarindo">Tequila Don Julio Reposado · Tamarindo · Pomelo · Lima · Soda</p>
+        </div>
+      </div>
+    </div>
+    <div class="card featured">
+      <div class="card-row">
+        <img class="thumb" src="img/don-july-tamarindo.jpg" alt="Don July Tamarindo" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Don July Tamarindo</h3><span class="price">11,50 €</span></div>
+          <p class="ingredients" data-i18n="ing_don-july-tamarindo">Ron oscuro · Pulpa de tamarindo · Lima · Sirope de caña</p>
+        </div>
+      </div>
+    </div>
+    <div class="card featured">
+      <div class="card-row">
+        <img class="thumb" src="img/don-julio-enamorado.jpg" alt="Don Julio Enamorado" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Don Julio Enamorado</h3><span class="price">10,50 €</span></div>
+          <p class="ingredients" data-i18n="ing_don-julio-enamorado">Tequila Don Julio Blanco · Mango · Maracuyá · Lima · Sirope ligero</p>
+        </div>
+      </div>
+    </div>
+    <div class="card featured">
+      <div class="card-row">
+        <img class="thumb" src="img/don-julio-cherry-bomb.jpg" alt="Don Julio Cherry Bomb" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Don Julio Cherry Bomb</h3><span class="price">10,50 €</span></div>
+          <p class="ingredients" data-i18n="ing_don-julio-cherry-bomb">Tequila Don Julio Silver · Cereza · Lima · Soda</p>
+        </div>
+      </div>
+    </div>
+    <div class="card featured">
+      <div class="card-row">
+        <img class="thumb" src="img/mexican-sunset.jpg" alt="Mexican Sunset" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Mexican Sunset</h3><span class="price">10,50 €</span></div>
+          <p class="ingredients" data-i18n="ing_mexican-sunset">Tequila Don Julio Reposado · Naranja · Granadina · Sprite</p>
+        </div>
+      </div>
+    </div>
+    <div class="card featured">
+      <div class="card-row">
+        <img class="thumb" src="img/don-julio-pina-spice.jpg" alt="Don Julio Piña Spice" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Don Julio Piña Spice</h3><span class="price">10,50 €</span></div>
+          <p class="ingredients" data-i18n="ing_don-julio-pina-spice">Tequila Don Julio Reposado · Piña · Lima · Toque de canela o spice · Sirope de caña</p>
+        </div>
+      </div>
+    </div>
+    <div class="card featured">
+      <div class="card-row">
+        <img class="thumb" src="img/el-don-pega.jpg" alt="El Don Pega" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>El Don Pega</h3><span class="price">9,50 €</span></div>
+          <p class="ingredients" data-i18n="ing_el-don-pega">Tequila Don Julio Silver · Concentrado de limón</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="shoreline" viewBox="0 0 400 34" preserveAspectRatio="none">
+    <path d="M0 17 Q 25 32, 50 17 T 100 17 T 150 17 T 200 17 T 250 17 T 300 17 T 350 17 T 400 17"/>
+  </svg>
+
+  <section class="menu" id="tropicales">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow-num" data-i18n="sec_tropicales_eyebrow">La barra</p>
+        <h2 data-i18n="sec_tropicales_title">Cócteles tropicales</h2>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/volcan-tropical.jpg" alt="Volcán Tropical" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Volcán Tropical</h3><span class="price">9,00 €</span></div>
+          <p class="ingredients" data-i18n="ing_volcan-tropical">Nuestro mejor cóctel · Combinación profunda de sabores</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/abuela-kills.jpg" alt="Abuela Kills" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Abuela Kills</h3><span class="price">12,50 €</span></div>
+          <p class="ingredients" data-i18n="ing_abuela-kills">Amaretto · Tequila Don Julio · Cóctel de fruta</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/mollar-spritz.jpg" alt="Mollar Spritz" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Mollar Spritz</h3><span class="price">7,50 €</span></div>
+          <p class="ingredients" data-i18n="ing_mollar-spritz">Ginebra · Zumo de granada · Lima · Soda</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/tamarindo-dark-sunset.jpg" alt="Tamarindo Dark Sunset" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Tamarindo Dark Sunset</h3><span class="price">9,00 €</span></div>
+          <p class="ingredients" data-i18n="ing_tamarindo-dark-sunset">Ron oscuro · Pulpa de tamarindo · Lima · Sirope de caña</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/elche-mule.jpg" alt="Elche Mule" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Elche Mule</h3><span class="price">9,00 €</span></div>
+          <p class="ingredients" data-i18n="ing_elche-mule">Vodka · Dátil · Lima</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/pilicoco.jpg" alt="Pilicoco" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Pilicoco</h3><span class="price">8,00 €</span></div>
+          <p class="ingredients" data-i18n="ing_pilicoco">Ron · Zumo de piña · Lima · Coco rallado</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/rubi-frozen.jpg" alt="Rubí Frozen" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Rubí Frozen</h3><span class="price">8,00 €</span></div>
+          <p class="ingredients" data-i18n="ing_rubi-frozen">Tequila · Cereza agria · Agave</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/cherry-vodka-sour.jpg" alt="Cherry Vodka Sour" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Cherry Vodka Sour</h3><span class="price">8,00 €</span></div>
+          <p class="ingredients" data-i18n="ing_cherry-vodka-sour">Vodka · Puré de cereza agria · Limón · Azúcar</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/island-tie.jpg" alt="Island Tie" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Island Tie</h3><span class="price">8,50 €</span></div>
+          <p class="ingredients" data-i18n="ing_island-tie">Ron blanco · Manzana verde · Sirope de almendra · Piña</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/cherry-cherrs.jpg" alt="Cherry Cherrs" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Cherry Cherrs</h3><span class="price">8,00 €</span></div>
+          <p class="ingredients" data-i18n="ing_cherry-cherrs">Zumo de piña · Cereza · Coco · Vodka</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/pina-colada.jpg" alt="Piña Colada" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Piña Colada</h3><span class="price">7,00 €</span></div>
+          <p class="ingredients" data-i18n="ing_pina-colada">Ron · Piña · Coco</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/daiquiri-strawberry-frozen.jpg" alt="Daiquiri Strawberry Frozen" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Daiquiri Strawberry Frozen</h3><span class="price">8,00 €</span></div>
+          <p class="ingredients" data-i18n="ing_daiquiri-strawberry-frozen">Ron blanco · Fresas · Limón</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/sex-on-the-beach.jpg" alt="Sex on the Beach" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Sex on the Beach</h3><span class="price">8,00 €</span></div>
+          <p class="ingredients" data-i18n="ing_sex-on-the-beach">Vodka · Licor de melocotón · Zumo de naranja · Granadina</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/ron-cola.jpg" alt="Ron Cola" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Ron Cola</h3><span class="price">7,00 €</span></div>
+          <p class="ingredients" data-i18n="ing_ron-cola">Ron · Cola</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/cuba-libre.jpg" alt="Cuba Libre" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Cuba Libre</h3><span class="price">8,00 €</span></div>
+          <p class="ingredients" data-i18n="ing_cuba-libre">Ron · Cola · Lima</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/papi-ven.jpg" alt="Papi Ven" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Papi Ven</h3><span class="price">8,00 €</span></div>
+          <p class="ingredients" data-i18n="ing_papi-ven">Ron Brugal · Fresa · Granadina</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="shoreline" viewBox="0 0 400 34" preserveAspectRatio="none">
+    <path d="M0 17 Q 25 2, 50 17 T 100 17 T 150 17 T 200 17 T 250 17 T 300 17 T 350 17 T 400 17"/>
+  </svg>
+
+  <section class="menu" id="mojitos">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow-num" data-i18n="sec_mojitos_eyebrow">Ron, lima y hierbabuena</p>
+        <h2 data-i18n="sec_mojitos_title">Mojitos</h2>
+      </div>
+    </div>
+    <p class="section-note" data-i18n="sec_mojitos_note">Con fruta natural de la isla, a elegir sabor.</p>
+    <div class="simple-list">
+      <div class="simple-row"><span data-i18n="mojito_tradicional">Tradicional</span><span class="price">7,50 €</span></div>
+      <div class="simple-row"><span data-i18n="mojito_maracuya">Maracuyá</span><span class="price">8,00 €</span></div>
+      <div class="simple-row"><span data-i18n="mojito_mango">Mango</span><span class="price">8,00 €</span></div>
+      <div class="simple-row"><span data-i18n="mojito_coco">Coco</span><span class="price">8,50 €</span></div>
+      <div class="simple-row"><span data-i18n="mojito_fresa">Fresa</span><span class="price">8,00 €</span></div>
+      <div class="simple-row"><span data-i18n="mojito_pina">Piña</span><span class="price">8,00 €</span></div>
+    </div>
+  </section>
+
+  <svg class="shoreline" viewBox="0 0 400 34" preserveAspectRatio="none">
+    <path d="M0 17 Q 25 32, 50 17 T 100 17 T 150 17 T 200 17 T 250 17 T 300 17 T 350 17 T 400 17"/>
+  </svg>
+
+  <section class="menu" id="cervezas">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow-num" data-i18n="sec_cervezas_eyebrow">De barril y botella</p>
+        <h2 data-i18n="sec_cervezas_title">Cervezas</h2>
+      </div>
+    </div>
+    <div class="simple-list">
+      <div class="simple-row"><span>Estrella Galicia Especial</span><span class="price">2,80 €</span></div>
+      <div class="simple-row"><span>Estrella Galicia 1906</span><span class="price">3,20 €</span></div>
+      <div class="simple-row"><span>Estrella Galicia Sin Gluten</span><span class="price">3,00 €</span></div>
+      <div class="simple-row"><span>Estrella Galicia 0.0</span><span class="price">2,80 €</span></div>
+      <div class="simple-row"><span>Estrella Galicia Tostada 0.0</span><span class="price">3,00 €</span></div>
+      <div class="simple-row"><span>Estrella Galicia Tostada Sin Gluten</span><span class="price">3,00 €</span></div>
+      <div class="simple-row"><span data-i18n="cerveza_canas">Cañas</span><span class="price">2,80 €</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p class="mark">ISLA BRUNCH BAR</p>
+  <p>islabrunchbar.com<br><span data-i18n="footer_note">Coctelería sujeta a disponibilidad de temporada.</span></p>
+</footer>
+
+<script>
+  // ---------- i18n ----------
+  const translations = {
+    en: {
+      nav_firmas: "Don Julio Signatures",
+      nav_tropicales: "Tropical",
+      nav_mojitos: "Mojitos",
+      nav_cervezas: "Beers",
+      hero_eyebrow: "Isla Brunch Bar · Cocktail Menu",
+      hero_h1: "Island flavor,<br>bar rhythm.",
+      hero_sub: "Don Julio tequila, dark rum and real fruit — every glass with one foot in the tropics and the other at a high-end bar.",
+      sec_firmas_eyebrow: "Collection",
+      sec_firmas_title: "Don Julio Signatures",
+      sec_firmas_note: "Our flagship selection made with Don Julio Tequila, in different expressions.",
+      sec_tropicales_eyebrow: "The bar",
+      sec_tropicales_title: "Tropical Cocktails",
+      sec_mojitos_eyebrow: "Rum, lime & mint",
+      sec_mojitos_title: "Mojitos",
+      sec_mojitos_note: "Made with natural island fruit — pick your flavor.",
+      sec_cervezas_eyebrow: "Draft & bottle",
+      sec_cervezas_title: "Beers",
+      footer_note: "Cocktail menu subject to seasonal availability.",
+      mojito_tradicional: "Classic",
+      mojito_maracuya: "Passion fruit",
+      mojito_mango: "Mango",
+      mojito_coco: "Coconut",
+      mojito_fresa: "Strawberry",
+      mojito_pina: "Pineapple",
+      cerveza_canas: "Draft beer",
+      "ing_don-julio-palomo-tamarindo": "Don Julio Reposado Tequila · Tamarind · Grapefruit · Lime · Soda",
+      "ing_don-july-tamarindo": "Dark rum · Tamarind pulp · Lime · Cane syrup",
+      "ing_don-julio-enamorado": "Don Julio Blanco Tequila · Mango · Passion fruit · Lime · Light syrup",
+      "ing_don-julio-cherry-bomb": "Don Julio Silver Tequila · Cherry · Lime · Soda",
+      "ing_mexican-sunset": "Don Julio Reposado Tequila · Orange · Grenadine · Sprite",
+      "ing_don-julio-pina-spice": "Don Julio Reposado Tequila · Pineapple · Lime · A touch of cinnamon or spice · Cane syrup",
+      "ing_el-don-pega": "Don Julio Silver Tequila · Lemon concentrate",
+      "ing_volcan-tropical": "Our best cocktail · A deep blend of flavors",
+      "ing_abuela-kills": "Amaretto · Don Julio Tequila · Fruit cocktail",
+      "ing_mollar-spritz": "Gin · Pomegranate juice · Lime · Soda",
+      "ing_tamarindo-dark-sunset": "Dark rum · Tamarind pulp · Lime · Cane syrup",
+      "ing_elche-mule": "Vodka · Date · Lime",
+      "ing_pilicoco": "Rum · Pineapple juice · Lime · Shredded coconut",
+      "ing_rubi-frozen": "Tequila · Sour cherry · Agave",
+      "ing_cherry-vodka-sour": "Vodka · Sour cherry purée · Lemon · Sugar",
+      "ing_island-tie": "White rum · Green apple · Almond syrup · Pineapple",
+      "ing_cherry-cherrs": "Pineapple juice · Cherry · Coconut · Vodka",
+      "ing_pina-colada": "Rum · Pineapple · Coconut",
+      "ing_daiquiri-strawberry-frozen": "White rum · Strawberries · Lemon",
+      "ing_sex-on-the-beach": "Vodka · Peach liqueur · Orange juice · Grenadine",
+      "ing_ron-cola": "Rum · Cola",
+      "ing_cuba-libre": "Rum · Cola · Lime",
+      "ing_papi-ven": "Brugal Rum · Strawberry · Grenadine"
+    },
+    fr: {
+      nav_firmas: "Signatures Don Julio",
+      nav_tropicales: "Tropicaux",
+      nav_mojitos: "Mojitos",
+      nav_cervezas: "Bières",
+      hero_eyebrow: "Isla Brunch Bar · Carte des cocktails",
+      hero_h1: "Saveur d'île,<br>rythme de bar.",
+      hero_sub: "Tequila Don Julio, rhum brun et vrais fruits — chaque verre a un pied dans les tropiques et l'autre dans un bar haut de gamme.",
+      sec_firmas_eyebrow: "Collection",
+      sec_firmas_title: "Signatures Don Julio",
+      sec_firmas_note: "Notre sélection phare à base de Tequila Don Julio, en différentes expressions.",
+      sec_tropicales_eyebrow: "Le bar",
+      sec_tropicales_title: "Cocktails tropicaux",
+      sec_mojitos_eyebrow: "Rhum, citron vert et menthe",
+      sec_mojitos_title: "Mojitos",
+      sec_mojitos_note: "Avec des fruits naturels de l'île, au choix.",
+      sec_cervezas_eyebrow: "Pression et bouteille",
+      sec_cervezas_title: "Bières",
+      footer_note: "Carte des cocktails soumise à disponibilité saisonnière.",
+      mojito_tradicional: "Traditionnel",
+      mojito_maracuya: "Fruit de la passion",
+      mojito_mango: "Mangue",
+      mojito_coco: "Noix de coco",
+      mojito_fresa: "Fraise",
+      mojito_pina: "Ananas",
+      cerveza_canas: "Bière pression",
+      "ing_don-julio-palomo-tamarindo": "Tequila Don Julio Reposado · Tamarin · Pamplemousse · Citron vert · Soda",
+      "ing_don-july-tamarindo": "Rhum brun · Pulpe de tamarin · Citron vert · Sirop de canne",
+      "ing_don-julio-enamorado": "Tequila Don Julio Blanco · Mangue · Fruit de la passion · Citron vert · Sirop léger",
+      "ing_don-julio-cherry-bomb": "Tequila Don Julio Silver · Cerise · Citron vert · Soda",
+      "ing_mexican-sunset": "Tequila Don Julio Reposado · Orange · Grenadine · Sprite",
+      "ing_don-julio-pina-spice": "Tequila Don Julio Reposado · Ananas · Citron vert · Pointe de cannelle ou d'épices · Sirop de canne",
+      "ing_el-don-pega": "Tequila Don Julio Silver · Concentré de citron",
+      "ing_volcan-tropical": "Notre meilleur cocktail · Un mélange profond de saveurs",
+      "ing_abuela-kills": "Amaretto · Tequila Don Julio · Cocktail de fruits",
+      "ing_mollar-spritz": "Gin · Jus de grenade · Citron vert · Soda",
+      "ing_tamarindo-dark-sunset": "Rhum brun · Pulpe de tamarin · Citron vert · Sirop de canne",
+      "ing_elche-mule": "Vodka · Datte · Citron vert",
+      "ing_pilicoco": "Rhum · Jus d'ananas · Citron vert · Noix de coco râpée",
+      "ing_rubi-frozen": "Tequila · Cerise acide · Agave",
+      "ing_cherry-vodka-sour": "Vodka · Purée de cerise acide · Citron · Sucre",
+      "ing_island-tie": "Rhum blanc · Pomme verte · Sirop d'amande · Ananas",
+      "ing_cherry-cherrs": "Jus d'ananas · Cerise · Noix de coco · Vodka",
+      "ing_pina-colada": "Rhum · Ananas · Noix de coco",
+      "ing_daiquiri-strawberry-frozen": "Rhum blanc · Fraises · Citron",
+      "ing_sex-on-the-beach": "Vodka · Liqueur de pêche · Jus d'orange · Grenadine",
+      "ing_ron-cola": "Rhum · Cola",
+      "ing_cuba-libre": "Rhum · Cola · Citron vert",
+      "ing_papi-ven": "Rhum Brugal · Fraise · Grenadine"
+    }
+  };
+
+  const esDefaults = {};
+  document.querySelectorAll('[data-i18n]').forEach(el => esDefaults[el.getAttribute('data-i18n')] = el.textContent);
+  document.querySelectorAll('[data-i18n-html]').forEach(el => esDefaults[el.getAttribute('data-i18n-html')] = el.innerHTML);
+
+  function applyLang(lang){
+    const dict = lang === 'es' ? esDefaults : translations[lang];
+    if (!dict) return;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key]) el.textContent = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const key = el.getAttribute('data-i18n-html');
+      if (dict[key]) el.innerHTML = dict[key];
+    });
+    document.documentElement.lang = lang;
+    document.querySelectorAll('#langswitch button').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    try { localStorage.setItem('isla_lang', lang); } catch(e){}
+  }
+
+  document.querySelectorAll('#langswitch button').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+  });
+
+  let savedLang = 'es';
+  try { savedLang = localStorage.getItem('isla_lang') || 'es'; } catch(e){}
+  if (savedLang !== 'es') applyLang(savedLang);
+
+  // ---------- resalta el pill activo según scroll ----------
+  const sections = document.querySelectorAll('section.menu[id]');
+  const links = document.querySelectorAll('.navpills a');
+  const setActive = () => {
+    let current = sections[0]?.id;
+    const y = window.scrollY + 120;
+    sections.forEach(s => { if (s.offsetTop <= y) current = s.id; });
+    links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + current));
+  };
+  window.addEventListener('scroll', setActive, { passive:true });
+  setActive();
+
+  // ---------- revelado suave de las tarjetas ----------
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.card').forEach(c => io.observe(c));
+</script>
+
+</body>
+</html>
