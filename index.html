@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ISLA — Brunch y Bar · ELCHE 
+<title>ISLA — Brunch y Bar · ELCHE
 </title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -28,13 +28,18 @@
   --shadow-sm:  0 2px 10px rgba(0,0,0,0.06);
   --shadow-md:  0 4px 20px rgba(0,0,0,0.09);
   --r:          14px;
+  /* Acentos tropicales del hero */
+  --papaya:     #FF8A5B;
+  --papaya-dk:  #E86A3C;
+  --citrus:     #F2A93C;
+  --palm-dk:    #1F4A2C;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: 'Jost', sans-serif;
-  background: var(--cream);
+  background: radial-gradient(ellipse 900px 500px at 50% -8%, #FFFEFB 0%, var(--cream) 60%);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
 }
@@ -42,66 +47,124 @@ body {
 .root {
   max-width: 430px;
   margin: 0 auto;
-  background: var(--cream);
+  background: transparent;
   min-height: 100dvh;
 }
 
-/* ── HERO ── */
+button, a { font-family: inherit; }
+.cat-tab:focus-visible, .sub-tab:focus-visible, .lang-btn:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ══════════ HERO — brunch tropical ══════════ */
 .hero {
-  background: var(--white);
-  padding: 2.8rem 1.5rem 0;
-  text-align: center;
   position: relative;
+  overflow: hidden;
+  padding: 2.8rem 1.5rem 8.5rem;
+  text-align: center;
+  background: linear-gradient(175deg, var(--cream) 55%, #FCEFE1 100%);
+  isolation: isolate;
 }
-.hero-logo {
-  width: 180px;
-  height: auto;
-  display: block;
-  margin: 0 auto 0.5rem;
+
+/* Escena de palmeras: siluetas por capas (fondo tenue → primer plano marcado) */
+.palm-scene {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 128px;
+  z-index: 0;
+  pointer-events: none;
 }
-.hero-logo-copy {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 36px;
-  font-weight: 600;
-  color: var(--green);
-  margin: 0 auto 0.45rem;
-  letter-spacing: 0.25em;
-}
-.hero-tagline {
-  font-size: 10.5px;
-  letter-spacing: 0.3em;
+.palm-scene svg { display: block; width: 100%; height: 100%; }
+.palm-back  { fill: var(--green-lt); opacity: 0.22; }
+.palm-mid   { fill: var(--green);    opacity: 0.42; }
+.palm-front { fill: var(--palm-dk);  opacity: 0.9; }
+
+.hero-inner { position: relative; z-index: 1; }
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--bark-light);
+  color: var(--bark-mid);
+  font-weight: 500;
+  margin-bottom: 0.9rem;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: "";
+  width: 18px; height: 1px;
+  background: var(--bark-light);
+}
+
+.wordmark {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 76px;
+  line-height: 0.95;
+  letter-spacing: 0.05em;
+  margin: 0 auto;
+  background: linear-gradient(100deg, var(--green) 0%, var(--citrus) 55%, var(--papaya-dk) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-tagline {
+  font-size: 11.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
   font-weight: 400;
-  padding-bottom: 1.4rem;
+  margin-top: 0.55rem;
 }
 
-/* Curva verde bajo hero */
-.hero-curve {
-  background: var(--green);
-  height: 32px;
-  clip-path: ellipse(55% 100% at 50% 100%);
-  margin-top: -1px;
+/* ── ENLACE DISCRETO A COCTELERÍA ── */
+.cocktail-link {
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  right: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--ube);
+  text-decoration: none;
+  opacity: 0.8;
+  padding: 4px 6px;
 }
+.cocktail-link span.ic { font-size: 12px; }
+.cocktail-link:hover { opacity: 1; text-decoration: underline; }
 
-/* ── PILLS DE IDENTIDAD ── */
-.identity-bar {
-  background: var(--green);
-  padding: 0 1.2rem 1rem;
+/* ── SELECTOR DE IDIOMA ── */
+.lang-bar {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   gap: 6px;
+  padding: 16px 1.2rem 9px;
+  background: var(--white);
+  border-bottom: 1px solid var(--divider);
 }
-.pill {
-  background: rgba(255,255,255,0.13);
-  color: rgba(255,255,255,0.85);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 5px 12px;
+.lang-btn {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 4px 14px;
   border-radius: 20px;
+  border: 1px solid var(--divider);
+  background: var(--cream);
+  color: var(--muted);
+  cursor: pointer;
+  transition: background .18s, color .18s, border-color .18s;
 }
+.lang-btn.on { background: var(--bark); color: #fff; border-color: var(--bark); }
+.lang-btn:not(.on):hover { border-color: var(--bark-light); color: var(--bark); }
 
 /* ── STICKY NAV ── */
 .nav-wrap {
@@ -136,12 +199,13 @@ body {
   border-bottom: 2.5px solid transparent;
   cursor: pointer;
   white-space: nowrap;
-  transition: color .2s, border-color .2s;
+  transition: color .2s, border-color .2s, background .2s;
   display: flex;
   align-items: center;
   gap: 5px;
+  border-radius: 8px 8px 0 0;
 }
-.cat-tab.on { color: var(--green); border-bottom-color: var(--green); }
+.cat-tab.on { color: var(--green); border-bottom-color: var(--green); background: var(--green-bg); }
 .cat-tab span { font-size: 14px; }
 
 /* Submenú de bebidas */
@@ -179,6 +243,13 @@ body {
 /* ── SECCIONES ── */
 .page { display: none; padding: 1.4rem 1rem 5rem; }
 .page.on { display: block; }
+@media (prefers-reduced-motion: no-preference) {
+  .page.on { animation: pageIn .4s ease; }
+  @keyframes pageIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
 
 /* Cabecera de sección */
 .sec-head { margin-bottom: 1.4rem; }
@@ -277,6 +348,7 @@ body {
 .card-hero {
   background: linear-gradient(135deg, #FDF6EE 0%, #F5E8D3 100%);
   border-color: var(--bark-light);
+  box-shadow: 0 3px 16px rgba(196,151,106,0.25);
 }
 
 /* ── BADGES ── */
@@ -386,126 +458,105 @@ body {
 <body>
 <div class="root">
 
-  <!-- ══════════ HERO ══════════ -->
+  <!-- ══════════ HERO — brunch tropical ══════════ -->
   <header class="hero">
-    <!-- Logo SVG inline -->
-    <svg class="hero-logo" viewBox="0 0 240 90" xmlns="http://www.w3.org/2000/svg" aria-label="ISLA">
-      <text x="50%" y="62" text-anchor="middle"
-        font-family="Cormorant Garamond, serif" font-size="68" font-weight="600"
-        letter-spacing="16" fill="var(--green)">ISLA</text>
-      <line x1="30" y1="72" x2="210" y2="72" stroke="var(--green)" stroke-width="1"/>
-    </svg>
-    <p class="hero-logo-copy">ISLA</p>
-    <p class="hero-tagline">Elche &middot; Brunch y Bar</p>
-  </header>
-  <div class="hero-curve"></div>
+    <div class="palm-scene" aria-hidden="true">
+      <svg viewBox="0 0 430 170" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+          <symbol id="palm" viewBox="0 0 100 160">
+            <path d="M46,160 C44,120 54,86 56,42 L62,42 C64,86 56,120 54,160 Z" fill="currentColor"/>
+            <g transform="translate(58,40)" fill="currentColor">
+              <path d="M0,0 C-6,-22 -5,-40 0,-55 C5,-40 6,-22 0,0 Z" transform="rotate(-62)"/>
+              <path d="M0,0 C-7,-24 -6,-44 0,-60 C6,-44 7,-24 0,0 Z" transform="rotate(-31)"/>
+              <path d="M0,0 C-7,-25 -6,-46 0,-62 C6,-46 7,-25 0,0 Z" transform="rotate(0)"/>
+              <path d="M0,0 C-7,-24 -6,-44 0,-60 C6,-44 7,-24 0,0 Z" transform="rotate(31)"/>
+              <path d="M0,0 C-6,-22 -5,-40 0,-55 C5,-40 6,-22 0,0 Z" transform="rotate(62)"/>
+            </g>
+          </symbol>
+        </defs>
 
-  <!-- Pills identidad -->
-  <div class="identity-bar">
-    <span class="pill">🌴 Desayunos</span>
-    <span class="pill">☕ Cafés especiales</span>
-    <span class="pill">🥑 Brunch</span>
-    <span class="pill">🍹 Tropicales</span>
+        <!-- Fondo: palmeras lejanas, tenues -->
+        <use href="#palm" xlink:href="#palm" class="palm-back" transform="translate(5,122)   scale(0.3)"/>
+        <use href="#palm" xlink:href="#palm" class="palm-back" transform="translate(115,128) scale(0.26)"/>
+        <use href="#palm" xlink:href="#palm" class="palm-back" transform="translate(255,125) scale(0.28)"/>
+        <use href="#palm" xlink:href="#palm" class="palm-back" transform="translate(385,122) scale(0.3)"/>
+
+        <!-- Medio: palmeras intermedias -->
+        <use href="#palm" xlink:href="#palm" class="palm-mid" transform="translate(50,98)  scale(0.45)"/>
+        <use href="#palm" xlink:href="#palm" class="palm-mid" transform="translate(185,106) scale(0.4)"/>
+        <use href="#palm" xlink:href="#palm" class="palm-mid" transform="translate(320,96) scale(0.46)"/>
+
+        <!-- Primer plano: palmeras marcadas -->
+        <use href="#palm" xlink:href="#palm" class="palm-front" transform="translate(10,58)  scale(0.7)"/>
+        <use href="#palm" xlink:href="#palm" class="palm-front" transform="translate(140,71) scale(0.62)"/>
+        <use href="#palm" xlink:href="#palm" class="palm-front" transform="translate(270,64) scale(0.66)"/>
+        <use href="#palm" xlink:href="#palm" class="palm-front" transform="translate(350,74) scale(0.6)"/>
+      </svg>
+    </div>
+
+    <a class="cocktail-link" href="https://islabrunchbar.com/Cocteles" target="_blank" rel="noopener">
+      <span class="ic">🍹</span><span data-en="Cocktails" data-fr="Cocktails">Coctelería</span>
+    </a>
+
+    <div class="hero-inner">
+      <p class="hero-eyebrow" data-en="Elche · Brunch &amp; Bar" data-fr="Elche · Brunch &amp; Bar">Elche &middot; Brunch y Bar</p>
+      <h1 class="wordmark">ISLA</h1>
+      <p class="hero-tagline" data-en="Tropical brunch" data-fr="Brunch tropical">Brunch tropical</p>
+    </div>
+  </header>
+
+  <!-- Selector de idioma -->
+  <div class="lang-bar" role="group" aria-label="Idioma · Language · Langue">
+    <button class="lang-btn on" data-lang="es" onclick="setLang('es',this)">ES</button>
+    <button class="lang-btn" data-lang="en" onclick="setLang('en',this)">EN</button>
+    <button class="lang-btn" data-lang="fr" onclick="setLang('fr',this)">FR</button>
   </div>
 
   <!-- ══════════ NAV PRINCIPAL ══════════ -->
   <div class="nav-wrap">
     <nav class="nav-cats" role="tablist" aria-label="Categorías">
-      <button class="cat-tab on" onclick="showCat('bebidas',this)" role="tab"><span>☕</span> Bebidas</button>
-      <button class="cat-tab"    onclick="showCat('batidos',this)"  role="tab"><span>🍹</span> Batidos</button>
-      <button class="cat-tab"    onclick="showCat('brunch',this)"   role="tab"><span>🥑</span> Brunch</button>
-      <button class="cat-tab"    onclick="showCat('dulce',this)"    role="tab"><span>🥞</span> Dulce</button>
-      <button class="cat-tab"    onclick="showCat('compartir',this)" role="tab"><span>🫶</span> Compartir</button>
-      <button class="cat-tab"    onclick="showCat('diy',this)"      role="tab"><span>✏️</span> Hazlo tú</button>
+      <button class="cat-tab on" onclick="showCat('bebidas',this)" role="tab"><span>☕</span> <span data-en="Drinks" data-fr="Boissons">Bebidas</span></button>
+      <button class="cat-tab"    onclick="showCat('batidos',this)"  role="tab"><span>🍹</span> <span data-en="Shakes" data-fr="Smoothies">Batidos</span></button>
+      <button class="cat-tab"    onclick="showCat('brunch',this)"   role="tab"><span>🥑</span> <span data-en="Brunch" data-fr="Brunch">Brunch</span></button>
+      <button class="cat-tab"    onclick="showCat('dulce',this)"    role="tab"><span>🥞</span> <span data-en="Sweet" data-fr="Sucré">Dulce</span></button>
+      <button class="cat-tab"    onclick="showCat('compartir',this)" role="tab"><span>🫶</span> <span data-en="Sharing" data-fr="À partager">Compartir</span></button>
+      <button class="cat-tab"    onclick="showCat('diy',this)"      role="tab"><span>✏️</span> <span data-en="Build Your Own" data-fr="Fait maison">Hazlo tú</span></button>
     </nav>
 
-    <!-- Submenú Bebidas -->
+    <!-- Submenú Bebidas (Matcha primero) -->
     <div id="subnav-bebidas" class="sub-nav vis" role="tablist" aria-label="Tipos de bebida">
-      <button class="sub-tab on" onclick="showSub('ube',this,'bebidas')"    role="tab">🔮 Ube</button>
-      <button class="sub-tab"   onclick="showSub('matcha',this,'bebidas')"  role="tab">🍵 Matcha</button>
-      <button class="sub-tab"   onclick="showSub('cafe',this,'bebidas')"    role="tab">☕ Café</button>
+      <button class="sub-tab on" onclick="showSub('matcha',this,'bebidas')" role="tab">🍵 <span data-en="Matcha" data-fr="Matcha">Matcha</span></button>
+      <button class="sub-tab"    onclick="showSub('ube',this,'bebidas')"    role="tab">🔮 <span data-en="Ube" data-fr="Ube">Ube</span></button>
+      <button class="sub-tab"    onclick="showSub('cafe',this,'bebidas')"   role="tab">☕ <span data-en="Coffee" data-fr="Café">Café</span></button>
     </div>
   </div>
 
   <!-- ══════════ BEBIDAS ══════════ -->
 
-  <!-- UBE -->
-  <section id="sec-ube" class="page on" aria-label="Ube">
-    <div class="sec-head">
-      <p class="eyebrow">Lo más pedido · Bebidas especiales</p>
-      <h1 class="sec-title">Ube — la sensación violeta</h1>
-      <p class="sec-note">Elixir de raíz de ube que tiñe cada sorbo de un violeta hipnótico. Exótico, cremoso e irresistible.</p>
-    </div>
-
-    <div class="card card-ube">
-      <span class="badge badge-ube">⭐ Estrella</span>
-      <div class="card-row">
-        <p class="item-name">Ube Latte</p>
-        <p class="item-price">4,90€</p>
-      </div>
-      <p class="item-desc">Elixir de ube con vainilla y coco, batido con leche cremosa. Caliente o con hielo.</p>
-    </div>
-
-    <div class="card card-ube">
-      <span class="badge badge-ube">⭐ Estrella</span>
-      <div class="card-row">
-        <p class="item-name">Ube Passion Frappé</p>
-        <p class="item-price">5,50€</p>
-      </div>
-      <p class="item-desc">Ube con la acidez eléctrica del maracuyá. Cremoso y exótico.</p>
-    </div>
-
-    <div class="card card-ube">
-      <div class="card-row">
-        <p class="item-name">Dirty Ube Espresso</p>
-        <p class="item-price">5,40€</p>
-      </div>
-      <p class="item-desc">Base dulce de Ube Latte coronada con un shot de espresso intenso.</p>
-    </div>
-
-    <div class="card card-ube">
-      <div class="card-row">
-        <p class="item-name">Isla Ube Breeze</p>
-        <p class="item-price">5,50€</p>
-      </div>
-      <p class="item-desc">Agua de coco natural infusionada con ube. Ligero e hidratante.</p>
-    </div>
-
-    <div class="card card-ube">
-      <div class="card-row">
-        <p class="item-name">Ube Fruit</p>
-        <p class="item-price">6,00€</p>
-      </div>
-      <p class="item-desc">Ube batido con puré de fruta a elegir: mango, fresa o maracuyá.</p>
-    </div>
-
-    <div class="ctx-note">🌿 <b>Leche vegetal disponible</b> &mdash; +0,50€ en cualquier bebida.</div>
-  </section>
-
   <!-- MATCHA -->
-  <section id="sec-matcha" class="page" aria-label="Matcha">
+  <section id="sec-matcha" class="page on" aria-label="Matcha">
     <div class="sec-head">
-      <p class="eyebrow">Energía natural · Ceremonial</p>
-      <h1 class="sec-title">Matcha — energía limpia</h1>
-      <p class="sec-note">Matcha ceremonial de primer grado. Rico en antioxidantes y con un toque de energía sin nerviosismo.</p>
+      <p class="eyebrow" data-en="Natural energy · Ceremonial grade" data-fr="Énergie naturelle · Qualité cérémonielle">Energía natural · Ceremonial</p>
+      <h1 class="sec-title" data-en="Matcha — clean energy" data-fr="Matcha — énergie pure">Matcha — energía limpia</h1>
+      <p class="sec-note" data-en="First-grade ceremonial matcha. Rich in antioxidants, with clean energy and no jitters." data-fr="Matcha cérémoniel de première qualité. Riche en antioxydants, pour une énergie douce sans nervosité.">Matcha ceremonial de primer grado. Rico en antioxidantes y con un toque de energía sin nerviosismo.</p>
     </div>
 
     <div class="card card-mat">
-      <span class="badge badge-mat">⭐ Estrella</span>
+      <span class="badge badge-mat">⭐ <span data-en="Star" data-fr="Vedette">Estrella</span></span>
       <div class="card-row">
         <p class="item-name">Coconut Water Matcha</p>
         <p class="item-price">5,50€</p>
       </div>
-      <p class="item-desc">Matcha ceremonial combinado con la pureza del agua de coco.</p>
+      <p class="item-desc" data-en="Ceremonial matcha blended with pure coconut water." data-fr="Matcha cérémoniel mêlé à la pureté de l'eau de coco.">Matcha ceremonial combinado con la pureza del agua de coco.</p>
     </div>
 
     <div class="card card-mat">
-      <span class="badge badge-mat">⭐ Estrella</span>
+      <span class="badge badge-mat">⭐ <span data-en="Star" data-fr="Vedette">Estrella</span></span>
       <div class="card-row">
-        <p class="item-name">Ice Matcha Frutal</p>
+        <p class="item-name" data-en="Iced Fruity Matcha" data-fr="Matcha Glacé Fruité">Ice Matcha Frutal</p>
         <p class="item-price">5,00€</p>
       </div>
-      <p class="item-desc">Versión helada con notas frutales: mango, fresa o maracuyá.</p>
+      <p class="item-desc" data-en="Iced version with fruity notes: mango, strawberry or passion fruit." data-fr="Version glacée aux notes fruitées : mangue, fraise ou fruit de la passion.">Versión helada con notas frutales: mango, fresa o maracuyá.</p>
     </div>
 
     <div class="card card-mat">
@@ -513,335 +564,388 @@ body {
         <p class="item-name">Matcha Latte</p>
         <p class="item-price">4,50€</p>
       </div>
-      <p class="item-desc">Energía limpia con la textura cremosa de la leche vaporizada.</p>
+      <p class="item-desc" data-en="Clean energy with the creamy texture of steamed milk." data-fr="Énergie pure avec la texture crémeuse du lait vaporisé.">Energía limpia con la textura cremosa de la leche vaporizada.</p>
     </div>
 
     <div class="card card-mat">
       <div class="card-row">
-        <p class="item-name">Matcha Tradicional</p>
+        <p class="item-name" data-en="Traditional Matcha" data-fr="Matcha Traditionnel">Matcha Tradicional</p>
         <p class="item-price">3,50€</p>
       </div>
-      <p class="item-desc">La experiencia pura del matcha batido de forma artesanal.</p>
+      <p class="item-desc" data-en="The pure experience of hand-whisked matcha." data-fr="L'expérience pure du matcha fouetté à la main.">La experiencia pura del matcha batido de forma artesanal.</p>
     </div>
 
     <div class="card card-mat">
       <div class="card-row">
-        <p class="item-name">Té de Matcha</p>
+        <p class="item-name" data-en="Matcha Tea" data-fr="Thé Matcha">Té de Matcha</p>
         <p class="item-price">3,00€</p>
       </div>
-      <p class="item-desc">Infusión ligera, limpia y antioxidante.</p>
+      <p class="item-desc" data-en="A light, clean, antioxidant-rich infusion." data-fr="Une infusion légère, pure et riche en antioxydants.">Infusión ligera, limpia y antioxidante.</p>
     </div>
 
-    <div class="ctx-note">🌿 <b>Leche vegetal disponible</b> &mdash; +0,50€ en cualquier bebida.</div>
+    <div class="ctx-note i18n-html" data-en-html="🌿 <b>Plant-based milk available</b> — +€0.50 on any drink." data-fr-html="🌿 <b>Lait végétal disponible</b> — +0,50€ sur toute boisson.">🌿 <b>Leche vegetal disponible</b> &mdash; +0,50€ en cualquier bebida.</div>
+  </section>
+
+  <!-- UBE -->
+  <section id="sec-ube" class="page" aria-label="Ube">
+    <div class="sec-head">
+      <p class="eyebrow" data-en="Most popular · Signature drinks" data-fr="Le plus demandé · Boissons signature">Lo más pedido · Bebidas especiales</p>
+      <h1 class="sec-title" data-en="Ube — the violet sensation" data-fr="Ube — la sensation violette">Ube — la sensación violeta</h1>
+      <p class="sec-note" data-en="Ube root elixir that tints every sip a hypnotic violet. Exotic, creamy and irresistible." data-fr="Un élixir de racine d'ube qui teinte chaque gorgée d'un violet hypnotique. Exotique, onctueux et irrésistible.">Elixir de raíz de ube que tiñe cada sorbo de un violeta hipnótico. Exótico, cremoso e irresistible.</p>
+    </div>
+
+    <div class="card card-ube">
+      <span class="badge badge-ube">⭐ <span data-en="Star" data-fr="Vedette">Estrella</span></span>
+      <div class="card-row">
+        <p class="item-name">Ube Latte</p>
+        <p class="item-price">4,90€</p>
+      </div>
+      <p class="item-desc" data-en="Ube elixir with vanilla and coconut, blended with creamy milk. Hot or iced." data-fr="Élixir d'ube à la vanille et à la noix de coco, mélangé à du lait crémeux. Chaud ou glacé.">Elixir de ube con vainilla y coco, batido con leche cremosa. Caliente o con hielo.</p>
+    </div>
+
+    <div class="card card-ube">
+      <span class="badge badge-ube">⭐ <span data-en="Star" data-fr="Vedette">Estrella</span></span>
+      <div class="card-row">
+        <p class="item-name">Ube Passion Frappé</p>
+        <p class="item-price">5,50€</p>
+      </div>
+      <p class="item-desc" data-en="Ube with the electric tang of passion fruit. Creamy and exotic." data-fr="Ube relevé de l'acidité vive du fruit de la passion. Onctueux et exotique.">Ube con la acidez eléctrica del maracuyá. Cremoso y exótico.</p>
+    </div>
+
+    <div class="card card-ube">
+      <div class="card-row">
+        <p class="item-name">Dirty Ube Espresso</p>
+        <p class="item-price">5,40€</p>
+      </div>
+      <p class="item-desc" data-en="Sweet Ube Latte base topped with a shot of intense espresso." data-fr="Base sucrée de Ube Latte surmontée d'un shot d'espresso intense.">Base dulce de Ube Latte coronada con un shot de espresso intenso.</p>
+    </div>
+
+    <div class="card card-ube">
+      <div class="card-row">
+        <p class="item-name">Isla Ube Breeze</p>
+        <p class="item-price">5,50€</p>
+      </div>
+      <p class="item-desc" data-en="Natural coconut water infused with ube. Light and hydrating." data-fr="Eau de coco naturelle infusée à l'ube. Léger et hydratant.">Agua de coco natural infusionada con ube. Ligero e hidratante.</p>
+    </div>
+
+    <div class="card card-ube">
+      <div class="card-row">
+        <p class="item-name">Ube Fruit</p>
+        <p class="item-price">6,00€</p>
+      </div>
+      <p class="item-desc" data-en="Ube blended with your choice of fruit purée: mango, strawberry or passion fruit." data-fr="Ube mixé avec un coulis de fruit au choix : mangue, fraise ou fruit de la passion.">Ube batido con puré de fruta a elegir: mango, fresa o maracuyá.</p>
+    </div>
+
+    <div class="ctx-note i18n-html" data-en-html="🌿 <b>Plant-based milk available</b> — +€0.50 on any drink." data-fr-html="🌿 <b>Lait végétal disponible</b> — +0,50€ sur toute boisson.">🌿 <b>Leche vegetal disponible</b> &mdash; +0,50€ en cualquier bebida.</div>
   </section>
 
   <!-- CAFÉ -->
   <section id="sec-cafe" class="page" aria-label="Café y bebidas">
     <div class="sec-head">
-      <p class="eyebrow">La barra</p>
-      <h1 class="sec-title">Cafés &amp; bebidas</h1>
+      <p class="eyebrow" data-en="At the bar" data-fr="Au comptoir">La barra</p>
+      <h1 class="sec-title" data-en="Coffee &amp; Drinks" data-fr="Cafés &amp; Boissons">Cafés &amp; bebidas</h1>
     </div>
 
-    <p class="group-label">Cafés clásicos</p>
+    <p class="group-label" data-en="Classic coffees" data-fr="Cafés classiques">Cafés clásicos</p>
     <div class="grid2">
       <div class="mini-card"><span class="mini-name">Espresso</span><span class="mini-price">1,60€</span></div>
-      <div class="mini-card"><span class="mini-name">Doble espresso</span><span class="mini-price">1,90€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Double espresso" data-fr="Double espresso">Doble espresso</span><span class="mini-price">1,90€</span></div>
       <div class="mini-card"><span class="mini-name">Cortado</span><span class="mini-price">1,70€</span></div>
       <div class="mini-card"><span class="mini-name">Americano</span><span class="mini-price">1,80€</span></div>
-      <div class="mini-card"><span class="mini-name">Café con leche</span><span class="mini-price">2,10€</span></div>
-      <div class="mini-card"><span class="mini-name">Bombón</span><span class="mini-price">2,50€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Coffee with milk" data-fr="Café au lait">Café con leche</span><span class="mini-price">2,10€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Bombón (sweet espresso)" data-fr="Bombón (espresso sucré)">Bombón</span><span class="mini-price">2,50€</span></div>
       <div class="mini-card"><span class="mini-name">Latte</span><span class="mini-price">2,50€</span></div>
       <div class="mini-card"><span class="mini-name">Cappuccino</span><span class="mini-price">2,70€</span></div>
     </div>
 
-    <p class="group-label">Cafés especiales</p>
+    <p class="group-label" data-en="Specialty coffees" data-fr="Cafés spéciaux">Cafés especiales</p>
     <div class="card">
       <div class="card-row">
         <p class="item-name">Cold Foam Espresso</p>
         <p class="item-price">4,20€</p>
       </div>
-      <p class="item-desc">Espresso con cold foam al gusto.</p>
+      <p class="item-desc" data-en="Espresso with cold foam of your choice." data-fr="Espresso avec cold foam au choix.">Espresso con cold foam al gusto.</p>
     </div>
     <div class="card">
-      <span class="badge badge-sig">Especial</span>
+      <span class="badge badge-sig" data-en="Special" data-fr="Spécial">Especial</span>
       <div class="card-row">
-        <p class="item-name">Pistacho Latte</p>
+        <p class="item-name" data-en="Pistachio Latte" data-fr="Latte Pistache">Pistacho Latte</p>
         <p class="item-price">4,80€</p>
       </div>
-      <p class="item-desc">Espresso con crema de pistacho y leche vaporizada.</p>
+      <p class="item-desc" data-en="Espresso with pistachio cream and steamed milk." data-fr="Espresso à la crème de pistache et lait vaporisé.">Espresso con crema de pistacho y leche vaporizada.</p>
     </div>
     <div class="card">
       <div class="card-row">
         <p class="item-name">Frappés</p>
         <p class="item-price">4,50€</p>
       </div>
-      <p class="item-desc">Avellana, chocolate, vainilla o caramelo. Extra sirope +0,50€.</p>
+      <p class="item-desc" data-en="Hazelnut, chocolate, vanilla or caramel. Extra syrup +€0.50." data-fr="Noisette, chocolat, vanille ou caramel. Sirop supplémentaire +0,50€.">Avellana, chocolate, vainilla o caramelo. Extra sirope +0,50€.</p>
     </div>
 
-    <p class="group-label">Refrescos &amp; otras bebidas</p>
+    <p class="group-label" data-en="Soft drinks &amp; other beverages" data-fr="Sodas &amp; autres boissons">Refrescos &amp; otras bebidas</p>
     <div class="grid2">
       <div class="mini-card"><span class="mini-name">Coca-Cola / Zero</span><span class="mini-price">2,50€</span></div>
       <div class="mini-card"><span class="mini-name">Sprite</span><span class="mini-price">2,50€</span></div>
       <div class="mini-card"><span class="mini-name">Fanta</span><span class="mini-price">2,50€</span></div>
       <div class="mini-card"><span class="mini-name">Aquarius</span><span class="mini-price">2,60€</span></div>
       <div class="mini-card"><span class="mini-name">Nestea</span><span class="mini-price">2,80€</span></div>
-      <div class="mini-card"><span class="mini-name">Tónica Schweppes</span><span class="mini-price">2,80€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Schweppes Tonic" data-fr="Tonic Schweppes">Tónica Schweppes</span><span class="mini-price">2,80€</span></div>
       <div class="mini-card"><span class="mini-name">Bitter Kas</span><span class="mini-price">2,80€</span></div>
-      <div class="mini-card"><span class="mini-name">Sidra Maeloc</span><span class="mini-price">3,00€</span></div>
-      <div class="mini-card"><span class="mini-name">Agua Nestlé</span><span class="mini-price">1,80€</span></div>
-      <div class="mini-card"><span class="mini-name">Agua con gas</span><span class="mini-price">2,00€</span></div>
-      <div class="mini-card mini-full"><span class="mini-name">Agua de coco</span><span class="mini-price">3,50€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Maeloc Cider" data-fr="Cidre Maeloc">Sidra Maeloc</span><span class="mini-price">3,00€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Nestlé Water" data-fr="Eau Nestlé">Agua Nestlé</span><span class="mini-price">1,80€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Sparkling Water" data-fr="Eau Gazeuse">Agua con gas</span><span class="mini-price">2,00€</span></div>
+      <div class="mini-card mini-full"><span class="mini-name" data-en="Coconut Water" data-fr="Eau de Coco">Agua de coco</span><span class="mini-price">3,50€</span></div>
     </div>
 
-    <div class="ctx-note">🌿 <b>Leche vegetal</b> disponible en todos los cafés — +0,50€.</div>
+    <div class="ctx-note i18n-html" data-en-html="🌿 <b>Plant-based milk</b> available on all coffees — +€0.50." data-fr-html="🌿 <b>Lait végétal</b> disponible sur tous les cafés — +0,50€.">🌿 <b>Leche vegetal</b> disponible en todos los cafés &mdash; +0,50€.</div>
   </section>
 
   <!-- ══════════ BATIDOS ══════════ -->
   <section id="sec-batidos" class="page" aria-label="Batidos y zumos">
     <div class="sec-head">
-      <p class="eyebrow">Batidos &amp; zumos</p>
-      <h1 class="sec-title">Energía tropical</h1>
+      <p class="eyebrow" data-en="Shakes &amp; juices" data-fr="Smoothies &amp; jus">Batidos &amp; zumos</p>
+      <h1 class="sec-title" data-en="Tropical energy" data-fr="Énergie tropicale">Energía tropical</h1>
     </div>
 
-    <div class="ctx-note">
+    <div class="ctx-note i18n-html" data-en-html="<b>How it works:</b> Choose your base from <b>€3.50</b> · First fruit from €1.20 · Second fruit +€1.00 · Protein +€1.50." data-fr-html="<b>Comment ça marche :</b> Choisissez votre base à partir de <b>3,50€</b> · Premier fruit dès 1,20€ · Deuxième fruit +1,00€ · Protéine +1,50€.">
       <b>Cómo funciona:</b> Base a elegir desde <b>3,50€</b> · Primera fruta desde 1,20€ · Segunda fruta +1,00€ · Proteína +1,50€.
     </div>
 
-    <p class="group-label">Protein Bar — combinaciones estrella</p>
+    <p class="group-label" data-en="Protein Bar — signature combos" data-fr="Protein Bar — combinaisons vedettes">Protein Bar — combinaciones estrella</p>
 
     <div class="card">
       <div class="card-row">
         <p class="item-name">Blue Power Shake</p>
         <p class="item-price">6,90€</p>
       </div>
-      <p class="item-desc">Espirulina azul, mango, piña y yogurt.</p>
+      <p class="item-desc" data-en="Blue spirulina, mango, pineapple and yogurt." data-fr="Spiruline bleue, mangue, ananas et yaourt.">Espirulina azul, mango, piña y yogurt.</p>
     </div>
     <div class="card">
-      <span class="badge badge-sig">📸 Fotogénico</span>
+      <span class="badge badge-sig">📸 <span data-en="Instagrammable" data-fr="Instagrammable">Fotogénico</span></span>
       <div class="card-row">
         <p class="item-name">Pink Paradise</p>
         <p class="item-price">6,80€</p>
       </div>
-      <p class="item-desc">Frutas silvestres y yogurt. El más fotogénico.</p>
+      <p class="item-desc" data-en="Wild berries and yogurt. Our most photogenic shake." data-fr="Fruits rouges et yaourt. Le plus photogénique.">Frutas silvestres y yogurt. El más fotogénico.</p>
     </div>
     <div class="card">
       <div class="card-row">
         <p class="item-name">Passion Mango Tropic</p>
         <p class="item-price">6,90€</p>
       </div>
-      <p class="item-desc">Mango maduro, maracuyá y piña. Puro trópico.</p>
+      <p class="item-desc" data-en="Ripe mango, passion fruit and pineapple. Pure tropics." data-fr="Mangue mûre, fruit de la passion et ananas. Pur tropique.">Mango maduro, maracuyá y piña. Puro trópico.</p>
     </div>
     <div class="card">
       <div class="card-row">
         <p class="item-name">Isla Fit Power Shake</p>
         <p class="item-price">7,00€</p>
       </div>
-      <p class="item-desc">Plátano, arándanos y proteína con leche de almendras.</p>
+      <p class="item-desc" data-en="Banana, blueberries and protein with almond milk." data-fr="Banane, myrtilles et protéine au lait d'amande.">Plátano, arándanos y proteína con leche de almendras.</p>
     </div>
     <div class="card">
       <div class="card-row">
         <p class="item-name">Wild Berry Protein</p>
         <p class="item-price">6,80€</p>
       </div>
-      <p class="item-desc">Fresa, arándanos, maracuyá y proteína con agua de coco.</p>
+      <p class="item-desc" data-en="Strawberry, blueberries, passion fruit and protein with coconut water." data-fr="Fraise, myrtilles, fruit de la passion et protéine à l'eau de coco.">Fresa, arándanos, maracuyá y proteína con agua de coco.</p>
     </div>
 
-    <p class="group-label">Zumos &amp; bebidas frescas</p>
+    <p class="group-label" data-en="Juices &amp; fresh drinks" data-fr="Jus &amp; boissons fraîches">Zumos &amp; bebidas frescas</p>
     <div class="card">
       <div class="card-row">
         <p class="item-name">Morir Soñando</p>
         <p class="item-price">4,00€</p>
       </div>
-      <p class="item-desc">Zumo de naranja y leche. El clásico caribeño.</p>
+      <p class="item-desc" data-en="Orange juice and milk. The Caribbean classic." data-fr="Jus d'orange et lait. Le classique caribéen.">Zumo de naranja y leche. El clásico caribeño.</p>
     </div>
     <div class="card">
       <div class="card-row">
-        <p class="item-name">Avena con Limón</p>
+        <p class="item-name" data-en="Oat &amp; Lemon Drink" data-fr="Boisson Avoine-Citron">Avena con Limón</p>
         <p class="item-price">4,00€</p>
       </div>
     </div>
     <div class="card">
       <div class="card-row">
-        <p class="item-name">Avena con Maracuyá</p>
+        <p class="item-name" data-en="Oat &amp; Passion Fruit Drink" data-fr="Boisson Avoine-Fruit de la Passion">Avena con Maracuyá</p>
         <p class="item-price">4,00€</p>
       </div>
     </div>
     <div class="card">
       <div class="card-row">
-        <p class="item-name">Zumo de Naranja Natural</p>
+        <p class="item-name" data-en="Fresh Orange Juice" data-fr="Jus d'Orange Frais">Zumo de Naranja Natural</p>
         <p class="item-price">2,50€</p>
       </div>
-      <p class="item-desc">100% recién exprimido.</p>
+      <p class="item-desc" data-en="100% freshly squeezed." data-fr="100% pressé minute.">100% recién exprimido.</p>
     </div>
     <div class="card">
       <div class="card-row">
-        <p class="item-name">Limonada Casera</p>
+        <p class="item-name" data-en="Homemade Lemonade" data-fr="Limonade Maison">Limonada Casera</p>
         <p class="item-price">3,50€</p>
       </div>
     </div>
 
-    <p class="group-label">Personaliza con frutas</p>
+    <p class="group-label" data-en="Customize with fruit" data-fr="Personnalisez avec des fruits">Personaliza con frutas</p>
     <div class="grid2">
       <div class="mini-card"><span class="mini-name">Mango</span><span class="mini-price">1,80€</span></div>
-      <div class="mini-card"><span class="mini-name">Fresa</span><span class="mini-price">1,50€</span></div>
-      <div class="mini-card"><span class="mini-name">Maracuyá</span><span class="mini-price">1,90€</span></div>
-      <div class="mini-card"><span class="mini-name">Plátano</span><span class="mini-price">1,50€</span></div>
-      <div class="mini-card"><span class="mini-name">Arándanos</span><span class="mini-price">2,00€</span></div>
-      <div class="mini-card"><span class="mini-name">Piña</span><span class="mini-price">1,50€</span></div>
-      <div class="mini-card"><span class="mini-name">Cereza agria</span><span class="mini-price">2,00€</span></div>
-      <div class="mini-card"><span class="mini-name">Cherry</span><span class="mini-price">1,80€</span></div>
-      <div class="mini-card"><span class="mini-name">Manzana verde</span><span class="mini-price">1,20€</span></div>
-      <div class="mini-card"><span class="mini-name">Coco</span><span class="mini-price">1,80€</span></div>
-      <div class="mini-card"><span class="mini-name">Melocotón blanco</span><span class="mini-price">1,70€</span></div>
-      <div class="mini-card"><span class="mini-name">Granadilla</span><span class="mini-price">1,80€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Strawberry" data-fr="Fraise">Fresa</span><span class="mini-price">1,50€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Passion fruit" data-fr="Fruit de la passion">Maracuyá</span><span class="mini-price">1,90€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Banana" data-fr="Banane">Plátano</span><span class="mini-price">1,50€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Blueberries" data-fr="Myrtilles">Arándanos</span><span class="mini-price">2,00€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Pineapple" data-fr="Ananas">Piña</span><span class="mini-price">1,50€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Sour cherry" data-fr="Griotte">Cereza agria</span><span class="mini-price">2,00€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Cherry" data-fr="Cerise">Cherry</span><span class="mini-price">1,80€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Green apple" data-fr="Pomme verte">Manzana verde</span><span class="mini-price">1,20€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Coconut" data-fr="Noix de coco">Coco</span><span class="mini-price">1,80€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="White peach" data-fr="Pêche blanche">Melocotón blanco</span><span class="mini-price">1,70€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Granadilla" data-fr="Grenadille">Granadilla</span><span class="mini-price">1,80€</span></div>
     </div>
   </section>
 
   <!-- ══════════ BRUNCH ══════════ -->
   <section id="sec-brunch" class="page" aria-label="Brunch salado">
     <div class="sec-head">
-      <p class="eyebrow">Para empezar el viaje</p>
+      <p class="eyebrow" data-en="To start the journey" data-fr="Pour commencer le voyage">Para empezar el viaje</p>
       <h1 class="sec-title">Brunch</h1>
     </div>
 
     <div class="card card-hero">
-      <span class="badge badge-sig">🏆 Más vendido</span>
+      <span class="badge badge-sig">🏆 <span data-en="Best seller" data-fr="Meilleure vente">Más vendido</span></span>
       <div class="card-row">
         <p class="item-name">Serranito Island Mood</p>
         <p class="item-price">9,90€</p>
       </div>
-      <p class="item-desc">Pan masa madre, queso crema con ajo, jamón serrano, mozzarella, tomate cherry y miel.</p>
+      <p class="item-desc" data-en="Sourdough bread, garlic cream cheese, Serrano ham, mozzarella, cherry tomato and honey." data-fr="Pain au levain, fromage frais à l'ail, jambon Serrano, mozzarella, tomate cerise et miel.">Pan masa madre, queso crema con ajo, jamón serrano, mozzarella, tomate cherry y miel.</p>
     </div>
 
-    <p class="group-label">Con huevo</p>
+    <p class="group-label" data-en="With egg" data-fr="Avec œuf">Con huevo</p>
     <div class="card">
       <div class="card-row">
         <p class="item-name">Sesame Bagel</p>
         <p class="item-price">7,50€</p>
       </div>
-      <p class="item-desc">Bagel de sésamo, aguacate, tomate rallado, bacon crujiente y huevo revuelto.</p>
+      <p class="item-desc" data-en="Sesame bagel, avocado, grated tomato, crispy bacon and scrambled eggs." data-fr="Bagel au sésame, avocat, tomate râpée, bacon croustillant et œufs brouillés.">Bagel de sésamo, aguacate, tomate rallado, bacon crujiente y huevo revuelto.</p>
     </div>
     <div class="card">
       <div class="card-row">
-        <p class="item-name">Sandwich Isla</p>
+        <p class="item-name" data-en="Isla Sandwich" data-fr="Sandwich Isla">Sandwich Isla</p>
         <p class="item-price">7,50€</p>
       </div>
-      <p class="item-desc">Pan de molde, bacon, jamón York, queso Edam, huevo y salsa Isla.</p>
+      <p class="item-desc" data-en="Sandwich bread, bacon, cooked ham, Edam cheese, egg and Isla sauce." data-fr="Pain de mie, bacon, jambon blanc, fromage Edam, œuf et sauce Isla.">Pan de molde, bacon, jamón York, queso Edam, huevo y salsa Isla.</p>
     </div>
     <div class="card">
       <div class="card-row">
-        <p class="item-name">Tosta Bacon Brunch</p>
+        <p class="item-name" data-en="Bacon Brunch Toast" data-fr="Toast Bacon Brunch">Tosta Bacon Brunch</p>
         <p class="item-price">6,70€</p>
       </div>
-      <p class="item-desc">Pan cristal con bacon dorado, huevo revuelto, queso Edam y salsa Isla.</p>
+      <p class="item-desc" data-en="Crystal bread with golden bacon, scrambled eggs, Edam cheese and Isla sauce." data-fr="Pain croustillant, bacon doré, œufs brouillés, fromage Edam et sauce Isla.">Pan cristal con bacon dorado, huevo revuelto, queso Edam y salsa Isla.</p>
     </div>
     <div class="card">
       <div class="card-row">
         <p class="item-name">Cross Breakfast</p>
         <p class="item-price">6,50€</p>
       </div>
-      <p class="item-desc">Croissant con huevo revuelto, bacon, queso Edam y salsa Isla.</p>
+      <p class="item-desc" data-en="Croissant with scrambled eggs, bacon, Edam cheese and Isla sauce." data-fr="Croissant garni d'œufs brouillés, bacon, fromage Edam et sauce Isla.">Croissant con huevo revuelto, bacon, queso Edam y salsa Isla.</p>
     </div>
     <div class="card">
       <span class="badge badge-sig">🥞 American Style</span>
       <div class="card-row">
-        <p class="item-name">Tortita New York</p>
+        <p class="item-name" data-en="New York Pancake" data-fr="Pancake New York">Tortita New York</p>
         <p class="item-price">7,50€</p>
       </div>
-      <p class="item-desc">Tortitas americanas, bacon crujiente, huevo revuelto y sirope de arce.</p>
+      <p class="item-desc" data-en="American pancakes, crispy bacon, scrambled eggs and maple syrup." data-fr="Pancakes américains, bacon croustillant, œufs brouillés et sirop d'érable.">Tortitas americanas, bacon crujiente, huevo revuelto y sirope de arce.</p>
     </div>
 
-    <p class="group-label">Tostas</p>
+    <p class="group-label" data-en="Toasts" data-fr="Toasts">Tostas</p>
     <div class="card">
       <span class="badge badge-grn">🌱 Veggie</span>
       <div class="card-row">
-        <p class="item-name">Tosta Isla Veggie</p>
+        <p class="item-name" data-en="Isla Veggie Toast" data-fr="Toast Isla Veggie">Tosta Isla Veggie</p>
         <p class="item-price">6,50€</p>
       </div>
-      <p class="item-desc">Masa madre, aguacate, tomates cherry, queso crema, AOVE y sal.</p>
+      <p class="item-desc" data-en="Sourdough, avocado, cherry tomatoes, cream cheese, extra virgin olive oil and salt." data-fr="Pain au levain, avocat, tomates cerises, fromage frais, huile d'olive extra vierge et sel.">Masa madre, aguacate, tomates cherry, queso crema, AOVE y sal.</p>
     </div>
     <div class="card">
       <div class="card-row">
-        <p class="item-name">Tosta de Salmón Ahumado</p>
+        <p class="item-name" data-en="Smoked Salmon Toast" data-fr="Toast au Saumon Fumé">Tosta de Salmón Ahumado</p>
         <p class="item-price">6,25€</p>
       </div>
-      <p class="item-desc">Salmón sobre queso crema suave con salsa Isla.</p>
+      <p class="item-desc" data-en="Salmon over smooth cream cheese with Isla sauce." data-fr="Saumon sur fromage frais doux avec sauce Isla.">Salmón sobre queso crema suave con salsa Isla.</p>
     </div>
     <div class="card">
       <div class="card-row">
-        <p class="item-name">Tosta de Atún Mayo</p>
+        <p class="item-name" data-en="Tuna Mayo Toast" data-fr="Toast Thon Mayo">Tosta de Atún Mayo</p>
         <p class="item-price">5,90€</p>
       </div>
-      <p class="item-desc">Atún con mayonesa y un toque vibrante de limón.</p>
+      <p class="item-desc" data-en="Tuna with mayonnaise and a vibrant touch of lemon." data-fr="Thon à la mayonnaise et une touche vive de citron.">Atún con mayonesa y un toque vibrante de limón.</p>
     </div>
 
-    <p class="group-label">Clásicos de siempre</p>
+    <p class="group-label" data-en="Timeless classics" data-fr="Classiques intemporels">Clásicos de siempre</p>
     <div class="card">
       <div class="card-row">
         <p class="item-name">Croissant Gourmet</p>
         <p class="item-price">4,50€</p>
       </div>
-      <p class="item-desc">Jamón York y queso Edam fundido en hojaldre crujiente.</p>
+      <p class="item-desc" data-en="Cooked ham and melted Edam cheese in crispy puff pastry." data-fr="Jambon blanc et fromage Edam fondu dans une pâte feuilletée croustillante.">Jamón York y queso Edam fundido en hojaldre crujiente.</p>
     </div>
   </section>
 
   <!-- ══════════ DULCE ══════════ -->
   <section id="sec-dulce" class="page" aria-label="Brunch dulce">
     <div class="sec-head">
-      <p class="eyebrow">Brunch dulce</p>
+      <p class="eyebrow" data-en="Sweet brunch" data-fr="Brunch sucré">Brunch dulce</p>
       <h1 class="sec-title">Sugar</h1>
     </div>
 
     <div class="card card-hero">
-      <span class="badge badge-sig">🏆 Más vendido</span>
+      <span class="badge badge-sig">🏆 <span data-en="Best seller" data-fr="Meilleure vente">Más vendido</span></span>
       <div class="card-row">
-        <p class="item-name">Tortitas Lotus</p>
+        <p class="item-name" data-en="Lotus Pancakes" data-fr="Pancakes Lotus">Tortitas Lotus</p>
         <p class="item-price">6,50€</p>
       </div>
-      <p class="item-desc">Pancakes esponjosas con crema Lotus, sirope ligero y fruta fresca de temporada.</p>
+      <p class="item-desc" data-en="Fluffy pancakes with Lotus cream, light syrup and fresh seasonal fruit." data-fr="Pancakes moelleux à la crème Lotus, sirop léger et fruits frais de saison.">Pancakes esponjosas con crema Lotus, sirope ligero y fruta fresca de temporada.</p>
     </div>
 
     <div class="card">
       <div class="card-row">
-        <p class="item-name">Pancake de la Isla</p>
+        <p class="item-name" data-en="Isla Pancake" data-fr="Pancake Isla">Pancake de la Isla</p>
         <p class="item-price">6,50€</p>
       </div>
-      <p class="item-desc">Masa esponjosa. Elige topping: agave, miel, pistacho, Nutella o dulce de leche.</p>
+      <p class="item-desc" data-en="Fluffy batter. Choose your topping: agave, honey, pistachio, Nutella or dulce de leche." data-fr="Pâte moelleuse. Choisissez votre topping : agave, miel, pistache, Nutella ou dulce de leche.">Masa esponjosa. Elige topping: agave, miel, pistacho, Nutella o dulce de leche.</p>
     </div>
 
     <div class="card">
       <div class="card-row">
-        <p class="item-name">Yogurt de la Isla</p>
+        <p class="item-name" data-en="Isla Yogurt" data-fr="Yaourt Isla">Yogurt de la Isla</p>
         <p class="item-price">5,20€</p>
       </div>
-      <p class="item-desc">Yogur cremoso, fruta del día, miel de agave y granola crujiente.</p>
+      <p class="item-desc" data-en="Creamy yogurt, fruit of the day, agave honey and crunchy granola." data-fr="Yaourt crémeux, fruit du jour, miel d'agave et granola croustillant.">Yogur cremoso, fruta del día, miel de agave y granola crujiente.</p>
     </div>
 
-    <p class="group-label">Algo más pequeño</p>
+    <p class="group-label" data-en="Something smaller" data-fr="Une petite douceur">Algo más pequeño</p>
     <div class="grid2">
       <div class="mini-card"><span class="mini-name">Muffin Lotus</span><span class="mini-price">3,50€</span></div>
-      <div class="mini-card"><span class="mini-name">Mini Croissant relleno</span><span class="mini-price">1,50€</span></div>
-      <div class="mini-card mini-full"><span class="mini-name">Summer Crumbl Cookies (2 uds.)</span><span class="mini-price">5,60€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Mini Filled Croissant" data-fr="Mini Croissant Fourré">Mini Croissant relleno</span><span class="mini-price">1,50€</span></div>
+      <div class="mini-card mini-full"><span class="mini-name" data-en="Summer Crumbl Cookies (2 pcs.)" data-fr="Summer Crumbl Cookies (2 pcs.)">Summer Crumbl Cookies (2 uds.)</span><span class="mini-price">5,60€</span></div>
     </div>
 
-    <div class="ctx-note">🍯 <b>Siropes disponibles:</b> Pistacho · Nutella · Lotus · Dulce de leche · Caramelo</div>
+    <div class="ctx-note i18n-html" data-en-html="🍯 <b>Available syrups:</b> Pistachio · Nutella · Lotus · Dulce de leche · Caramel" data-fr-html="🍯 <b>Sirops disponibles :</b> Pistache · Nutella · Lotus · Dulce de leche · Caramel">🍯 <b>Siropes disponibles:</b> Pistacho · Nutella · Lotus · Dulce de leche · Caramelo</div>
   </section>
 
   <!-- ══════════ COMPARTIR ══════════ -->
   <section id="sec-compartir" class="page" aria-label="Para compartir">
     <div class="sec-head">
-      <p class="eyebrow">Para compartir</p>
-      <h1 class="sec-title">Mesa para todos</h1>
-      <p class="sec-note">Los platos perfectos para poner en el centro y que todo el mundo pruebe.</p>
+      <p class="eyebrow" data-en="To share" data-fr="À partager">Para compartir</p>
+      <h1 class="sec-title" data-en="A table for everyone" data-fr="Une table pour tous">Mesa para todos</h1>
+      <p class="sec-note" data-en="The perfect dishes to place in the middle for everyone to try." data-fr="Les plats parfaits à poser au centre pour que tout le monde goûte.">Los platos perfectos para poner en el centro y que todo el mundo pruebe.</p>
     </div>
 
     <div class="card card-hero">
-      <span class="badge badge-fav">❤️ Favorito</span>
+      <span class="badge badge-fav">❤️ <span data-en="Favorite" data-fr="Favori">Favorito</span></span>
       <div class="card-row">
         <p class="item-name">La Isla de Zeian</p>
         <p class="item-price">9,90€</p>
       </div>
-      <p class="item-desc">Patata, pollo desmenuzado, ketchup, mayo y queso mozzarella gratinado.</p>
+      <p class="item-desc" data-en="Potato, shredded chicken, ketchup, mayo and gratinated mozzarella cheese." data-fr="Pomme de terre, poulet effiloché, ketchup, mayo et mozzarella gratinée.">Patata, pollo desmenuzado, ketchup, mayo y queso mozzarella gratinado.</p>
     </div>
 
     <div class="card">
@@ -849,7 +953,7 @@ body {
         <p class="item-name">Provolone Isla</p>
         <p class="item-price">8,90€</p>
       </div>
-      <p class="item-desc">Queso provolone fundido con especias y pan tostado para mojar.</p>
+      <p class="item-desc" data-en="Melted provolone cheese with spices and toasted bread for dipping." data-fr="Fromage provolone fondu aux épices, servi avec du pain grillé à tremper.">Queso provolone fundido con especias y pan tostado para mojar.</p>
     </div>
 
     <div class="card">
@@ -857,57 +961,57 @@ body {
         <p class="item-name">Quesadilla Isla</p>
         <p class="item-price">5,50€</p>
       </div>
-      <p class="item-desc">Quesadilla con queso mozzarella y salsa rosa.</p>
+      <p class="item-desc" data-en="Quesadilla with mozzarella cheese and pink sauce." data-fr="Quesadilla au fromage mozzarella et sauce rose.">Quesadilla con queso mozzarella y salsa rosa.</p>
     </div>
   </section>
 
   <!-- ══════════ HAZLO TÚ ══════════ -->
   <section id="sec-diy" class="page" aria-label="Hazlo tú">
     <div class="sec-head">
-      <p class="eyebrow">Crea tu plato</p>
-      <h1 class="sec-title">Hazlo tú</h1>
-      <p class="sec-note">Escoge tu base y combina los ingredientes que más te apetezcan.</p>
+      <p class="eyebrow" data-en="Build your dish" data-fr="Créez votre plat">Crea tu plato</p>
+      <h1 class="sec-title" data-en="Build Your Own" data-fr="Fait Maison">Hazlo tú</h1>
+      <p class="sec-note" data-en="Choose your base and combine the ingredients you like best." data-fr="Choisissez votre base et combinez les ingrédients de votre choix.">Escoge tu base y combina los ingredientes que más te apetezcan.</p>
     </div>
 
-    <p class="group-label">1 · Elige tu pan</p>
+    <p class="group-label" data-en="1 · Choose your bread" data-fr="1 · Choisissez votre pain">1 · Elige tu pan</p>
     <div class="pan-grid">
-      <div class="pan-card"><span class="pan-name">Masa madre</span><span class="pan-price">1,80€</span></div>
-      <div class="pan-card"><span class="pan-name">Pan de cristal</span><span class="pan-price">1,80€</span></div>
+      <div class="pan-card"><span class="pan-name" data-en="Sourdough" data-fr="Pain au levain">Masa madre</span><span class="pan-price">1,80€</span></div>
+      <div class="pan-card"><span class="pan-name" data-en="Crystal bread" data-fr="Pain croustillant">Pan de cristal</span><span class="pan-price">1,80€</span></div>
       <div class="pan-card"><span class="pan-name">Bagel</span><span class="pan-price">2,00€</span></div>
-      <div class="pan-card"><span class="pan-name">Pan de molde</span><span class="pan-price">1,20€</span></div>
+      <div class="pan-card"><span class="pan-name" data-en="Sandwich bread" data-fr="Pain de mie">Pan de molde</span><span class="pan-price">1,20€</span></div>
     </div>
 
-    <p class="group-label">2 · Añade ingredientes</p>
+    <p class="group-label" data-en="2 · Add ingredients" data-fr="2 · Ajoutez des ingrédients">2 · Añade ingredientes</p>
     <div class="grid2">
       <div class="mini-card"><span class="mini-name">Bacon</span><span class="mini-price">2,50€</span></div>
-      <div class="mini-card"><span class="mini-name">Huevos</span><span class="mini-price">1,50€</span></div>
-      <div class="mini-card"><span class="mini-name">Aguacate</span><span class="mini-price">2,10€</span></div>
-      <div class="mini-card"><span class="mini-name">Tomate cherry</span><span class="mini-price">1,50€</span></div>
-      <div class="mini-card"><span class="mini-name">Jamón serrano</span><span class="mini-price">2,80€</span></div>
-      <div class="mini-card"><span class="mini-name">Salmón ahumado</span><span class="mini-price">3,80€</span></div>
-      <div class="mini-card"><span class="mini-name">Jamón York</span><span class="mini-price">2,00€</span></div>
-      <div class="mini-card"><span class="mini-name">Atún</span><span class="mini-price">2,00€</span></div>
-      <div class="mini-card"><span class="mini-name">Queso crema</span><span class="mini-price">1,50€</span></div>
-      <div class="mini-card"><span class="mini-name">Queso Edam</span><span class="mini-price">1,50€</span></div>
-      <div class="mini-card mini-full"><span class="mini-name">Base de tomate</span><span class="mini-price">1,00€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Eggs" data-fr="Œufs">Huevos</span><span class="mini-price">1,50€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Avocado" data-fr="Avocat">Aguacate</span><span class="mini-price">2,10€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Cherry tomato" data-fr="Tomate cerise">Tomate cherry</span><span class="mini-price">1,50€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Serrano ham" data-fr="Jambon Serrano">Jamón serrano</span><span class="mini-price">2,80€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Smoked salmon" data-fr="Saumon fumé">Salmón ahumado</span><span class="mini-price">3,80€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Cooked ham" data-fr="Jambon blanc">Jamón York</span><span class="mini-price">2,00€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Tuna" data-fr="Thon">Atún</span><span class="mini-price">2,00€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Cream cheese" data-fr="Fromage frais">Queso crema</span><span class="mini-price">1,50€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Edam cheese" data-fr="Fromage Edam">Queso Edam</span><span class="mini-price">1,50€</span></div>
+      <div class="mini-card mini-full"><span class="mini-name" data-en="Tomato base" data-fr="Base tomate">Base de tomate</span><span class="mini-price">1,00€</span></div>
     </div>
   </section>
 
   <!-- ══════════ FOOTER ══════════ -->
   <footer class="footer">
     <strong>ISLA Brunch y Bar</strong>
-    Elche &nbsp;·&nbsp; <a href="https://instagram.com/islabrunchbar" target="_blank">@islabrunchbar>
+    Elche &nbsp;·&nbsp; <a href="https://instagram.com/islabrunchbar" target="_blank">@islabrunchbar</a>
   </footer>
 
 </div>
 
 <script>
 // Estado actual de qué categoría y subpestaña están activas
-const state = { cat: 'bebidas', sub: 'ube' };
+const state = { cat: 'bebidas', sub: 'matcha' };
 
-// Mapa de qué páginas pertenecen a qué categoría
+// Mapa de qué páginas pertenecen a qué categoría (Matcha primero dentro de Bebidas)
 const catPages = {
-  bebidas:    ['ube','matcha','cafe'],
+  bebidas:    ['matcha','ube','cafe'],
   batidos:    ['batidos'],
   brunch:     ['brunch'],
   dulce:      ['dulce'],
@@ -963,6 +1067,46 @@ function showPage(id) {
 
 // Inicializar sub-tab activa en la carga
 document.querySelector('.sub-tab').classList.add('on');
+
+// ══════════ TRADUCCIÓN AUTOMÁTICA (ES / EN / FR) ══════════
+const SUPPORTED_LANGS = ['es', 'en', 'fr'];
+
+// Guarda el texto original en español como respaldo antes de traducir nada
+function initI18n() {
+  document.querySelectorAll('[data-en], [data-fr]').forEach(el => {
+    if (el.classList.contains('i18n-html')) {
+      el.setAttribute('data-es-html', el.innerHTML.trim());
+    } else {
+      el.setAttribute('data-es', el.textContent);
+    }
+  });
+}
+
+function setLang(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('on'));
+  const activeBtn = btn || document.querySelector('.lang-btn[data-lang="' + lang + '"]');
+  if (activeBtn) activeBtn.classList.add('on');
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-en], [data-fr]').forEach(el => {
+    if (el.classList.contains('i18n-html')) {
+      const val = el.getAttribute('data-' + lang + '-html') || el.getAttribute('data-es-html');
+      if (val !== null) el.innerHTML = val;
+    } else {
+      const val = el.getAttribute('data-' + lang) || el.getAttribute('data-es');
+      if (val !== null) el.textContent = val;
+    }
+  });
+}
+
+// Detecta el idioma del navegador del cliente
+function detectLang() {
+  const raw = (navigator.language || 'es').slice(0, 2).toLowerCase();
+  return SUPPORTED_LANGS.includes(raw) ? raw : 'es';
+}
+
+initI18n();
+setLang(detectLang());
 </script>
 </body>
 </html>
