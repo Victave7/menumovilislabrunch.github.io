@@ -3,8 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ISLA — Brunch y Bar · ELCHE
-</title>
+<title>Brunch, Matcha y Ube en Elche — ISLA Brunch &amp; Bar</title>
+<meta name="description" content="ISLA Brunch &amp; Bar, en el centro de Elche: el mejor matcha ceremonial, ube latte y brunch de Elche. Café de especialidad, batidos tropicales y cócteles. Carta completa en ES/EN/FR.">
+<meta name="keywords" content="brunch Elche, matcha Elche, ube Elche, ube latte Elche, matcha latte Elche, cafetería Elche centro, café especialidad Elche, cócteles Elche, tardeo Elche, desayunos Elche, carta ISLA Elche">
+<meta name="robots" content="index, follow">
+<meta name="author" content="ISLA Brunch & Bar">
+<meta name="theme-color" content="#2D6A3F">
+<link rel="canonical" href="https://islabrunchbar.com/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23FAF8F4'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' font-weight='700' text-anchor='middle' fill='%232D6A3F'%3EI%3C/text%3E%3C/svg%3E">
+
+<!-- Open Graph -->
+<meta property="og:type" content="restaurant">
+<meta property="og:site_name" content="ISLA Brunch & Bar">
+<meta property="og:title" content="Brunch, Matcha y Ube en Elche — ISLA Brunch &amp; Bar">
+<meta property="og:description" content="El mejor matcha ceremonial, ube latte y brunch de Elche. Café de especialidad, batidos tropicales y cócteles en el centro de la ciudad.">
+<meta property="og:url" content="https://islabrunchbar.com/">
+<meta property="og:locale" content="es_ES">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Brunch, Matcha y Ube en Elche — ISLA Brunch &amp; Bar">
+<meta name="twitter:description" content="El mejor matcha ceremonial, ube latte y brunch de Elche. Café de especialidad, batidos tropicales y cócteles.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -28,11 +50,6 @@
   --shadow-sm:  0 2px 10px rgba(0,0,0,0.06);
   --shadow-md:  0 4px 20px rgba(0,0,0,0.09);
   --r:          14px;
-  /* Acentos tropicales del hero */
-  --papaya:     #FF8A5B;
-  --papaya-dk:  #E86A3C;
-  --citrus:     #F2A93C;
-  --palm-dk:    #1F4A2C;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -58,96 +75,89 @@ button, a { font-family: inherit; }
   border-radius: 4px;
 }
 
-/* ══════════ HERO — brunch tropical ══════════ */
+/* ── HERO ── */
 .hero {
-  position: relative;
-  overflow: hidden;
-  padding: 2.8rem 1.5rem 8.5rem;
+  background: var(--white);
+  padding: 2.8rem 1.5rem 0;
   text-align: center;
-  background: linear-gradient(175deg, var(--cream) 55%, #FCEFE1 100%);
-  isolation: isolate;
+  position: relative;
 }
-
-/* Escena de palmeras: siluetas por capas (fondo tenue → primer plano marcado) */
-.palm-scene {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 128px;
-  z-index: 0;
-  pointer-events: none;
+.hero-logo {
+  width: 180px;
+  height: auto;
+  display: block;
+  margin: 0 auto 0.5rem;
 }
-.palm-scene svg { display: block; width: 100%; height: 100%; }
-.palm-back  { fill: var(--green-lt); opacity: 0.22; }
-.palm-mid   { fill: var(--green);    opacity: 0.42; }
-.palm-front { fill: var(--palm-dk);  opacity: 0.9; }
-
-.hero-inner { position: relative; z-index: 1; }
-
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 10px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--bark-mid);
-  font-weight: 500;
-  margin-bottom: 0.9rem;
-}
-.hero-eyebrow::before, .hero-eyebrow::after {
-  content: "";
-  width: 18px; height: 1px;
-  background: var(--bark-light);
-}
-
-.wordmark {
+.hero-logo-copy {
   font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
   font-weight: 600;
-  font-size: 76px;
-  line-height: 0.95;
-  letter-spacing: 0.05em;
-  margin: 0 auto;
-  background: linear-gradient(100deg, var(--green) 0%, var(--citrus) 55%, var(--papaya-dk) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--green);
+  margin: 0 auto 0.45rem;
+  letter-spacing: 0.25em;
+}
+.hero-tagline {
+  font-size: 10.5px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--bark-light);
+  font-weight: 400;
+  padding-bottom: 0.85rem;
 }
 
-.hero-tagline {
-  font-size: 11.5px;
-  letter-spacing: 0.24em;
+/* Firma visual: dúo Matcha · Ube */
+.hero-duo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding-bottom: 1.3rem;
+}
+.hero-duo .dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+.hero-duo .dot-mat { background: var(--green-lt); }
+.hero-duo .dot-ube { background: var(--ube-mid); }
+.hero-duo .sep { width: 16px; height: 1px; background: var(--divider); display: inline-block; }
+.hero-duo em {
+  font-style: normal;
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
-  font-weight: 400;
-  margin-top: 0.55rem;
 }
 
-/* ── ENLACE DISCRETO A COCTELERÍA ── */
-.cocktail-link {
-  position: absolute;
-  z-index: 2;
-  top: 14px;
-  right: 16px;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  color: var(--ube);
-  text-decoration: none;
-  opacity: 0.8;
-  padding: 4px 6px;
+/* Curva verde bajo hero */
+.hero-curve {
+  background: var(--green);
+  height: 32px;
+  clip-path: ellipse(55% 100% at 50% 100%);
+  margin-top: -1px;
 }
-.cocktail-link span.ic { font-size: 12px; }
-.cocktail-link:hover { opacity: 1; text-decoration: underline; }
+
+/* ── PILLS DE IDENTIDAD ── */
+.identity-bar {
+  background: var(--green);
+  padding: 0 1.2rem 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.pill {
+  background: rgba(255,255,255,0.13);
+  color: rgba(255,255,255,0.85);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 20px;
+}
 
 /* ── SELECTOR DE IDIOMA ── */
 .lang-bar {
   display: flex;
   justify-content: center;
   gap: 6px;
-  padding: 16px 1.2rem 9px;
+  padding: 9px 1.2rem;
   background: var(--white);
   border-bottom: 1px solid var(--divider);
 }
@@ -458,52 +468,32 @@ button, a { font-family: inherit; }
 <body>
 <div class="root">
 
-  <!-- ══════════ HERO — brunch tropical ══════════ -->
+  <!-- ══════════ HERO ══════════ -->
   <header class="hero">
-    <div class="palm-scene" aria-hidden="true">
-      <svg viewBox="0 0 430 170" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <defs>
-          <symbol id="palm" viewBox="0 0 100 160">
-            <path d="M46,160 C44,120 54,86 56,42 L62,42 C64,86 56,120 54,160 Z" fill="currentColor"/>
-            <g transform="translate(58,40)" fill="currentColor">
-              <path d="M0,0 C-6,-22 -5,-40 0,-55 C5,-40 6,-22 0,0 Z" transform="rotate(-62)"/>
-              <path d="M0,0 C-7,-24 -6,-44 0,-60 C6,-44 7,-24 0,0 Z" transform="rotate(-31)"/>
-              <path d="M0,0 C-7,-25 -6,-46 0,-62 C6,-46 7,-25 0,0 Z" transform="rotate(0)"/>
-              <path d="M0,0 C-7,-24 -6,-44 0,-60 C6,-44 7,-24 0,0 Z" transform="rotate(31)"/>
-              <path d="M0,0 C-6,-22 -5,-40 0,-55 C5,-40 6,-22 0,0 Z" transform="rotate(62)"/>
-            </g>
-          </symbol>
-        </defs>
-
-        <!-- Fondo: palmeras lejanas, tenues -->
-        <use href="#palm" xlink:href="#palm" class="palm-back" transform="translate(5,122)   scale(0.3)"/>
-        <use href="#palm" xlink:href="#palm" class="palm-back" transform="translate(115,128) scale(0.26)"/>
-        <use href="#palm" xlink:href="#palm" class="palm-back" transform="translate(255,125) scale(0.28)"/>
-        <use href="#palm" xlink:href="#palm" class="palm-back" transform="translate(385,122) scale(0.3)"/>
-
-        <!-- Medio: palmeras intermedias -->
-        <use href="#palm" xlink:href="#palm" class="palm-mid" transform="translate(50,98)  scale(0.45)"/>
-        <use href="#palm" xlink:href="#palm" class="palm-mid" transform="translate(185,106) scale(0.4)"/>
-        <use href="#palm" xlink:href="#palm" class="palm-mid" transform="translate(320,96) scale(0.46)"/>
-
-        <!-- Primer plano: palmeras marcadas -->
-        <use href="#palm" xlink:href="#palm" class="palm-front" transform="translate(10,58)  scale(0.7)"/>
-        <use href="#palm" xlink:href="#palm" class="palm-front" transform="translate(140,71) scale(0.62)"/>
-        <use href="#palm" xlink:href="#palm" class="palm-front" transform="translate(270,64) scale(0.66)"/>
-        <use href="#palm" xlink:href="#palm" class="palm-front" transform="translate(350,74) scale(0.6)"/>
-      </svg>
-    </div>
-
-    <a class="cocktail-link" href="https://islabrunchbar.com/Cocteles" target="_blank" rel="noopener">
-      <span class="ic">🍹</span><span data-en="Cocktails" data-fr="Cocktails">Coctelería</span>
-    </a>
-
-    <div class="hero-inner">
-      <p class="hero-eyebrow" data-en="Elche · Brunch &amp; Bar" data-fr="Elche · Brunch &amp; Bar">Elche &middot; Brunch y Bar</p>
-      <h1 class="wordmark">ISLA</h1>
-      <p class="hero-tagline" data-en="Tropical brunch" data-fr="Brunch tropical">Brunch tropical</p>
+    <!-- Logo SVG inline -->
+    <svg class="hero-logo" viewBox="0 0 240 90" xmlns="http://www.w3.org/2000/svg" aria-label="ISLA">
+      <text x="50%" y="62" text-anchor="middle"
+        font-family="Cormorant Garamond, serif" font-size="68" font-weight="600"
+        letter-spacing="16" fill="var(--green)">ISLA</text>
+      <line x1="30" y1="72" x2="210" y2="72" stroke="var(--green)" stroke-width="1"/>
+    </svg>
+    <h1 class="hero-logo-copy">ISLA</h1>
+    <p class="hero-tagline" data-en="Brunch · Matcha · Ube — Elche" data-fr="Brunch · Matcha · Ube — Elche">Brunch &middot; Matcha &middot; Ube &mdash; Elche</p>
+    <div class="hero-duo">
+      <span class="dot dot-mat"></span><em data-en="Matcha" data-fr="Matcha">Matcha</em>
+      <span class="sep"></span>
+      <span class="dot dot-ube"></span><em data-en="Ube" data-fr="Ube">Ube</em>
     </div>
   </header>
+  <div class="hero-curve"></div>
+
+  <!-- Pills identidad -->
+  <div class="identity-bar">
+    <span class="pill">🌴 <span data-en="Breakfasts" data-fr="Petits-déjeuners">Desayunos</span></span>
+    <span class="pill">☕ <span data-en="Specialty coffees" data-fr="Cafés spéciaux">Cafés especiales</span></span>
+    <span class="pill">🥑 <span data-en="Brunch" data-fr="Brunch">Brunch</span></span>
+    <span class="pill">🍹 <span data-en="Tropical" data-fr="Tropical">Tropicales</span></span>
+  </div>
 
   <!-- Selector de idioma -->
   <div class="lang-bar" role="group" aria-label="Idioma · Language · Langue">
@@ -537,7 +527,7 @@ button, a { font-family: inherit; }
   <section id="sec-matcha" class="page on" aria-label="Matcha">
     <div class="sec-head">
       <p class="eyebrow" data-en="Natural energy · Ceremonial grade" data-fr="Énergie naturelle · Qualité cérémonielle">Energía natural · Ceremonial</p>
-      <h1 class="sec-title" data-en="Matcha — clean energy" data-fr="Matcha — énergie pure">Matcha — energía limpia</h1>
+      <h2 class="sec-title" data-en="Matcha in Elche — clean energy" data-fr="Matcha à Elche — énergie pure">Matcha en Elche — energía limpia</h2>
       <p class="sec-note" data-en="First-grade ceremonial matcha. Rich in antioxidants, with clean energy and no jitters." data-fr="Matcha cérémoniel de première qualité. Riche en antioxydants, pour une énergie douce sans nervosité.">Matcha ceremonial de primer grado. Rico en antioxidantes y con un toque de energía sin nerviosismo.</p>
     </div>
 
@@ -590,7 +580,7 @@ button, a { font-family: inherit; }
   <section id="sec-ube" class="page" aria-label="Ube">
     <div class="sec-head">
       <p class="eyebrow" data-en="Most popular · Signature drinks" data-fr="Le plus demandé · Boissons signature">Lo más pedido · Bebidas especiales</p>
-      <h1 class="sec-title" data-en="Ube — the violet sensation" data-fr="Ube — la sensation violette">Ube — la sensación violeta</h1>
+      <h2 class="sec-title" data-en="Ube in Elche — the violet sensation" data-fr="Ube à Elche — la sensation violette">Ube en Elche — la sensación violeta</h2>
       <p class="sec-note" data-en="Ube root elixir that tints every sip a hypnotic violet. Exotic, creamy and irresistible." data-fr="Un élixir de racine d'ube qui teinte chaque gorgée d'un violet hypnotique. Exotique, onctueux et irrésistible.">Elixir de raíz de ube que tiñe cada sorbo de un violeta hipnótico. Exótico, cremoso e irresistible.</p>
     </div>
 
@@ -643,7 +633,7 @@ button, a { font-family: inherit; }
   <section id="sec-cafe" class="page" aria-label="Café y bebidas">
     <div class="sec-head">
       <p class="eyebrow" data-en="At the bar" data-fr="Au comptoir">La barra</p>
-      <h1 class="sec-title" data-en="Coffee &amp; Drinks" data-fr="Cafés &amp; Boissons">Cafés &amp; bebidas</h1>
+      <h2 class="sec-title" data-en="Coffee &amp; Drinks" data-fr="Cafés &amp; Boissons">Cafés &amp; bebidas</h2>
     </div>
 
     <p class="group-label" data-en="Classic coffees" data-fr="Cafés classiques">Cafés clásicos</p>
@@ -704,11 +694,7 @@ button, a { font-family: inherit; }
   <section id="sec-batidos" class="page" aria-label="Batidos y zumos">
     <div class="sec-head">
       <p class="eyebrow" data-en="Shakes &amp; juices" data-fr="Smoothies &amp; jus">Batidos &amp; zumos</p>
-      <h1 class="sec-title" data-en="Tropical energy" data-fr="Énergie tropicale">Energía tropical</h1>
-    </div>
-
-    <div class="ctx-note i18n-html" data-en-html="<b>How it works:</b> Choose your base from <b>€3.50</b> · First fruit from €1.20 · Second fruit +€1.00 · Protein +€1.50." data-fr-html="<b>Comment ça marche :</b> Choisissez votre base à partir de <b>3,50€</b> · Premier fruit dès 1,20€ · Deuxième fruit +1,00€ · Protéine +1,50€.">
-      <b>Cómo funciona:</b> Base a elegir desde <b>3,50€</b> · Primera fruta desde 1,20€ · Segunda fruta +1,00€ · Proteína +1,50€.
+      <h2 class="sec-title" data-en="Tropical energy" data-fr="Énergie tropicale">Energía tropical</h2>
     </div>
 
     <p class="group-label" data-en="Protein Bar — signature combos" data-fr="Protein Bar — combinaisons vedettes">Protein Bar — combinaciones estrella</p>
@@ -799,13 +785,17 @@ button, a { font-family: inherit; }
       <div class="mini-card"><span class="mini-name" data-en="White peach" data-fr="Pêche blanche">Melocotón blanco</span><span class="mini-price">1,70€</span></div>
       <div class="mini-card"><span class="mini-name" data-en="Granadilla" data-fr="Grenadille">Granadilla</span><span class="mini-price">1,80€</span></div>
     </div>
+
+    <div class="ctx-note i18n-html" data-en-html="<b>How it works:</b> Choose your base from <b>€3.50</b> · First fruit from €1.20 · Second fruit +€1.00 · Protein +€1.50." data-fr-html="<b>Comment ça marche :</b> Choisissez votre base à partir de <b>3,50€</b> · Premier fruit dès 1,20€ · Deuxième fruit +1,00€ · Protéine +1,50€.">
+      <b>Cómo funciona:</b> Base a elegir desde <b>3,50€</b> · Primera fruta desde 1,20€ · Segunda fruta +1,00€ · Proteína +1,50€.
+    </div>
   </section>
 
   <!-- ══════════ BRUNCH ══════════ -->
   <section id="sec-brunch" class="page" aria-label="Brunch salado">
     <div class="sec-head">
       <p class="eyebrow" data-en="To start the journey" data-fr="Pour commencer le voyage">Para empezar el viaje</p>
-      <h1 class="sec-title">Brunch</h1>
+      <h2 class="sec-title" data-en="Brunch in Elche" data-fr="Brunch à Elche">Brunch en Elche</h2>
     </div>
 
     <div class="card card-hero">
@@ -893,7 +883,7 @@ button, a { font-family: inherit; }
   <section id="sec-dulce" class="page" aria-label="Brunch dulce">
     <div class="sec-head">
       <p class="eyebrow" data-en="Sweet brunch" data-fr="Brunch sucré">Brunch dulce</p>
-      <h1 class="sec-title">Sugar</h1>
+      <h2 class="sec-title">Sugar</h2>
     </div>
 
     <div class="card card-hero">
@@ -935,7 +925,7 @@ button, a { font-family: inherit; }
   <section id="sec-compartir" class="page" aria-label="Para compartir">
     <div class="sec-head">
       <p class="eyebrow" data-en="To share" data-fr="À partager">Para compartir</p>
-      <h1 class="sec-title" data-en="A table for everyone" data-fr="Une table pour tous">Mesa para todos</h1>
+      <h2 class="sec-title" data-en="A table for everyone" data-fr="Une table pour tous">Mesa para todos</h2>
       <p class="sec-note" data-en="The perfect dishes to place in the middle for everyone to try." data-fr="Les plats parfaits à poser au centre pour que tout le monde goûte.">Los platos perfectos para poner en el centro y que todo el mundo pruebe.</p>
     </div>
 
@@ -969,7 +959,7 @@ button, a { font-family: inherit; }
   <section id="sec-diy" class="page" aria-label="Hazlo tú">
     <div class="sec-head">
       <p class="eyebrow" data-en="Build your dish" data-fr="Créez votre plat">Crea tu plato</p>
-      <h1 class="sec-title" data-en="Build Your Own" data-fr="Fait Maison">Hazlo tú</h1>
+      <h2 class="sec-title" data-en="Build Your Own" data-fr="Fait Maison">Hazlo tú</h2>
       <p class="sec-note" data-en="Choose your base and combine the ingredients you like best." data-fr="Choisissez votre base et combinez les ingrédients de votre choix.">Escoge tu base y combina los ingredientes que más te apetezcan.</p>
     </div>
 
@@ -1004,6 +994,921 @@ button, a { font-family: inherit; }
   </footer>
 
 </div>
+
+<!-- ══════════ SEO: DATOS ESTRUCTURADOS (JSON-LD) ══════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  "name": "ISLA Brunch & Bar",
+  "url": "https://islabrunchbar.com/",
+  "@id": "https://islabrunchbar.com/#local",
+  "areaServed": {
+    "@type": "City",
+    "name": "Elche"
+  },
+  "servesCuisine": [
+    "Brunch",
+    "Café de especialidad",
+    "Matcha",
+    "Ube",
+    "Cócteles",
+    "Cocina tropical/caribeña"
+  ],
+  "priceRange": "€€",
+  "sameAs": [
+    "https://instagram.com/islabrunchbar"
+  ],
+  "hasMenu": "https://islabrunchbar.com/"
+}
+</script>
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Menu",
+  "name": "Carta ISLA Brunch & Bar",
+  "inLanguage": "es",
+  "hasMenuSection": [
+    {
+      "@type": "MenuSection",
+      "name": "Matcha en Elche — energía limpia",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "Coconut Water Matcha",
+          "description": "Matcha ceremonial combinado con la pureza del agua de coco.",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Ice Matcha Frutal",
+          "description": "Versión helada con notas frutales: mango, fresa o maracuyá.",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Matcha Latte",
+          "description": "Energía limpia con la textura cremosa de la leche vaporizada.",
+          "offers": {
+            "@type": "Offer",
+            "price": "4.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Matcha Tradicional",
+          "description": "La experiencia pura del matcha batido de forma artesanal.",
+          "offers": {
+            "@type": "Offer",
+            "price": "3.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Té de Matcha",
+          "description": "Infusión ligera, limpia y antioxidante.",
+          "offers": {
+            "@type": "Offer",
+            "price": "3.00",
+            "priceCurrency": "EUR"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Ube en Elche — la sensación violeta",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "Ube Latte",
+          "description": "Elixir de ube con vainilla y coco, batido con leche cremosa. Caliente o con hielo.",
+          "offers": {
+            "@type": "Offer",
+            "price": "4.90",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Ube Passion Frappé",
+          "description": "Ube con la acidez eléctrica del maracuyá. Cremoso y exótico.",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Dirty Ube Espresso",
+          "description": "Base dulce de Ube Latte coronada con un shot de espresso intenso.",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.40",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Isla Ube Breeze",
+          "description": "Agua de coco natural infusionada con ube. Ligero e hidratante.",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Ube Fruit",
+          "description": "Ube batido con puré de fruta a elegir: mango, fresa o maracuyá.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.00",
+            "priceCurrency": "EUR"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Cafés & bebidas",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "Cold Foam Espresso",
+          "description": "Espresso con cold foam al gusto.",
+          "offers": {
+            "@type": "Offer",
+            "price": "4.20",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Pistacho Latte",
+          "description": "Espresso con crema de pistacho y leche vaporizada.",
+          "offers": {
+            "@type": "Offer",
+            "price": "4.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Frappés",
+          "description": "Avellana, chocolate, vainilla o caramelo. Extra sirope +0,50€.",
+          "offers": {
+            "@type": "Offer",
+            "price": "4.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Espresso",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.60",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Doble espresso",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.90",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Cortado",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.70",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Americano",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Café con leche",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.10",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Bombón",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Latte",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Cappuccino",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.70",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Coca-Cola / Zero",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Sprite",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Fanta",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Aquarius",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.60",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Nestea",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Tónica Schweppes",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Bitter Kas",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Sidra Maeloc",
+          "offers": {
+            "@type": "Offer",
+            "price": "3.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Agua Nestlé",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Agua con gas",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Agua de coco",
+          "offers": {
+            "@type": "Offer",
+            "price": "3.50",
+            "priceCurrency": "EUR"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Energía tropical",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "Blue Power Shake",
+          "description": "Espirulina azul, mango, piña y yogurt.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.90",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Pink Paradise",
+          "description": "Frutas silvestres y yogurt. El más fotogénico.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Passion Mango Tropic",
+          "description": "Mango maduro, maracuyá y piña. Puro trópico.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.90",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Isla Fit Power Shake",
+          "description": "Plátano, arándanos y proteína con leche de almendras.",
+          "offers": {
+            "@type": "Offer",
+            "price": "7.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Wild Berry Protein",
+          "description": "Fresa, arándanos, maracuyá y proteína con agua de coco.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Morir Soñando",
+          "description": "Zumo de naranja y leche. El clásico caribeño.",
+          "offers": {
+            "@type": "Offer",
+            "price": "4.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Avena con Limón",
+          "offers": {
+            "@type": "Offer",
+            "price": "4.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Avena con Maracuyá",
+          "offers": {
+            "@type": "Offer",
+            "price": "4.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Zumo de Naranja Natural",
+          "description": "100% recién exprimido.",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Limonada Casera",
+          "offers": {
+            "@type": "Offer",
+            "price": "3.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Mango",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Fresa",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Maracuyá",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.90",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Plátano",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Arándanos",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Piña",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Cereza agria",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Cherry",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Manzana verde",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.20",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Coco",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Melocotón blanco",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.70",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Granadilla",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.80",
+            "priceCurrency": "EUR"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Brunch en Elche",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "Serranito Island Mood",
+          "description": "Pan masa madre, queso crema con ajo, jamón serrano, mozzarella, tomate cherry y miel.",
+          "offers": {
+            "@type": "Offer",
+            "price": "9.90",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Sesame Bagel",
+          "description": "Bagel de sésamo, aguacate, tomate rallado, bacon crujiente y huevo revuelto.",
+          "offers": {
+            "@type": "Offer",
+            "price": "7.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Sandwich Isla",
+          "description": "Pan de molde, bacon, jamón York, queso Edam, huevo y salsa Isla.",
+          "offers": {
+            "@type": "Offer",
+            "price": "7.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Tosta Bacon Brunch",
+          "description": "Pan cristal con bacon dorado, huevo revuelto, queso Edam y salsa Isla.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.70",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Cross Breakfast",
+          "description": "Croissant con huevo revuelto, bacon, queso Edam y salsa Isla.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Tortita New York",
+          "description": "Tortitas americanas, bacon crujiente, huevo revuelto y sirope de arce.",
+          "offers": {
+            "@type": "Offer",
+            "price": "7.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Tosta Isla Veggie",
+          "description": "Masa madre, aguacate, tomates cherry, queso crema, AOVE y sal.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Tosta de Salmón Ahumado",
+          "description": "Salmón sobre queso crema suave con salsa Isla.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.25",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Tosta de Atún Mayo",
+          "description": "Atún con mayonesa y un toque vibrante de limón.",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.90",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Croissant Gourmet",
+          "description": "Jamón York y queso Edam fundido en hojaldre crujiente.",
+          "offers": {
+            "@type": "Offer",
+            "price": "4.50",
+            "priceCurrency": "EUR"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Sugar",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "Tortitas Lotus",
+          "description": "Pancakes esponjosas con crema Lotus, sirope ligero y fruta fresca de temporada.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Pancake de la Isla",
+          "description": "Masa esponjosa. Elige topping: agave, miel, pistacho, Nutella o dulce de leche.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Yogurt de la Isla",
+          "description": "Yogur cremoso, fruta del día, miel de agave y granola crujiente.",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.20",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Muffin Lotus",
+          "offers": {
+            "@type": "Offer",
+            "price": "3.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Mini Croissant relleno",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Summer Crumbl Cookies (2 uds.)",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.60",
+            "priceCurrency": "EUR"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Mesa para todos",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "La Isla de Zeian",
+          "description": "Patata, pollo desmenuzado, ketchup, mayo y queso mozzarella gratinado.",
+          "offers": {
+            "@type": "Offer",
+            "price": "9.90",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Provolone Isla",
+          "description": "Queso provolone fundido con especias y pan tostado para mojar.",
+          "offers": {
+            "@type": "Offer",
+            "price": "8.90",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Quesadilla Isla",
+          "description": "Quesadilla con queso mozzarella y salsa rosa.",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.50",
+            "priceCurrency": "EUR"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Hazlo tú",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "Bacon",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Huevos",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Aguacate",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.10",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Tomate cherry",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Jamón serrano",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Salmón ahumado",
+          "offers": {
+            "@type": "Offer",
+            "price": "3.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Jamón York",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Atún",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Queso crema",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Queso Edam",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Base de tomate",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Masa madre",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Pan de cristal",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Bagel",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Pan de molde",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.20",
+            "priceCurrency": "EUR"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 
 <script>
 // Estado actual de qué categoría y subpestaña están activas
