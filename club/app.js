@@ -1,71 +1,98 @@
-import { auth, db } from "./firebase.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 import { 
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-
-import {
-  doc,
-  setDoc
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+getAuth,
+createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
-window.registrar = async function(){
+const firebaseConfig = {
 
-  const nombre = document.getElementById("nombre").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+apiKey: "AIzaSyD5oNK9gFaQN9I7p1hzaAflvdgrNGoNBk",
 
-  try {
+authDomain: "club-2e4c7.firebaseapp.com",
 
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+projectId: "club-2e4c7",
 
-    const usuario = userCredential.user;
+storageBucket: "club-2e4c7.firebasestorage.app",
 
-    await setDoc(doc(db,"clientes",usuario.uid),{
-      nombre:nombre,
-      email:email,
-      visitas:0,
-      premios:0,
-      creado:new Date()
-    });
+messagingSenderId: "719625587140",
 
+appId: "1:719625587140:web:f0b0141c8120d580303c91",
 
-    alert("Bienvenido al Isla Club 🌴");
-
-  } catch(error){
-
-    alert(error.message);
-
-  }
+measurementId: "G-WZBDR9Y3YZ"
 
 };
 
 
-window.login = async function(){
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+const app = initializeApp(firebaseConfig);
 
 
-  try{
+const auth = getAuth(app);
 
-    await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
 
-    alert("Bienvenido de nuevo 🌴");
 
-  }catch(error){
+const boton = document.getElementById("join");
 
-    alert(error.message);
 
-  }
 
-};
+boton.addEventListener("click", async ()=>{
+
+
+const nombre = document.getElementById("nombre").value;
+
+const email = document.getElementById("email").value;
+
+const password = document.getElementById("password").value;
+
+
+
+if(!nombre || !email || !password){
+
+document.getElementById("mensaje").innerHTML =
+"Completa todos los campos";
+
+return;
+
+}
+
+
+
+try{
+
+
+const usuario = await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+
+
+document.getElementById("mensaje").innerHTML =
+"🌴 Bienvenido al Isla Club " + nombre;
+
+
+
+document.getElementById("nombreTarjeta").innerHTML =
+nombre;
+
+
+
+console.log(usuario);
+
+
+
+}catch(error){
+
+
+document.getElementById("mensaje").innerHTML =
+error.message;
+
+
+}
+
+
+
+});

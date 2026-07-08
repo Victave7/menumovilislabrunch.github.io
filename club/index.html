@@ -1,71 +1,116 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Isla Club | Fidelización</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="theme-color" content="#0D3D2E">
+<title>Isla Club | Fidelización</title>
 
-    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0D3D2E">
 
-    <link rel="stylesheet" href="assets/css/style.css">
+<link rel="manifest" href="manifest.json">
+
+<link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 
-<body><script type="module" src="app.js"></script>
-    
+
+<body>
+
 
 <div id="app">
 
-    <section class="hero">
 
-        <div class="logo">
-            🌴
-        </div>
-
-        <h1>
-            Isla Club
-        </h1>
-
-        <p>
-            Tu tarjeta de recompensas tropical
-        </p>
+<section class="hero">
 
 
-        <div class="card-preview">
-
-            <span class="small">
-                ISLA CLUB
-            </span>
-
-            <h2>
-                Tu Nombre
-            </h2>
-
-            <div class="progress">
-                <div class="progress-fill"></div>
-            </div>
-
-            <div class="visits">
-                0 / 10 visitas
-            </div>
-
-        </div>
+<div class="logo">
+🌴
+</div>
 
 
-        <button id="join">
-            Unirme al club 🌴
-        </button>
+<h1>
+Isla Club
+</h1>
 
 
-    </section>
+<p>
+Tu tarjeta de recompensas tropical
+</p>
+
+
+
+<div class="card-preview">
+
+<span class="small">
+ISLA CLUB
+</span>
+
+
+<h2 id="nombreTarjeta">
+Tu Nombre
+</h2>
+
+
+<div class="progress">
+
+<div class="progress-fill"></div>
+
+</div>
+
+
+<div class="visits">
+
+0 / 10 visitas
+
+</div>
 
 
 </div>
 
 
-<script src="assets/js/app.js"></script>
+
+<div class="registro">
+
+
+<input id="nombre" placeholder="Tu nombre">
+
+
+<input id="email" placeholder="Email">
+
+
+<input id="password" type="password" placeholder="Contraseña">
+
+
+
+<button id="join">
+
+Unirme al club 🌴
+
+</button>
+
+
+</div>
+
+
+
+<p id="mensaje"></p>
+
+
+
+</section>
+
+
+</div>
+
+
+
+<script type="module" src="app.js"></script>
+
 
 </body>
+
+
 </html>
