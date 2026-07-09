@@ -127,12 +127,15 @@
     padding-bottom:2px;
   }
   .navpills::-webkit-scrollbar{display:none;}
-  .navpills a{
+  .navpills button{
     flex:0 0 auto;
+    font-family:inherit;
     font-size:11.5px;
     letter-spacing:0.09em;
     text-transform:uppercase;
     text-decoration:none;
+    background:transparent;
+    cursor:pointer;
     color:var(--sea);
     padding:7px 13px;
     border:1px solid var(--panel-line);
@@ -140,7 +143,7 @@
     white-space:nowrap;
     transition: all .25s ease;
   }
-  .navpills a.active, .navpills a:hover{
+  .navpills button.active, .navpills button:hover{
     color:var(--night);
     background:var(--gold);
     border-color:var(--gold);
@@ -189,7 +192,17 @@
   /* ---------- sections ---------- */
   section.menu{
     padding:6px 20px 8px;
+    display:none;
   }
+  section.menu.active{
+    display:block;
+    animation: sectionIn .35s ease;
+  }
+  @keyframes sectionIn{
+    from{ opacity:0; transform:translateY(8px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+  .shoreline{ display:none; }
   .section-head{
     display:flex;
     align-items:flex-end;
@@ -356,11 +369,11 @@
       </div>
     </div>
     <nav class="navpills" id="navpills">
-      <a href="#firmas" data-i18n="nav_firmas">Firmas Don Julio</a>
-      <a href="#tropicales" data-i18n="nav_tropicales">Tropicales</a>
-      <a href="#mojitos" data-i18n="nav_mojitos">Mojitos</a>
-      <a href="#cervezas" data-i18n="nav_cervezas">Cervezas</a>
-      <a href="#compartir" data-i18n="nav_compartir">Para compartir</a>
+      <button type="button" class="active" data-target="firmas" data-i18n="nav_firmas">Firmas Don Julio</button>
+      <button type="button" data-target="tropicales" data-i18n="nav_tropicales">Tropicales</button>
+      <button type="button" data-target="mojitos" data-i18n="nav_mojitos">Mojitos</button>
+      <button type="button" data-target="cervezas" data-i18n="nav_cervezas">Cervezas</button>
+      <button type="button" data-target="compartir" data-i18n="nav_compartir">Para compartir</button>
     </nav>
   </div>
 </div>
@@ -898,19 +911,32 @@
   try { savedLang = localStorage.getItem('isla_lang') || 'es'; } catch(e){}
   if (savedLang !== 'es') applyLang(savedLang);
 
-  // ---------- resalta el pill activo según scroll ----------
+  // ---------- pestañas: mostrar solo la sección activa ----------
   const sections = document.querySelectorAll('section.menu[id]');
-  const links = document.querySelectorAll('.navpills a');
-  const setActive = () => {
-    let current = sections[0]?.id;
-    const y = window.scrollY + 120;
-    sections.forEach(s => { if (s.offsetTop <= y) current = s.id; });
-    links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + current));
-  };
-  window.addEventListener('scroll', setActive, { passive:true });
-  setActive();
+  const pills = document.querySelectorAll('.navpills button');
 
-  // ---------- revelado suave de las tarjetas ----------
+  function showSection(id, scrollTop) {
+    sections.forEach(s => s.classList.toggle('active', s.id === id));
+    pills.forEach(p => p.classList.toggle('active', p.dataset.target === id));
+    const activeSection = document.getElementById(id);
+    if (activeSection) {
+      activeSection.querySelectorAll('.card').forEach(c => c.classList.add('in'));
+    }
+    if (scrollTop !== false) {
+      document.querySelector('.topbar')?.scrollIntoView({ behavior: 'auto', block: 'start' });
+    }
+    try { history.replaceState(null, '', '#' + id); } catch(e){}
+  }
+
+  pills.forEach(btn => {
+    btn.addEventListener('click', () => showSection(btn.dataset.target));
+  });
+
+  const startId = (location.hash || '').replace('#', '');
+  const validStart = Array.from(sections).some(s => s.id === startId) ? startId : (sections[0]?.id || 'firmas');
+  showSection(validStart, false);
+
+  // ---------- revelado suave de las tarjetas al abrir una pestaña ----------
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.12 });
