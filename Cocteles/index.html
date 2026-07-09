@@ -230,6 +230,18 @@
     border-color:var(--gold-soft);
     background:linear-gradient(180deg, rgba(201,162,75,0.10), rgba(18,56,50,0.55));
   }
+  .badge-top{
+    display:inline-block;
+    background:var(--coral);
+    color:#fff;
+    font-size:10.5px;
+    font-weight:600;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:3px 10px;
+    border-radius:999px;
+    margin-bottom:10px;
+  }
   .card-row{
     display:flex;
     gap:14px;
@@ -348,6 +360,7 @@
       <a href="#tropicales" data-i18n="nav_tropicales">Tropicales</a>
       <a href="#mojitos" data-i18n="nav_mojitos">Mojitos</a>
       <a href="#cervezas" data-i18n="nav_cervezas">Cervezas</a>
+      <a href="#compartir" data-i18n="nav_compartir">Para compartir</a>
     </nav>
   </div>
 </div>
@@ -648,6 +661,81 @@
     </div>
   </section>
 
+  <svg class="shoreline" viewBox="0 0 400 34" preserveAspectRatio="none">
+    <path d="M0 17 Q 25 2, 50 17 T 100 17 T 150 17 T 200 17 T 250 17 T 300 17 T 350 17 T 400 17"/>
+  </svg>
+
+  <section class="menu" id="compartir">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow-num" data-i18n="sec_compartir_eyebrow">Para acompañar la copa</p>
+        <h2 data-i18n="sec_compartir_title">Para compartir</h2>
+      </div>
+    </div>
+    <p class="section-note" data-i18n="sec_compartir_note">Los platos perfectos para poner en el centro de la mesa mientras cae la noche.</p>
+
+    <div class="card featured">
+      <span class="badge-top">🔥 <span data-i18n="badge_top_seller">Más pedido</span></span>
+      <div class="card-row">
+        <img class="thumb" src="img/provolone-isla.jpg" alt="Provolone Isla" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Provolone Isla</h3><span class="price">8,90 €</span></div>
+          <p class="ingredients" data-i18n="desc_provolone-isla">Queso provolone fundido con especias y pan tostado para mojar.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/la-isla-de-zeian.jpg" alt="La Isla de Zeian" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>La Isla de Zeian</h3><span class="price">9,90 €</span></div>
+          <p class="ingredients" data-i18n="desc_la-isla-de-zeian">Patata, pollo desmenuzado, ketchup, mayo y queso mozzarella gratinado.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/patatas-bravas-isla.jpg" alt="Patatas Bravas Isla" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Patatas Bravas Isla</h3><span class="price">6,50 €</span></div>
+          <p class="ingredients" data-i18n="desc_patatas-bravas-isla">Patatas fritas crujientes con alioli y nuestra salsa brava Isla.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/batata-isla.jpg" alt="Batata Isla" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Batata Isla</h3><span class="price">7,00 €</span></div>
+          <p class="ingredients" data-i18n="desc_batata-isla">Bastones de batata con un huevo en el corazón de la montaña, con alioli o salsa brava Isla.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/mozzarella-bacon-tosta.jpg" alt="Mozzarella Bacon Tosta" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Mozzarella Bacon Tosta</h3><span class="price">5,50 €</span></div>
+          <p class="ingredients" data-i18n="desc_mozzarella-bacon-tosta">Tosta de pan con ajo, mozzarella fundida y trozos de bacon por encima.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/quesadilla-isla.jpg" alt="Quesadilla Isla" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Quesadilla Isla</h3><span class="price">5,50 €</span></div>
+          <p class="ingredients" data-i18n="desc_quesadilla-isla">Quesadilla con queso mozzarella y salsa rosa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer>
@@ -676,6 +764,17 @@
       sec_mojitos_note: "Made with natural island fruit — pick your flavor.",
       sec_cervezas_eyebrow: "Draft & bottle",
       sec_cervezas_title: "Beers",
+      sec_compartir_eyebrow: "To go with your drink",
+      sec_compartir_title: "To share",
+      sec_compartir_note: "The perfect dishes to place in the middle of the table as night falls.",
+      nav_compartir: "To share",
+      badge_top_seller: "Best seller",
+      "desc_provolone-isla": "Melted provolone cheese with spices and toasted bread for dipping.",
+      "desc_la-isla-de-zeian": "Potato, shredded chicken, ketchup, mayo and gratinated mozzarella cheese.",
+      "desc_patatas-bravas-isla": "Crispy fries with alioli and our house brava sauce.",
+      "desc_batata-isla": "Sweet potato fries with an egg at the heart of the mound, with alioli or Isla brava sauce.",
+      "desc_mozzarella-bacon-tosta": "Garlic toast with melted mozzarella and crispy bacon on top.",
+      "desc_quesadilla-isla": "Quesadilla with mozzarella cheese and pink sauce.",
       footer_note: "Cocktail menu subject to seasonal availability.",
       mojito_tradicional: "Classic",
       mojito_maracuya: "Passion fruit",
@@ -726,6 +825,17 @@
       sec_mojitos_note: "Avec des fruits naturels de l'île, au choix.",
       sec_cervezas_eyebrow: "Pression et bouteille",
       sec_cervezas_title: "Bières",
+      sec_compartir_eyebrow: "Pour accompagner le verre",
+      sec_compartir_title: "À partager",
+      sec_compartir_note: "Les plats parfaits à poser au centre de la table quand la nuit tombe.",
+      nav_compartir: "À partager",
+      badge_top_seller: "Le plus demandé",
+      "desc_provolone-isla": "Fromage provolone fondu aux épices, servi avec du pain grillé à tremper.",
+      "desc_la-isla-de-zeian": "Pomme de terre, poulet effiloché, ketchup, mayo et mozzarella gratinée.",
+      "desc_patatas-bravas-isla": "Frites croustillantes avec alioli et notre sauce brava maison.",
+      "desc_batata-isla": "Frites de patate douce avec un œuf au cœur du monticule, avec alioli ou sauce brava Isla.",
+      "desc_mozzarella-bacon-tosta": "Tartine à l'ail avec mozzarella fondue et lardons croustillants sur le dessus.",
+      "desc_quesadilla-isla": "Quesadilla au fromage mozzarella et sauce rose.",
       footer_note: "Carte des cocktails soumise à disponibilité saisonnière.",
       mojito_tradicional: "Traditionnel",
       mojito_maracuya: "Fruit de la passion",
