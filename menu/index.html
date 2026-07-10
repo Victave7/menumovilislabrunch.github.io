@@ -340,6 +340,19 @@ button, a { font-family: inherit; }
   border-bottom: 1px solid var(--divider);
 }
 
+/* ── ETIQUETA DESTACADA (Crea tu batido) ── */
+.group-label-fruit {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--bark);
+  margin: 26px 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1.5px solid var(--bark-light);
+  letter-spacing: 0.01em;
+}
+
 /* ── TARJETA PRINCIPAL ── */
 .card {
   background: var(--white);
@@ -453,6 +466,55 @@ button, a { font-family: inherit; }
   margin-left: 6px;
 }
 .mini-full { grid-column: span 2; }
+
+/* ── GRID DE FRUTAS (Personaliza) ── */
+.fruit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+.fruit-card {
+  background: var(--white);
+  border: 1px solid var(--divider);
+  border-radius: 12px;
+  padding: 9px 11px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  transition: box-shadow .2s, border-color .2s;
+}
+.fruit-card:hover { box-shadow: var(--shadow-sm); border-color: var(--bark-light); }
+.fruit-icon {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--green-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+}
+.fruit-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 1px;
+}
+.fruit-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.25;
+}
+.fruit-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--bark-mid);
+  line-height: 1.2;
+}
 
 /* ── GRID DE PANES (DIY) ── */
 .pan-grid {
@@ -780,6 +842,7 @@ button, a { font-family: inherit; }
     <p class="group-label" data-en="Protein Bar — signature combos" data-fr="Protein Bar — combinaisons vedettes">Protein Bar — combinaciones estrella</p>
 
     <div class="card">
+      <span class="badge badge-sig">📸 <span data-en="Instagrammable" data-fr="Instagrammable">Fotogénico</span></span>
       <div class="card-row">
         <p class="item-name">Blue Power Shake</p>
         <p class="item-price">6,90€</p>
@@ -809,11 +872,20 @@ button, a { font-family: inherit; }
       <p class="item-desc" data-en="Banana, blueberries and protein with almond milk." data-fr="Banane, myrtilles et protéine au lait d'amande.">Plátano, arándanos y proteína con leche de almendras.</p>
     </div>
     <div class="card">
+      <span class="badge badge-sig">📸 <span data-en="Instagrammable" data-fr="Instagrammable">Fotogénico</span></span>
       <div class="card-row">
         <p class="item-name">Wild Berry Protein</p>
         <p class="item-price">6,80€</p>
       </div>
       <p class="item-desc" data-en="Strawberry, blueberries, passion fruit and protein with coconut water." data-fr="Fraise, myrtilles, fruit de la passion et protéine à l'eau de coco.">Fresa, arándanos, maracuyá y proteína con agua de coco.</p>
+    </div>
+    <div class="card">
+      <span class="badge badge-fav">🌺 <span data-en="Exotic" data-fr="Exotique">Exótico</span></span>
+      <div class="card-row">
+        <p class="item-name">Isla Tropical Exotic</p>
+        <p class="item-price">6,80€</p>
+      </div>
+      <p class="item-desc" data-en="Papaya, mango, pineapple, canary melon, Galia melon and grapes with oat milk." data-fr="Papaye, mangue, ananas, melon canari, melon Galia et raisin avec lait d'avoine.">Papaya, mango, piña, melón canario, melón Galia y uvas con leche de avena.</p>
     </div>
 
     <p class="group-label" data-en="Juices &amp; fresh drinks" data-fr="Jus &amp; boissons fraîches">Zumos &amp; bebidas frescas</p>
@@ -850,20 +922,20 @@ button, a { font-family: inherit; }
       </div>
     </div>
 
-    <p class="group-label" data-en="Customize with fruit" data-fr="Personnalisez avec des fruits">Personaliza con frutas</p>
-    <div class="grid2">
-      <div class="mini-card"><span class="mini-name">Mango</span><span class="mini-price">1,80€</span></div>
-      <div class="mini-card"><span class="mini-name" data-en="Strawberry" data-fr="Fraise">Fresa</span><span class="mini-price">1,50€</span></div>
-      <div class="mini-card"><span class="mini-name" data-en="Passion fruit" data-fr="Fruit de la passion">Maracuyá</span><span class="mini-price">1,90€</span></div>
-      <div class="mini-card"><span class="mini-name" data-en="Banana" data-fr="Banane">Plátano</span><span class="mini-price">1,50€</span></div>
-      <div class="mini-card"><span class="mini-name" data-en="Blueberries" data-fr="Myrtilles">Arándanos</span><span class="mini-price">2,00€</span></div>
-      <div class="mini-card"><span class="mini-name" data-en="Pineapple" data-fr="Ananas">Piña</span><span class="mini-price">1,50€</span></div>
-      <div class="mini-card"><span class="mini-name" data-en="Sour cherry" data-fr="Griotte">Cereza agria</span><span class="mini-price">2,00€</span></div>
-      <div class="mini-card"><span class="mini-name" data-en="Cherry" data-fr="Cerise">Cherry</span><span class="mini-price">1,80€</span></div>
-      <div class="mini-card"><span class="mini-name" data-en="Green apple" data-fr="Pomme verte">Manzana verde</span><span class="mini-price">1,20€</span></div>
-      <div class="mini-card"><span class="mini-name" data-en="Coconut" data-fr="Noix de coco">Coco</span><span class="mini-price">1,80€</span></div>
-      <div class="mini-card"><span class="mini-name" data-en="White peach" data-fr="Pêche blanche">Melocotón blanco</span><span class="mini-price">1,70€</span></div>
-      <div class="mini-card"><span class="mini-name" data-en="Granadilla" data-fr="Grenadille">Granadilla</span><span class="mini-price">1,80€</span></div>
+    <p class="group-label-fruit" data-en="Build your smoothie" data-fr="Composez votre smoothie">Crea tu batido</p>
+    <div class="fruit-grid">
+      <div class="fruit-card"><span class="fruit-icon">🥭</span><span class="fruit-info"><span class="fruit-name">Mango</span><span class="fruit-price">1,80€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🍓</span><span class="fruit-info"><span class="fruit-name" data-en="Strawberry" data-fr="Fraise">Fresa</span><span class="fruit-price">1,50€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">💜</span><span class="fruit-info"><span class="fruit-name" data-en="Passion fruit" data-fr="Fruit de la passion">Maracuyá</span><span class="fruit-price">1,90€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🍌</span><span class="fruit-info"><span class="fruit-name" data-en="Banana" data-fr="Banane">Plátano</span><span class="fruit-price">1,50€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🫐</span><span class="fruit-info"><span class="fruit-name" data-en="Blueberries" data-fr="Myrtilles">Arándanos</span><span class="fruit-price">2,00€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🍍</span><span class="fruit-info"><span class="fruit-name" data-en="Pineapple" data-fr="Ananas">Piña</span><span class="fruit-price">1,50€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🍒</span><span class="fruit-info"><span class="fruit-name" data-en="Sour cherry" data-fr="Griotte">Cereza agria</span><span class="fruit-price">2,00€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🍒</span><span class="fruit-info"><span class="fruit-name" data-en="Cherry" data-fr="Cerise">Cherry</span><span class="fruit-price">1,80€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🍏</span><span class="fruit-info"><span class="fruit-name" data-en="Green apple" data-fr="Pomme verte">Manzana verde</span><span class="fruit-price">1,20€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🥥</span><span class="fruit-info"><span class="fruit-name" data-en="Coconut" data-fr="Noix de coco">Coco</span><span class="fruit-price">1,80€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🍑</span><span class="fruit-info"><span class="fruit-name" data-en="White peach" data-fr="Pêche blanche">Melocotón blanco</span><span class="fruit-price">1,70€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🟠</span><span class="fruit-info"><span class="fruit-name" data-en="Granadilla" data-fr="Grenadille">Granadilla</span><span class="fruit-price">1,80€</span></span></div>
     </div>
 
     <div class="ctx-note i18n-html" data-en-html="<b>How it works:</b> Choose your base from <b>€3.50</b> · First fruit from €1.20 · Second fruit +€1.00 · Protein +€1.50." data-fr-html="<b>Comment ça marche :</b> Choisissez votre base à partir de <b>3,50€</b> · Premier fruit dès 1,20€ · Deuxième fruit +1,00€ · Protéine +1,50€.">
@@ -1477,6 +1549,16 @@ button, a { font-family: inherit; }
           "@type": "MenuItem",
           "name": "Wild Berry Protein",
           "description": "Fresa, arándanos, maracuyá y proteína con agua de coco.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Isla Tropical Exotic",
+          "description": "Papaya, mango, piña, melón canario, melón Galia y uvas con leche de avena.",
           "offers": {
             "@type": "Offer",
             "price": "6.80",
