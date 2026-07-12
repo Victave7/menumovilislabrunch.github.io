@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Brunch, Matcha y Ube en Elche — ISLA Brunch &amp; Bar</title>
 <meta name="description" content="ISLA Brunch &amp; Bar, en el centro de Elche: el mejor matcha ceremonial, ube latte y brunch de Elche. Café de especialidad, batidos tropicales y cócteles. Carta completa en ES/EN/FR.">
-<meta name="keywords" content="brunch Elche, matcha Elche, ube Elche, ube latte Elche, matcha latte Elche, cafetería Elche centro, café especialidad Elche, cócteles Elche, tardeo Elche, desayunos Elche, carta ISLA Elche">
+<meta name="keywords" content="brunch Elche, matcha Elche, ube Elche, ube latte Elche, matcha latte Elche, matcha dátil Elche, matcha leche de avena Elche, cafetería Elche centro, café especialidad Elche, cócteles Elche, tardeo Elche, desayunos Elche, carta ISLA Elche">
 <meta name="robots" content="index, follow">
 <meta name="author" content="ISLA Brunch & Bar">
 <meta name="theme-color" content="#2D6A3F">
@@ -410,6 +410,14 @@ button, a { font-family: inherit; }
 .card-mat .item-name { color: var(--green); }
 .card-mat .item-price { color: var(--green-lt); }
 
+/* ── TARJETA CUTE (rosa pastel) ── */
+.card-cute {
+  background: #FDEEF2;
+  border-color: rgba(214,110,150,0.25);
+}
+.card-cute .item-name { color: #B23A63; }
+.card-cute .item-price { color: #D97CA0; }
+
 /* ── TARJETA HIGHLIGHT (para compartir) ── */
 .card-hero {
   background: linear-gradient(135deg, #FDF6EE 0%, #F5E8D3 100%);
@@ -435,6 +443,7 @@ button, a { font-family: inherit; }
 .badge-ube { background: var(--ube-bg); color: var(--ube); }
 .badge-mat { background: var(--green-bg); color: var(--green); }
 .badge-fav { background: #FFF3E0; color: #E65100; }
+.badge-new { background: linear-gradient(90deg, var(--bark-light) 0%, #F0A857 100%); color: #FFF8EF; }
 
 /* ── GRID 2 COLUMNAS (precios rápidos) ── */
 .grid2 {
@@ -713,6 +722,14 @@ button, a { font-family: inherit; }
         <p class="item-price">3,00€</p>
       </div>
       <p class="item-desc" data-en="A light, clean, antioxidant-rich infusion." data-fr="Une infusion légère, pure et riche en antioxydants.">Infusión ligera, limpia y antioxidante.</p>
+    </div>
+
+    <div class="card card-cute">
+      <div class="card-row">
+        <p class="item-name" data-en="Elche Matcha" data-fr="Matcha Elche">Matcha Elche</p>
+        <p class="item-price">5,90€</p>
+      </div>
+      <p class="item-desc" data-en="Ceremonial matcha with creamy oat milk over a date base — naturally sweet, no added sugar." data-fr="Matcha cérémoniel au lait d'avoine crémeux sur une base de dattes — douceur naturelle, sans sucre ajouté.">Matcha ceremonial con leche de avena cremosa sobre un fondo de dátiles — dulzor natural, sin azúcar añadido.</p>
     </div>
 
     <div class="ctx-note i18n-html" data-en-html="🌿 <b>Plant-based milk available</b> — +€0.50 on any drink." data-fr-html="🌿 <b>Lait végétal disponible</b> — +0,50€ sur toute boisson.">🌿 <b>Leche vegetal disponible</b> &mdash; +0,50€ en cualquier bebida.</div>
@@ -1233,6 +1250,16 @@ button, a { font-family: inherit; }
           "offers": {
             "@type": "Offer",
             "price": "3.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Matcha Elche",
+          "description": "Matcha ceremonial con leche de avena cremosa sobre un fondo de dátiles, dulzor natural sin azúcar añadido.",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.90",
             "priceCurrency": "EUR"
           }
         }
