@@ -28,6 +28,7 @@
 <meta name="twitter:description" content="El mejor matcha ceremonial, ube latte y brunch de Elche. Café de especialidad, batidos tropicales y cócteles.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -53,6 +54,18 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 body {
   font-family: 'Jost', sans-serif;
@@ -525,6 +538,158 @@ button, a { font-family: inherit; }
   line-height: 1.2;
 }
 
+/* ── ETIQUETA DE NIVEL DE PRECIO (Cold Foam) ── */
+.tier-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bark-light);
+  font-weight: 600;
+  margin: 16px 0 8px;
+}
+.tier-label::after { content: ''; flex: 1; height: 1px; background: var(--divider); }
+
+/* ── GRID COLD FOAM ── */
+.foam-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.foam-card {
+  background: var(--white);
+  border: 1px solid var(--divider);
+  border-radius: 12px;
+  padding: 9px 11px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  transition: box-shadow .2s, border-color .2s;
+}
+.foam-card:hover { box-shadow: var(--shadow-sm); border-color: var(--bark-light); }
+.foam-card.premium { background: linear-gradient(135deg, #FDF6EE 0%, #F5E8D3 100%); border-color: rgba(196,151,106,0.4); }
+.foam-icon {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--sand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+}
+.foam-card.premium .foam-icon { background: var(--white); }
+.foam-info { display: flex; flex-direction: column; min-width: 0; gap: 1px; }
+.foam-name { font-size: 12px; font-weight: 500; color: var(--text); line-height: 1.25; }
+.foam-price { font-family: 'Cormorant Garamond', serif; font-size: 13.5px; font-weight: 600; color: var(--bark-mid); line-height: 1.2; }
+
+/* ── ACORDEÓN COLD FOAM (disponible en cada sección) ── */
+.foam-accordion {
+  background: var(--sand);
+  border: 1px solid var(--warm);
+  border-radius: var(--r);
+  margin: 14px 0;
+  overflow: hidden;
+}
+.foam-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 13px 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+.foam-toggle:active { background: rgba(92,61,40,0.05); }
+.foam-toggle-icon {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  box-shadow: var(--shadow-sm);
+}
+.foam-toggle-text { flex: 1; display: flex; flex-direction: column; min-width: 0; gap: 1px; }
+.foam-toggle-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16.5px;
+  font-weight: 600;
+  color: var(--bark);
+  line-height: 1.2;
+}
+.foam-toggle-sub { font-size: 11px; color: var(--muted); line-height: 1.3; }
+.foam-chevron {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--bark-light);
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+}
+.foam-toggle[aria-expanded="true"] .foam-chevron { transform: rotate(180deg); }
+.foam-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .35s cubic-bezier(.4,0,.2,1);
+}
+.foam-toggle[aria-expanded="true"] + .foam-panel { max-height: 1000px; }
+.foam-panel-inner { padding: 2px 14px 14px; }
+.foam-note {
+  background: var(--white);
+  margin: 10px 0 0;
+}
+
+/* Acordeón anidado dentro de la tarjeta dorada "Personalízalo" */
+.card-hero .foam-accordion {
+  background: rgba(255,255,255,0.5);
+  border-color: rgba(196,151,106,0.4);
+  margin: 12px 0 0;
+}
+.card-hero .foam-toggle-icon,
+.card-hero .foam-chevron {
+  background: rgba(255,255,255,0.9);
+}
+.card-hero .foam-card {
+  background: rgba(255,255,255,0.6);
+}
+.card-hero .foam-note {
+  background: rgba(255,255,255,0.7);
+}
+
+/* ── VARIANTE COMPACTA de card-hero (Matcha / Ube / Batidos) ── */
+.card-hero-sm { padding: 11px 13px; }
+.card-hero-sm .badge { font-size: 8.5px; padding: 2px 7px; margin-bottom: 6px; }
+.card-hero-sm .item-name { font-size: 13px; }
+.card-hero-sm .item-price { font-size: 15px; }
+.card-hero-sm .item-desc { font-size: 11px; margin-top: 4px; }
+.card-hero-sm .foam-accordion { margin: 10px 0 0; }
+.card-hero-sm .foam-toggle { padding: 10px 11px; gap: 9px; }
+.card-hero-sm .foam-toggle-icon { width: 28px; height: 28px; font-size: 13px; }
+.card-hero-sm .foam-toggle-title { font-size: 14px; }
+.card-hero-sm .foam-toggle-sub { font-size: 10px; }
+.card-hero-sm .foam-chevron { width: 21px; height: 21px; font-size: 10px; }
+.card-hero-sm .foam-panel-inner { padding: 2px 11px 11px; }
+.card-hero-sm .tier-label { font-size: 9px; margin: 12px 0 6px; }
+.card-hero-sm .foam-grid { gap: 6px; }
+.card-hero-sm .foam-card { padding: 7px 9px; gap: 7px; }
+.card-hero-sm .foam-icon { width: 26px; height: 26px; font-size: 13px; }
+.card-hero-sm .foam-name { font-size: 10.5px; }
+.card-hero-sm .foam-price { font-size: 12px; }
+.card-hero-sm .foam-note { font-size: 11px; padding: 8px 10px; }
+
 /* ── GRID DE PANES (DIY) ── */
 .pan-grid {
   display: grid;
@@ -562,6 +727,7 @@ button, a { font-family: inherit; }
   font-size: 11px;
   color: var(--muted);
   letter-spacing: 0.06em;
+  line-height: 1.9;
   border-top: 1px solid var(--divider);
 }
 .footer strong { display: block; font-size: 13px; color: var(--bark); margin-bottom: 4px; }
@@ -627,7 +793,7 @@ button, a { font-family: inherit; }
           letter-spacing="16" fill="url(#islaGradient)">ISLA</text>
         <line x1="30" y1="72" x2="210" y2="72" stroke="var(--green)" stroke-width="1"/>
       </svg>
-      <h1 class="hero-logo-copy">ISLA</h1>
+      <h1 class="hero-logo-copy">ISLA<span class="sr-only" data-en="ISLA Brunch &amp; Bar — Matcha, Ube and Brunch in Elche" data-fr="ISLA Brunch &amp; Bar — Matcha, Ube et Brunch à Elche"> Brunch &amp; Bar — Matcha, Ube y Brunch en Elche</span></h1>
       <p class="hero-tagline" data-en="Brunch · Matcha · Ube — Elche" data-fr="Brunch · Matcha · Ube — Elche">Brunch &middot; Matcha &middot; Ube &mdash; Elche</p>
       <div class="hero-duo">
         <span class="dot dot-mat"></span><em data-en="Matcha" data-fr="Matcha">Matcha</em>
@@ -656,26 +822,27 @@ button, a { font-family: inherit; }
   <!-- ══════════ NAV PRINCIPAL ══════════ -->
   <div class="nav-wrap">
     <nav class="nav-cats" role="tablist" aria-label="Categorías">
-      <button class="cat-tab on" onclick="showCat('bebidas',this)" role="tab"><span>☕</span> <span data-en="Drinks" data-fr="Boissons">Bebidas</span></button>
-      <button class="cat-tab"    onclick="showCat('batidos',this)"  role="tab"><span>🍹</span> <span data-en="Shakes" data-fr="Smoothies">Batidos</span></button>
-      <button class="cat-tab"    onclick="showCat('brunch',this)"   role="tab"><span>🥑</span> <span data-en="Brunch" data-fr="Brunch">Brunch</span></button>
-      <button class="cat-tab"    onclick="showCat('dulce',this)"    role="tab"><span>🥞</span> <span data-en="Sweet" data-fr="Sucré">Dulce</span></button>
-      <button class="cat-tab"    onclick="showCat('compartir',this)" role="tab"><span>🫶</span> <span data-en="Sharing" data-fr="À partager">Compartir</span></button>
-      <button class="cat-tab"    onclick="showCat('diy',this)"      role="tab"><span>✏️</span> <span data-en="Build Your Own" data-fr="Fait maison">Hazlo tú</span></button>
+      <button class="cat-tab on" onclick="showCat('bebidas',this)" role="tab" aria-selected="true"><span>☕</span> <span data-en="Drinks" data-fr="Boissons">Bebidas</span></button>
+      <button class="cat-tab"    onclick="showCat('batidos',this)" role="tab" aria-selected="false"><span>🍹</span> <span data-en="Shakes" data-fr="Smoothies">Batidos</span></button>
+      <button class="cat-tab"    onclick="showCat('brunch',this)" role="tab" aria-selected="false"><span>🥑</span> <span data-en="Brunch" data-fr="Brunch">Brunch</span></button>
+      <button class="cat-tab"    onclick="showCat('dulce',this)" role="tab" aria-selected="false"><span>🥞</span> <span data-en="Sweet" data-fr="Sucré">Dulce</span></button>
+      <button class="cat-tab"    onclick="showCat('compartir',this)" role="tab" aria-selected="false"><span>🫶</span> <span data-en="Sharing" data-fr="À partager">Compartir</span></button>
+      <button class="cat-tab"    onclick="showCat('diy',this)" role="tab" aria-selected="false"><span>✏️</span> <span data-en="Build Your Own" data-fr="Fait maison">Hazlo tú</span></button>
     </nav>
 
     <!-- Submenú Bebidas (Matcha primero) -->
     <div id="subnav-bebidas" class="sub-nav vis" role="tablist" aria-label="Tipos de bebida">
-      <button class="sub-tab on" onclick="showSub('matcha',this,'bebidas')" role="tab">🍵 <span data-en="Matcha" data-fr="Matcha">Matcha</span></button>
-      <button class="sub-tab"    onclick="showSub('ube',this,'bebidas')"    role="tab">🔮 <span data-en="Ube" data-fr="Ube">Ube</span></button>
-      <button class="sub-tab"    onclick="showSub('cafe',this,'bebidas')"   role="tab">☕ <span data-en="Coffee" data-fr="Café">Café</span></button>
+      <button class="sub-tab on" onclick="showSub('matcha',this,'bebidas')" role="tab" aria-selected="true">🍵 <span data-en="Matcha" data-fr="Matcha">Matcha</span></button>
+      <button class="sub-tab"    onclick="showSub('ube',this,'bebidas')" role="tab" aria-selected="false">🔮 <span data-en="Ube" data-fr="Ube">Ube</span></button>
+      <button class="sub-tab"    onclick="showSub('cafe',this,'bebidas')" role="tab" aria-selected="false">☕ <span data-en="Coffee" data-fr="Café">Café</span></button>
+      <button class="sub-tab"    onclick="showSub('otras',this,'bebidas')" role="tab" aria-selected="false">🥤 <span data-en="Other Drinks" data-fr="Autres Boissons">Otras Bebidas</span></button>
     </div>
   </div>
 
   <!-- ══════════ BEBIDAS ══════════ -->
 
   <!-- MATCHA -->
-  <section id="sec-matcha" class="page on" aria-label="Matcha">
+  <section id="sec-matcha" class="page on" role="tabpanel" tabindex="0" aria-label="Matcha">
     <div class="sec-head">
       <p class="eyebrow" data-en="Natural energy · Ceremonial grade" data-fr="Énergie naturelle · Qualité cérémonielle">Energía natural · Ceremonial</p>
       <h2 class="sec-title" data-en="Matcha in Elche — clean energy" data-fr="Matcha à Elche — énergie pure">Matcha en Elche — energía limpia</h2>
@@ -732,11 +899,31 @@ button, a { font-family: inherit; }
       <p class="item-desc" data-en="Ceremonial matcha with creamy oat milk over a date base — naturally sweet, no added sugar." data-fr="Matcha cérémoniel au lait d'avoine crémeux sur une base de dattes — douceur naturelle, sans sucre ajouté.">Matcha ceremonial con leche de avena cremosa sobre un fondo de dátiles — dulzor natural, sin azúcar añadido.</p>
     </div>
 
+    <div class="card card-hero card-hero-sm">
+      <span class="badge badge-sig">☁️ <span data-en="Customize it" data-fr="Personnalisez-le">Personalízalo</span></span>
+      <div class="card-row">
+        <p class="item-name" data-en="Cold Foam Matcha" data-fr="Matcha Cold Foam">Cold Foam Matcha</p>
+        <p class="item-price" data-en="From €0.90" data-fr="Dès 0,90€">Desde 0,90€</p>
+      </div>
+      <p class="item-desc" data-en="Crown your matcha with a silky cold foam. Pick your favorite flavor below — 14 to discover." data-fr="Couronnez votre matcha d'une onctueuse cold foam. Choisissez votre saveur préférée ci-dessous — 14 à découvrir.">Corona tu matcha con una sedosa cold foam. Elige tu sabor favorito aquí abajo — 14 para descubrir.</p>
+
+      <div class="foam-accordion">
+        <button class="foam-toggle" onclick="toggleFoam(this)" aria-controls="foam-panel-1" aria-expanded="false">
+          <span class="foam-toggle-icon">☁️</span>
+          <span class="foam-toggle-text">
+            <span class="foam-toggle-title" data-en="Choose your flavor" data-fr="Choisissez votre saveur">Elige tu sabor</span>
+            <span class="foam-toggle-sub" data-en="14 options" data-fr="14 options">14 opciones</span>
+          </span>
+          <span class="foam-chevron">⌄</span>
+        </button>
+        <div class="foam-panel" id="foam-panel-1"></div>
+      </div>
+    </div>
     <div class="ctx-note i18n-html" data-en-html="🌿 <b>Plant-based milk available</b> — +€0.50 on any drink." data-fr-html="🌿 <b>Lait végétal disponible</b> — +0,50€ sur toute boisson.">🌿 <b>Leche vegetal disponible</b> &mdash; +0,50€ en cualquier bebida.</div>
   </section>
 
   <!-- UBE -->
-  <section id="sec-ube" class="page" aria-label="Ube">
+  <section id="sec-ube" class="page" role="tabpanel" tabindex="0" aria-label="Ube">
     <div class="sec-head">
       <p class="eyebrow" data-en="Most popular · Signature drinks" data-fr="Le plus demandé · Boissons signature">Lo más pedido · Bebidas especiales</p>
       <h2 class="sec-title" data-en="Ube in Elche — the violet sensation" data-fr="Ube à Elche — la sensation violette">Ube en Elche — la sensación violeta</h2>
@@ -785,11 +972,31 @@ button, a { font-family: inherit; }
       <p class="item-desc" data-en="Ube blended with your choice of fruit purée: mango, strawberry or passion fruit." data-fr="Ube mixé avec un coulis de fruit au choix : mangue, fraise ou fruit de la passion.">Ube batido con puré de fruta a elegir: mango, fresa o maracuyá.</p>
     </div>
 
+    <div class="card card-hero card-hero-sm">
+      <span class="badge badge-sig">☁️ <span data-en="Customize it" data-fr="Personnalisez-le">Personalízalo</span></span>
+      <div class="card-row">
+        <p class="item-name" data-en="Cold Foam Ube" data-fr="Ube Cold Foam">Cold Foam Ube</p>
+        <p class="item-price" data-en="From €0.90" data-fr="Dès 0,90€">Desde 0,90€</p>
+      </div>
+      <p class="item-desc" data-en="Crown your ube with a silky cold foam. Pick your favorite flavor below — 14 to discover." data-fr="Couronnez votre ube d'une onctueuse cold foam. Choisissez votre saveur préférée ci-dessous — 14 à découvrir.">Corona tu ube con una sedosa cold foam. Elige tu sabor favorito aquí abajo — 14 para descubrir.</p>
+
+      <div class="foam-accordion">
+        <button class="foam-toggle" onclick="toggleFoam(this)" aria-controls="foam-panel-2" aria-expanded="false">
+          <span class="foam-toggle-icon">☁️</span>
+          <span class="foam-toggle-text">
+            <span class="foam-toggle-title" data-en="Choose your flavor" data-fr="Choisissez votre saveur">Elige tu sabor</span>
+            <span class="foam-toggle-sub" data-en="14 options" data-fr="14 options">14 opciones</span>
+          </span>
+          <span class="foam-chevron">⌄</span>
+        </button>
+        <div class="foam-panel" id="foam-panel-2"></div>
+      </div>
+    </div>
     <div class="ctx-note i18n-html" data-en-html="🌿 <b>Plant-based milk available</b> — +€0.50 on any drink." data-fr-html="🌿 <b>Lait végétal disponible</b> — +0,50€ sur toute boisson.">🌿 <b>Leche vegetal disponible</b> &mdash; +0,50€ en cualquier bebida.</div>
   </section>
 
   <!-- CAFÉ -->
-  <section id="sec-cafe" class="page" aria-label="Café y bebidas">
+  <section id="sec-cafe" class="page" role="tabpanel" tabindex="0" aria-label="Café y bebidas">
     <div class="sec-head">
       <p class="eyebrow" data-en="At the bar" data-fr="Au comptoir">La barra</p>
       <h2 class="sec-title" data-en="Coffee &amp; Drinks" data-fr="Cafés &amp; Boissons">Cafés &amp; bebidas</h2>
@@ -809,13 +1016,6 @@ button, a { font-family: inherit; }
 
     <p class="group-label" data-en="Specialty coffees" data-fr="Cafés spéciaux">Cafés especiales</p>
     <div class="card">
-      <div class="card-row">
-        <p class="item-name">Cold Foam Espresso</p>
-        <p class="item-price">4,20€</p>
-      </div>
-      <p class="item-desc" data-en="Espresso with cold foam of your choice." data-fr="Espresso avec cold foam au choix.">Espresso con cold foam al gusto.</p>
-    </div>
-    <div class="card">
       <span class="badge badge-sig" data-en="Special" data-fr="Spécial">Especial</span>
       <div class="card-row">
         <p class="item-name" data-en="Pistachio Latte" data-fr="Latte Pistache">Pistacho Latte</p>
@@ -829,6 +1029,37 @@ button, a { font-family: inherit; }
         <p class="item-price">4,50€</p>
       </div>
       <p class="item-desc" data-en="Hazelnut, chocolate, vanilla or caramel. Extra syrup +€0.50." data-fr="Noisette, chocolat, vanille ou caramel. Sirop supplémentaire +0,50€.">Avellana, chocolate, vainilla o caramelo. Extra sirope +0,50€.</p>
+    </div>
+
+    <div class="card card-hero">
+      <span class="badge badge-sig">☁️ <span data-en="Customize it" data-fr="Personnalisez-le">Personalízalo</span></span>
+      <div class="card-row">
+        <p class="item-name">Cold Foam Espresso</p>
+        <p class="item-price" data-en="From €0.90" data-fr="Dès 0,90€">Desde 0,90€</p>
+      </div>
+      <p class="item-desc" data-en="Espresso crowned with a silky cold foam. Pick your favorite flavor below — 14 to discover." data-fr="Espresso couronné d'une onctueuse cold foam. Choisissez votre saveur préférée ci-dessous — 14 à découvrir.">Espresso coronado con una sedosa cold foam. Elige tu sabor favorito aquí abajo — 14 para descubrir.</p>
+
+      <div class="foam-accordion">
+        <button class="foam-toggle" onclick="toggleFoam(this)" aria-controls="foam-panel-3" aria-expanded="true">
+          <span class="foam-toggle-icon">☁️</span>
+          <span class="foam-toggle-text">
+            <span class="foam-toggle-title" data-en="Choose your flavor" data-fr="Choisissez votre saveur">Elige tu sabor</span>
+            <span class="foam-toggle-sub" data-en="14 options" data-fr="14 options">14 opciones</span>
+          </span>
+          <span class="foam-chevron">⌄</span>
+        </button>
+        <div class="foam-panel" id="foam-panel-3"></div>
+      </div>
+    </div>
+
+    <div class="ctx-note i18n-html" data-en-html="🌿 <b>Plant-based milk</b> available on all coffees — +€0.50." data-fr-html="🌿 <b>Lait végétal</b> disponible sur tous les cafés — +0,50€.">🌿 <b>Leche vegetal</b> disponible en todos los cafés &mdash; +0,50€.</div>
+  </section>
+
+  <!-- OTRAS BEBIDAS -->
+  <section id="sec-otras" class="page" role="tabpanel" tabindex="0" aria-label="Otras bebidas">
+    <div class="sec-head">
+      <p class="eyebrow" data-en="Soft drinks &amp; more" data-fr="Sodas &amp; plus">Refrescos y más</p>
+      <h2 class="sec-title" data-en="Other Drinks" data-fr="Autres Boissons">Otras Bebidas</h2>
     </div>
 
     <p class="group-label" data-en="Soft drinks &amp; other beverages" data-fr="Sodas &amp; autres boissons">Refrescos &amp; otras bebidas</p>
@@ -845,12 +1076,10 @@ button, a { font-family: inherit; }
       <div class="mini-card"><span class="mini-name" data-en="Sparkling Water" data-fr="Eau Gazeuse">Agua con gas</span><span class="mini-price">2,00€</span></div>
       <div class="mini-card mini-full"><span class="mini-name" data-en="Coconut Water" data-fr="Eau de Coco">Agua de coco</span><span class="mini-price">3,50€</span></div>
     </div>
-
-    <div class="ctx-note i18n-html" data-en-html="🌿 <b>Plant-based milk</b> available on all coffees — +€0.50." data-fr-html="🌿 <b>Lait végétal</b> disponible sur tous les cafés — +0,50€.">🌿 <b>Leche vegetal</b> disponible en todos los cafés &mdash; +0,50€.</div>
   </section>
 
   <!-- ══════════ BATIDOS ══════════ -->
-  <section id="sec-batidos" class="page" aria-label="Batidos y zumos">
+  <section id="sec-batidos" class="page" role="tabpanel" tabindex="0" aria-label="Batidos y zumos">
     <div class="sec-head">
       <p class="eyebrow" data-en="Shakes &amp; juices" data-fr="Smoothies &amp; jus">Batidos &amp; zumos</p>
       <h2 class="sec-title" data-en="Tropical energy" data-fr="Énergie tropicale">Energía tropical</h2>
@@ -943,7 +1172,7 @@ button, a { font-family: inherit; }
     <div class="fruit-grid">
       <div class="fruit-card"><span class="fruit-icon">🥭</span><span class="fruit-info"><span class="fruit-name">Mango</span><span class="fruit-price">1,80€</span></span></div>
       <div class="fruit-card"><span class="fruit-icon">🍓</span><span class="fruit-info"><span class="fruit-name" data-en="Strawberry" data-fr="Fraise">Fresa</span><span class="fruit-price">1,50€</span></span></div>
-      <div class="fruit-card"><span class="fruit-icon">💜</span><span class="fruit-info"><span class="fruit-name" data-en="Passion fruit" data-fr="Fruit de la passion">Maracuyá</span><span class="fruit-price">1,90€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🧡</span><span class="fruit-info"><span class="fruit-name" data-en="Passion fruit" data-fr="Fruit de la passion">Maracuyá</span><span class="fruit-price">1,90€</span></span></div>
       <div class="fruit-card"><span class="fruit-icon">🍌</span><span class="fruit-info"><span class="fruit-name" data-en="Banana" data-fr="Banane">Plátano</span><span class="fruit-price">1,50€</span></span></div>
       <div class="fruit-card"><span class="fruit-icon">🫐</span><span class="fruit-info"><span class="fruit-name" data-en="Blueberries" data-fr="Myrtilles">Arándanos</span><span class="fruit-price">2,00€</span></span></div>
       <div class="fruit-card"><span class="fruit-icon">🍍</span><span class="fruit-info"><span class="fruit-name" data-en="Pineapple" data-fr="Ananas">Piña</span><span class="fruit-price">1,50€</span></span></div>
@@ -958,10 +1187,31 @@ button, a { font-family: inherit; }
     <div class="ctx-note i18n-html" data-en-html="<b>How it works:</b> Choose your base from <b>€3.50</b> · First fruit from €1.20 · Second fruit +€1.00 · Protein +€1.50." data-fr-html="<b>Comment ça marche :</b> Choisissez votre base à partir de <b>3,50€</b> · Premier fruit dès 1,20€ · Deuxième fruit +1,00€ · Protéine +1,50€.">
       <b>Cómo funciona:</b> Base a elegir desde <b>3,50€</b> · Primera fruta desde 1,20€ · Segunda fruta +1,00€ · Proteína +1,50€.
     </div>
+
+    <div class="card card-hero card-hero-sm">
+      <span class="badge badge-sig">☁️ <span data-en="Customize it" data-fr="Personnalisez-le">Personalízalo</span></span>
+      <div class="card-row">
+        <p class="item-name" data-en="Cold Foam Shake" data-fr="Smoothie Cold Foam">Cold Foam Batido</p>
+        <p class="item-price" data-en="From €0.90" data-fr="Dès 0,90€">Desde 0,90€</p>
+      </div>
+      <p class="item-desc" data-en="Crown your shake with a silky cold foam. Pick your favorite flavor below — 14 to discover." data-fr="Couronnez votre smoothie d'une onctueuse cold foam. Choisissez votre saveur préférée ci-dessous — 14 à découvrir.">Corona tu batido con una sedosa cold foam. Elige tu sabor favorito aquí abajo — 14 para descubrir.</p>
+
+      <div class="foam-accordion">
+        <button class="foam-toggle" onclick="toggleFoam(this)" aria-controls="foam-panel-4" aria-expanded="false">
+          <span class="foam-toggle-icon">☁️</span>
+          <span class="foam-toggle-text">
+            <span class="foam-toggle-title" data-en="Choose your flavor" data-fr="Choisissez votre saveur">Elige tu sabor</span>
+            <span class="foam-toggle-sub" data-en="14 options" data-fr="14 options">14 opciones</span>
+          </span>
+          <span class="foam-chevron">⌄</span>
+        </button>
+        <div class="foam-panel" id="foam-panel-4"></div>
+      </div>
+    </div>
   </section>
 
   <!-- ══════════ BRUNCH ══════════ -->
-  <section id="sec-brunch" class="page" aria-label="Brunch salado">
+  <section id="sec-brunch" class="page" role="tabpanel" tabindex="0" aria-label="Brunch salado">
     <div class="sec-head">
       <p class="eyebrow" data-en="To start the journey" data-fr="Pour commencer le voyage">Para empezar el viaje</p>
       <h2 class="sec-title" data-en="Brunch in Elche" data-fr="Brunch à Elche">Brunch en Elche</h2>
@@ -1049,7 +1299,7 @@ button, a { font-family: inherit; }
   </section>
 
   <!-- ══════════ DULCE ══════════ -->
-  <section id="sec-dulce" class="page" aria-label="Brunch dulce">
+  <section id="sec-dulce" class="page" role="tabpanel" tabindex="0" aria-label="Brunch dulce">
     <div class="sec-head">
       <p class="eyebrow" data-en="Sweet brunch" data-fr="Brunch sucré">Brunch dulce</p>
       <h2 class="sec-title">Sugar</h2>
@@ -1091,7 +1341,7 @@ button, a { font-family: inherit; }
   </section>
 
   <!-- ══════════ COMPARTIR ══════════ -->
-  <section id="sec-compartir" class="page" aria-label="Para compartir">
+  <section id="sec-compartir" class="page" role="tabpanel" tabindex="0" aria-label="Para compartir">
     <div class="sec-head">
       <p class="eyebrow" data-en="To share" data-fr="À partager">Para compartir</p>
       <h2 class="sec-title" data-en="A table for everyone" data-fr="Une table pour tous">Mesa para todos</h2>
@@ -1125,7 +1375,7 @@ button, a { font-family: inherit; }
   </section>
 
   <!-- ══════════ HAZLO TÚ ══════════ -->
-  <section id="sec-diy" class="page" aria-label="Hazlo tú">
+  <section id="sec-diy" class="page" role="tabpanel" tabindex="0" aria-label="Hazlo tú">
     <div class="sec-head">
       <p class="eyebrow" data-en="Build your dish" data-fr="Créez votre plat">Crea tu plato</p>
       <h2 class="sec-title" data-en="Build Your Own" data-fr="Fait Maison">Hazlo tú</h2>
@@ -1159,7 +1409,12 @@ button, a { font-family: inherit; }
   <!-- ══════════ FOOTER ══════════ -->
   <footer class="footer">
     <strong>ISLA Brunch y Bar</strong>
-    Elche &nbsp;·&nbsp; <a href="https://instagram.com/islabrunchbar" target="_blank">@islabrunchbar</a>
+    <span data-en="Carrer Mare de Déu del Carme, 11 &middot; Elche" data-fr="Carrer Mare de Déu del Carme, 11 &middot; Elche">Carrer Mare de Déu del Carme, 11 &middot; Elche</span><br>
+    <a href="tel:+34691769434" aria-label="Llamar a ISLA Brunch & Bar">691 769 434</a>
+    &nbsp;·&nbsp;
+    <a href="https://instagram.com/islabrunchbar" target="_blank" rel="noopener noreferrer" aria-label="Instagram de ISLA Brunch & Bar (se abre en una pestaña nueva)">@islabrunchbar</a>
+    &nbsp;·&nbsp;
+    <a href="/Alergenos" data-en="Allergens" data-fr="Allergènes">Alérgenos</a>
   </footer>
 
 </div>
@@ -1172,6 +1427,15 @@ button, a { font-family: inherit; }
   "name": "ISLA Brunch & Bar",
   "url": "https://islabrunchbar.com/",
   "@id": "https://islabrunchbar.com/#local",
+  "telephone": "+34691769434",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Carrer Mare de Déu del Carme, 11",
+    "addressLocality": "Elche",
+    "postalCode": "03201",
+    "addressRegion": "Alicante",
+    "addressCountry": "ES"
+  },
   "areaServed": {
     "@type": "City",
     "name": "Elche"
@@ -1190,7 +1454,6 @@ button, a { font-family: inherit; }
   ],
   "hasMenu": "https://islabrunchbar.com/"
 }
-</script>
 </script>
 <script type="application/ld+json">
 {
@@ -1328,7 +1591,7 @@ button, a { font-family: inherit; }
         {
           "@type": "MenuItem",
           "name": "Cold Foam Espresso",
-          "description": "Espresso con cold foam al gusto.",
+          "description": "Espresso coronado con cold foam a elegir entre 14 sabores: vainilla, chocolate, dulce de leche, lotus, canela, caramelo, fresa, piña, mango, maracuyá, pistacho, coco, avellana y agave.",
           "offers": {
             "@type": "Offer",
             "price": "4.20",
@@ -2105,7 +2368,7 @@ const state = { cat: 'bebidas', sub: 'matcha' };
 
 // Mapa de qué páginas pertenecen a qué categoría (Matcha primero dentro de Bebidas)
 const catPages = {
-  bebidas:    ['matcha','ube','cafe'],
+  bebidas:    ['matcha','ube','cafe','otras'],
   batidos:    ['batidos'],
   brunch:     ['brunch'],
   dulce:      ['dulce'],
@@ -2118,8 +2381,9 @@ const subNavs = { bebidas: true };
 
 function showCat(cat, btn) {
   // Actualizar tabs de categoría
-  document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('on'));
+  document.querySelectorAll('.cat-tab').forEach(b => { b.classList.remove('on'); b.setAttribute('aria-selected', 'false'); });
   btn.classList.add('on');
+  btn.setAttribute('aria-selected', 'true');
   btn.scrollIntoView({ inline: 'nearest', behavior: 'smooth' });
 
   state.cat = cat;
@@ -2142,10 +2406,16 @@ function showCat(cat, btn) {
 function showSub(pageId, btn, cat) {
   // Resetear sub-tabs del subnav activo
   const sn = document.getElementById('subnav-' + cat);
-  if (sn) sn.querySelectorAll('.sub-tab').forEach(b => b.classList.remove('on'));
+  if (sn) sn.querySelectorAll('.sub-tab').forEach(b => { b.classList.remove('on'); b.setAttribute('aria-selected', 'false'); });
   btn.classList.add('on');
+  btn.setAttribute('aria-selected', 'true');
   state.sub = pageId;
   showPage(pageId);
+}
+
+function toggleFoam(btn) {
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!expanded));
 }
 
 function showPage(id) {
@@ -2159,8 +2429,82 @@ function showPage(id) {
   }
 }
 
+// ══════════ COLD FOAM: plantilla única para los 4 acordeones ══════════
+// Antes: cada acordeón (Matcha, Ube, Café/Otras, Batidos) repetía ~110 líneas de HTML
+// idénticas. Ahora hay una sola fuente de datos: cambiar un sabor o un precio
+// se hace una vez y se refleja en los 4 sitios automáticamente, sin riesgo
+// de que se desincronicen entre sí.
+const FOAM_TIERS = [
+  {
+    label: { es: 'Clásicos', en: 'Classic', fr: 'Classiques' },
+    items: [
+      { icon: '🍂', es: 'Canela', en: 'Cinnamon', fr: 'Cannelle', price: '0,90€' },
+      { icon: '🍦', es: 'Vainilla', en: 'Vanilla', fr: 'Vanille', price: '1,00€' },
+      { icon: '🍫', es: 'Chocolate', price: '1,00€' },
+      { icon: '🍯', es: 'Caramelo', en: 'Caramel', fr: 'Caramel', price: '1,00€' },
+      { icon: '🍮', es: 'Dulce de leche', price: '1,00€' },
+      { icon: '🪷', es: 'Lotus', price: '1,00€' }
+    ]
+  },
+  {
+    label: { es: 'Frutales', en: 'Fruity', fr: 'Fruités' },
+    items: [
+      { icon: '🍓', es: 'Fresa', en: 'Strawberry', fr: 'Fraise', price: '1,20€' },
+      { icon: '🍍', es: 'Piña', en: 'Pineapple', fr: 'Ananas', price: '1,20€' },
+      { icon: '🥭', es: 'Mango', price: '1,20€' },
+      { icon: '🧡', es: 'Maracuyá', en: 'Passion fruit', fr: 'Fruit de la passion', price: '1,20€' }
+    ]
+  },
+  {
+    label: { es: 'Premium', en: 'Premium', fr: 'Premium' },
+    items: [
+      { icon: '🥥', es: 'Coco', en: 'Coconut', fr: 'Noix de coco', price: '1,50€', premium: true },
+      { icon: '🌰', es: 'Avellana', en: 'Hazelnut', fr: 'Noisette', price: '1,50€', premium: true },
+      { icon: '💚', es: 'Pistacho', price: '1,20€', premium: true },
+      { icon: '🌵', es: 'Agave', price: '2,00€', premium: true }
+    ]
+  }
+];
+
+const FOAM_NOTE = {
+  es: '☁️ Combina con cualquier bebida &mdash; caliente, fría o batida.',
+  en: '☁️ Works with any drink — hot, iced or blended.',
+  fr: '☁️ Fonctionne avec toute boisson — chaude, glacée ou mixée.'
+};
+
+function i18nAttrs(en, fr) {
+  let s = '';
+  if (en) s += ` data-en="${en}"`;
+  if (fr) s += ` data-fr="${fr}"`;
+  return s;
+}
+
+function renderFoamCard(item) {
+  return `<div class="foam-card${item.premium ? ' premium' : ''}">` +
+    `<span class="foam-icon">${item.icon}</span>` +
+    `<span class="foam-info">` +
+    `<span class="foam-name"${i18nAttrs(item.en, item.fr)}>${item.es}</span>` +
+    `<span class="foam-price">${item.price}</span>` +
+    `</span></div>`;
+}
+
+function renderFoamPanel(panel) {
+  let html = '<div class="foam-panel-inner">';
+  FOAM_TIERS.forEach(tier => {
+    html += `<p class="tier-label"${i18nAttrs(tier.label.en, tier.label.fr)}>${tier.label.es}</p>`;
+    html += '<div class="foam-grid">' + tier.items.map(renderFoamCard).join('') + '</div>';
+  });
+  html += `<div class="ctx-note foam-note i18n-html" data-en-html="${FOAM_NOTE.en}" data-fr-html="${FOAM_NOTE.fr}">${FOAM_NOTE.es}</div>`;
+  html += '</div>';
+  panel.innerHTML = html;
+}
+
+document.querySelectorAll('.foam-panel').forEach(renderFoamPanel);
+
 // Inicializar sub-tab activa en la carga
-document.querySelector('.sub-tab').classList.add('on');
+const initialSubTab = document.querySelector('.sub-tab');
+initialSubTab.classList.add('on');
+initialSubTab.setAttribute('aria-selected', 'true');
 
 // ══════════ TRADUCCIÓN AUTOMÁTICA (ES / EN / FR) ══════════
 const SUPPORTED_LANGS = ['es', 'en', 'fr'];
