@@ -3,204 +3,1985 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- ══════════ SEO base ══════════ -->
-<title>ISLA Elche | Brunch de Día y Coctelería de Noche</title>
-<meta name="description" content="Brunch, café, matcha ceremonial y ube con cold foam de día. Tapas para compartir, mojitos y tequila Don Julio de noche. ISLA, brunch bar y coctelería en el centro de Elche.">
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<title>Brunch, Matcha y Ube en Elche — ISLA Brunch &amp; Bar</title>
+<meta name="description" content="ISLA Brunch &amp; Bar, en el centro de Elche: el mejor matcha ceremonial, ube latte y brunch de Elche. Café de especialidad, batidos tropicales y cócteles. Carta completa en ES/EN/FR.">
+<meta name="keywords" content="brunch Elche, matcha Elche, ube Elche, ube latte Elche, matcha latte Elche, cafetería Elche centro, café especialidad Elche, cócteles Elche, tardeo Elche, desayunos Elche, carta ISLA Elche">
+<meta name="robots" content="index, follow">
+<meta name="author" content="ISLA Brunch & Bar">
 <meta name="theme-color" content="#2D6A3F">
 <link rel="canonical" href="https://islabrunchbar.com/">
-
-<!-- ══════════ Open Graph ══════════ -->
-<meta property="og:type" content="restaurant">
-<meta property="og:site_name" content="ISLA Brunch Bar">
-<meta property="og:title" content="ISLA Elche | Brunch de Día y Coctelería de Noche">
-<meta property="og:description" content="Brunch, café, matcha ceremonial y ube con cold foam de día. Tapas para compartir, mojitos y tequila Don Julio de noche. En el centro de Elche.">
-<meta property="og:url" content="https://islabrunchbar.com/">
-<meta property="og:locale" content="es_ES">
-<!-- ⚠️ Sustituye por una imagen real 1200x630 (foto de brunch o coctelería) antes de publicar -->
-<meta property="og:image" content="https://islabrunchbar.com/og-image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="ISLA Brunch Bar Elche — brunch de día y coctelería de noche">
-
-<!-- ══════════ Twitter Card ══════════ -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ISLA Elche | Brunch de Día y Coctelería de Noche">
-<meta name="twitter:description" content="Brunch, café, matcha ceremonial y ube con cold foam de día. Tapas para compartir, mojitos y tequila Don Julio de noche.">
-<meta name="twitter:image" content="https://islabrunchbar.com/og-image.jpg">
-
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23FAF8F4'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' font-weight='700' text-anchor='middle' fill='%232D6A3F'%3EI%3C/text%3E%3C/svg%3E">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Open Graph -->
+<meta property="og:type" content="restaurant">
+<meta property="og:site_name" content="ISLA Brunch & Bar">
+<meta property="og:title" content="Brunch, Matcha y Ube en Elche — ISLA Brunch &amp; Bar">
+<meta property="og:description" content="El mejor matcha ceremonial, ube latte y brunch de Elche. Café de especialidad, batidos tropicales y cócteles en el centro de la ciudad.">
+<meta property="og:url" content="https://islabrunchbar.com/">
+<meta property="og:locale" content="es_ES">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
 
-<!-- ══════════ Datos estructurados (Schema.org) ══════════ -->
-<!-- ⚠️ Revisa y completa: teléfono, código postal y coordenadas GPS exactas antes de publicar -->
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Brunch, Matcha y Ube en Elche — ISLA Brunch &amp; Bar">
+<meta name="twitter:description" content="El mejor matcha ceremonial, ube latte y brunch de Elche. Café de especialidad, batidos tropicales y cócteles.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white:      #FFFFFF;
+  --cream:      #FAF8F4;
+  --sand:       #F2EDE3;
+  --warm:       #E8DFD0;
+  --bark:       #5C3D28;
+  --bark-mid:   #8B5E3C;
+  --bark-light: #C4976A;
+  --green:      #2D6A3F;
+  --green-lt:   #4A8A5A;
+  --green-bg:   #EEF5EC;
+  --ube:        #6B4FA0;
+  --ube-mid:    #9B79C8;
+  --ube-bg:     #F0EAF9;
+  --text:       #1C1510;
+  --muted:      #7A6A58;
+  --divider:    rgba(92,61,40,0.11);
+  --shadow-sm:  0 2px 10px rgba(0,0,0,0.06);
+  --shadow-md:  0 4px 20px rgba(0,0,0,0.09);
+  --r:          14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: radial-gradient(ellipse 900px 500px at 50% -8%, #FFFEFB 0%, var(--cream) 60%);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.root {
+  max-width: 430px;
+  margin: 0 auto;
+  background: transparent;
+  min-height: 100dvh;
+}
+
+button, a { font-family: inherit; }
+.cat-tab:focus-visible, .sub-tab:focus-visible, .lang-btn:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(180deg, #FFF3E6 0%, #FFE1CC 35%, #FFF6ED 70%, var(--white) 100%);
+  padding: 2.8rem 1.5rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-palm {
+  position: absolute;
+  top: 0;
+  width: 200px;
+  height: auto;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-palm-left  { left: -18px; }
+.hero-palm-right { right: -18px; }
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+.cocktail-link {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.3rem;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  color: var(--bark-mid);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 10px 5px 7px;
+  border: 1px solid rgba(92,61,40,0.22);
+  border-radius: 20px;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(2px);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.cocktail-link:hover, .cocktail-link:focus-visible {
+  background: rgba(255,255,255,0.85);
+  border-color: var(--bark-mid);
+}
+.cocktail-link svg { width: 12px; height: 12px; flex-shrink: 0; }
+.hero-logo {
+  width: 180px;
+  height: auto;
+  display: block;
+  margin: 0 auto 0.5rem;
+}
+.hero-logo-copy {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 600;
+  background: linear-gradient(90deg, var(--green) 0%, #9CB33B 55%, #F0A857 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0 auto 0.45rem;
+  letter-spacing: 0.25em;
+}
+.hero-tagline {
+  font-size: 10.5px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--bark-light);
+  font-weight: 400;
+  padding-bottom: 0.85rem;
+}
+
+/* Firma visual: dúo Matcha · Ube */
+.hero-duo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding-bottom: 1.3rem;
+}
+.hero-duo .dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+.hero-duo .dot-mat { background: var(--green-lt); }
+.hero-duo .dot-ube { background: var(--ube-mid); }
+.hero-duo .sep { width: 16px; height: 1px; background: var(--divider); display: inline-block; }
+.hero-duo em {
+  font-style: normal;
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Curva verde bajo hero */
+.hero-curve {
+  background: var(--green);
+  height: 32px;
+  clip-path: ellipse(55% 100% at 50% 100%);
+  margin-top: -1px;
+}
+
+/* ── PILLS DE IDENTIDAD ── */
+.identity-bar {
+  background: var(--green);
+  padding: 0 1.2rem 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.pill {
+  background: rgba(255,255,255,0.13);
+  color: rgba(255,255,255,0.85);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+
+/* ── SELECTOR DE IDIOMA ── */
+.lang-bar {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 1.2rem;
+  background: var(--white);
+  border-bottom: 1px solid var(--divider);
+}
+.lang-btn {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--divider);
+  background: var(--cream);
+  color: var(--muted);
+  cursor: pointer;
+  transition: background .18s, color .18s, border-color .18s;
+}
+.lang-btn.on { background: var(--bark); color: #fff; border-color: var(--bark); }
+.lang-btn:not(.on):hover { border-color: var(--bark-light); color: var(--bark); }
+
+/* ── STICKY NAV ── */
+.nav-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--white);
+  border-bottom: 1px solid var(--divider);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Categorías principales */
+.nav-cats {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0 4px;
+  border-bottom: 1px solid var(--divider);
+}
+.nav-cats::-webkit-scrollbar { display: none; }
+
+.cat-tab {
+  flex: 0 0 auto;
+  padding: 11px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: none;
+  border-bottom: 2.5px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .2s, border-color .2s, background .2s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 8px 8px 0 0;
+}
+.cat-tab.on { color: var(--green); border-bottom-color: var(--green); background: var(--green-bg); }
+.cat-tab span { font-size: 14px; }
+
+/* Submenú de bebidas */
+.sub-nav {
+  display: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+  gap: 4px;
+  padding: 6px 8px;
+  background: var(--sand);
+}
+.sub-nav.vis { display: flex; }
+.sub-nav::-webkit-scrollbar { display: none; }
+
+.sub-tab {
+  flex: 0 0 auto;
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  background: rgba(255,255,255,0.6);
+  border: 1px solid var(--divider);
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .18s;
+}
+.sub-tab.on {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green);
+}
+
+/* ── SECCIONES ── */
+.page { display: none; padding: 1.4rem 1rem 5rem; }
+.page.on { display: block; }
+@media (prefers-reduced-motion: no-preference) {
+  .page.on { animation: pageIn .4s ease; }
+  @keyframes pageIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Cabecera de sección */
+.sec-head { margin-bottom: 1.4rem; }
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--bark-light);
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+.sec-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--bark);
+  line-height: 1.15;
+}
+.sec-note {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* ── SUBSECCIÓN ── */
+.group-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--bark-mid);
+  margin: 20px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--divider);
+}
+
+/* ── TARJETA PRINCIPAL ── */
+.card {
+  background: var(--white);
+  border-radius: var(--r);
+  border: 1px solid var(--divider);
+  padding: 14px 16px;
+  margin-bottom: 9px;
+  transition: box-shadow .2s, transform .15s;
+  position: relative;
+}
+.card:active { transform: scale(0.99); }
+.card:hover { box-shadow: var(--shadow-md); }
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+.item-name {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--text);
+  flex: 1;
+  line-height: 1.3;
+}
+.item-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--bark-mid);
+  white-space: nowrap;
+}
+.item-desc {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 5px;
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+/* ── TARJETA UBE ── */
+.card-ube {
+  background: var(--ube-bg);
+  border-color: rgba(107,79,160,0.18);
+}
+.card-ube .item-name { color: #3D2469; }
+.card-ube .item-price { color: var(--ube); }
+
+/* ── TARJETA MATCHA ── */
+.card-mat {
+  background: var(--green-bg);
+  border-color: rgba(45,106,63,0.18);
+}
+.card-mat .item-name { color: var(--green); }
+.card-mat .item-price { color: var(--green-lt); }
+
+/* ── TARJETA HIGHLIGHT (para compartir) ── */
+.card-hero {
+  background: linear-gradient(135deg, #FDF6EE 0%, #F5E8D3 100%);
+  border-color: var(--bark-light);
+  box-shadow: 0 3px 16px rgba(196,151,106,0.25);
+}
+
+/* ── BADGES ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 20px;
+  padding: 3px 9px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.badge-sig { background: var(--bark); color: #FDF8F2; }
+.badge-grn { background: var(--green-bg); color: var(--green); }
+.badge-ube { background: var(--ube-bg); color: var(--ube); }
+.badge-mat { background: var(--green-bg); color: var(--green); }
+.badge-fav { background: #FFF3E0; color: #E65100; }
+
+/* ── GRID 2 COLUMNAS (precios rápidos) ── */
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 7px;
+}
+.mini-card {
+  background: var(--white);
+  border: 1px solid var(--divider);
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mini-name {
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.3;
+}
+.mini-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--bark-mid);
+  white-space: nowrap;
+  margin-left: 6px;
+}
+.mini-full { grid-column: span 2; }
+
+/* ── GRID DE PANES (DIY) ── */
+.pan-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 7px;
+  margin-bottom: 4px;
+}
+.pan-card {
+  background: var(--sand);
+  border-radius: 12px;
+  border: 1px solid var(--warm);
+  padding: 12px 14px;
+  text-align: center;
+}
+.pan-name { font-size: 12.5px; font-weight: 500; color: var(--bark); display: block; margin-bottom: 4px; }
+.pan-price { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 600; color: var(--bark-mid); }
+
+/* ── NOTA CONTEXTUAL ── */
+.ctx-note {
+  background: var(--sand);
+  border-left: 3px solid var(--bark-light);
+  border-radius: 0 10px 10px 0;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 12px 0;
+}
+.ctx-note b { color: var(--bark); font-weight: 600; }
+
+/* ── FOOTER ── */
+.footer {
+  text-align: center;
+  padding: 2rem 1.5rem 3rem;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  border-top: 1px solid var(--divider);
+}
+.footer strong { display: block; font-size: 13px; color: var(--bark); margin-bottom: 4px; }
+.footer a { color: var(--green); text-decoration: none; }
+
+/* ── BANNER PROMO (interior) ── */
+.promo-banner {
+  background: linear-gradient(120deg, var(--green) 0%, #1e5c34 100%);
+  border-radius: var(--r);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  color: #fff;
+}
+.promo-banner p { font-size: 12px; opacity: 0.85; margin-top: 4px; line-height: 1.5; }
+.promo-banner strong { font-size: 14px; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="root">
+
+  <!-- ══════════ HERO ══════════ -->
+  <header class="hero">
+    <!-- Escena de palmeras (decorativa) -->
+    <svg class="hero-palm hero-palm-left" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M10.0,-10.0 C18.0,48.5 36.8,108.5 96.0,112.9 C43.4,104.0 41.6,32.0 10.0,-10.0 Z" fill="#1F5A32" opacity="0.38"/>
+      <path d="M10.0,-10.0 C-2.5,47.7 -5.3,110.6 48.8,134.9 C2.4,108.5 25.3,40.2 10.0,-10.0 Z" fill="#2D6A3F" opacity="0.38"/>
+      <path d="M10.0,-10.0 C-21.5,39.9 -45.6,98.1 -3.1,139.4 C-37.7,98.8 7.2,42.5 10.0,-10.0 Z" fill="#4A8A5A" opacity="0.38"/>
+      <path d="M10.0,-10.0 C-36.7,26.2 -79.2,72.5 -53.4,125.9 C-72.0,75.9 -10.6,38.3 10.0,-10.0 Z" fill="#7FAE55" opacity="0.38"/>
+      <path d="M10.0,-10.0 C-46.2,8.0 -102.1,37.0 -96.1,96.1 C-96.4,42.7 -25.9,28.4 10.0,-10.0 Z" fill="#9CB33B" opacity="0.38"/>
+      <path d="M10.0,-10.0 C-49.0,-7.1 -110.4,6.4 -119.9,65.0 C-106.4,13.3 -34.6,17.8 10.0,-10.0 Z" fill="#B8C24A" opacity="0.28"/>
+      <path d="M7.0,-10.0 C6.0,8.0 8.0,22.0 10.0,28.0 C12.0,22.0 14.0,8.0 13.0,-10.0 Z" fill="var(--bark-light)" opacity="0.3"/>
+    </svg>
+    <svg class="hero-palm hero-palm-right" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M190.0,-10.0 C233.7,12.3 300.1,2.2 316.9,49.2 C303.3,-4.6 245.1,-12.2 190.0,-10.0 Z" fill="#1F5A32" opacity="0.38"/>
+      <path d="M190.0,-10.0 C223.4,25.9 289.3,39.2 289.0,89.0 C294.6,33.9 242.5,6.8 190.0,-10.0 Z" fill="#2D6A3F" opacity="0.38"/>
+      <path d="M190.0,-10.0 C209.1,35.1 266.5,70.2 249.2,116.9 C273.3,67.0 233.6,23.7 190.0,-10.0 Z" fill="#4A8A5A" opacity="0.38"/>
+      <path d="M190.0,-10.0 C192.5,39.0 234.5,91.5 202.2,129.5 C241.9,90.9 219.4,36.6 190.0,-10.0 Z" fill="#7FAE55" opacity="0.38"/>
+      <path d="M190.0,-10.0 C175.6,36.9 197.1,100.6 153.8,125.2 C204.3,102.5 201.7,43.9 190.0,-10.0 Z" fill="#9CB33B" opacity="0.38"/>
+      <path d="M190.0,-10.0 C160.5,29.1 158.8,96.3 109.7,104.7 C165.0,100.6 182.6,44.6 190.0,-10.0 Z" fill="#B8C24A" opacity="0.38"/>
+      <path d="M187.0,-10.0 C186.0,8.0 188.0,22.0 190.0,28.0 C192.0,22.0 194.0,8.0 193.0,-10.0 Z" fill="var(--bark-light)" opacity="0.3"/>
+    </svg>
+
+    <!-- Link discreto a la carta de cócteles -->
+    <a class="cocktail-link" href="https://islabrunchbar.com/Cocteles" aria-label="Ver carta de cócteles">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 4h16l-7 8v6h3v2H8v-2h3v-6L4 4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+      <span data-en="Cocktails" data-fr="Cocktails">Cócteles</span>
+    </a>
+
+    <div class="hero-content">
+      <!-- Logo SVG inline -->
+      <svg class="hero-logo" viewBox="0 0 240 90" xmlns="http://www.w3.org/2000/svg" aria-label="ISLA">
+        <defs>
+          <linearGradient id="islaGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="var(--green)"/>
+            <stop offset="55%" stop-color="#9CB33B"/>
+            <stop offset="100%" stop-color="#F0A857"/>
+          </linearGradient>
+        </defs>
+        <text x="50%" y="62" text-anchor="middle"
+          font-family="Cormorant Garamond, serif" font-size="68" font-weight="600"
+          letter-spacing="16" fill="url(#islaGradient)">ISLA</text>
+        <line x1="30" y1="72" x2="210" y2="72" stroke="var(--green)" stroke-width="1"/>
+      </svg>
+      <h1 class="hero-logo-copy">ISLA</h1>
+      <p class="hero-tagline" data-en="Brunch · Matcha · Ube — Elche" data-fr="Brunch · Matcha · Ube — Elche">Brunch &middot; Matcha &middot; Ube &mdash; Elche</p>
+      <div class="hero-duo">
+        <span class="dot dot-mat"></span><em data-en="Matcha" data-fr="Matcha">Matcha</em>
+        <span class="sep"></span>
+        <span class="dot dot-ube"></span><em data-en="Ube" data-fr="Ube">Ube</em>
+      </div>
+    </div>
+  </header>
+  <div class="hero-curve"></div>
+
+  <!-- Pills identidad -->
+  <div class="identity-bar">
+    <span class="pill">🌴 <span data-en="Breakfasts" data-fr="Petits-déjeuners">Desayunos</span></span>
+    <span class="pill">☕ <span data-en="Specialty coffees" data-fr="Cafés spéciaux">Cafés especiales</span></span>
+    <span class="pill">🥑 <span data-en="Brunch" data-fr="Brunch">Brunch</span></span>
+    <span class="pill">🍹 <span data-en="Tropical" data-fr="Tropical">Tropicales</span></span>
+  </div>
+
+  <!-- Selector de idioma -->
+  <div class="lang-bar" role="group" aria-label="Idioma · Language · Langue">
+    <button class="lang-btn on" data-lang="es" onclick="setLang('es',this)">ES</button>
+    <button class="lang-btn" data-lang="en" onclick="setLang('en',this)">EN</button>
+    <button class="lang-btn" data-lang="fr" onclick="setLang('fr',this)">FR</button>
+  </div>
+
+  <!-- ══════════ NAV PRINCIPAL ══════════ -->
+  <div class="nav-wrap">
+    <nav class="nav-cats" role="tablist" aria-label="Categorías">
+      <button class="cat-tab on" onclick="showCat('bebidas',this)" role="tab"><span>☕</span> <span data-en="Drinks" data-fr="Boissons">Bebidas</span></button>
+      <button class="cat-tab"    onclick="showCat('batidos',this)"  role="tab"><span>🍹</span> <span data-en="Shakes" data-fr="Smoothies">Batidos</span></button>
+      <button class="cat-tab"    onclick="showCat('brunch',this)"   role="tab"><span>🥑</span> <span data-en="Brunch" data-fr="Brunch">Brunch</span></button>
+      <button class="cat-tab"    onclick="showCat('dulce',this)"    role="tab"><span>🥞</span> <span data-en="Sweet" data-fr="Sucré">Dulce</span></button>
+      <button class="cat-tab"    onclick="showCat('compartir',this)" role="tab"><span>🫶</span> <span data-en="Sharing" data-fr="À partager">Compartir</span></button>
+      <button class="cat-tab"    onclick="showCat('diy',this)"      role="tab"><span>✏️</span> <span data-en="Build Your Own" data-fr="Fait maison">Hazlo tú</span></button>
+    </nav>
+
+    <!-- Submenú Bebidas (Matcha primero) -->
+    <div id="subnav-bebidas" class="sub-nav vis" role="tablist" aria-label="Tipos de bebida">
+      <button class="sub-tab on" onclick="showSub('matcha',this,'bebidas')" role="tab">🍵 <span data-en="Matcha" data-fr="Matcha">Matcha</span></button>
+      <button class="sub-tab"    onclick="showSub('ube',this,'bebidas')"    role="tab">🔮 <span data-en="Ube" data-fr="Ube">Ube</span></button>
+      <button class="sub-tab"    onclick="showSub('cafe',this,'bebidas')"   role="tab">☕ <span data-en="Coffee" data-fr="Café">Café</span></button>
+    </div>
+  </div>
+
+  <!-- ══════════ BEBIDAS ══════════ -->
+
+  <!-- MATCHA -->
+  <section id="sec-matcha" class="page on" aria-label="Matcha">
+    <div class="sec-head">
+      <p class="eyebrow" data-en="Natural energy · Ceremonial grade" data-fr="Énergie naturelle · Qualité cérémonielle">Energía natural · Ceremonial</p>
+      <h2 class="sec-title" data-en="Matcha in Elche — clean energy" data-fr="Matcha à Elche — énergie pure">Matcha en Elche — energía limpia</h2>
+      <p class="sec-note" data-en="First-grade ceremonial matcha. Rich in antioxidants, with clean energy and no jitters." data-fr="Matcha cérémoniel de première qualité. Riche en antioxydants, pour une énergie douce sans nervosité.">Matcha ceremonial de primer grado. Rico en antioxidantes y con un toque de energía sin nerviosismo.</p>
+    </div>
+
+    <div class="card card-mat">
+      <span class="badge badge-mat">⭐ <span data-en="Star" data-fr="Vedette">Estrella</span></span>
+      <div class="card-row">
+        <p class="item-name">Coconut Water Matcha</p>
+        <p class="item-price">5,50€</p>
+      </div>
+      <p class="item-desc" data-en="Ceremonial matcha blended with pure coconut water." data-fr="Matcha cérémoniel mêlé à la pureté de l'eau de coco.">Matcha ceremonial combinado con la pureza del agua de coco.</p>
+    </div>
+
+    <div class="card card-mat">
+      <span class="badge badge-mat">⭐ <span data-en="Star" data-fr="Vedette">Estrella</span></span>
+      <div class="card-row">
+        <p class="item-name" data-en="Iced Fruity Matcha" data-fr="Matcha Glacé Fruité">Ice Matcha Frutal</p>
+        <p class="item-price">5,00€</p>
+      </div>
+      <p class="item-desc" data-en="Iced version with fruity notes: mango, strawberry or passion fruit." data-fr="Version glacée aux notes fruitées : mangue, fraise ou fruit de la passion.">Versión helada con notas frutales: mango, fresa o maracuyá.</p>
+    </div>
+
+    <div class="card card-mat">
+      <div class="card-row">
+        <p class="item-name">Matcha Latte</p>
+        <p class="item-price">4,50€</p>
+      </div>
+      <p class="item-desc" data-en="Clean energy with the creamy texture of steamed milk." data-fr="Énergie pure avec la texture crémeuse du lait vaporisé.">Energía limpia con la textura cremosa de la leche vaporizada.</p>
+    </div>
+
+    <div class="card card-mat">
+      <div class="card-row">
+        <p class="item-name" data-en="Traditional Matcha" data-fr="Matcha Traditionnel">Matcha Tradicional</p>
+        <p class="item-price">3,50€</p>
+      </div>
+      <p class="item-desc" data-en="The pure experience of hand-whisked matcha." data-fr="L'expérience pure du matcha fouetté à la main.">La experiencia pura del matcha batido de forma artesanal.</p>
+    </div>
+
+    <div class="card card-mat">
+      <div class="card-row">
+        <p class="item-name" data-en="Matcha Tea" data-fr="Thé Matcha">Té de Matcha</p>
+        <p class="item-price">3,00€</p>
+      </div>
+      <p class="item-desc" data-en="A light, clean, antioxidant-rich infusion." data-fr="Une infusion légère, pure et riche en antioxydants.">Infusión ligera, limpia y antioxidante.</p>
+    </div>
+
+    <div class="ctx-note i18n-html" data-en-html="🌿 <b>Plant-based milk available</b> — +€0.50 on any drink." data-fr-html="🌿 <b>Lait végétal disponible</b> — +0,50€ sur toute boisson.">🌿 <b>Leche vegetal disponible</b> &mdash; +0,50€ en cualquier bebida.</div>
+  </section>
+
+  <!-- UBE -->
+  <section id="sec-ube" class="page" aria-label="Ube">
+    <div class="sec-head">
+      <p class="eyebrow" data-en="Most popular · Signature drinks" data-fr="Le plus demandé · Boissons signature">Lo más pedido · Bebidas especiales</p>
+      <h2 class="sec-title" data-en="Ube in Elche — the violet sensation" data-fr="Ube à Elche — la sensation violette">Ube en Elche — la sensación violeta</h2>
+      <p class="sec-note" data-en="Ube root elixir that tints every sip a hypnotic violet. Exotic, creamy and irresistible." data-fr="Un élixir de racine d'ube qui teinte chaque gorgée d'un violet hypnotique. Exotique, onctueux et irrésistible.">Elixir de raíz de ube que tiñe cada sorbo de un violeta hipnótico. Exótico, cremoso e irresistible.</p>
+    </div>
+
+    <div class="card card-ube">
+      <span class="badge badge-ube">⭐ <span data-en="Star" data-fr="Vedette">Estrella</span></span>
+      <div class="card-row">
+        <p class="item-name">Ube Latte</p>
+        <p class="item-price">4,90€</p>
+      </div>
+      <p class="item-desc" data-en="Ube elixir with vanilla and coconut, blended with creamy milk. Hot or iced." data-fr="Élixir d'ube à la vanille et à la noix de coco, mélangé à du lait crémeux. Chaud ou glacé.">Elixir de ube con vainilla y coco, batido con leche cremosa. Caliente o con hielo.</p>
+    </div>
+
+    <div class="card card-ube">
+      <span class="badge badge-ube">⭐ <span data-en="Star" data-fr="Vedette">Estrella</span></span>
+      <div class="card-row">
+        <p class="item-name">Ube Passion Frappé</p>
+        <p class="item-price">5,50€</p>
+      </div>
+      <p class="item-desc" data-en="Ube with the electric tang of passion fruit. Creamy and exotic." data-fr="Ube relevé de l'acidité vive du fruit de la passion. Onctueux et exotique.">Ube con la acidez eléctrica del maracuyá. Cremoso y exótico.</p>
+    </div>
+
+    <div class="card card-ube">
+      <div class="card-row">
+        <p class="item-name">Dirty Ube Espresso</p>
+        <p class="item-price">5,40€</p>
+      </div>
+      <p class="item-desc" data-en="Sweet Ube Latte base topped with a shot of intense espresso." data-fr="Base sucrée de Ube Latte surmontée d'un shot d'espresso intense.">Base dulce de Ube Latte coronada con un shot de espresso intenso.</p>
+    </div>
+
+    <div class="card card-ube">
+      <div class="card-row">
+        <p class="item-name">Isla Ube Breeze</p>
+        <p class="item-price">5,50€</p>
+      </div>
+      <p class="item-desc" data-en="Natural coconut water infused with ube. Light and hydrating." data-fr="Eau de coco naturelle infusée à l'ube. Léger et hydratant.">Agua de coco natural infusionada con ube. Ligero e hidratante.</p>
+    </div>
+
+    <div class="card card-ube">
+      <div class="card-row">
+        <p class="item-name">Ube Fruit</p>
+        <p class="item-price">6,00€</p>
+      </div>
+      <p class="item-desc" data-en="Ube blended with your choice of fruit purée: mango, strawberry or passion fruit." data-fr="Ube mixé avec un coulis de fruit au choix : mangue, fraise ou fruit de la passion.">Ube batido con puré de fruta a elegir: mango, fresa o maracuyá.</p>
+    </div>
+
+    <div class="ctx-note i18n-html" data-en-html="🌿 <b>Plant-based milk available</b> — +€0.50 on any drink." data-fr-html="🌿 <b>Lait végétal disponible</b> — +0,50€ sur toute boisson.">🌿 <b>Leche vegetal disponible</b> &mdash; +0,50€ en cualquier bebida.</div>
+  </section>
+
+  <!-- CAFÉ -->
+  <section id="sec-cafe" class="page" aria-label="Café y bebidas">
+    <div class="sec-head">
+      <p class="eyebrow" data-en="At the bar" data-fr="Au comptoir">La barra</p>
+      <h2 class="sec-title" data-en="Coffee &amp; Drinks" data-fr="Cafés &amp; Boissons">Cafés &amp; bebidas</h2>
+    </div>
+
+    <p class="group-label" data-en="Classic coffees" data-fr="Cafés classiques">Cafés clásicos</p>
+    <div class="grid2">
+      <div class="mini-card"><span class="mini-name">Espresso</span><span class="mini-price">1,60€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Double espresso" data-fr="Double espresso">Doble espresso</span><span class="mini-price">1,90€</span></div>
+      <div class="mini-card"><span class="mini-name">Cortado</span><span class="mini-price">1,70€</span></div>
+      <div class="mini-card"><span class="mini-name">Americano</span><span class="mini-price">1,80€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Coffee with milk" data-fr="Café au lait">Café con leche</span><span class="mini-price">2,10€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Bombón (sweet espresso)" data-fr="Bombón (espresso sucré)">Bombón</span><span class="mini-price">2,50€</span></div>
+      <div class="mini-card"><span class="mini-name">Latte</span><span class="mini-price">2,50€</span></div>
+      <div class="mini-card"><span class="mini-name">Cappuccino</span><span class="mini-price">2,70€</span></div>
+    </div>
+
+    <p class="group-label" data-en="Specialty coffees" data-fr="Cafés spéciaux">Cafés especiales</p>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name">Cold Foam Espresso</p>
+        <p class="item-price">4,20€</p>
+      </div>
+      <p class="item-desc" data-en="Espresso with cold foam of your choice." data-fr="Espresso avec cold foam au choix.">Espresso con cold foam al gusto.</p>
+    </div>
+    <div class="card">
+      <span class="badge badge-sig" data-en="Special" data-fr="Spécial">Especial</span>
+      <div class="card-row">
+        <p class="item-name" data-en="Pistachio Latte" data-fr="Latte Pistache">Pistacho Latte</p>
+        <p class="item-price">4,80€</p>
+      </div>
+      <p class="item-desc" data-en="Espresso with pistachio cream and steamed milk." data-fr="Espresso à la crème de pistache et lait vaporisé.">Espresso con crema de pistacho y leche vaporizada.</p>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name">Frappés</p>
+        <p class="item-price">4,50€</p>
+      </div>
+      <p class="item-desc" data-en="Hazelnut, chocolate, vanilla or caramel. Extra syrup +€0.50." data-fr="Noisette, chocolat, vanille ou caramel. Sirop supplémentaire +0,50€.">Avellana, chocolate, vainilla o caramelo. Extra sirope +0,50€.</p>
+    </div>
+
+    <p class="group-label" data-en="Soft drinks &amp; other beverages" data-fr="Sodas &amp; autres boissons">Refrescos &amp; otras bebidas</p>
+    <div class="grid2">
+      <div class="mini-card"><span class="mini-name">Coca-Cola / Zero</span><span class="mini-price">2,50€</span></div>
+      <div class="mini-card"><span class="mini-name">Sprite</span><span class="mini-price">2,50€</span></div>
+      <div class="mini-card"><span class="mini-name">Fanta</span><span class="mini-price">2,50€</span></div>
+      <div class="mini-card"><span class="mini-name">Aquarius</span><span class="mini-price">2,60€</span></div>
+      <div class="mini-card"><span class="mini-name">Nestea</span><span class="mini-price">2,80€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Schweppes Tonic" data-fr="Tonic Schweppes">Tónica Schweppes</span><span class="mini-price">2,80€</span></div>
+      <div class="mini-card"><span class="mini-name">Bitter Kas</span><span class="mini-price">2,80€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Maeloc Cider" data-fr="Cidre Maeloc">Sidra Maeloc</span><span class="mini-price">3,00€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Nestlé Water" data-fr="Eau Nestlé">Agua Nestlé</span><span class="mini-price">1,80€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Sparkling Water" data-fr="Eau Gazeuse">Agua con gas</span><span class="mini-price">2,00€</span></div>
+      <div class="mini-card mini-full"><span class="mini-name" data-en="Coconut Water" data-fr="Eau de Coco">Agua de coco</span><span class="mini-price">3,50€</span></div>
+    </div>
+
+    <div class="ctx-note i18n-html" data-en-html="🌿 <b>Plant-based milk</b> available on all coffees — +€0.50." data-fr-html="🌿 <b>Lait végétal</b> disponible sur tous les cafés — +0,50€.">🌿 <b>Leche vegetal</b> disponible en todos los cafés &mdash; +0,50€.</div>
+  </section>
+
+  <!-- ══════════ BATIDOS ══════════ -->
+  <section id="sec-batidos" class="page" aria-label="Batidos y zumos">
+    <div class="sec-head">
+      <p class="eyebrow" data-en="Shakes &amp; juices" data-fr="Smoothies &amp; jus">Batidos &amp; zumos</p>
+      <h2 class="sec-title" data-en="Tropical energy" data-fr="Énergie tropicale">Energía tropical</h2>
+    </div>
+
+    <p class="group-label" data-en="Protein Bar — signature combos" data-fr="Protein Bar — combinaisons vedettes">Protein Bar — combinaciones estrella</p>
+
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name">Blue Power Shake</p>
+        <p class="item-price">6,90€</p>
+      </div>
+      <p class="item-desc" data-en="Blue spirulina, mango, pineapple and yogurt." data-fr="Spiruline bleue, mangue, ananas et yaourt.">Espirulina azul, mango, piña y yogurt.</p>
+    </div>
+    <div class="card">
+      <span class="badge badge-sig">📸 <span data-en="Instagrammable" data-fr="Instagrammable">Fotogénico</span></span>
+      <div class="card-row">
+        <p class="item-name">Pink Paradise</p>
+        <p class="item-price">6,80€</p>
+      </div>
+      <p class="item-desc" data-en="Wild berries and yogurt. Our most photogenic shake." data-fr="Fruits rouges et yaourt. Le plus photogénique.">Frutas silvestres y yogurt. El más fotogénico.</p>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name">Passion Mango Tropic</p>
+        <p class="item-price">6,90€</p>
+      </div>
+      <p class="item-desc" data-en="Ripe mango, passion fruit and pineapple. Pure tropics." data-fr="Mangue mûre, fruit de la passion et ananas. Pur tropique.">Mango maduro, maracuyá y piña. Puro trópico.</p>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name">Isla Fit Power Shake</p>
+        <p class="item-price">7,00€</p>
+      </div>
+      <p class="item-desc" data-en="Banana, blueberries and protein with almond milk." data-fr="Banane, myrtilles et protéine au lait d'amande.">Plátano, arándanos y proteína con leche de almendras.</p>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name">Wild Berry Protein</p>
+        <p class="item-price">6,80€</p>
+      </div>
+      <p class="item-desc" data-en="Strawberry, blueberries, passion fruit and protein with coconut water." data-fr="Fraise, myrtilles, fruit de la passion et protéine à l'eau de coco.">Fresa, arándanos, maracuyá y proteína con agua de coco.</p>
+    </div>
+
+    <p class="group-label" data-en="Juices &amp; fresh drinks" data-fr="Jus &amp; boissons fraîches">Zumos &amp; bebidas frescas</p>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name">Morir Soñando</p>
+        <p class="item-price">4,00€</p>
+      </div>
+      <p class="item-desc" data-en="Orange juice and milk. The Caribbean classic." data-fr="Jus d'orange et lait. Le classique caribéen.">Zumo de naranja y leche. El clásico caribeño.</p>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name" data-en="Oat &amp; Lemon Drink" data-fr="Boisson Avoine-Citron">Avena con Limón</p>
+        <p class="item-price">4,00€</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name" data-en="Oat &amp; Passion Fruit Drink" data-fr="Boisson Avoine-Fruit de la Passion">Avena con Maracuyá</p>
+        <p class="item-price">4,00€</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name" data-en="Fresh Orange Juice" data-fr="Jus d'Orange Frais">Zumo de Naranja Natural</p>
+        <p class="item-price">2,50€</p>
+      </div>
+      <p class="item-desc" data-en="100% freshly squeezed." data-fr="100% pressé minute.">100% recién exprimido.</p>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name" data-en="Homemade Lemonade" data-fr="Limonade Maison">Limonada Casera</p>
+        <p class="item-price">3,50€</p>
+      </div>
+    </div>
+
+    <p class="group-label" data-en="Customize with fruit" data-fr="Personnalisez avec des fruits">Personaliza con frutas</p>
+    <div class="grid2">
+      <div class="mini-card"><span class="mini-name">Mango</span><span class="mini-price">1,80€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Strawberry" data-fr="Fraise">Fresa</span><span class="mini-price">1,50€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Passion fruit" data-fr="Fruit de la passion">Maracuyá</span><span class="mini-price">1,90€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Banana" data-fr="Banane">Plátano</span><span class="mini-price">1,50€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Blueberries" data-fr="Myrtilles">Arándanos</span><span class="mini-price">2,00€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Pineapple" data-fr="Ananas">Piña</span><span class="mini-price">1,50€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Sour cherry" data-fr="Griotte">Cereza agria</span><span class="mini-price">2,00€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Cherry" data-fr="Cerise">Cherry</span><span class="mini-price">1,80€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Green apple" data-fr="Pomme verte">Manzana verde</span><span class="mini-price">1,20€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Coconut" data-fr="Noix de coco">Coco</span><span class="mini-price">1,80€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="White peach" data-fr="Pêche blanche">Melocotón blanco</span><span class="mini-price">1,70€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Granadilla" data-fr="Grenadille">Granadilla</span><span class="mini-price">1,80€</span></div>
+    </div>
+
+    <div class="ctx-note i18n-html" data-en-html="<b>How it works:</b> Choose your base from <b>€3.50</b> · First fruit from €1.20 · Second fruit +€1.00 · Protein +€1.50." data-fr-html="<b>Comment ça marche :</b> Choisissez votre base à partir de <b>3,50€</b> · Premier fruit dès 1,20€ · Deuxième fruit +1,00€ · Protéine +1,50€.">
+      <b>Cómo funciona:</b> Base a elegir desde <b>3,50€</b> · Primera fruta desde 1,20€ · Segunda fruta +1,00€ · Proteína +1,50€.
+    </div>
+  </section>
+
+  <!-- ══════════ BRUNCH ══════════ -->
+  <section id="sec-brunch" class="page" aria-label="Brunch salado">
+    <div class="sec-head">
+      <p class="eyebrow" data-en="To start the journey" data-fr="Pour commencer le voyage">Para empezar el viaje</p>
+      <h2 class="sec-title" data-en="Brunch in Elche" data-fr="Brunch à Elche">Brunch en Elche</h2>
+    </div>
+
+    <div class="card card-hero">
+      <span class="badge badge-sig">🏆 <span data-en="Best seller" data-fr="Meilleure vente">Más vendido</span></span>
+      <div class="card-row">
+        <p class="item-name">Serranito Island Mood</p>
+        <p class="item-price">9,90€</p>
+      </div>
+      <p class="item-desc" data-en="Sourdough bread, garlic cream cheese, Serrano ham, mozzarella, cherry tomato and honey." data-fr="Pain au levain, fromage frais à l'ail, jambon Serrano, mozzarella, tomate cerise et miel.">Pan masa madre, queso crema con ajo, jamón serrano, mozzarella, tomate cherry y miel.</p>
+    </div>
+
+    <p class="group-label" data-en="With egg" data-fr="Avec œuf">Con huevo</p>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name">Sesame Bagel</p>
+        <p class="item-price">7,50€</p>
+      </div>
+      <p class="item-desc" data-en="Sesame bagel, avocado, grated tomato, crispy bacon and scrambled eggs." data-fr="Bagel au sésame, avocat, tomate râpée, bacon croustillant et œufs brouillés.">Bagel de sésamo, aguacate, tomate rallado, bacon crujiente y huevo revuelto.</p>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name" data-en="Isla Sandwich" data-fr="Sandwich Isla">Sandwich Isla</p>
+        <p class="item-price">7,50€</p>
+      </div>
+      <p class="item-desc" data-en="Sandwich bread, bacon, cooked ham, Edam cheese, egg and Isla sauce." data-fr="Pain de mie, bacon, jambon blanc, fromage Edam, œuf et sauce Isla.">Pan de molde, bacon, jamón York, queso Edam, huevo y salsa Isla.</p>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name" data-en="Bacon Brunch Toast" data-fr="Toast Bacon Brunch">Tosta Bacon Brunch</p>
+        <p class="item-price">6,70€</p>
+      </div>
+      <p class="item-desc" data-en="Crystal bread with golden bacon, scrambled eggs, Edam cheese and Isla sauce." data-fr="Pain croustillant, bacon doré, œufs brouillés, fromage Edam et sauce Isla.">Pan cristal con bacon dorado, huevo revuelto, queso Edam y salsa Isla.</p>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name">Cross Breakfast</p>
+        <p class="item-price">6,50€</p>
+      </div>
+      <p class="item-desc" data-en="Croissant with scrambled eggs, bacon, Edam cheese and Isla sauce." data-fr="Croissant garni d'œufs brouillés, bacon, fromage Edam et sauce Isla.">Croissant con huevo revuelto, bacon, queso Edam y salsa Isla.</p>
+    </div>
+    <div class="card">
+      <span class="badge badge-sig">🥞 American Style</span>
+      <div class="card-row">
+        <p class="item-name" data-en="New York Pancake" data-fr="Pancake New York">Tortita New York</p>
+        <p class="item-price">7,50€</p>
+      </div>
+      <p class="item-desc" data-en="American pancakes, crispy bacon, scrambled eggs and maple syrup." data-fr="Pancakes américains, bacon croustillant, œufs brouillés et sirop d'érable.">Tortitas americanas, bacon crujiente, huevo revuelto y sirope de arce.</p>
+    </div>
+
+    <p class="group-label" data-en="Toasts" data-fr="Toasts">Tostas</p>
+    <div class="card">
+      <span class="badge badge-grn">🌱 Veggie</span>
+      <div class="card-row">
+        <p class="item-name" data-en="Isla Veggie Toast" data-fr="Toast Isla Veggie">Tosta Isla Veggie</p>
+        <p class="item-price">6,50€</p>
+      </div>
+      <p class="item-desc" data-en="Sourdough, avocado, cherry tomatoes, cream cheese, extra virgin olive oil and salt." data-fr="Pain au levain, avocat, tomates cerises, fromage frais, huile d'olive extra vierge et sel.">Masa madre, aguacate, tomates cherry, queso crema, AOVE y sal.</p>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name" data-en="Smoked Salmon Toast" data-fr="Toast au Saumon Fumé">Tosta de Salmón Ahumado</p>
+        <p class="item-price">6,25€</p>
+      </div>
+      <p class="item-desc" data-en="Salmon over smooth cream cheese with Isla sauce." data-fr="Saumon sur fromage frais doux avec sauce Isla.">Salmón sobre queso crema suave con salsa Isla.</p>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name" data-en="Tuna Mayo Toast" data-fr="Toast Thon Mayo">Tosta de Atún Mayo</p>
+        <p class="item-price">5,90€</p>
+      </div>
+      <p class="item-desc" data-en="Tuna with mayonnaise and a vibrant touch of lemon." data-fr="Thon à la mayonnaise et une touche vive de citron.">Atún con mayonesa y un toque vibrante de limón.</p>
+    </div>
+
+    <p class="group-label" data-en="Timeless classics" data-fr="Classiques intemporels">Clásicos de siempre</p>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name">Croissant Gourmet</p>
+        <p class="item-price">4,50€</p>
+      </div>
+      <p class="item-desc" data-en="Cooked ham and melted Edam cheese in crispy puff pastry." data-fr="Jambon blanc et fromage Edam fondu dans une pâte feuilletée croustillante.">Jamón York y queso Edam fundido en hojaldre crujiente.</p>
+    </div>
+  </section>
+
+  <!-- ══════════ DULCE ══════════ -->
+  <section id="sec-dulce" class="page" aria-label="Brunch dulce">
+    <div class="sec-head">
+      <p class="eyebrow" data-en="Sweet brunch" data-fr="Brunch sucré">Brunch dulce</p>
+      <h2 class="sec-title">Sugar</h2>
+    </div>
+
+    <div class="card card-hero">
+      <span class="badge badge-sig">🏆 <span data-en="Best seller" data-fr="Meilleure vente">Más vendido</span></span>
+      <div class="card-row">
+        <p class="item-name" data-en="Lotus Pancakes" data-fr="Pancakes Lotus">Tortitas Lotus</p>
+        <p class="item-price">6,50€</p>
+      </div>
+      <p class="item-desc" data-en="Fluffy pancakes with Lotus cream, light syrup and fresh seasonal fruit." data-fr="Pancakes moelleux à la crème Lotus, sirop léger et fruits frais de saison.">Pancakes esponjosas con crema Lotus, sirope ligero y fruta fresca de temporada.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name" data-en="Isla Pancake" data-fr="Pancake Isla">Pancake de la Isla</p>
+        <p class="item-price">6,50€</p>
+      </div>
+      <p class="item-desc" data-en="Fluffy batter. Choose your topping: agave, honey, pistachio, Nutella or dulce de leche." data-fr="Pâte moelleuse. Choisissez votre topping : agave, miel, pistache, Nutella ou dulce de leche.">Masa esponjosa. Elige topping: agave, miel, pistacho, Nutella o dulce de leche.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name" data-en="Isla Yogurt" data-fr="Yaourt Isla">Yogurt de la Isla</p>
+        <p class="item-price">5,20€</p>
+      </div>
+      <p class="item-desc" data-en="Creamy yogurt, fruit of the day, agave honey and crunchy granola." data-fr="Yaourt crémeux, fruit du jour, miel d'agave et granola croustillant.">Yogur cremoso, fruta del día, miel de agave y granola crujiente.</p>
+    </div>
+
+    <p class="group-label" data-en="Something smaller" data-fr="Une petite douceur">Algo más pequeño</p>
+    <div class="grid2">
+      <div class="mini-card"><span class="mini-name">Muffin Lotus</span><span class="mini-price">3,50€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Mini Filled Croissant" data-fr="Mini Croissant Fourré">Mini Croissant relleno</span><span class="mini-price">1,50€</span></div>
+      <div class="mini-card mini-full"><span class="mini-name" data-en="Summer Crumbl Cookies (2 pcs.)" data-fr="Summer Crumbl Cookies (2 pcs.)">Summer Crumbl Cookies (2 uds.)</span><span class="mini-price">5,60€</span></div>
+    </div>
+
+    <div class="ctx-note i18n-html" data-en-html="🍯 <b>Available syrups:</b> Pistachio · Nutella · Lotus · Dulce de leche · Caramel" data-fr-html="🍯 <b>Sirops disponibles :</b> Pistache · Nutella · Lotus · Dulce de leche · Caramel">🍯 <b>Siropes disponibles:</b> Pistacho · Nutella · Lotus · Dulce de leche · Caramelo</div>
+  </section>
+
+  <!-- ══════════ COMPARTIR ══════════ -->
+  <section id="sec-compartir" class="page" aria-label="Para compartir">
+    <div class="sec-head">
+      <p class="eyebrow" data-en="To share" data-fr="À partager">Para compartir</p>
+      <h2 class="sec-title" data-en="A table for everyone" data-fr="Une table pour tous">Mesa para todos</h2>
+      <p class="sec-note" data-en="The perfect dishes to place in the middle for everyone to try." data-fr="Les plats parfaits à poser au centre pour que tout le monde goûte.">Los platos perfectos para poner en el centro y que todo el mundo pruebe.</p>
+    </div>
+
+    <div class="card card-hero">
+      <span class="badge badge-fav">❤️ <span data-en="Favorite" data-fr="Favori">Favorito</span></span>
+      <div class="card-row">
+        <p class="item-name">La Isla de Zeian</p>
+        <p class="item-price">9,90€</p>
+      </div>
+      <p class="item-desc" data-en="Potato, shredded chicken, ketchup, mayo and gratinated mozzarella cheese." data-fr="Pomme de terre, poulet effiloché, ketchup, mayo et mozzarella gratinée.">Patata, pollo desmenuzado, ketchup, mayo y queso mozzarella gratinado.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name">Provolone Isla</p>
+        <p class="item-price">8,90€</p>
+      </div>
+      <p class="item-desc" data-en="Melted provolone cheese with spices and toasted bread for dipping." data-fr="Fromage provolone fondu aux épices, servi avec du pain grillé à tremper.">Queso provolone fundido con especias y pan tostado para mojar.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name">Quesadilla Isla</p>
+        <p class="item-price">5,50€</p>
+      </div>
+      <p class="item-desc" data-en="Quesadilla with mozzarella cheese and pink sauce." data-fr="Quesadilla au fromage mozzarella et sauce rose.">Quesadilla con queso mozzarella y salsa rosa.</p>
+    </div>
+  </section>
+
+  <!-- ══════════ HAZLO TÚ ══════════ -->
+  <section id="sec-diy" class="page" aria-label="Hazlo tú">
+    <div class="sec-head">
+      <p class="eyebrow" data-en="Build your dish" data-fr="Créez votre plat">Crea tu plato</p>
+      <h2 class="sec-title" data-en="Build Your Own" data-fr="Fait Maison">Hazlo tú</h2>
+      <p class="sec-note" data-en="Choose your base and combine the ingredients you like best." data-fr="Choisissez votre base et combinez les ingrédients de votre choix.">Escoge tu base y combina los ingredientes que más te apetezcan.</p>
+    </div>
+
+    <p class="group-label" data-en="1 · Choose your bread" data-fr="1 · Choisissez votre pain">1 · Elige tu pan</p>
+    <div class="pan-grid">
+      <div class="pan-card"><span class="pan-name" data-en="Sourdough" data-fr="Pain au levain">Masa madre</span><span class="pan-price">1,80€</span></div>
+      <div class="pan-card"><span class="pan-name" data-en="Crystal bread" data-fr="Pain croustillant">Pan de cristal</span><span class="pan-price">1,80€</span></div>
+      <div class="pan-card"><span class="pan-name">Bagel</span><span class="pan-price">2,00€</span></div>
+      <div class="pan-card"><span class="pan-name" data-en="Sandwich bread" data-fr="Pain de mie">Pan de molde</span><span class="pan-price">1,20€</span></div>
+    </div>
+
+    <p class="group-label" data-en="2 · Add ingredients" data-fr="2 · Ajoutez des ingrédients">2 · Añade ingredientes</p>
+    <div class="grid2">
+      <div class="mini-card"><span class="mini-name">Bacon</span><span class="mini-price">2,50€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Eggs" data-fr="Œufs">Huevos</span><span class="mini-price">1,50€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Avocado" data-fr="Avocat">Aguacate</span><span class="mini-price">2,10€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Cherry tomato" data-fr="Tomate cerise">Tomate cherry</span><span class="mini-price">1,50€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Serrano ham" data-fr="Jambon Serrano">Jamón serrano</span><span class="mini-price">2,80€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Smoked salmon" data-fr="Saumon fumé">Salmón ahumado</span><span class="mini-price">3,80€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Cooked ham" data-fr="Jambon blanc">Jamón York</span><span class="mini-price">2,00€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Tuna" data-fr="Thon">Atún</span><span class="mini-price">2,00€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Cream cheese" data-fr="Fromage frais">Queso crema</span><span class="mini-price">1,50€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="Edam cheese" data-fr="Fromage Edam">Queso Edam</span><span class="mini-price">1,50€</span></div>
+      <div class="mini-card mini-full"><span class="mini-name" data-en="Tomato base" data-fr="Base tomate">Base de tomate</span><span class="mini-price">1,00€</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="footer">
+    <strong>ISLA Brunch y Bar</strong>
+    Elche &nbsp;·&nbsp; <a href="https://instagram.com/islabrunchbar" target="_blank">@islabrunchbar</a>
+  </footer>
+
+</div>
+
+<!-- ══════════ SEO: DATOS ESTRUCTURADOS (JSON-LD) ══════════ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@graph": [
+  "@type": "CafeOrCoffeeShop",
+  "name": "ISLA Brunch & Bar",
+  "url": "https://islabrunchbar.com/",
+  "@id": "https://islabrunchbar.com/#local",
+  "areaServed": {
+    "@type": "City",
+    "name": "Elche"
+  },
+  "servesCuisine": [
+    "Brunch",
+    "Café de especialidad",
+    "Matcha",
+    "Ube",
+    "Cócteles",
+    "Cocina tropical/caribeña"
+  ],
+  "priceRange": "€€",
+  "sameAs": [
+    "https://instagram.com/islabrunchbar"
+  ],
+  "hasMenu": "https://islabrunchbar.com/"
+}
+</script>
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Menu",
+  "name": "Carta ISLA Brunch & Bar",
+  "inLanguage": "es",
+  "hasMenuSection": [
     {
-      "@type": ["Restaurant", "CafeOrCoffeeShop", "BarOrPub"],
-      "@id": "https://islabrunchbar.com/#restaurant",
-      "name": "ISLA Brunch Bar",
-      "alternateName": "ISLA Elche",
-      "description": "Brunch, café, matcha ceremonial y ube, con opción de cold foam de día. Tapas y platos para compartir, cócteles de autor, mojitos y tequila Don Julio de noche, en el centro de Elche.",
-      "url": "https://islabrunchbar.com/",
-      "telephone": "+34600000000",
-      "priceRange": "€€",
-      "servesCuisine": ["Brunch", "Café", "Tapas", "Coctelería de autor", "Mediterránea"],
-      "image": "https://islabrunchbar.com/og-image.jpg",
-      "logo": "https://islabrunchbar.com/logo.png",
-      "acceptsReservations": "True",
-      "menu": "https://islabrunchbar.com/menu",
-      "hasMenu": [
+      "@type": "MenuSection",
+      "name": "Matcha en Elche — energía limpia",
+      "hasMenuItem": [
         {
-          "@type": "Menu",
-          "name": "Carta de Brunch",
-          "url": "https://islabrunchbar.com/menu"
+          "@type": "MenuItem",
+          "name": "Coconut Water Matcha",
+          "description": "Matcha ceremonial combinado con la pureza del agua de coco.",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.50",
+            "priceCurrency": "EUR"
+          }
         },
         {
-          "@type": "Menu",
-          "name": "Carta de Cócteles",
-          "url": "https://islabrunchbar.com/Cocteles"
-        }
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "C/ Nuestra Señora del Carmen 11",
-        "addressLocality": "Elche",
-        "addressRegion": "Alicante",
-        "postalCode": "03201",
-        "addressCountry": "ES"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 38.2622,
-        "longitude": -0.6975
-      },
-      "openingHoursSpecification": [
+          "@type": "MenuItem",
+          "name": "Ice Matcha Frutal",
+          "description": "Versión helada con notas frutales: mango, fresa o maracuyá.",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.00",
+            "priceCurrency": "EUR"
+          }
+        },
         {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-          "opens": "09:00",
-          "closes": "23:00"
+          "@type": "MenuItem",
+          "name": "Matcha Latte",
+          "description": "Energía limpia con la textura cremosa de la leche vaporizada.",
+          "offers": {
+            "@type": "Offer",
+            "price": "4.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Matcha Tradicional",
+          "description": "La experiencia pura del matcha batido de forma artesanal.",
+          "offers": {
+            "@type": "Offer",
+            "price": "3.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Té de Matcha",
+          "description": "Infusión ligera, limpia y antioxidante.",
+          "offers": {
+            "@type": "Offer",
+            "price": "3.00",
+            "priceCurrency": "EUR"
+          }
         }
-      ],
-      "sameAs": [
-        "https://instagram.com/islabrunchbar"
       ]
     },
     {
-      "@type": "Organization",
-      "@id": "https://islabrunchbar.com/#organization",
-      "name": "ISLA Brunch Bar",
-      "url": "https://islabrunchbar.com/",
-      "logo": "https://islabrunchbar.com/logo.png",
-      "sameAs": [
-        "https://instagram.com/islabrunchbar"
+      "@type": "MenuSection",
+      "name": "Ube en Elche — la sensación violeta",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "Ube Latte",
+          "description": "Elixir de ube con vainilla y coco, batido con leche cremosa. Caliente o con hielo.",
+          "offers": {
+            "@type": "Offer",
+            "price": "4.90",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Ube Passion Frappé",
+          "description": "Ube con la acidez eléctrica del maracuyá. Cremoso y exótico.",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Dirty Ube Espresso",
+          "description": "Base dulce de Ube Latte coronada con un shot de espresso intenso.",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.40",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Isla Ube Breeze",
+          "description": "Agua de coco natural infusionada con ube. Ligero e hidratante.",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Ube Fruit",
+          "description": "Ube batido con puré de fruta a elegir: mango, fresa o maracuyá.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.00",
+            "priceCurrency": "EUR"
+          }
+        }
       ]
     },
     {
-      "@type": "WebSite",
-      "@id": "https://islabrunchbar.com/#website",
-      "url": "https://islabrunchbar.com/",
-      "name": "ISLA Brunch Bar Elche",
-      "publisher": { "@id": "https://islabrunchbar.com/#organization" },
-      "inLanguage": "es-ES"
+      "@type": "MenuSection",
+      "name": "Cafés & bebidas",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "Cold Foam Espresso",
+          "description": "Espresso con cold foam al gusto.",
+          "offers": {
+            "@type": "Offer",
+            "price": "4.20",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Pistacho Latte",
+          "description": "Espresso con crema de pistacho y leche vaporizada.",
+          "offers": {
+            "@type": "Offer",
+            "price": "4.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Frappés",
+          "description": "Avellana, chocolate, vainilla o caramelo. Extra sirope +0,50€.",
+          "offers": {
+            "@type": "Offer",
+            "price": "4.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Espresso",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.60",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Doble espresso",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.90",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Cortado",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.70",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Americano",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Café con leche",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.10",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Bombón",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Latte",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Cappuccino",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.70",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Coca-Cola / Zero",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Sprite",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Fanta",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Aquarius",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.60",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Nestea",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Tónica Schweppes",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Bitter Kas",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Sidra Maeloc",
+          "offers": {
+            "@type": "Offer",
+            "price": "3.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Agua Nestlé",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Agua con gas",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Agua de coco",
+          "offers": {
+            "@type": "Offer",
+            "price": "3.50",
+            "priceCurrency": "EUR"
+          }
+        }
+      ]
     },
     {
-      "@type": "FAQPage",
-      "@id": "https://islabrunchbar.com/#faq",
-      "mainEntity": [
+      "@type": "MenuSection",
+      "name": "Energía tropical",
+      "hasMenuItem": [
         {
-          "@type": "Question",
-          "name": "¿Dónde puedo desayunar brunch en Elche?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "En ISLA, en C/ Nuestra Señora del Carmen 11, en pleno centro de Elche. Servimos brunch, café y matcha ceremonial desde primera hora de la mañana."
+          "@type": "MenuItem",
+          "name": "Blue Power Shake",
+          "description": "Espirulina azul, mango, piña y yogurt.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.90",
+            "priceCurrency": "EUR"
           }
         },
         {
-          "@type": "Question",
-          "name": "¿Qué café tenéis?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Café de especialidad, preparado al momento, pensado tanto para acompañar el brunch como para tomar solo."
+          "@type": "MenuItem",
+          "name": "Pink Paradise",
+          "description": "Frutas silvestres y yogurt. El más fotogénico.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.80",
+            "priceCurrency": "EUR"
           }
         },
         {
-          "@type": "Question",
-          "name": "¿Qué es el ube y en qué lo puedo probar?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "El ube es un boniato morado de origen filipino, de sabor suave y dulce. Lo usamos en bebidas y en preparaciones de brunch de temporada."
+          "@type": "MenuItem",
+          "name": "Passion Mango Tropic",
+          "description": "Mango maduro, maracuyá y piña. Puro trópico.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.90",
+            "priceCurrency": "EUR"
           }
         },
         {
-          "@type": "Question",
-          "name": "¿Qué es el cold foam y en qué puedo pedirlo?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Es nuestra espuma fría de sabores, un topping que puedes añadir al café, al matcha ceremonial o al ube, según el que prefieras."
+          "@type": "MenuItem",
+          "name": "Isla Fit Power Shake",
+          "description": "Plátano, arándanos y proteína con leche de almendras.",
+          "offers": {
+            "@type": "Offer",
+            "price": "7.00",
+            "priceCurrency": "EUR"
           }
         },
         {
-          "@type": "Question",
-          "name": "¿Tenéis tapas o platos para compartir?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sí, además del brunch y la coctelería tenemos tapas y platos pensados para compartir en mesa, la combinación perfecta con el tardeo."
+          "@type": "MenuItem",
+          "name": "Wild Berry Protein",
+          "description": "Fresa, arándanos, maracuyá y proteína con agua de coco.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.80",
+            "priceCurrency": "EUR"
           }
         },
         {
-          "@type": "Question",
-          "name": "¿Qué tequila tenéis?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Trabajamos con nuestra selección de tequila Don Julio en combinaciones de autor, además de mojitos de la casa y el resto de la carta de coctelería."
+          "@type": "MenuItem",
+          "name": "Morir Soñando",
+          "description": "Zumo de naranja y leche. El clásico caribeño.",
+          "offers": {
+            "@type": "Offer",
+            "price": "4.00",
+            "priceCurrency": "EUR"
           }
         },
         {
-          "@type": "Question",
-          "name": "¿Qué tipo de matcha usáis?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Usamos matcha de grado ceremonial, batido a mano, disponible en varias versiones calientes y frías."
+          "@type": "MenuItem",
+          "name": "Avena con Limón",
+          "offers": {
+            "@type": "Offer",
+            "price": "4.00",
+            "priceCurrency": "EUR"
           }
         },
         {
-          "@type": "Question",
-          "name": "¿A partir de qué hora abrís la coctelería?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Por la tarde, cuando el brunch da paso a la coctelería de autor y al tardeo. Consulta el horario actualizado en nuestras redes o llamando al restaurante."
+          "@type": "MenuItem",
+          "name": "Avena con Maracuyá",
+          "offers": {
+            "@type": "Offer",
+            "price": "4.00",
+            "priceCurrency": "EUR"
           }
         },
         {
-          "@type": "Question",
-          "name": "¿Hacéis tardeo en Elche?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sí, ISLA es uno de los planes de tardeo en Elche: cócteles, cervezas y buen ambiente a partir de media tarde."
+          "@type": "MenuItem",
+          "name": "Zumo de Naranja Natural",
+          "description": "100% recién exprimido.",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.50",
+            "priceCurrency": "EUR"
           }
         },
         {
-          "@type": "Question",
-          "name": "¿Tenéis cerveza además de cócteles?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sí, además de la carta de coctelería de autor tenemos una selección de cervezas de barril y botella."
+          "@type": "MenuItem",
+          "name": "Limonada Casera",
+          "offers": {
+            "@type": "Offer",
+            "price": "3.50",
+            "priceCurrency": "EUR"
           }
         },
         {
-          "@type": "Question",
-          "name": "¿Dónde está ISLA exactamente?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "En el centro de Elche, en C/ Nuestra Señora del Carmen 11."
+          "@type": "MenuItem",
+          "name": "Mango",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Fresa",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Maracuyá",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.90",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Plátano",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Arándanos",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Piña",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Cereza agria",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Cherry",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Manzana verde",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.20",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Coco",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Melocotón blanco",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.70",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Granadilla",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.80",
+            "priceCurrency": "EUR"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Brunch en Elche",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "Serranito Island Mood",
+          "description": "Pan masa madre, queso crema con ajo, jamón serrano, mozzarella, tomate cherry y miel.",
+          "offers": {
+            "@type": "Offer",
+            "price": "9.90",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Sesame Bagel",
+          "description": "Bagel de sésamo, aguacate, tomate rallado, bacon crujiente y huevo revuelto.",
+          "offers": {
+            "@type": "Offer",
+            "price": "7.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Sandwich Isla",
+          "description": "Pan de molde, bacon, jamón York, queso Edam, huevo y salsa Isla.",
+          "offers": {
+            "@type": "Offer",
+            "price": "7.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Tosta Bacon Brunch",
+          "description": "Pan cristal con bacon dorado, huevo revuelto, queso Edam y salsa Isla.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.70",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Cross Breakfast",
+          "description": "Croissant con huevo revuelto, bacon, queso Edam y salsa Isla.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Tortita New York",
+          "description": "Tortitas americanas, bacon crujiente, huevo revuelto y sirope de arce.",
+          "offers": {
+            "@type": "Offer",
+            "price": "7.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Tosta Isla Veggie",
+          "description": "Masa madre, aguacate, tomates cherry, queso crema, AOVE y sal.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Tosta de Salmón Ahumado",
+          "description": "Salmón sobre queso crema suave con salsa Isla.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.25",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Tosta de Atún Mayo",
+          "description": "Atún con mayonesa y un toque vibrante de limón.",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.90",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Croissant Gourmet",
+          "description": "Jamón York y queso Edam fundido en hojaldre crujiente.",
+          "offers": {
+            "@type": "Offer",
+            "price": "4.50",
+            "priceCurrency": "EUR"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Sugar",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "Tortitas Lotus",
+          "description": "Pancakes esponjosas con crema Lotus, sirope ligero y fruta fresca de temporada.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Pancake de la Isla",
+          "description": "Masa esponjosa. Elige topping: agave, miel, pistacho, Nutella o dulce de leche.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Yogurt de la Isla",
+          "description": "Yogur cremoso, fruta del día, miel de agave y granola crujiente.",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.20",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Muffin Lotus",
+          "offers": {
+            "@type": "Offer",
+            "price": "3.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Mini Croissant relleno",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Summer Crumbl Cookies (2 uds.)",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.60",
+            "priceCurrency": "EUR"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Mesa para todos",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "La Isla de Zeian",
+          "description": "Patata, pollo desmenuzado, ketchup, mayo y queso mozzarella gratinado.",
+          "offers": {
+            "@type": "Offer",
+            "price": "9.90",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Provolone Isla",
+          "description": "Queso provolone fundido con especias y pan tostado para mojar.",
+          "offers": {
+            "@type": "Offer",
+            "price": "8.90",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Quesadilla Isla",
+          "description": "Quesadilla con queso mozzarella y salsa rosa.",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.50",
+            "priceCurrency": "EUR"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Hazlo tú",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "Bacon",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Huevos",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Aguacate",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.10",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Tomate cherry",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Jamón serrano",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Salmón ahumado",
+          "offers": {
+            "@type": "Offer",
+            "price": "3.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Jamón York",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Atún",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Queso crema",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Queso Edam",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Base de tomate",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Masa madre",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Pan de cristal",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.80",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Bagel",
+          "offers": {
+            "@type": "Offer",
+            "price": "2.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Pan de molde",
+          "offers": {
+            "@type": "Offer",
+            "price": "1.20",
+            "priceCurrency": "EUR"
           }
         }
       ]
@@ -209,723 +1990,81 @@
 }
 </script>
 
-<style>
-:root {
-  --cream:      #FAF8F4;
-  --bark:       #5C3D28;
-  --day-1:      #FFF3E6;
-  --day-2:      #FFE1CC;
-  --day-3:      #FAF8F4;
-  --day-text:   #3B2A1D;
-  --day-accent: #2D6A3F;
-  --day-gold:   #F0A857;
-  --night-1:    #241A2E;
-  --night-2:    #3B2A52;
-  --night-3:    #1B1220;
-  --night-text: #F5EFE6;
-  --night-accent: #B79AE0;
-  --night-gold: #E0A93B;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html, body { height: 100%; }
-
-body {
-  font-family: 'Jost', sans-serif;
-  background: var(--night-3);
-  overflow-x: hidden;
-}
-
-a { text-decoration: none; color: inherit; }
-button { font-family: inherit; }
-
-/* ══════════ Accesibilidad ══════════ */
-.sr-only {
-  position: absolute;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.skip-link {
-  position: absolute;
-  top: -100px; left: 12px;
-  background: var(--cream);
-  color: var(--day-text);
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 500;
-  z-index: 100;
-  transition: top 0.2s ease;
-}
-.skip-link:focus { top: 12px; }
-
-.split {
-  position: relative;
-  display: flex;
-  width: 100%;
-  min-height: 100dvh;
-}
-
-.panel {
-  position: relative;
-  flex: 1 1 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8vh 6vw 12vh;
-  overflow: hidden;
-  transition: flex-grow 0.6s ease;
-}
-
-.panel-day {
-  background: linear-gradient(200deg, var(--day-1) 0%, var(--day-2) 45%, var(--day-3) 100%);
-  color: var(--day-text);
-}
-.panel-night {
-  background: linear-gradient(200deg, var(--night-2) 0%, var(--night-1) 55%, var(--night-3) 100%);
-  color: var(--night-text);
-}
-
-.panel-deco {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.panel-content {
-  position: relative;
-  z-index: 2;
-  max-width: 260px;
-  width: 100%;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.panel-eyebrow {
-  font-size: clamp(10px, 2.4vw, 12px);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  font-weight: 500;
-  opacity: 0.75;
-  margin-bottom: 10px;
-}
-.panel-day .panel-eyebrow { color: var(--day-accent); }
-.panel-night .panel-eyebrow { color: var(--night-accent); }
-
-.panel-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-style: italic;
-  font-size: clamp(30px, 9vw, 52px);
-  line-height: 1.02;
-  margin-bottom: 10px;
-}
-
-.panel-sub {
-  font-size: clamp(11.5px, 2.6vw, 13.5px);
-  line-height: 1.5;
-  opacity: 0.86;
-  margin-bottom: 22px;
-}
-
-.panel-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 12px 20px;
-  border-radius: 999px;
-  font-size: clamp(11.5px, 2.6vw, 13px);
-  font-weight: 500;
-  letter-spacing: 0.2px;
-  border: 1.5px solid currentColor;
-  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
-}
-.panel-day .panel-cta { color: var(--day-accent); }
-.panel-night .panel-cta { color: var(--night-accent); }
-.panel:hover .panel-cta,
-.panel:focus-visible .panel-cta { transform: translateY(-2px); }
-.panel-day:hover .panel-cta { background: var(--day-accent); color: var(--day-3); }
-.panel-night:hover .panel-cta { background: var(--night-accent); color: var(--night-3); }
-
-.panel-status {
-  margin-top: 16px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 10.5px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-.panel-status i {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: currentColor;
-  animation: statusPulse 1.8s ease-in-out infinite;
-}
-@keyframes statusPulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 currentColor; }
-  50% { opacity: 0.5; }
-}
-.panel-day .panel-status { color: var(--day-accent); }
-.panel-night .panel-status { color: var(--night-gold); }
-
-.split.now-day .panel-day .panel-status,
-.split.now-night .panel-night .panel-status {
-  opacity: 1;
-  transform: translateY(0);
-}
-.split.now-day .panel-day { box-shadow: inset 0 0 0 2px rgba(45,106,63,0.18); }
-.split.now-night .panel-night { box-shadow: inset 0 0 0 2px rgba(224,169,59,0.22); }
-
-/* ── Decorative scenes ── */
-.sun {
-  position: absolute; top: 10%; right: 12%;
-  width: 90px; height: 90px; border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #FFE7B8, var(--day-gold) 70%);
-  filter: blur(0.5px);
-  opacity: 0.85;
-}
-.palm-silhouette { position: absolute; bottom: -6%; left: -8%; width: 60%; opacity: 0.9; }
-.palm-silhouette.right { left: auto; right: -10%; bottom: -4%; width: 46%; transform: scaleX(-1); }
-
-.moon {
-  position: absolute; top: 9%; left: 14%;
-  width: 64px; height: 64px; border-radius: 50%;
-  background: radial-gradient(circle at 62% 38%, #FFFDF6, var(--night-gold) 78%);
-  box-shadow: 0 0 30px rgba(224,169,59,0.35);
-}
-.stars { position: absolute; inset: 0; }
-.stars i {
-  position: absolute; width: 3px; height: 3px; border-radius: 50%;
-  background: #F5EFE6; opacity: 0.7;
-  animation: twinkle 3.2s ease-in-out infinite;
-}
-@keyframes twinkle { 0%, 100% { opacity: 0.25; } 50% { opacity: 0.9; } }
-.glass-silhouette { position: absolute; bottom: -4%; right: -6%; width: 52%; opacity: 0.92; }
-
-/* ── Seam ── */
-.seam {
-  position: absolute;
-  top: 0; bottom: 0; left: 50%;
-  width: 90px;
-  transform: translateX(-50%);
-  z-index: 3;
-  pointer-events: none;
-}
-.seam svg { width: 100%; height: 100%; display: block; }
-
-.seam-badge {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 76px; height: 76px;
-  border-radius: 50%;
-  background: var(--cream);
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 8px 26px rgba(0,0,0,0.35);
-  z-index: 4;
-  pointer-events: none;
-}
-.seam-badge svg { width: 46px; height: auto; }
-
-/* ══════════ Sección SEO (integrada, no estilo blog) ══════════ */
-.seo-section {
-  position: relative;
-  z-index: 2;
-  background: var(--cream);
-  color: var(--bark);
-  padding: 48px 6vw 44px;
-}
-.seo-inner {
-  max-width: 980px;
-  margin: 0 auto;
-}
-.seo-eyebrow {
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--day-accent);
-  text-align: center;
-  margin-bottom: 10px;
-}
-.seo-heading {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-size: clamp(24px, 4vw, 34px);
-  text-align: center;
-  line-height: 1.15;
-  margin-bottom: 16px;
-}
-.seo-intro {
-  max-width: 560px;
-  margin: 0 auto 36px;
-  text-align: center;
-  font-size: 14px;
-  line-height: 1.65;
-  opacity: 0.85;
-}
-.seo-intro a { text-decoration: underline; text-underline-offset: 3px; color: var(--day-accent); }
-
-.seo-scroll-hint {
-  display: none;
-  text-align: center;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.5;
-  margin-bottom: 10px;
-}
-
-.seo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 14px;
-  margin-bottom: 40px;
-}
-.seo-card {
-  background: rgba(45,106,63,0.05);
-  border: 1px solid rgba(92,61,40,0.09);
-  border-radius: 16px;
-  padding: 18px 18px 20px;
-}
-.seo-icon {
-  display: block;
-  font-size: 24px;
-  line-height: 1;
-  margin-bottom: 10px;
-}
-.seo-card h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-style: italic;
-  font-size: 18px;
-  margin-bottom: 6px;
-  color: var(--day-text);
-}
-.seo-card p {
-  font-size: 13px;
-  line-height: 1.55;
-  opacity: 0.8;
-}
-.seo-card a { text-decoration: underline; text-underline-offset: 3px; color: var(--day-accent); font-weight: 500; }
-
-.seo-card.is-featured {
-  background: linear-gradient(160deg, rgba(240,168,87,0.16), rgba(45,106,63,0.06));
-  border: 1.5px solid var(--day-gold);
-  position: relative;
-}
-.seo-card-badge {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #8A5A17;
-  background: rgba(240,168,87,0.3);
-  border-radius: 999px;
-  padding: 3px 9px;
-  margin-bottom: 8px;
-}
-
-@media (max-width: 640px) {
-  .seo-scroll-hint { display: block; }
-  .seo-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 12px;
-    margin: 0 -6vw 32px;
-    padding: 2px 6vw 6px;
-    scrollbar-width: none;
-  }
-  .seo-grid::-webkit-scrollbar { display: none; }
-  .seo-card {
-    flex: 0 0 72%;
-    scroll-snap-align: center;
-  }
-}
-
-.seo-cta-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 14px;
-  margin: 8px 0 52px;
-}
-.seo-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 12px 22px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 500;
-  border: 1.5px solid var(--day-accent);
-  color: var(--day-accent);
-  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
-}
-.seo-btn:hover, .seo-btn:focus-visible { transform: translateY(-2px); background: var(--day-accent); color: var(--cream); }
-.seo-btn-alt { border-color: var(--night-accent); color: #6B4FA0; }
-.seo-btn-alt:hover, .seo-btn-alt:focus-visible { background: #6B4FA0; color: var(--cream); }
-
-.seo-location {
-  max-width: 560px;
-  margin: 0 auto 40px;
-  text-align: center;
-  background: rgba(45,106,63,0.05);
-  border: 1px solid rgba(92,61,40,0.09);
-  border-radius: 16px;
-  padding: 22px 20px;
-}
-.seo-location h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-style: italic;
-  font-size: 19px;
-  margin-bottom: 8px;
-}
-.seo-location p {
-  font-size: 13px;
-  line-height: 1.6;
-  opacity: 0.85;
-}
-.seo-location a { color: var(--day-accent); text-decoration: underline; text-underline-offset: 3px; }
-
-.seo-faq {
-  max-width: 640px;
-  margin: 0 auto;
-  background: rgba(45,106,63,0.05);
-  border: 1px solid rgba(92,61,40,0.09);
-  border-radius: 16px;
-  padding: 6px 18px;
-}
-.seo-faq h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-style: italic;
-  font-size: 19px;
-  text-align: center;
-  margin: 16px 0 6px;
-}
-.seo-faq details {
-  border-top: 1px solid rgba(92,61,40,0.14);
-  padding: 13px 2px;
-}
-.seo-faq details:last-child { border-bottom: none; }
-.seo-faq summary {
-  cursor: pointer;
-  font-size: 13.5px;
-  font-weight: 500;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-.seo-faq summary::-webkit-details-marker { display: none; }
-.seo-faq summary::after {
-  content: '+';
-  font-size: 18px;
-  flex-shrink: 0;
-  transition: transform 0.2s ease;
-  color: var(--day-accent);
-}
-.seo-faq details[open] summary::after { transform: rotate(45deg); }
-.seo-faq p {
-  font-size: 13px;
-  line-height: 1.6;
-  opacity: 0.82;
-  margin-top: 8px;
-}
-
-/* ── Footer ── */
-.foot {
-  position: relative;
-  z-index: 2;
-  background: var(--night-3);
-  color: var(--night-text);
-  text-align: center;
-  padding: 26px 20px 30px;
-}
-.foot-addr { font-size: 12.5px; opacity: 0.75; margin-bottom: 4px; }
-.foot-social { font-size: 12.5px; opacity: 0.75; }
-.foot-social a { text-decoration: underline; text-underline-offset: 2px; }
-
-.lang-bar {
-  display: flex; justify-content: center; gap: 6px;
-  margin-top: 16px;
-}
-.lang-btn {
-  background: transparent;
-  border: 1px solid rgba(245,239,230,0.3);
-  color: var(--night-text);
-  border-radius: 999px;
-  padding: 4px 10px;
-  font-size: 11px;
-  cursor: pointer;
-  opacity: 0.75;
-}
-.lang-btn.on { opacity: 1; background: rgba(245,239,230,0.14); }
-.lang-btn:focus-visible, .panel:focus-visible, .seo-btn:focus-visible, .seo-faq summary:focus-visible { outline: 2px solid var(--night-gold); outline-offset: 3px; }
-
-@media (prefers-reduced-motion: reduce) {
-  .panel-status i, .stars i { animation: none; }
-}
-
-@media (max-width: 360px) {
-  .panel { padding: 7vh 4vw 10vh; }
-  .seam { width: 60px; }
-  .seam-badge { width: 60px; height: 60px; }
-  .seam-badge svg { width: 36px; }
-}
-</style>
-</head>
-<body>
-
-<a href="#seo-heading" class="skip-link">Saltar al contenido principal</a>
-
-<main>
-
-<h1 class="sr-only">ISLA Brunch Bar Elche — Brunch de día y coctelería de noche en el centro de Elche</h1>
-
-<div class="split" id="split">
-
-  <!-- DÍA -->
-  <a class="panel panel-day" href="https://islabrunchbar.com/menu" id="panelDay" aria-label="Ver el menú de brunch, matcha y café">
-    <div class="panel-deco" aria-hidden="true">
-      <div class="sun"></div>
-      <svg class="palm-silhouette" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M40,220 L48,90" stroke="#2D6A3F" stroke-width="6" fill="none" opacity="0.35"/>
-        <path d="M44,100 C10,80 -10,40 4,0 C20,50 46,70 60,96 Z" fill="#2D6A3F" opacity="0.28"/>
-        <path d="M44,100 C60,60 96,44 132,50 C96,66 74,84 60,102 Z" fill="#4A8A5A" opacity="0.28"/>
-        <path d="M44,100 C30,54 40,10 76,-14 C58,26 52,60 56,100 Z" fill="#7FAE55" opacity="0.28"/>
-        <path d="M44,100 C74,64 118,58 150,80 C112,80 82,90 60,106 Z" fill="#9CB33B" opacity="0.28"/>
-      </svg>
-    </div>
-    <div class="panel-content">
-      <p class="panel-eyebrow" data-en="By day" data-fr="Le jour">De día</p>
-      <h2 class="panel-title" data-en="Brunch" data-fr="Brunch">Brunch</h2>
-      <p class="panel-sub" data-en="Ceremonial matcha, ube and coffee in the heart of Elche." data-fr="Matcha cérémoniel, ube et café au cœur d'Elche.">Matcha ceremonial, ube y café en el centro de Elche.</p>
-      <span class="panel-cta" data-en="See the menu →" data-fr="Voir le menu →">Ver el menú →</span>
-      <span class="panel-status"><i aria-hidden="true"></i> <span data-en="Open now" data-fr="Ouvert maintenant">Abierto ahora</span></span>
-    </div>
-  </a>
-
-  <!-- NOCHE -->
-  <a class="panel panel-night" href="https://islabrunchbar.com/Cocteles" id="panelNight" aria-label="Ver la carta de cócteles de autor y tardeo">
-    <div class="panel-deco" aria-hidden="true">
-      <div class="moon"></div>
-      <div class="stars">
-        <i style="top:18%; left:60%; animation-delay:0s;"></i>
-        <i style="top:28%; left:78%; animation-delay:0.6s;"></i>
-        <i style="top:40%; left:50%; animation-delay:1.1s;"></i>
-        <i style="top:14%; left:38%; animation-delay:1.6s;"></i>
-        <i style="top:52%; left:70%; animation-delay:0.3s;"></i>
-        <i style="top:34%; left:20%; animation-delay:2s;"></i>
-      </div>
-      <svg class="glass-silhouette" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M40,10 L160,10 L108,110 L108,190 L140,190 L140,206 L68,206 L68,190 L100,190 L100,110 Z" fill="#9B79C8" opacity="0.28"/>
-        <circle cx="70" cy="46" r="10" fill="#E0A93B" opacity="0.4"/>
-      </svg>
-    </div>
-    <div class="panel-content">
-      <p class="panel-eyebrow" data-en="By night" data-fr="Le soir">De noche</p>
-      <h2 class="panel-title" data-en="Cocktails" data-fr="Cocktails">Cócteles</h2>
-      <p class="panel-sub" data-en="Signature cocktails and tardeo — ISLA transforms when the sun goes down." data-fr="Cocktails signature et tardeo — ISLA se transforme au coucher du soleil.">Cócteles de autor y tardeo — ISLA se transforma cuando cae el sol.</p>
-      <span class="panel-cta" data-en="See the cocktail list →" data-fr="Voir la carte cocktails →">Ver la coctelería →</span>
-      <span class="panel-status"><i aria-hidden="true"></i> <span data-en="Open now" data-fr="Ouvert maintenant">Abierto ahora</span></span>
-    </div>
-  </a>
-
-  <!-- Costura central -->
-  <div class="seam" aria-hidden="true">
-    <svg viewBox="0 0 90 900" preserveAspectRatio="none" focusable="false">
-      <path d="M45,0 C25,60 65,120 45,180 C25,240 65,300 45,360 C25,420 65,480 45,540 C25,600 65,660 45,720 C25,780 65,840 45,900 L0,900 L0,0 Z" fill="var(--day-3)" opacity="0.55"/>
-      <path d="M45,0 C25,60 65,120 45,180 C25,240 65,300 45,360 C25,420 65,480 45,540 C25,600 65,660 45,720 C25,780 65,840 45,900 L90,900 L90,0 Z" fill="var(--night-2)" opacity="0.55"/>
-    </svg>
-    <div class="seam-badge">
-      <svg viewBox="0 0 240 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ISLA Brunch Bar Elche">
-        <defs>
-          <linearGradient id="islaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#2D6A3F"/>
-            <stop offset="55%" stop-color="#9CB33B"/>
-            <stop offset="100%" stop-color="#6B4FA0"/>
-          </linearGradient>
-        </defs>
-        <text x="50%" y="62" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="60" font-weight="600" letter-spacing="6" fill="url(#islaGrad)">ISLA</text>
-      </svg>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════ Sección SEO integrada ══════════ -->
-<section class="seo-section" aria-labelledby="seo-heading">
-  <div class="seo-inner">
-    <p class="seo-eyebrow">Brunch bar &amp; coctelería en Elche</p>
-    <h2 id="seo-heading" class="seo-heading">Restaurante en Elche: brunch de día, cócteles de noche</h2>
-    <p class="seo-intro">
-      En pleno centro de Elche: <strong>brunch bar</strong> de día, <strong>coctelería</strong> de autor de noche. Un mismo espacio, dos planes.
-    </p>
-
-    <p class="seo-scroll-hint">Desliza para ver más →</p>
-    <div class="seo-grid">
-      <article class="seo-card">
-        <span class="seo-icon" aria-hidden="true">🥑</span>
-        <h3>Brunch en Elche</h3>
-        <p>Tostas, bowls y huevos con producto fresco desde primera hora. <a href="/menu">Ver carta</a>.</p>
-      </article>
-      <article class="seo-card">
-        <span class="seo-icon" aria-hidden="true">☕</span>
-        <h3>Café</h3>
-        <p>Café de especialidad, preparado al momento en cada taza.</p>
-      </article>
-      <article class="seo-card">
-        <span class="seo-icon" aria-hidden="true">🍵</span>
-        <h3>Matcha ceremonial</h3>
-        <p>Grado ceremonial, batido a mano. Frío o caliente.</p>
-      </article>
-      <article class="seo-card">
-        <span class="seo-icon" aria-hidden="true">🟣</span>
-        <h3>Ube</h3>
-        <p>Boniato morado de origen filipino, suave y dulce. En bebidas y brunch de temporada.</p>
-      </article>
-      <article class="seo-card is-featured">
-        <span class="seo-card-badge">Destacado</span>
-        <span class="seo-icon" aria-hidden="true">🧊</span>
-        <h3>Cold Foam</h3>
-        <p>Nuestra espuma fría de sabores: pídela sobre tu café, matcha o ube.</p>
-      </article>
-      <article class="seo-card">
-        <span class="seo-icon" aria-hidden="true">🍹</span>
-        <h3>Coctelería de autor</h3>
-        <p>Tequila Don Julio y mojitos de la casa. <a href="/Cocteles">Ver carta</a>.</p>
-      </article>
-      <article class="seo-card">
-        <span class="seo-icon" aria-hidden="true">🍢</span>
-        <h3>Para compartir</h3>
-        <p>Tapas pensadas para la mesa, perfectas con el tardeo.</p>
-      </article>
-      <article class="seo-card">
-        <span class="seo-icon" aria-hidden="true">🍺</span>
-        <h3>Cervezas</h3>
-        <p>Cañas bien tiradas y referencias de barril y botella.</p>
-      </article>
-      <article class="seo-card">
-        <span class="seo-icon" aria-hidden="true">🌆</span>
-        <h3>Tardeo en Elche</h3>
-        <p>El punto de encuentro cuando el brunch da paso a la noche.</p>
-      </article>
-    </div>
-
-    <div class="seo-cta-row">
-      <a href="/menu" class="seo-btn" aria-label="Ver el menú completo de brunch">Ver menú de brunch →</a>
-      <a href="/Cocteles" class="seo-btn seo-btn-alt" aria-label="Ver la carta completa de cócteles">Ver carta de cócteles →</a>
-    </div>
-
-    <div class="seo-location">
-      <h3>Dónde estamos</h3>
-      <p>C/ Nuestra Señora del Carmen 11, centro de Elche, junto al casco histórico. Síguenos en <a href="https://instagram.com/islabrunchbar" target="_blank" rel="noopener">Instagram</a> para ver novedades.</p>
-    </div>
-
-    <div class="seo-faq">
-      <h3>Preguntas frecuentes</h3>
-      <details>
-        <summary>¿Dónde puedo desayunar brunch en Elche?</summary>
-        <p>En ISLA, C/ Nuestra Señora del Carmen 11, centro de Elche. Brunch, café y matcha desde primera hora.</p>
-      </details>
-      <details>
-        <summary>¿Qué café tenéis?</summary>
-        <p>Café de especialidad, preparado al momento para acompañar el brunch o tomar solo.</p>
-      </details>
-      <details>
-        <summary>¿Qué es el ube?</summary>
-        <p>Un boniato morado filipino, suave y dulce. Lo usamos en bebidas y platos de temporada.</p>
-      </details>
-      <details>
-        <summary>¿En qué puedo pedir el cold foam?</summary>
-        <p>Es un topping de espuma fría que puedes añadir al café, al matcha o al ube.</p>
-      </details>
-      <details>
-        <summary>¿Qué tipo de matcha usáis?</summary>
-        <p>Grado ceremonial, batido a mano, en versión caliente o fría.</p>
-      </details>
-      <details>
-        <summary>¿Tenéis tapas o platos para compartir?</summary>
-        <p>Sí, tapas pensadas para la mesa, perfectas con la coctelería y el tardeo.</p>
-      </details>
-      <details>
-        <summary>¿A partir de qué hora abrís la coctelería?</summary>
-        <p>Por la tarde, cuando el brunch da paso a la noche. Horario actualizado en Instagram.</p>
-      </details>
-      <details>
-        <summary>¿Qué tequila tenéis?</summary>
-        <p>Selección de tequila Don Julio en combinaciones de autor, junto a mojitos de la casa.</p>
-      </details>
-      <details>
-        <summary>¿Hacéis tardeo en Elche?</summary>
-        <p>Sí: cócteles, tapas y buen ambiente a partir de media tarde.</p>
-      </details>
-      <details>
-        <summary>¿Tenéis cerveza además de cócteles?</summary>
-        <p>Sí, selección de cervezas de barril y botella.</p>
-      </details>
-      <details>
-        <summary>¿Dónde está ISLA exactamente?</summary>
-        <p>Centro de Elche, C/ Nuestra Señora del Carmen 11.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer class="foot">
-  <p class="foot-addr">C/ Nuestra Señora del Carmen 11 · Elche</p>
-  <p class="foot-social"><a href="https://instagram.com/islabrunchbar" target="_blank" rel="noopener">@islabrunchbar</a></p>
-  <div class="lang-bar" role="group" aria-label="Idioma · Language · Langue">
-    <button class="lang-btn on" data-lang="es" onclick="setLang('es',this)" aria-label="Español">ES</button>
-    <button class="lang-btn" data-lang="en" onclick="setLang('en',this)" aria-label="English">EN</button>
-    <button class="lang-btn" data-lang="fr" onclick="setLang('fr',this)" aria-label="Français">FR</button>
-  </div>
-</footer>
-
 <script>
-// ══════════ Franja horaria día / noche ══════════
-// Ajusta estas dos horas a tu horario real de cambio de turno.
-const DAY_START = 7;    // a partir de esta hora se resalta "Brunch"
-const NIGHT_START = 17; // a partir de esta hora se resalta "Cócteles"
+// Estado actual de qué categoría y subpestaña están activas
+const state = { cat: 'bebidas', sub: 'matcha' };
 
-(function () {
-  const hour = new Date().getHours();
-  const isNight = hour >= NIGHT_START || hour < DAY_START;
-  document.getElementById('split').classList.add(isNight ? 'now-night' : 'now-day');
-})();
+// Mapa de qué páginas pertenecen a qué categoría (Matcha primero dentro de Bebidas)
+const catPages = {
+  bebidas:    ['matcha','ube','cafe'],
+  batidos:    ['batidos'],
+  brunch:     ['brunch'],
+  dulce:      ['dulce'],
+  compartir:  ['compartir'],
+  diy:        ['diy'],
+};
 
-// ══════════ Idioma ES / EN / FR (mismo patrón que la carta) ══════════
+// Subnavs disponibles por categoría
+const subNavs = { bebidas: true };
+
+function showCat(cat, btn) {
+  // Actualizar tabs de categoría
+  document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  btn.scrollIntoView({ inline: 'nearest', behavior: 'smooth' });
+
+  state.cat = cat;
+
+  // Mostrar/ocultar subnavs
+  document.querySelectorAll('.sub-nav').forEach(n => n.classList.remove('vis'));
+  const sn = document.getElementById('subnav-' + cat);
+  if (sn) sn.classList.add('vis');
+
+  // Mostrar la primera página de esta categoría
+  const pages = catPages[cat];
+  if (cat === 'bebidas') {
+    // Restaurar la subpestaña guardada de bebidas
+    showPage(state.sub || pages[0]);
+  } else {
+    showPage(pages[0]);
+  }
+}
+
+function showSub(pageId, btn, cat) {
+  // Resetear sub-tabs del subnav activo
+  const sn = document.getElementById('subnav-' + cat);
+  if (sn) sn.querySelectorAll('.sub-tab').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  state.sub = pageId;
+  showPage(pageId);
+}
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('on'));
+  const el = document.getElementById('sec-' + id);
+  if (el) {
+    el.classList.add('on');
+    // Scroll to top suavemente
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+// Inicializar sub-tab activa en la carga
+document.querySelector('.sub-tab').classList.add('on');
+
+// ══════════ TRADUCCIÓN AUTOMÁTICA (ES / EN / FR) ══════════
 const SUPPORTED_LANGS = ['es', 'en', 'fr'];
 
+// Guarda el texto original en español como respaldo antes de traducir nada
 function initI18n() {
   document.querySelectorAll('[data-en], [data-fr]').forEach(el => {
-    el.setAttribute('data-es', el.textContent);
+    if (el.classList.contains('i18n-html')) {
+      el.setAttribute('data-es-html', el.innerHTML.trim());
+    } else {
+      el.setAttribute('data-es', el.textContent);
+    }
   });
-}
-
-function detectLang() {
-  const raw = (navigator.language || 'es').slice(0, 2).toLowerCase();
-  return SUPPORTED_LANGS.includes(raw) ? raw : 'es';
 }
 
 function setLang(lang, btn) {
@@ -935,9 +2074,20 @@ function setLang(lang, btn) {
   document.documentElement.lang = lang;
 
   document.querySelectorAll('[data-en], [data-fr]').forEach(el => {
-    const val = el.getAttribute('data-' + lang) || el.getAttribute('data-es');
-    if (val !== null) el.textContent = val;
+    if (el.classList.contains('i18n-html')) {
+      const val = el.getAttribute('data-' + lang + '-html') || el.getAttribute('data-es-html');
+      if (val !== null) el.innerHTML = val;
+    } else {
+      const val = el.getAttribute('data-' + lang) || el.getAttribute('data-es');
+      if (val !== null) el.textContent = val;
+    }
   });
+}
+
+// Detecta el idioma del navegador del cliente
+function detectLang() {
+  const raw = (navigator.language || 'es').slice(0, 2).toLowerCase();
+  return SUPPORTED_LANGS.includes(raw) ? raw : 'es';
 }
 
 initI18n();
