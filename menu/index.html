@@ -53,8 +53,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   --ube-mid:    #9B79C8;
   --ube-bg:     #F0EAF9;
   --text:       #1C1510;
-  --muted:      #7A6A58;
+  --muted:      #6B5A47;
   --divider:    rgba(92,61,40,0.11);
+  --copper:       #A8671E;
+  --copper-dark:  #7A4A15;
+  --copper-bg:    #FBF0DC;
+  --berry:      #B5476B;
+  --berry-mid:  #C97090;
+  --berry-bg:   #FBEAF0;
   --shadow-sm:  0 2px 10px rgba(0,0,0,0.06);
   --shadow-md:  0 4px 20px rgba(0,0,0,0.09);
   --r:          14px;
@@ -163,7 +169,7 @@ button, a { font-family: inherit; }
   font-size: 10.5px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--bark-light);
+  color: var(--bark-mid);
   font-weight: 400;
   padding-bottom: 0.85rem;
 }
@@ -295,14 +301,14 @@ button, a { font-family: inherit; }
 
 .sub-tab {
   flex: 0 0 auto;
-  padding: 5px 12px;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.05em;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   color: var(--muted);
   background: rgba(255,255,255,0.6);
   border: 1px solid var(--divider);
-  border-radius: 20px;
+  border-radius: 22px;
   cursor: pointer;
   white-space: nowrap;
   transition: all .18s;
@@ -311,6 +317,18 @@ button, a { font-family: inherit; }
   background: var(--green);
   color: #fff;
   border-color: var(--green);
+}
+/* Subpestaña premium (Brioche Signature) — dorada incluso en reposo, para llamar la atención */
+.sub-tab-gold {
+  background: linear-gradient(135deg, var(--copper-bg) 0%, #F0D9A8 100%);
+  color: var(--copper-dark);
+  border-color: var(--copper);
+  font-weight: 700;
+}
+.sub-tab-gold.on {
+  background: linear-gradient(135deg, var(--copper) 0%, var(--copper-dark) 100%);
+  color: #fff;
+  border-color: var(--copper-dark);
 }
 
 /* ── SECCIONES ── */
@@ -330,7 +348,7 @@ button, a { font-family: inherit; }
   font-size: 10px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--bark-light);
+  color: var(--bark-mid);
   font-weight: 500;
   margin-bottom: 3px;
 }
@@ -358,6 +376,36 @@ button, a { font-family: inherit; }
   margin: 20px 0 10px;
   padding-bottom: 6px;
   border-bottom: 1px solid var(--divider);
+}
+
+/* ── ETIQUETA DE PASO NUMERADO (Laboratorio ISLA) ── */
+.step-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15.5px;
+  font-style: italic;
+  color: var(--bark-mid);
+  margin: 22px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--divider);
+}
+.step-num {
+  flex: 0 0 auto;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: var(--bark-light);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Jost', sans-serif;
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
 }
 
 /* ── ETIQUETA DESTACADA (Crea tu batido) ── */
@@ -460,6 +508,47 @@ button, a { font-family: inherit; }
   background: linear-gradient(135deg, #FDF6EE 0%, #F5E8D3 100%);
   border-color: var(--bark-light);
   box-shadow: 0 3px 16px rgba(196,151,106,0.25);
+}
+
+/* ── BRIOCHE SIGNATURE: tratamiento premium ── */
+.brioche-premium {
+  background: linear-gradient(180deg, var(--copper-bg) 0%, transparent 260px);
+  border-radius: 18px;
+}
+.premium-ribbon {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #F3D9A8;
+  background: linear-gradient(135deg, var(--bark) 0%, #3E2A1C 100%);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(60,40,20,0.35);
+}
+.card-gold {
+  background: linear-gradient(135deg, #FFFCF6 0%, var(--copper-bg) 100%);
+  border: 1px solid var(--copper);
+  border-left: 4px solid var(--copper-dark);
+  box-shadow: 0 2px 10px rgba(168,103,30,0.16);
+}
+.card-gold:hover { box-shadow: 0 4px 18px rgba(168,103,30,0.32); }
+.card-gold.card-hero { border-left: 4px solid var(--copper-dark); }
+.card-gold .item-name { color: var(--copper-dark); }
+
+/* ── DULCE: identidad de color propia (igual que Ube tiene su morado) ── */
+#sec-dulce .eyebrow { color: var(--berry); }
+#sec-dulce .group-label-food {
+  color: var(--bark);
+  border-bottom-color: var(--berry-mid);
+}
+#sec-dulce .card-hero {
+  background: linear-gradient(135deg, #FFF8FA 0%, var(--berry-bg) 100%);
+  border-color: var(--berry-mid);
 }
 
 /* ── BADGES ── */
@@ -570,7 +659,7 @@ button, a { font-family: inherit; }
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--bark-light);
+  color: var(--bark-mid);
   font-weight: 600;
   margin: 16px 0 8px;
 }
@@ -660,7 +749,7 @@ button, a { font-family: inherit; }
   align-items: center;
   justify-content: center;
   font-size: 12px;
-  color: var(--bark-light);
+  color: var(--bark-mid);
   transition: transform .3s cubic-bezier(.4,0,.2,1);
 }
 .foam-toggle[aria-expanded="true"] .foam-chevron { transform: rotate(180deg); }
@@ -806,10 +895,16 @@ button, a { font-family: inherit; }
 }
 .home-card-arrow {
   flex: 0 0 auto;
-  color: var(--bark-light);
+  color: var(--bark-mid);
   font-size: 18px;
 }
 .home-card.home-card-fav .home-card-icon { background: var(--ube-bg); }
+.home-card.home-card-gold {
+  background: linear-gradient(135deg, #FFFCF6 0%, var(--copper-bg) 100%);
+  border-color: var(--copper);
+}
+.home-card.home-card-gold .home-card-icon { background: linear-gradient(135deg, var(--copper) 0%, var(--copper-dark) 100%); color: #fff; }
+.home-card.home-card-gold .home-card-title { color: var(--copper-dark); }
 
 .promo-banner {
   background: linear-gradient(120deg, var(--green) 0%, #1e5c34 100%);
@@ -907,18 +1002,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button class="cat-tab" data-cat="bebidas"  onclick="showCat('bebidas',this)" role="tab" aria-selected="false"><span>☕</span> <span data-en="Drinks" data-fr="Boissons">Bebidas</span></button>
       <button class="cat-tab" data-cat="batidos"  onclick="showCat('batidos',this)" role="tab" aria-selected="false"><span>🍹</span> <span data-en="Shakes" data-fr="Smoothies">Batidos</span></button>
       <button class="cat-tab" data-cat="brunch"   onclick="showCat('brunch',this)" role="tab" aria-selected="false"><span>🥑</span> <span data-en="Brunch" data-fr="Brunch">Brunch</span></button>
-      <button class="cat-tab" data-cat="brioche"  onclick="showCat('brioche',this)" role="tab" aria-selected="false"><span>🥐</span> <span data-en="Signature Brioches" data-fr="Brioches Signature">Brioche Signature</span></button>
       <button class="cat-tab" data-cat="dulce"    onclick="showCat('dulce',this)" role="tab" aria-selected="false"><span>🥞</span> <span data-en="Sweet" data-fr="Sucré">Dulce</span></button>
       <button class="cat-tab" data-cat="compartir" onclick="showCat('compartir',this)" role="tab" aria-selected="false"><span>🫶</span> <span data-en="Sharing" data-fr="À partager">Compartir</span></button>
-      <button class="cat-tab" data-cat="diy"      onclick="showCat('diy',this)" role="tab" aria-selected="false"><span>🧪</span> <span data-en="ISLA Lab" data-fr="Laboratoire ISLA">Laboratorio ISLA</span></button>
     </nav>
 
     <!-- Submenú Bebidas (Matcha primero) -->
     <div id="subnav-bebidas" class="sub-nav" role="tablist" aria-label="Tipos de bebida">
-      <button class="sub-tab on" onclick="showSub('matcha',this,'bebidas')" role="tab" aria-selected="true">🍵 <span data-en="Matcha" data-fr="Matcha">Matcha</span></button>
-      <button class="sub-tab"    onclick="showSub('ube',this,'bebidas')" role="tab" aria-selected="false">🔮 <span data-en="Ube" data-fr="Ube">Ube</span></button>
-      <button class="sub-tab"    onclick="showSub('cafe',this,'bebidas')" role="tab" aria-selected="false">☕ <span data-en="Coffee" data-fr="Café">Café</span></button>
-      <button class="sub-tab"    onclick="showSub('otras',this,'bebidas')" role="tab" aria-selected="false">🥤 <span data-en="Other Drinks" data-fr="Autres Boissons">Otras Bebidas</span></button>
+      <button class="sub-tab on" data-page="matcha" onclick="showSub('matcha',this,'bebidas')" role="tab" aria-selected="true">🍵 <span data-en="Matcha" data-fr="Matcha">Matcha</span></button>
+      <button class="sub-tab"    data-page="ube" onclick="showSub('ube',this,'bebidas')" role="tab" aria-selected="false">🔮 <span data-en="Ube" data-fr="Ube">Ube</span></button>
+      <button class="sub-tab"    data-page="cafe" onclick="showSub('cafe',this,'bebidas')" role="tab" aria-selected="false">☕ <span data-en="Coffee" data-fr="Café">Café</span></button>
+      <button class="sub-tab"    data-page="otras" onclick="showSub('otras',this,'bebidas')" role="tab" aria-selected="false">🥤 <span data-en="Other Drinks" data-fr="Autres Boissons">Otras Bebidas</span></button>
+    </div>
+
+    <!-- Submenú Brunch (Clásicos · Brioche Signature · Laboratorio) -->
+    <div id="subnav-brunch" class="sub-nav" role="tablist" aria-label="Tipos de brunch">
+      <button class="sub-tab" data-page="brunch" onclick="showSub('brunch',this,'brunch')" role="tab" aria-selected="false">🥯 <span data-en="Classics" data-fr="Classiques">Clásicos</span></button>
+      <button class="sub-tab sub-tab-gold" data-page="brioche" onclick="showSub('brioche',this,'brunch')" role="tab" aria-selected="false">🥐 <span data-en="Signature Brioches" data-fr="Brioches Signature">Brioche Signature</span></button>
+      <button class="sub-tab" data-page="diy" onclick="showSub('diy',this,'brunch')" role="tab" aria-selected="false">🧪 <span data-en="ISLA Lab" data-fr="Laboratoire ISLA">Laboratorio ISLA</span></button>
     </div>
   </div>
 
@@ -953,12 +1053,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="home-card-icon">🥑</span>
         <span class="home-card-text">
           <span class="home-card-title" data-en="Brunch" data-fr="Brunch">Brunch</span>
-          <span class="home-card-sub" data-en="Bagels, toasts and croissants" data-fr="Bagels, toasts et croissants">Bagels, tostas y croissants</span>
+          <span class="home-card-sub" data-en="Bagels, toasts, croissants, Signature Brioches and the ISLA Lab" data-fr="Bagels, toasts, croissants, Brioches Signature et le Laboratoire ISLA">Bagels, tostas, croissants, Brioche Signature y el Laboratorio ISLA</span>
         </span>
         <span class="home-card-arrow" aria-hidden="true">›</span>
       </button>
 
-      <button class="home-card home-card-fav" onclick="goHome('brioche')">
+      <button class="home-card home-card-gold" onclick="goHomeSub('brunch','brioche')">
         <span class="home-card-icon">🥐</span>
         <span class="home-card-text">
           <span class="home-card-title" data-en="Signature Brioches" data-fr="Brioches Signature">Brioche Signature</span>
@@ -981,15 +1081,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="home-card-text">
           <span class="home-card-title" data-en="Sharing" data-fr="À partager">Compartir</span>
           <span class="home-card-sub" data-en="The perfect dishes for the middle of the table" data-fr="Les plats parfaits pour le centre de la table">Los platos perfectos para el centro de la mesa</span>
-        </span>
-        <span class="home-card-arrow" aria-hidden="true">›</span>
-      </button>
-
-      <button class="home-card" onclick="goHome('diy')">
-        <span class="home-card-icon">🧪</span>
-        <span class="home-card-text">
-          <span class="home-card-title" data-en="ISLA Lab" data-fr="Laboratoire ISLA">Laboratorio ISLA</span>
-          <span class="home-card-sub" data-en="Build your brunch your way" data-fr="Créez votre brunch à votre façon">Crea tu brunch a tu manera</span>
         </span>
         <span class="home-card-arrow" aria-hidden="true">›</span>
       </button>
@@ -1370,8 +1461,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ══════════ BRUNCH ══════════ -->
   <section id="sec-brunch" class="page" role="tabpanel" tabindex="0" aria-label="Brunch salado">
     <div class="sec-head">
-      <p class="eyebrow" data-en="To start the journey" data-fr="Pour commencer le voyage">Para empezar el viaje</p>
-      <h2 class="sec-title" data-en="Brunch in Elche" data-fr="Brunch à Elche">Brunch en Elche</h2>
+      <p class="eyebrow" data-en="Bagels, toasts and croissants" data-fr="Bagels, toasts et croissants">Bagels, tostas y croissants</p>
+      <h2 class="sec-title" data-en="Classics" data-fr="Classiques">Clásicos</h2>
     </div>
 
     <div class="card card-hero">
@@ -1396,7 +1487,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="item-name" data-en="Nordic Bagel" data-fr="Bagel Nordique">Nordic Bagel</p>
         <p class="item-price">8,50€</p>
       </div>
-      <p class="item-desc" data-en="Bagel with smoked salmon, cream cheese and a touch of lemon." data-fr="Bagel au saumon fumé, fromage frais et une touche de citron.">Bagel con salmón ahumado, queso crema y un toque de limón.</p>
+      <p class="item-desc" data-en="Bagel with smoked salmon and cream cheese." data-fr="Bagel au saumon fumé et fromage frais.">Bagel con salmón ahumado y queso crema.</p>
     </div>
     <div class="card">
       <span class="badge badge-grn">🌱 Veggie</span>
@@ -1428,7 +1519,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="item-name" data-en="Nordic Toast" data-fr="Toast Nordique">Nordic Toast</p>
         <p class="item-price">6,50€</p>
       </div>
-      <p class="item-desc" data-en="Sourdough bread with smoked salmon, cream cheese and lemon." data-fr="Pain au levain, saumon fumé, fromage frais et citron.">Pan de masa madre con salmón ahumado, queso crema y limón.</p>
+      <p class="item-desc" data-en="Sourdough bread with smoked salmon and cream cheese." data-fr="Pain au levain, saumon fumé et fromage frais.">Pan de masa madre con salmón ahumado y queso crema.</p>
     </div>
     <div class="card">
       <div class="card-row">
@@ -1477,14 +1568,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ══════════ BRIOCHE SIGNATURE ══════════ -->
-  <section id="sec-brioche" class="page" role="tabpanel" tabindex="0" aria-label="Brioche Signature">
+  <section id="sec-brioche" class="page brioche-premium" role="tabpanel" tabindex="0" aria-label="Brioche Signature">
     <div class="sec-head">
+      <span class="premium-ribbon">✨ <span data-en="Signature" data-fr="Signature">Signature</span></span>
       <p class="eyebrow" data-en="Our house classic" data-fr="Notre classique maison">Nuestro clásico de la casa</p>
       <h2 class="sec-title" data-en="Signature Brioches" data-fr="Brioches Signature">Brioche Signature</h2>
       <p class="sec-note" data-en="Fluffy brioche, toasted and filled with our signature combinations." data-fr="Brioche moelleuse, toastée et garnie de nos combinaisons signature.">Brioche esponjosa, tostada y rellena con nuestras combinaciones signature.</p>
     </div>
 
-    <div class="card card-hero">
+    <div class="card card-gold card-hero">
       <span class="badge badge-fav">⭐ <span data-en="ISLA Favorite" data-fr="Favori de l'ISLA">Favorito ISLA</span></span>
       <div class="card-row">
         <p class="item-name" data-en="ISLA Brunch" data-fr="ISLA Brunch">ISLA Brunch</p>
@@ -1492,7 +1584,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <p class="item-desc" data-en="Brioche with scrambled eggs, crispy bacon, Edam cheese and Isla sauce." data-fr="Brioche aux œufs brouillés, bacon croustillant, fromage Edam et sauce Isla.">Brioche con huevo revuelto, bacon crujiente, queso Edam y salsa Isla.</p>
     </div>
-    <div class="card">
+    <div class="card card-gold">
+      <div class="card-row">
+        <p class="item-name">Revuelto</p>
+        <p class="item-price">8,90€</p>
+      </div>
+      <p class="item-desc" data-en="Brioche with scrambled eggs, bacon, crispy fried onion and peach chipotle mayo sauce." data-fr="Brioche aux œufs brouillés, bacon, oignon frit croustillant et sauce mayo pêche-chipotle.">Brioche con huevo revuelto, bacon, cebolla frita crujiente y salsa peach chipotle mayo.</p>
+    </div>
+    <div class="card card-gold">
       <span class="badge badge-fav">⭐ <span data-en="ISLA Favorite" data-fr="Favori de l'ISLA">Favorito ISLA</span></span>
       <div class="card-row">
         <p class="item-name" data-en="Serranito Brioche" data-fr="Brioche Serranito">Serranito Brioche</p>
@@ -1500,27 +1599,52 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <p class="item-desc" data-en="Brioche, garlic cream cheese, Serrano ham, mozzarella, cherry tomato and honey." data-fr="Brioche, fromage frais à l'ail, jambon Serrano, mozzarella, tomate cerise et miel.">Brioche, queso crema con ajo, jamón serrano, mozzarella, tomate cherry y miel.</p>
     </div>
-    <div class="card">
+    <div class="card card-gold">
       <div class="card-row">
         <p class="item-name">Fru Creation</p>
         <p class="item-price">8,90€</p>
       </div>
-      <p class="item-desc" data-en="Brioche with avocado, egg salad, cherry tomato and a touch of spicy honey." data-fr="Brioche à l'avocat, salade d'œuf, tomate cerise et une touche de miel épicé.">Brioche con aguacate, ensalada de huevo, tomate cherry y un toque de miel picante.</p>
+      <p class="item-desc" data-en="Brioche with avocado, scrambled eggs, cherry tomato and a touch of spicy honey." data-fr="Brioche à l'avocat, œufs brouillés, tomate cerise et une touche de miel épicé.">Brioche con aguacate, huevo revuelto, tomate cherry y un toque de miel picante.</p>
     </div>
-    <div class="card">
+    <div class="card card-gold">
       <div class="card-row">
         <p class="item-name" data-en="Nordic Brioche" data-fr="Brioche Nordique">Nordic Brioche</p>
         <p class="item-price">9,50€</p>
       </div>
       <p class="item-desc" data-en="Brioche with smoked salmon, cream cheese and rocket." data-fr="Brioche au saumon fumé, fromage frais et roquette.">Brioche con salmón ahumado, queso crema y rúcula.</p>
     </div>
-    <div class="card">
-      <span class="badge badge-grn">🌱 Veggie</span>
-      <div class="card-row">
-        <p class="item-name" data-en="Veggie Brioche" data-fr="Brioche Veggie">Veggie Brioche</p>
-        <p class="item-price">8,90€</p>
+    <div class="card card-gold">
+      <p class="group-label-food i18n-html" data-en-html="<span class='icon'>✨</span> Add extra ingredients" data-fr-html="<span class='icon'>✨</span> Ajoutez des ingrédients">✨ Añade extra de ingredientes</p>
+      <div class="foam-grid">
+        <div class="foam-card">
+          <span class="foam-icon">🥓</span>
+          <span class="foam-info">
+            <span class="foam-name" data-en="Extra bacon" data-fr="Bacon supplémentaire">Extra bacon</span>
+            <span class="foam-price">2,50€</span>
+          </span>
+        </div>
+        <div class="foam-card">
+          <span class="foam-icon">🧅</span>
+          <span class="foam-info">
+            <span class="foam-name" data-en="Crispy fried onion" data-fr="Oignon frit croustillant">Cebolla frita crujiente</span>
+            <span class="foam-price">0,80€</span>
+          </span>
+        </div>
+        <div class="foam-card">
+          <span class="foam-icon">🥑</span>
+          <span class="foam-info">
+            <span class="foam-name" data-en="Avocado" data-fr="Avocat">Aguacate</span>
+            <span class="foam-price">2,10€</span>
+          </span>
+        </div>
+        <div class="foam-card">
+          <span class="foam-icon">🍳</span>
+          <span class="foam-info">
+            <span class="foam-name" data-en="Scrambled egg" data-fr="Œuf brouillé">Huevo revuelto</span>
+            <span class="foam-price">1,50€</span>
+          </span>
+        </div>
       </div>
-      <p class="item-desc" data-en="Brioche with avocado, cherry tomato, cream cheese, rocket and extra virgin olive oil." data-fr="Brioche à l'avocat, tomate cerise, fromage frais, roquette et huile d'olive extra vierge.">Brioche con aguacate, tomate cherry, queso crema, rúcula y AOVE.</p>
     </div>
   </section>
 
@@ -1653,7 +1777,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="ctx-note i18n-html" data-en-html="💡 You can also use this section to add extras to any of our dishes. Our menu creations are the best choice for most guests — this Lab is here for whoever wants to make it their own." data-fr-html="💡 Vous pouvez aussi utiliser cette section pour ajouter des extras à n'importe lequel de nos plats. Nos créations de la carte restent le meilleur choix pour la plupart des clients — ce Laboratoire est là pour qui souhaite le personnaliser.">💡 También puedes utilizar esta sección para añadir extras a cualquiera de nuestros platos. Nuestras creaciones de la carta son la mejor opción para la mayoría, este Laboratorio está pensado para quien quiere personalizar su brunch.</div>
 
-    <p class="group-label" data-en="① Choose your base" data-fr="① Choisissez votre base">① Elige tu base</p>
+    <p class="step-label"><span class="step-num">1</span><span data-en="Choose your base" data-fr="Choisissez votre base">Elige tu base</span></p>
     <div class="pan-grid">
       <div class="pan-card"><span class="pan-name">🥯 Bagel</span><span class="pan-price">2,20€</span></div>
       <div class="pan-card"><span class="pan-name" data-en="🍞 Sourdough" data-fr="🍞 Pain au levain">🍞 Pan de masa madre</span><span class="pan-price">2,00€</span></div>
@@ -1663,7 +1787,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="pan-card"><span class="pan-name">🍞 Brioche</span><span class="pan-price">2,50€</span></div>
     </div>
 
-    <p class="group-label" data-en="② Add a protein" data-fr="② Ajoutez une protéine">② Añade una proteína</p>
+    <p class="step-label"><span class="step-num">2</span><span data-en="Add a protein" data-fr="Ajoutez une protéine">Añade una proteína</span></p>
     <div class="grid2">
       <div class="mini-card"><span class="mini-name">🥓 Bacon</span><span class="mini-price">2,50€</span></div>
       <div class="mini-card"><span class="mini-name" data-en="🍳 Scrambled egg" data-fr="🍳 Œuf brouillé">🍳 Huevo revuelto</span><span class="mini-price">1,50€</span></div>
@@ -1673,14 +1797,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="mini-card"><span class="mini-name" data-en="🐟 Tuna" data-fr="🐟 Thon">🐟 Atún</span><span class="mini-price">2,00€</span></div>
     </div>
 
-    <p class="group-label" data-en="③ Add cheese" data-fr="③ Ajoutez du fromage">③ Añade queso</p>
+    <p class="step-label"><span class="step-num">3</span><span data-en="Add cheese" data-fr="Ajoutez du fromage">Añade queso</span></p>
     <div class="grid2">
       <div class="mini-card"><span class="mini-name" data-en="🧀 Edam cheese" data-fr="🧀 Fromage Edam">🧀 Queso Edam</span><span class="mini-price">1,50€</span></div>
       <div class="mini-card"><span class="mini-name" data-en="🧀 Cream cheese" data-fr="🧀 Fromage frais">🧀 Queso crema</span><span class="mini-price">1,50€</span></div>
       <div class="mini-card mini-full"><span class="mini-name">🧀 Mozzarella</span><span class="mini-price">1,80€</span></div>
     </div>
 
-    <p class="group-label" data-en="④ Add vegetables" data-fr="④ Ajoutez des légumes">④ Añade vegetales</p>
+    <p class="step-label"><span class="step-num">4</span><span data-en="Add vegetables" data-fr="Ajoutez des légumes">Añade vegetales</span></p>
     <div class="grid2">
       <div class="mini-card"><span class="mini-name" data-en="🥑 Avocado" data-fr="🥑 Avocat">🥑 Aguacate</span><span class="mini-price">2,10€</span></div>
       <div class="mini-card"><span class="mini-name" data-en="🍅 Grated tomato" data-fr="🍅 Tomate râpée">🍅 Tomate rallado</span><span class="mini-price">1,00€</span></div>
@@ -1689,7 +1813,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="mini-card mini-full"><span class="mini-name" data-en="🧅 Crispy fried onion" data-fr="🧅 Oignon frit croustillant">🧅 Cebolla frita crujiente</span><span class="mini-price">0,80€</span></div>
     </div>
 
-    <p class="group-label" data-en="⑤ Sauces &amp; finishes" data-fr="⑤ Sauces &amp; finitions">⑤ Salsas y acabados</p>
+    <p class="step-label"><span class="step-num">5</span><span data-en="Sauces &amp; finishes" data-fr="Sauces &amp; finitions">Salsas y acabados</span></p>
     <div class="grid2">
       <div class="mini-card"><span class="mini-name" data-en="✨ Isla sauce" data-fr="✨ Sauce Isla">✨ Salsa ISLA</span><span class="mini-price">0,70€</span></div>
       <div class="mini-card"><span class="mini-name" data-en="🍅 Tomato base" data-fr="🍅 Base tomate">🍅 Base de tomate</span><span class="mini-price">1,00€</span></div>
@@ -2331,7 +2455,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {
           "@type": "MenuItem",
           "name": "Nordic Bagel",
-          "description": "Bagel con salmón ahumado, queso crema y un toque de limón.",
+          "description": "Bagel con salmón ahumado y queso crema.",
           "offers": {
             "@type": "Offer",
             "price": "8.50",
@@ -2371,7 +2495,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {
           "@type": "MenuItem",
           "name": "Nordic Toast",
-          "description": "Pan de masa madre con salmón ahumado, queso crema y limón.",
+          "description": "Pan de masa madre con salmón ahumado y queso crema.",
           "offers": {
             "@type": "Offer",
             "price": "6.50",
@@ -2456,6 +2580,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         },
         {
           "@type": "MenuItem",
+          "name": "Revuelto",
+          "description": "Brioche con huevo revuelto, bacon, cebolla frita crujiente y salsa peach chipotle mayo.",
+          "offers": {
+            "@type": "Offer",
+            "price": "8.90",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
           "name": "Serranito Brioche",
           "description": "Brioche, queso crema con ajo, jamón serrano, mozzarella, tomate cherry y miel.",
           "offers": {
@@ -2467,7 +2601,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {
           "@type": "MenuItem",
           "name": "Fru Creation",
-          "description": "Brioche con aguacate, ensalada de huevo, tomate cherry y un toque de miel picante.",
+          "description": "Brioche con aguacate, huevo revuelto, tomate cherry y un toque de miel picante.",
           "offers": {
             "@type": "Offer",
             "price": "8.90",
@@ -2481,16 +2615,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           "offers": {
             "@type": "Offer",
             "price": "9.50",
-            "priceCurrency": "EUR"
-          }
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Veggie Brioche",
-          "description": "Brioche con aguacate, tomate cherry, queso crema, rúcula y AOVE.",
-          "offers": {
-            "@type": "Offer",
-            "price": "8.90",
             "priceCurrency": "EUR"
           }
         }
@@ -2680,28 +2804,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 
 <script>
-// Estado actual de qué categoría y subpestaña están activas
-const state = { cat: 'inicio', sub: 'matcha' };
+// Estado actual de qué categoría y subpestaña están activas (una subpestaña recordada por cada categoría con submenú)
+const state = { cat: 'inicio', subs: { bebidas: 'matcha', brunch: 'brunch' } };
 
-// Mapa de qué páginas pertenecen a qué categoría (Matcha primero dentro de Bebidas)
+// Mapa de qué páginas pertenecen a qué categoría (Matcha primero dentro de Bebidas, Clásicos primero dentro de Brunch)
 const catPages = {
   inicio:     ['inicio'],
   bebidas:    ['matcha','ube','cafe','otras'],
   batidos:    ['batidos'],
-  brunch:     ['brunch'],
-  brioche:    ['brioche'],
+  brunch:     ['brunch','brioche','diy'],
   dulce:      ['dulce'],
   compartir:  ['compartir'],
-  diy:        ['diy'],
 };
 
-// Subnavs disponibles por categoría
-const subNavs = { bebidas: true };
+// Categorías que tienen submenú propio
+const subNavs = { bebidas: true, brunch: true };
 
 // Navegación desde las tarjetas de Inicio: reutiliza showCat con el botón real de esa categoría
 function goHome(cat) {
   const btn = document.querySelector('.cat-tab[data-cat="' + cat + '"]');
   if (btn) showCat(cat, btn);
+}
+
+// Igual que goHome, pero además selecciona una subpestaña concreta (p.ej. Brioche Signature dentro de Brunch)
+function goHomeSub(cat, sub) {
+  goHome(cat);
+  const subBtn = document.querySelector('#subnav-' + cat + ' .sub-tab[data-page="' + sub + '"]');
+  if (subBtn) showSub(sub, subBtn, cat);
 }
 
 function showCat(cat, btn) {
@@ -2718,11 +2847,18 @@ function showCat(cat, btn) {
   const sn = document.getElementById('subnav-' + cat);
   if (sn) sn.classList.add('vis');
 
-  // Mostrar la primera página de esta categoría
+  // Mostrar la primera página de esta categoría (o la subpestaña recordada, si tiene submenú)
   const pages = catPages[cat];
-  if (cat === 'bebidas') {
-    // Restaurar la subpestaña guardada de bebidas
-    showPage(state.sub || pages[0]);
+  if (subNavs[cat]) {
+    const target = state.subs[cat] || pages[0];
+    if (sn) {
+      sn.querySelectorAll('.sub-tab').forEach(b => {
+        const active = b.getAttribute('data-page') === target;
+        b.classList.toggle('on', active);
+        b.setAttribute('aria-selected', String(active));
+      });
+    }
+    showPage(target);
   } else {
     showPage(pages[0]);
   }
@@ -2734,7 +2870,7 @@ function showSub(pageId, btn, cat) {
   if (sn) sn.querySelectorAll('.sub-tab').forEach(b => { b.classList.remove('on'); b.setAttribute('aria-selected', 'false'); });
   btn.classList.add('on');
   btn.setAttribute('aria-selected', 'true');
-  state.sub = pageId;
+  state.subs[cat] = pageId;
   showPage(pageId);
 }
 
