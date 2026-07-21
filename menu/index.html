@@ -1002,7 +1002,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button class="cat-tab" data-cat="bebidas"  onclick="showCat('bebidas',this)" role="tab" aria-selected="false"><span>☕</span> <span data-en="Drinks" data-fr="Boissons">Bebidas</span></button>
       <button class="cat-tab" data-cat="batidos"  onclick="showCat('batidos',this)" role="tab" aria-selected="false"><span>🍹</span> <span data-en="Shakes" data-fr="Smoothies">Batidos</span></button>
       <button class="cat-tab" data-cat="brunch"   onclick="showCat('brunch',this)" role="tab" aria-selected="false"><span>🥑</span> <span data-en="Brunch" data-fr="Brunch">Brunch</span></button>
-      <button class="cat-tab" data-cat="dulce"    onclick="showCat('dulce',this)" role="tab" aria-selected="false"><span>🥞</span> <span data-en="Sweet" data-fr="Sucré">Dulce</span></button>
       <button class="cat-tab" data-cat="compartir" onclick="showCat('compartir',this)" role="tab" aria-selected="false"><span>🫶</span> <span data-en="Sharing" data-fr="À partager">Compartir</span></button>
     </nav>
 
@@ -1018,6 +1017,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="subnav-brunch" class="sub-nav" role="tablist" aria-label="Tipos de brunch">
       <button class="sub-tab" data-page="brunch" onclick="showSub('brunch',this,'brunch')" role="tab" aria-selected="false">🥯 <span data-en="Classics" data-fr="Classiques">Clásicos</span></button>
       <button class="sub-tab sub-tab-gold" data-page="brioche" onclick="showSub('brioche',this,'brunch')" role="tab" aria-selected="false">🥐 <span data-en="Signature Brioches" data-fr="Brioches Signature">Brioche Signature</span></button>
+      <button class="sub-tab" data-page="dulce" onclick="showSub('dulce',this,'brunch')" role="tab" aria-selected="false">🥞 <span data-en="Sweet" data-fr="Sucré">Dulce</span></button>
       <button class="sub-tab" data-page="diy" onclick="showSub('diy',this,'brunch')" role="tab" aria-selected="false">🧪 <span data-en="ISLA Lab" data-fr="Laboratoire ISLA">Laboratorio ISLA</span></button>
     </div>
   </div>
@@ -1067,7 +1067,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="home-card-arrow" aria-hidden="true">›</span>
       </button>
 
-      <button class="home-card" onclick="goHome('dulce')">
+      <button class="home-card" onclick="goHomeSub('brunch','dulce')">
         <span class="home-card-icon">🥞</span>
         <span class="home-card-text">
           <span class="home-card-title" data-en="Sweet" data-fr="Sucré">Dulce</span>
@@ -1318,7 +1318,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="mini-card"><span class="mini-name">Aquarius</span><span class="mini-price">2,60€</span></div>
       <div class="mini-card"><span class="mini-name">Nestea</span><span class="mini-price">2,80€</span></div>
       <div class="mini-card"><span class="mini-name" data-en="Schweppes Tonic" data-fr="Tonic Schweppes">Tónica Schweppes</span><span class="mini-price">2,80€</span></div>
-      <div class="mini-card"><span class="mini-name">Bitter Kas</span><span class="mini-price">2,80€</span></div>
+      <div class="mini-card"><span class="mini-name">Bitter Kas</span><span class="mini-price">2,50€</span></div>
       <div class="mini-card"><span class="mini-name" data-en="Maeloc Cider" data-fr="Cidre Maeloc">Sidra Maeloc</span><span class="mini-price">3,00€</span></div>
       <div class="mini-card"><span class="mini-name" data-en="Nestlé Water" data-fr="Eau Nestlé">Agua Nestlé</span><span class="mini-price">1,80€</span></div>
       <div class="mini-card"><span class="mini-name" data-en="Sparkling Water" data-fr="Eau Gazeuse">Agua con gas</span><span class="mini-price">2,00€</span></div>
@@ -1484,10 +1484,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="card">
       <div class="card-row">
-        <p class="item-name" data-en="Nordic Bagel" data-fr="Bagel Nordique">Nordic Bagel</p>
+        <p class="item-name" data-en="Nordic Bagel Isla" data-fr="Bagel Isla Nordique">Nordic Bagel Isla</p>
         <p class="item-price">8,50€</p>
       </div>
-      <p class="item-desc" data-en="Bagel with smoked salmon and cream cheese." data-fr="Bagel au saumon fumé et fromage frais.">Bagel con salmón ahumado y queso crema.</p>
+      <p class="item-desc" data-en="Bagel with smoked salmon, cream cheese and Isla sauce." data-fr="Bagel au saumon fumé, fromage frais et sauce Isla.">Bagel con salmón ahumado, queso crema y salsa Isla.</p>
     </div>
     <div class="card">
       <span class="badge badge-grn">🌱 Veggie</span>
@@ -1502,7 +1502,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="item-name" data-en="Serranito Bagel" data-fr="Bagel Serranito">Serranito Bagel</p>
         <p class="item-price">8,90€</p>
       </div>
-      <p class="item-desc" data-en="Bagel with Serrano ham, garlic cream cheese, mozzarella, cherry tomato and honey." data-fr="Bagel au jambon Serrano, fromage frais à l'ail, mozzarella, tomate cerise et miel.">Bagel con jamón serrano, queso crema con ajo, mozzarella, tomate cherry y miel.</p>
+      <p class="item-desc" data-en="Bagel with Serrano ham, garlic cream cheese, cherry tomato and honey." data-fr="Bagel au jambon Serrano, fromage frais à l'ail, tomate cerise et miel.">Bagel con jamón serrano, queso crema con ajo, tomate cherry y miel.</p>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name" data-en="Bagel York Classic" data-fr="Bagel York Classic">Bagel York Classic</p>
+        <p class="item-price">7,50€</p>
+      </div>
+      <p class="item-desc" data-en="Sesame bagel, York ham, Edam cheese, scrambled eggs and Isla sauce." data-fr="Bagel au sésame, jambon blanc, fromage Edam, œufs brouillés et sauce Isla.">Bagel de sésamo, jamón York, queso Edam, huevo revuelto y salsa Isla.</p>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name" data-en="Bagel York Mediterráneo" data-fr="Bagel York Méditerranéen">Bagel York Mediterráneo</p>
+        <p class="item-price">8,50€</p>
+      </div>
+      <p class="item-desc" data-en="Sesame bagel, York ham, avocado, grated tomato and extra virgin olive oil." data-fr="Bagel au sésame, jambon blanc, avocat, tomate râpée et huile d'olive extra vierge.">Bagel de sésamo, jamón York, aguacate, tomate rallado y aceite de oliva virgen extra.</p>
     </div>
 
     <p class="group-label-food i18n-html" data-en-html="<span class='icon'>🍞</span> Toasts" data-fr-html="<span class='icon'>🍞</span> Toasts"><span class="icon">🍞</span> Tostas</p>
@@ -1516,10 +1530,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="card">
       <div class="card-row">
-        <p class="item-name" data-en="Nordic Toast" data-fr="Toast Nordique">Nordic Toast</p>
+        <p class="item-name" data-en="Nordic Isla Toast" data-fr="Toast Isla Nordique">Nordic Isla Toast</p>
         <p class="item-price">6,50€</p>
       </div>
-      <p class="item-desc" data-en="Sourdough bread with smoked salmon and cream cheese." data-fr="Pain au levain, saumon fumé et fromage frais.">Pan de masa madre con salmón ahumado y queso crema.</p>
+      <p class="item-desc" data-en="Sourdough bread with smoked salmon, cream cheese and Isla sauce." data-fr="Pain au levain, saumon fumé, fromage frais et sauce Isla.">Pan de masa madre con salmón ahumado, queso crema y salsa Isla.</p>
     </div>
     <div class="card">
       <div class="card-row">
@@ -1542,6 +1556,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <p class="item-desc" data-en="Toasted bread with Serrano ham, garlic cream cheese, mozzarella, cherry tomato and honey." data-fr="Pain toasté, jambon Serrano, fromage frais à l'ail, mozzarella, tomate cerise et miel.">Pan tostado con jamón serrano, queso crema con ajo, mozzarella, tomate cherry y miel.</p>
     </div>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name" data-en="Tosta York Cherry" data-fr="Toast York Cherry">Tosta York Cherry</p>
+        <p class="item-price">7,20€</p>
+      </div>
+      <p class="item-desc" data-en="Crystal bread, York ham, mozzarella and cherry tomatoes." data-fr="Pain croustillant, jambon blanc, mozzarella et tomates cerises.">Pan de cristal, jamón York, mozzarella, tomates cherry.</p>
+    </div>
 
     <p class="group-label-food i18n-html" data-en-html="<span class='icon'>🥐</span> Croissants" data-fr-html="<span class='icon'>🥐</span> Croissants"><span class="icon">🥐</span> Croissants</p>
     <div class="card">
@@ -1560,10 +1581,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="card">
       <div class="card-row">
-        <p class="item-name" data-en="Nordic Croissant" data-fr="Croissant Nordique">Nordic Croissant</p>
+        <p class="item-name" data-en="Nordic Croissant Isla" data-fr="Croissant Isla Nordique">Nordic Croissant Isla</p>
         <p class="item-price">7,50€</p>
       </div>
-      <p class="item-desc" data-en="Croissant with smoked salmon, cream cheese and rocket." data-fr="Croissant au saumon fumé, fromage frais et roquette.">Croissant con salmón ahumado, queso crema y rúcula.</p>
+      <p class="item-desc" data-en="Croissant with smoked salmon, cream cheese and Isla sauce." data-fr="Croissant au saumon fumé, fromage frais et sauce Isla.">Croissant con salmón ahumado, queso crema y salsa Isla.</p>
     </div>
   </section>
 
@@ -1605,6 +1626,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="item-price">9,50€</p>
       </div>
       <p class="item-desc" data-en="Brioche with smoked salmon, cream cheese and rocket." data-fr="Brioche au saumon fumé, fromage frais et roquette.">Brioche con salmón ahumado, queso crema y rúcula.</p>
+    </div>
+    <div class="card card-gold">
+      <div class="card-row">
+        <p class="item-name" data-en="Brioche York Deluxe" data-fr="Brioche York Deluxe">Brioche York Deluxe</p>
+        <p class="item-price">9,00€</p>
+      </div>
+      <p class="item-desc" data-en="Brioche bread, York ham, scrambled eggs, mozzarella and Isla sauce." data-fr="Pain brioche, jambon blanc, œufs brouillés, mozzarella et sauce Isla.">Pan brioche, jamón York, huevo revuelto, mozzarella y salsa Isla.</p>
     </div>
     <div class="card card-gold">
       <p class="group-label-food i18n-html" data-en-html="<span class='icon'>✨</span> Add extra ingredients" data-fr-html="<span class='icon'>✨</span> Ajoutez des ingrédients">✨ Añade extra de ingredientes</p>
@@ -1651,20 +1679,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="card card-hero">
       <span class="badge badge-fav">⭐ <span data-en="ISLA Favorite" data-fr="Favori de l'ISLA">Favorito ISLA</span></span>
       <div class="card-row">
-        <p class="item-name" data-en="Lotus Pancakes" data-fr="Pancakes Lotus">Tortitas Lotus</p>
-        <p class="item-price">6,50€</p>
+        <p class="item-name" data-en="New York" data-fr="New York">New York</p>
+        <p class="item-price">7,50€</p>
       </div>
-      <p class="item-desc" data-en="Fluffy pancakes with Lotus cream, light syrup and fresh seasonal fruit." data-fr="Pancakes moelleux à la crème Lotus, sirop léger et fruits frais de saison.">Pancakes esponjosas con crema Lotus, sirope ligero y fruta fresca de temporada.</p>
+      <p class="item-desc" data-en="American pancakes, crispy bacon, scrambled eggs and maple syrup." data-fr="Pancakes américains, bacon croustillant, œufs brouillés et sirop d'érable.">Tortitas americanas, bacon crujiente, huevo revuelto y sirope de arce.</p>
     </div>
 
     <p class="group-label-food i18n-html" data-en-html="<span class='icon'>🥞</span> American Pancakes" data-fr-html="<span class='icon'>🥞</span> American Pancakes"><span class="icon">🥞</span> American Pancakes</p>
     <div class="card">
       <span class="badge badge-sig">🥞 American Style</span>
       <div class="card-row">
-        <p class="item-name" data-en="New York" data-fr="New York">New York</p>
-        <p class="item-price">7,50€</p>
+        <p class="item-name" data-en="Lotus Pancakes" data-fr="Pancakes Lotus">Tortitas Lotus</p>
+        <p class="item-price">6,50€</p>
       </div>
-      <p class="item-desc" data-en="American pancakes, crispy bacon, scrambled eggs and maple syrup." data-fr="Pancakes américains, bacon croustillant, œufs brouillés et sirop d'érable.">Tortitas americanas, bacon crujiente, huevo revuelto y sirope de arce.</p>
+      <p class="item-desc" data-en="Fluffy pancakes with Lotus cream, light syrup and fresh seasonal fruit." data-fr="Pancakes moelleux à la crème Lotus, sirop léger et fruits frais de saison.">Pancakes esponjosas con crema Lotus, sirope ligero y fruta fresca de temporada.</p>
     </div>
     <div class="card">
       <div class="card-row">
@@ -2158,7 +2186,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           "name": "Bitter Kas",
           "offers": {
             "@type": "Offer",
-            "price": "2.80",
+            "price": "2.50",
             "priceCurrency": "EUR"
           }
         },
@@ -2447,8 +2475,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         },
         {
           "@type": "MenuItem",
-          "name": "Nordic Bagel",
-          "description": "Bagel con salmón ahumado y queso crema.",
+          "name": "Nordic Bagel Isla",
+          "description": "Bagel con salmón ahumado, queso crema y salsa Isla.",
           "offers": {
             "@type": "Offer",
             "price": "8.50",
@@ -2468,10 +2496,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {
           "@type": "MenuItem",
           "name": "Serranito Bagel",
-          "description": "Bagel con jamón serrano, queso crema con ajo, mozzarella, tomate cherry y miel.",
+          "description": "Bagel con jamón serrano, queso crema con ajo, tomate cherry y miel.",
           "offers": {
             "@type": "Offer",
             "price": "8.90",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Bagel York Classic",
+          "description": "Bagel de sésamo, jamón York, queso Edam, huevo revuelto y salsa Isla.",
+          "offers": {
+            "@type": "Offer",
+            "price": "7.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Bagel York Mediterráneo",
+          "description": "Bagel de sésamo, jamón York, aguacate, tomate rallado y aceite de oliva virgen extra.",
+          "offers": {
+            "@type": "Offer",
+            "price": "8.50",
             "priceCurrency": "EUR"
           }
         },
@@ -2487,8 +2535,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         },
         {
           "@type": "MenuItem",
-          "name": "Nordic Toast",
-          "description": "Pan de masa madre con salmón ahumado y queso crema.",
+          "name": "Nordic Isla Toast",
+          "description": "Pan de masa madre con salmón ahumado, queso crema y salsa Isla.",
           "offers": {
             "@type": "Offer",
             "price": "6.50",
@@ -2527,6 +2575,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         },
         {
           "@type": "MenuItem",
+          "name": "Tosta York Cherry",
+          "description": "Pan de cristal, jamón York, mozzarella, tomates cherry.",
+          "offers": {
+            "@type": "Offer",
+            "price": "7.20",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
           "name": "Croissant Gourmet",
           "description": "Jamón York y queso Edam fundido en hojaldre crujiente.",
           "offers": {
@@ -2547,8 +2605,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         },
         {
           "@type": "MenuItem",
-          "name": "Nordic Croissant",
-          "description": "Croissant con salmón ahumado, queso crema y rúcula.",
+          "name": "Nordic Croissant Isla",
+          "description": "Croissant con salmón ahumado, queso crema y salsa Isla.",
           "offers": {
             "@type": "Offer",
             "price": "7.50",
@@ -2598,6 +2656,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           "offers": {
             "@type": "Offer",
             "price": "9.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Brioche York Deluxe",
+          "description": "Pan brioche, jamón York, huevo revuelto, mozzarella y salsa Isla.",
+          "offers": {
+            "@type": "Offer",
+            "price": "9.00",
             "priceCurrency": "EUR"
           }
         }
@@ -2795,8 +2863,7 @@ const catPages = {
   inicio:     ['inicio'],
   bebidas:    ['matcha','ube','cafe','otras'],
   batidos:    ['batidos'],
-  brunch:     ['brunch','brioche','diy'],
-  dulce:      ['dulce'],
+  brunch:     ['brunch','brioche','dulce','diy'],
   compartir:  ['compartir'],
 };
 
