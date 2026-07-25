@@ -502,7 +502,7 @@ const MENU_ITEMS = [
 
   function mediaBlock(item){
     if (item.video){
-      return `<video class="bg-media" src="${item.video}" ${item.foto ? `poster="${item.foto}"` : ""} autoplay muted loop playsinline preload="metadata"></video>`;
+      return `<video class="bg-media" src="${item.video}" ${item.foto ? `poster="${item.foto}"` : ""} autoplay muted loop playsinline preload="none"></video>`;
     }
     if (item.foto){
       return `<img class="bg-media" src="${item.foto}" alt="${item.nombre}" loading="lazy">`;
