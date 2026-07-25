@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ISLA Brunch & Bar — Carta</title>
+<meta name="description" content="Carta digital de ISLA Brunch & Bar, Elche.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Space+Grotesk:wght@500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════ TOKENS ═══════════════════ */
+:root{
+  /* verdes tonales (base de marca) */
+  --v900:#0a1710;
+  --v800:#122318;
+  --v700:#1f3d2e;
+  --v600:#2a5240;
+  --v500:#3c6b52;
+  --v400:#4f8468;
+
+  /* arena / neutros claros */
+  --arena:#f2e8d5;
+  --arena-dim:rgba(242,232,213,.68);
+  --arena-faint:rgba(242,232,213,.42);
+
+  /* dorado (acento, uso deliberado) */
+  --gold:#c9a24b;
+  --gold-soft:#e3c98a;
+  --gold-deep:#8f7333;
+
+  --ink:#0a140d;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  --font-display:'Fraunces', serif;
+  --font-num:'Space Grotesk', sans-serif;
+  --font-body:'DM Sans', sans-serif;
+}
+
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0; height:100%;}
+html{
+  scroll-snap-type:y mandatory;
+}
+body{
+  background:var(--v900);
+  color:var(--arena);
+  font-family:var(--font-body);
+  overflow-y:auto;
+  height:100%; width:100%;
+  position:relative;
+}
+button{font-family:inherit;}
+::-webkit-scrollbar{display:none;}
+*{scrollbar-width:none;}
+
+body::before{
+  content:"";
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  opacity:.045; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ═══════════════════ APP SHELL ═══════════════════ */
+.app{
+  max-width:560px; margin:0 auto; min-height:100%;
+  position:relative; z-index:1;
+  background:
+    radial-gradient(760px 360px at 12% -6%, rgba(201,162,75,.15), transparent 60%),
+    radial-gradient(620px 320px at 105% 0%, rgba(79,132,104,.28), transparent 55%),
+    var(--v900);
+}
+
+/* ── HEADER (compacto) ── */
+.top{
+  padding:calc(10px + var(--safe-top)) 16px 0;
+  position:sticky; top:0; z-index:40;
+  background:linear-gradient(180deg, var(--v900) 55%, transparent);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.brand-row{
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:10px;
+}
+.brand{display:flex; align-items:center; gap:9px;}
+.seal{
+  width:34px; height:34px; flex-shrink:0; border-radius:50%;
+  background:radial-gradient(circle at 32% 28%, var(--v500), var(--v700) 62%, var(--v900));
+  border:1.2px solid var(--gold);
+  box-shadow:0 0 0 2.5px rgba(201,162,75,.13), 0 3px 8px rgba(0,0,0,.35);
+  display:flex; align-items:center; justify-content:center;
+}
+.seal svg{width:19px; height:19px; display:block;}
+.brand-text{display:flex; flex-direction:column; line-height:1;}
+.brand-text .word{
+  font-family:var(--font-display); font-weight:700; font-size:17px;
+  letter-spacing:.07em;
+  background:linear-gradient(115deg, var(--gold-soft) 10%, var(--gold) 45%, var(--gold-deep) 75%, var(--gold-soft) 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  margin-bottom:2px;
+}
+.brand-text .tag{
+  font-family:var(--font-num);
+  font-size:8.5px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--arena); opacity:.5;
+}
+.ig-link{
+  width:32px; height:32px; border-radius:50%;
+  border:1px solid rgba(201,162,75,.3);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--gold-soft); flex-shrink:0;
+}
+.ig-link svg{width:15px; height:15px;}
+
+/* ── macro tabs: segmented, 4 iguales ── */
+.macro-tabs{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:6px;
+  margin-bottom:9px;
+}
+.macro-tab{
+  border:1px solid rgba(201,162,75,.22);
+  background:rgba(242,232,213,.04);
+  color:var(--arena);
+  border-radius:13px;
+  padding:8px 4px 7px;
+  display:flex; flex-direction:column; align-items:center; gap:3px;
+  cursor:pointer;
+  transition:background .2s ease, border-color .2s ease, transform .15s ease;
+}
+.macro-tab svg{width:16px; height:16px; opacity:.65; transition:opacity .2s ease;}
+.macro-tab span{
+  font-family:var(--font-num); font-weight:600;
+  font-size:10.5px; letter-spacing:.02em; opacity:.65;
+}
+.macro-tab.active{
+  background:linear-gradient(160deg, var(--gold-soft), var(--gold) 75%);
+  border-color:transparent;
+  box-shadow:0 4px 12px rgba(201,162,75,.3);
+}
+.macro-tab.active svg{opacity:1;}
+.macro-tab.active svg *{stroke:var(--ink) !important;}
+.macro-tab.active span{color:var(--ink); opacity:1;}
+.macro-tab:active{transform:scale(.95);}
+
+/* ── subcategory chips ── */
+.sub-rail{
+  display:flex; gap:8px; overflow-x:auto;
+  padding:1px 0 10px;
+  min-height:2px;
+}
+.sub-chip{
+  flex:0 0 auto;
+  border:1px solid rgba(242,232,213,.16);
+  background:rgba(242,232,213,.03);
+  color:var(--arena-dim);
+  font-family:var(--font-num); font-weight:500;
+  font-size:12px; letter-spacing:.01em;
+  padding:6.5px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.sub-chip.active{
+  background:var(--v600);
+  border-color:var(--gold);
+  color:var(--gold-soft);
+  font-weight:700;
+}
+
+.ornament-divider{
+  display:flex; align-items:center; gap:7px;
+  padding:0 0 8px;
+}
+.ornament-divider .line{flex:1; height:1px; background:linear-gradient(90deg, transparent, rgba(201,162,75,.45), transparent);}
+.ornament-divider svg{width:11px; height:11px; flex-shrink:0; opacity:.7;}
+
+/* ═══════════════════ FEED (formato único, compacto, scroll vertical) ═══════════════════ */
+.feed-wrap{position:relative; z-index:1;}
+.feed{
+  display:flex;
+  flex-direction:column;
+  gap:0;
+}
+.card{
+  position:relative;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+  flex:0 0 auto;
+  height:100vh;
+  height:100dvh;
+  width:100%;
+  overflow:hidden;
+  background:var(--v700);
+}
+.foot-card{margin:0;}
+.card .bg-media{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+}
+.card .placeholder-media{
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:8px;
+  background:linear-gradient(160deg, var(--v500), var(--v800) 80%);
+}
+.card .placeholder-media .ph-icon{
+  width:52px; height:52px; border-radius:50%;
+  border:1.5px dashed rgba(201,162,75,.55);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display); font-size:22px; color:var(--gold-soft);
+}
+.card .placeholder-media .ph-text{
+  font-family:var(--font-num); font-size:11px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--arena-faint);
+}
+.card .grain{
+  position:absolute; inset:0; opacity:.06; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.card .scrim{
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(10,20,13,.1) 0%, rgba(10,20,13,0) 30%, rgba(10,20,13,.55) 64%, rgba(10,20,13,.95) 100%);
+}
+.card .info{
+  position:absolute; left:0; right:0; bottom:0; z-index:2;
+  padding:0 18px 18px;
+}
+.card .sub-chip-tag{
+  display:inline-flex; align-items:center; gap:5px;
+  font-family:var(--font-num); font-weight:700;
+  font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink);
+  background:linear-gradient(120deg, var(--gold-soft), var(--gold));
+  padding:5px 10px 5px 8px; border-radius:999px; margin-bottom:10px;
+}
+.card .sub-chip-tag svg{width:9px; height:9px;}
+.card h2{
+  font-family:var(--font-display); font-weight:700;
+  font-size:25px; line-height:1.1; margin:0 0 6px; color:#fff;
+  text-shadow:0 2px 14px rgba(0,0,0,.4);
+}
+.card p.desc{
+  font-family:var(--font-body); font-size:13.5px; line-height:1.45;
+  color:rgba(242,232,213,.88); margin:0 0 12px; max-width:94%;
+}
+.card .price{
+  display:inline-flex; align-items:baseline;
+  font-family:var(--font-num); font-weight:700; font-size:17px;
+  color:var(--ink);
+  background:linear-gradient(120deg, var(--gold-soft), var(--gold));
+  padding:6px 14px; border-radius:999px;
+  font-variant-numeric:tabular-nums;
+  box-shadow:0 4px 12px rgba(0,0,0,.28);
+}
+.card .progress-dots{
+  position:absolute; top:14px; right:14px; z-index:3;
+  display:flex; flex-direction:column; gap:4px;
+}
+.card .progress-dots span{
+  width:4px; height:14px; border-radius:3px;
+  background:rgba(255,255,255,.25);
+}
+.card .progress-dots span.done{background:var(--gold);}
+
+.empty{
+  padding:60px 26px; text-align:center;
+  color:var(--arena-faint); font-family:var(--font-body); font-size:15px;
+}
+
+/* ── FOOTER (última "card", también a pantalla completa) ── */
+.foot-card{
+  flex:0 0 auto;
+  scroll-snap-align:start;
+  height:100vh;
+  height:100dvh;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:30px;
+  color:var(--arena-faint);
+  font-size:12.5px; line-height:1.85;
+  background:
+    radial-gradient(500px 300px at 50% 30%, rgba(201,162,75,.1), transparent 65%),
+    linear-gradient(165deg, var(--v600), var(--v900) 85%);
+}
+.foot-card .seal-mini{width:44px; height:44px; margin:0 auto 14px; opacity:.9;}
+.foot-card .seal-mini svg{width:100%; height:100%;}
+.foot-card strong{
+  display:block; color:var(--arena); font-family:var(--font-display); font-size:19px;
+  margin-bottom:6px; letter-spacing:.02em;
+}
+.foot-card a{color:var(--gold-soft); text-decoration:none;}
+
+@media (min-width:561px){
+  .app{background-color:var(--v900);}
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <div class="top" id="topBar">
+    <div class="brand-row">
+      <div class="brand">
+        <span class="seal">
+          <svg viewBox="0 0 40 40" fill="none">
+            <path d="M20 33V16" stroke="#c9a24b" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M20 20C20 20 9 19 7 9C7 9 19 8 20 20Z" fill="#c9a24b" opacity=".92"/>
+            <path d="M20 20C20 20 31 19 33 9C33 9 21 8 20 20Z" fill="#c9a24b" opacity=".92"/>
+            <path d="M20 17C20 17 11.5 14 10 6C10 6 20 7 20 17Z" fill="#e3c98a" opacity=".85"/>
+            <path d="M20 17C20 17 28.5 14 30 6C30 6 20 7 20 17Z" fill="#e3c98a" opacity=".85"/>
+          </svg>
+        </span>
+        <div class="brand-text">
+          <span class="word">ISLA</span>
+          <span class="tag">Brunch &amp; Bar</span>
+        </div>
+      </div>
+      <a class="ig-link" href="https://instagram.com/islabrunchbar" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
+      </a>
+    </div>
+
+    <div class="macro-tabs" id="macroTabs"></div>
+    <div class="sub-rail" id="subRail"></div>
+
+    <div class="ornament-divider">
+      <span class="line"></span>
+      <svg viewBox="0 0 20 20" fill="none"><path d="M10 2L12 8L18 10L12 12L10 18L8 12L2 10L8 8L10 2Z" fill="#c9a24b"/></svg>
+      <span class="line"></span>
+    </div>
+  </div>
+
+  <div class="feed-wrap">
+    <div class="feed" id="feed"></div>
+  </div>
+
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   ÚNICA FUENTE DE DATOS DEL MENÚ
+   Para añadir, editar o borrar un platillo, edita SOLO este bloque.
+
+   ┌─ GUÍA RÁPIDA PARA SUBIR FOTOS / VIDEOS ─────────────────────┐
+   │ FOTOS  → formato vertical 4:5 (ideal 1080×1350px), jpg/webp,│
+   │          peso recomendado <400KB para que cargue rápido.    │
+   │ VIDEOS → mp4 (H.264), vertical 4:5 o 9:16, 5-12 segundos,   │
+   │          sin necesidad de audio (se reproduce muted), peso  │
+   │          recomendado <8MB.                                  │
+   │ Si todavía no tienes el archivo de un platillo, deja        │
+   │ foto:"" y video:"" — se mostrará automáticamente una tarjeta │
+   │ con el aviso "Foto próximamente" sin romper el diseño.       │
+   │ Sube tus archivos a donde prefieras (tu hosting, Cloudinary, │
+   │ Imgur, un bucket, etc.) y pega aquí la URL directa.          │
+   └──────────────────────────────────────────────────────────────┘
+
+   Campos de cada platillo:
+     id          -> identificador único (string, sin espacios)
+     macro       -> "bebidas" | "salado" | "dulce" | "compartir"
+     sub         -> subcategoría dentro del macro (ver SUBCATEGORIES)
+     nombre, descripcion, precio -> texto a mostrar
+     foto        -> URL de imagen (puede ir vacía: "")
+     video       -> URL de video opcional (puede ir vacía: "")
+   ════════════════════════════════════════════════════════════ */
+
+const MACRO_CATEGORIES = [
+  { id:"bebidas",   label:"Bebidas" },
+  { id:"salado",    label:"Salado" },
+  { id:"dulce",     label:"Dulce" },
+  { id:"compartir", label:"Compartir" },
+];
+
+const SUBCATEGORIES = {
+  bebidas:   [ {id:"matcha",label:"Matcha"}, {id:"ube",label:"Ube"}, {id:"cafe",label:"Café"}, {id:"batidos",label:"Batidos"} ],
+  salado:    [ {id:"bagels",label:"Bagels"}, {id:"tostas",label:"Tostas"}, {id:"croissants",label:"Croissants"}, {id:"brioche",label:"Brioche"} ],
+  dulce:     [ {id:"pancakes",label:"Pancakes"}, {id:"yogures",label:"Yogures"} ],
+  compartir: [], // categoría pequeña, sin subcategorías visibles
+};
+
+const MENU_ITEMS = [
+  // ══ BEBIDAS · Matcha ══
+  { id:"matcha-coco", macro:"bebidas", sub:"matcha", nombre:"Coconut Water Matcha", descripcion:"Matcha ceremonial combinado con la pureza del agua de coco.", precio:"5,50€", foto:"https://picsum.photos/seed/matcha-coco-isla/900/1125" },
+  { id:"matcha-ice-frutal", macro:"bebidas", sub:"matcha", nombre:"Ice Matcha Frutal", descripcion:"Versión helada con notas frutales: mango, fresa o maracuyá.", precio:"5,00€", foto:"https://picsum.photos/seed/matcha-frutal-isla/900/1125", video:"video/mangomatcha.mp4" },
+  { id:"matcha-latte", macro:"bebidas", sub:"matcha", nombre:"Matcha Latte", descripcion:"Energía limpia con la textura cremosa de la leche vaporizada.", precio:"4,50€", foto:"https://picsum.photos/seed/matcha-latte-isla/900/1125", video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" },
+  { id:"matcha-trad", macro:"bebidas", sub:"matcha", nombre:"Matcha Tradicional", descripcion:"La experiencia pura del matcha batido de forma artesanal.", precio:"3,50€", foto:"https://picsum.photos/seed/matcha-trad-isla/900/1125" },
+  { id:"matcha-te", macro:"bebidas", sub:"matcha", nombre:"Té de Matcha", descripcion:"Infusión ligera, limpia y antioxidante.", precio:"3,00€", foto:"https://picsum.photos/seed/matcha-te-isla/900/1125" },
+  { id:"matcha-elche", macro:"bebidas", sub:"matcha", nombre:"Matcha Elche", descripcion:"Ceremonial con leche de avena cremosa sobre un fondo de dátiles, dulzor natural sin azúcar añadido.", precio:"5,90€", foto:"https://picsum.photos/seed/matcha-elche-isla/900/1125" },
+
+  // ══ BEBIDAS · Ube ══
+  { id:"ube-latte", macro:"bebidas", sub:"ube", nombre:"Ube Latte", descripcion:"Elixir de ube con vainilla y coco, batido con leche cremosa.", precio:"4,90€", foto:"https://picsum.photos/seed/ube-latte-isla/900/1125" },
+  { id:"ube-passion", macro:"bebidas", sub:"ube", nombre:"Ube Passion Frappé", descripcion:"Ube con la acidez eléctrica del maracuyá. Cremoso y exótico.", precio:"5,50€", foto:"https://picsum.photos/seed/ube-passion-isla/900/1125" },
+  { id:"ube-dirty", macro:"bebidas", sub:"ube", nombre:"Dirty Ube Espresso", descripcion:"Base dulce de Ube Latte coronada con un shot de espresso intenso.", precio:"5,40€", foto:"https://picsum.photos/seed/ube-dirty-isla/900/1125" },
+  { id:"ube-breeze", macro:"bebidas", sub:"ube", nombre:"Isla Ube Breeze", descripcion:"Agua de coco natural infusionada con ube. Ligero e hidratante.", precio:"5,50€", foto:"https://picsum.photos/seed/ube-breeze-isla/900/1125" },
+  { id:"ube-fruit", macro:"bebidas", sub:"ube", nombre:"Ube Fruit", descripcion:"Batido con puré de fruta a elegir: mango, fresa o maracuyá.", precio:"6,00€", foto:"https://picsum.photos/seed/ube-fruit-isla/900/1125" },
+
+  // ══ BEBIDAS · Café ══
+  { id:"cafe-pistacho", macro:"bebidas", sub:"cafe", nombre:"Pistacho Latte", descripcion:"Espresso con crema de pistacho y leche vaporizada.", precio:"4,80€", foto:"https://picsum.photos/seed/cafe-pistacho-isla/900/1125" },
+  { id:"cafe-frappe", macro:"bebidas", sub:"cafe", nombre:"Frappés", descripcion:"Avellana, chocolate, vainilla o caramelo.", precio:"4,50€", foto:"https://picsum.photos/seed/cafe-frappe-isla/900/1125" },
+  { id:"cafe-coldfoam", macro:"bebidas", sub:"cafe", nombre:"Cold Foam Espresso", descripcion:"Espresso coronado con una sedosa cold foam. Elige tu sabor favorito.", precio:"Desde 4,20€", foto:"https://picsum.photos/seed/cafe-coldfoam-isla/900/1125" },
+  { id:"cafe-cortado", macro:"bebidas", sub:"cafe", nombre:"Cortado", descripcion:"Espresso con un toque de leche vaporizada.", precio:"1,70€", foto:"https://picsum.photos/seed/cafe-cortado-isla/900/1125" },
+  { id:"cafe-americano", macro:"bebidas", sub:"cafe", nombre:"Americano", descripcion:"Espresso alargado con agua caliente, aromático y suave.", precio:"1,80€", foto:"https://picsum.photos/seed/cafe-americano-isla/900/1125" },
+  { id:"cafe-leche", macro:"bebidas", sub:"cafe", nombre:"Café con leche", descripcion:"El clásico de cada mañana, cremoso y equilibrado.", precio:"2,10€", foto:"https://picsum.photos/seed/cafe-leche-isla/900/1125" },
+
+  // ══ BEBIDAS · Batidos ══
+  { id:"bat-blue", macro:"bebidas", sub:"batidos", nombre:"Blue Power Shake", descripcion:"Espirulina azul, mango, piña y yogurt.", precio:"6,90€", foto:"https://picsum.photos/seed/bat-blue-isla/900/1125" },
+  { id:"bat-pink", macro:"bebidas", sub:"batidos", nombre:"Pink Paradise", descripcion:"Frutas silvestres y yogurt. Nuestro batido más fotogénico.", precio:"6,80€", foto:"https://picsum.photos/seed/bat-pink-isla/900/1125" },
+  { id:"bat-passion-mango", macro:"bebidas", sub:"batidos", nombre:"Passion Mango Tropic", descripcion:"Mango maduro, maracuyá y piña. Puro trópico.", precio:"6,90€", foto:"https://picsum.photos/seed/bat-passionmango-isla/900/1125" },
+  { id:"bat-fit-power", macro:"bebidas", sub:"batidos", nombre:"Isla Fit Power Shake", descripcion:"Plátano, arándanos y proteína con leche de almendras.", precio:"7,00€", foto:"https://picsum.photos/seed/bat-fitpower-isla/900/1125" },
+  { id:"bat-wildberry", macro:"bebidas", sub:"batidos", nombre:"Wild Berry Protein", descripcion:"Frutas silvestres (frambuesa, arándanos y mora), fresa y proteína con agua de coco.", precio:"6,80€", foto:"https://picsum.photos/seed/bat-wildberry-isla/900/1125", video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" },
+  { id:"bat-tropical-exotic", macro:"bebidas", sub:"batidos", nombre:"Isla Tropical Exotic", descripcion:"Papaya, mango, piña, melón canario, melón Galia y uvas con leche de avena.", precio:"6,80€", foto:"https://picsum.photos/seed/bat-tropicalexotic-isla/900/1125" },
+  { id:"bat-morir-sonando", macro:"bebidas", sub:"batidos", nombre:"Morir Soñando", descripcion:"Zumo de naranja y leche. El clásico caribeño.", precio:"4,00€", foto:"https://picsum.photos/seed/bat-morirsonando-isla/900/1125" },
+  { id:"bat-naranja", macro:"bebidas", sub:"batidos", nombre:"Zumo de Naranja Natural", descripcion:"100% recién exprimido.", precio:"2,50€", foto:"https://picsum.photos/seed/bat-naranja-isla/900/1125" },
+  { id:"bat-limonada", macro:"bebidas", sub:"batidos", nombre:"Limonada Casera", descripcion:"Refrescante, ligera y hecha en casa cada día.", precio:"3,50€", foto:"https://picsum.photos/seed/bat-limonada-isla/900/1125" },
+
+  // ══ SALADO · Bagels ══
+  { id:"sal-sesame-bagel", macro:"salado", sub:"bagels", nombre:"Sesame Bagel", descripcion:"Bagel de sésamo, aguacate, tomate rallado, bacon crujiente y huevo revuelto.", precio:"7,50€", foto:"https://picsum.photos/seed/sal-sesamebagel-isla/900/1125" },
+  { id:"sal-brunch-bagel", macro:"salado", sub:"bagels", nombre:"Brunch Bagel", descripcion:"Bagel tostado con huevo revuelto, bacon crujiente, queso Edam y salsa Isla.", precio:"7,90€", foto:"https://picsum.photos/seed/sal-brunchbagel-isla/900/1125" },
+  { id:"sal-nordic-bagel", macro:"salado", sub:"bagels", nombre:"Nordic Bagel Isla", descripcion:"Bagel con salmón ahumado, queso crema y salsa Isla.", precio:"8,50€", foto:"https://picsum.photos/seed/sal-nordicbagel-isla/900/1125" },
+  { id:"sal-veggie-bagel", macro:"salado", sub:"bagels", nombre:"Veggie Bagel", descripcion:"Bagel con aguacate, tomate cherry, queso crema y brotes frescos.", precio:"7,50€", foto:"https://picsum.photos/seed/sal-veggiebagel-isla/900/1125" },
+  { id:"sal-serranito-bagel", macro:"salado", sub:"bagels", nombre:"Serranito Bagel", descripcion:"Bagel con jamón serrano, queso crema con ajo, tomate cherry y miel.", precio:"8,90€", foto:"https://picsum.photos/seed/sal-serranitobagel-isla/900/1125" },
+
+  // ══ SALADO · Tostas ══
+  { id:"sal-isla-veggie-tosta", macro:"salado", sub:"tostas", nombre:"Isla Veggie", descripcion:"Masa madre, aguacate, tomates cherry, queso crema, AOVE y sal.", precio:"6,50€", foto:"https://picsum.photos/seed/sal-islaveggie-isla/900/1125" },
+  { id:"sal-nordic-toast", macro:"salado", sub:"tostas", nombre:"Nordic Isla Toast", descripcion:"Pan de masa madre con salmón ahumado, queso crema y salsa Isla.", precio:"6,50€", foto:"https://picsum.photos/seed/sal-nordictoast-isla/900/1125" },
+  { id:"sal-tuna-mayo", macro:"salado", sub:"tostas", nombre:"Tuna Mayo", descripcion:"Atún con mayonesa y un toque vibrante de limón.", precio:"5,90€", foto:"https://picsum.photos/seed/sal-tunamayo-isla/900/1125" },
+  { id:"sal-bacon-brunch", macro:"salado", sub:"tostas", nombre:"Bacon Brunch", descripcion:"Pan cristal con bacon dorado, huevo revuelto, queso Edam y salsa Isla.", precio:"6,90€", foto:"https://picsum.photos/seed/sal-baconbrunch-isla/900/1125" },
+  { id:"sal-serranito-toast", macro:"salado", sub:"tostas", nombre:"Serranito Toast", descripcion:"Pan tostado con jamón serrano, queso crema con ajo, mozzarella, tomate cherry y miel.", precio:"8,90€", foto:"https://picsum.photos/seed/sal-serranitotoast-isla/900/1125" },
+
+  // ══ SALADO · Croissants ══
+  { id:"sal-croissant-gourmet", macro:"salado", sub:"croissants", nombre:"Croissant Gourmet", descripcion:"Jamón York y queso Edam fundido en hojaldre crujiente.", precio:"4,50€", foto:"https://picsum.photos/seed/sal-croissantgourmet-isla/900/1125" },
+  { id:"sal-breakfast-croissant", macro:"salado", sub:"croissants", nombre:"Breakfast Croissant", descripcion:"Croissant con huevo revuelto, bacon, queso Edam y salsa Isla.", precio:"6,50€", foto:"https://picsum.photos/seed/sal-breakfastcroissant-isla/900/1125" },
+  { id:"sal-nordic-croissant", macro:"salado", sub:"croissants", nombre:"Nordic Croissant Isla", descripcion:"Croissant con salmón ahumado, queso crema y salsa Isla.", precio:"7,50€", foto:"https://picsum.photos/seed/sal-nordiccroissant-isla/900/1125" },
+
+  // ══ SALADO · Brioche ══
+  { id:"bri-revuelto", macro:"salado", sub:"brioche", nombre:"Revuelto", descripcion:"Brioche con huevo revuelto, bacon, cebolla frita crujiente y salsa peach chipotle mayo.", precio:"8,90€", foto:"https://picsum.photos/seed/bri-revuelto-isla/900/1125" },
+  { id:"bri-serranito", macro:"salado", sub:"brioche", nombre:"Serranito Brioche", descripcion:"Brioche, queso crema con ajo, jamón serrano, mozzarella, tomate cherry y miel.", precio:"9,90€", foto:"https://picsum.photos/seed/bri-serranito-isla/900/1125" },
+  { id:"bri-fru-creation", macro:"salado", sub:"brioche", nombre:"Fru Creation", descripcion:"Brioche con aguacate, huevo revuelto, tomate cherry y un toque de miel picante.", precio:"8,90€", foto:"https://picsum.photos/seed/bri-frucreation-isla/900/1125", video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" },
+  { id:"bri-nordic", macro:"salado", sub:"brioche", nombre:"Nordic Brioche", descripcion:"Brioche con salmón ahumado, queso crema y rúcula.", precio:"9,50€", foto:"https://picsum.photos/seed/bri-nordic-isla/900/1125" },
+  { id:"bri-york-deluxe", macro:"salado", sub:"brioche", nombre:"Brioche York Deluxe", descripcion:"Pan brioche, jamón York, huevo revuelto, mozzarella y salsa Isla.", precio:"9,00€", foto:"https://picsum.photos/seed/bri-yorkdeluxe-isla/900/1125" },
+
+  // ══ DULCE · Pancakes ══
+  { id:"dul-new-york", macro:"dulce", sub:"pancakes", nombre:"New York", descripcion:"Tortitas americanas, bacon crujiente, huevo revuelto y sirope de arce.", precio:"7,50€", foto:"https://picsum.photos/seed/dul-newyork-isla/900/1125" },
+  { id:"dul-lotus", macro:"dulce", sub:"pancakes", nombre:"Tortitas Lotus", descripcion:"Pancakes esponjosas con crema Lotus, sirope ligero y fruta fresca de temporada.", precio:"6,50€", foto:"https://picsum.photos/seed/dul-lotus-isla/900/1125" },
+  { id:"dul-pancake-isla", macro:"dulce", sub:"pancakes", nombre:"Pancake ISLA personalizable", descripcion:"Masa esponjosa a elegir con Nutella, Lotus, pistacho, dulce de leche, miel o agave, con fruta fresca.", precio:"6,90€", foto:"https://picsum.photos/seed/dul-pancakeisla/900/1125" },
+  { id:"dul-brioche-dulce", macro:"dulce", sub:"pancakes", nombre:"Brioche dulce personalizable", descripcion:"Brioche a elegir con Nutella, Lotus, pistacho o dulce de leche, con fruta fresca de temporada.", precio:"6,90€", foto:"https://picsum.photos/seed/dul-briochedulce-isla/900/1125" },
+
+  // ══ DULCE · Yogures ══
+  { id:"dul-yogurt-isla", macro:"dulce", sub:"yogures", nombre:"Yogurt de la Isla", descripcion:"Yogur cremoso, fruta del día, miel de agave y granola crujiente.", precio:"5,20€", foto:"https://picsum.photos/seed/dul-yogurtisla/900/1125" },
+
+  // ══ COMPARTIR ══
+  { id:"com-zeian", macro:"compartir", sub:"clasicos", nombre:"La Isla de Zeian", descripcion:"Patata, pollo desmenuzado, ketchup, mayo y queso mozzarella gratinado.", precio:"9,90€", foto:"https://picsum.photos/seed/com-zeian-isla/900/1125" },
+  { id:"com-bravas", macro:"compartir", sub:"clasicos", nombre:"Patatas Bravas Isla", descripcion:"Patatas fritas crujientes con alioli y nuestra salsa brava Isla.", precio:"6,50€", foto:"https://picsum.photos/seed/com-bravas-isla/900/1125" },
+  { id:"com-batata", macro:"compartir", sub:"clasicos", nombre:"Batata Isla", descripcion:"Bastones de batata con un huevo en el corazón de la montaña, con alioli o salsa brava Isla.", precio:"7,00€", foto:"https://picsum.photos/seed/com-batata-isla/900/1125" },
+  { id:"com-mozzarella-tosta", macro:"compartir", sub:"clasicos", nombre:"Mozzarella Bacon Tosta", descripcion:"Tosta de pan con ajo, mozzarella fundida y trozos de bacon por encima.", precio:"5,50€", foto:"https://picsum.photos/seed/com-mozzarellatosta-isla/900/1125" },
+  { id:"com-provolone", macro:"compartir", sub:"clasicos", nombre:"Provolone Isla", descripcion:"Queso provolone fundido con especias y pan tostado para mojar.", precio:"8,90€", foto:"https://picsum.photos/seed/com-provolone-isla/900/1125" },
+  { id:"com-quesadilla", macro:"compartir", sub:"clasicos", nombre:"Quesadilla Isla", descripcion:"Quesadilla con queso mozzarella y salsa rosa.", precio:"5,50€", foto:"https://picsum.photos/seed/com-quesadilla-isla/900/1125" },
+];
+</script>
+<script>
+(function(){
+  "use strict";
+
+  const LEAF = `<svg viewBox="0 0 20 20" fill="none"><path d="M10 2L12 8L18 10L12 12L10 18L8 12L2 10L8 8L10 2Z" fill="currentColor"/></svg>`;
+
+  const MACRO_ICONS = {
+    bebidas: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3h11l-1 13a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3L5 3Z"/><path d="M16 6h2.5a2.5 2.5 0 0 1 0 5H16"/></svg>`,
+    salado: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>`,
+    dulce: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12c0-2 1.5-3 4-3s3 1.5 4 3 1.5 3 4 3 4-1 4-3"/><path d="M4 17c0-2 1.5-3 4-3s3 1.5 4 3 1.5 3 4 3 4-1 4-3"/><path d="M6 9c0-2.8 2.7-5 6-5s6 2.2 6 5"/></svg>`,
+    compartir: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="8" r="4"/><circle cx="17" cy="8" r="4"/><path d="M3 20c0-3 2-5 4-5s4 2 4 5"/><path d="M13 20c0-3 2-5 4-5s4 2 4 5"/></svg>`,
+  };
+
+  /* ═════════ ESTADO ═════════ */
+  let state = {
+    macro: MACRO_CATEGORIES[0].id,
+    sub: "todos",
+  };
+
+  const macroTabsEl = document.getElementById("macroTabs");
+  const subRailEl   = document.getElementById("subRail");
+  const feedEl      = document.getElementById("feed");
+
+  function subLabel(macro, subId){
+    if (subId === "todos") return "Todos";
+    const list = SUBCATEGORIES[macro] || [];
+    const found = list.find(s => s.id === subId);
+    return found ? found.label : subId;
+  }
+
+  function itemsFor(macro, sub){
+    return MENU_ITEMS.filter(it => it.macro === macro && (sub === "todos" || it.sub === sub));
+  }
+
+  function mediaBlock(item){
+    if (item.video){
+      return `<video class="bg-media" src="${item.video}" ${item.foto ? `poster="${item.foto}"` : ""} autoplay muted loop playsinline preload="metadata"></video>`;
+    }
+    if (item.foto){
+      return `<img class="bg-media" src="${item.foto}" alt="${item.nombre}" loading="lazy">`;
+    }
+    return `<div class="placeholder-media">
+      <span class="ph-icon">${item.nombre.charAt(0)}</span>
+      <span class="ph-text">Foto próximamente</span>
+    </div>`;
+  }
+
+  /* ═════════ MACRO TABS ═════════ */
+  function renderMacroTabs(){
+    macroTabsEl.innerHTML = MACRO_CATEGORIES.map(m => `
+      <button class="macro-tab ${m.id === state.macro ? 'active' : ''}" data-macro="${m.id}">
+        ${MACRO_ICONS[m.id] || ""}
+        <span>${m.label}</span>
+      </button>
+    `).join("");
+
+    macroTabsEl.querySelectorAll(".macro-tab").forEach(btn => {
+      btn.addEventListener("click", () => {
+        state.macro = btn.dataset.macro;
+        state.sub = "todos";
+        renderMacroTabs();
+        renderSubRail();
+        renderFeed();
+      });
+    });
+  }
+
+  /* ═════════ SUB RAIL ═════════ */
+  function renderSubRail(){
+    const subs = SUBCATEGORIES[state.macro] || [];
+    if (!subs.length){
+      subRailEl.innerHTML = "";
+      subRailEl.style.display = "none";
+      return;
+    }
+    subRailEl.style.display = "flex";
+
+    const all = [{ id:"todos", label:"Todos" }, ...subs];
+    subRailEl.innerHTML = all.map(s => `
+      <button class="sub-chip ${s.id === state.sub ? 'active' : ''}" data-sub="${s.id}">${s.label}</button>
+    `).join("");
+
+    subRailEl.querySelectorAll(".sub-chip").forEach(btn => {
+      btn.addEventListener("click", () => {
+        state.sub = btn.dataset.sub;
+        renderSubRail();
+        renderFeed();
+      });
+    });
+  }
+
+  /* ═════════ FEED ═════════ */
+  let feedObserver = null;
+
+  function renderFeed(){
+    const items = itemsFor(state.macro, state.sub);
+
+    if (!items.length){
+      feedEl.innerHTML = `<div class="empty">Todavía no hay platillos aquí. Vuelve pronto 🌴</div>`;
+      return;
+    }
+
+    feedEl.innerHTML = items.map((item, i) => `
+      <div class="card" data-idx="${i}">
+        <div class="progress-dots">
+          ${items.slice(0, Math.min(items.length, 8)).map((_, j) => `<span class="${j <= i ? 'done' : ''}"></span>`).join("")}
+        </div>
+        ${mediaBlock(item)}
+        <div class="grain"></div>
+        <div class="scrim"></div>
+        <div class="info">
+          <span class="sub-chip-tag">${LEAF}${subLabel(item.macro, item.sub)}</span>
+          <h2>${item.nombre}</h2>
+          <p class="desc">${item.descripcion}</p>
+          <div class="price">${item.precio}</div>
+        </div>
+      </div>
+    `).join("") + `
+      <div class="foot-card">
+        <span class="seal-mini">
+          <svg viewBox="0 0 40 40" fill="none">
+            <path d="M20 33V16" stroke="#c9a24b" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M20 20C20 20 9 19 7 9C7 9 19 8 20 20Z" fill="#c9a24b" opacity=".92"/>
+            <path d="M20 20C20 20 31 19 33 9C33 9 21 8 20 20Z" fill="#c9a24b" opacity=".92"/>
+          </svg>
+        </span>
+        <strong>ISLA Brunch &amp; Bar</strong>
+        Carrer Mare de Déu del Carme, 11 · Elche<br>
+        <a href="tel:+34691769434">691 769 434</a> &nbsp;·&nbsp;
+        <a href="https://instagram.com/islabrunchbar" target="_blank" rel="noopener noreferrer">@islabrunchbar</a>
+      </div>
+    `;
+
+    feedEl.scrollIntoView({ behavior:"auto", block:"start" });
+    setupFeedObserver();
+  }
+
+  function setupFeedObserver(){
+    if (feedObserver) feedObserver.disconnect();
+    const cards = feedEl.querySelectorAll(".card");
+    feedObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const video = entry.target.querySelector("video");
+        if (!video) return;
+        if (entry.isIntersecting && entry.intersectionRatio > 0.55){
+          video.play().catch(()=>{});
+        } else {
+          video.pause();
+        }
+      });
+    }, { root: null, threshold: [0, 0.55, 1] });
+    cards.forEach(c => feedObserver.observe(c));
+  }
+
+  /* ═════════ INIT ═════════ */
+  renderMacroTabs();
+  renderSubRail();
+  renderFeed();
+
+})();
+</script>
+
+</body>
+</html>
