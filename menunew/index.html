@@ -267,6 +267,54 @@ body::before{
 }
 .card .progress-dots span.done{background:var(--gold);}
 
+/* ── VARIANTES: sub-carrusel horizontal dentro de una misma card ── */
+.variant-scroller{
+  position:absolute; inset:0;
+  display:flex;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  height:100%;
+}
+.variant-slide{
+  position:relative;
+  flex:0 0 100%;
+  width:100%;
+  height:100%;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+}
+.variant-dots{
+  position:absolute; top:calc(14px + var(--safe-top));
+  left:0; right:0; z-index:5;
+  display:flex; justify-content:center; gap:6px;
+  pointer-events:none;
+}
+.variant-dots span{
+  width:6px; height:6px; border-radius:50%;
+  background:rgba(255,255,255,.4);
+  transition:width .25s ease, background .25s ease, border-radius .25s ease;
+}
+.variant-dots span.active{
+  width:18px; border-radius:4px;
+  background:var(--gold);
+}
+.variant-arrow{
+  position:absolute; top:50%; transform:translateY(-50%);
+  z-index:5;
+  width:36px; height:36px; border-radius:50%;
+  background:rgba(10,20,13,.4);
+  border:1px solid rgba(201,162,75,.35);
+  backdrop-filter:blur(3px);
+  color:var(--arena);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+}
+.variant-arrow svg{width:16px; height:16px;}
+.variant-arrow.left{left:10px;}
+.variant-arrow.right{right:10px;}
+.variant-arrow.hidden{display:none;}
+
 .empty{
   padding:60px 26px; text-align:center;
   color:var(--arena-faint); font-family:var(--font-body); font-size:15px;
@@ -371,6 +419,17 @@ body::before{
      nombre, descripcion, precio -> texto a mostrar
      foto        -> URL de imagen (puede ir vacía: "")
      video       -> URL de video opcional (puede ir vacía: "")
+
+   ── VARIANTES (varios sabores/opciones dentro de UNA sola tarjeta) ──
+   En vez de nombre/descripcion/precio/foto/video, un platillo puede
+   llevar "variantes": una lista de 2 o más opciones. La tarjeta se
+   convierte en un mini-carrusel horizontal (desliza a los lados) con
+   puntitos arriba y flechas para cambiar de sabor sin salir de la card.
+   Ejemplo (así quedó "Ice Matcha Frutal" con sus 3 sabores):
+     { id:"...", macro:"bebidas", sub:"matcha", variantes:[
+         { nombre:"...", descripcion:"...", precio:"5,00€", foto:"", video:"" },
+         { nombre:"...", descripcion:"...", precio:"5,00€", foto:"", video:"" },
+     ] },
    ════════════════════════════════════════════════════════════ */
 
 const MACRO_CATEGORIES = [
@@ -390,7 +449,11 @@ const SUBCATEGORIES = {
 const MENU_ITEMS = [
   // ══ BEBIDAS · Matcha ══
   { id:"matcha-coco", macro:"bebidas", sub:"matcha", nombre:"Coconut Water Matcha", descripcion:"Matcha ceremonial combinado con la pureza del agua de coco.", precio:"5,50€", foto:"", video:"video/matchacoco.mp4" },
-  { id:"matcha-ice-frutal", macro:"bebidas", sub:"matcha", nombre:"Ice Matcha Frutal", descripcion:"Versión helada con notas frutales: mango, fresa o maracuyá.", precio:"5,00€", foto:"", video:"video/mangomatcha.mp4" },
+  { id:"matcha-ice-frutal", macro:"bebidas", sub:"matcha", variantes:[
+      { nombre:"Ice Matcha Mango", descripcion:"Matcha helado con puré de mango tropical.", precio:"5,00€", foto:"", video:"video/mangomatcha.mp4" },
+      { nombre:"Ice Matcha Fresa", descripcion:"Matcha helado con fresa fresca y natural.", precio:"5,00€", foto:"", video:"" },
+      { nombre:"Ice Matcha Maracuyá", descripcion:"Matcha helado con la acidez tropical del maracuyá.", precio:"5,00€", foto:"", video:"" },
+  ] },
   { id:"matcha-latte", macro:"bebidas", sub:"matcha", nombre:"Matcha Latte", descripcion:"Energía limpia con la textura cremosa de la leche vaporizada.", precio:"4,50€", foto:"fotos/matchalate.jpeg", video:"" },
   { id:"matcha-trad", macro:"bebidas", sub:"matcha", nombre:"Matcha Tradicional", descripcion:"La experiencia pura del matcha batido de forma artesanal.", precio:"3,50€", foto:"fotos/tematcha.jpeg" },
   { id:"matcha-elche", macro:"bebidas", sub:"matcha", nombre:"Matcha Elche", descripcion:"Ceremonial con leche de avena cremosa sobre un fondo de dátiles, dulzor natural sin azúcar añadido.", precio:"5,90€", foto:"fotos/matchaelche.jpeg" },
@@ -512,6 +575,24 @@ const MENU_ITEMS = [
     </div>`;
   }
 
+  // contenido interno (media + degradado + textos) compartido por cards normales y por cada variante
+  function slideInner(macro, sub, v){
+    return `
+      ${mediaBlock(v)}
+      <div class="grain"></div>
+      <div class="scrim"></div>
+      <div class="info">
+        <span class="sub-chip-tag">${LEAF}${subLabel(macro, sub)}</span>
+        <h2>${v.nombre}</h2>
+        <p class="desc">${v.descripcion}</p>
+        <div class="price">${v.precio}</div>
+      </div>
+    `;
+  }
+
+  const ARROW_LEFT = `<svg viewBox="0 0 24 24" fill="none"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  const ARROW_RIGHT = `<svg viewBox="0 0 24 24" fill="none"><path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
   /* ═════════ MACRO TABS ═════════ */
   function renderMacroTabs(){
     macroTabsEl.innerHTML = MACRO_CATEGORIES.map(m => `
@@ -567,22 +648,31 @@ const MENU_ITEMS = [
       return;
     }
 
-    feedEl.innerHTML = items.map((item, i) => `
+    feedEl.innerHTML = items.map((item, i) => {
+      const hasVariants = Array.isArray(item.variantes) && item.variantes.length > 1;
+
+      const body = hasVariants
+        ? `
+          <div class="variant-dots">
+            ${item.variantes.map((_, vi) => `<span class="${vi === 0 ? 'active' : ''}"></span>`).join("")}
+          </div>
+          <button class="variant-arrow left hidden" aria-label="Anterior">${ARROW_LEFT}</button>
+          <button class="variant-arrow right" aria-label="Siguiente">${ARROW_RIGHT}</button>
+          <div class="variant-scroller">
+            ${item.variantes.map(v => `<div class="variant-slide">${slideInner(item.macro, item.sub, v)}</div>`).join("")}
+          </div>
+        `
+        : slideInner(item.macro, item.sub, item);
+
+      return `
       <div class="card" data-idx="${i}">
         <div class="progress-dots">
           ${items.slice(0, Math.min(items.length, 8)).map((_, j) => `<span class="${j <= i ? 'done' : ''}"></span>`).join("")}
         </div>
-        ${mediaBlock(item)}
-        <div class="grain"></div>
-        <div class="scrim"></div>
-        <div class="info">
-          <span class="sub-chip-tag">${LEAF}${subLabel(item.macro, item.sub)}</span>
-          <h2>${item.nombre}</h2>
-          <p class="desc">${item.descripcion}</p>
-          <div class="price">${item.precio}</div>
-        </div>
+        ${body}
       </div>
-    `).join("") + `
+    `;
+    }).join("") + `
       <div class="foot-card">
         <span class="seal-mini">
           <svg viewBox="0 0 40 40" fill="none">
@@ -600,15 +690,18 @@ const MENU_ITEMS = [
 
     feedEl.scrollIntoView({ behavior:"auto", block:"start" });
     setupFeedObserver();
+    setupVariantCarousels();
   }
 
   function setupFeedObserver(){
     if (feedObserver) feedObserver.disconnect();
-    const cards = feedEl.querySelectorAll(".card");
+    // Se observa cada <video> individualmente (no la card entera): el navegador
+    // ya calcula el recorte por scroll horizontal Y vertical, así que esto
+    // funciona igual para cards normales y para cada slide de un carrusel de variantes.
+    const videos = feedEl.querySelectorAll("video");
     feedObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        const video = entry.target.querySelector("video");
-        if (!video) return;
+        const video = entry.target;
         if (entry.isIntersecting && entry.intersectionRatio > 0.55){
           video.play().catch(()=>{});
         } else {
@@ -616,7 +709,42 @@ const MENU_ITEMS = [
         }
       });
     }, { root: null, threshold: [0, 0.55, 1] });
-    cards.forEach(c => feedObserver.observe(c));
+    videos.forEach(v => feedObserver.observe(v));
+  }
+
+  function setupVariantCarousels(){
+    feedEl.querySelectorAll(".card").forEach(card => {
+      const scroller = card.querySelector(".variant-scroller");
+      if (!scroller) return;
+
+      const dots = card.querySelectorAll(".variant-dots span");
+      const arrowLeft = card.querySelector(".variant-arrow.left");
+      const arrowRight = card.querySelector(".variant-arrow.right");
+      const slideCount = scroller.querySelectorAll(".variant-slide").length;
+
+      function updateFromScroll(){
+        const w = scroller.clientWidth || 1;
+        const idx = Math.round(scroller.scrollLeft / w);
+        dots.forEach((d, i) => d.classList.toggle("active", i === idx));
+        if (arrowLeft) arrowLeft.classList.toggle("hidden", idx <= 0);
+        if (arrowRight) arrowRight.classList.toggle("hidden", idx >= slideCount - 1);
+      }
+
+      scroller.addEventListener("scroll", updateFromScroll, { passive:true });
+
+      if (arrowLeft){
+        arrowLeft.addEventListener("click", () => {
+          scroller.scrollBy({ left: -scroller.clientWidth, behavior:"smooth" });
+        });
+      }
+      if (arrowRight){
+        arrowRight.addEventListener("click", () => {
+          scroller.scrollBy({ left: scroller.clientWidth, behavior:"smooth" });
+        });
+      }
+
+      updateFromScroll();
+    });
   }
 
   /* ═════════ INIT ═════════ */
