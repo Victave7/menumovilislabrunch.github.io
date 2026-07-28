@@ -384,17 +384,17 @@ const SUBCATEGORIES = {
   bebidas:   [ {id:"matcha",label:"Matcha"}, {id:"ube",label:"Ube"}, {id:"cafe",label:"Café"}, {id:"batidos",label:"Batidos"} ],
   salado:    [ {id:"bagels",label:"Bagels"}, {id:"tostas",label:"Tostas"}, {id:"croissants",label:"Croissants"}, {id:"brioche",label:"Brioche"} ],
   dulce:     [ {id:"pancakes",label:"Pancakes"}, {id:"yogures",label:"Yogures"} ],
-  compartir: [], // categoría pequeña, sin subcategorías visibles
+    compartir: [], // categoría pequeña, sin subcategorías visibles
 };
 
 const MENU_ITEMS = [
   // ══ BEBIDAS · Matcha ══
   { id:"matcha-coco", macro:"bebidas", sub:"matcha", nombre:"Coconut Water Matcha", descripcion:"Matcha ceremonial combinado con la pureza del agua de coco.", precio:"5,50€", foto:"", video:"video/matchacoco.mp4" },
   { id:"matcha-ice-frutal", macro:"bebidas", sub:"matcha", nombre:"Ice Matcha Frutal", descripcion:"Versión helada con notas frutales: mango, fresa o maracuyá.", precio:"5,00€", foto:"", video:"video/mangomatcha.mp4" },
-  { id:"matcha-latte", macro:"bebidas", sub:"matcha", nombre:"Matcha Latte", descripcion:"Energía limpia con la textura cremosa de la leche vaporizada.", precio:"4,50€", foto:"", video:"" },
+  { id:"matcha-latte", macro:"bebidas", sub:"matcha", nombre:"Matcha Latte", descripcion:"Energía limpia con la textura cremosa de la leche vaporizada.", precio:"4,50€", foto:"fotos/matchalate.jpeg", video:"" },
   { id:"matcha-trad", macro:"bebidas", sub:"matcha", nombre:"Matcha Tradicional", descripcion:"La experiencia pura del matcha batido de forma artesanal.", precio:"3,50€", foto:"https://picsum.photos/seed/matcha-trad-isla/900/1125" },
   { id:"matcha-te", macro:"bebidas", sub:"matcha", nombre:"Té de Matcha", descripcion:"Infusión ligera, limpia y antioxidante.", precio:"3,00€", foto:"https://picsum.photos/seed/matcha-te-isla/900/1125" },
-  { id:"matcha-elche", macro:"bebidas", sub:"matcha", nombre:"Matcha Elche", descripcion:"Ceremonial con leche de avena cremosa sobre un fondo de dátiles, dulzor natural sin azúcar añadido.", precio:"5,90€", foto:"https://picsum.photos/seed/matcha-elche-isla/900/1125" },
+  { id:"matcha-elche", macro:"bebidas", sub:"matcha", nombre:"Matcha Elche", descripcion:"Ceremonial con leche de avena cremosa sobre un fondo de dátiles, dulzor natural sin azúcar añadido.", precio:"5,90€", foto:"fotos/matchaelche.jpeg" },
 
   // ══ BEBIDAS · Ube ══
   { id:"ube-latte", macro:"bebidas", sub:"ube", nombre:"Ube Latte", descripcion:"Elixir de ube con vainilla y coco, batido con leche cremosa.", precio:"4,90€", foto:"https://picsum.photos/seed/ube-latte-isla/900/1125" },
@@ -423,7 +423,7 @@ const MENU_ITEMS = [
   { id:"bat-limonada", macro:"bebidas", sub:"batidos", nombre:"Limonada Casera", descripcion:"Refrescante, ligera y hecha en casa cada día.", precio:"3,50€", foto:"https://picsum.photos/seed/bat-limonada-isla/900/1125" },
 
   // ══ SALADO · Bagels ══
-  { id:"sal-sesame-bagel", macro:"salado", sub:"bagels", nombre:"Sesame Bagel", descripcion:"Bagel de sésamo, aguacate, tomate rallado, bacon crujiente y huevo revuelto.", precio:"7,50€", foto:"https://picsum.photos/seed/sal-sesamebagel-isla/900/1125" },
+  { id:"sal-sesame-bagel", macro:"salado", sub:"bagels", nombre:"Sesame Bagel", descripcion:"Bagel de sésamo, aguacate, tomate rallado, bacon crujiente y huevo revuelto.", precio:"7,50€", foto:"", video:"video/bagelsesamo.mp4" },
   { id:"sal-brunch-bagel", macro:"salado", sub:"bagels", nombre:"Brunch Bagel", descripcion:"Bagel tostado con huevo revuelto, bacon crujiente, queso Edam y salsa Isla.", precio:"7,90€", foto:"https://picsum.photos/seed/sal-brunchbagel-isla/900/1125" },
   { id:"sal-nordic-bagel", macro:"salado", sub:"bagels", nombre:"Nordic Bagel Isla", descripcion:"Bagel con salmón ahumado, queso crema y salsa Isla.", precio:"8,50€", foto:"https://picsum.photos/seed/sal-nordicbagel-isla/900/1125" },
   { id:"sal-veggie-bagel", macro:"salado", sub:"bagels", nombre:"Veggie Bagel", descripcion:"Bagel con aguacate, tomate cherry, queso crema y brotes frescos.", precio:"7,50€", foto:"https://picsum.photos/seed/sal-veggiebagel-isla/900/1125" },
@@ -442,7 +442,7 @@ const MENU_ITEMS = [
   { id:"sal-nordic-croissant", macro:"salado", sub:"croissants", nombre:"Nordic Croissant Isla", descripcion:"Croissant con salmón ahumado, queso crema y salsa Isla.", precio:"7,50€", foto:"https://picsum.photos/seed/sal-nordiccroissant-isla/900/1125" },
 
   // ══ SALADO · Brioche ══
-  { id:"bri-revuelto", macro:"salado", sub:"brioche", nombre:"Revuelto", descripcion:"Brioche con huevo revuelto, bacon, cebolla frita crujiente y salsa peach chipotle mayo.", precio:"8,90€", video:"video/revuelto.mp4" },
+  { id:"bri-revuelto", macro:"salado", sub:"brioche", nombre:"Revuelto", descripcion:"Brioche con huevo revuelto, bacon, cebolla frita crujiente y salsa peach chipotle mayo.", precio:"8,90€", video:"video/revueltobrioche.mp4" },
   { id:"bri-serranito", macro:"salado", sub:"brioche", nombre:"Serranito Brioche", descripcion:"Brioche, queso crema con ajo, jamón serrano, mozzarella, tomate cherry y miel.", precio:"9,90€", foto:"https://picsum.photos/seed/bri-serranito-isla/900/1125" },
   { id:"bri-fru-creation", macro:"salado", sub:"brioche", nombre:"Fru Creation", descripcion:"Brioche con aguacate, huevo revuelto, tomate cherry y un toque de miel picante.", precio:"8,90€", foto:"https://picsum.photos/seed/bri-frucreation-isla/900/1125", video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" },
   { id:"bri-nordic", macro:"salado", sub:"brioche", nombre:"Nordic Brioche", descripcion:"Brioche con salmón ahumado, queso crema y rúcula.", precio:"9,50€", foto:"https://picsum.photos/seed/bri-nordic-isla/900/1125" },
