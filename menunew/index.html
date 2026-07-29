@@ -78,7 +78,7 @@ body::before{
 .top{
   padding:calc(10px + var(--safe-top)) 16px 0;
   position:sticky; top:0; z-index:40;
-  background:linear-gradient(180deg, var(--v900) 55%, transparent);
+  background:linear-gradient(180deg, var(--v900) 82%, transparent);
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
 }
@@ -153,7 +153,7 @@ body::before{
   display:grid;
   grid-template-columns:repeat(5, 1fr);
   gap:5px;
-  padding:1px 16px 10px;
+  padding:1px 0 10px;
 }
 .feed-filter-chip{
   border:1px solid rgba(242,232,213,.16);
@@ -375,6 +375,17 @@ body::before{
   margin-bottom:6px; letter-spacing:.02em;
 }
 .foot-card a{color:var(--gold-soft); text-decoration:none;}
+.foot-links{
+  display:flex; gap:10px; margin-top:18px;
+}
+.foot-link-btn{
+  border:1px solid var(--gold); border-radius:999px;
+  padding:9px 16px;
+  font-family:var(--font-num); font-weight:600; font-size:11.5px; letter-spacing:.03em;
+  color:var(--v900) !important;
+  background:linear-gradient(120deg, var(--gold-soft), var(--gold));
+  text-decoration:none !important;
+}
 
 @media (min-width:561px){
   .app{background-color:var(--v900);}
@@ -518,6 +529,131 @@ body::before{
   cursor:pointer;
 }
 .post-viewer .feed{height:100%; overflow-y:auto; scroll-snap-type:y mandatory;}
+
+/* ── botón de búsqueda (header) ── */
+.icon-btn{
+  width:32px; height:32px; border-radius:50%;
+  border:1px solid rgba(201,162,75,.3);
+  background:transparent;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--gold-soft); flex-shrink:0;
+  cursor:pointer;
+}
+.icon-btn svg{width:15px; height:15px;}
+.header-actions{display:flex; align-items:center; gap:8px;}
+
+/* ── menú desplegable "más enlaces" (carta completa / coctelería) ── */
+.quick-links{position:relative;}
+.quick-links-menu{
+  position:absolute; top:calc(100% + 8px); right:0; z-index:50;
+  min-width:172px;
+  background:var(--v800);
+  border:1px solid rgba(201,162,75,.3);
+  border-radius:14px;
+  padding:6px;
+  box-shadow:0 10px 26px rgba(0,0,0,.4);
+  display:none;
+  flex-direction:column;
+  gap:2px;
+}
+.quick-links-menu.open{display:flex;}
+.quick-links-menu a{
+  display:flex; align-items:center; gap:9px;
+  padding:10px 10px;
+  border-radius:9px;
+  color:var(--arena);
+  font-family:var(--font-body); font-size:13.5px; font-weight:500;
+  text-decoration:none;
+}
+.quick-links-menu a:active{background:rgba(201,162,75,.14);}
+.quick-links-menu a svg{width:16px; height:16px; color:var(--gold-soft); flex-shrink:0;}
+
+/* ── icono de búsqueda en el header ── */
+
+/* ── overlay de búsqueda a pantalla completa ── */
+.search-overlay{
+  position:fixed; inset:0; z-index:300;
+  background:var(--v900);
+  display:none;
+  flex-direction:column;
+}
+.search-overlay.open{display:flex;}
+.search-top{
+  padding:calc(12px + var(--safe-top)) 16px 10px;
+  display:flex; align-items:center; gap:10px;
+  border-bottom:1px solid rgba(201,162,75,.15);
+}
+.search-input-wrap{
+  flex:1; display:flex; align-items:center; gap:8px;
+  background:rgba(242,232,213,.06);
+  border:1px solid rgba(201,162,75,.28);
+  border-radius:13px; padding:9px 12px;
+}
+.search-input-wrap svg{width:15px; height:15px; color:var(--gold-soft); flex-shrink:0;}
+.search-input-wrap input{
+  flex:1; border:none; background:transparent; outline:none;
+  color:var(--arena); font-family:var(--font-body); font-size:14.5px;
+}
+.search-input-wrap input::placeholder{color:var(--arena-faint);}
+.search-cancel{
+  border:none; background:transparent; color:var(--gold-soft);
+  font-family:var(--font-num); font-size:13px; font-weight:600; cursor:pointer;
+  padding:6px 2px; flex-shrink:0;
+}
+.search-body{flex:1; overflow-y:auto; padding:6px 16px 40px;}
+.search-hint{
+  font-family:var(--font-num); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--arena-faint); padding:14px 2px 8px;
+}
+.recent-chips{display:flex; flex-wrap:wrap; gap:8px; padding-bottom:6px;}
+.recent-chip{
+  border:1px solid rgba(242,232,213,.18); background:rgba(242,232,213,.04);
+  color:var(--arena-dim); font-family:var(--font-body); font-size:12.5px;
+  padding:7px 13px; border-radius:999px; cursor:pointer;
+}
+
+/* ── filas de lista compacta (resultados de búsqueda / Para ti) ── */
+.list-row{
+  display:flex; align-items:center; gap:12px;
+  padding:10px 4px;
+  border-bottom:1px solid rgba(242,232,213,.06);
+  cursor:pointer; text-align:left;
+  background:none; border-left:none; border-right:none; border-top:none;
+  width:100%;
+}
+.list-row .lr-thumb{
+  width:56px; height:56px; border-radius:12px; overflow:hidden; flex-shrink:0;
+  position:relative; background:var(--v700);
+}
+.list-row .lr-thumb img, .list-row .lr-thumb video{width:100%; height:100%; object-fit:cover; display:block;}
+.list-row .lr-thumb .placeholder-media{position:absolute; inset:0;}
+.list-row .lr-thumb .ph-icon{width:24px; height:24px; font-size:11px; border-width:1px;}
+.list-row .lr-thumb .ph-text{display:none;}
+.list-row .lr-body{flex:1; min-width:0;}
+.list-row .lr-tag{
+  font-family:var(--font-num); font-weight:700; font-size:9px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--gold-soft); opacity:.85;
+  display:block; margin-bottom:2px;
+}
+.list-row .lr-name{
+  font-family:var(--font-display); font-weight:600; font-size:15.5px; color:var(--arena);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.list-row .lr-desc{
+  font-family:var(--font-body); font-size:11.5px; color:var(--arena-faint);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-top:1px;
+}
+.list-row .lr-price{
+  font-family:var(--font-num); font-weight:700; font-size:12.5px; color:var(--gold-soft);
+  flex-shrink:0; padding-left:6px;
+}
+.search-empty{
+  padding:50px 10px; text-align:center; color:var(--arena-faint);
+  font-family:var(--font-body); font-size:14px; line-height:1.6;
+}
+
+/* ── PANTALLA: PARA TI ── */
+
 </style>
 </head>
 <body>
@@ -541,20 +677,36 @@ body::before{
           <span class="tag">Brunch &amp; Bar</span>
         </div>
       </div>
-      <a class="ig-link" href="https://instagram.com/islabrunchbar" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
-      </a>
+      <div class="header-actions">
+        <div class="quick-links">
+          <button class="icon-btn" id="quickLinksBtn" aria-label="Más enlaces" aria-haspopup="true">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="5" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="19" r="1.6" fill="currentColor"/></svg>
+          </button>
+          <div class="quick-links-menu" id="quickLinksMenu">
+            <a href="https://islabrunchbar.com/menu/" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19a1 1 0 0 1 1 1v14.5a1 1 0 0 1-1 1H6.5A2.5 2.5 0 0 0 4 22V5.5Z" stroke="currentColor" stroke-width="1.5"/><path d="M4 17.5A2.5 2.5 0 0 1 6.5 15H20" stroke="currentColor" stroke-width="1.5"/></svg>
+              Carta completa
+            </a>
+            <a href="https://islabrunchbar.com/Cocteles/" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16l-7 8v6h3v2H8v-2h3v-6L4 4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              Coctelería
+            </a>
+          </div>
+        </div>
+        <button class="icon-btn" id="openSearchBtn" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <a class="ig-link" href="https://instagram.com/islabrunchbar" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
+        </a>
+      </div>
     </div>
+    <!-- las categorías viven DENTRO del header pegajoso: así nunca desaparecen al hacer scroll del feed -->
+    <div class="feed-filters" id="feedFilters"></div>
   </div>
 
-  <!-- ══ PANTALLA 1: FEED (como el "para ti" de Insta/TikTok, mezcla todo) ══ -->
+  <!-- ══ PANTALLA 1: FEED (estilo TikTok — vertical, a pantalla completa, con perfiles) ══ -->
   <section class="screen" id="screenFeed">
-    <div class="feed-filters" id="feedFilters"></div>
-    <div class="ornament-divider" style="padding:0 16px 8px;">
-      <span class="line"></span>
-      <svg viewBox="0 0 20 20" fill="none"><path d="M10 2L12 8L18 10L12 12L10 18L8 12L2 10L8 8L10 2Z" fill="#c9a24b"/></svg>
-      <span class="line"></span>
-    </div>
     <div class="feed-wrap">
       <div class="feed" id="feed"></div>
     </div>
@@ -599,6 +751,18 @@ body::before{
 <div class="post-viewer" id="postViewer">
   <button class="pv-close" id="postViewerClose" aria-label="Cerrar">✕</button>
   <div class="feed" id="postViewerFeed"></div>
+</div>
+
+<!-- ══ BUSCADOR (overlay a pantalla completa) ══ -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-top">
+    <div class="search-input-wrap">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <input type="text" id="searchInput" placeholder="Bagel, matcha, dulce…" autocomplete="off">
+    </div>
+    <button class="search-cancel" id="searchCancelBtn">Cancelar</button>
+  </div>
+  <div class="search-body" id="searchBody"></div>
 </div>
 
 
@@ -765,6 +929,62 @@ const MENU_ITEMS = [
     { id:"compartir",  macro:"compartir", sub:"clasicos",   label:"Compartir",  emoji:"🍽️" },
   ];
 
+  /* ═════════ ALGORITMO "PARA TI" ═════════
+     No inventamos datos del cliente: solo contamos, en este mismo
+     teléfono (localStorage), qué categorías mira/abre y qué busca.
+     A eso le sumamos la hora del propio teléfono (mañana → desayuno,
+     tarde → para compartir, noche → dulce/bebida) para dar un empujón
+     razonable incluso a un cliente nuevo sin historial. */
+  const PREFS_KEY = "isla_prefs_v1";
+  function loadPrefs(){
+    try{
+      const raw = localStorage.getItem(PREFS_KEY);
+      return raw ? JSON.parse(raw) : { macro:{}, sub:{}, searches:[] };
+    }catch(e){ return { macro:{}, sub:{}, searches:[] }; }
+  }
+  function savePrefs(p){ try{ localStorage.setItem(PREFS_KEY, JSON.stringify(p)); }catch(e){} }
+  let prefs = loadPrefs();
+
+  function bumpPref(macro, sub, weight){
+    if (macro) prefs.macro[macro] = (prefs.macro[macro]||0) + weight;
+    if (sub) prefs.sub[sub] = (prefs.sub[sub]||0) + weight;
+    savePrefs(prefs);
+  }
+  function registerSearch(query){
+    const q = query.trim().toLowerCase();
+    if (!q || q.length < 2) return;
+    prefs.searches = [q, ...prefs.searches.filter(s => s !== q)].slice(0, 6);
+    savePrefs(prefs);
+  }
+  function hasAnyHistory(){
+    return Object.keys(prefs.macro).length > 0 || Object.keys(prefs.sub).length > 0 || prefs.searches.length > 0;
+  }
+  // franja horaria del propio teléfono del cliente
+  function timeBoost(macro){
+    const h = new Date().getHours();
+    if (h >= 6  && h < 12) return macro === "bebidas" ? 6 : macro === "salado" ? 5 : 1;      // desayuno
+    if (h >= 12 && h < 17) return macro === "compartir" ? 5 : macro === "salado" ? 4 : macro === "dulce" ? 3 : 1; // brunch/comida
+    if (h >= 17 && h < 21) return macro === "compartir" ? 6 : macro === "bebidas" ? 4 : 2;   // aperitivo
+    return macro === "dulce" ? 4 : macro === "bebidas" ? 3 : 1;                              // noche
+  }
+  function scoreItem(item){
+    const macroScore  = (prefs.macro[item.macro] || 0) * 3;
+    const subScore    = (prefs.sub[item.sub] || 0) * 5;
+    const clockScore  = timeBoost(item.macro) * 2;
+    const q = item.nombre ? item.nombre.toLowerCase() : "";
+    const matchesSearch = prefs.searches.some(s => q.includes(s) || subLabel(item.macro, item.sub).toLowerCase().includes(s));
+    return macroScore + subScore + clockScore + (matchesSearch ? 8 : 0);
+  }
+
+  /* ═════════ ÍNDICE DE BÚSQUEDA (nombre, descripción, variantes, categoría) ═════════ */
+  const SEARCH_INDEX = MENU_ITEMS.map(item => {
+    const cover = coverOf(item);
+    const variantNames = Array.isArray(item.variantes) ? item.variantes.map(v => `${v.nombre} ${v.descripcion||""}`).join(" ") : "";
+    const haystack = [cover.nombre, cover.descripcion, variantNames, subLabel(item.macro, item.sub), macroLabel(item.macro)]
+      .join(" ").toLowerCase();
+    return { item, haystack };
+  });
+
   /* ═════════ ESTADO ═════════ */
   let state = {
     screen: "feed",          // "feed" | "profiles" | "profileDetail"
@@ -779,6 +999,10 @@ const MENU_ITEMS = [
   const postGridEl     = document.getElementById("postGrid");
   const postViewerEl   = document.getElementById("postViewer");
   const postViewerFeedEl = document.getElementById("postViewerFeed");
+  const searchOverlayEl = document.getElementById("searchOverlay");
+  const searchInputEl   = document.getElementById("searchInput");
+  const searchBodyEl    = document.getElementById("searchBody");
+  let feedViewTracker = null;
 
   function subLabel(macro, subId){
     const list = SUBCATEGORIES[macro] || [];
@@ -790,9 +1014,15 @@ const MENU_ITEMS = [
     return m ? m.label : id;
   }
 
+  // el feed se ordena con el mismo algoritmo que antes alimentaba "Para ti":
+  // combina lo que el cliente ha mirado/buscado en este teléfono + la hora del día,
+  // manteniendo el orden original como criterio de desempate (para que no "salte" al azar)
   function itemsForFeed(filter){
-    if (filter === "todos") return MENU_ITEMS;
-    return MENU_ITEMS.filter(it => it.macro === filter);
+    const base = filter === "todos" ? MENU_ITEMS : MENU_ITEMS.filter(it => it.macro === filter);
+    return base
+      .map((item, i) => ({ item, i, s: scoreItem(item) }))
+      .sort((a, b) => (b.s - a.s) || (a.i - b.i))
+      .map(x => x.item);
   }
   function itemsForProfile(profile){
     return MENU_ITEMS.filter(it => it.macro === profile.macro && it.sub === profile.sub);
@@ -874,6 +1104,10 @@ const MENU_ITEMS = [
       Carrer Mare de Déu del Carme, 11 · Elche<br>
       <a href="tel:+34691769434">691 769 434</a> &nbsp;·&nbsp;
       <a href="https://instagram.com/islabrunchbar" target="_blank" rel="noopener noreferrer">@islabrunchbar</a>
+      <div class="foot-links">
+        <a class="foot-link-btn" href="https://islabrunchbar.com/menu/" target="_blank" rel="noopener noreferrer">Carta completa</a>
+        <a class="foot-link-btn" href="https://islabrunchbar.com/Cocteles/" target="_blank" rel="noopener noreferrer">Coctelería</a>
+      </div>
     </div>
   `;
 
@@ -891,6 +1125,9 @@ const MENU_ITEMS = [
 
     document.getElementById("bottomNav").style.display = screen === "profileDetail" ? "none" : "flex";
     document.querySelectorAll(".nav-btn").forEach(b => b.classList.toggle("active", b.dataset.nav === screen));
+
+    // las categorías (chips) solo tienen sentido sobre el feed principal
+    feedFiltersEl.style.display = screen === "feed" ? "grid" : "none";
 
     // el scroll-snap vertical de pantalla completa solo tiene sentido en el feed
     document.documentElement.classList.toggle("snap-y", screen === "feed");
@@ -934,6 +1171,26 @@ const MENU_ITEMS = [
     setupObserverFor(feedEl);
     setupVariantCarousels(feedEl);
     setupGotoProfileLinks(feedEl);
+    if (feedViewTracker) feedViewTracker.disconnect();
+    feedViewTracker = setupViewTracker(feedEl, items);
+  }
+
+  // cuenta, en este teléfono, qué categorías se detienen a mirar (para "Para ti")
+  function setupViewTracker(container, items){
+    const seen = new Set();
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.6){
+          const idx = Number(entry.target.dataset.idx);
+          if (!seen.has(idx) && items[idx]){
+            seen.add(idx);
+            bumpPref(items[idx].macro, items[idx].sub, 1);
+          }
+        }
+      });
+    }, { root:null, threshold:[0, 0.6, 1] });
+    container.querySelectorAll(".card").forEach(c => obs.observe(c));
+    return obs;
   }
 
   // observer genérico de <video> (sirve tanto para el feed principal como para el visor de publicaciones)
@@ -1014,6 +1271,7 @@ const MENU_ITEMS = [
     state.activeProfile = profileId;
     const profile = PROFILES.find(p => p.id === profileId);
     const items = itemsForProfile(profile);
+    bumpPref(profile.macro, profile.sub, 2);
 
     profileHeaderEl.innerHTML = `
       <span class="avatar-lg">${profile.emoji}</span>
@@ -1052,7 +1310,12 @@ const MENU_ITEMS = [
   let viewerObserver = null;
 
   function openPostViewer(profile, startIndex){
-    const items = itemsForProfile(profile);
+    openViewerForItems(itemsForProfile(profile), startIndex);
+  }
+
+  // abre el visor a pantalla completa para CUALQUIER lista de platillos
+  // (perfil, resultados de búsqueda o "Para ti"), empezando en startIndex
+  function openViewerForItems(items, startIndex){
     postViewerFeedEl.innerHTML = items.map((item, i) => cardHTML(item, i, items.length)).join("");
 
     postViewerEl.classList.add("open");
@@ -1066,7 +1329,106 @@ const MENU_ITEMS = [
     viewerObserver = setupObserverFor(postViewerFeedEl);
     setupVariantCarousels(postViewerFeedEl);
     setupGotoProfileLinks(postViewerFeedEl);
+
+    const opened = items[startIndex];
+    if (opened) bumpPref(opened.macro, opened.sub, 2); // abrir un platillo pesa más que solo verlo pasar
   }
+
+  /* ═════════ FILAS DE LISTA COMPACTA (para Buscar y Para ti) ═════════ */
+  function listRowHTML(item){
+    const cover = coverOf(item);
+    const media = cover.foto
+      ? `<img src="${cover.foto}" alt="${cover.nombre}" loading="lazy">`
+      : cover.video
+        ? `<video src="${cover.video}" autoplay muted loop playsinline preload="none"></video>`
+        : `<div class="placeholder-media"><span class="ph-icon">${(cover.nombre||"?").charAt(0)}</span></div>`;
+    return `
+      <button class="list-row" data-id="${item.id}">
+        <span class="lr-thumb">${media}</span>
+        <span class="lr-body">
+          <span class="lr-tag">${subLabel(item.macro, item.sub)}</span>
+          <span class="lr-name">${cover.nombre}</span>
+          <span class="lr-desc">${cover.descripcion || ""}</span>
+        </span>
+        <span class="lr-price">${cover.precio || ""}</span>
+      </button>
+    `;
+  }
+  function wireListRows(container, items){
+    container.querySelectorAll(".list-row").forEach(row => {
+      row.addEventListener("click", () => {
+        const idx = items.findIndex(it => it.id === row.dataset.id);
+        if (idx > -1) openViewerForItems(items, idx);
+      });
+    });
+  }
+
+  /* ═════════ BUSCADOR ═════════ */
+  function openSearch(){
+    searchOverlayEl.classList.add("open");
+    document.body.style.overflow = "hidden";
+    renderSearchHome();
+    setTimeout(() => searchInputEl.focus(), 60);
+  }
+  function closeSearch(){
+    searchOverlayEl.classList.remove("open");
+    document.body.style.overflow = "";
+    searchInputEl.value = "";
+  }
+  function renderSearchHome(){
+    const recentBlock = prefs.searches.length ? `
+      <div class="search-hint">Búsquedas recientes</div>
+      <div class="recent-chips">${prefs.searches.map(q => `<button class="recent-chip" data-q="${q}">${q}</button>`).join("")}</div>
+    ` : "";
+    const suggestions = ["Matcha","Bagel","Pancakes","Café","Compartir","Dulce"];
+    searchBodyEl.innerHTML = recentBlock + `
+      <div class="search-hint">Prueba con</div>
+      <div class="recent-chips">${suggestions.map(q => `<button class="recent-chip" data-q="${q}">${q}</button>`).join("")}</div>
+    `;
+    searchBodyEl.querySelectorAll(".recent-chip").forEach(btn => {
+      btn.addEventListener("click", () => {
+        searchInputEl.value = btn.dataset.q;
+        runSearch(btn.dataset.q);
+      });
+    });
+  }
+  function runSearch(query){
+    const q = query.trim().toLowerCase();
+    if (!q){ renderSearchHome(); return; }
+    const results = SEARCH_INDEX.filter(x => x.haystack.includes(q)).map(x => x.item);
+    if (!results.length){
+      searchBodyEl.innerHTML = `<div class="search-empty">No encontramos nada con "${query}".<br>Prueba con "matcha", "bagel", "dulce"…</div>`;
+      return;
+    }
+    searchBodyEl.innerHTML = `<div class="search-hint">${results.length} resultado${results.length === 1 ? "" : "s"}</div>` +
+      results.map(item => listRowHTML(item)).join("");
+    wireListRows(searchBodyEl, results);
+  }
+
+  document.getElementById("openSearchBtn").addEventListener("click", openSearch);
+
+  /* ═════════ MENÚ "MÁS ENLACES" (carta completa / coctelería), siempre a mano en el header ═════════ */
+  const quickLinksBtn  = document.getElementById("quickLinksBtn");
+  const quickLinksMenu = document.getElementById("quickLinksMenu");
+  quickLinksBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    quickLinksMenu.classList.toggle("open");
+  });
+  document.addEventListener("click", (e) => {
+    if (quickLinksMenu.classList.contains("open") && !quickLinksMenu.contains(e.target) && e.target !== quickLinksBtn){
+      quickLinksMenu.classList.remove("open");
+    }
+  });
+  document.getElementById("searchCancelBtn").addEventListener("click", closeSearch);
+  let searchDebounce;
+  searchInputEl.addEventListener("input", (e) => {
+    clearTimeout(searchDebounce);
+    const val = e.target.value;
+    searchDebounce = setTimeout(() => {
+      runSearch(val);
+      if (val.trim().length >= 2) registerSearch(val);
+    }, 220);
+  });
 
   function closePostViewer(){
     postViewerEl.classList.remove("open");
