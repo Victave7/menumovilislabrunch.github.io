@@ -545,17 +545,16 @@ body::before{
         <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
       </a>
     </div>
-
-    <div class="feed-filters" id="feedFilters"></div>
-    <div class="ornament-divider" id="feedDivider" style="padding:0 16px 8px;">
-      <span class="line"></span>
-      <svg viewBox="0 0 20 20" fill="none"><path d="M10 2L12 8L18 10L12 12L10 18L8 12L2 10L8 8L10 2Z" fill="#c9a24b"/></svg>
-      <span class="line"></span>
-    </div>
   </div>
 
   <!-- ══ PANTALLA 1: FEED (como el "para ti" de Insta/TikTok, mezcla todo) ══ -->
   <section class="screen" id="screenFeed">
+    <div class="feed-filters" id="feedFilters"></div>
+    <div class="ornament-divider" style="padding:0 16px 8px;">
+      <span class="line"></span>
+      <svg viewBox="0 0 20 20" fill="none"><path d="M10 2L12 8L18 10L12 12L10 18L8 12L2 10L8 8L10 2Z" fill="#c9a24b"/></svg>
+      <span class="line"></span>
+    </div>
     <div class="feed-wrap">
       <div class="feed" id="feed"></div>
     </div>
@@ -688,10 +687,13 @@ const MENU_ITEMS = [
   { id:"bat-passion-mango", macro:"bebidas", sub:"batidos", nombre:"Passion Mango Tropic", descripcion:"Mango maduro, maracuyá y piña. Puro trópico.", precio:"6,90€", foto:"https://picsum.photos/seed/bat-passionmango-isla/900/1125" },
   { id:"bat-fit-power", macro:"bebidas", sub:"batidos", nombre:"Isla Fit Power Shake", descripcion:"Plátano, arándanos y proteína con leche de almendras.", precio:"7,00€", foto:"https://picsum.photos/seed/bat-fitpower-isla/900/1125" },
   { id:"bat-wildberry", macro:"bebidas", sub:"batidos", nombre:"Wild Berry Protein", descripcion:"Frutas silvestres (frambuesa, arándanos y mora), fresa y proteína con agua de coco.", precio:"6,80€", foto:"https://picsum.photos/seed/bat-wildberry-isla/900/1125", video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" },
-  { id:"bat-tropical-exotic", macro:"bebidas", sub:"batidos", nombre:"Isla Tropical Exotic", descripcion:"Papaya, mango, piña, melón canario, melón Galia y uvas con leche de avena.", precio:"6,80€", foto:"https://picsum.photos/seed/bat-tropicalexotic-isla/900/1125" },
-  { id:"bat-morir-sonando", macro:"bebidas", sub:"batidos", nombre:"Morir Soñando", descripcion:"Zumo de naranja y leche. El clásico caribeño.", precio:"4,00€", foto:"https://picsum.photos/seed/bat-morirsonando-isla/900/1125" },
-  { id:"bat-naranja", macro:"bebidas", sub:"batidos", nombre:"Zumo de Naranja Natural", descripcion:"100% recién exprimido.", precio:"2,50€", foto:"https://picsum.photos/seed/bat-naranja-isla/900/1125" },
-  { id:"bat-limonada", macro:"bebidas", sub:"batidos", nombre:"Limonada Casera", descripcion:"Refrescante, ligera y hecha en casa cada día.", precio:"3,50€", foto:"https://picsum.photos/seed/bat-limonada-isla/900/1125" },
+  { id:"bat-tropical-exotic", macro:"bebidas", sub:"batidos", nombre:"Isla Tropical Exotic", descripcion:"Papaya, mango, piña, melón canario, melón Galia y uvas con leche de avena.", precio:"6,80€", foto:""}, 
+  { id:"bat-morir-sonando", macro:"bebidas", sub:"batidos", nombre:"Morir Soñando", descripcion:"Zumo de naranja y leche. El clásico caribeño.", precio:"4,00€", foto:"fotos/morirsonando.png" },
+  { id:"bat-naranja", macro:"bebidas", sub:"batidos", nombre:"Zumo de Naranja Natural", descripcion:"100% recién exprimido.", precio:"2,50€", foto:"fotos/zumodenaranja.png" },
+  { id:"bat-limonada", macro:"bebidas", sub:"batidos", nombre:"Limonada Casera", descripcion:"Refrescante, ligera y hecha en casa cada día.", precio:"3,50€", foto:"fotos/limonadacasera.png" },
+  { id:"bat-maracuya-avena", macro:"bebidas", sub:"batidos", nombre:"Maracuya Avena", descripcion:"Refrescante, ligera y hecha en casa cada día.", precio:"4,00€", foto:"fotos/maracuyaavena.png" },
+  { id:"bat-limon-avena", macro:"bebidas", sub:"batidos", nombre:"Limon Avena", descripcion:"Refrescante, ligera y hecha en casa cada día.", precio:"4,00€", foto:"fotos/limonadaavena.png" },
+
 
   // ══ SALADO · Bagels ══
   { id:"sal-sesame-bagel", macro:"salado", sub:"bagels", nombre:"Sesame Bagel", descripcion:"Bagel de sésamo, aguacate, tomate rallado, bacon crujiente y huevo revuelto.", precio:"7,50€", foto:"", video:"video/bagelsesamo.mp4" },
@@ -788,46 +790,9 @@ const MENU_ITEMS = [
     return m ? m.label : id;
   }
 
-  function shuffle(arr){
-    const a = [...arr];
-    for (let i = a.length - 1; i > 0; i--){
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-  }
-
-  // Feed "inteligente": en vez de bloques rígidos por categoría, mezcla el
-  // orden — y si hay un filtro activo, intercala de vez en cuando algo de
-  // OTRA categoría (como recomendación), igual que haría un feed real.
   function itemsForFeed(filter){
-    if (filter === "todos"){
-      // ronda entre las 4 macro-categorías para que no salgan en bloques seguidos
-      const buckets = MACRO_CATEGORIES.map(m => shuffle(MENU_ITEMS.filter(it => it.macro === m.id)));
-      const mixed = [];
-      let added = true;
-      while (added){
-        added = false;
-        for (const bucket of buckets){
-          if (bucket.length){ mixed.push(bucket.shift()); added = true; }
-        }
-      }
-      return mixed;
-    }
-
-    const principal = shuffle(MENU_ITEMS.filter(it => it.macro === filter));
-    const otras = shuffle(MENU_ITEMS.filter(it => it.macro !== filter));
-    const resultado = [];
-    let oi = 0;
-    principal.forEach((item, idx) => {
-      resultado.push(item);
-      // cada 4 platillos de la categoría elegida, cuela uno de otra categoría
-      if ((idx + 1) % 4 === 0 && oi < otras.length){
-        resultado.push(otras[oi]);
-        oi++;
-      }
-    });
-    return resultado;
+    if (filter === "todos") return MENU_ITEMS;
+    return MENU_ITEMS.filter(it => it.macro === filter);
   }
   function itemsForProfile(profile){
     return MENU_ITEMS.filter(it => it.macro === profile.macro && it.sub === profile.sub);
@@ -926,10 +891,6 @@ const MENU_ITEMS = [
 
     document.getElementById("bottomNav").style.display = screen === "profileDetail" ? "none" : "flex";
     document.querySelectorAll(".nav-btn").forEach(b => b.classList.toggle("active", b.dataset.nav === screen));
-
-    // los filtros de categoría viven en la cabecera fija, pero solo tienen sentido en el Feed
-    feedFiltersEl.style.display = screen === "feed" ? "grid" : "none";
-    document.getElementById("feedDivider").style.display = screen === "feed" ? "flex" : "none";
 
     // el scroll-snap vertical de pantalla completa solo tiene sentido en el feed
     document.documentElement.classList.toggle("snap-y", screen === "feed");
