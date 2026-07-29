@@ -1016,14 +1016,48 @@ const MENU_ITEMS = [
 
   // el feed se ordena con el mismo algoritmo que antes alimentaba "Para ti":
   // combina lo que el cliente ha mirado/buscado en este teléfono + la hora del día,
-  // manteniendo el orden original como criterio de desempate (para que no "salte" al azar)
+  // pero MEZCLANDO subcategorías en vez de dejarlas todas juntas seguidas
+  // (si no, "gana" una categoría y toca scrollear 10 bagels seguidos, por ejemplo)
   function itemsForFeed(filter){
     const base = filter === "todos" ? MENU_ITEMS : MENU_ITEMS.filter(it => it.macro === filter);
-    return base
-      .map((item, i) => ({ item, i, s: scoreItem(item) }))
-      .sort((a, b) => (b.s - a.s) || (a.i - b.i))
-      .map(x => x.item);
+    return interleaveByPreference(base);
   }
+
+  // agrupa por subcategoría (o macro si no tiene), y reparte turnos tipo
+  // "round-robin ponderado" (el mismo truco que usan los balanceadores de carga):
+  // la categoría favorita aparece más seguido, pero nunca de forma consecutiva.
+  function interleaveByPreference(items){
+    const buckets = new Map();
+    items.forEach((item, i) => {
+      const key = item.sub || item.macro;
+      if (!buckets.has(key)) buckets.set(key, []);
+      buckets.get(key).push({ item, i, s: scoreItem(item) });
+    });
+    // dentro de cada bucket: lo más afín primero, con el orden original como desempate
+    buckets.forEach(list => list.sort((a, b) => (b.s - a.s) || (a.i - b.i)));
+
+    const groups = [...buckets.values()].map(list => ({
+      list,
+      weight: Math.max(1, Math.round(list.reduce((sum, x) => sum + x.s, 0) / list.length)),
+      current: 0,
+    }));
+
+    const result = [];
+    let remaining = items.length;
+    while (remaining > 0){
+      let totalWeight = 0;
+      groups.forEach(g => { if (g.list.length){ g.current += g.weight; totalWeight += g.weight; } });
+      let winner = null;
+      groups.forEach(g => {
+        if (g.list.length && (!winner || g.current > winner.current)) winner = g;
+      });
+      result.push(winner.list.shift().item);
+      winner.current -= totalWeight;
+      remaining--;
+    }
+    return result;
+  }
+
   function itemsForProfile(profile){
     return MENU_ITEMS.filter(it => it.macro === profile.macro && it.sub === profile.sub);
   }
