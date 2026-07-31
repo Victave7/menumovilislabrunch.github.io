@@ -571,6 +571,27 @@ button, a { font-family: inherit; }
 .badge-fav { background: #FFF3E0; color: #E65100; }
 .badge-new { background: linear-gradient(90deg, var(--bark-light) 0%, #F0A857 100%); color: #FFF8EF; }
 
+/* ── OPCIONALES RÁPIDOS DENTRO DE UNA TARJETA (extras del propio plato) ── */
+.item-opt-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 9px;
+}
+.opt-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--bark-mid);
+  background: var(--sand);
+  border: 1px solid var(--divider);
+  border-radius: 20px;
+  padding: 4px 10px;
+  line-height: 1.2;
+}
+
 /* ── GRID 2 COLUMNAS (precios rápidos) ── */
 .grid2 {
   display: grid;
@@ -1517,6 +1538,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <p class="item-desc" data-en="Sesame bagel, York ham, avocado, grated tomato and extra virgin olive oil." data-fr="Bagel au sésame, jambon blanc, avocat, tomate râpée et huile d'olive extra vierge.">Bagel de sésamo, jamón York, aguacate, tomate rallado y aceite de oliva virgen extra.</p>
     </div>
+    <div class="card">
+      <span class="badge badge-new">🆕 <span data-en="New" data-fr="Nouveau">NUEVO</span></span>
+      <div class="card-row">
+        <p class="item-name" data-en="Island Chicken Bagel" data-fr="Bagel Island Chicken">Island Chicken Bagel</p>
+        <p class="item-price">8,90€</p>
+      </div>
+      <p class="item-desc" data-en="Sesame bagel with grilled chicken breast, crispy bacon, Edam cheese, cherry tomato and Isla sauce." data-fr="Bagel au sésame, poulet grillé, bacon croustillant, fromage Edam, tomate cerise et sauce Isla.">Bagel sésamo con pechuga de pollo a la plancha, bacon crujiente, queso Edam, tomate cherry y salsa Isla.</p>
+      <div class="item-opt-row">
+        <span class="opt-chip">🌶️ <span data-en="Peach Spicy" data-fr="Peach Spicy">Peach Spicy</span> +0,50€</span>
+        <span class="opt-chip">🍯 <span data-en="Spicy Honey Pro" data-fr="Miel Piquante Pro">Miel Picante Pro</span> +0,50€</span>
+      </div>
+    </div>
 
     <p class="group-label-food i18n-html" data-en-html="<span class='icon'>🍞</span> Toasts" data-fr-html="<span class='icon'>🍞</span> Toasts"><span class="icon">🍞</span> Tostas</p>
     <div class="card">
@@ -1632,6 +1665,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="item-price">9,00€</p>
       </div>
       <p class="item-desc" data-en="Brioche bread, York ham, scrambled eggs, mozzarella and Isla sauce." data-fr="Pain brioche, jambon blanc, œufs brouillés, mozzarella et sauce Isla.">Pan brioche, jamón York, huevo revuelto, mozzarella y salsa Isla.</p>
+    </div>
+    <div class="card card-gold">
+      <span class="badge badge-new">🆕 <span data-en="New" data-fr="Nouveau">NUEVO</span></span>
+      <div class="card-row">
+        <p class="item-name" data-en="Island Chicken Brioche" data-fr="Brioche Island Chicken">Island Chicken Brioche</p>
+        <p class="item-price">9,90€</p>
+      </div>
+      <p class="item-desc" data-en="Brioche bread with grilled chicken breast, mozzarella, crispy bacon, cherry tomato and Isla sauce." data-fr="Pain brioche, poulet grillé, mozzarella, bacon croustillant, tomate cerise et sauce Isla.">Pan brioche con pechuga de pollo a la plancha, mozzarella, bacon crujiente, tomate cherry y salsa Isla.</p>
+      <div class="item-opt-row">
+        <span class="opt-chip">🌶️ <span data-en="Peach Spicy" data-fr="Peach Spicy">Peach Spicy</span> +0,50€</span>
+        <span class="opt-chip">🍯 <span data-en="Spicy Honey Pro" data-fr="Miel Piquante Pro">Miel Picante Pro</span> +0,50€</span>
+      </div>
     </div>
     <div class="card card-gold">
       <p class="group-label-food i18n-html" data-en-html="<span class='icon'>✨</span> Add extra ingredients" data-fr-html="<span class='icon'>✨</span> Ajoutez des ingrédients">✨ Añade extra de ingredientes</p>
@@ -1829,6 +1874,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="mini-card"><span class="mini-name" data-en="🥩 Serrano ham" data-fr="🥩 Jambon Serrano">🥩 Jamón serrano</span><span class="mini-price">2,80€</span></div>
       <div class="mini-card"><span class="mini-name" data-en="🥪 Cooked ham" data-fr="🥪 Jambon blanc">🥪 Jamón York</span><span class="mini-price">2,00€</span></div>
       <div class="mini-card"><span class="mini-name" data-en="🐟 Tuna" data-fr="🐟 Thon">🐟 Atún</span><span class="mini-price">2,00€</span></div>
+      <div class="mini-card"><span class="mini-name" data-en="🍗 Grilled chicken breast" data-fr="🍗 Poulet grillé">🍗 Pechuga de pollo </span><span class="mini-price">2,50€</span></div>
     </div>
 
     <p class="step-label"><span class="step-num">3</span><span data-en="Add cheese" data-fr="Ajoutez du fromage">Añade queso</span></p>
@@ -2617,6 +2663,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             "price": "7.50",
             "priceCurrency": "EUR"
           }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Island Chicken Bagel",
+          "description": "Bagel sésamo con pechuga de pollo a la plancha, bacon crujiente, queso Edam, tomate cherry y salsa Isla.",
+          "offers": {
+            "@type": "Offer",
+            "price": "8.90",
+            "priceCurrency": "EUR"
+          }
         }
       ]
     },
@@ -2671,6 +2727,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           "offers": {
             "@type": "Offer",
             "price": "9.00",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Island Chicken Brioche",
+          "description": "Pan brioche con pechuga de pollo a la plancha, mozzarella, bacon crujiente, tomate cherry y salsa Isla.",
+          "offers": {
+            "@type": "Offer",
+            "price": "9.90",
             "priceCurrency": "EUR"
           }
         }
