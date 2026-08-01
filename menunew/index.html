@@ -778,8 +778,12 @@ body::before{
    │          sin necesidad de audio (se reproduce muted), peso  │
    │          recomendado <8MB.                                  │
    │ Si todavía no tienes el archivo de un platillo, deja        │
-   │ foto:"" y video:"" — se mostrará automáticamente una tarjeta │
-   │ con el aviso "Foto próximamente" sin romper el diseño.       │
+   │ foto:"" y video:"" — el plato NO aparecerá en el feed        │
+   │ principal (estilo Instagram) hasta que subas uno de los dos. │
+   │ En su perfil/categoría sí se verá con el aviso "Foto         │
+   │ próximamente", sin romper el diseño.                         │
+   │ EN CUANTO añadas una foto o video y guardes el archivo, ese  │
+   │ plato se publica solo en el feed — no hay que activar nada.  │
    │ Sube tus archivos a donde prefieras (tu hosting, Cloudinary, │
    │ Imgur, un bucket, etc.) y pega aquí la URL directa.          │
    └──────────────────────────────────────────────────────────────┘
@@ -848,7 +852,7 @@ const MENU_ITEMS = [
   // ══ BEBIDAS · Batidos ══
   { id:"bat-blue", macro:"bebidas", sub:"batidos", nombre:"Blue Power Shake", descripcion:"Espirulina azul, mango, piña y yogurt.", precio:"6,90€", foto:"fotos/bluepower.png" },
   { id:"bat-pink", macro:"bebidas", sub:"batidos", nombre:"Pink Paradise", descripcion:"Frutas silvestres y yogurt. Nuestro batido más fotogénico.", precio:"6,80€", foto:"fotos/pinkpower.png" },
-  { id:"bat-passion-mango", macro:"bebidas", sub:"batidos", nombre:@"Passion Mango Tropic", descripcion:@"Mango maduro, maracuyá y piña. Puro trópico.", precio:@"6,90€", foto:"fotos/passionmango.png" },
+  { id:"bat-passion-mango", macro:"bebidas", sub:"batidos", nombre:"Passion Mango Tropic", descripcion:"Mango maduro, maracuyá y piña. Puro trópico.", precio:"6,90€", foto:"fotos/passionmango.png" },
   { id:"bat-fit-power", macro:"bebidas", sub:"batidos", nombre:"Isla Fit Power Shake", descripcion:"Plátano, arándanos y proteína con leche de almendras.", precio:"7,00€", foto:"fotos/islafitpower.png" },
   { id:"bat-wildberry", macro:"bebidas", sub:"batidos", nombre:"Wild Berry Protein", descripcion:"Frutas silvestres (frambuesa, arándanos y mora), fresa y proteína con agua de coco.", precio:"6,80€", foto:"fotos/wildberry.png", video:"" },
   { id:"bat-tropical-exotic", macro:"bebidas", sub:"batidos", nombre:"Isla Tropical Exotic", descripcion:"Papaya, mango, piña, melón canario, melón Galia y uvas con leche de avena.", precio:"6,80€", foto:"fotos/exotic.png" }, 
@@ -1014,13 +1018,27 @@ const MENU_ITEMS = [
     return m ? m.label : id;
   }
 
+  // ── "publicado" = tiene al menos una foto o vídeo real subido ──────────────
+  // Esto es lo único que decide si un plato aparece en el feed principal.
+  // No hay que "activar" nada a mano: en cuanto un plato tenga foto o video
+  // (uno solo, o al menos en una variante si tiene varias), se publica solo
+  // la próxima vez que se cargue la página. Si foto y video están vacíos
+  // ("" o sin el campo), el plato queda oculto del feed automáticamente.
+  function hasMedia(item){
+    if (Array.isArray(item.variantes) && item.variantes.length){
+      return item.variantes.some(v => v.foto || v.video);
+    }
+    return !!(item.foto || item.video);
+  }
+
   // el feed se ordena con el mismo algoritmo que antes alimentaba "Para ti":
   // combina lo que el cliente ha mirado/buscado en este teléfono + la hora del día,
   // pero MEZCLANDO subcategorías en vez de dejarlas todas juntas seguidas
   // (si no, "gana" una categoría y toca scrollear 10 bagels seguidos, por ejemplo)
   function itemsForFeed(filter){
     const base = filter === "todos" ? MENU_ITEMS : MENU_ITEMS.filter(it => it.macro === filter);
-    return interleaveByPreference(base);
+    const publicados = base.filter(hasMedia); // solo lo que ya tiene foto o vídeo
+    return interleaveByPreference(publicados);
   }
 
   // agrupa por subcategoría (o macro si no tiene), y reparte turnos tipo
