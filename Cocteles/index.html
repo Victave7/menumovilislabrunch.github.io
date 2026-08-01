@@ -144,6 +144,49 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         },
         {
           "@type": "MenuSection",
+          "name": "Brioche · Nuestra especialidad",
+          "description": "Platos personales de brioche esponjosa, tostada y rellena con combinaciones signature.",
+          "hasMenuItem": [
+            {
+              "@type": "MenuItem",
+              "name": "Revuelto",
+              "description": "Brioche con huevo revuelto, bacon, cebolla frita crujiente y salsa peach chipotle mayo.",
+              "offers": { "@type": "Offer", "price": "8.90", "priceCurrency": "EUR" }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Serranito Brioche",
+              "description": "Brioche, queso crema con ajo, jamón serrano, mozzarella, tomate cherry y miel.",
+              "offers": { "@type": "Offer", "price": "9.90", "priceCurrency": "EUR" }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Fru Creation",
+              "description": "Brioche con aguacate, huevo revuelto, tomate cherry y un toque de miel picante.",
+              "offers": { "@type": "Offer", "price": "8.90", "priceCurrency": "EUR" }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Nordic Brioche",
+              "description": "Brioche con salmón ahumado, queso crema y rúcula.",
+              "offers": { "@type": "Offer", "price": "9.50", "priceCurrency": "EUR" }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Brioche York Deluxe",
+              "description": "Pan brioche, jamón York, huevo revuelto, mozzarella y salsa Isla.",
+              "offers": { "@type": "Offer", "price": "9.00", "priceCurrency": "EUR" }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Island Chicken Brioche",
+              "description": "Pan brioche con pechuga de pollo a la plancha, mozzarella, bacon crujiente, tomate cherry y salsa Isla.",
+              "offers": { "@type": "Offer", "price": "9.90", "priceCurrency": "EUR" }
+            }
+          ]
+        },
+        {
+          "@type": "MenuSection",
           "name": "Cócteles tropicales",
           "hasMenuItem": [
             {
@@ -434,6 +477,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 "price": "2.80",
                 "priceCurrency": "EUR"
               }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Radler Tropical",
+              "description": "Cerveza Estrella Galicia · Limonada · Zumo de lima · Hielo",
+              "offers": { "@type": "Offer", "price": "5.50", "priceCurrency": "EUR" }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Beer Margarita",
+              "description": "Cerveza Estrella Galicia · Tequila · Triple Sec · Zumo de lima · Sirope de agave · Hielo · Borde de sal",
+              "offers": { "@type": "Offer", "price": "7.50", "priceCurrency": "EUR" }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Michelada de Mango",
+              "description": "Cerveza Estrella Galicia · Puré de mango · Zumo de lima · Salsa Worcestershire · Salsa picante · Tajín · Sal · Hielo",
+              "offers": { "@type": "Offer", "price": "6.90", "priceCurrency": "EUR" }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Chelada Tropical",
+              "description": "Cerveza Estrella Galicia · Zumo de lima · Sal marina · Hielo · Borde de sal",
+              "offers": { "@type": "Offer", "price": "5.90", "priceCurrency": "EUR" }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Beer Mojito",
+              "description": "Cerveza Estrella Galicia · Zumo de lima · Hierbabuena fresca · Azúcar de caña líquido · Hielo",
+              "offers": { "@type": "Offer", "price": "6.50", "priceCurrency": "EUR" }
             }
           ]
         },
@@ -631,6 +704,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     transition: all .2s ease;
   }
   .langswitch button.active{
+    color:var(--night);
+    background:var(--gold);
+  }
+
+  .navgroups{
+    display:flex;
+    gap:6px;
+    background:rgba(18,56,50,0.55);
+    border:1px solid var(--panel-line);
+    border-radius:100px;
+    padding:4px;
+  }
+  .navgroups button{
+    flex:1;
+    font-family:inherit;
+    font-size:12.5px;
+    font-weight:700;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    background:transparent;
+    border:none;
+    border-radius:100px;
+    padding:9px 10px;
+    color:var(--sea);
+    cursor:pointer;
+    transition: all .25s ease;
+  }
+  .navgroups button.active{
     color:var(--night);
     background:var(--gold);
   }
@@ -888,12 +989,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button data-lang="fr">FR</button>
       </div>
     </div>
+    <nav class="navgroups" id="navgroups">
+      <button type="button" class="navgroup-btn active" data-group="drinks" data-i18n="navgroup_drinks">🍹 Coctelería</button>
+      <button type="button" class="navgroup-btn" data-group="food" data-i18n="navgroup_food">🍽️ Cocina</button>
+    </nav>
     <nav class="navpills" id="navpills">
-      <button type="button" class="active" data-target="firmas" data-i18n="nav_firmas">Firmas Don Julio</button>
-      <button type="button" data-target="tropicales" data-i18n="nav_tropicales">Tropicales</button>
-      <button type="button" data-target="mojitos" data-i18n="nav_mojitos">Mojitos</button>
-      <button type="button" data-target="cervezas" data-i18n="nav_cervezas">Cervezas</button>
-      <button type="button" data-target="compartir" data-i18n="nav_compartir">Para compartir</button>
+      <button type="button" class="active" data-group="drinks" data-target="firmas" data-i18n="nav_firmas">Firmas Don Julio</button>
+      <button type="button" data-group="drinks" data-target="tropicales" data-i18n="nav_tropicales">Tropicales</button>
+      <button type="button" data-group="drinks" data-target="mojitos" data-i18n="nav_mojitos">Mojitos</button>
+      <button type="button" data-group="drinks" data-target="cervezas" data-i18n="nav_cervezas">Cervezas</button>
+      <button type="button" data-group="food" data-target="brioche" data-i18n="nav_brioche">🍞 Brioche</button>
+      <button type="button" data-group="food" data-target="compartir" data-i18n="nav_compartir">Centro de Mesa</button>
     </nav>
   </div>
 </div>
@@ -906,9 +1012,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <path d="M100 250 C95 180 60 140 15 110 C55 120 85 145 100 190 C100 140 80 95 40 55 C85 70 105 110 108 155 C118 105 115 60 90 15 C130 45 135 100 118 150 C140 115 165 100 195 95 C160 130 140 165 128 200 C118 225 108 240 100 250Z" stroke="#C9A24B" stroke-width="1.2" fill="none"/>
   </svg>
   <div class="hero-content">
-    <p class="eyebrow" data-i18n="hero_eyebrow">Isla Brunch Bar · Coctelería</p>
+    <p class="eyebrow" data-i18n="hero_eyebrow">Isla Brunch Bar · Cena &amp; Coctelería</p>
     <h1 data-i18n-html="hero_h1">Sabor de <em>isla</em>,<br>ritmo de bar.</h1>
-    <p class="sub" data-i18n="hero_sub">Tequila Don Julio, ron oscuro y fruta de verdad — cada copa con un pie en el trópico y otro en la barra de alto standing.</p>
+    <p class="sub" data-i18n="hero_sub">Brioche signature, tequila Don Julio y fruta de verdad  cada mesa con un pie en la cena y otro en la barra de alto standing.</p>
   </div>
 </header>
 
@@ -994,6 +1100,100 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <svg class="shoreline" viewBox="0 0 400 34" preserveAspectRatio="none">
     <path d="M0 17 Q 25 32, 50 17 T 100 17 T 150 17 T 200 17 T 250 17 T 300 17 T 350 17 T 400 17"/>
+  </svg>
+
+  <section class="menu" id="brioche">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow-num" data-i18n="sec_brioche_eyebrow">Nuestra especialidad · Platos personales</p>
+        <h2 data-i18n="sec_brioche_title">Brioche</h2>
+      </div>
+    </div>
+    <p class="section-note" data-i18n="sec_brioche_note">Nuestro clásico de la casa: brioche esponjosa, tostada y rellena con nuestras combinaciones signature. Platos pensados para una persona.</p>
+
+    <div class="card featured">
+      <span class="badge-top">🏝️ <span data-i18n="badge_reco_isla">Recomendación de la Isla</span></span>
+      <div class="card-row">
+        <img class="thumb" src="img/revuelto-brioche.jpg" alt="Revuelto" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Revuelto</h3><span class="price">8,90 €</span></div>
+          <p class="ingredients" data-i18n="desc_revuelto-brioche">Brioche con huevo revuelto, bacon, cebolla frita crujiente y salsa peach chipotle mayo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card featured">
+      <span class="badge-top">⭐ <span data-i18n="badge_favorito_isla">Favorito ISLA</span></span>
+      <div class="card-row">
+        <img class="thumb" src="img/serranito-brioche.jpg" alt="Serranito Brioche" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Serranito Brioche</h3><span class="price">9,90 €</span></div>
+          <p class="ingredients" data-i18n="desc_serranito-brioche">Brioche, queso crema con ajo, jamón serrano, mozzarella, tomate cherry y miel.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/fru-creation.jpg" alt="Fru Creation" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Fru Creation</h3><span class="price">8,90 €</span></div>
+          <p class="ingredients" data-i18n="desc_fru-creation">Brioche con aguacate, huevo revuelto, tomate cherry y un toque de miel picante.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/nordic-brioche.jpg" alt="Nordic Brioche" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Nordic Brioche</h3><span class="price">9,50 €</span></div>
+          <p class="ingredients" data-i18n="desc_nordic-brioche">Brioche con salmón ahumado, queso crema y rúcula.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/brioche-york-deluxe.jpg" alt="Brioche York Deluxe" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Brioche York Deluxe</h3><span class="price">9,00 €</span></div>
+          <p class="ingredients" data-i18n="desc_brioche-york-deluxe">Pan brioche, jamón York, huevo revuelto, mozzarella y salsa Isla.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card featured">
+      <span class="badge-top">🆕 <span data-i18n="badge_nuevo">Nuevo</span></span>
+      <div class="card-row">
+        <img class="thumb" src="img/island-chicken-brioche.jpg" alt="Island Chicken Brioche" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>Island Chicken Brioche</h3><span class="price">9,90 €</span></div>
+          <p class="ingredients" data-i18n="desc_island-chicken-brioche">Pan brioche con pechuga de pollo a la plancha, mozzarella, bacon crujiente, tomate cherry y salsa Isla.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-note" data-i18n="sec_brioche_upgrade" style="margin-top:4px;">🌶️ Cambia tu salsa a Peach Spicy o a Miel Picante Pro por +0,50 € cada una.</p>
+
+    <div class="section-head" style="margin:34px 0 10px;">
+      <div>
+        <p class="eyebrow-num" data-i18n="sec_extras_eyebrow">✨ Personaliza tu brioche</p>
+        <h2 style="font-size:19px;" data-i18n="sec_extras_title">Añade extra de ingredientes</h2>
+      </div>
+    </div>
+    <div class="simple-list">
+      <div class="simple-row"><span>🥓 <span data-i18n="extra_bacon">Extra bacon</span></span><span class="price">2,50 €</span></div>
+      <div class="simple-row"><span>🧅 <span data-i18n="extra_cebolla">Cebolla frita crujiente</span></span><span class="price">0,80 €</span></div>
+      <div class="simple-row"><span>🥑 <span data-i18n="extra_aguacate">Aguacate</span></span><span class="price">2,10 €</span></div>
+      <div class="simple-row"><span>🍳 <span data-i18n="extra_huevo">Huevo revuelto</span></span><span class="price">1,50 €</span></div>
+      <div class="simple-row"><span>🍯 <span data-i18n="extra_miel">Miel</span></span><span class="price">0,50 €</span></div>
+      <div class="simple-row"><span>🌶️ <span data-i18n="extra_miel_picante">Miel picante</span></span><span class="price">0,90 €</span></div>
+    </div>
+  </section>
+
+  <svg class="shoreline" viewBox="0 0 400 34" preserveAspectRatio="none">
+    <path d="M0 17 Q 25 2, 50 17 T 100 17 T 150 17 T 200 17 T 250 17 T 300 17 T 350 17 T 400 17"/>
   </svg>
 
   <section class="menu" id="tropicales">
@@ -1192,6 +1392,63 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="simple-row"><span>Estrella Galicia Tostada Sin Gluten</span><span class="price">3,00 €</span></div>
       <div class="simple-row"><span data-i18n="cerveza_canas">Cañas</span><span class="price">2,80 €</span></div>
     </div>
+
+    <div class="section-head" style="margin:34px 0 10px;">
+      <div>
+        <p class="eyebrow-num" data-i18n="sec_cervezas_esp_eyebrow">🍺 Con un toque distinto</p>
+        <h2 style="font-size:19px;" data-i18n="sec_cervezas_esp_title">Cervezas Especiales</h2>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/radler-tropical.jpg" alt="Radler Tropical" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>🍋 Radler Tropical</h3><span class="price">5,50 €</span></div>
+          <p class="ingredients" data-i18n="ing_radler-tropical">Cerveza Estrella Galicia · Limonada · Zumo de lima · Hielo</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/beer-margarita.jpg" alt="Beer Margarita" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>🍹 Beer Margarita</h3><span class="price">7,50 €</span></div>
+          <p class="ingredients" data-i18n="ing_beer-margarita">Cerveza Estrella Galicia · Tequila · Triple Sec · Zumo de lima · Sirope de agave · Hielo · Borde de sal</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/michelada-mango.jpg" alt="Michelada de Mango" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>🥭 Michelada de Mango</h3><span class="price">6,90 €</span></div>
+          <p class="ingredients" data-i18n="ing_michelada-mango">Cerveza Estrella Galicia · Puré de mango · Zumo de lima · Salsa Worcestershire · Salsa picante · Tajín · Sal · Hielo</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/chelada-tropical.jpg" alt="Chelada Tropical" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>🍋 Chelada Tropical</h3><span class="price">5,90 €</span></div>
+          <p class="ingredients" data-i18n="ing_chelada-tropical">Cerveza Estrella Galicia · Zumo de lima · Sal marina · Hielo · Borde de sal</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-row">
+        <img class="thumb" src="img/beer-mojito.jpg" alt="Beer Mojito" onerror="this.remove()">
+        <div class="card-info">
+          <div class="card-top"><h3>🌿 Beer Mojito</h3><span class="price">6,50 €</span></div>
+          <p class="ingredients" data-i18n="ing_beer-mojito">Cerveza Estrella Galicia · Zumo de lima · Hierbabuena fresca · Azúcar de caña líquido · Hielo</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <svg class="shoreline" viewBox="0 0 400 34" preserveAspectRatio="none">
@@ -1201,11 +1458,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="menu" id="compartir">
     <div class="section-head">
       <div>
-        <p class="eyebrow-num" data-i18n="sec_compartir_eyebrow">Para acompañar la copa</p>
-        <h2 data-i18n="sec_compartir_title">Para compartir</h2>
+        <p class="eyebrow-num" data-i18n="sec_compartir_eyebrow">Cocina · Del plato de todos</p>
+        <h2 data-i18n="sec_compartir_title">Centro de Mesa</h2>
       </div>
     </div>
-    <p class="section-note" data-i18n="sec_compartir_note">Los platos perfectos para poner en el centro de la mesa mientras cae la noche.</p>
+    <p class="section-note" data-i18n="sec_compartir_note">Platos pensados para el centro de la mesa: se sirven en uno solo y se comen entre varios, directamente de ahí. Solos o junto al brioche.</p>
 
     <div class="card featured">
       <span class="badge-top">🔥 <span data-i18n="badge_top_seller">Más pedido</span></span>
@@ -1296,16 +1553,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // ---------- i18n ----------
   const translations = {
     en: {
+      navgroup_drinks: "🍹 Cocktails",
+      navgroup_food: "🍽️ Kitchen",
       nav_firmas: "Don Julio Signatures",
+      nav_brioche: "🍞 Brioche",
       nav_tropicales: "Tropical",
       nav_mojitos: "Mojitos",
       nav_cervezas: "Beers",
-      hero_eyebrow: "Isla Brunch Bar · Cocktail Menu",
+      hero_eyebrow: "Isla Brunch Bar · Dinner & Cocktails",
       hero_h1: "Island flavor,<br>bar rhythm.",
-      hero_sub: "Don Julio tequila, dark rum and real fruit — every glass with one foot in the tropics and the other at a high-end bar.",
+      hero_sub: "Signature brioche, Don Julio tequila and real fruit — every table with one foot in dinner and the other at a high-end bar.",
       sec_firmas_eyebrow: "Collection",
       sec_firmas_title: "Don Julio Signatures",
       sec_firmas_note: "Our flagship selection made with Don Julio Tequila, in different expressions.",
+      sec_brioche_eyebrow: "Our specialty · Personal dishes",
+      sec_brioche_title: "Brioche",
+      sec_brioche_note: "Our house classic: fluffy, toasted brioche filled with our signature combinations. Dishes made for one.",
+      sec_brioche_upgrade: "🌶️ Swap your sauce for Peach Spicy or Miel Picante Pro for +€0.50 each.",
+      sec_extras_eyebrow: "✨ Customize your brioche",
+      sec_extras_title: "Add extra ingredients",
+      badge_reco_isla: "Isla Recommendation",
+      badge_favorito_isla: "ISLA Favorite",
+      badge_nuevo: "New",
+      "desc_revuelto-brioche": "Brioche with scrambled egg, bacon, crispy fried onion and peach chipotle mayo sauce.",
+      "desc_serranito-brioche": "Brioche, garlic cream cheese, Serrano ham, mozzarella, cherry tomato and honey.",
+      "desc_fru-creation": "Brioche with avocado, scrambled egg, cherry tomato and a touch of spicy honey.",
+      "desc_nordic-brioche": "Brioche with smoked salmon, cream cheese and arugula.",
+      "desc_brioche-york-deluxe": "Brioche bread, York ham, scrambled egg, mozzarella and Isla sauce.",
+      "desc_island-chicken-brioche": "Brioche bread with grilled chicken breast, mozzarella, crispy bacon, cherry tomato and Isla sauce.",
+      extra_bacon: "Extra bacon",
+      extra_cebolla: "Crispy fried onion",
+      extra_aguacate: "Avocado",
+      extra_huevo: "Scrambled egg",
+      extra_miel: "Honey",
+      extra_miel_picante: "Spicy honey",
       sec_tropicales_eyebrow: "The bar",
       sec_tropicales_title: "Tropical Cocktails",
       sec_mojitos_eyebrow: "Rum, lime & mint",
@@ -1313,10 +1594,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       sec_mojitos_note: "Made with natural island fruit — pick your flavor.",
       sec_cervezas_eyebrow: "Draft & bottle",
       sec_cervezas_title: "Beers",
-      sec_compartir_eyebrow: "To go with your drink",
-      sec_compartir_title: "To share",
-      sec_compartir_note: "The perfect dishes to place in the middle of the table as night falls.",
-      nav_compartir: "To share",
+      sec_compartir_eyebrow: "Kitchen · One plate, everyone digs in",
+      sec_compartir_title: "Table Center",
+      sec_compartir_note: "Dishes made for the middle of the table: one plate, shared by everyone straight from it. On their own or alongside the brioche.",
+      nav_compartir: "Table Center",
       badge_top_seller: "Best seller",
       badge_island_signature: "Island Signature",
       "desc_provolone-isla": "Melted provolone cheese with spices and toasted bread for dipping.",
@@ -1334,6 +1615,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       mojito_fresa: "Strawberry",
       mojito_pina: "Pineapple",
       cerveza_canas: "Draft beer",
+      sec_cervezas_esp_eyebrow: "🍺 With a twist",
+      sec_cervezas_esp_title: "Specialty Beers",
+      "ing_radler-tropical": "Estrella Galicia beer · Lemonade · Lime juice · Ice",
+      "ing_beer-margarita": "Estrella Galicia beer · Tequila · Triple Sec · Lime juice · Agave syrup · Ice · Salt rim",
+      "ing_michelada-mango": "Estrella Galicia beer · Mango purée · Lime juice · Worcestershire sauce · Hot sauce · Tajín · Salt · Ice",
+      "ing_chelada-tropical": "Estrella Galicia beer · Lime juice · Sea salt · Ice · Salt rim",
+      "ing_beer-mojito": "Estrella Galicia beer · Lime juice · Fresh mint · Liquid cane sugar · Ice",
       "ing_don-julio-palomo-tamarindo": "Don Julio Reposado Tequila · Tamarind · Grapefruit · Lime · Soda",
       "ing_don-july-tamarindo": "Dark rum · Tamarind pulp · Lime · Cane syrup",
       "ing_don-julio-enamorado": "Don Julio Blanco Tequila · Mango · Passion fruit · Lime · Light syrup",
@@ -1359,16 +1647,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       "ing_papi-ven": "Brugal Rum · Strawberry · Grenadine"
     },
     fr: {
+      navgroup_drinks: "🍹 Cocktails",
+      navgroup_food: "🍽️ Cuisine",
       nav_firmas: "Signatures Don Julio",
+      nav_brioche: "🍞 Brioche",
       nav_tropicales: "Tropicaux",
       nav_mojitos: "Mojitos",
       nav_cervezas: "Bières",
-      hero_eyebrow: "Isla Brunch Bar · Carte des cocktails",
+      hero_eyebrow: "Isla Brunch Bar · Dîner & Cocktails",
       hero_h1: "Saveur d'île,<br>rythme de bar.",
-      hero_sub: "Tequila Don Julio, rhum brun et vrais fruits — chaque verre a un pied dans les tropiques et l'autre dans un bar haut de gamme.",
+      hero_sub: "Brioche signature, tequila Don Julio et vrais fruits — chaque table a un pied dans le dîner et l'autre dans un bar haut de gamme.",
       sec_firmas_eyebrow: "Collection",
       sec_firmas_title: "Signatures Don Julio",
       sec_firmas_note: "Notre sélection phare à base de Tequila Don Julio, en différentes expressions.",
+      sec_brioche_eyebrow: "Notre spécialité · Plats individuels",
+      sec_brioche_title: "Brioche",
+      sec_brioche_note: "Notre classique maison : brioche moelleuse, toastée et garnie de nos combinaisons signature. Des plats pensés pour une personne.",
+      sec_brioche_upgrade: "🌶️ Passez à la sauce Peach Spicy ou Miel Picante Pro pour +0,50 € chacune.",
+      sec_extras_eyebrow: "✨ Personnalisez votre brioche",
+      sec_extras_title: "Ajoutez des ingrédients en plus",
+      badge_reco_isla: "Recommandation de l'île",
+      badge_favorito_isla: "Favori ISLA",
+      badge_nuevo: "Nouveau",
+      "desc_revuelto-brioche": "Brioche avec œufs brouillés, bacon, oignon frit croustillant et sauce peach chipotle mayo.",
+      "desc_serranito-brioche": "Brioche, crème de fromage à l'ail, jambon serrano, mozzarella, tomate cerise et miel.",
+      "desc_fru-creation": "Brioche avec avocat, œufs brouillés, tomate cerise et une touche de miel épicé.",
+      "desc_nordic-brioche": "Brioche avec saumon fumé, crème de fromage et roquette.",
+      "desc_brioche-york-deluxe": "Pain brioche, jambon blanc, œufs brouillés, mozzarella et sauce Isla.",
+      "desc_island-chicken-brioche": "Pain brioche avec blanc de poulet grillé, mozzarella, bacon croustillant, tomate cerise et sauce Isla.",
+      extra_bacon: "Supplément bacon",
+      extra_cebolla: "Oignon frit croustillant",
+      extra_aguacate: "Avocat",
+      extra_huevo: "Œufs brouillés",
+      extra_miel: "Miel",
+      extra_miel_picante: "Miel épicé",
       sec_tropicales_eyebrow: "Le bar",
       sec_tropicales_title: "Cocktails tropicaux",
       sec_mojitos_eyebrow: "Rhum, citron vert et menthe",
@@ -1376,10 +1688,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       sec_mojitos_note: "Avec des fruits naturels de l'île, au choix.",
       sec_cervezas_eyebrow: "Pression et bouteille",
       sec_cervezas_title: "Bières",
-      sec_compartir_eyebrow: "Pour accompagner le verre",
-      sec_compartir_title: "À partager",
-      sec_compartir_note: "Les plats parfaits à poser au centre de la table quand la nuit tombe.",
-      nav_compartir: "À partager",
+      sec_compartir_eyebrow: "Cuisine · Un plat, tout le monde pioche",
+      sec_compartir_title: "Centre de Table",
+      sec_compartir_note: "Des plats pensés pour le centre de la table : un seul plat, partagé à plusieurs directement dedans. Seuls ou avec la brioche.",
+      nav_compartir: "Centre de Table",
       badge_top_seller: "Le plus demandé",
       badge_island_signature: "Signature de l'île",
       "desc_provolone-isla": "Fromage provolone fondu aux épices, servi avec du pain grillé à tremper.",
@@ -1397,6 +1709,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       mojito_fresa: "Fraise",
       mojito_pina: "Ananas",
       cerveza_canas: "Bière pression",
+      sec_cervezas_esp_eyebrow: "🍺 Avec une touche différente",
+      sec_cervezas_esp_title: "Bières Spéciales",
+      "ing_radler-tropical": "Bière Estrella Galicia · Limonade · Jus de citron vert · Glace",
+      "ing_beer-margarita": "Bière Estrella Galicia · Tequila · Triple Sec · Jus de citron vert · Sirop d'agave · Glace · Bord salé",
+      "ing_michelada-mango": "Bière Estrella Galicia · Purée de mangue · Jus de citron vert · Sauce Worcestershire · Sauce piquante · Tajín · Sel · Glace",
+      "ing_chelada-tropical": "Bière Estrella Galicia · Jus de citron vert · Sel marin · Glace · Bord salé",
+      "ing_beer-mojito": "Bière Estrella Galicia · Jus de citron vert · Menthe fraîche · Sucre de canne liquide · Glace",
       "ing_don-julio-palomo-tamarindo": "Tequila Don Julio Reposado · Tamarin · Pamplemousse · Citron vert · Soda",
       "ing_don-july-tamarindo": "Rhum brun · Pulpe de tamarin · Citron vert · Sirop de canne",
       "ing_don-julio-enamorado": "Tequila Don Julio Blanco · Mangue · Fruit de la passion · Citron vert · Sirop léger",
@@ -1454,6 +1773,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // ---------- pestañas: mostrar solo la sección activa ----------
   const sections = document.querySelectorAll('section.menu[id]');
   const pills = document.querySelectorAll('.navpills button');
+  const groupBtns = document.querySelectorAll('.navgroup-btn');
 
   function showSection(id, scrollTop) {
     sections.forEach(s => s.classList.toggle('active', s.id === id));
@@ -1468,12 +1788,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     try { history.replaceState(null, '', '#' + id); } catch(e){}
   }
 
+  // Muestra solo las pestañas del grupo elegido (Coctelería / Comida)
+  function showGroup(group) {
+    groupBtns.forEach(b => b.classList.toggle('active', b.dataset.group === group));
+    pills.forEach(p => { p.style.display = (p.dataset.group === group) ? '' : 'none'; });
+    try { localStorage.setItem('isla_group', group); } catch(e){}
+  }
+
   pills.forEach(btn => {
     btn.addEventListener('click', () => showSection(btn.dataset.target));
   });
 
+  groupBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const group = btn.dataset.group;
+      showGroup(group);
+      const firstOfGroup = Array.from(pills).find(p => p.dataset.group === group);
+      if (firstOfGroup) showSection(firstOfGroup.dataset.target);
+    });
+  });
+
   const startId = (location.hash || '').replace('#', '');
   const validStart = Array.from(sections).some(s => s.id === startId) ? startId : (sections[0]?.id || 'firmas');
+  const startPill = Array.from(pills).find(p => p.dataset.target === validStart);
+  showGroup(startPill ? startPill.dataset.group : 'drinks');
   showSection(validStart, false);
 
   // ---------- revelado suave de las tarjetas al abrir una pestaña ----------
