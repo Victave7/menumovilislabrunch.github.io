@@ -233,6 +233,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   --night-text: #F5EFE6;
   --night-accent: #B79AE0;
   --night-gold: #E0A93B;
+
+  /* Mismo vocabulario de movimiento que el resto del sitio */
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -269,7 +273,7 @@ button { font-family: inherit; }
   font-size: 13px;
   font-weight: 500;
   z-index: 100;
-  transition: top 0.2s ease;
+  transition: top 0.2s var(--ease-out);
 }
 .skip-link:focus { top: 12px; }
 
@@ -288,7 +292,15 @@ button { font-family: inherit; }
   justify-content: center;
   padding: 8vh 6vw 12vh;
   overflow: hidden;
-  transition: flex-grow 0.6s ease;
+  transition: flex-grow 0.5s var(--ease-in-out);
+}
+
+/* El panel que sobrevuelas gana un poco de espacio — solo con puntero fino
+   y solo si no se ha pedido movimiento reducido (es un desplazamiento de
+   layout, no un simple cambio de color). En táctil no aporta nada porque
+   el tap navega de inmediato a la página de destino. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .panel:hover { flex-grow: 1.15; }
 }
 
 .panel-day {
@@ -323,7 +335,7 @@ button { font-family: inherit; }
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 500;
-  opacity: 0.75;
+  opacity: 0.9;
   margin-bottom: 10px;
 }
 .panel-day .panel-eyebrow { color: var(--day-accent); }
@@ -359,10 +371,12 @@ button { font-family: inherit; }
 }
 .panel-day .panel-cta { color: var(--day-accent); }
 .panel-night .panel-cta { color: var(--night-accent); }
-.panel:hover .panel-cta,
 .panel:focus-visible .panel-cta { transform: translateY(-2px); }
-.panel-day:hover .panel-cta { background: var(--day-accent); color: var(--day-3); }
-.panel-night:hover .panel-cta { background: var(--night-accent); color: var(--night-3); }
+@media (hover: hover) and (pointer: fine) {
+  .panel:hover .panel-cta { transform: translateY(-2px); }
+  .panel-day:hover .panel-cta { background: var(--day-accent); color: var(--day-3); }
+  .panel-night:hover .panel-cta { background: var(--night-accent); color: var(--night-3); }
+}
 
 .panel-status {
   margin-top: 16px;
@@ -374,7 +388,7 @@ button { font-family: inherit; }
   text-transform: uppercase;
   opacity: 0;
   transform: translateY(4px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
 }
 .panel-status i {
   width: 6px; height: 6px; border-radius: 50%;
@@ -585,9 +599,13 @@ button { font-family: inherit; }
   color: var(--day-accent);
   transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
 }
-.seo-btn:hover, .seo-btn:focus-visible { transform: translateY(-2px); background: var(--day-accent); color: var(--cream); }
+.seo-btn:focus-visible { transform: translateY(-2px); background: var(--day-accent); color: var(--cream); }
 .seo-btn-alt { border-color: var(--night-accent); color: #6B4FA0; }
-.seo-btn-alt:hover, .seo-btn-alt:focus-visible { background: #6B4FA0; color: var(--cream); }
+.seo-btn-alt:focus-visible { background: #6B4FA0; color: var(--cream); }
+@media (hover: hover) and (pointer: fine) {
+  .seo-btn:hover { transform: translateY(-2px); background: var(--day-accent); color: var(--cream); }
+  .seo-btn-alt:hover { background: #6B4FA0; color: var(--cream); }
+}
 
 .seo-location {
   max-width: 560px;
@@ -648,7 +666,7 @@ button { font-family: inherit; }
   content: '+';
   font-size: 18px;
   flex-shrink: 0;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s var(--ease-in-out);
   color: var(--day-accent);
 }
 .seo-faq details[open] summary::after { transform: rotate(45deg); }
@@ -681,11 +699,13 @@ button { font-family: inherit; }
   border: 1px solid rgba(245,239,230,0.3);
   color: var(--night-text);
   border-radius: 999px;
-  padding: 4px 10px;
+  padding: 8px 12px;
   font-size: 11px;
   cursor: pointer;
   opacity: 0.75;
+  transition: opacity .2s, background .2s, transform .15s var(--ease-out);
 }
+.lang-btn:active { transform: scale(0.94); }
 .lang-btn.on { opacity: 1; background: rgba(245,239,230,0.14); }
 .lang-btn:focus-visible, .panel:focus-visible, .seo-btn:focus-visible, .seo-faq summary:focus-visible { outline: 2px solid var(--night-gold); outline-offset: 3px; }
 
@@ -698,6 +718,23 @@ button { font-family: inherit; }
   .seam { width: 60px; }
   .seam-badge { width: 60px; height: 60px; }
   .seam-badge svg { width: 36px; }
+}
+
+/* ══════════ Mobile: apilado en vez de partido en dos ══════════
+   Con las dos mitades lado a lado, en un móvil cada franja queda en
+   una columna de ~185px de ancho — el titular italic grande (p.ej.
+   "Cenar y Cócteles de autor") se aprieta y pierde presencia. Como
+   el 100% del tráfico es móvil, cada franja pasa a ocupar toda la
+   pantalla (una debajo de otra), y la costura central se convierte
+   en un divisor horizontal con el mismo medallón ISLA superpuesto. */
+@media (max-width: 700px) {
+  .split { flex-direction: column; }
+  .panel { flex: none; width: 100%; min-height: 100dvh; }
+  .panel-day   { order: 1; }
+  .seam        { order: 2; position: static; width: 100%; height: 72px; margin: -36px 0; z-index: 5; display: flex; align-items: center; justify-content: center; }
+  .seam > svg  { display: none; }
+  .seam-badge  { position: static; transform: none; }
+  .panel-night { order: 3; }
 }
 </style>
 </head>
@@ -754,8 +791,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="panel-content">
       <p class="panel-eyebrow" data-en="By night" data-fr="Le soir">De noche</p>
-      <h2 class="panel-title" data-en="Dinner &amp; Cocktails" data-fr="Dîner &amp; Cocktails">Cenar y Cócteles de autor</h2>
-      <p class="panel-sub" data-en="Signature cocktails and tardeo — ISLA transforms when the sun goes down." data-fr="Cocktails signature et tardeo  ISLA se transforme au coucher du soleil.">Cócteles de autor y tardeo  ISLA se transforma cuando cae el sol.</p>
+      <h2 class="panel-title" id="nightTitle" data-en="Dinner &amp; Cocktails" data-fr="Dîner &amp; Cocktails">Cenar y Cócteles de autor</h2>
+      <p class="panel-sub" id="nightSub" data-en="Signature cocktails and tardeo — ISLA transforms when the sun goes down." data-fr="Cocktails signature et tardeo  ISLA se transforme au coucher du soleil.">Cócteles de autor y tardeo  ISLA se transforma cuando cae el sol.</p>
       <span class="panel-cta" data-en="See the cocktail list →" data-fr="Voir la carte cocktails →">Ver la carta →</span>
     </div>
   </a>
@@ -922,6 +959,26 @@ const NIGHT_START = 17; // a partir de esta hora se resalta "Cócteles"
   const hour = new Date().getHours();
   const isNight = hour >= NIGHT_START || hour < DAY_START;
   document.getElementById('split').classList.add(isNight ? 'now-night' : 'now-day');
+})();
+
+// ══════════ Título de la franja de noche: tapeo antes de la cena ══════════
+// Antes de esta hora se habla de tapas/coctelería (engancha con el SEO de
+// "tapear"); a partir de esta hora, de cena — mismo patrón que arriba.
+const DINNER_START = 18;
+
+(function () {
+  const hour = new Date().getHours();
+  const titleEl = document.getElementById('nightTitle');
+  const subEl = document.getElementById('nightSub');
+  if (!titleEl || !subEl || hour >= DINNER_START) return; // de 18h en adelante se queda el texto de cena que ya trae el HTML
+
+  titleEl.textContent = 'Tapas y Coctelería';
+  titleEl.setAttribute('data-en', 'Tapas & Cocktails');
+  titleEl.setAttribute('data-fr', 'Tapas & Cocktails');
+
+  subEl.textContent = 'Tapeo, cócteles de autor y tardeo en el centro de Elche.';
+  subEl.setAttribute('data-en', 'Tapas, signature cocktails and tardeo in the heart of Elche.');
+  subEl.setAttribute('data-fr', "Tapas, cocktails signature et tardeo au cœur d'Elche.");
 })();
 
 // ══════════ Idioma ES / EN / FR (mismo patrón que la carta) ══════════

@@ -64,6 +64,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   --shadow-sm:  0 2px 10px rgba(0,0,0,0.06);
   --shadow-md:  0 4px 20px rgba(0,0,0,0.09);
   --r:          14px;
+
+  /* Curvas de easing — un único vocabulario de movimiento para todo el sitio.
+     ease-out fuerte para entradas/feedback (arranca rápido, se siente inmediato);
+     ease-in-out para elementos que se desplazan en pantalla (acordeón).
+     Nunca ease-in: retrasa el movimiento justo cuando el usuario más lo mira. */
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -84,6 +91,7 @@ body {
   font-family: 'Jost', sans-serif;
   background: radial-gradient(ellipse 900px 500px at 50% -8%, #FFFEFB 0%, var(--cream) 60%);
   color: var(--text);
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -143,7 +151,7 @@ button, a { font-family: inherit; }
   backdrop-filter: blur(2px);
   transition: background 0.2s ease, border-color 0.2s ease;
 }
-.cocktail-link:hover, .cocktail-link:focus-visible {
+.cocktail-link:focus-visible {
   background: rgba(255,255,255,0.85);
   border-color: var(--bark-mid);
 }
@@ -234,16 +242,15 @@ button, a { font-family: inherit; }
   font-size: 10.5px;
   font-weight: 600;
   letter-spacing: 0.08em;
-  padding: 4px 14px;
+  padding: 9px 14px;
   border-radius: 20px;
   border: 1px solid var(--divider);
   background: var(--cream);
   color: var(--muted);
   cursor: pointer;
-  transition: background .18s, color .18s, border-color .18s;
+  /* transición consolidada en el bloque de microinteracciones */
 }
 .lang-btn.on { background: var(--bark); color: #fff; border-color: var(--bark); }
-.lang-btn:not(.on):hover { border-color: var(--bark-light); color: var(--bark); }
 
 /* ── STICKY NAV ── */
 .nav-wrap {
@@ -311,7 +318,8 @@ button, a { font-family: inherit; }
   border-radius: 22px;
   cursor: pointer;
   white-space: nowrap;
-  transition: all .18s;
+  /* La transición real vive en el bloque de microinteracciones (única fuente de verdad,
+     evita dos declaraciones "transition" en cascada compitiendo por las mismas propiedades) */
 }
 .sub-tab.on {
   background: var(--green);
@@ -335,7 +343,7 @@ button, a { font-family: inherit; }
 .page { display: none; padding: 1.4rem 1rem 5rem; }
 .page.on { display: block; }
 @media (prefers-reduced-motion: no-preference) {
-  .page.on { animation: pageIn .4s ease; }
+  .page.on { animation: pageIn .22s var(--ease-out); }
   @keyframes pageIn {
     from { opacity: 0; transform: translateY(6px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -449,7 +457,6 @@ button, a { font-family: inherit; }
   position: relative;
 }
 .card:active { transform: scale(0.99); }
-.card:hover { box-shadow: var(--shadow-md); }
 
 .card-row {
   display: flex;
@@ -493,7 +500,7 @@ button, a { font-family: inherit; }
   border-color: rgba(45,106,63,0.18);
 }
 .card-mat .item-name { color: var(--green); }
-.card-mat .item-price { color: var(--green-lt); }
+.card-mat .item-price { color: #3F7A4F; } /* verde algo más oscuro que --green-lt: pasa de 3.7:1 a 4.5:1+ sobre --green-bg */
 
 /* ── TARJETA CUTE (rosa pastel) ── */
 .card-cute {
@@ -536,7 +543,7 @@ button, a { font-family: inherit; }
   border-left: 4px solid var(--copper-dark);
   box-shadow: 0 2px 10px rgba(168,103,30,0.16);
 }
-.card-gold:hover { box-shadow: 0 4px 18px rgba(168,103,30,0.32); }
+
 .card-gold.card-hero { border-left: 4px solid var(--copper-dark); }
 .card-gold .item-name { color: var(--copper-dark); }
 
@@ -639,7 +646,7 @@ button, a { font-family: inherit; }
   gap: 9px;
   transition: box-shadow .2s, border-color .2s;
 }
-.fruit-card:hover { box-shadow: var(--shadow-sm); border-color: var(--bark-light); }
+
 .fruit-icon {
   flex: 0 0 auto;
   width: 32px;
@@ -698,7 +705,7 @@ button, a { font-family: inherit; }
   gap: 9px;
   transition: box-shadow .2s, border-color .2s;
 }
-.foam-card:hover { box-shadow: var(--shadow-sm); border-color: var(--bark-light); }
+
 .foam-card.premium { background: linear-gradient(135deg, #FDF6EE 0%, #F5E8D3 100%); border-color: rgba(196,151,106,0.4); }
 .foam-icon {
   flex: 0 0 auto;
@@ -771,13 +778,13 @@ button, a { font-family: inherit; }
   justify-content: center;
   font-size: 12px;
   color: var(--bark-mid);
-  transition: transform .3s cubic-bezier(.4,0,.2,1);
+  transition: transform .3s var(--ease-in-out);
 }
 .foam-toggle[aria-expanded="true"] .foam-chevron { transform: rotate(180deg); }
 .foam-panel {
   max-height: 0;
   overflow: hidden;
-  transition: max-height .35s cubic-bezier(.4,0,.2,1);
+  transition: max-height .35s var(--ease-in-out);
 }
 .foam-toggle[aria-expanded="true"] + .foam-panel { max-height: 1000px; }
 .foam-panel-inner { padding: 2px 14px 14px; }
@@ -842,6 +849,114 @@ button, a { font-family: inherit; }
 .pan-price { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 600; color: var(--bark-mid); }
 
 /* ── NOTA CONTEXTUAL ── */
+/* ══════════════════════════════════════════════════════════════
+   MICROINTERACCIONES Y ANIMACIONES
+   Vocabulario de movimiento único: var(--ease-out) / var(--ease-in-out)
+   en todas partes (cohesión — nada de curvas distintas sin motivo).
+   Nada de rebote/overshoot en el feedback de tap: aquí no hay gesto con
+   momentum detrás (Apple reserva el "bounce" para drags/flicks; una
+   pulsación en una pestaña es un estado discreto, no algo que "lanzas").
+   Todo vive dentro de @media (prefers-reduced-motion: no-preference).
+   ══════════════════════════════════════════════════════════════ */
+
+/* Barra de navegación: sombra progresiva al hacer scroll */
+.nav-wrap { transition: box-shadow .25s var(--ease-out); }
+.nav-wrap.scrolled { box-shadow: 0 6px 20px rgba(28,21,16,0.12); }
+
+/* Feedback táctil: responde al instante (pointer-down vía :active), sin
+   rebote, 150ms — dentro del rango 100–160ms para feedback de botón */
+.cat-tab, .sub-tab, .lang-btn, .cocktail-link, .foam-toggle, .foam-toggle-icon {
+  transition: transform .15s var(--ease-out), color .2s, border-color .2s, background .2s, box-shadow .2s;
+}
+.cat-tab:active, .sub-tab:active, .lang-btn:active {
+  transform: scale(0.96);
+}
+.cat-tab.on { transition: color .2s, border-color .2s, background .25s var(--ease-out), transform .15s var(--ease-out); }
+.foam-toggle:active .foam-toggle-icon { transform: scale(0.94); }
+
+/* Tarjetas: el "levitar" al pasar el cursor solo tiene sentido con puntero
+   fino — en táctil, :hover se dispara con el tap y deja el estado "pegado" */
+.card, .fruit-card, .mini-card, .pan-card, .foam-card {
+  transition: box-shadow .2s ease, transform .18s var(--ease-out), border-color .2s;
+}
+@media (hover: hover) and (pointer: fine) {
+  .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .fruit-card:hover, .mini-card:hover, .pan-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); border-color: var(--bark-light); }
+  .foam-card:hover { box-shadow: var(--shadow-sm); border-color: var(--bark-light); }
+  .card-gold:hover { box-shadow: 0 4px 18px rgba(168,103,30,0.32); }
+  .home-card:hover { box-shadow: var(--shadow-md); border-color: var(--bark-light); }
+  .lang-btn:not(.on):hover { border-color: var(--bark-light); color: var(--bark); }
+  .cocktail-link:hover { background: rgba(255,255,255,0.85); border-color: var(--bark-mid); }
+}
+.mini-card:active, .pan-card:active { transform: scale(0.98); }
+
+@media (prefers-reduced-motion: no-preference) {
+
+  /* Entrada de las tarjetas al abrir una categoría/subpestaña. Esto se ve
+     decenas de veces por sesión (cada tap de pestaña), así que se reduce
+     al mínimo indispensable: solo las 3 primeras tarjetas escalonan un
+     pelín, el resto entra junto — evita que se sienta lento o repetitivo
+     de tanto verlo, pero sigue evitando el "pop" brusco sin transición. */
+  .reveal-in {
+    animation: cardReveal .24s var(--ease-out) both;
+    animation-delay: calc(var(--stagger-i, 0) * 18ms);
+  }
+  @keyframes cardReveal {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* El acordeón de foam se abre pocas veces por sesión (no "decenas de
+     veces"), así que aquí sí se permite un stagger algo más presente */
+  .foam-toggle[aria-expanded="true"] + .foam-panel .foam-card {
+    animation: foamCardIn .28s var(--ease-out) both;
+  }
+  .foam-toggle[aria-expanded="true"] + .foam-panel .foam-card:nth-child(1) { animation-delay: 0ms; }
+  .foam-toggle[aria-expanded="true"] + .foam-panel .foam-card:nth-child(2) { animation-delay: 25ms; }
+  .foam-toggle[aria-expanded="true"] + .foam-panel .foam-card:nth-child(3) { animation-delay: 50ms; }
+  .foam-toggle[aria-expanded="true"] + .foam-panel .foam-card:nth-child(4) { animation-delay: 75ms; }
+  .foam-toggle[aria-expanded="true"] + .foam-panel .foam-card:nth-child(5) { animation-delay: 100ms; }
+  .foam-toggle[aria-expanded="true"] + .foam-panel .foam-card:nth-child(6) { animation-delay: 125ms; }
+  @keyframes foamCardIn {
+    from { opacity: 0; transform: translateY(6px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* Cross-fade suave del texto al cambiar de idioma, en vez de un cambio brusco */
+  .root.lang-fade [data-en], .root.lang-fade [data-fr] { transition: opacity .15s ease; opacity: 0.35; }
+
+  /* Hero: momento único de primera carga — aquí sí hay margen para algo
+     más largo y con más presencia (rara vez / primera vez, no repetitivo) */
+  .hero-logo,
+  .hero-logo-copy, .hero-tagline, .hero-duo {
+    animation: heroIn .6s var(--ease-out) both;
+  }
+  .hero-logo-copy { animation-delay: 80ms; }
+  .hero-tagline   { animation-delay: 140ms; }
+  .hero-duo       { animation-delay: 190ms; }
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Badge "Nuevo": un único brillo al aparecer, no un parpadeo infinito */
+  .badge-new {
+    background-size: 200% 100%;
+    animation: badgeShine 1.1s ease-out .3s both;
+  }
+  @keyframes badgeShine {
+    from { background-position: 100% 0; }
+    to   { background-position: 0 0; }
+  }
+
+  /* Chip de idioma activo: mismo vocabulario de movimiento que el resto */
+  .lang-btn.on { animation: settle .2s var(--ease-out); }
+  @keyframes settle {
+    from { transform: scale(0.94); }
+    to   { transform: scale(1); }
+  }
+}
+
 .ctx-note {
   background: var(--sand);
   border-left: 3px solid var(--bark-light);
@@ -887,7 +1002,7 @@ button, a { font-family: inherit; }
   font-family: inherit;
   transition: box-shadow .2s, transform .15s, border-color .2s;
 }
-.home-card:hover { box-shadow: var(--shadow-md); border-color: var(--bark-light); }
+
 .home-card:active { transform: scale(0.99); }
 .home-card-icon {
   flex: 0 0 auto;
@@ -3009,7 +3124,22 @@ function showPage(id) {
     // Scroll to top suavemente
     el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    animateReveal(el);
   }
+}
+
+// Entrada escalonada: las tarjetas de la página recién mostrada aparecen
+// con un breve fundido + desplazamiento, en cascada (máx. 8 pasos de retardo
+// para que listas largas no tarden una eternidad en terminar de aparecer).
+function animateReveal(container) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const items = container.querySelectorAll('.card, .fruit-card, .mini-card, .pan-card');
+  items.forEach((el, i) => {
+    el.classList.remove('reveal-in');
+    void el.offsetWidth; // fuerza reflow para poder reiniciar la animación
+    el.style.setProperty('--stagger-i', Math.min(i, 3));
+    el.classList.add('reveal-in');
+  });
 }
 
 // ══════════ COLD FOAM: plantilla única para los 4 acordeones ══════════
@@ -3064,7 +3194,7 @@ function i18nAttrs(en, fr) {
 
 function renderFoamCard(item) {
   return `<div class="foam-card${item.premium ? ' premium' : ''}">` +
-    `<span class="foam-icon">${item.icon}</span>` +
+    `<span class="foam-icon" aria-hidden="true">${item.icon}</span>` +
     `<span class="foam-info">` +
     `<span class="foam-name"${i18nAttrs(item.en, item.fr)}>${item.es}</span>` +
     `<span class="foam-price">${item.price}</span>` +
@@ -3109,6 +3239,10 @@ function setLang(lang, btn) {
   if (activeBtn) activeBtn.classList.add('on');
   document.documentElement.lang = lang;
 
+  const root = document.querySelector('.root');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (root && !reduceMotion) root.classList.add('lang-fade');
+
   document.querySelectorAll('[data-en], [data-fr]').forEach(el => {
     if (el.classList.contains('i18n-html')) {
       const val = el.getAttribute('data-' + lang + '-html') || el.getAttribute('data-es-html');
@@ -3118,7 +3252,25 @@ function setLang(lang, btn) {
       if (val !== null) el.textContent = val;
     }
   });
+
+  if (root && !reduceMotion) {
+    requestAnimationFrame(() => root.classList.remove('lang-fade'));
+  }
 }
+
+// Sombra progresiva de la barra de navegación al hacer scroll
+(function initScrollShadow() {
+  const navWrap = document.querySelector('.nav-wrap');
+  if (!navWrap) return;
+  let scrolled = false;
+  window.addEventListener('scroll', () => {
+    const shouldScroll = window.scrollY > 6;
+    if (shouldScroll !== scrolled) {
+      scrolled = shouldScroll;
+      navWrap.classList.toggle('scrolled', scrolled);
+    }
+  }, { passive: true });
+})();
 
 // Detecta el idioma del navegador del cliente
 function detectLang() {
@@ -3128,6 +3280,10 @@ function detectLang() {
 
 initI18n();
 setLang(detectLang());
+
+// Entrada animada también para la página Inicio, visible desde la primera carga
+const initialPage = document.getElementById('sec-inicio');
+if (initialPage) animateReveal(initialPage);
 </script>
 </body>
 </html>
