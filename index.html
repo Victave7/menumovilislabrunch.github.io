@@ -43,6 +43,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@600&display=swap" rel="stylesheet">
 
 <!-- ══════════ Datos estructurados (Schema.org) ══════════ -->
 <!-- ⚠️ Revisa y completa: teléfono, código postal y coordenadas GPS exactas antes de publicar -->
@@ -451,15 +452,14 @@ button { font-family: inherit; }
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 76px; height: 76px;
+  width: 104px; height: 104px;
   border-radius: 50%;
-  background: var(--cream);
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 8px 26px rgba(0,0,0,0.35);
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35));
   z-index: 4;
   pointer-events: none;
 }
-.seam-badge svg { width: 46px; height: auto; }
+.seam-badge svg { width: 100%; height: 100%; display: block; }
 
 /* ══════════ Sección SEO (integrada, no estilo blog) ══════════ */
 .seo-section {
@@ -716,26 +716,20 @@ button { font-family: inherit; }
 @media (max-width: 360px) {
   .panel { padding: 7vh 4vw 10vh; }
   .seam { width: 60px; }
-  .seam-badge { width: 60px; height: 60px; }
-  .seam-badge svg { width: 36px; }
+  .seam-badge { width: 76px; height: 76px; }
 }
 
-/* ══════════ Mobile: apilado en vez de partido en dos ══════════
-   Con las dos mitades lado a lado, en un móvil cada franja queda en
-   una columna de ~185px de ancho — el titular italic grande (p.ej.
-   "Cenar y Cócteles de autor") se aprieta y pierde presencia. Como
-   el 100% del tráfico es móvil, cada franja pasa a ocupar toda la
-   pantalla (una debajo de otra), y la costura central se convierte
-   en un divisor horizontal con el mismo medallón ISLA superpuesto. */
-@media (max-width: 700px) {
-  .split { flex-direction: column; }
-  .panel { flex: none; width: 100%; min-height: 100dvh; }
-  .panel-day   { order: 1; }
-  .seam        { order: 2; position: static; width: 100%; height: 72px; margin: -36px 0; z-index: 5; display: flex; align-items: center; justify-content: center; }
-  .seam > svg  { display: none; }
-  .seam-badge  { position: static; transform: none; }
-  .panel-night { order: 3; }
+/* Se mantiene el split lado a lado también en móvil (decisión de negocio:
+   ver ambas franjas a la vez comunica que hay tapeo/coctelería Y cena,
+   aunque se entre por la mañana). Lo que se ajusta abajo es el tipo y el
+   padding para que el titular quepa mejor en una columna estrecha. */
+@media (max-width: 480px) {
+  .panel { padding: 7vh 4vw 10vh; }
+  .panel-content { max-width: 100%; }
+  .panel-title { font-size: clamp(22px, 8.6vw, 34px); line-height: 1.08; }
+  .panel-sub { font-size: clamp(11px, 3.1vw, 13px); }
 }
+
 </style>
 </head>
 <body>
@@ -804,15 +798,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <path d="M45,0 C25,60 65,120 45,180 C25,240 65,300 45,360 C25,420 65,480 45,540 C25,600 65,660 45,720 C25,780 65,840 45,900 L90,900 L90,0 Z" fill="var(--night-2)" opacity="0.55"/>
     </svg>
     <div class="seam-badge">
-      <svg viewBox="0 0 240 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ISLA Brunch Bar Elche">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="ISLA Brunch Bar Elche">
         <defs>
-          <linearGradient id="islaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#2D6A3F"/>
-            <stop offset="55%" stop-color="#9CB33B"/>
-            <stop offset="100%" stop-color="#6B4FA0"/>
-          </linearGradient>
+          <style>
+            .sand { fill: #F2E8D5; }
+            .green { fill: #1B4332; }
+            .green-stroke { stroke: #1B4332; }
+            .gold { fill: #C9A961; }
+            .gold-stroke { stroke: #C9A961; }
+          </style>
         </defs>
-        <text x="50%" y="62" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="60" font-weight="600" letter-spacing="6" fill="url(#islaGrad)">ISLA</text>
+        <!-- outer rings -->
+        <circle cx="100" cy="100" r="96" class="green" />
+        <circle cx="100" cy="100" r="88" fill="none" class="gold-stroke" stroke-width="1.5" />
+        <circle cx="100" cy="100" r="80" class="sand" />
+        <!-- palm / sunrise mark -->
+        <g transform="translate(100,95)">
+          <!-- fan of five fronds -->
+          <g class="gold" stroke="none">
+            <path d="M0,0 C -9,-18 -7,-50 0,-66 C 7,-50 9,-18 0,0 Z" transform="rotate(-64)" />
+            <path d="M0,0 C -9,-18 -7,-50 0,-66 C 7,-50 9,-18 0,0 Z" transform="rotate(-32)" />
+            <path d="M0,0 C -9,-18 -7,-52 0,-70 C 7,-52 9,-18 0,0 Z" />
+            <path d="M0,0 C -9,-18 -7,-50 0,-66 C 7,-50 9,-18 0,0 Z" transform="rotate(32)" />
+            <path d="M0,0 C -9,-18 -7,-50 0,-66 C 7,-50 9,-18 0,0 Z" transform="rotate(64)" />
+          </g>
+          <!-- trunk -->
+          <path d="M0,0 C -2,10 -1,20 0,26 C 1,20 2,10 0,0 Z" class="green" />
+          <!-- sun / citrus -->
+          <circle cx="0" cy="34" r="7" class="gold" />
+          <!-- horizon line (island shore) -->
+          <path d="M-38,34 Q0,44 38,34" fill="none" class="green-stroke" stroke-width="3" stroke-linecap="round" />
+        </g>
+        <!-- wordmark -->
+        <text x="100" y="160" text-anchor="middle" class="green"
+              style="font-family:'Playfair Display', Georgia, serif; font-size:22px; font-weight:700; letter-spacing:0.5px;">
+          ISLA
+        </text>
+        <text x="100" y="176" text-anchor="middle" class="gold"
+              style="font-family:'DM Sans', Helvetica, sans-serif; font-size:9px; font-weight:600; letter-spacing:3px;">
+          BRUNCH BAR
+        </text>
       </svg>
     </div>
   </div>
