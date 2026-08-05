@@ -244,6 +244,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      que por mucho que cambie el ancho de pantalla nunca pueden pisarse:
      no es un margen "a ojo", es matemáticamente imposible que se crucen. */
   --badge-r: clamp(28px, 4.6vw, 52px);
+
+  /* Ancho real de la franja/costura central. El hueco de seguridad del
+     texto se calcula a partir de ESTE valor (no del radio del logo),
+     porque la franja de color es más ancha que el badge circular y es
+     ella la que hay que evitar. Una sola fuente de verdad: si cambia
+     aquí o en los media queries de abajo, el padding se actualiza solo. */
+  --seam-w: 90px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -447,7 +454,7 @@ button { font-family: inherit; }
 .seam {
   position: absolute;
   top: 0; bottom: 0; left: 50%;
-  width: 90px;
+  width: var(--seam-w);
   transform: translateX(-50%);
   z-index: 3;
   pointer-events: none;
@@ -467,12 +474,14 @@ button { font-family: inherit; }
 }
 .seam-badge svg { width: 100%; height: 100%; display: block; }
 
-/* Hueco de seguridad: el lado de cada franja que mira a la costura gana
-   padding extra igual al radio del medallón + margen, así el texto
-   centrado nunca puede alcanzar la zona donde está el badge, sea cual
-   sea la palabra más larga del titular o el ancho de la pantalla. */
-.panel-day   { padding-right: calc(var(--badge-r) + 10px); }
-.panel-night { padding-left:  calc(var(--badge-r) + 10px); }
+/* Hueco de seguridad: el lado de cada panel que mira a la costura gana
+   padding extra igual a LA MITAD DEL ANCHO REAL DE LA FRANJA (--seam-w)
+   más margen — no al radio del logo, que es más pequeño que la franja
+   de color y dejaba un hueco insuficiente en móvil (el borde de la
+   franja tapaba el final del texto). Así el texto nunca puede alcanzar
+   la zona de la costura, sea cual sea el ancho de pantalla. */
+.panel-day   { padding-right: calc(var(--seam-w) / 2 + 12px); }
+.panel-night { padding-left:  calc(var(--seam-w) / 2 + 12px); }
 
 /* ══════════ Sección SEO (integrada, no estilo blog) ══════════ */
 .seo-section {
@@ -742,8 +751,8 @@ button { font-family: inherit; }
 /* Ajuste fino de tipo y padding solo en los móviles más estrechos */
 @media (max-width: 480px) {
   /* Importante: NO tocar padding-left/padding-right con el shorthand aquí,
-     o se pisa el hueco de seguridad (--badge-r) de .panel-day/.panel-night
-     y la costura/badge central corta el texto. Solo se ajusta el lado
+     o se pisa el hueco de seguridad (--seam-w) de .panel-day/.panel-night
+     y la franja/badge central corta el texto. Solo se ajusta el lado
      "exterior" de cada panel y el padding vertical. */
   .panel { padding-top: 7vh; padding-bottom: 10vh; }
   .panel-day { padding-left: 4vw; }
@@ -754,10 +763,10 @@ button { font-family: inherit; }
 
 /* Pantallas muy estrechas: un poco más pequeño todavía */
 @media (max-width: 360px) {
+  :root { --seam-w: 48px; }
   .panel { padding-top: 7vh; padding-bottom: 10vh; }
   .panel-day { padding-left: 4vw; }
   .panel-night { padding-right: 4vw; }
-  .seam { width: 48px; }
   .seam-badge { width: 48px; height: 48px; }
 }
 
