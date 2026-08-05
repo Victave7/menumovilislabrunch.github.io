@@ -741,14 +741,22 @@ button { font-family: inherit; }
 
 /* Ajuste fino de tipo y padding solo en los móviles más estrechos */
 @media (max-width: 480px) {
-  .panel { padding: 7vh 4vw 10vh; }
+  /* Importante: NO tocar padding-left/padding-right con el shorthand aquí,
+     o se pisa el hueco de seguridad (--badge-r) de .panel-day/.panel-night
+     y la costura/badge central corta el texto. Solo se ajusta el lado
+     "exterior" de cada panel y el padding vertical. */
+  .panel { padding-top: 7vh; padding-bottom: 10vh; }
+  .panel-day { padding-left: 4vw; }
+  .panel-night { padding-right: 4vw; }
   .panel-title { font-size: clamp(20px, 7.6vw, 30px); line-height: 1.1; }
   .panel-sub { font-size: clamp(10.5px, 2.9vw, 12.5px); }
 }
 
 /* Pantallas muy estrechas: un poco más pequeño todavía */
 @media (max-width: 360px) {
-  .panel { padding: 7vh 4vw 10vh; }
+  .panel { padding-top: 7vh; padding-bottom: 10vh; }
+  .panel-day { padding-left: 4vw; }
+  .panel-night { padding-right: 4vw; }
   .seam { width: 48px; }
   .seam-badge { width: 48px; height: 48px; }
 }
