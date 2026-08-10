@@ -747,6 +747,66 @@ button, a { font-family: inherit; }
 .foam-name { font-size: 12px; font-weight: 500; color: var(--text); line-height: 1.25; }
 .foam-price { font-family: 'Cormorant Garamond', serif; font-size: 13.5px; font-weight: 600; color: var(--bark-mid); line-height: 1.2; }
 
+/* ── PERSONALIZA TU PANCAKE / BRIOCHE (selector interactivo de topping) ── */
+.diy-panel {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--divider);
+}
+.diy-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--copper-dark);
+  margin-bottom: 9px;
+}
+.diy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.diy-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  border: 1px solid var(--divider);
+  border-radius: 12px;
+  padding: 8px 10px;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: box-shadow .2s, border-color .2s, background .2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.diy-chip:active { transform: scale(0.98); }
+.diy-chip.sel {
+  background: linear-gradient(135deg, #FFFCF6 0%, var(--copper-bg) 100%);
+  border-color: var(--copper);
+  box-shadow: 0 2px 10px rgba(168,103,30,0.18);
+}
+.diy-icon { flex: 0 0 auto; font-size: 16px; line-height: 1; }
+.diy-info { display: flex; flex-direction: column; min-width: 0; gap: 1px; flex: 1; }
+.diy-name { font-size: 11.5px; font-weight: 500; color: var(--text); line-height: 1.25; }
+.diy-add { font-family: 'Cormorant Garamond', serif; font-size: 12.5px; font-weight: 600; color: var(--bark-mid); line-height: 1.2; }
+.diy-chip.sel .diy-add { color: var(--copper-dark); }
+.diy-check {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid var(--divider);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: transparent;
+  background: var(--white);
+  transition: background .2s, border-color .2s, color .2s;
+}
+.diy-chip.sel .diy-check { background: var(--copper-dark); border-color: var(--copper-dark); color: #FFF; }
+.diy-hint { font-size: 10.5px; color: var(--muted); margin-top: 8px; line-height: 1.4; }
+
 /* ── ACORDEÓN COLD FOAM (disponible en cada sección) ── */
 .foam-accordion {
   background: var(--sand);
@@ -1664,6 +1724,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="item-desc" data-en="Papaya, mango, pineapple, canary melon, Galia melon and grapes with oat milk." data-fr="Papaye, mangue, ananas, melon canari, melon Galia et raisin avec lait d'avoine.">Papaya, mango, piña, melón canario, melón Galia y uvas con leche de avena.</p>
     </div>
 
+    <p class="group-label-fruit" data-en="Build your smoothie" data-fr="Composez votre smoothie">Crea tu batido</p>
+    <div class="fruit-grid">
+      <div class="fruit-card"><span class="fruit-icon">🥭</span><span class="fruit-info"><span class="fruit-name">Mango</span><span class="fruit-price">1,80€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🍓</span><span class="fruit-info"><span class="fruit-name" data-en="Strawberry" data-fr="Fraise">Fresa</span><span class="fruit-price">1,50€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🧡</span><span class="fruit-info"><span class="fruit-name" data-en="Passion fruit" data-fr="Fruit de la passion">Maracuyá</span><span class="fruit-price">1,90€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🍌</span><span class="fruit-info"><span class="fruit-name" data-en="Banana" data-fr="Banane">Plátano</span><span class="fruit-price">1,50€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🍍</span><span class="fruit-info"><span class="fruit-name" data-en="Pineapple" data-fr="Ananas">Piña</span><span class="fruit-price">1,50€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🍒</span><span class="fruit-info"><span class="fruit-name" data-en="Sour cherry" data-fr="Griotte">Cereza agria</span><span class="fruit-price">2,00€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🍒</span><span class="fruit-info"><span class="fruit-name" data-en="Cherry" data-fr="Cerise">Cherry</span><span class="fruit-price">1,80€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🍏</span><span class="fruit-info"><span class="fruit-name" data-en="Green apple" data-fr="Pomme verte">Manzana verde</span><span class="fruit-price">1,20€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🥥</span><span class="fruit-info"><span class="fruit-name" data-en="Coconut" data-fr="Noix de coco">Coco</span><span class="fruit-price">1,80€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🍑</span><span class="fruit-info"><span class="fruit-name" data-en="White peach" data-fr="Pêche blanche">Melocotón blanco</span><span class="fruit-price">1,70€</span></span></div>
+      <div class="fruit-card"><span class="fruit-icon">🟠</span><span class="fruit-info"><span class="fruit-name" data-en="Granadilla" data-fr="Grenadille">Granadilla</span><span class="fruit-price">1,80€</span></span></div>
+    </div>
+
+    <div class="ctx-note i18n-html" data-en-html="<b>How it works:</b> Choose your base from <b>€3.50</b> · First fruit from €1.20 · Second fruit +€1.00 · Protein +€1.50." data-fr-html="<b>Comment ça marche :</b> Choisissez votre base à partir de <b>3,50€</b> · Premier fruit dès 1,20€ · Deuxième fruit +1,00€ · Protéine +1,50€.">
+      <b>Cómo funciona:</b> Base a elegir desde <b>3,50€</b> · Primera fruta desde 1,20€ · Segunda fruta +1,00€ · Proteína +1,50€.
+    </div>
+
     <p class="group-label" data-en="Juices &amp; fresh drinks" data-fr="Jus &amp; boissons fraîches">Zumos &amp; bebidas frescas</p>
     <div class="card">
       <div class="card-row">
@@ -1696,25 +1775,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="item-name" data-en="Homemade Lemonade" data-fr="Limonade Maison">Limonada Casera</p>
         <p class="item-price">3,50€</p>
       </div>
-    </div>
-
-    <p class="group-label-fruit" data-en="Build your smoothie" data-fr="Composez votre smoothie">Crea tu batido</p>
-    <div class="fruit-grid">
-      <div class="fruit-card"><span class="fruit-icon">🥭</span><span class="fruit-info"><span class="fruit-name">Mango</span><span class="fruit-price">1,80€</span></span></div>
-      <div class="fruit-card"><span class="fruit-icon">🍓</span><span class="fruit-info"><span class="fruit-name" data-en="Strawberry" data-fr="Fraise">Fresa</span><span class="fruit-price">1,50€</span></span></div>
-      <div class="fruit-card"><span class="fruit-icon">🧡</span><span class="fruit-info"><span class="fruit-name" data-en="Passion fruit" data-fr="Fruit de la passion">Maracuyá</span><span class="fruit-price">1,90€</span></span></div>
-      <div class="fruit-card"><span class="fruit-icon">🍌</span><span class="fruit-info"><span class="fruit-name" data-en="Banana" data-fr="Banane">Plátano</span><span class="fruit-price">1,50€</span></span></div>
-      <div class="fruit-card"><span class="fruit-icon">🍍</span><span class="fruit-info"><span class="fruit-name" data-en="Pineapple" data-fr="Ananas">Piña</span><span class="fruit-price">1,50€</span></span></div>
-      <div class="fruit-card"><span class="fruit-icon">🍒</span><span class="fruit-info"><span class="fruit-name" data-en="Sour cherry" data-fr="Griotte">Cereza agria</span><span class="fruit-price">2,00€</span></span></div>
-      <div class="fruit-card"><span class="fruit-icon">🍒</span><span class="fruit-info"><span class="fruit-name" data-en="Cherry" data-fr="Cerise">Cherry</span><span class="fruit-price">1,80€</span></span></div>
-      <div class="fruit-card"><span class="fruit-icon">🍏</span><span class="fruit-info"><span class="fruit-name" data-en="Green apple" data-fr="Pomme verte">Manzana verde</span><span class="fruit-price">1,20€</span></span></div>
-      <div class="fruit-card"><span class="fruit-icon">🥥</span><span class="fruit-info"><span class="fruit-name" data-en="Coconut" data-fr="Noix de coco">Coco</span><span class="fruit-price">1,80€</span></span></div>
-      <div class="fruit-card"><span class="fruit-icon">🍑</span><span class="fruit-info"><span class="fruit-name" data-en="White peach" data-fr="Pêche blanche">Melocotón blanco</span><span class="fruit-price">1,70€</span></span></div>
-      <div class="fruit-card"><span class="fruit-icon">🟠</span><span class="fruit-info"><span class="fruit-name" data-en="Granadilla" data-fr="Grenadille">Granadilla</span><span class="fruit-price">1,80€</span></span></div>
-    </div>
-
-    <div class="ctx-note i18n-html" data-en-html="<b>How it works:</b> Choose your base from <b>€3.50</b> · First fruit from €1.20 · Second fruit +€1.00 · Protein +€1.50." data-fr-html="<b>Comment ça marche :</b> Choisissez votre base à partir de <b>3,50€</b> · Premier fruit dès 1,20€ · Deuxième fruit +1,00€ · Protéine +1,50€.">
-      <b>Cómo funciona:</b> Base a elegir desde <b>3,50€</b> · Primera fruta desde 1,20€ · Segunda fruta +1,00€ · Proteína +1,50€.
     </div>
 
     <div class="card card-hero card-hero-sm">
@@ -1750,7 +1810,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="badge badge-fav">⭐ <span data-en="ISLA Favorite" data-fr="Favori de l'ISLA">Favorito ISLA</span></span>
       <div class="card-row">
         <p class="item-name">Sesame Bagel</p>
-        <p class="item-price">7,50€</p>
+        <p class="item-price">7,90€</p>
       </div>
       <p class="item-desc" data-en="Sesame bagel, avocado, grated tomato, crispy bacon and scrambled eggs." data-fr="Bagel au sésame, avocat, tomate râpée, bacon croustillant et œufs brouillés.">Bagel de sésamo, aguacate, tomate rallado, bacon crujiente y huevo revuelto.</p>
     </div>
@@ -1768,7 +1828,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="item-name" data-en="Nordic Bagel Isla" data-fr="Bagel Isla Nordique">Nordic Bagel Isla</p>
         <p class="item-price">8,50€</p>
       </div>
-      <p class="item-desc" data-en="Bagel with smoked salmon, cream cheese and Isla sauce." data-fr="Bagel au saumon fumé, fromage frais et sauce Isla.">Bagel con salmón ahumado, queso crema y salsa Isla.</p>
+      <p class="item-desc" data-en="Bagel with smoked salmon, cream cheese, rocket and Isla sauce." data-fr="Bagel au saumon fumé, fromage frais, roquette et sauce Isla.">Bagel con salmón ahumado, queso crema, rúcula y salsa Isla.</p>
     </div>
     <div class="card">
       <span class="badge badge-grn">🌱 Veggie</span>
@@ -1784,6 +1844,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="item-price">8,90€</p>
       </div>
       <p class="item-desc" data-en="Bagel with Serrano ham, garlic cream cheese, cherry tomato and honey." data-fr="Bagel au jambon Serrano, fromage frais à l'ail, tomate cerise et miel.">Bagel con jamón serrano, queso crema con ajo, tomate cherry y miel.</p>
+      <div class="item-opt-row">
+        <span class="opt-chip">🍯 <span data-en="Honey" data-fr="Miel">Miel</span> +0,50€</span>
+        <span class="opt-chip">🌶️ <span data-en="Spicy Honey" data-fr="Miel Piquante">Miel Picante</span> +0,50€</span>
+      </div>
     </div>
     <div class="card">
       <div class="card-row">
@@ -1824,9 +1888,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="card">
       <div class="card-row">
         <p class="item-name" data-en="Nordic Isla Toast" data-fr="Toast Isla Nordique">Nordic Isla Toast</p>
-        <p class="item-price">6,50€</p>
+        <p class="item-price">6,90€</p>
       </div>
-      <p class="item-desc" data-en="Sourdough bread with smoked salmon, cream cheese and Isla sauce." data-fr="Pain au levain, saumon fumé, fromage frais et sauce Isla.">Pan de masa madre con salmón ahumado, queso crema y salsa Isla.</p>
+      <p class="item-desc" data-en="Sourdough bread with smoked salmon, cream cheese, rocket and Isla sauce." data-fr="Pain au levain, saumon fumé, fromage frais, roquette et sauce Isla.">Pan de masa madre con salmón ahumado, queso crema, rúcula y salsa Isla.</p>
     </div>
     <div class="card">
       <div class="card-row">
@@ -1848,6 +1912,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="item-price">8,90€</p>
       </div>
       <p class="item-desc" data-en="Toasted bread with Serrano ham, garlic cream cheese, mozzarella, cherry tomato and honey." data-fr="Pain toasté, jambon Serrano, fromage frais à l'ail, mozzarella, tomate cerise et miel.">Pan tostado con jamón serrano, queso crema con ajo, mozzarella, tomate cherry y miel.</p>
+      <div class="item-opt-row">
+        <span class="opt-chip">🍯 <span data-en="Honey" data-fr="Miel">Miel</span> +0,50€</span>
+        <span class="opt-chip">🌶️ <span data-en="Spicy Honey" data-fr="Miel Piquante">Miel Picante</span> +0,50€</span>
+      </div>
     </div>
     <div class="card">
       <div class="card-row">
@@ -1877,7 +1945,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="item-name" data-en="Nordic Croissant Isla" data-fr="Croissant Isla Nordique">Nordic Croissant Isla</p>
         <p class="item-price">7,50€</p>
       </div>
-      <p class="item-desc" data-en="Croissant with smoked salmon, cream cheese and Isla sauce." data-fr="Croissant au saumon fumé, fromage frais et sauce Isla.">Croissant con salmón ahumado, queso crema y salsa Isla.</p>
+      <p class="item-desc" data-en="Croissant with smoked salmon, cream cheese, rocket and Isla sauce." data-fr="Croissant au saumon fumé, fromage frais, roquette et sauce Isla.">Croissant con salmón ahumado, queso crema, rúcula y salsa Isla.</p>
     </div>
   </section>
 
@@ -1905,6 +1973,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="item-price">9,90€</p>
       </div>
       <p class="item-desc" data-en="Brioche, garlic cream cheese, Serrano ham, mozzarella, cherry tomato and honey." data-fr="Brioche, fromage frais à l'ail, jambon Serrano, mozzarella, tomate cerise et miel.">Brioche, queso crema con ajo, jamón serrano, mozzarella, tomate cherry y miel.</p>
+      <div class="item-opt-row">
+        <span class="opt-chip">🍯 <span data-en="Honey" data-fr="Miel">Miel</span> +0,50€</span>
+        <span class="opt-chip">🌶️ <span data-en="Spicy Honey" data-fr="Miel Piquante">Miel Picante</span> +0,50€</span>
+      </div>
     </div>
     <div class="card card-gold">
       <div class="card-row">
@@ -1999,35 +2071,87 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="badge badge-fav">⭐ <span data-en="ISLA Favorite" data-fr="Favori de l'ISLA">Favorito ISLA</span></span>
       <div class="card-row">
         <p class="item-name" data-en="New York" data-fr="New York">New York</p>
-        <p class="item-price">7,50€</p>
+        <p class="item-price">8,50€</p>
       </div>
       <p class="item-desc" data-en="American pancakes, crispy bacon, scrambled eggs and maple syrup." data-fr="Pancakes américains, bacon croustillant, œufs brouillés et sirop d'érable.">Tortitas americanas, bacon crujiente, huevo revuelto y sirope de arce.</p>
     </div>
 
     <p class="group-label-food i18n-html" data-en-html="<span class='icon'>🥞</span> American Pancakes" data-fr-html="<span class='icon'>🥞</span> American Pancakes"><span class="icon">🥞</span> American Pancakes</p>
-    <div class="card">
-      <span class="badge badge-sig">🥞 American Style</span>
+    <div class="card card-gold">
       <div class="card-row">
-        <p class="item-name" data-en="Lotus Pancakes" data-fr="Pancakes Lotus">Tortitas Lotus</p>
-        <p class="item-price">6,50€</p>
+        <p class="item-name" data-en="ISLA Pancakes" data-fr="ISLA Pancakes">ISLA Pancakes</p>
+        <p class="item-price" id="price-pancake">7,50€</p>
       </div>
-      <p class="item-desc" data-en="Fluffy pancakes with Lotus cream, light syrup and fresh seasonal fruit." data-fr="Pancakes moelleux à la crème Lotus, sirop léger et fruits frais de saison.">Pancakes esponjosas con crema Lotus, sirope ligero y fruta fresca de temporada.</p>
-    </div>
-    <div class="card">
-      <div class="card-row">
-        <p class="item-name" data-en="ISLA Pancake, build your own" data-fr="Pancake ISLA personnalisable">Pancake ISLA personalizable</p>
-        <p class="item-price">6,90€</p>
+      <p class="item-desc" data-en="Fluffy American pancakes served with maple syrup. Choose your favorite topping." data-fr="Pancakes américains moelleux servis avec sirop d'érable. Choisissez votre topping préféré.">Pancakes americanos esponjosos servidos con sirope. Elige tu topping favorito.</p>
+
+      <div class="diy-panel">
+        <p class="diy-title i18n-html" data-en-html="✨ Choose your topping" data-fr-html="✨ Choisissez votre topping">✨ Elige tu topping</p>
+        <div class="diy-grid" data-group="pancake" data-base="7,50€">
+          <button type="button" class="diy-chip" data-price="7,50€" onclick="selectTopping(this)">
+            <span class="diy-icon" aria-hidden="true">🍪</span>
+            <span class="diy-info">
+              <span class="diy-name" data-en="Lotus" data-fr="Lotus">Lotus</span>
+            </span>
+            <span class="diy-check">✓</span>
+          </button>
+          <button type="button" class="diy-chip" data-price="7,50€" onclick="selectTopping(this)">
+            <span class="diy-icon" aria-hidden="true">🍫</span>
+            <span class="diy-info">
+              <span class="diy-name" data-en="Nutella" data-fr="Nutella">Nutella</span>
+            </span>
+            <span class="diy-check">✓</span>
+          </button>
+          <button type="button" class="diy-chip" data-price="7,50€" onclick="selectTopping(this)">
+            <span class="diy-icon" aria-hidden="true">🥛</span>
+            <span class="diy-info">
+              <span class="diy-name" data-en="Dulce de leche" data-fr="Dulce de leche">Dulce de leche</span>
+            </span>
+            <span class="diy-check">✓</span>
+          </button>
+          <button type="button" class="diy-chip" data-price="7,50€" onclick="selectTopping(this)">
+            <span class="diy-icon" aria-hidden="true">💚</span>
+            <span class="diy-info">
+              <span class="diy-name" data-en="Pistachio" data-fr="Pistache">Pistacho</span>
+            </span>
+            <span class="diy-check">✓</span>
+          </button>
+          <button type="button" class="diy-chip" data-price="7,50€" onclick="selectTopping(this)">
+            <span class="diy-icon" aria-hidden="true">🍓</span>
+            <span class="diy-info">
+              <span class="diy-name" data-en="Seasonal fruit" data-fr="Fruit de saison">Fruta de temporada</span>
+            </span>
+            <span class="diy-check">✓</span>
+          </button>
+          <button type="button" class="diy-chip" data-price="7,50€" onclick="selectTopping(this)">
+            <span class="diy-icon" aria-hidden="true">🌶️</span>
+            <span class="diy-info">
+              <span class="diy-name" data-en="Spicy honey" data-fr="Miel piquante">Miel picante</span>
+            </span>
+            <span class="diy-check">✓</span>
+          </button>
+        </div>
+        <p class="diy-hint" data-en="All toppings included in the price." data-fr="Tous les toppings sont inclus dans le prix.">Todos los toppings incluidos en el precio.</p>
       </div>
-      <p class="item-desc" data-en="Fluffy batter — choose Nutella, Lotus, pistachio, dulce de leche, honey or agave, with fresh seasonal fruit." data-fr="Pâte moelleuse à choisir avec Nutella, Lotus, pistache, dulce de leche, miel ou agave, avec fruits frais de saison.">Masa esponjosa a elegir con Nutella, Lotus, pistacho, dulce de leche, miel o agave, con fruta fresca de temporada.</p>
     </div>
 
     <p class="group-label-food i18n-html" data-en-html="<span class='icon'>🍯</span> Sweet Brioche" data-fr-html="<span class='icon'>🍯</span> Brioche Sucrée"><span class="icon">🍯</span> Sweet Brioche</p>
-    <div class="card">
+    <div class="card card-gold">
       <div class="card-row">
-        <p class="item-name" data-en="Sweet Brioche, build your own" data-fr="Brioche sucrée personnalisable">Brioche dulce personalizable</p>
+        <p class="item-name" data-en="Sweet Brioche" data-fr="Brioche Sucrée">Brioche dulce</p>
         <p class="item-price">6,90€</p>
       </div>
-      <p class="item-desc" data-en="Brioche — choose Nutella, Lotus, pistachio or dulce de leche, with fresh seasonal fruit." data-fr="Brioche à choisir avec Nutella, Lotus, pistache ou dulce de leche, avec fruits frais de saison.">Brioche a elegir con Nutella, Lotus, pistacho o dulce de leche, con fruta fresca de temporada.</p>
+      <p class="item-desc" data-en="Soft brioche with fresh seasonal fruit." data-fr="Brioche moelleuse avec fruits frais de saison.">Brioche esponjosa con fruta fresca de temporada.</p>
+
+      <div class="diy-panel">
+        <p class="diy-title i18n-html" data-en-html="✨ Personalize your brioche" data-fr-html="✨ Personnalisez votre brioche">✨ Personaliza tu brioche</p>
+        <div class="diy-grid">
+          <span class="opt-chip">🍫 <span data-en="Nutella" data-fr="Nutella">Nutella</span></span>
+          <span class="opt-chip">🪷 <span data-en="Lotus" data-fr="Lotus">Lotus</span></span>
+          <span class="opt-chip">💚 <span data-en="Pistachio" data-fr="Pistache">Pistacho</span></span>
+          <span class="opt-chip">🍮 <span data-en="Dulce de leche" data-fr="Dulce de leche">Dulce de leche</span></span>
+        </div>
+        <p class="diy-hint" data-en="Choose your favorite filling, included in the price." data-fr="Choisissez votre garniture préférée, incluse dans le prix.">Elige tu relleno favorito, incluido en el precio.</p>
+      </div>
     </div>
 
     <p class="group-label-food i18n-html" data-en-html="<span class='icon'>🍓</span> Yogurt" data-fr-html="<span class='icon'>🍓</span> Yaourt"><span class="icon">🍓</span> Yogurt</p>
@@ -2037,6 +2161,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="item-price">5,20€</p>
       </div>
       <p class="item-desc" data-en="Creamy yogurt, fruit of the day, agave honey and crunchy granola." data-fr="Yaourt crémeux, fruit du jour, miel d'agave et granola croustillant.">Yogur cremoso, fruta del día, miel de agave y granola crujiente.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge badge-fav">🔥 <span data-en="Popular" data-fr="Populaire">Popular</span></span>
+      <div class="card-row">
+        <p class="item-name" data-en="ISLA CRUNCH" data-fr="ISLA CRUNCH">ISLA CRUNCH</p>
+        <p class="item-price" id="price-crunch">6,50€</p>
+      </div>
+      <p class="item-desc" data-en="Greek yogurt, granola, fruit, Nutella or Lotus and crunchy topping." data-fr="Yaourt grec, granola, fruit, Nutella ou Lotus et topping croustillant.">Yogur griego + granola + fruta + Nutella o Lotus + topping crujiente.</p>
+
+      <div class="diy-panel">
+        <p class="diy-title i18n-html" data-en-html="✨ Choose your cream" data-fr-html="✨ Choisissez votre crème">✨ Elige tu crema</p>
+        <div class="diy-grid" data-group="crunch" data-base="6,50€">
+          <button type="button" class="diy-chip" data-price="6,50€" onclick="selectTopping(this)">
+            <span class="diy-icon" aria-hidden="true">🍫</span>
+            <span class="diy-info">
+              <span class="diy-name" data-en="Nutella" data-fr="Nutella">Nutella</span>
+            </span>
+            <span class="diy-check">✓</span>
+          </button>
+          <button type="button" class="diy-chip" data-price="6,50€" onclick="selectTopping(this)">
+            <span class="diy-icon" aria-hidden="true">🍪</span>
+            <span class="diy-info">
+              <span class="diy-name" data-en="Lotus" data-fr="Lotus">Lotus</span>
+            </span>
+            <span class="diy-check">✓</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge badge-grn">💪 <span data-en="Protein" data-fr="Protéiné">Proteico</span></span>
+      <div class="card-row">
+        <p class="item-name" data-en="PROTEIN YOGURT" data-fr="PROTEIN YOGURT">PROTEIN YOGURT</p>
+        <p class="item-price">6,90€</p>
+      </div>
+      <p class="item-desc" data-en="Greek yogurt, protein, fruit and granola." data-fr="Yaourt grec, protéine, fruit et granola.">Yogur griego + proteína + fruta + granola.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge badge-mat">🍵 <span data-en="Matcha" data-fr="Matcha">Matcha</span></span>
+      <div class="card-row">
+        <p class="item-name" data-en="MATCHA YOGURT" data-fr="MATCHA YOGURT">MATCHA YOGURT</p>
+        <p class="item-price">6,50€</p>
+      </div>
+      <p class="item-desc" data-en="Greek yogurt, matcha cream/mousse, fruit, granola and coconut." data-fr="Yaourt grec, crème/mousse de matcha, fruit, granola et noix de coco.">Yogur griego + crema/mousse de matcha + fruta + granola + coco.</p>
     </div>
 
     <p class="group-label-food i18n-html" data-en-html="<span class='icon'>✨</span> Something smaller" data-fr-html="<span class='icon'>✨</span> Une petite douceur"><span class="icon">✨</span> Algo más pequeño</p>
@@ -2110,7 +2281,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ══════════ 🧪 LABORATORIO ISLA ══════════ -->
   <section id="sec-diy" class="page" role="tabpanel" tabindex="0" aria-label="Laboratorio ISLA">
     <div class="sec-head">
-      <p class="eyebrow" data-en="Customize your brunch" data-fr="Personnalisez votre brunch">Crea tu brunch a tu manera</p>
+      <p class="eyebrow" data-en="Build your brunch" data-fr="Créez votre brunch">Crea tu brunch</p>
       <h2 class="sec-title" data-en="🧪 ISLA Lab" data-fr="🧪 Laboratoire ISLA">🧪 Laboratorio ISLA</h2>
       <p class="sec-note" data-en="Prefer to design it yourself? Choose a base, add your favorite ingredients and create a unique combination." data-fr="Vous préférez le concevoir vous-même ? Choisissez une base, ajoutez vos ingrédients préférés et créez une combinaison unique.">¿Prefieres diseñarlo tú? Elige una base, añade tus ingredientes favoritos y crea una combinación única.</p>
     </div>
@@ -2352,7 +2523,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           "description": "Espresso coronado con cold foam a elegir entre 14 sabores: vainilla, chocolate, dulce de leche, lotus, canela, caramelo, fresa, piña, mango, maracuyá, pistacho, coco, avellana y agave.",
           "offers": {
             "@type": "Offer",
-            "price": "4.20",
+            "price": "0.90",
             "priceCurrency": "EUR"
           }
         },
@@ -2771,7 +2942,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           "description": "Bagel de sésamo, aguacate, tomate rallado, bacon crujiente y huevo revuelto.",
           "offers": {
             "@type": "Offer",
-            "price": "7.50",
+            "price": "7.90",
             "priceCurrency": "EUR"
           }
         },
@@ -2788,7 +2959,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {
           "@type": "MenuItem",
           "name": "Nordic Bagel Isla",
-          "description": "Bagel con salmón ahumado, queso crema y salsa Isla.",
+          "description": "Bagel con salmón ahumado, queso crema, rúcula y salsa Isla.",
           "offers": {
             "@type": "Offer",
             "price": "8.50",
@@ -2848,10 +3019,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {
           "@type": "MenuItem",
           "name": "Nordic Isla Toast",
-          "description": "Pan de masa madre con salmón ahumado, queso crema y salsa Isla.",
+          "description": "Pan de masa madre con salmón ahumado, queso crema, rúcula y salsa Isla.",
           "offers": {
             "@type": "Offer",
-            "price": "6.50",
+            "price": "6.90",
             "priceCurrency": "EUR"
           }
         },
@@ -2918,7 +3089,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {
           "@type": "MenuItem",
           "name": "Nordic Croissant Isla",
-          "description": "Croissant con salmón ahumado, queso crema y salsa Isla.",
+          "description": "Croissant con salmón ahumado, queso crema, rúcula y salsa Isla.",
           "offers": {
             "@type": "Offer",
             "price": "7.50",
@@ -3009,18 +3180,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       "hasMenuItem": [
         {
           "@type": "MenuItem",
-          "name": "Tortitas Lotus",
-          "description": "Pancakes esponjosas con crema Lotus, sirope ligero y fruta fresca de temporada.",
+          "name": "New York",
+          "description": "Tortitas americanas, bacon crujiente, huevo revuelto y sirope de arce.",
           "offers": {
             "@type": "Offer",
-            "price": "6.50",
+            "price": "8.50",
             "priceCurrency": "EUR"
           }
         },
         {
           "@type": "MenuItem",
-          "name": "New York",
-          "description": "Tortitas americanas, bacon crujiente, huevo revuelto y sirope de arce.",
+          "name": "ISLA Pancakes",
+          "description": "Pancakes americanos esponjosos servidos con sirope. Incluye un topping a elegir entre Lotus, Nutella, dulce de leche, pistacho, fruta de temporada o miel picante.",
           "offers": {
             "@type": "Offer",
             "price": "7.50",
@@ -3029,18 +3200,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         },
         {
           "@type": "MenuItem",
-          "name": "Pancake ISLA personalizable",
-          "description": "Masa esponjosa a elegir con Nutella, Lotus, pistacho, dulce de leche, miel o agave, con fruta fresca de temporada.",
-          "offers": {
-            "@type": "Offer",
-            "price": "6.90",
-            "priceCurrency": "EUR"
-          }
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Brioche dulce personalizable",
-          "description": "Brioche a elegir con Nutella, Lotus, pistacho o dulce de leche, con fruta fresca de temporada.",
+          "name": "Brioche dulce",
+          "description": "Brioche esponjosa con fruta fresca de temporada. Relleno a elegir entre Nutella, Lotus, pistacho o dulce de leche.",
           "offers": {
             "@type": "Offer",
             "price": "6.90",
@@ -3054,6 +3215,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           "offers": {
             "@type": "Offer",
             "price": "5.20",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "ISLA CRUNCH",
+          "description": "Yogur griego, granola, fruta, Nutella o Lotus a elegir y topping crujiente.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "PROTEIN YOGURT",
+          "description": "Yogur griego, proteína, fruta y granola.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.90",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "MATCHA YOGURT",
+          "description": "Yogur griego, crema de matcha, fruta, granola y coco.",
+          "offers": {
+            "@type": "Offer",
+            "price": "6.50",
             "priceCurrency": "EUR"
           }
         },
@@ -3260,6 +3451,26 @@ function showSub(pageId, btn, cat) {
 function toggleFoam(btn) {
   const expanded = btn.getAttribute('aria-expanded') === 'true';
   btn.setAttribute('aria-expanded', String(!expanded));
+}
+
+// ══════════ SELECTOR DE TOPPING (Personaliza tu Pancake) ══════════
+// Selección única: al tocar un topping se marca y el precio del producto
+// se actualiza al precio final ya calculado (base + topping). Tocarlo de
+// nuevo lo deselecciona y el precio vuelve al de base.
+function selectTopping(btn) {
+  const grid = btn.closest('.diy-grid');
+  const group = grid.dataset.group;
+  const priceEl = document.getElementById('price-' + group);
+  const wasSelected = btn.classList.contains('sel');
+
+  grid.querySelectorAll('.diy-chip').forEach(c => c.classList.remove('sel'));
+
+  if (wasSelected) {
+    if (priceEl) priceEl.textContent = grid.dataset.base;
+  } else {
+    btn.classList.add('sel');
+    if (priceEl) priceEl.textContent = btn.dataset.price;
+  }
 }
 
 function showPage(id) {
