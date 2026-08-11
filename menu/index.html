@@ -61,6 +61,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   --berry:      #B5476B;
   --berry-mid:  #C97090;
   --berry-bg:   #FBEAF0;
+  --spirulina:      #1E6FA8;
+  --spirulina-mid:  #3E8FC4;
+  --spirulina-bg:   #EAF4FA;
   --shadow-sm:  0 2px 10px rgba(0,0,0,0.06);
   --shadow-md:  0 4px 20px rgba(0,0,0,0.09);
   --r:          14px;
@@ -532,6 +535,14 @@ button, a { font-family: inherit; }
 }
 .card-cute .item-name { color: #B23A63; }
 .card-cute .item-price { color: #D97CA0; }
+
+/* ── TARJETA SPIRULINA (azul) ── */
+.card-blue {
+  background: var(--spirulina-bg);
+  border-color: rgba(30,111,168,0.22);
+}
+.card-blue .item-name { color: #124D78; }
+.card-blue .item-price { color: var(--spirulina); }
 
 /* ── TARJETA HIGHLIGHT (para compartir) ── */
 .card-hero {
@@ -1677,7 +1688,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <p class="group-label" data-en="Protein Bar — signature combos" data-fr="Protein Bar — combinaisons vedettes">Protein Bar — combinaciones estrella</p>
 
-    <div class="card">
+    <div class="card card-blue">
       <span class="badge badge-sig">📸 <span data-en="Instagrammable" data-fr="Instagrammable">Fotogénico</span></span>
       <div class="card-row">
         <p class="item-name">Blue Power Shake</p>
@@ -1685,7 +1696,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <p class="item-desc" data-en="Blue spirulina, mango, pineapple and yogurt." data-fr="Spiruline bleue, mangue, ananas et yaourt.">Espirulina azul, mango, piña y yogurt.</p>
     </div>
-    <div class="card">
+    <div class="card card-cute">
       <span class="badge badge-sig">📸 <span data-en="Instagrammable" data-fr="Instagrammable">Fotogénico</span></span>
       <div class="card-row">
         <p class="item-name">Pink Paradise</p>
@@ -1739,8 +1750,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="fruit-card"><span class="fruit-icon">🟠</span><span class="fruit-info"><span class="fruit-name" data-en="Granadilla" data-fr="Grenadille">Granadilla</span><span class="fruit-price">1,80€</span></span></div>
     </div>
 
-    <div class="ctx-note i18n-html" data-en-html="<b>How it works:</b> Choose your base from <b>€3.50</b> · First fruit from €1.20 · Second fruit +€1.00 · Protein +€1.50." data-fr-html="<b>Comment ça marche :</b> Choisissez votre base à partir de <b>3,50€</b> · Premier fruit dès 1,20€ · Deuxième fruit +1,00€ · Protéine +1,50€.">
-      <b>Cómo funciona:</b> Base a elegir desde <b>3,50€</b> · Primera fruta desde 1,20€ · Segunda fruta +1,00€ · Proteína +1,50€.
+    <div class="ctx-note i18n-html" data-en-html="<b>How it works:</b> Choose your base from <b>€3.90</b> · First fruit from €1.20 · Second fruit +€1.00 · Protein +€1.50 · 🌿 Plant-based Milk +€0.80." data-fr-html="<b>Comment ça marche :</b> Choisissez votre base à partir de <b>3,90€</b> · Premier fruit dès 1,20€ · Deuxième fruit +1,00€ · Protéine +1,50€ · 🌿 Lait Végétal +0,80€.">
+      <b>Cómo funciona:</b> Base a elegir desde <b>3,90€</b> · Primera fruta desde 1,20€ · Segunda fruta +1,00€ · Proteína +1,50€ · 🌿 Leche Vegetal +0,80€.
     </div>
 
     <p class="group-label" data-en="Juices &amp; fresh drinks" data-fr="Jus &amp; boissons fraîches">Zumos &amp; bebidas frescas</p>
@@ -1845,7 +1856,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <p class="item-desc" data-en="Bagel with Serrano ham, garlic cream cheese, cherry tomato and honey." data-fr="Bagel au jambon Serrano, fromage frais à l'ail, tomate cerise et miel.">Bagel con jamón serrano, queso crema con ajo, tomate cherry y miel.</p>
       <div class="item-opt-row">
-        <span class="opt-chip">🍯 <span data-en="Honey" data-fr="Miel">Miel</span> +0,50€</span>
+        <span class="opt-chip">🌶️ <span data-en="Peach Spicy" data-fr="Peach Spicy">Peach Spicy</span> +0,50€</span>
         <span class="opt-chip">🌶️ <span data-en="Spicy Honey" data-fr="Miel Piquante">Miel Picante</span> +0,50€</span>
       </div>
     </div>
@@ -1913,7 +1924,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <p class="item-desc" data-en="Toasted bread with Serrano ham, garlic cream cheese, mozzarella, cherry tomato and honey." data-fr="Pain toasté, jambon Serrano, fromage frais à l'ail, mozzarella, tomate cerise et miel.">Pan tostado con jamón serrano, queso crema con ajo, mozzarella, tomate cherry y miel.</p>
       <div class="item-opt-row">
-        <span class="opt-chip">🍯 <span data-en="Honey" data-fr="Miel">Miel</span> +0,50€</span>
+        <span class="opt-chip">🌶️ <span data-en="Peach Spicy" data-fr="Peach Spicy">Peach Spicy</span> +0,50€</span>
         <span class="opt-chip">🌶️ <span data-en="Spicy Honey" data-fr="Miel Piquante">Miel Picante</span> +0,50€</span>
       </div>
     </div>
@@ -1974,7 +1985,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <p class="item-desc" data-en="Brioche, garlic cream cheese, Serrano ham, mozzarella, cherry tomato and honey." data-fr="Brioche, fromage frais à l'ail, jambon Serrano, mozzarella, tomate cerise et miel.">Brioche, queso crema con ajo, jamón serrano, mozzarella, tomate cherry y miel.</p>
       <div class="item-opt-row">
-        <span class="opt-chip">🍯 <span data-en="Honey" data-fr="Miel">Miel</span> +0,50€</span>
+        <span class="opt-chip">🌶️ <span data-en="Peach Spicy" data-fr="Peach Spicy">Peach Spicy</span> +0,50€</span>
         <span class="opt-chip">🌶️ <span data-en="Spicy Honey" data-fr="Miel Piquante">Miel Picante</span> +0,50€</span>
       </div>
     </div>
@@ -2169,7 +2180,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="item-name" data-en="ISLA CRUNCH" data-fr="ISLA CRUNCH">ISLA CRUNCH</p>
         <p class="item-price" id="price-crunch">6,50€</p>
       </div>
-      <p class="item-desc" data-en="Greek yogurt, granola, fruit, Nutella or Lotus and crunchy topping." data-fr="Yaourt grec, granola, fruit, Nutella ou Lotus et topping croustillant.">Yogur griego + granola + fruta + Nutella o Lotus + topping crujiente.</p>
+      <p class="item-desc" data-en="Greek yogurt, granola, fruit and Nutella or Lotus." data-fr="Yaourt grec, granola, fruit et Nutella ou Lotus.">Yogur griego + granola + fruta + Nutella o Lotus.</p>
 
       <div class="diy-panel">
         <p class="diy-title i18n-html" data-en-html="✨ Choose your cream" data-fr-html="✨ Choisissez votre crème">✨ Elige tu crema</p>
@@ -3221,7 +3232,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {
           "@type": "MenuItem",
           "name": "ISLA CRUNCH",
-          "description": "Yogur griego, granola, fruta, Nutella o Lotus a elegir y topping crujiente.",
+          "description": "Yogur griego, granola, fruta y Nutella o Lotus a elegir.",
           "offers": {
             "@type": "Offer",
             "price": "6.50",
