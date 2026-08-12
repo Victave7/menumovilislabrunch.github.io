@@ -1690,6 +1690,144 @@ section{
  .hero-cta{display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;}
  .hero-cta .btn,.hero-cta a.btn{width:fit-content!important;flex:0 0 auto!important;}
 }
+</style><style id="final-ui-fix">
+/* ===== FINAL HERO BUTTONS ===== */
+.hero-cta{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  flex-direction:row !important;
+  flex-wrap:wrap !important;
+  gap:10px !important;
+  width:auto !important;
+}
+.hero-cta > a.btn,
+.hero-cta > .btn,
+.hero-cta a.btn-primary,
+.hero-cta a.btn-ghost{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  flex:0 0 auto !important;
+  width:auto !important;
+  max-width:none !important;
+  min-width:0 !important;
+  height:44px !important;
+  min-height:44px !important;
+  padding:0 17px !important;
+  margin:0 !important;
+  border-radius:9px !important;
+  box-sizing:border-box !important;
+  white-space:nowrap !important;
+  overflow:visible !important;
+}
+.hero-cta a.btn-primary{
+  background:#F2E7D5 !important;
+  color:#17352D !important;
+  border:1px solid #F2E7D5 !important;
+}
+.hero-cta a.btn-ghost{
+  background:rgba(255,247,238,.035) !important;
+  color:#F5EBDD !important;
+  border:1px solid rgba(245,235,221,.42) !important;
+}
+.hero-cta a.btn-primary:hover,
+.hero-cta a.btn-ghost:hover{
+  transform:translateY(-1px) !important;
+}
+@media(max-width:700px){
+  .hero-cta{
+    display:flex !important;
+    flex-direction:row !important;
+    flex-wrap:wrap !important;
+  }
+  .hero-cta > a.btn,
+  .hero-cta a.btn-primary,
+  .hero-cta a.btn-ghost{
+    width:auto !important;
+    flex:0 0 auto !important;
+  }
+}
+
+/* ===== ONE LANGUAGE SELECTOR ===== */
+.lang-switch{
+  position:absolute !important;
+  top:16px !important;
+  right:16px !important;
+  z-index:100 !important;
+  display:flex !important;
+  width:auto !important;
+  max-width:max-content !important;
+  gap:2px !important;
+  padding:3px !important;
+  border:1px solid rgba(255,247,238,.18) !important;
+  background:rgba(7,19,25,.72) !important;
+  backdrop-filter:blur(10px) !important;
+  -webkit-backdrop-filter:blur(10px) !important;
+  border-radius:9px !important;
+}
+.lang-switch .lang-btn{
+  width:auto !important;
+  min-width:32px !important;
+  height:28px !important;
+  padding:0 8px !important;
+  border:0 !important;
+  border-radius:6px !important;
+  background:transparent !important;
+  color:rgba(255,247,238,.62) !important;
+  font:700 10px/28px 'Space Mono',monospace !important;
+  cursor:pointer !important;
+}
+.lang-switch .lang-btn.active{
+  background:#F2E7D5 !important;
+  color:#17352D !important;
+}
+</style><style id="cta-final-audit-fix">
+/* ===== HERO CTA CONTAINER: NO BACKGROUND / NO UNDERLINE / NO BOX ===== */
+.hero-cta,
+.hero-cta:hover,
+.hero-cta:focus,
+.hero-cta:active{
+  background:transparent !important;
+  background-image:none !important;
+  border:0 !important;
+  border-bottom:0 !important;
+  box-shadow:none !important;
+  outline:0 !important;
+  color:inherit !important;
+  text-decoration:none !important;
+  padding:0 !important;
+}
+.hero-cta > a.btn{
+  text-decoration:none !important;
+  border-bottom:1px solid transparent !important;
+  box-shadow:none !important;
+}
+.hero-cta > a.btn-primary{
+  background:#F2E7D5 !important;
+  color:#17352D !important;
+  border:1px solid #F2E7D5 !important;
+}
+.hero-cta > a.btn-ghost{
+  background:rgba(255,247,238,.035) !important;
+  color:#F5EBDD !important;
+  border:1px solid rgba(245,235,221,.42) !important;
+}
+.hero-cta > a.btn-primary:hover{
+  background:#FFF8EE !important;
+  border-color:#FFF8EE !important;
+  color:#17352D !important;
+}
+.hero-cta > a.btn-ghost:hover{
+  background:rgba(255,247,238,.10) !important;
+  border-color:rgba(245,235,221,.72) !important;
+  color:#FFF8EE !important;
+}
+/* Kill any old generic rule that colored the CTA wrapper. */
+.hero-cta .btn-primary,
+.hero-cta .btn-ghost{
+  position:relative !important;
+}
 </style></head>
 <body>
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -1814,8 +1952,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="hero-tag">Cena, cócteles y copas. De la cena al after.</p>
     <a href="#after" class="hero-pill">🌙 ISLA AFTER DARK · Cena · Cócteles · Copas</a>
     <div class="hero-cta">
-      <a href="#cena" class="btn btn-primary">🥂 Ver menú</a>
-      <a href="#cocteles" class="btn btn-ghost">🍹 Ver cócteles</a>
+      <a href="#cena" class="btn btn-primary" style="display:inline-flex!important;width:auto!important;max-width:max-content!important;flex:0 0 auto!important;text-decoration:none!important;">🥂 Ver menú</a>
+      <a href="#cocteles" class="btn btn-ghost" style="display:inline-flex!important;width:auto!important;max-width:max-content!important;flex:0 0 auto!important;text-decoration:none!important;">🍹 Ver cócteles</a>
     </div>
   </div>
   <div class="scroll-cue">desliza ↓</div>
@@ -2384,38 +2522,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+
+
 <script id="isla-i18n">
-(function(){
- const DICT={"en": {"🍽️ Cena": "🍽️ Dinner", "🧀 Compartir": "🧀 Sharing", "🍹 Cócteles": "🍹 Cocktails", "🍺 Cerveza": "🍺 Beer", "🥃 Copas": "🥃 Drinks", "🌙 After": "🌙 After", "Cena": "Dinner", "Compartir": "Sharing", "Cócteles": "Cocktails", "Cerveza": "Beer", "Copas": "Drinks", "After": "After", "Ver menú": "View menu", "Ver cócteles": "View cocktails", "desliza ↓": "scroll ↓", "De la cena al after": "From dinner to after", "CENA": "DINNER", "PACKS": "PACKS", "BRIOCHES": "BRIOCHES", "BEBIDAS": "DRINKS", "PARA COMPARTIR": "SHARING", "🧀 PARA PICAR": "🧀 TO SHARE", "CÓCTELES": "COCKTAILS", "Toda la noche": "All night", "🌴 Firmas tropicales": "🌴 Tropical signatures", "Los especiales de ISLA": "ISLA signatures", "🍹 Mojitos": "🍹 Mojitos", "Los fáciles · también disponibles en los packs": "The easy ones · also available in the packs", "CERVEZA": "BEER", "COPAS": "DRINKS", "Y ahora sí": "And now", "Sigue la noche.": "Keep the night going.", "After Isla": "After Isla", "¿Ya has cenado?": "Already had dinner?", "Entonces sigue la noche.": "Then keep the night going.", "Seguir la noche →": "Keep the night going →", "Preguntas frecuentes": "Frequently asked questions", "NOCHE EN ELCHE": "NIGHT IN ELCHE", "Al centro": "To share", "Fácil de pedir. Fácil de compartir. Fácil de sacar.": "Easy to order. Easy to share. Easy to serve.", "🔥 Más pedido": "🔥 Most ordered", "⚡ Rápida": "⚡ Quick", "Para compartir": "To share", "Rápida": "Quick", "Favorito": "Favourite", "Noche": "Night", "Fresco": "Fresh", "Clásico": "Classic", "Nuevo": "New", "Brioches, algo para compartir y el plan fácil para dos.": "Brioches, sharing plates and an easy plan for two.", "Brioches": "Brioches", "Cualquiera de los 6 brioches de la carta.": "Any of the 6 brioches on the menu.", "Elige cualquiera de los 6 brioches.": "Choose any of the 6 brioches.", "Selección de bebidas normales.": "Choose from the regular drinks.", "Brioche tostado. Relleno. Cena rápida.": "Toasted brioche. Loaded. Quick dinner.", "Provolone fundido · especias · pan tostado": "Melted provolone · spices · toasted bread", "Tosta de ajo · mozzarella fundida · bacon crujiente": "Garlic toast · melted mozzarella · crispy bacon", "Patatas crujientes · alioli · salsa brava Isla": "Crispy potatoes · aioli · Isla brava sauce", "Mozzarella · salsa rosa": "Mozzarella · pink sauce", "Si sigues por Elche": "If you're heading elsewhere in Elche", "TAKE AWAY": "TAKE AWAY", "Caña": "Draft", "Estrella 0,0": "Estrella 0.0", "Ron + Refresco": "Rum + Mixer", "Vodka + Refresco": "Vodka + Mixer", "Gin + Tónica": "Gin + Tonic", "Tequila + Refresco": "Tequila + Mixer"}, "fr": {"🍽️ Cena": "🍽️ Dîner", "🧀 Compartir": "🧀 À partager", "🍹 Cócteles": "🍹 Cocktails", "🍺 Cerveza": "🍺 Bière", "🥃 Copas": "🥃 Verres", "🌙 After": "🌙 After", "Cena": "Dîner", "Compartir": "À partager", "Cócteles": "Cocktails", "Cerveza": "Bière", "Copas": "Verres", "After": "After", "Ver menú": "Voir le menu", "Ver cócteles": "Voir les cocktails", "desliza ↓": "faites défiler ↓", "De la cena al after": "Du dîner à l’after", "CENA": "DÎNER", "PACKS": "FORMULES", "BRIOCHES": "BRIOCHES", "BEBIDAS": "BOISSONS", "PARA COMPARTIR": "À PARTAGER", "🧀 PARA PICAR": "🧀 À GRIGNOTER", "CÓCTELES": "COCKTAILS", "Toda la noche": "Toute la nuit", "🌴 Firmas tropicales": "🌴 Signatures tropicales", "Los especiales de ISLA": "Les signatures ISLA", "🍹 Mojitos": "🍹 Mojitos", "Los fáciles · también disponibles en los packs": "Les incontournables · aussi disponibles dans les formules", "CERVEZA": "BIÈRE", "COPAS": "VERRES", "Y ahora sí": "Et maintenant", "Sigue la noche.": "Continuez la soirée.", "After Isla": "After Isla", "¿Ya has cenado?": "Vous avez déjà dîné ?", "Entonces sigue la noche.": "Alors continuez la soirée.", "Seguir la noche →": "Continuer la soirée →", "Preguntas frecuentes": "Questions fréquentes", "NOCHE EN ELCHE": "NUIT À ELCHE", "Al centro": "À partager", "Fácil de pedir. Fácil de compartir. Fácil de sacar.": "Facile à commander. Facile à partager. Facile à servir.", "🔥 Más pedido": "🔥 Le plus demandé", "⚡ Rápida": "⚡ Rapide", "Para compartir": "À partager", "Rápida": "Rapide", "Favorito": "Favori", "Noche": "Soir", "Fresco": "Frais", "Clásico": "Classique", "Nuevo": "Nouveau", "Brioches, algo para compartir y el plan fácil para dos.": "Brioches, à partager et formule facile pour deux.", "Cualquiera de los 6 brioches de la carta.": "Au choix parmi les 6 brioches.", "Elige cualquiera de los 6 brioches.": "Choisissez l’un des 6 brioches.", "Selección de bebidas normales.": "Choisissez parmi les boissons classiques.", "Brioche tostado. Relleno. Cena rápida.": "Brioche toasté. Généreux. Dîner rapide.", "Provolone fundido · especias · pan tostado": "Provolone fondant · épices · pain grillé", "Tosta de ajo · mozzarella fundida · bacon crujiente": "Toast à l’ail · mozzarella fondue · bacon croustillant", "Patatas crujientes · alioli · salsa brava Isla": "Pommes de terre croustillantes · aïoli · sauce brava Isla", "Mozzarella · salsa rosa": "Mozzarella · sauce rose", "Si sigues por Elche": "Si vous continuez la soirée à Elche", "TAKE AWAY": "À EMPORTER", "Caña": "Pression", "Estrella 0,0": "Estrella 0.0", "Ron + Refresco": "Rhum + Soft", "Vodka + Refresco": "Vodka + Soft", "Gin + Tónica": "Gin + Tonic", "Tequila + Refresco": "Tequila + Soft"}};
- const btns=[...document.querySelectorAll('.lang-btn')];
- const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
- const nodes=[];
- while(walker.nextNode()){
-   const n=walker.currentNode;
-   if(n.parentElement && !/^(SCRIPT|STYLE|NOSCRIPT)$/i.test(n.parentElement.tagName)) nodes.push(n);
- }
- const originals=nodes.map(n=>n.nodeValue);
- const esc=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
- function apply(lang){
-   nodes.forEach((n,i)=>{
-     let v=originals[i];
-     if(lang!=='es'){
-       const map=DICT[lang]||{};
-       Object.keys(map).sort((a,b)=>b.length-a.length).forEach(k=>{
-         v=v.replace(new RegExp(esc(k),'g'),map[k]);
-       });
-     }
-     n.nodeValue=v;
-   });
-   document.documentElement.lang=lang;
-   btns.forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
-   try{localStorage.setItem('isla-lang',lang)}catch(e){}
- }
- btns.forEach(b=>b.addEventListener('click',()=>apply(b.dataset.lang)));
- let saved='es'; try{saved=localStorage.getItem('isla-lang')||'es'}catch(e){}
- apply(['es','en','fr'].includes(saved)?saved:'es');
+(function () {
+  const DICT = {"en": {"Ver menú": "View menu", "Ver cócteles": "View cocktails", "Cena": "Dinner", "Compartir": "Sharing", "Cócteles": "Cocktails", "Cerveza": "Beer", "Copas": "Drinks", "After": "After", "CENA": "DINNER", "PARA COMPARTIR": "SHARING", "CÓCTELES": "COCKTAILS", "CERVEZA": "BEER", "COPAS": "DRINKS", "De la cena al after": "From dinner to after", "Brioches, algo para compartir y el plan fácil para dos.": "Brioches, sharing plates and an easy plan for two.", "BRIOCHES": "BRIOCHES", "BEBIDAS": "DRINKS", "PACKS": "PACKS", "Favorito": "Favourite", "Noche": "Night", "Fresco": "Fresh", "Clásico": "Classic", "Nuevo": "New", "Al centro": "To share", "Para compartir": "To share", "Rápida": "Quick", "🔥 Más pedido": "🔥 Most ordered", "⚡ Rápida": "⚡ Quick", "Toda la noche": "All night", "🌴 Firmas tropicales": "🌴 Tropical signatures", "Los especiales de ISLA": "ISLA signatures", "🍹 Mojitos": "🍹 Mojitos", "Los fáciles · también disponibles en los packs": "The easy ones · also available in the packs", "Con un giro 🌴": "With a tropical twist 🌴", "Y ahora sí": "And now", "Sigue la noche.": "Keep the night going.", "¿Ya has cenado?": "Already had dinner?", "Entonces sigue la noche.": "Then keep the night going.", "Seguir la noche →": "Keep the night going →", "NOCHE EN ELCHE": "NIGHT IN ELCHE", "Preguntas frecuentes": "Frequently asked questions", "Si sigues por Elche": "If you're continuing your night in Elche", "TAKE AWAY": "TAKE AWAY", "Caña": "Draft", "Estrella 0,0": "Estrella 0.0", "Ron + Refresco": "Rum + Mixer", "Vodka + Refresco": "Vodka + Mixer", "Gin + Tónica": "Gin + Tonic", "Tequila + Refresco": "Tequila + Mixer"}, "fr": {"Ver menú": "Voir le menu", "Ver cócteles": "Voir les cocktails", "Cena": "Dîner", "Compartir": "À partager", "Cócteles": "Cocktails", "Cerveza": "Bière", "Copas": "Verres", "After": "After", "CENA": "DÎNER", "PARA COMPARTIR": "À PARTAGER", "CÓCTELES": "COCKTAILS", "CERVEZA": "BIÈRE", "COPAS": "VERRES", "De la cena al after": "Du dîner à l’after", "Brioches, algo para compartir y el plan fácil para dos.": "Brioches, à partager et formule facile pour deux.", "BRIOCHES": "BRIOCHES", "BEBIDAS": "BOISSONS", "PACKS": "FORMULES", "Favorito": "Favori", "Noche": "Soir", "Fresco": "Frais", "Clásico": "Classique", "Nuevo": "Nouveau", "Al centro": "À partager", "Para compartir": "À partager", "Rápida": "Rapide", "🔥 Más pedido": "🔥 Le plus demandé", "⚡ Rápida": "⚡ Rapide", "Toda la noche": "Toute la nuit", "🌴 Firmas tropicales": "🌴 Signatures tropicales", "Los especiales de ISLA": "Les signatures ISLA", "🍹 Mojitos": "🍹 Mojitos", "Los fáciles · también disponibles en los packs": "Les incontournables · aussi disponibles dans les formules", "Con un giro 🌴": "Avec une touche tropicale 🌴", "Y ahora sí": "Et maintenant", "Sigue la noche.": "Continuez la soirée.", "¿Ya has cenado?": "Vous avez déjà dîné ?", "Entonces sigue la noche.": "Alors continuez la soirée.", "Seguir la noche →": "Continuer la soirée →", "NOCHE EN ELCHE": "NUIT À ELCHE", "Preguntas frecuentes": "Questions fréquentes", "Si sigues por Elche": "Si vous continuez la soirée à Elche", "TAKE AWAY": "À EMPORTER", "Caña": "Pression", "Estrella 0,0": "Estrella 0.0", "Ron + Refresco": "Rhum + Soft", "Vodka + Refresco": "Vodka + Soft", "Gin + Tónica": "Gin + Tonic", "Tequila + Refresco": "Tequila + Soft"}};
+  const buttons = Array.from(document.querySelectorAll('.lang-switch .lang-btn'));
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  while (walker.nextNode()) {
+    const n = walker.currentNode;
+    const parent = n.parentElement;
+    if (parent && !/^(SCRIPT|STYLE|NOSCRIPT)$/i.test(parent.tagName)) nodes.push(n);
+  }
+  const base = nodes.map(n => n.nodeValue);
+
+  function escapeRegex(value) {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function render(lang) {
+    nodes.forEach((node, i) => {
+      let value = base[i];
+      if (lang !== 'es') {
+        const map = DICT[lang] || {};
+        Object.keys(map).sort((a,b) => b.length-a.length).forEach(key => {
+          value = value.replace(new RegExp(escapeRegex(key), 'g'), map[key]);
+        });
+      }
+      node.nodeValue = value;
+    });
+    document.documentElement.lang = lang;
+    buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+    try { localStorage.setItem('isla-language', lang); } catch(e) {}
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      render(this.dataset.lang);
+    });
+  });
+
+  let saved = 'es';
+  try { saved = localStorage.getItem('isla-language') || 'es'; } catch(e) {}
+  render(['es','en','fr'].includes(saved) ? saved : 'es');
 })();
 </script>
-
 </body>
 </html>
