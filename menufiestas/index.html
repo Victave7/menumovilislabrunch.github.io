@@ -1000,6 +1000,94 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .cocktail-group-title{align-items:flex-start;flex-direction:column;gap:5px;}
   }
 
+
+  /* ---------- DON JULIO · PREMIUM SELECTA ---------- */
+  .don-julio-premium{
+    position:relative;
+    margin:0 0 58px;
+    padding:30px;
+    border:1px solid rgba(242,179,107,.48);
+    border-radius:24px;
+    background:
+      radial-gradient(circle at 92% 8%, rgba(242,179,107,.16), transparent 28%),
+      linear-gradient(145deg, rgba(242,179,107,.11), rgba(20,16,31,.72) 58%, rgba(10,27,34,.82));
+    box-shadow:0 18px 55px rgba(0,0,0,.20), inset 0 1px 0 rgba(255,255,255,.06);
+    overflow:hidden;
+  }
+  .don-julio-premium::before{
+    content:"";
+    position:absolute;
+    left:0; top:0; bottom:0;
+    width:4px;
+    background:linear-gradient(180deg,#f2b36b,#d86f3f,#f2b36b);
+  }
+  .don-julio-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+  }
+  .don-julio-kicker{
+    display:block;
+    font-family:'Space Mono',monospace;
+    font-size:.62rem;
+    font-weight:700;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:#f2b36b;
+    margin-bottom:8px;
+  }
+  .don-julio-header h3{
+    font-family:'Unbounded',sans-serif;
+    font-size:clamp(1.55rem,3.4vw,2.25rem);
+    letter-spacing:.02em;
+    color:#fff4e3;
+    margin:0 0 7px;
+  }
+  .don-julio-header p{
+    color:var(--sand-dim);
+    margin:0;
+    font-size:.9rem;
+  }
+  .don-julio-mark{
+    flex:0 0 auto;
+    width:58px;
+    height:58px;
+    display:grid;
+    place-items:center;
+    border:1px solid rgba(242,179,107,.5);
+    border-radius:50%;
+    color:#f2b36b;
+    font-family:'Space Mono',monospace;
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:.08em;
+    background:rgba(242,179,107,.07);
+    box-shadow:0 0 0 6px rgba(242,179,107,.035);
+  }
+  .don-julio-line{
+    height:1px;
+    margin:22px 0 20px;
+    background:linear-gradient(90deg,rgba(242,179,107,.5),rgba(242,179,107,.08),transparent);
+  }
+  .don-julio-grid{gap:14px;}
+  .don-julio-grid .sig-card{
+    background:rgba(244,236,217,.035);
+    border-color:rgba(242,179,107,.22);
+  }
+  .don-julio-grid .sig-card:hover{
+    border-color:rgba(242,179,107,.62);
+    box-shadow:0 12px 30px rgba(0,0,0,.18);
+  }
+  .don-julio-grid .sig-card h3{color:#f2b36b;}
+  .don-julio-grid .sig-card .price{color:#fff4e3;}
+  @media(max-width:768px){
+    .don-julio-premium{padding:24px 18px;margin-bottom:44px;border-radius:20px;}
+    .don-julio-header{align-items:flex-start;}
+    .don-julio-mark{width:48px;height:48px;font-size:.68rem;}
+    .don-julio-header p{font-size:.82rem;max-width:270px;}
+  }
+
   /* ---------- TAKE AWAY ---------- */
   #takeaway{
     background:linear-gradient(180deg, #1c0e18 0%, #14101f 100%);
@@ -2156,6 +2244,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>La carta completa de cócteles de ISLA. Firmas tropicales, mojitos y clásicos.</p>
     </div>
 
+    <!-- ================= DON JULIO · PREMIUM SELECTA ================= -->
+    <div class="don-julio-premium reveal">
+      <div class="don-julio-header">
+        <div>
+          <span class="don-julio-kicker">TEQUILA PREMIUM · SELECCIÓN ISLA</span>
+          <h3>DON JULIO</h3>
+          <p>Una selección especial para quienes quieren subir de nivel.</p>
+        </div>
+        <span class="don-julio-mark">DJ</span>
+      </div>
+      <div class="don-julio-line"></div>
+      <div class="signature-grid don-julio-grid">
+        <div class="sig-card premium-cocktail reveal"><div class="top-row"><h3>Don Julio Palomo de Tamarindo</h3><span class="price">10,50 €</span></div><p class="desc">Tequila Don Julio Reposado · Tamarindo · Pomelo · Lima · Soda</p></div>
+        <div class="sig-card premium-cocktail reveal"><div class="top-row"><h3>Don July Tamarindo</h3><span class="price">11,50 €</span></div><p class="desc">Ron oscuro · Pulpa de tamarindo · Lima · Sirope de caña</p></div>
+        <div class="sig-card premium-cocktail reveal"><div class="top-row"><h3>Don Julio Enamorado</h3><span class="price">10,50 €</span></div><p class="desc">Tequila Don Julio Blanco · Mango · Maracuyá · Lima · Sirope ligero</p></div>
+        <div class="sig-card premium-cocktail reveal"><div class="top-row"><h3>Don Julio Cherry Bomb</h3><span class="price">10,50 €</span></div><p class="desc">Tequila Don Julio Silver · Cereza · Lima · Soda</p></div>
+        <div class="sig-card premium-cocktail reveal"><div class="top-row"><h3>Mexican Sunset</h3><span class="price">10,50 €</span></div><p class="desc">Tequila Don Julio Reposado · Naranja · Granadina · Sprite</p></div>
+        <div class="sig-card premium-cocktail reveal"><div class="top-row"><h3>Don Julio Piña Spice</h3><span class="price">10,50 €</span></div><p class="desc">Tequila Don Julio Reposado · Piña · Lima · Toque de canela o spice · Sirope de caña</p></div>
+        <div class="sig-card premium-cocktail reveal"><div class="top-row"><h3>El Don Pega</h3><span class="price">9,50 €</span></div><p class="desc">Tequila Don Julio Silver · Concentrado de limón</p></div>
+      </div>
+    </div>
+
     <div class="cocktail-group-title reveal">
       <span>🌴 Firmas tropicales</span>
       <small>Los especiales de ISLA</small>
@@ -2322,8 +2432,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="simple-card reveal"><h3>Ron + Refresco</h3><span class="price">7,00 €</span></div>
       <div class="simple-card reveal"><h3>Vodka + Refresco</h3><span class="price">7,00 €</span></div>
       <div class="simple-card reveal"><h3>Gin + Tónica</h3><span class="price">8,00 €</span></div>
-      <div class="simple-card reveal"><h3>Tequila + Refresco</h3><span class="price">8,00 €</span></div>
     </div>
+
   </div>
 </section>
 
