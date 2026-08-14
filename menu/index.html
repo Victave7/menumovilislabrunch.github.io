@@ -1649,6 +1649,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <p class="item-desc" data-en="Hazelnut, chocolate, vanilla or caramel. Extra syrup +€0.50." data-fr="Noisette, chocolat, vanille ou caramel. Sirop supplémentaire +0,50€.">Avellana, chocolate, vainilla o caramelo. Extra sirope +0,50€.</p>
     </div>
+    <div class="card">
+      <div class="card-row">
+        <p class="item-name" data-en="Iced Coffee" data-fr="Café Glacé">Iced Coffee</p>
+        <p class="item-price">3,50€</p>
+      </div>
+      <p class="item-desc" data-en="Iced coffee with syrup, your choice of flavor included." data-fr="Café glacé au sirop, saveur au choix incluse.">Café helado con sirope, sabor a elegir incluido.</p>
+    </div>
 
     <div class="card card-hero">
       <span class="badge badge-sig">☁️ <span data-en="Customize it" data-fr="Personnalisez-le">Personalízalo</span></span>
@@ -1659,7 +1666,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="item-desc" data-en="Espresso crowned with a silky cold foam. Pick your favorite flavor below — 14 to discover." data-fr="Espresso couronné d'une onctueuse cold foam. Choisissez votre saveur préférée ci-dessous — 14 à découvrir.">Espresso coronado con una sedosa cold foam. Elige tu sabor favorito aquí abajo — 14 para descubrir.</p>
 
       <div class="foam-accordion">
-        <button class="foam-toggle" onclick="toggleFoam(this)" aria-controls="foam-panel-3" aria-expanded="true">
+        <button class="foam-toggle" onclick="toggleFoam(this)" aria-controls="foam-panel-3" aria-expanded="false">
           <span class="foam-toggle-icon">☁️</span>
           <span class="foam-toggle-text">
             <span class="foam-toggle-title" data-en="Choose your flavor" data-fr="Choisissez votre saveur">Elige tu sabor</span>
@@ -2236,11 +2243,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="item-desc" data-en="Greek yogurt, matcha , fruit, granola and coconut." data-fr="Yaourt grec, matcha, fruit, granola et noix de coco.">Yogur griego + matcha + fruta + granola + coco.</p>
     </div>
 
+    <div class="card">
+      <span class="badge badge-new">🥭 <span data-en="Tropical" data-fr="Tropical">Tropical</span></span>
+      <div class="card-row">
+        <p class="item-name" data-en="TROPICAL PASSION" data-fr="TROPICAL PASSION">TROPICAL PASSION</p>
+        <p class="item-price">6,50€</p>
+      </div>
+      <p class="item-desc" data-en="Natural yogurt, passion fruit, granola, honey." data-fr="Yaourt nature, fruit de la passion, granola, miel.">Yogur natural, maracuyá, granola, y miel.</p>
+    </div>
+
     <p class="group-label-food i18n-html" data-en-html="<span class='icon'>✨</span> Something smaller" data-fr-html="<span class='icon'>✨</span> Une petite douceur"><span class="icon">✨</span> Algo más pequeño</p>
     <div class="grid2">
       <div class="mini-card"><span class="mini-name">Muffin Lotus</span><span class="mini-price">3,50€</span></div>
-      <div class="mini-card"><span class="mini-name" data-en="Mini Filled Croissant" data-fr="Mini Croissant Fourré">Mini Croissant relleno</span><span class="mini-price">1,50€</span></div>
-      <div class="mini-card mini-full"><span class="mini-name" data-en="Summer Crumbl Cookies (2 pcs.)" data-fr="Summer Crumbl Cookies (2 pcs.)">Summer Crumbl Cookies (2 uds.)</span><span class="mini-price">5,60€</span></div>
+      <div class="mini-card mini-full"><span class="mini-name" data-en="Mini Filled Croissant" data-fr="Mini Croissant Fourré">Mini Croissant relleno</span><span class="mini-price">1,50€</span></div>
     </div>
 
     <div class="ctx-note i18n-html" data-en-html="🍯 <b>Available syrups:</b> Pistachio · Nutella · Lotus · Dulce de leche · Caramel" data-fr-html="🍯 <b>Sirops disponibles :</b> Pistache · Nutella · Lotus · Dulce de leche · Caramel">🍯 <b>Siropes disponibles:</b> Pistacho · Nutella · Lotus · Dulce de leche · Caramelo</div>
@@ -2570,6 +2585,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           "offers": {
             "@type": "Offer",
             "price": "4.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Iced Coffee",
+          "description": "Café helado con sirope, sabor a elegir incluido.",
+          "offers": {
+            "@type": "Offer",
+            "price": "3.50",
             "priceCurrency": "EUR"
           }
         },
@@ -3276,6 +3301,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         },
         {
           "@type": "MenuItem",
+          "name": "TROPICAL PASSION",
+          "description": "Yogur griego, maracuyá, granola,y miel.",
+          "offers": {
+            "@type": "Offer",
+            "price": "5.50",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "MenuItem",
           "name": "Muffin Lotus",
           "offers": {
             "@type": "Offer",
@@ -3289,15 +3324,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           "offers": {
             "@type": "Offer",
             "price": "1.50",
-            "priceCurrency": "EUR"
-          }
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Summer Crumbl Cookies (2 uds.)",
-          "offers": {
-            "@type": "Offer",
-            "price": "5.60",
             "priceCurrency": "EUR"
           }
         }
