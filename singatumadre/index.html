@@ -74,7 +74,7 @@ async function scanner(){
 // Camera scanning uses ZXing (loaded on demand) instead of the native
 // BarcodeDetector API, because BarcodeDetector is unsupported on Safari/iOS
 // and most non-Chromium browsers. ZXing works everywhere getUserMedia works.
-let stream=null, zxingControls=null, zxingLoading=null, scanning=false, scanHandled=false, scanSession=0;
+let stream=null, zxingLoading=null, scanning=false, scanSession=0;
 function loadZXing(){
  if(window.ZXing) return Promise.resolve();
  if(zxingLoading) return zxingLoading;
@@ -94,10 +94,14 @@ async function startScanner(){
   msg.textContent="Este navegador no permite acceder a la cámara. Usa el campo EAN manual, o abre la app por HTTPS (no como archivo local).";
   return;
  }
- scanning=true; scanHandled=false;
+ scanning=true;
  const mySession=++scanSession; // identifica esta sesión de escaneo
  if(btn) btn.disabled=true;
  msg.textContent="Cargando escáner…";
+ // En cuanto el vídeo tiene stream, lo guardamos para poder cortar la
+ // cámara manualmente si el usuario sale antes de que se detecte un código.
+ const onMeta=()=>{ stream=v.srcObject; };
+ v.addEventListener("loadedmetadata",onMeta);
  try{
   await loadZXing();
   if(mySession!==scanSession) return; // el usuario ya salió de "Escanear" mientras cargaba
@@ -109,36 +113,24 @@ async function startScanner(){
   ]);
   const reader=new ZXing.BrowserMultiFormatReader(hints);
   msg.textContent="Apunta al código de barras";
-  const controlsResult=await reader.decodeFromConstraints(
-   {video:{facingMode:{ideal:"environment"}}}, v,
-   (result,err,controls)=>{
-    if(mySession!==scanSession){ try{controls.stop();}catch(e){} return; } // sesión ya cancelada
-    // El lector sigue entregando fotogramas incluso después del primer
-    // acierto; sin este candado, cada fotograma extra (a veces con una
-    // lectura mala) volvía a llamar a lookupEAN y borraba lo ya mostrado.
-    if(result && !scanHandled){
-     scanHandled=true;
-     try{controls.stop();}catch(e){}
-     let text=result.getText();
-     stopCamera();
-     lookupEAN(text);
-    }
-   }
-  );
-  if(mySession!==scanSession){ try{controlsResult.stop();}catch(e){} return; } // salió mientras arrancaba la cámara
-  zxingControls=controlsResult;
-  stream=v.srcObject;
+  // decodeOnceFromConstraints resuelve UNA sola vez cuando encuentra un
+  // código válido (en vez del modo continuo, que llamaba a una función una
+  // y otra vez por cada fotograma y causaba el parpadeo).
+  const result=await reader.decodeOnceFromConstraints({video:{facingMode:{ideal:"environment"}}}, v);
+  v.removeEventListener("loadedmetadata",onMeta);
+  if(mySession!==scanSession) return; // el usuario salió mientras se escaneaba
+  stopCamera();
+  lookupEAN(result.getText());
  }catch(e){
-  if(mySession!==scanSession) return;
+  v.removeEventListener("loadedmetadata",onMeta);
+  if(mySession!==scanSession) return; // cancelado a propósito, ignorar el error
   msg.textContent="No se pudo activar la cámara: "+(e && e.message?e.message:e);
-  scanning=false;
-  if(btn) btn.disabled=false;
+  stopCamera();
  }
 }
 function stopCamera(){
  scanSession++; // invalida cualquier arranque de escáner en curso
  scanning=false;
- if(zxingControls){ try{zxingControls.stop();}catch(e){} zxingControls=null; }
  if(stream){ try{stream.getTracks().forEach(t=>t.stop());}catch(e){} stream=null; }
  const v=document.getElementById("video"); if(v) v.srcObject=null;
  const btn=document.getElementById("startscan"); if(btn) btn.disabled=false;
@@ -167,14 +159,17 @@ function formProduct(id,p){
  <div><label>IVA %</label><input id="vat" type="number" value="${p.vat??21}"></div></div>
  <div class="row"><div><label>Stock teórico</label><input id="stock" type="number" step="0.01" value="${p.stock??0}"></div>
  <div><label>Stock mínimo</label><input id="min" type="number" step="0.01" value="${p.min??0}"></div></div>
- <button class="primary" onclick="saveProduct(${id?JSON.stringify(id):"null"})">Guardar</button>
- ${id?`<button class="smallbtn danger" style="width:100%;padding:12px" onclick="deleteProduct(${JSON.stringify(id)})">🗑 Eliminar producto</button>`:""}
+ <button class="primary" onclick="saveProduct(${id?`'${id}'`:"null"})">Guardar</button>
+ ${id?`<button class="smallbtn danger" style="width:100%;padding:12px" onclick="deleteProduct('${id}')">🗑 Eliminar producto</button>`:""}
  </div>`;
 }
 function saveProduct(id){
  let p=id?db.products.find(x=>x.id===id):{id:uuid(),created:Date.now()};
- Object.assign(p,{ean:ean.value,name:name.value.trim()||"Producto sin nombre",brand:brand.value.trim(),format:format.value.trim(),supplier:supplier.value.trim(),
- cost:Number(cost.value||0),vat:Number(vat.value||0),stock:Number(stock.value||0),min:Number(min.value||0)});
+ const val=k=>document.getElementById(k).value; // getElementById en vez de variables globales
+ // (ej. id="name" chocaba con window.name, que ya existe en todo navegador,
+ // así que "name.value" nunca leía el campo real y Guardar fallaba en silencio)
+ Object.assign(p,{ean:val("ean"),name:val("name").trim()||"Producto sin nombre",brand:val("brand").trim(),format:val("format").trim(),supplier:val("supplier").trim(),
+ cost:Number(val("cost")||0),vat:Number(val("vat")||0),stock:Number(val("stock")||0),min:Number(val("min")||0)});
  if(!id)db.products.push(p);save();tab("products");
 }
 function deleteProduct(id){
