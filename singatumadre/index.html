@@ -67,14 +67,14 @@ async function scanner(){
  app.innerHTML=`<div class="card"><h2>Escanear código</h2><div class="scanner">
  <video id="video" playsinline muted></video><p id="scanmsg" class="muted">Apunta al código de barras</p>
  <button class="primary" id="startscan">Activar cámara</button></div>
- <div class="card"><label>O introduce el EAN manualmente</label><input id="manualean" inputmode="numeric" placeholder="Ej. 841..."><button class="primary" onclick="lookupEAN(document.getElementById('manualean').value)">Buscar</button></div></div>`;
+ <div class="card"><label>O introduce el EAN manualmente</label><input id="manualean" inputmode="numeric" placeholder="Ej. 841..."><button class="primary" onclick="stopCamera();lookupEAN(document.getElementById('manualean').value)">Buscar</button></div></div>`;
  document.getElementById("startscan").onclick=startScanner;
 }
 
 // Camera scanning uses ZXing (loaded on demand) instead of the native
 // BarcodeDetector API, because BarcodeDetector is unsupported on Safari/iOS
 // and most non-Chromium browsers. ZXing works everywhere getUserMedia works.
-let stream=null, zxingControls=null, zxingLoading=null;
+let stream=null, zxingControls=null, zxingLoading=null, scanning=false, scanHandled=false, scanSession=0;
 function loadZXing(){
  if(window.ZXing) return Promise.resolve();
  if(zxingLoading) return zxingLoading;
@@ -88,14 +88,19 @@ function loadZXing(){
  return zxingLoading;
 }
 async function startScanner(){
- const v=document.getElementById("video"), msg=document.getElementById("scanmsg");
+ if(scanning) return; // evita doble-tap arrancando dos lectores a la vez
+ const v=document.getElementById("video"), msg=document.getElementById("scanmsg"), btn=document.getElementById("startscan");
  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
   msg.textContent="Este navegador no permite acceder a la cámara. Usa el campo EAN manual, o abre la app por HTTPS (no como archivo local).";
   return;
  }
+ scanning=true; scanHandled=false;
+ const mySession=++scanSession; // identifica esta sesión de escaneo
+ if(btn) btn.disabled=true;
  msg.textContent="Cargando escáner…";
  try{
   await loadZXing();
+  if(mySession!==scanSession) return; // el usuario ya salió de "Escanear" mientras cargaba
   const hints=new Map();
   hints.set(ZXing.DecodeHintType.POSSIBLE_FORMATS,[
    ZXing.BarcodeFormat.EAN_13, ZXing.BarcodeFormat.EAN_8,
@@ -104,21 +109,39 @@ async function startScanner(){
   ]);
   const reader=new ZXing.BrowserMultiFormatReader(hints);
   msg.textContent="Apunta al código de barras";
-  zxingControls=await reader.decodeFromConstraints(
+  const controlsResult=await reader.decodeFromConstraints(
    {video:{facingMode:{ideal:"environment"}}}, v,
-   (result)=>{
-    if(result){ let text=result.getText(); stopCamera(); lookupEAN(text); }
+   (result,err,controls)=>{
+    if(mySession!==scanSession){ try{controls.stop();}catch(e){} return; } // sesión ya cancelada
+    // El lector sigue entregando fotogramas incluso después del primer
+    // acierto; sin este candado, cada fotograma extra (a veces con una
+    // lectura mala) volvía a llamar a lookupEAN y borraba lo ya mostrado.
+    if(result && !scanHandled){
+     scanHandled=true;
+     try{controls.stop();}catch(e){}
+     let text=result.getText();
+     stopCamera();
+     lookupEAN(text);
+    }
    }
   );
+  if(mySession!==scanSession){ try{controlsResult.stop();}catch(e){} return; } // salió mientras arrancaba la cámara
+  zxingControls=controlsResult;
   stream=v.srcObject;
  }catch(e){
+  if(mySession!==scanSession) return;
   msg.textContent="No se pudo activar la cámara: "+(e && e.message?e.message:e);
+  scanning=false;
+  if(btn) btn.disabled=false;
  }
 }
 function stopCamera(){
+ scanSession++; // invalida cualquier arranque de escáner en curso
+ scanning=false;
  if(zxingControls){ try{zxingControls.stop();}catch(e){} zxingControls=null; }
  if(stream){ try{stream.getTracks().forEach(t=>t.stop());}catch(e){} stream=null; }
  const v=document.getElementById("video"); if(v) v.srcObject=null;
+ const btn=document.getElementById("startscan"); if(btn) btn.disabled=false;
 }
 async function lookupEAN(ean){
  ean=String(ean||"").replace(/\D/g,""); if(!ean){alert("Introduce un código");return}
@@ -156,7 +179,9 @@ function saveProduct(id){
 }
 function deleteProduct(id){
  if(!confirm("¿Eliminar este producto? Esta acción no se puede deshacer."))return;
+ let p=db.products.find(x=>x.id===id);
  db.products=db.products.filter(x=>x.id!==id);
+ if(p) db.counts=db.counts.filter(c=>c.ean!==p.ean);
  save();tab("products");
 }
 function products(){
