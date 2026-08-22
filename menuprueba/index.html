@@ -1132,7 +1132,7 @@ body.menu-inside .nav-wrap { padding-top: 0; }
 .footer a { color: var(--green); text-decoration: none; }
 
 /* ── PORTADA ISLA · EXPERIENCIA CINEMÁTICA ── */
-body.menu-landing { background:#07110B; overflow:hidden; }
+body.menu-landing { background:#07110B; }
 body.menu-landing .hero,
 body.menu-landing .hero-curve,
 body.menu-landing .identity-bar,
@@ -1279,7 +1279,9 @@ body.menu-landing .root { max-width:none; width:100%; min-height:100dvh; backgro
 .landing-palm.left { left:-5%; }
 .landing-palm.right { right:-5%; transform:scaleX(-1); animation-delay:-2.7s; }
 .landing-palm-svg { width:100%; height:auto; }
-.landing-palm path { fill:none; stroke:rgba(255,255,255,.75); stroke-width:2; stroke-linecap:round; }
+.landing-palm .palm-fronds path { fill:rgba(255,255,255,.88); }
+.landing-palm .palm-trunk { fill:rgba(255,255,255,.5); }
+.landing-palm .palm-coco { fill:rgba(255,255,255,.6); }
 
 .home-choice-divider {
   position:absolute; z-index:7; top:0; bottom:0; left:50%; width:1px;
@@ -1625,13 +1627,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="home-choice-divider" aria-hidden="true"></div>
 <button class="home-choice-card" type="button" onclick="goHome('comer')" aria-label="Abrir menú de comida">
 <video class="home-choice-video" autoplay muted loop playsinline webkit-playsinline="true" preload="auto" disablepictureinpicture aria-hidden="true"><source src="videos/comerloop.mp4" type="video/mp4"></video>
+<div class="landing-palm left" aria-hidden="true"><svg class="landing-palm-svg" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+<path class="palm-trunk" d="M94,272 C91,228 95,190 92,152 C90.5,136 94,122 98,116 L102,116 C106,122 109.5,136 108,152 C105,190 109,228 106,272 Z"/>
+<g class="palm-fronds">
+<path d="M100.0,112.0 C73.4,99.2 44.3,98.0 19.8,95.0 C43.4,102.1 70.5,112.9 100.0,112.0 Z"/>
+<path d="M100.0,112.0 C78.2,84.2 47.5,67.8 22.8,51.7 C44.4,71.8 67.7,97.6 100.0,112.0 Z"/>
+<path d="M100.0,112.0 C91.7,73.2 68.8,41.5 51.8,13.1 C63.7,44.0 74.6,81.6 100.0,112.0 Z"/>
+<path d="M100.0,112.0 C110.0,71.4 103.0,30.8 100.0,-4.0 C97.0,30.8 90.0,71.4 100.0,112.0 Z"/>
+<path d="M100.0,112.0 C125.4,81.6 136.3,44.0 148.2,13.1 C131.2,41.5 108.3,73.2 100.0,112.0 Z"/>
+<path d="M100.0,112.0 C132.3,97.6 155.6,71.8 177.2,51.7 C152.5,67.8 121.8,84.2 100.0,112.0 Z"/>
+<path d="M100.0,112.0 C129.5,112.9 156.6,102.1 180.2,95.0 C155.7,98.0 126.6,99.2 100.0,112.0 Z"/>
+</g>
+<circle class="palm-coco" cx="93.5" cy="121" r="3.6"/>
+<circle class="palm-coco" cx="103.5" cy="124" r="3.2"/>
+<circle class="palm-coco" cx="98" cy="128" r="3.2"/>
+</svg></div>
 <span class="home-choice-content"><span class="home-choice-kicker">ISLA Brunch</span><span class="home-choice-title" data-en="EAT" data-fr="MANGER">COMER</span><span class="home-choice-sub" data-en="Brunch · Brioche · Sweet · Sharing" data-fr="Brunch · Brioche · Sucré · À partager">Brunch · Brioche · Dulce · Compartir</span><span class="home-choice-arrow" aria-hidden="true">VER →</span></span>
 </button>
 <button class="home-choice-card" type="button" onclick="goHome('beber')" aria-label="Abrir menú de bebidas">
 <video class="home-choice-video" autoplay muted loop playsinline webkit-playsinline="true" preload="auto" disablepictureinpicture aria-hidden="true">
 <source src="videos/beberloop.mp4" type="video/mp4">
 </video>
-<div class="landing-palm right" aria-hidden="true"></div>
+<div class="landing-palm right" aria-hidden="true"><svg class="landing-palm-svg" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+<path class="palm-trunk" d="M94,272 C91,228 95,190 92,152 C90.5,136 94,122 98,116 L102,116 C106,122 109.5,136 108,152 C105,190 109,228 106,272 Z"/>
+<g class="palm-fronds">
+<path d="M100.0,112.0 C73.4,99.2 44.3,98.0 19.8,95.0 C43.4,102.1 70.5,112.9 100.0,112.0 Z"/>
+<path d="M100.0,112.0 C78.2,84.2 47.5,67.8 22.8,51.7 C44.4,71.8 67.7,97.6 100.0,112.0 Z"/>
+<path d="M100.0,112.0 C91.7,73.2 68.8,41.5 51.8,13.1 C63.7,44.0 74.6,81.6 100.0,112.0 Z"/>
+<path d="M100.0,112.0 C110.0,71.4 103.0,30.8 100.0,-4.0 C97.0,30.8 90.0,71.4 100.0,112.0 Z"/>
+<path d="M100.0,112.0 C125.4,81.6 136.3,44.0 148.2,13.1 C131.2,41.5 108.3,73.2 100.0,112.0 Z"/>
+<path d="M100.0,112.0 C132.3,97.6 155.6,71.8 177.2,51.7 C152.5,67.8 121.8,84.2 100.0,112.0 Z"/>
+<path d="M100.0,112.0 C129.5,112.9 156.6,102.1 180.2,95.0 C155.7,98.0 126.6,99.2 100.0,112.0 Z"/>
+</g>
+<circle class="palm-coco" cx="93.5" cy="121" r="3.6"/>
+<circle class="palm-coco" cx="103.5" cy="124" r="3.2"/>
+<circle class="palm-coco" cx="98" cy="128" r="3.2"/>
+</svg></div>
 <span class="home-choice-content">
 <span class="home-choice-kicker">ISLA Drinks</span>
 <span class="home-choice-title" data-en="DRINK" data-fr="BOIRE">BEBER</span>
