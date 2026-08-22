@@ -1113,54 +1113,217 @@ body.menu-inside .nav-wrap { padding-top: 0; }
 .footer strong { display: block; font-size: 13px; color: var(--bark); margin-bottom: 4px; }
 .footer a { color: var(--green); text-decoration: none; }
 
-/* ── PORTADA / INICIO: CTA FULL-SCREEN COMER / BEBER ── */
-/* Portada inicial: experiencia inmersiva a pantalla completa.
-   No mostramos hero, identidad, idioma ni navegación hasta que el usuario elige Comer o Beber. */
+/* ── PORTADA ISLA · EXPERIENCIA CINEMÁTICA ── */
+body.menu-landing { background:#07110B; overflow:hidden; }
 body.menu-landing .hero,
 body.menu-landing .hero-curve,
 body.menu-landing .identity-bar,
 body.menu-landing .lang-bar,
 body.menu-landing .nav-wrap { display:none !important; }
-body.menu-landing .root { max-width:430px; min-height:100dvh; }
+body.menu-landing .root { max-width:none; width:100%; min-height:100dvh; background:#07110B; }
 
-/* En una sección real no repetimos la elección COMER / BEBER.
-   La barra principal solo sirve para entrar desde la portada; una vez dentro,
-   queda únicamente el submenú de la sección activa. */
-body:not(.menu-landing) .nav-cats { display:none; }
-body:not(.menu-landing) .nav-wrap { border-bottom:1px solid var(--divider); }
-body:not(.menu-landing) .sub-nav.vis { display:flex; }
-#sec-inicio { padding:0; margin:0; height:100dvh; min-height:100svh; }
+#sec-inicio { padding:0; margin:0; width:100%; height:100dvh; min-height:100svh; }
 #sec-inicio.on { display:flex; flex-direction:column; }
 #sec-inicio .sec-head, #sec-inicio .home-choice-note { display:none; }
-.home-choice { display:grid; grid-template-columns:1fr 1fr; gap:0; width:100%; height:100%; min-height:100dvh; flex:1; }
-.home-choice-card { position:relative; display:block; width:100%; min-width:0; min-height:100svh; overflow:hidden; border:0; border-radius:0; padding:0; cursor:pointer; background:#183c26; box-shadow:none; isolation:isolate; font-family:inherit; text-align:left; -webkit-tap-highlight-color:transparent; touch-action:manipulation; }
-.home-choice-card + .home-choice-card { border-left:1px solid rgba(255,255,255,.22); }
-.home-choice-card:active { transform:none; }
-.home-choice-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; background:var(--sand); }
-.home-choice-card::after { content:""; position:absolute; inset:0; z-index:1; background:linear-gradient(to bottom,rgba(10,20,13,.22) 0%,rgba(10,20,13,.03) 30%,rgba(10,20,13,.08) 58%,rgba(10,20,13,.78) 100%); pointer-events:none; }
-.home-choice-content { position:absolute; z-index:2; left:10px; right:10px; top:50%; transform:translateY(-50%); color:#fff; text-align:center; pointer-events:none; }
-.home-choice-kicker { display:none; margin-bottom:7px; font-size:8px; letter-spacing:.20em; text-transform:uppercase; font-weight:600; opacity:.86; }
-.home-choice-title { display:block; font-family:'Cormorant Garamond',serif; font-size:clamp(34px,11vw,60px); line-height:.9; font-weight:700; letter-spacing:.02em; text-shadow:0 3px 18px rgba(0,0,0,.28); }
-.home-choice-sub { display:none; margin-top:10px; font-size:9px; line-height:1.45; opacity:.95; text-wrap:balance; }
-.home-choice-arrow { display:none; margin-top:15px; padding:8px 13px; border:1px solid rgba(255,255,255,.62); border-radius:999px; font-size:8px; letter-spacing:.16em; font-weight:700; background:rgba(0,0,0,.10); backdrop-filter:blur(5px); }
-.home-choice-note { position:absolute; z-index:6; left:50%; bottom:13px; transform:translateX(-50%); margin:0; color:rgba(255,255,255,.78); font-size:8px; letter-spacing:.06em; text-align:center; white-space:nowrap; text-shadow:0 1px 8px rgba(0,0,0,.4); pointer-events:none; }
-@media (max-width:360px){ .home-choice-title{font-size:29px;} .home-choice-sub{font-size:8.5px;} .home-choice-content{left:7px;right:7px;} }
-@media (prefers-reduced-motion:reduce){ .home-choice-video{display:none;} .home-choice-card{background:var(--green);} }
-.home-grid { display:block; }
 
-.promo-banner {
-  background: linear-gradient(120deg, var(--green) 0%, #1e5c34 100%);
-  border-radius: var(--r);
-  padding: 14px 16px;
-  margin-bottom: 16px;
-  color: #fff;
+.home-choice {
+  position:relative; display:grid; grid-template-columns:1fr 1fr; gap:0;
+  width:100%; height:100%; min-height:100dvh; flex:1; background:#07110B;
 }
-.promo-banner p { font-size: 12px; opacity: 0.85; margin-top: 4px; line-height: 1.5; }
-.promo-banner strong { font-size: 14px; font-weight: 600; }
+.home-choice-card {
+  --panel-delay:0ms; position:relative; display:block; width:100%; min-width:0;
+  min-height:100svh; overflow:hidden; border:0; border-radius:0; padding:0;
+  cursor:pointer; background:#07110B; box-shadow:none; isolation:isolate;
+  font-family:inherit; text-align:left; -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation; animation:panelReveal .9s cubic-bezier(.16,1,.3,1) both;
+  animation-delay:var(--panel-delay);
+}
+.home-choice-card:first-child { --panel-delay:0ms; }
+.home-choice-card:nth-child(2) { --panel-delay:110ms; }
+.home-choice-card + .home-choice-card { border-left:1px solid rgba(255,255,255,.20); }
+
+.home-choice-video {
+  position:absolute; inset:0; z-index:0; width:100%; height:100%;
+  object-fit:cover; display:block; background:#07110B; opacity:1;
+  transform:scale(1.035); animation:videoReveal 1.4s cubic-bezier(.16,1,.3,1) both;
+  animation-delay:var(--panel-delay);
+}
+.home-choice-card::before {
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(4,12,7,.08) 0%,rgba(4,12,7,.02) 38%,rgba(4,12,7,.18) 58%,rgba(3,10,6,.88) 100%),
+    linear-gradient(90deg,rgba(0,0,0,.08),transparent 35%,transparent 65%,rgba(0,0,0,.08));
+}
+.home-choice-card::after {
+  content:""; position:absolute; inset:0; z-index:4; pointer-events:none; opacity:0;
+  background:radial-gradient(circle at 50% 65%,rgba(255,255,255,.10),transparent 42%);
+  transition:opacity .35s ease;
+}
+.home-choice-card:hover::after { opacity:1; }
+
+.landing-top-brand {
+  position:absolute;
+  z-index:10;
+  top:clamp(14px,2.8vw,30px);
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  color:#fff;
+  pointer-events:none;
+  opacity:0;
+  animation:brandDrop .9s cubic-bezier(.16,1,.3,1) .25s forwards;
+  filter:drop-shadow(0 5px 14px rgba(0,0,0,.35));
+}
+.landing-top-brand-main {
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  font-weight:500;
+  font-size:clamp(38px,5.8vw,68px);
+  line-height:.78;
+  letter-spacing:.035em;
+}
+.landing-top-brand-sub {
+  margin-top:8px;
+  font-family:'Jost',sans-serif;
+  font-size:clamp(7px,1vw,10px);
+  line-height:1;
+  letter-spacing:.42em;
+  font-weight:600;
+  padding-left:.42em;
+}
+.landing-shadow-palm {
+  position:absolute;
+  z-index:3;
+  top:-9%;
+  left:50%;
+  width:clamp(180px,28vw,390px);
+  height:auto;
+  transform:translateX(-50%) rotate(-7deg);
+  opacity:.22;
+  pointer-events:none;
+  filter:blur(.15px);
+  animation:shadowPalmSway 7s ease-in-out infinite;
+}
+.landing-shadow-palm svg {
+  width:100%;
+  height:auto;
+}
+.landing-shadow-palm path {
+  fill:none;
+  stroke:rgba(255,255,255,.95);
+  stroke-width:3.2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.home-choice-content {
+  position:absolute; z-index:5; left:clamp(12px,3vw,36px); right:clamp(12px,3vw,36px);
+  bottom:clamp(54px,9vh,100px); color:#fff; text-align:center; pointer-events:none;
+}
+.home-choice-kicker {
+  display:block; margin:0 0 10px; font-family:'Jost',sans-serif;
+  font-size:clamp(7px,1vw,10px); letter-spacing:.30em; text-transform:uppercase;
+  font-weight:600; opacity:0; animation:kickerIn .65s cubic-bezier(.16,1,.3,1) .65s forwards;
+}
+.home-choice-title {
+  display:block; font-family:'Cormorant Garamond',serif;
+  font-size:clamp(31px,5.7vw,76px); line-height:.86; font-weight:600;
+  letter-spacing:.045em; white-space:nowrap; text-shadow:0 4px 24px rgba(0,0,0,.38);
+}
+.home-choice-title .letter {
+  display:inline-block; opacity:0; transform:translateY(70px) rotate(7deg) scale(.86);
+  filter:blur(7px); animation:letterSlam .8s cubic-bezier(.16,1,.3,1) forwards;
+  animation-delay:calc(720ms + var(--i) * 55ms);
+}
+.home-choice-sub {
+  display:block; margin-top:13px; font-family:'Jost',sans-serif;
+  font-size:clamp(8px,1.25vw,12px); line-height:1.5; letter-spacing:.12em;
+  text-transform:uppercase; opacity:0; text-wrap:balance;
+  animation:subIn .7s cubic-bezier(.16,1,.3,1) 1.05s forwards;
+}
+.home-choice-arrow {
+  display:inline-flex; margin-top:17px; padding:8px 15px;
+  border:1px solid rgba(255,255,255,.60); border-radius:999px; font-size:8px;
+  letter-spacing:.18em; font-weight:700; background:rgba(0,0,0,.12);
+  backdrop-filter:blur(7px); opacity:0;
+  animation:subIn .7s cubic-bezier(.16,1,.3,1) 1.18s forwards;
+}
+
+.landing-palm {
+  position:absolute; z-index:3; top:-3%; width:clamp(110px,18vw,240px); height:auto;
+  opacity:.52; transform-origin:85% 85%; pointer-events:none;
+  filter:drop-shadow(0 7px 12px rgba(0,0,0,.12)); animation:palmSway 5.5s ease-in-out infinite;
+}
+.landing-palm.left { left:-5%; }
+.landing-palm.right { right:-5%; transform:scaleX(-1); animation-delay:-2.7s; }
+.landing-palm-svg { width:100%; height:auto; }
+.landing-palm path { fill:none; stroke:rgba(255,255,255,.75); stroke-width:2; stroke-linecap:round; }
+
+.home-choice-divider {
+  position:absolute; z-index:7; top:0; bottom:0; left:50%; width:1px;
+  transform:translateX(-50%);
+  background:linear-gradient(180deg,transparent 0%,rgba(255,255,255,.45) 30%,rgba(255,255,255,.18) 70%,transparent 100%);
+  pointer-events:none;
+}
+.home-choice-divider::after {
+  content:""; position:absolute; top:50%; left:50%; width:5px; height:5px;
+  border-radius:50%; background:rgba(255,255,255,.8); transform:translate(-50%,-50%);
+  box-shadow:0 0 0 0 rgba(255,255,255,.35);
+  animation:dividerPulse 2.8s ease-out 1.5s infinite;
+}
+
+@keyframes panelReveal { from{opacity:0;transform:scale(1.025)} to{opacity:1;transform:scale(1)} }
+@keyframes videoReveal { from{opacity:.35;transform:scale(1.09)} to{opacity:1;transform:scale(1.035)} }
+@keyframes brandDrop {
+  from{opacity:0;transform:translate(-50%,-18px) scale(.82)}
+  65%{opacity:1;transform:translate(-50%,3px) scale(1.04)}
+  to{opacity:1;transform:translate(-50%,0) scale(1)}
+}
+@keyframes shadowPalmSway {
+  0%,100% { transform:translateX(-50%) rotate(-7deg) scale(1); }
+  50% { transform:translateX(-50%) rotate(-2deg) scale(1.025); }
+}
+@keyframes kickerIn {
+  from{opacity:0;transform:translateY(15px);letter-spacing:.55em}
+  to{opacity:.86;transform:translateY(0);letter-spacing:.30em}
+}
+@keyframes letterSlam {
+  0%{opacity:0;transform:translateY(70px) rotate(7deg) scale(.86);filter:blur(7px)}
+  70%{opacity:1;transform:translateY(-7px) rotate(-1deg) scale(1.02);filter:blur(0)}
+  100%{opacity:1;transform:translateY(0) rotate(0) scale(1);filter:blur(0)}
+}
+@keyframes subIn { from{opacity:0;transform:translateY(18px)} to{opacity:.95;transform:translateY(0)} }
+@keyframes palmSway {
+  0%,100%{transform:rotate(-8deg)}
+  50%{transform:rotate(-2deg) translateY(5px)}
+}
+@keyframes dividerPulse {
+  0%{box-shadow:0 0 0 0 rgba(255,255,255,.38);opacity:.85}
+  70%{box-shadow:0 0 0 12px rgba(255,255,255,0);opacity:.25}
+  100%{box-shadow:0 0 0 12px rgba(255,255,255,0);opacity:.85}
+}
+@media (max-width:520px) {
+  .home-choice-title{font-size:clamp(30px,8.8vw,48px);letter-spacing:.025em}
+  .home-choice-content{bottom:58px}
+  .landing-top-brand-main{font-size:38px}
+  .home-choice-sub{font-size:8px;letter-spacing:.08em}
+}
+@media (max-width:360px) {
+  .home-choice-title{font-size:28px}
+  .home-choice-sub{font-size:7.5px}
+  .home-choice-content{left:7px;right:7px}
+}
+@media (prefers-reduced-motion:reduce) {
+  .home-choice-card,.home-choice-video,.landing-brand,.home-choice-kicker,
+  .home-choice-title .letter,.home-choice-sub,.home-choice-arrow,.landing-palm,
+  .home-choice-divider::after{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}
+}
+
 </style>
   <link rel="preload" as="video" href="videos/comerloop.mp4" type="video/mp4">
-  <link rel="preload" as="video" href="videos/beberloop.mp4" type="video/mp4">
-</head>
+  </head>
 <body class="menu-landing">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MHHRLL7J"
@@ -1409,31 +1572,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="sec-note" data-en="Choose one side to explore the menu." data-fr="Choisissez une section pour découvrir la carte.">Elige una sección y explora la carta.</p>
     </div>
 
-    <div class="home-choice" aria-label="Elegir entre comida y bebida">
-      <button class="home-choice-card" type="button" onclick="goHome('comer')" aria-label="Abrir menú de comida">
-        <video class="home-choice-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-          <source src="videos/comerloop.mp4" type="video/mp4">
-        </video>
-        <span class="home-choice-content">
-          <span class="home-choice-kicker">ISLA Brunch</span>
-          <span class="home-choice-title" data-en="EAT" data-fr="MANGER">COMER</span>
-          <span class="home-choice-sub" data-en="Brunch · Brioche · Sweet · Sharing" data-fr="Brunch · Brioche · Sucré · À partager">Brunch · Brioche · Dulce · Compartir</span>
-          <span class="home-choice-arrow" aria-hidden="true">VER →</span>
-        </span>
-      </button>
-
-      <button class="home-choice-card" type="button" onclick="goHome('beber')" aria-label="Abrir menú de bebidas">
-        <video class="home-choice-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true" style="background:linear-gradient(135deg,#6B4FA0,#9B79C8);">
-          <source src="videos/beberloop.mp4" type="video/mp4">
-        </video>
-        <span class="home-choice-content">
-          <span class="home-choice-kicker">ISLA Drinks</span>
-          <span class="home-choice-title" data-en="DRINK" data-fr="BOIRE">BEBER</span>
-          <span class="home-choice-sub" data-en="Matcha · Ube · Coffee · Smoothies" data-fr="Matcha · Ube · Café · Smoothies">Matcha · Ube · Café · Smoothies</span>
-          <span class="home-choice-arrow" aria-hidden="true">VER →</span>
-        </span>
-      </button>
-    </div>
+    <div class="landing-top-brand" aria-label="ISLA Brunch & Bar">
+  <span class="landing-top-brand-main">ISLA</span>
+  <span class="landing-top-brand-sub">BRUNCH &amp; BAR</span>
+</div>
+<div class="landing-shadow-palm" aria-hidden="true">
+<svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
+  <path d="M160 420 C154 326 155 245 166 168 C174 112 194 66 223 28"/>
+  <path d="M166 169 C129 132 85 116 31 117"/>
+  <path d="M166 169 C126 91 82 55 28 35"/>
+  <path d="M167 168 C163 93 183 45 229 8"/>
+  <path d="M168 169 C216 111 263 91 311 89"/>
+  <path d="M166 170 C113 170 71 190 35 228"/>
+  <path d="M167 170 C132 220 115 270 115 329"/>
+</svg>
+</div>
+<div class="home-choice" aria-label="Elegir entre comida y bebida">
+<div class="home-choice-divider" aria-hidden="true"></div>
+<button class="home-choice-card" type="button" onclick="goHome('comer')" aria-label="Abrir menú de comida">
+<video class="home-choice-video" autoplay muted loop playsinline preload="auto" poster="comer-poster.jpg" aria-hidden="true"><source src="videos/comerloop.mp4" type="video/mp4"></video>
+<span class="home-choice-content"><span class="home-choice-kicker">ISLA Brunch</span><span class="home-choice-title" data-en="EAT" data-fr="MANGER">COMER</span><span class="home-choice-sub" data-en="Brunch · Brioche · Sweet · Sharing" data-fr="Brunch · Brioche · Sucré · À partager">Brunch · Brioche · Dulce · Compartir</span><span class="home-choice-arrow" aria-hidden="true">VER →</span></span>
+</button>
+<button class="home-choice-card" type="button" onclick="goHome('beber')" aria-label="Abrir menú de bebidas">
+<div class="home-choice-video" aria-hidden="true" style="background:radial-gradient(circle at 55% 35%,#9B79C8 0%,#6B4FA0 35%,#241A36 100%);"></div>
+<span class="home-choice-content"><span class="home-choice-kicker">ISLA Drinks</span><span class="home-choice-title" data-en="DRINK" data-fr="BOIRE">BEBER</span><span class="home-choice-sub" data-en="Matcha · Ube · Coffee · Smoothies" data-fr="Matcha · Ube · Café · Smoothies">Matcha · Ube · Café · Smoothies</span><span class="home-choice-arrow" aria-hidden="true">VER →</span></span>
+</button>
+</div>
 
     <p class="home-choice-note" data-en="Tap the side you want to explore." data-fr="Touchez la section que vous souhaitez découvrir.">Toca la sección que quieres explorar.</p>
   </section>
@@ -3706,5 +3870,14 @@ setLang(detectLang());
 const initialPage = document.getElementById('sec-inicio');
 if (initialPage) animateReveal(initialPage);
 </script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+ document.querySelectorAll('.home-choice-title').forEach(function(title){
+  const chars=Array.from(title.textContent.trim()); title.textContent='';
+  chars.forEach(function(ch,i){const s=document.createElement('span');s.className='letter';s.style.setProperty('--i',i);s.textContent=ch===' '?'\u00A0':ch;title.appendChild(s);});
+ });
+});
+</script>
+
 </body>
 </html>
