@@ -6,6 +6,8 @@
 <meta name="theme-color" content="#111111">
 <title>Isla Inventory</title>
 <link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 <style>
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f4f4f1;color:#111}
 header{background:#111;color:#fff;padding:18px 16px 14px;position:sticky;top:0;z-index:5}
@@ -13,13 +15,13 @@ h1{margin:0;font-size:22px}.sub{opacity:.7;font-size:12px;margin-top:3px}
 nav{display:flex;gap:8px;padding:10px;background:#fff;position:sticky;top:70px;z-index:4;overflow:auto}
 nav button{border:0;border-radius:12px;padding:10px 13px;background:#eee;white-space:nowrap;font-weight:600}nav button.active{background:#111;color:#fff}
 main{padding:14px;max-width:720px;margin:auto}.card{background:#fff;border-radius:16px;padding:15px;margin-bottom:12px;box-shadow:0 2px 10px #0000000b}
-button.primary{width:100%;padding:14px;border:0;border-radius:13px;background:#111;color:#fff;font-size:16px;font-weight:700}
+button.primary{width:100%;padding:14px;border:0;border-radius:13px;background:#111;color:#fff;font-size:16px;font-weight:700;margin-bottom:8px}
 input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:11px;margin:5px 0 10px;font-size:16px}
 .row{display:flex;gap:8px}.row>*{flex:1}.muted{color:#777;font-size:13px}.big{font-size:30px;font-weight:800}
 .item{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #eee}.item:last-child{border:0}
-.badge{padding:5px 8px;border-radius:9px;background:#eee;font-size:12px}.negative{color:#b00020}.positive{color:#087f3e}
+.badge{padding:5px 8px;border-radius:9px;background:#eee;font-size:12px;white-space:nowrap}.negative{color:#b00020;background:#ffe5e5}.positive{color:#087f3e;background:#e4f7ec}
 .hidden{display:none}.scanner{border:2px dashed #bbb;border-radius:16px;padding:20px;text-align:center}
-video{width:100%;border-radius:14px;background:#111}
+video{width:100%;border-radius:14px;background:#111;max-height:340px;object-fit:cover}
 .smallbtn{border:0;padding:8px 10px;border-radius:9px;background:#eee}.danger{background:#ffe5e5;color:#900}
 </style>
 </head>
@@ -35,11 +37,22 @@ const KEY="isla_inventory_v1";
 let db=JSON.parse(localStorage.getItem(KEY)||'{"products":[],"movements":[],"counts":[]}');
 const save=()=>localStorage.setItem(KEY,JSON.stringify(db));
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+function uuid(){
+ if(window.crypto && crypto.randomUUID) return crypto.randomUUID();
+ return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{
+  const r=Math.random()*16|0, v=c=='x'?r:(r&0x3|0x8); return v.toString(16);
+ });
+}
+let currentTab="home";
 function tab(t){
  document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.tab===t));
+ if(currentTab==="scan" && t!=="scan") stopCamera();
+ currentTab=t;
  if(t==="home") home(); if(t==="scan") scanner(); if(t==="products") products(); if(t==="count") count();
 }
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>tab(b.dataset.tab));
+document.addEventListener("visibilitychange",()=>{if(document.hidden)stopCamera();});
+window.addEventListener("pagehide",stopCamera);
 
 function home(){
  let stock=db.products.reduce((a,p)=>a+p.stock,0), low=db.products.filter(p=>p.stock<=p.min).length;
@@ -52,25 +65,61 @@ function home(){
 
 async function scanner(){
  app.innerHTML=`<div class="card"><h2>Escanear código</h2><div class="scanner">
- <video id="video" playsinline></video><p id="scanmsg" class="muted">Apunta al código de barras</p>
+ <video id="video" playsinline muted></video><p id="scanmsg" class="muted">Apunta al código de barras</p>
  <button class="primary" id="startscan">Activar cámara</button></div>
  <div class="card"><label>O introduce el EAN manualmente</label><input id="manualean" inputmode="numeric" placeholder="Ej. 841..."><button class="primary" onclick="lookupEAN(document.getElementById('manualean').value)">Buscar</button></div></div>`;
  document.getElementById("startscan").onclick=startScanner;
 }
-let stream=null, detector=null;
+
+// Camera scanning uses ZXing (loaded on demand) instead of the native
+// BarcodeDetector API, because BarcodeDetector is unsupported on Safari/iOS
+// and most non-Chromium browsers. ZXing works everywhere getUserMedia works.
+let stream=null, zxingControls=null, zxingLoading=null;
+function loadZXing(){
+ if(window.ZXing) return Promise.resolve();
+ if(zxingLoading) return zxingLoading;
+ zxingLoading=new Promise((res,rej)=>{
+  const s=document.createElement("script");
+  s.src="https://unpkg.com/@zxing/library@0.21.3/umd/index.min.js";
+  s.onload=()=>res();
+  s.onerror=()=>rej(new Error("No se pudo cargar la librería de escaneo (revisa tu conexión)"));
+  document.head.appendChild(s);
+ });
+ return zxingLoading;
+}
 async function startScanner(){
  const v=document.getElementById("video"), msg=document.getElementById("scanmsg");
- if(!("BarcodeDetector" in window)){msg.textContent="Este navegador no expone BarcodeDetector. Usa el campo EAN manual o Safari/iOS actualizado.";return}
- detector=new BarcodeDetector({formats:["ean_13","ean_8","upc_a","upc_e"]});
- try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}}});v.srcObject=stream;await v.play(); scanLoop();}
- catch(e){msg.textContent="No se pudo activar la cámara: "+e.message}
+ if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+  msg.textContent="Este navegador no permite acceder a la cámara. Usa el campo EAN manual, o abre la app por HTTPS (no como archivo local).";
+  return;
+ }
+ msg.textContent="Cargando escáner…";
+ try{
+  await loadZXing();
+  const hints=new Map();
+  hints.set(ZXing.DecodeHintType.POSSIBLE_FORMATS,[
+   ZXing.BarcodeFormat.EAN_13, ZXing.BarcodeFormat.EAN_8,
+   ZXing.BarcodeFormat.UPC_A, ZXing.BarcodeFormat.UPC_E,
+   ZXing.BarcodeFormat.CODE_128
+  ]);
+  const reader=new ZXing.BrowserMultiFormatReader(hints);
+  msg.textContent="Apunta al código de barras";
+  zxingControls=await reader.decodeFromConstraints(
+   {video:{facingMode:{ideal:"environment"}}}, v,
+   (result)=>{
+    if(result){ let text=result.getText(); stopCamera(); lookupEAN(text); }
+   }
+  );
+  stream=v.srcObject;
+ }catch(e){
+  msg.textContent="No se pudo activar la cámara: "+(e && e.message?e.message:e);
+ }
 }
-async function scanLoop(){
- if(!detector||!stream)return;
- try{let codes=await detector.detect(document.getElementById("video")); if(codes.length){let c=codes[0].rawValue; stopCamera(); lookupEAN(c); return;}}catch(e){}
- requestAnimationFrame(scanLoop);
+function stopCamera(){
+ if(zxingControls){ try{zxingControls.stop();}catch(e){} zxingControls=null; }
+ if(stream){ try{stream.getTracks().forEach(t=>t.stop());}catch(e){} stream=null; }
+ const v=document.getElementById("video"); if(v) v.srcObject=null;
 }
-function stopCamera(){if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}}
 async function lookupEAN(ean){
  ean=String(ean||"").replace(/\D/g,""); if(!ean){alert("Introduce un código");return}
  let p=db.products.find(x=>x.ean===ean);
@@ -83,7 +132,7 @@ async function lookupEAN(ean){
  }catch(e){editNew({ean,name:"",brand:"",format:""})}
 }
 function editNew(p){formProduct(null,p)}
-function editProduct(id){formProduct(db.products.find(x=>x.id===id).id,db.products.find(x=>x.id===id))}
+function editProduct(id){formProduct(id,db.products.find(x=>x.id===id))}
 function formProduct(id,p){
  app.innerHTML=`<div class="card"><h2>${id?"Editar producto":"Nuevo producto"}</h2>
  <label>EAN / GTIN</label><input id="ean" value="${esc(p.ean)}" readonly>
@@ -96,13 +145,19 @@ function formProduct(id,p){
  <div class="row"><div><label>Stock teórico</label><input id="stock" type="number" step="0.01" value="${p.stock??0}"></div>
  <div><label>Stock mínimo</label><input id="min" type="number" step="0.01" value="${p.min??0}"></div></div>
  <button class="primary" onclick="saveProduct(${id?JSON.stringify(id):"null"})">Guardar</button>
+ ${id?`<button class="smallbtn danger" style="width:100%;padding:12px" onclick="deleteProduct(${JSON.stringify(id)})">🗑 Eliminar producto</button>`:""}
  </div>`;
 }
 function saveProduct(id){
- let p=id?db.products.find(x=>x.id===id):{id:crypto.randomUUID(),created:Date.now()};
+ let p=id?db.products.find(x=>x.id===id):{id:uuid(),created:Date.now()};
  Object.assign(p,{ean:ean.value,name:name.value.trim()||"Producto sin nombre",brand:brand.value.trim(),format:format.value.trim(),supplier:supplier.value.trim(),
  cost:Number(cost.value||0),vat:Number(vat.value||0),stock:Number(stock.value||0),min:Number(min.value||0)});
  if(!id)db.products.push(p);save();tab("products");
+}
+function deleteProduct(id){
+ if(!confirm("¿Eliminar este producto? Esta acción no se puede deshacer."))return;
+ db.products=db.products.filter(x=>x.id!==id);
+ save();tab("products");
 }
 function products(){
  app.innerHTML=`<div class="card"><h2>Productos</h2><input id="search" placeholder="Buscar nombre o EAN" oninput="renderProducts()"></div><div id="plist"></div>`;
@@ -111,23 +166,51 @@ function products(){
 function renderProducts(){
  let q=(document.getElementById("search")?.value||"").toLowerCase();
  let arr=db.products.filter(p=>(p.name+" "+p.ean+" "+p.brand).toLowerCase().includes(q));
- document.getElementById("plist").innerHTML=arr.map(p=>`<div class="card item"><div><b>${esc(p.name)}</b><div class="muted">${esc(p.ean)} · Stock ${p.stock}</div></div><button class="smallbtn" onclick="editProduct('${p.id}')">Editar</button></div>`).join("")||`<div class="card muted">No hay productos. Escanea uno para empezar.</div>`;
+ document.getElementById("plist").innerHTML=arr.map(p=>`<div class="card item"><div><b>${esc(p.name)}</b><div class="muted">${esc(p.ean)} · Stock ${p.stock}${p.stock<=p.min?' <span class="badge negative">bajo</span>':''}</div></div><button class="smallbtn" onclick="editProduct('${p.id}')">Editar</button></div>`).join("")||`<div class="card muted">No hay productos. Escanea uno para empezar.</div>`;
 }
 function count(){
- app.innerHTML=`<div class="card"><h2>Inventario físico</h2><p class="muted">Escanea productos o busca y registra la cantidad real.</p><button class="primary" onclick="tab('scan')">📷 Escanear</button></div><div id="countlist"></div>`;
+ app.innerHTML=`<div class="card"><h2>Inventario físico</h2><p class="muted">Escanea productos o busca y registra la cantidad real.</p>
+ <button class="primary" onclick="tab('scan')">📷 Escanear</button>
+ <button class="primary" onclick="applyCounts()" style="background:#087f3e">✅ Aplicar conteo al stock</button>
+ </div><div id="countlist"></div>`;
  renderCount();
 }
 function renderCount(){
  let el=document.getElementById("countlist");
- el.innerHTML=db.products.map(p=>`<div class="card"><div class="item"><div><b>${esc(p.name)}</b><div class="muted">Teórico: ${p.stock} · EAN: ${esc(p.ean)}</div></div><span class="badge">${db.counts.find(c=>c.ean===p.ean)?.physical??"—"}</span></div>
- <div class="row"><input id="c_${p.id}" type="number" step="0.01" placeholder="Cantidad física"><button class="smallbtn" onclick="saveCount('${p.id}')">Guardar</button></div></div>`).join("")||`<div class="card muted">No hay productos registrados.</div>`;
+ el.innerHTML=db.products.map(p=>{
+  let c=db.counts.find(x=>x.ean===p.ean);
+  let badge='<span class="badge">—</span>';
+  if(c){
+   let diff=c.physical-p.stock, cls=diff===0?"":(diff>0?"positive":"negative"), sign=diff>0?"+":"";
+   badge=`<span class="badge ${cls}">${c.physical} (${sign}${diff})</span>`;
+  }
+  return `<div class="card"><div class="item"><div><b>${esc(p.name)}</b><div class="muted">Teórico: ${p.stock} · EAN: ${esc(p.ean)}</div></div>${badge}</div>
+  <div class="row"><input id="c_${p.id}" type="number" step="0.01" placeholder="Cantidad física" value="${c?c.physical:""}"><button class="smallbtn" onclick="saveCount('${p.id}')">Guardar</button></div></div>`;
+ }).join("")||`<div class="card muted">No hay productos registrados.</div>`;
 }
 function saveCount(id){
  let p=db.products.find(x=>x.id===id), v=Number(document.getElementById("c_"+id).value);
  if(!Number.isFinite(v))return;
  db.counts=db.counts.filter(c=>c.ean!==p.ean);db.counts.push({ean:p.ean,physical:v,date:new Date().toISOString()});save();renderCount();
 }
+function applyCounts(){
+ if(!db.counts.length){alert("No hay conteos registrados todavía.");return}
+ if(!confirm("Esto actualizará el stock teórico con las cantidades contadas. ¿Continuar?"))return;
+ let applied=0;
+ db.counts.forEach(c=>{
+  let p=db.products.find(x=>x.ean===c.ean);
+  if(p && p.stock!==c.physical){
+   db.movements.push({ean:p.ean,type:"ajuste",before:p.stock,after:c.physical,date:new Date().toISOString()});
+   p.stock=c.physical; applied++;
+  }
+ });
+ db.counts=[]; save();
+ alert(applied+" producto(s) actualizados.");
+ tab("home");
+}
 home();
-if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js");
+if("serviceWorker" in navigator){
+ navigator.serviceWorker.register("sw.js").catch(()=>{/* offline caching is optional, app still works without it */});
+}
 </script>
 </body></html>
