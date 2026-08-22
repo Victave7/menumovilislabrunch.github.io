@@ -2349,6 +2349,15 @@ body.menu-inside .page {
 }
 </style>
 
+
+<style id="isla-navigation-state-fix">
+body.menu-landing .page:not(#sec-inicio){display:none!important;}
+body.menu-landing #sec-inicio{display:flex!important;}
+body.menu-inside #sec-inicio{display:none!important;}
+body.menu-inside .page{display:none;}
+body.menu-inside .page.on{display:block;}
+</style>
+
 </head>
 <body class="menu-landing">
 <!-- Google Tag Manager (noscript) -->
@@ -4648,47 +4657,71 @@ function goHomeSub(cat, sub) {
 }
 
 function showCat(cat, btn) {
- const isHome = cat === 'inicio';
+  const isHome = cat === 'inicio';
 
- if (isHome) {
- document.body.classList.add('menu-landing');
- document.body.classList.remove('menu-inside');
- document.querySelectorAll('.sub-nav').forEach(n => n.classList.remove('vis'));
- state.cat = 'inicio';
- if (window.__bootHomeVideos) window.__bootHomeVideos();
- window.scrollTo({top:0, behavior:'smooth'});
- return;
- }
+  // Synchronize body state.
+  document.body.classList.toggle('menu-landing', isHome);
+  document.body.classList.toggle('menu-inside', !isHome);
 
- document.body.classList.remove('menu-landing');
- document.body.classList.add('menu-inside');
+  // Synchronize main tabs.
+  document.querySelectorAll('.cat-tab').forEach(function(b){
+    const active = b.getAttribute('data-cat') === cat;
+    b.classList.toggle('on', active);
+    b.setAttribute('aria-selected', String(active));
+  });
 
- document.querySelectorAll('.cat-tab').forEach(function(b){
- const active = b.getAttribute('data-cat') === cat;
- b.classList.toggle('on', active);
- b.setAttribute('aria-selected', String(active));
- });
+  // Always hide every sub-navigation first.
+  document.querySelectorAll('.sub-nav').forEach(function(nav){
+    nav.classList.remove('vis');
+  });
 
- state.cat = cat;
+  // Always hide every page first.
+  document.querySelectorAll('.page').forEach(function(page){
+    page.classList.remove('on');
+    page.setAttribute('aria-hidden', 'true');
+  });
 
- document.querySelectorAll('.sub-nav').forEach(n => n.classList.remove('vis'));
- const sn = document.getElementById('subnav-' + cat);
- if (sn) sn.classList.add('vis');
+  state.cat = cat;
 
- const pages = catPages[cat];
- if (subNavs[cat]) {
- const target = state.subs[cat] || pages[0];
- if (sn) {
- sn.querySelectorAll('.sub-tab').forEach(function(b){
- const active = b.getAttribute('data-page') === target;
- b.classList.toggle('on', active);
- b.setAttribute('aria-selected', String(active));
- });
- }
- showPage(target);
- } else {
- showPage(pages[0]);
- }
+  if (isHome) {
+    const home = document.getElementById('sec-inicio');
+    if (home) {
+      home.classList.add('on');
+      home.setAttribute('aria-hidden', 'false');
+    }
+    if (window.__bootHomeVideos) window.__bootHomeVideos();
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    return;
+  }
+
+  // Select only this family's subnav.
+  const sn = document.getElementById('subnav-' + cat);
+  if (sn) sn.classList.add('vis');
+
+  // Select only the first/remembered page in this family.
+  const pages = catPages[cat] || [];
+  const target = subNavs[cat]
+    ? (state.subs[cat] || pages[0])
+    : pages[0];
+
+  if (sn) {
+    sn.querySelectorAll('.sub-tab').forEach(function(b){
+      const active = b.getAttribute('data-page') === target;
+      b.classList.toggle('on', active);
+      b.setAttribute('aria-selected', String(active));
+    });
+  }
+
+  showPage(target);
+
+  // Safety: showPage() must leave exactly one .page.on.
+  document.querySelectorAll('.page').forEach(function(page){
+    const active = page.id === 'sec-' + target;
+    page.classList.toggle('on', active);
+    page.setAttribute('aria-hidden', String(!active));
+  });
+
+  window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 function showSub(pageId, btn, cat) {
@@ -4727,18 +4760,23 @@ function selectTopping(btn) {
 }
 
 function showPage(id) {
- document.querySelectorAll('.page').forEach(p => p.classList.remove('on'));
- const el = document.getElementById('sec-' + id);
- if (el) {
- el.classList.add('on');
- // Scroll to top suavemente
- el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
- window.scrollTo({ top: 0, behavior: 'smooth' });
- animateReveal(el);
- // Inicio contiene los vídeos comer/beber: display:none los pausa al salir
- // de esta pestaña, y el navegador no los reanuda por sí solo al volver.
- if (id === 'inicio' && window.__bootHomeVideos) window.__bootHomeVideos();
- }
+  document.querySelectorAll('.page').forEach(function(p){
+    const active = p.id === 'sec-' + id;
+    p.classList.toggle('on', active);
+    p.setAttribute('aria-hidden', String(!active));
+  });
+
+  const el = document.getElementById('sec-' + id);
+  if (el) {
+    el.classList.remove('isla-final-enter');
+    void el.offsetWidth;
+    el.classList.add('isla-final-enter');
+    animateReveal(el);
+
+    if (id === 'inicio' && window.__bootHomeVideos) {
+      window.__bootHomeVideos();
+    }
+  }
 }
 
 // Entrada escalonada: las tarjetas de la página recién mostrada aparecen
