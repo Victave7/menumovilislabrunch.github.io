@@ -2350,7 +2350,7 @@ body.menu-inside .page {
 </style>
 
 
-<style id="isla-navigation-state-fix">
+<style id="isla-back-navigation-safety">
 body.menu-landing .page:not(#sec-inicio){display:none!important;}
 body.menu-landing #sec-inicio{display:flex!important;}
 body.menu-inside #sec-inicio{display:none!important;}
@@ -4659,29 +4659,20 @@ function goHomeSub(cat, sub) {
 function showCat(cat, btn) {
   const isHome = cat === 'inicio';
 
-  // Synchronize body state.
+  // Sync global page mode.
   document.body.classList.toggle('menu-landing', isHome);
   document.body.classList.toggle('menu-inside', !isHome);
 
-  // Synchronize main tabs.
-  document.querySelectorAll('.cat-tab').forEach(function(b){
-    const active = b.getAttribute('data-cat') === cat;
-    b.classList.toggle('on', active);
-    b.setAttribute('aria-selected', String(active));
-  });
-
-  // Always hide every sub-navigation first.
-  document.querySelectorAll('.sub-nav').forEach(function(nav){
-    nav.classList.remove('vis');
-  });
-
-  // Always hide every page first.
+  // Reset all page sections before deciding what to show.
   document.querySelectorAll('.page').forEach(function(page){
     page.classList.remove('on');
     page.setAttribute('aria-hidden', 'true');
   });
 
-  state.cat = cat;
+  // Reset all sub navigation strips.
+  document.querySelectorAll('.sub-nav').forEach(function(nav){
+    nav.classList.remove('vis');
+  });
 
   if (isHome) {
     const home = document.getElementById('sec-inicio');
@@ -4689,20 +4680,38 @@ function showCat(cat, btn) {
       home.classList.add('on');
       home.setAttribute('aria-hidden', 'false');
     }
+
+    state.cat = 'inicio';
+
+    // The landing is now the ONLY visible content.
+    document.body.classList.add('menu-landing');
+    document.body.classList.remove('menu-inside');
+
     if (window.__bootHomeVideos) window.__bootHomeVideos();
-    window.scrollTo({ top: 0, behavior: 'instant' });
+
+    window.scrollTo({ top: 0, behavior: 'auto' });
     return;
   }
 
-  // Select only this family's subnav.
+  // Inside Comer/Beber.
+  document.body.classList.remove('menu-landing');
+  document.body.classList.add('menu-inside');
+
+  // Sync the active Comer/Beber button.
+  document.querySelectorAll('.cat-tab').forEach(function(b){
+    const active = b.getAttribute('data-cat') === cat;
+    b.classList.toggle('on', active);
+    b.setAttribute('aria-selected', String(active));
+  });
+
+  state.cat = cat;
+
+  // Show ONLY the current family subnav.
   const sn = document.getElementById('subnav-' + cat);
   if (sn) sn.classList.add('vis');
 
-  // Select only the first/remembered page in this family.
   const pages = catPages[cat] || [];
-  const target = subNavs[cat]
-    ? (state.subs[cat] || pages[0])
-    : pages[0];
+  const target = state.subs[cat] || pages[0];
 
   if (sn) {
     sn.querySelectorAll('.sub-tab').forEach(function(b){
@@ -4713,15 +4722,6 @@ function showCat(cat, btn) {
   }
 
   showPage(target);
-
-  // Safety: showPage() must leave exactly one .page.on.
-  document.querySelectorAll('.page').forEach(function(page){
-    const active = page.id === 'sec-' + target;
-    page.classList.toggle('on', active);
-    page.setAttribute('aria-hidden', String(!active));
-  });
-
-  window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 function showSub(pageId, btn, cat) {
@@ -4771,6 +4771,8 @@ function showPage(id) {
     el.classList.remove('isla-final-enter');
     void el.offsetWidth;
     el.classList.add('isla-final-enter');
+
+    window.scrollTo({ top: 0, behavior: 'auto' });
     animateReveal(el);
 
     if (id === 'inicio' && window.__bootHomeVideos) {
