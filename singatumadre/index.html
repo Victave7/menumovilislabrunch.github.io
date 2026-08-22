@@ -2,235 +2,181 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#111111">
-<title>Isla Inventory</title>
-<link rel="manifest" href="manifest.json">
-<link rel="icon" href="icon-192.png">
-<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Isla Brunch · Control de Inventario</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f4f4f1;color:#111}
-header{background:#111;color:#fff;padding:18px 16px 14px;position:sticky;top:0;z-index:5}
-h1{margin:0;font-size:22px}.sub{opacity:.7;font-size:12px;margin-top:3px}
-nav{display:flex;gap:8px;padding:10px;background:#fff;position:sticky;top:70px;z-index:4;overflow:auto}
-nav button{border:0;border-radius:12px;padding:10px 13px;background:#eee;white-space:nowrap;font-weight:600}nav button.active{background:#111;color:#fff}
-main{padding:14px;max-width:720px;margin:auto}.card{background:#fff;border-radius:16px;padding:15px;margin-bottom:12px;box-shadow:0 2px 10px #0000000b}
-button.primary{width:100%;padding:14px;border:0;border-radius:13px;background:#111;color:#fff;font-size:16px;font-weight:700;margin-bottom:8px}
-input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:11px;margin:5px 0 10px;font-size:16px}
-.row{display:flex;gap:8px}.row>*{flex:1}.muted{color:#777;font-size:13px}.big{font-size:30px;font-weight:800}
-.item{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #eee}.item:last-child{border:0}
-.badge{padding:5px 8px;border-radius:9px;background:#eee;font-size:12px;white-space:nowrap}.negative{color:#b00020;background:#ffe5e5}.positive{color:#087f3e;background:#e4f7ec}
-.hidden{display:none}.scanner{border:2px dashed #bbb;border-radius:16px;padding:20px;text-align:center}
-video{width:100%;border-radius:14px;background:#111;max-height:340px;object-fit:cover}
-.smallbtn{border:0;padding:8px 10px;border-radius:9px;background:#eee}.danger{background:#ffe5e5;color:#900}
+:root{--bg:#f5f7f6;--card:#fff;--ink:#17201c;--muted:#66736c;--line:#dce5df;--green:#0d6b57;--green2:#084f42;--red:#b42318;--amber:#946000;--blue:#245ea8;--shadow:0 8px 28px rgba(20,40,32,.07)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.app{max-width:1500px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.brand{font-size:25px;font-weight:950;letter-spacing:-.5px}.sub{font-size:13px;color:var(--muted)}.nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:15px}.btn,.nav button{border:1px solid var(--line);background:#fff;color:#21443a;border-radius:9px;padding:9px 12px;font-weight:800;cursor:pointer;transition:.15s}.btn:hover,.nav button:hover{transform:translateY(-1px);box-shadow:0 4px 12px #0001}.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}.primary,.nav .active{background:var(--green);border-color:var(--green);color:#fff}.danger{color:var(--red)}.toolbar{display:flex;gap:8px;flex-wrap:wrap}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px;box-shadow:var(--shadow)}.kpi .lbl{font-size:12px;color:var(--muted)}.kpi .val{font-size:25px;font-weight:900;margin-top:5px}.section{margin-top:12px}.section h2{font-size:17px;margin:0 0 10px}.filters{display:grid;grid-template-columns:1.7fr 1fr 1fr auto;gap:8px;margin-bottom:10px}.input,.select,.textarea{width:100%;padding:10px 11px;border:1px solid #cbd6d0;border-radius:9px;background:#fff;color:var(--ink);outline:none}.input:focus,.select:focus,.textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px #0d6b5712}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px;background:#fff}.table{width:100%;border-collapse:collapse;min-width:900px}.table th,.table td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.table th{font-size:12px;color:var(--muted);background:#fafbfa;position:sticky;top:0;z-index:1}.table tr:last-child td{border-bottom:0}.low{background:#fff7e9}.diff{background:#fff0ef}.newrow{background:#effaf4}.pill{display:inline-flex;padding:4px 8px;border-radius:99px;font-size:11px;font-weight:900}.ok{background:#e5f5ec;color:#176b47}.warn{background:#fff0d2;color:#8a5100}.bad{background:#fde5e2;color:#a51f16}.info{background:#e7f0ff;color:#245ea8}.empty{text-align:center;padding:35px;color:var(--muted)}.actions{display:flex;gap:5px;flex-wrap:wrap}.iconbtn{padding:6px 8px;border-radius:7px;font-size:13px}.modal{position:fixed;inset:0;background:#07110db3;display:none;align-items:center;justify-content:center;padding:15px;z-index:50}.modal.open{display:flex}.box{background:#fff;width:min(1100px,100%);max-height:94vh;overflow:auto;border-radius:16px;box-shadow:0 24px 70px #0004;padding:18px}.mhead{display:flex;justify-content:space-between;align-items:center;gap:10px}.mhead h2{margin:0;font-size:20px}.form{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.field label{display:block;font-size:12px;color:var(--muted);font-weight:850;margin-bottom:4px}.full{grid-column:1/-1}.mfoot{display:flex;justify-content:flex-end;gap:8px;margin-top:15px;flex-wrap:wrap}.preview{margin-top:12px}.notice{padding:10px 12px;border-radius:9px;background:#f1f5f2;color:#345148;font-size:13px}.notice strong{color:var(--ink)}.toast{position:fixed;right:18px;bottom:18px;background:#17251f;color:#fff;padding:11px 15px;border-radius:10px;box-shadow:0 10px 30px #0003;z-index:100;opacity:0;transform:translateY(10px);transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:translateY(0)}.toast.error{background:#a51f16}.toast.warn{background:#8a5100}.small{font-size:12px;color:var(--muted)}.hero{padding:18px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(135deg,#fff,#f3f8f5);margin-bottom:12px}.hero h1{margin:0 0 6px;font-size:24px}.hero p{margin:0;color:var(--muted)}.step{display:flex;gap:10px;align-items:flex-start;margin-top:10px}.step b{display:inline-flex;min-width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;align-items:center;justify-content:center;font-size:12px}.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#f6f7f7;border:1px solid var(--line);border-radius:8px;padding:8px;white-space:pre-wrap;font-size:12px}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.dangerbox{background:#fff2f0;border:1px solid #f0c8c2;color:#7e2118;border-radius:10px;padding:10px}.successbox{background:#effaf4;border:1px solid #cce9d8;color:#176b47;border-radius:10px;padding:10px}.nowrap{white-space:nowrap}.center{text-align:center}.muted{color:var(--muted)}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr 1fr}.form,.two{grid-template-columns:1fr}.full{grid-column:auto}}
+@media(max-width:520px){.app{padding:10px}.grid{grid-template-columns:1fr 1fr}.brand{font-size:20px}.nav button{flex:1}.filters{grid-template-columns:1fr}.table{min-width:800px}}
 </style>
 </head>
 <body>
-<header><h1>Isla Inventory</h1><div class="sub">Inventario · compras · stock</div></header>
-<nav>
-<button data-tab="home" class="active">Resumen</button><button data-tab="scan">Escanear</button>
-<button data-tab="products">Productos</button><button data-tab="count">Conteo</button>
-</nav>
-<main id="app"></main>
+<div class="app">
+<header class="top"><div><div class="brand">ISLA BRUNCH</div><div class="sub">Control operativo · local · PC</div></div><div class="toolbar"><button class="btn primary" onclick="openProductScanner()">📷 Escanear</button><button class="btn" onclick="exportBackup()">⬇ Copia de seguridad</button><button class="btn" onclick="openImportBackup()">⬆ Restaurar</button></div></header>
+<nav class="nav" id="nav"></nav><main id="main"></main>
+</div>
+<div class="modal" id="modal"><div class="box" id="modalBox"></div></div><div class="toast" id="toast"></div><input type="file" id="backupFile" accept=".json" hidden>
 <script>
-const KEY="isla_inventory_v1";
-let db=JSON.parse(localStorage.getItem(KEY)||'{"products":[],"movements":[],"counts":[]}');
-const save=()=>localStorage.setItem(KEY,JSON.stringify(db));
-const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
-function uuid(){
- if(window.crypto && crypto.randomUUID) return crypto.randomUUID();
- return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{
-  const r=Math.random()*16|0, v=c=='x'?r:(r&0x3|0x8); return v.toString(16);
- });
-}
-let currentTab="home";
-function tab(t){
- document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.tab===t));
- if(currentTab==="scan" && t!=="scan") stopCamera();
- currentTab=t;
- if(t==="home") home(); if(t==="scan") scanner(); if(t==="products") products(); if(t==="count") count();
-}
-document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>tab(b.dataset.tab));
-document.addEventListener("visibilitychange",()=>{if(document.hidden)stopCamera();});
-window.addEventListener("pagehide",stopCamera);
+'use strict';
+const STORAGE_KEY='isla_brunch_control_rehecho_v1';
+const LEGACY_KEYS=['isla_brunch_control_simple_v1'];
+const VERSION=10;
+const state={page:'dashboard',search:'',cat:'',supplier:''};
+const blankDB=()=>({version:VERSION,products:[],purchases:[],counts:[],adjustments:[],expenses:[],aliases:{}});
+let db=loadDB();
+function loadDB(){try{let raw=localStorage.getItem(STORAGE_KEY);if(!raw){for(const k of LEGACY_KEYS){raw=localStorage.getItem(k);if(raw)break}}if(!raw)return blankDB();return normalizeDB(JSON.parse(raw))}catch(e){console.error(e);return blankDB()}}
+function normalizeDB(x){const d=blankDB();Object.assign(d,x||{});for(const k of ['products','purchases','counts','adjustments','expenses'])d[k]=Array.isArray(d[k])?d[k]:[];d.aliases=d.aliases&&typeof d.aliases==='object'?d.aliases:{};d.products.forEach(p=>{p.id=p.id||nextProductId();p.name=String(p.name||'').trim();p.cat=String(p.cat||p.category||'').trim();p.unit=String(p.unit||'ud').trim()||'ud';p.initial=num(p.initial??p.initial_stock);p.min=num(p.min??p.minimum_stock);p.cost=num(p.cost);p.vat=normalizeVAT(p.vat??.21);p.supplier=String(p.supplier||'').trim();p.ean=String(p.ean||'').replace(/\D/g,'');p.active=p.active!==false});d.purchases.forEach(x=>{x.id=x.id||cryptoId();x.qty=num(x.qty??x.quantity);x.cost=num(x.cost??x.unit_cost);x.vat=normalizeVAT(x.vat??.21);x.pid=x.pid||x.product_id;x.date=parseDate(x.date)});return d}
+function persist(){localStorage.setItem(STORAGE_KEY,JSON.stringify(db));render()}
+function cryptoId(){return crypto?.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random().toString(16).slice(2)}
+function nextProductId(){let max=0;db.products.forEach(p=>{const n=parseInt(String(p.id||'').replace(/^P-/i,''),10);if(Number.isFinite(n))max=Math.max(max,n)});return 'P-'+String(max+1).padStart(3,'0')}
+function num(v){if(typeof v==='number')return Number.isFinite(v)?v:0;let s=String(v??'').trim().replace(/\s/g,'').replace(/€/g,'').replace(/%/g,'');if(!s)return 0;if(s.includes(',')&&s.includes('.')){if(s.lastIndexOf(',')>s.lastIndexOf('.'))s=s.replace(/\./g,'').replace(',','.');else s=s.replace(/,/g,'')}else s=s.replace(',','.');return Number(s)||0}
+function normalizeVAT(v){let n=num(v);if(n>1)n/=100;return Math.max(0,Math.min(1,n))}
+const VAT_RATES=[{v:0,l:'0% · Exento'},{v:.04,l:'4% · Superreducido'},{v:.10,l:'10% · Reducido'},{v:.21,l:'21% · General'}];
+function isKnownVAT(v){const n=num(v);return VAT_RATES.some(r=>Math.abs(r.v-n)<1e-9)}
+function vatSelect(id,selected){const sel=normalizeVAT(selected??.21);const known=isKnownVAT(sel);const extra=known?'':`<option value="${sel}" selected>${pct(sel)} · valor guardado</option>`;return `<select id="${id}" class="select">${extra}${VAT_RATES.map(r=>`<option value="${r.v}" ${!extra&&Math.abs(r.v-sel)<1e-9?'selected':''}>${r.l}</option>`).join('')}</select>`}
+function money(v){return new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR'}).format(num(v))}
+function number(v){return new Intl.NumberFormat('es-ES',{maximumFractionDigits:3}).format(num(v))}
+function pct(v){return new Intl.NumberFormat('es-ES',{maximumFractionDigits:2}).format(num(v)*100)+'%'}
+function parseDate(v){let s=String(v||'').trim();if(/^\d{2}\/\d{2}\/\d{4}$/.test(s)){const[d,m,y]=s.split('/');return `${y}-${m}-${d}`}if(/^\d{4}-\d{2}-\d{2}$/.test(s))return s;return today()}
+function dateES(v){if(!v)return '';const p=String(v).slice(0,10).split('-');return p.length===3?`${p[2]}/${p[1]}/${p[0]}`:v}
+function today(){return new Date().toISOString().slice(0,10)}
+function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function norm(v){return String(v??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/×/g,'x').replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' ')}
+function toast(msg,type='success'){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show '+(type==='error'?'error':type==='warn'?'warn':'');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.className='toast',3000)}
+function productById(id){return db.products.find(p=>p.id===id)}
+function purchasesFor(pid){return db.purchases.filter(x=>x.pid===pid)}
+function lastCount(pid){return db.counts.filter(x=>x.pid===pid).sort((a,b)=>String(b.date).localeCompare(String(a.date))||String(b.createdAt||'').localeCompare(String(a.createdAt||'')))[0]||null}
+function stockTheoretical(p){return num(p.initial)+purchasesFor(p.id).reduce((s,x)=>s+num(x.qty),0)+db.adjustments.filter(x=>x.pid===p.id).reduce((s,x)=>s+num(x.delta),0)}
+function avgCost(p){const buys=purchasesFor(p.id);if(!buys.length)return num(p.cost);let q=0,v=0;buys.forEach(x=>{q+=num(x.qty);v+=num(x.qty)*num(x.cost)});return q?v/q:num(p.cost)}
+function stockPhysical(p){const c=lastCount(p.id);return c?num(c.qty):null}
+function status(p){const s=stockTheoretical(p),f=stockPhysical(p);if(s<=num(p.min))return 'BAJO';if(f!==null&&Math.abs(f-s)>1e-9)return 'REVISAR';return 'OK'}
+function totalNet(){return db.purchases.reduce((s,x)=>s+num(x.qty)*num(x.cost),0)}
+function totalVAT(){return db.purchases.reduce((s,x)=>s+num(x.qty)*num(x.cost)*num(x.vat),0)}
+function totalStock(){return db.products.reduce((s,p)=>s+stockTheoretical(p)*avgCost(p),0)}
+function categories(){return [...new Set(db.products.map(p=>p.cat).filter(Boolean))].sort((a,b)=>a.localeCompare(b))}
+function suppliers(){return [...new Set([...db.products.map(p=>p.supplier),...db.purchases.map(x=>x.supplier)].filter(Boolean))].sort((a,b)=>a.localeCompare(b))}
+function go(page){state.page=page;state.search='';render()}
+function renderNav(){const items=[['dashboard','Resumen'],['products','Productos'],['purchases','Compras'],['inventory','Inventario'],['adjustments','Ajustes'],['expenses','Gastos']];document.getElementById('nav').innerHTML=items.map(([k,l])=>`<button class="${state.page===k?'active':''}" onclick="go('${k}')">${l}</button>`).join('')}
+function render(){renderNav();document.getElementById('main').innerHTML=views[state.page]?views[state.page]():views.dashboard();}
+const views={
+ dashboard(){const low=db.products.filter(p=>status(p)==='BAJO').length,rev=db.products.filter(p=>status(p)==='REVISAR').length;return `<div class="hero"><h1>Control de Isla Brunch</h1><p>La regla es simple: <strong>PRODUCTOS</strong> es el maestro. <strong>COMPRAS</strong> suma stock. <strong>INVENTARIO</strong> registra el físico. Los nombres distintos no se mezclan automáticamente.</p></div><div class="grid"><div class="card kpi"><div class="lbl">Productos</div><div class="val">${db.products.length}</div></div><div class="card kpi"><div class="lbl">Compras</div><div class="val">${db.purchases.length}</div></div><div class="card kpi"><div class="lbl">Compras sin IVA</div><div class="val">${money(totalNet())}</div></div><div class="card kpi"><div class="lbl">IVA de compras</div><div class="val">${money(totalVAT())}</div></div><div class="card kpi"><div class="lbl">Compras con IVA</div><div class="val">${money(totalNet()+totalVAT())}</div></div><div class="card kpi"><div class="lbl">Valor stock teórico (sin IVA)</div><div class="val">${money(totalStock())}</div></div></div><div class="two section"><div class="card"><h2>Operativa</h2><div class="step"><b>1</b><div><strong>Productos</strong><br><span class="small">Carga el maestro una vez. Aquí decides qué es un producto diferente.</span></div></div><div class="step"><b>2</b><div><strong>Compras masivas</strong><br><span class="small">Pega tus compras. La web detecta producto, fecha, cantidad, coste e IVA.</span></div></div><div class="step"><b>3</b><div><strong>Inventario masivo</strong><br><span class="small">Pega Producto + cantidad física. Se compara contra el teórico.</span></div></div></div><div class="card"><h2>Alertas</h2><p><span class="pill bad">${low}</span> productos bajo mínimo</p><p><span class="pill warn">${rev}</span> productos con diferencia de inventario</p><p><span class="pill info">${Object.keys(db.aliases).length}</span> alias aprendidos</p><div class="actions"><button class="btn primary" onclick="openBulkPurchases()">📥 Compras masivas</button><button class="btn" onclick="openBulkInventory()">📦 Inventario masivo</button></div></div></div>`},
+ products(){const rows=filteredProducts();return `<div class="toolbar"><button class="btn primary" onclick="openProduct()">+ Producto</button><button class="btn" onclick="openProductScanner()">📷 Escanear</button><button class="btn" onclick="openBulkProducts()">📥 Cargar productos masivos</button><button class="btn" onclick="downloadProductTemplate()">⬇ Plantilla</button></div><div class="filters"><input class="input" placeholder="Buscar producto..." value="${esc(state.search)}" oninput="state.search=this.value;render()"><select class="select" onchange="state.cat=this.value;render()"><option value="">Todas las categorías</option>${categories().map(x=>`<option ${state.cat===x?'selected':''}>${esc(x)}</option>`).join('')}</select><select class="select" onchange="state.supplier=this.value;render()"><option value="">Todos los proveedores</option>${suppliers().map(x=>`<option ${state.supplier===x?'selected':''}>${esc(x)}</option>`).join('')}</select><button class="btn" onclick="state.search='';state.cat='';state.supplier='';render()">Limpiar</button></div><div class="tablewrap"><table class="table"><thead><tr><th>Estado</th><th>ID</th><th>EAN</th><th>Producto</th><th>Categoría</th><th>Unidad</th><th>Inicial</th><th>Mín.</th><th>Coste sin IVA</th><th>IVA</th><th>Proveedor</th><th>Stock teórico</th><th></th></tr></thead><tbody>${rows.length?rows.map(p=>`<tr class="${status(p)==='BAJO'?'low':status(p)==='REVISAR'?'diff':''}"><td><span class="pill ${status(p)==='OK'?'ok':status(p)==='BAJO'?'bad':'warn'}">${status(p)}</span></td><td>${esc(p.id)}</td><td class="small">${esc(p.ean||'—')}</td><td><strong>${esc(p.name)}</strong></td><td>${esc(p.cat||'—')}</td><td>${esc(p.unit)}</td><td>${number(p.initial)}</td><td>${number(p.min)}</td><td>${money(p.cost)}</td><td>${pct(p.vat)}</td><td>${esc(p.supplier||'—')}</td><td>${number(stockTheoretical(p))}</td><td><div class="actions"><button class="btn iconbtn" onclick="openProduct('${p.id}')">Editar</button><button class="btn iconbtn" onclick="openProductHistory('${p.id}')">Historial</button></div></td></tr>`).join(''):`<tr><td colspan="13" class="empty">No hay productos.</td></tr>`}</tbody></table></div>`},
+ purchases(){const rows=[...db.purchases].sort((a,b)=>String(b.date).localeCompare(String(a.date)));return `<div class="toolbar"><button class="btn primary" onclick="openBulkPurchases()">📥 Compras masivas</button><button class="btn" onclick="openPurchase()">+ Compra manual</button><button class="btn" onclick="copyPurchases()">📋 Copiar</button></div><div class="notice">Puedes pegar una tabla con <strong>Fecha · Producto · Proveedor · Cantidad · Coste sin IVA · IVA · Factura</strong>. También acepta tablas copiadas de Excel/Sheets y tablas Markdown con <code>|</code>.</div><div class="tablewrap" style="margin-top:10px"><table class="table"><thead><tr><th>Fecha</th><th>Producto</th><th>Proveedor</th><th>Cantidad</th><th>Coste sin IVA</th><th>IVA</th><th>Total</th><th></th></tr></thead><tbody>${rows.length?rows.map(x=>{const p=productById(x.pid);return `<tr><td>${dateES(x.date)}</td><td><strong>${esc(p?.name||'PRODUCTO ELIMINADO')}</strong></td><td>${esc(x.supplier||'—')}</td><td>${number(x.qty)}</td><td>${money(x.cost)}</td><td>${pct(x.vat)}</td><td>${money(x.qty*x.cost*(1+x.vat))}</td><td><button class="btn iconbtn danger" onclick="deletePurchase('${x.id}')">Eliminar</button></td></tr>`}).join(''):`<tr><td colspan="8" class="empty">No hay compras.</td></tr>`}</tbody></table></div>`},
+ inventory(){const rows=db.products.filter(p=>{const s=norm(state.search);return !s||norm(p.name).includes(s)});return `<div class="toolbar"><button class="btn primary" onclick="openBulkInventory()">📦 Inventario masivo</button><button class="btn" onclick="openCount()">+ Conteo manual</button></div><div class="filters"><input class="input" placeholder="Buscar producto..." value="${esc(state.search)}" oninput="state.search=this.value;render()"><div></div><div></div><button class="btn" onclick="state.search='';render()">Limpiar</button></div><div class="tablewrap"><table class="table"><thead><tr><th>Producto</th><th>Unidad</th><th>Teórico</th><th>Físico</th><th>Diferencia</th><th>Estado</th></tr></thead><tbody>${rows.length?rows.map(p=>{const f=stockPhysical(p),s=stockTheoretical(p),d=f===null?null:f-s;return `<tr class="${d!==null&&Math.abs(d)>1e-9?'diff':''}"><td><strong>${esc(p.name)}</strong></td><td>${esc(p.unit)}</td><td>${number(s)}</td><td>${f===null?'—':number(f)}</td><td>${d===null?'—':number(d)}</td><td><span class="pill ${d===null?'info':Math.abs(d)<1e-9?'ok':'warn'}">${d===null?'SIN CONTEO':Math.abs(d)<1e-9?'OK':'REVISAR'}</span></td></tr>`}).join(''):`<tr><td colspan="6" class="empty">No hay productos.</td></tr>`}</tbody></table></div>`},
+ adjustments(){return `<div class="toolbar"><button class="btn primary" onclick="openAdjustment()">+ Ajuste / merma</button></div><div class="notice">Los ajustes son movimientos independientes de las compras. No los uses para registrar compras nuevas.</div><div class="tablewrap" style="margin-top:10px"><table class="table"><thead><tr><th>Fecha</th><th>Producto</th><th>Delta</th><th>Motivo</th></tr></thead><tbody>${db.adjustments.length?db.adjustments.slice().reverse().map(x=>`<tr><td>${dateES(x.date)}</td><td>${esc(productById(x.pid)?.name||'—')}</td><td>${x.delta>0?'+':''}${number(x.delta)}</td><td>${esc(x.reason||'')}</td></tr>`).join(''):`<tr><td colspan="4" class="empty">Sin ajustes.</td></tr>`}</tbody></table></div>`},
+ expenses(){return `<div class="card"><h2>Gastos</h2><p class="muted">Esta sección queda separada de compras de stock. Los portes pueden registrarse como gasto y no deben convertirse automáticamente en producto.</p><button class="btn primary" onclick="openExpense()">+ Gasto</button><div class="tablewrap" style="margin-top:10px"><table class="table"><thead><tr><th>Fecha</th><th>Concepto</th><th>Proveedor</th><th>Importe</th><th>IVA</th></tr></thead><tbody>${db.expenses.length?db.expenses.slice().reverse().map(x=>`<tr><td>${dateES(x.date)}</td><td>${esc(x.concept)}</td><td>${esc(x.supplier||'')}</td><td>${money(x.amount)}</td><td>${pct(x.vat)}</td></tr>`).join(''):`<tr><td colspan="5" class="empty">Sin gastos.</td></tr>`}</tbody></table></div></div>`}
+};
+function filteredProducts(){const s=norm(state.search),sd=state.search.replace(/\D/g,'');return db.products.filter(p=>(!s||norm(p.name).includes(s)||(sd&&p.ean&&p.ean.includes(sd)))&&(!state.cat||p.cat===state.cat)&&(!state.supplier||p.supplier===state.supplier))}
+function openModal(title,html){document.getElementById('modalBox').innerHTML=`<div class="mhead"><h2>${esc(title)}</h2><button class="btn" onclick="closeModal()">✕</button></div>${html}`;document.getElementById('modal').classList.add('open')}
+function closeModal(){stopProductScan();document.getElementById('modal').classList.remove('open')}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+function openProduct(id,prefill){const p=id?productById(id):null;const d=p||prefill||{};openModal(p?'Editar producto':'Nuevo producto',`<div class="form"><div class="field full"><label>EAN / código de barras</label><input id="fEan" class="input" inputmode="numeric" value="${esc(d.ean||'')}" placeholder="Opcional · usa 📷 Escanear para rellenarlo"></div><div class="field"><label>Producto *</label><input id="fName" class="input" value="${esc(d.name||'')}"></div><div class="field"><label>Categoría</label><input id="fCat" class="input" value="${esc(p?.cat||'')}"></div><div class="field"><label>Unidad</label><input id="fUnit" class="input" value="${esc(d.unit||'ud')}"></div><div class="field"><label>Proveedor</label><input id="fSupplier" class="input" value="${esc(p?.supplier||'')}"></div><div class="field"><label>Stock inicial</label><input id="fInitial" class="input" value="${number(p?.initial||0)}"></div><div class="field"><label>Stock mínimo</label><input id="fMin" class="input" value="${number(p?.min||0)}"></div><div class="field"><label>Coste sin IVA</label><input id="fCost" class="input" value="${num(p?.cost||0)}"></div><div class="field"><label>IVA</label>${vatSelect('fVat',p?p.vat:.21)}</div></div><div class="mfoot"><button class="btn" onclick="closeModal()">Cancelar</button><button class="btn primary" onclick="saveProduct('${p?.id||''}')">Guardar</button></div>`)}
+function saveProduct(id){const name=document.getElementById('fName').value.trim();if(!name)return toast('El nombre del producto es obligatorio','error');const existing=db.products.find(p=>norm(p.name)===norm(name)&&p.id!==id);if(existing)return toast('Ese producto ya existe. No se crean duplicados.','error');const obj={name,ean:document.getElementById('fEan').value.replace(/\D/g,''),cat:document.getElementById('fCat').value.trim(),unit:document.getElementById('fUnit').value.trim()||'ud',supplier:document.getElementById('fSupplier').value.trim(),initial:num(document.getElementById('fInitial').value),min:num(document.getElementById('fMin').value),cost:num(document.getElementById('fCost').value),vat:normalizeVAT(document.getElementById('fVat').value),active:true};if(id){Object.assign(productById(id),obj)}else{obj.id=nextProductId();db.products.push(obj)}closeModal();persist();toast('Producto guardado')}
+function openPurchase(){openModal('Nueva compra',`<div class="form"><div class="field"><label>Fecha</label><input id="pDate" type="date" class="input" value="${today()}"></div><div class="field"><label>Producto</label><select id="pPid" class="select">${db.products.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join('')}</select></div><div class="field"><label>Proveedor</label><input id="pSupplier" class="input"></div><div class="field"><label>Cantidad</label><input id="pQty" class="input" value="1"></div><div class="field"><label>Coste sin IVA por unidad/pack</label><input id="pCost" class="input" value="0"></div><div class="field"><label>IVA</label>${vatSelect('pVat',.21)}</div><div class="field full"><label>Factura / ticket</label><input id="pTicket" class="input"></div></div><div class="mfoot"><button class="btn" onclick="closeModal()">Cancelar</button><button class="btn primary" onclick="savePurchase()">Guardar compra</button></div>`)}
+function savePurchase(){const pid=document.getElementById('pPid').value;if(!pid)return toast('Crea primero los productos','error');const p=productById(pid);db.purchases.push({id:cryptoId(),date:document.getElementById('pDate').value,pid,supplier:document.getElementById('pSupplier').value.trim()||p.supplier,qty:num(document.getElementById('pQty').value),cost:num(document.getElementById('pCost').value),vat:normalizeVAT(document.getElementById('pVat').value),ticket:document.getElementById('pTicket').value.trim()});closeModal();persist();toast('Compra registrada')}
+function deletePurchase(id){if(!confirm('¿Eliminar esta compra?'))return;db.purchases=db.purchases.filter(x=>x.id!==id);persist();toast('Compra eliminada')}
+function openCount(){openModal('Conteo físico',`<div class="form"><div class="field"><label>Producto</label><select id="cPid" class="select">${db.products.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join('')}</select></div><div class="field"><label>Cantidad física</label><input id="cQty" class="input"></div></div><div class="mfoot"><button class="btn" onclick="closeModal()">Cancelar</button><button class="btn primary" onclick="saveCount()">Guardar conteo</button></div>`)}
+function saveCount(){const pid=document.getElementById('cPid').value;db.counts.push({id:cryptoId(),date:today(),pid,qty:num(document.getElementById('cQty').value),createdAt:new Date().toISOString()});closeModal();persist();toast('Conteo guardado')}
+function openAdjustment(pid=''){openModal('Ajuste / merma',`<div class="form"><div class="field"><label>Producto</label><select id="aPid" class="select">${db.products.map(p=>`<option value="${p.id}" ${p.id===pid?'selected':''}>${esc(p.name)}</option>`).join('')}</select></div><div class="field"><label>Delta (+/-)</label><input id="aDelta" class="input" placeholder="Ej. -2"></div><div class="field full"><label>Motivo</label><input id="aReason" class="input" placeholder="Merma, rotura, ajuste inicial..."></div></div><div class="mfoot"><button class="btn" onclick="closeModal()">Cancelar</button><button class="btn primary" onclick="saveAdjustment()">Guardar</button></div>`)}
+function saveAdjustment(){db.adjustments.push({id:cryptoId(),date:today(),pid:document.getElementById('aPid').value,delta:num(document.getElementById('aDelta').value),reason:document.getElementById('aReason').value.trim()});closeModal();persist();toast('Ajuste guardado')}
+function openExpense(){openModal('Nuevo gasto',`<div class="form"><div class="field"><label>Fecha</label><input id="eDate" type="date" class="input" value="${today()}"></div><div class="field"><label>Concepto</label><input id="eConcept" class="input"></div><div class="field"><label>Proveedor</label><input id="eSupplier" class="input"></div><div class="field"><label>Importe sin IVA</label><input id="eAmount" class="input"></div><div class="field"><label>IVA</label>${vatSelect('eVat',.21)}</div></div><div class="mfoot"><button class="btn" onclick="closeModal()">Cancelar</button><button class="btn primary" onclick="saveExpense()">Guardar</button></div>`)}
+function saveExpense(){db.expenses.push({id:cryptoId(),date:document.getElementById('eDate').value,concept:document.getElementById('eConcept').value.trim(),supplier:document.getElementById('eSupplier').value.trim(),amount:num(document.getElementById('eAmount').value),vat:normalizeVAT(document.getElementById('eVat').value)});closeModal();persist();toast('Gasto guardado')}
 
-function home(){
- let stock=db.products.reduce((a,p)=>a+p.stock,0), low=db.products.filter(p=>p.stock<=p.min).length;
- app.innerHTML=`<div class="card"><div class="muted">PRODUCTOS</div><div class="big">${db.products.length}</div></div>
- <div class="card"><div class="muted">UNIDADES EN STOCK</div><div class="big">${stock}</div></div>
- <div class="card"><div class="muted">STOCK BAJO</div><div class="big">${low}</div></div>
- <div class="card"><button class="primary" onclick="tab('scan')">📷 Escanear producto</button></div>
- <div class="card"><button class="primary" onclick="tab('count')">📋 Hacer inventario físico</button></div>`;
-}
+/* ================= SMART PRODUCT MATCHING ================= */
+function tokenSet(s){return new Set(norm(s).split(' ').filter(x=>x.length>1))}
+function jaccard(a,b){const A=tokenSet(a),B=tokenSet(b);if(!A.size||!B.size)return 0;let inter=0;A.forEach(x=>{if(B.has(x))inter++});return inter/(A.size+B.size-inter)}
+function compact(s){return norm(s).replace(/\b(mc|makro|alteza|aro|rioba|mp|mpro|hosteleria|host|bio|pack|caja|ud|uds|de|la|el)\b/g,' ').replace(/\s+/g,' ').trim()}
+function aliasesFor(pid){return Object.entries(db.aliases).filter(([,v])=>v===pid).map(([k])=>k)}
+function matchProduct(text){const raw=String(text||'').trim(),n=norm(raw);if(!n)return {p:null,score:0,conf:'BAJA'};let best=null;for(const p of db.products){const names=[p.name,...aliasesFor(p.id)];for(const name of names){const nn=norm(name);let score=0;if(n===nn)score=1;else if(n.replace(/\s/g,'')===nn.replace(/\s/g,''))score=.98;else if(compact(n)===compact(nn))score=.95;else score=jaccard(n,nn);if(score>(best?.score||0))best={p,score,conf:score>=.94?'ALTA':score>=.78?'MEDIA':'BAJA',matched:name}}}return best||{p:null,score:0,conf:'BAJA'}}
+function rememberAlias(source,pid){const n=norm(source);if(n)db.aliases[n]=pid}
 
-async function scanner(){
- app.innerHTML=`<div class="card"><h2>Escanear código</h2><div class="scanner">
- <video id="video" playsinline muted></video><p id="scanmsg" class="muted">Apunta al código de barras</p>
- <button class="primary" id="startscan">Activar cámara</button></div>
- <div class="card"><label>O introduce el EAN manualmente</label><input id="manualean" inputmode="numeric" placeholder="Ej. 841..."><button class="primary" onclick="stopCamera();lookupEAN(document.getElementById('manualean').value)">Buscar</button></div></div>`;
- document.getElementById("startscan").onclick=startScanner;
-}
+/* ================= UNIVERSAL TABLE PARSER ================= */
+function cleanCell(v){return String(v??'').trim().replace(/^\*+|\*+$/g,'').trim()}
+function splitLine(line){let s=line.trim();if(s.startsWith('|'))s=s.slice(1);if(s.endsWith('|'))s=s.slice(0,-1);if(s.includes('\t'))return s.split('\t').map(cleanCell);if(s.includes(';'))return s.split(';').map(cleanCell);if(s.includes('|'))return s.split('|').map(cleanCell);return s.split(/\s{2,}/).map(cleanCell)}
+function isSeparatorRow(cells){return cells.length&&cells.every(c=>/^:?-{2,}:?$/.test(c.replace(/\s/g,'')))}
+function parseLines(text){return String(text||'').replace(/\r/g,'').split('\n').map(x=>x.trim()).filter(Boolean).map(splitLine).filter(c=>!isSeparatorRow(c))}
+function findHeader(rows,aliases){for(let i=0;i<Math.min(rows.length,3);i++){const h=rows[i].map(norm);let score=0;for(const key of Object.keys(aliases)){if(h.some(x=>aliases[key].some(a=>x===norm(a)||x.includes(norm(a)))))score++}if(score>=2)return {index:i,map:mapHeader(rows[i],aliases)}}return {index:-1,map:{}}}
+function mapHeader(row,aliases){const map={};row.forEach((cell,i)=>{const n=norm(cell);for(const key of Object.keys(aliases)){if(aliases[key].some(a=>n===norm(a)||n.includes(norm(a)))){map[key]=i;break}}});return map}
+function val(row,map,key,def=''){return map[key]!==undefined?cleanCell(row[map[key]]??def):def}
+function isHeaderRow(row){return row.some(c=>['producto','nombre','fecha','categoria','categoría','coste','iva','cantidad','proveedor','unidad'].includes(norm(c)))}
 
-// Camera scanning uses ZXing (loaded on demand) instead of the native
-// BarcodeDetector API, because BarcodeDetector is unsupported on Safari/iOS
-// and most non-Chromium browsers. ZXing works everywhere getUserMedia works.
-let stream=null, zxingLoading=null, scanning=false, scanSession=0;
-function loadZXing(){
- if(window.ZXing) return Promise.resolve();
- if(zxingLoading) return zxingLoading;
- zxingLoading=new Promise((res,rej)=>{
-  const s=document.createElement("script");
-  s.src="https://unpkg.com/@zxing/library@0.21.3/umd/index.min.js";
-  s.onload=()=>res();
-  s.onerror=()=>rej(new Error("No se pudo cargar la librería de escaneo (revisa tu conexión)"));
-  document.head.appendChild(s);
- });
- return zxingLoading;
-}
-async function startScanner(){
- if(scanning) return; // evita doble-tap arrancando dos lectores a la vez
- const v=document.getElementById("video"), msg=document.getElementById("scanmsg"), btn=document.getElementById("startscan");
- if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
-  msg.textContent="Este navegador no permite acceder a la cámara. Usa el campo EAN manual, o abre la app por HTTPS (no como archivo local).";
-  return;
- }
- scanning=true;
- const mySession=++scanSession; // identifica esta sesión de escaneo
- if(btn) btn.disabled=true;
- msg.textContent="Cargando escáner…";
- // En cuanto el vídeo tiene stream, lo guardamos para poder cortar la
- // cámara manualmente si el usuario sale antes de que se detecte un código.
- const onMeta=()=>{ stream=v.srcObject; };
- v.addEventListener("loadedmetadata",onMeta);
+/* ================= BULK PRODUCTS ================= */
+let bulkProducts=[];
+function openBulkProducts(){openModal('Cargar productos masivamente',`<div class="notice"><strong>Formato recomendado:</strong> Producto · Categoría · Unidad · Stock inicial · Stock mínimo · Coste sin IVA · IVA · Proveedor.<br>La web detecta las columnas por su nombre, así que puedes cambiar el orden. Acepta <strong>TAB, ; o |</strong>. También acepta solo Producto y rellena lo demás con 0.</div><textarea id="bulkText" class="textarea" style="height:230px;margin-top:10px" placeholder="Producto\tCategoría\tUnidad\tStock inicial\tStock mínimo\tCoste sin IVA\tIVA\tProveedor"></textarea><div id="bulkPreview" class="preview"></div><div class="mfoot"><button class="btn" onclick="closeModal()">Cancelar</button><button class="btn" onclick="previewBulkProducts()">Previsualizar</button><button class="btn primary" id="bulkConfirm" onclick="confirmBulkProducts()" disabled>Importar productos</button></div>`)}
+function previewBulkProducts(){const text=document.getElementById('bulkText').value;if(!text.trim())return toast('Pega los productos primero','error');const rows=parseLines(text);const aliases={name:['Producto','Nombre','Artículo','Articulo'],cat:['Categoría','Categoria'],unit:['Unidad'],initial:['Stock inicial','Inicial'],min:['Stock mínimo','Stock minimo','Mín.','Min'],cost:['Coste sin IVA','Coste','Coste unitario sin IVA'],vat:['IVA'],supplier:['Proveedor']};const hd=findHeader(rows,aliases);const start=hd.index>=0?hd.index+1:0;bulkProducts=[];rows.slice(start).forEach((r,i)=>{if(!r.length||isHeaderRow(r))return;const name=val(r,hd.map,'name',r[0]||'');if(!name)return;const exact=db.products.find(p=>norm(p.name)===norm(name));const vatRaw=val(r,hd.map,'vat','');const vat=vatRaw===''?.21:normalizeVAT(vatRaw);const vatOk=isKnownVAT(vat);bulkProducts.push({name,cat:val(r,hd.map,'cat',''),unit:val(r,hd.map,'unit','ud')||'ud',initial:num(val(r,hd.map,'initial','0')),min:num(val(r,hd.map,'min','0')),cost:num(val(r,hd.map,'cost','0')),vat,vatOk,supplier:val(r,hd.map,'supplier',''),duplicate:!!exact,existing:exact||null,row:i+1})});renderBulkProductsPreview()}
+function renderBulkProductsPreview(){const valid=bulkProducts.filter(x=>x.name&&!x.duplicate&&x.vatOk);const badVat=bulkProducts.filter(x=>x.name&&!x.duplicate&&!x.vatOk);document.getElementById('bulkPreview').innerHTML=`<div class="small">${bulkProducts.length} líneas · <b>${valid.length}</b> nuevas · <b>${bulkProducts.filter(x=>x.duplicate).length}</b> duplicadas · <b>${badVat.length}</b> con IVA no reconocido (no se importan). Las duplicadas NO se fusionan. Tipos de IVA válidos: 21%, 10%, 4%, 0%.</div><div class="tablewrap" style="max-height:330px;margin-top:8px"><table class="table"><thead><tr><th>Estado</th><th>Producto</th><th>Categoría</th><th>Unidad</th><th>Inicial</th><th>Mín.</th><th>Coste</th><th>IVA</th><th>Proveedor</th></tr></thead><tbody>${bulkProducts.map(x=>`<tr class="${!x.vatOk?'diff':x.duplicate?'diff':'newrow'}"><td><span class="pill ${!x.vatOk?'bad':x.duplicate?'warn':'ok'}">${!x.vatOk?'IVA NO VÁLIDO':x.duplicate?'YA EXISTE':'NUEVO'}</span></td><td>${esc(x.name)}</td><td>${esc(x.cat||'—')}</td><td>${esc(x.unit)}</td><td>${number(x.initial)}</td><td>${number(x.min)}</td><td>${money(x.cost)}</td><td>${x.vatOk?pct(x.vat):`<strong>${pct(x.vat)}</strong> ⚠`}</td><td>${esc(x.supplier||'—')}</td></tr>`).join('')}</tbody></table></div>`;document.getElementById('bulkConfirm').disabled=!valid.length}
+function confirmBulkProducts(){const good=bulkProducts.filter(x=>x.name&&!x.duplicate&&x.vatOk);good.forEach(x=>db.products.push({id:nextProductId(),name:x.name,cat:x.cat,unit:x.unit,initial:x.initial,min:x.min,cost:x.cost,vat:x.vat,supplier:x.supplier,active:true}));closeModal();persist();toast(`Importados ${good.length} productos · sin fusionar duplicados`)}
+function downloadProductTemplate(){downloadText('isla_brunch_productos.tsv','Producto\tCategoría\tUnidad\tStock inicial\tStock mínimo\tCoste sin IVA\tIVA\tProveedor\n','text/tab-separated-values;charset=utf-8')}
+
+/* ================= BULK PURCHASES ================= */
+let bulkPurchases=[];
+function openBulkPurchases(){openModal('Cargar compras masivamente',`<div class="notice"><strong>Formato recomendado:</strong> Fecha · Producto · Proveedor · Cantidad · Coste sin IVA · IVA · Factura.<br><strong>Importante:</strong> la web acepta tablas copiadas de Excel/Sheets y también tablas Markdown con <code>|</code>. El coste se guarda <strong>sin IVA</strong>. Si una línea no se puede reconocer con seguridad, queda en REVISAR y no se importa.</div><textarea id="bulkText" class="textarea" style="height:260px;margin-top:10px" placeholder="Fecha\tProducto\tProveedor\tCantidad\tCoste sin IVA\tIVA\tFactura"></textarea><div id="bulkPreview" class="preview"></div><div class="mfoot"><button class="btn" onclick="closeModal()">Cancelar</button><button class="btn" onclick="previewBulkPurchases()">Previsualizar</button><button class="btn primary" id="bulkConfirm" onclick="confirmBulkPurchases()" disabled>Importar compras</button></div>`)}
+function previewBulkPurchases(){const text=document.getElementById('bulkText').value;if(!text.trim())return toast('Pega las compras primero','error');const rows=parseLines(text);const aliases={date:['Fecha','Date'],name:['Producto','Nombre','Artículo','Articulo'],supplier:['Proveedor'],qty:['Cantidad','Qty','Unidades'],cost:['Coste sin IVA','Coste','Coste unitario','Precio sin IVA'],vat:['IVA'],ticket:['Factura','Ticket','Nº factura','Numero factura']};const hd=findHeader(rows,aliases);let start=hd.index>=0?hd.index+1:0;bulkPurchases=[];rows.slice(start).forEach((r,i)=>{if(!r.length||isHeaderRow(r))return;const dateRaw=val(r,hd.map,'date',r.find(x=>/\d{4}-\d{2}-\d{2}|\d{2}\/\d{2}\/\d{4}/.test(x))||today());const date=parseDate(dateRaw);const productText=val(r,hd.map,'name',r[1]||r[0]||'');const m=matchProduct(productText);const supplier=val(r,hd.map,'supplier','');const qty=num(val(r,hd.map,'qty','1'));const cost=num(val(r,hd.map,'cost','0'));const vatRaw=val(r,hd.map,'vat','');const vat=vatRaw===''?(m.p?.vat??.21):normalizeVAT(vatRaw);const vatOk=isKnownVAT(vat);const ticket=val(r,hd.map,'ticket','');const ignored=/^(envio|envio y gestion|servicios logisticos|portes|pieza de batidora|envio maemuki|envio y gestion codile)$/i.test(norm(productText));bulkPurchases.push({row:i+1,date,source:productText,p:m.p,score:m.score,conf:m.conf,supplier,qty,cost,vat,vatOk,ticket,ignored,valid:!!m.p&&qty>0&&cost>=0&&m.conf!=='BAJA'&&!ignored&&vatOk})});renderBulkPurchasesPreview()}
+function renderBulkPurchasesPreview(){const good=bulkPurchases.filter(x=>x.valid),bad=bulkPurchases.filter(x=>!x.valid&&!x.ignored),ignored=bulkPurchases.filter(x=>x.ignored);document.getElementById('bulkPreview').innerHTML=`<div class="small">${bulkPurchases.length} líneas · <b>${good.length} listas</b> · <b>${bad.length} para revisar</b> · <b>${ignored.length} gastos/servicios ignorados</b>. Tipos de IVA válidos: 21%, 10%, 4%, 0%.</div><div class="tablewrap" style="max-height:380px;margin-top:8px"><table class="table"><thead><tr><th>Estado</th><th>Fecha</th><th>Texto pegado</th><th>Producto detectado</th><th>Conf.</th><th>Cant.</th><th>Coste sin IVA</th><th>IVA</th></tr></thead><tbody>${bulkPurchases.map(x=>x.ignored?`<tr><td><span class="pill info">GASTO</span></td><td>${dateES(x.date)}</td><td colspan="6">${esc(x.source)} · no se convierte en producto</td></tr>`:x.valid?`<tr class="newrow"><td><span class="pill ok">LISTA</span></td><td>${dateES(x.date)}</td><td>${esc(x.source)}</td><td><strong>${esc(x.p.name)}</strong></td><td>${Math.round(x.score*100)}%</td><td>${number(x.qty)}</td><td>${money(x.cost)}</td><td>${pct(x.vat)}</td></tr>`:`<tr class="diff"><td><span class="pill bad">${x.p&&!x.vatOk?'IVA NO VÁLIDO':'REVISAR'}</span></td><td>${dateES(x.date)}</td><td>${esc(x.source)}</td><td>${x.p?esc(x.p.name):'No encontrado'}</td><td>${Math.round((x.score||0)*100)}%</td><td>${number(x.qty)}</td><td>${money(x.cost)}</td><td>${x.p&&!x.vatOk?`<strong>${pct(x.vat)}</strong> ⚠`:pct(x.vat)}</td></tr>`).join('')}</tbody></table></div>`;document.getElementById('bulkConfirm').disabled=!good.length}
+function confirmBulkPurchases(){const good=bulkPurchases.filter(x=>x.valid);good.forEach(x=>{db.purchases.push({id:cryptoId(),date:x.date,pid:x.p.id,supplier:x.supplier||x.p.supplier,qty:x.qty,cost:x.cost,vat:x.vat,ticket:x.ticket});x.p.cost=x.cost;x.p.vat=x.vat;if(x.supplier)x.p.supplier=x.supplier;rememberAlias(x.source,x.p.id)});closeModal();persist();toast(`Importadas ${good.length} compras · stock actualizado`)}
+
+/* ================= BULK INVENTORY ================= */
+let bulkInventory=[];
+function openBulkInventory(){openModal('Cargar inventario masivamente',`<div class="notice"><strong>Formato:</strong> Producto · Cantidad física.<br>Acepta TAB, ; o |. Puedes pegar directamente una tabla de Excel/Sheets o Markdown. La web <strong>no modifica el stock teórico</strong>: guarda el conteo y calcula la diferencia.</div><textarea id="bulkText" class="textarea" style="height:240px;margin-top:10px" placeholder="Producto\tCantidad física"></textarea><div id="bulkPreview" class="preview"></div><div class="mfoot"><button class="btn" onclick="closeModal()">Cancelar</button><button class="btn" onclick="previewBulkInventory()">Previsualizar</button><button class="btn primary" id="bulkConfirm" onclick="confirmBulkInventory()" disabled>Actualizar inventario</button></div>`)}
+function previewBulkInventory(){const text=document.getElementById('bulkText').value;if(!text.trim())return toast('Pega el inventario primero','error');const rows=parseLines(text);const aliases={name:['Producto','Nombre','Artículo','Articulo'],qty:['Cantidad física','Cantidad fisica','Físico','Fisico','Cantidad','Stock físico','Stock fisico']};const hd=findHeader(rows,aliases);const start=hd.index>=0?hd.index+1:0;bulkInventory=[];rows.slice(start).forEach((r,i)=>{if(!r.length||isHeaderRow(r))return;const source=val(r,hd.map,'name',r[0]||'');const qty=num(val(r,hd.map,'qty',r[1]??'0'));const m=matchProduct(source);bulkInventory.push({source,qty,p:m.p,score:m.score,conf:m.conf,valid:!!m.p&&qty>=0&&m.conf!=='BAJA',row:i+1})});renderBulkInventoryPreview()}
+function renderBulkInventoryPreview(){const good=bulkInventory.filter(x=>x.valid);document.getElementById('bulkPreview').innerHTML=`<div class="small">${bulkInventory.length} líneas · <b>${good.length} reconocidas</b> · <b>${bulkInventory.length-good.length} para revisar</b></div><div class="tablewrap" style="max-height:360px;margin-top:8px"><table class="table"><thead><tr><th>Estado</th><th>Anotado</th><th>Producto</th><th>Conf.</th><th>Físico</th><th>Teórico</th><th>Diferencia</th></tr></thead><tbody>${bulkInventory.map(x=>x.valid?`<tr class="${Math.abs(x.qty-stockTheoretical(x.p))>1e-9?'diff':'newrow'}"><td><span class="pill ${Math.abs(x.qty-stockTheoretical(x.p))<1e-9?'ok':'warn'}">${Math.abs(x.qty-stockTheoretical(x.p))<1e-9?'OK':'REVISAR'}</span></td><td>${esc(x.source)}</td><td><strong>${esc(x.p.name)}</strong></td><td>${Math.round(x.score*100)}%</td><td>${number(x.qty)}</td><td>${number(stockTheoretical(x.p))}</td><td>${number(x.qty-stockTheoretical(x.p))}</td></tr>`:`<tr class="diff"><td><span class="pill bad">REVISAR</span></td><td colspan="6">${esc(x.source)} · no se reconoce con seguridad</td></tr>`).join('')}</tbody></table></div>`;document.getElementById('bulkConfirm').disabled=!good.length}
+function confirmBulkInventory(){const good=bulkInventory.filter(x=>x.valid);good.forEach(x=>{db.counts.push({id:cryptoId(),date:today(),pid:x.p.id,qty:x.qty,createdAt:new Date().toISOString()});rememberAlias(x.source,x.p.id)});closeModal();persist();toast(`Inventario actualizado: ${good.length} productos`)}
+
+function openProductHistory(pid){const p=productById(pid);const rows=[`<tr><td>Inicial</td><td>—</td><td>${number(p.initial)}</td><td>Stock inicial</td></tr>`];purchasesFor(pid).forEach(x=>rows.push(`<tr><td>Compra</td><td>${dateES(x.date)}</td><td>+${number(x.qty)}</td><td>${esc(x.supplier)} · ${money(x.qty*x.cost)}</td></tr>`));db.counts.filter(x=>x.pid===pid).forEach(x=>rows.push(`<tr><td>Conteo</td><td>${dateES(x.date)}</td><td>${number(x.qty)}</td><td>Físico</td></tr>`));openModal('Historial · '+p.name,`<div class="notice">Stock teórico: <strong>${number(stockTheoretical(p))} ${esc(p.unit)}</strong> · Valor: <strong>${money(stockTheoretical(p)*avgCost(p))}</strong></div><div class="tablewrap" style="margin-top:10px"><table class="table"><thead><tr><th>Movimiento</th><th>Fecha</th><th>Cantidad</th><th>Detalle</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>`)}
+function copyPurchases(){const rows=[['Fecha','Producto','Proveedor','Cantidad','Coste sin IVA','IVA','Total']];db.purchases.forEach(x=>{const p=productById(x.pid);rows.push([x.date,p?.name||'',x.supplier||'',x.qty,x.cost,x.vat,x.qty*x.cost*(1+x.vat)])});navigator.clipboard?.writeText(rows.map(r=>r.join('\t')).join('\n'));toast('Compras copiadas')}
+function exportBackup(){downloadText('isla_brunch_backup_'+today()+'.json',JSON.stringify({app:'Isla Brunch Control',version:VERSION,exportedAt:new Date().toISOString(),data:db},null,2),'application/json');toast('Copia de seguridad exportada')}
+function openImportBackup(){openModal('Restaurar copia',`<div class="dangerbox">La restauración reemplaza los datos actuales de este navegador. Haz una copia antes si tienes datos nuevos.</div><div class="mfoot"><button class="btn" onclick="closeModal()">Cancelar</button><button class="btn primary" onclick="document.getElementById('backupFile').click()">Seleccionar JSON</button></div>`)}
+document.getElementById('backupFile').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);db=normalizeDB(x.data||x);persist();closeModal();toast('Copia restaurada')}catch(err){toast('Archivo no válido','error')}e.target.value=''};r.readAsText(f)})
+function downloadText(name,text,type){const blob=new Blob([text],{type:type||'text/plain;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),500)}
+
+/* ================= LECTOR DE CÓDIGOS DE BARRAS ================= */
+// Usa ZXing (cargado bajo demanda desde CDN) en vez de la BarcodeDetector nativa,
+// porque BarcodeDetector no funciona en Safari/iOS ni en la mayoría de navegadores no-Chromium.
+let scanStream=null,scanZxingLoading=null,scanActive=false,scanSession=0;
+function loadZXingLib(){if(window.ZXing)return Promise.resolve();if(scanZxingLoading)return scanZxingLoading;scanZxingLoading=new Promise((res,rej)=>{const s=document.createElement('script');s.src='https://unpkg.com/@zxing/library@0.21.3/umd/index.min.js';s.onload=()=>res();s.onerror=()=>rej(new Error('No se pudo cargar la librería de escaneo (revisa tu conexión)'));document.head.appendChild(s)});return scanZxingLoading}
+function openProductScanner(){openModal('Escanear código de barras',`<div class="notice">Apunta la cámara al código EAN del producto (necesita un PC con cámara/webcam), o introduce el código a mano.</div><div style="margin-top:10px"><video id="scanVideo" playsinline muted style="width:100%;border-radius:12px;background:#111;max-height:320px;object-fit:cover"></video><p id="scanMsg" class="small" style="margin-top:8px">Pulsa «Activar cámara» para escanear.</p><button type="button" class="btn primary" id="scanStartBtn" style="width:100%" onclick="startProductScan()">📷 Activar cámara</button></div><div class="field" style="margin-top:14px"><label>O introduce el EAN manualmente</label><input id="scanManualEan" class="input" inputmode="numeric" placeholder="Ej. 8410000000000"></div><div class="mfoot"><button class="btn" onclick="closeModal()">Cancelar</button><button class="btn primary" onclick="handleScannedEAN(document.getElementById('scanManualEan').value)">Buscar EAN</button></div>`)}
+async function startProductScan(){
+ if(scanActive)return; // evita arrancar dos lectores a la vez con doble-tap
+ const v=document.getElementById('scanVideo'),msg=document.getElementById('scanMsg'),btn=document.getElementById('scanStartBtn');
+ if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){msg.textContent='Este navegador/dispositivo no permite acceder a la cámara. Usa el campo EAN manual.';return}
+ scanActive=true;const mySession=++scanSession;if(btn)btn.disabled=true;msg.textContent='Cargando escáner…';
+ const onMeta=()=>{scanStream=v.srcObject};v.addEventListener('loadedmetadata',onMeta);
  try{
-  await loadZXing();
-  if(mySession!==scanSession) return; // el usuario ya salió de "Escanear" mientras cargaba
+  await loadZXingLib();
+  if(mySession!==scanSession)return; // el usuario cerró el modal mientras cargaba la librería
   const hints=new Map();
-  hints.set(ZXing.DecodeHintType.POSSIBLE_FORMATS,[
-   ZXing.BarcodeFormat.EAN_13, ZXing.BarcodeFormat.EAN_8,
-   ZXing.BarcodeFormat.UPC_A, ZXing.BarcodeFormat.UPC_E,
-   ZXing.BarcodeFormat.CODE_128
-  ]);
+  hints.set(ZXing.DecodeHintType.POSSIBLE_FORMATS,[ZXing.BarcodeFormat.EAN_13,ZXing.BarcodeFormat.EAN_8,ZXing.BarcodeFormat.UPC_A,ZXing.BarcodeFormat.UPC_E,ZXing.BarcodeFormat.CODE_128]);
   const reader=new ZXing.BrowserMultiFormatReader(hints);
-  msg.textContent="Apunta al código de barras";
-  // decodeOnceFromConstraints resuelve UNA sola vez cuando encuentra un
-  // código válido (en vez del modo continuo, que llamaba a una función una
-  // y otra vez por cada fotograma y causaba el parpadeo).
-  const result=await reader.decodeOnceFromConstraints({video:{facingMode:{ideal:"environment"}}}, v);
-  v.removeEventListener("loadedmetadata",onMeta);
-  if(mySession!==scanSession) return; // el usuario salió mientras se escaneaba
-  stopCamera();
-  lookupEAN(result.getText());
+  msg.textContent='Apunta al código de barras';
+  const result=await reader.decodeOnceFromConstraints({video:{facingMode:{ideal:'environment'}}},v);
+  v.removeEventListener('loadedmetadata',onMeta);
+  if(mySession!==scanSession)return;
+  stopProductScan();
+  handleScannedEAN(result.getText());
  }catch(e){
-  v.removeEventListener("loadedmetadata",onMeta);
-  if(mySession!==scanSession) return; // cancelado a propósito, ignorar el error
-  msg.textContent="No se pudo activar la cámara: "+(e && e.message?e.message:e);
-  stopCamera();
+  v.removeEventListener('loadedmetadata',onMeta);
+  if(mySession!==scanSession)return; // cancelado a propósito, ignorar el error
+  msg.textContent='No se pudo activar la cámara: '+(e&&e.message?e.message:e);
+  stopProductScan();
  }
 }
-function stopCamera(){
- scanSession++; // invalida cualquier arranque de escáner en curso
- scanning=false;
- if(stream){ try{stream.getTracks().forEach(t=>t.stop());}catch(e){} stream=null; }
- const v=document.getElementById("video"); if(v) v.srcObject=null;
- const btn=document.getElementById("startscan"); if(btn) btn.disabled=false;
-}
-async function lookupEAN(ean){
- ean=String(ean||"").replace(/\D/g,""); if(!ean){alert("Introduce un código");return}
- let p=db.products.find(x=>x.ean===ean);
- if(p){editProduct(p.id);return}
- app.innerHTML=`<div class="card"><h2>Producto no registrado</h2><p>EAN: <b>${esc(ean)}</b></p><p class="muted">Consultando Open Food Facts…</p></div>`;
+function stopProductScan(){scanSession++;scanActive=false;if(scanStream){try{scanStream.getTracks().forEach(t=>t.stop())}catch(e){}scanStream=null}const v=document.getElementById('scanVideo');if(v)v.srcObject=null;const btn=document.getElementById('scanStartBtn');if(btn)btn.disabled=false}
+async function handleScannedEAN(ean){
+ ean=String(ean||'').replace(/\D/g,'');
+ if(!ean)return toast('Introduce o escanea un código','error');
+ stopProductScan();
+ const existing=db.products.find(p=>p.ean&&p.ean===ean);
+ if(existing){openProduct(existing.id);toast('Producto encontrado: '+existing.name);return}
+ openModal('Producto no registrado',`<div class="notice">EAN: <strong>${esc(ean)}</strong><br>Consultando Open Food Facts…</div>`);
  try{
-   const r=await fetch("https://world.openfoodfacts.org/api/v3/product/"+encodeURIComponent(ean)+".json");
-   const d=await r.json(), q=d.product||{};
-   editNew({ean,name:q.product_name_es||q.product_name||"",brand:q.brands||"",format:q.quantity||""});
- }catch(e){editNew({ean,name:"",brand:"",format:""})}
+  const r=await fetch('https://world.openfoodfacts.org/api/v3/product/'+encodeURIComponent(ean)+'.json');
+  const d=await r.json(),q=d.product||{};
+  openProduct(null,{ean,name:q.product_name_es||q.product_name||'',unit:q.quantity||'ud'});
+ }catch(e){openProduct(null,{ean,name:'',unit:'ud'})}
 }
-function editNew(p){formProduct(null,p)}
-function editProduct(id){formProduct(id,db.products.find(x=>x.id===id))}
-function formProduct(id,p){
- app.innerHTML=`<div class="card"><h2>${id?"Editar producto":"Nuevo producto"}</h2>
- <label>EAN / GTIN</label><input id="ean" value="${esc(p.ean)}" readonly>
- <label>Nombre</label><input id="name" value="${esc(p.name)}" placeholder="Nombre interno">
- <label>Marca</label><input id="brand" value="${esc(p.brand||"")}">
- <label>Formato</label><input id="format" value="${esc(p.format||"")}" placeholder="330 ml, 1 L, 24 uds…">
- <label>Proveedor</label><input id="supplier" value="${esc(p.supplier||"")}">
- <div class="row"><div><label>Coste sin IVA</label><input id="cost" type="number" step="0.01" value="${p.cost??""}"></div>
- <div><label>IVA %</label><input id="vat" type="number" value="${p.vat??21}"></div></div>
- <div class="row"><div><label>Stock teórico</label><input id="stock" type="number" step="0.01" value="${p.stock??0}"></div>
- <div><label>Stock mínimo</label><input id="min" type="number" step="0.01" value="${p.min??0}"></div></div>
- <button class="primary" onclick="saveProduct(${id?`'${id}'`:"null"})">Guardar</button>
- ${id?`<button class="smallbtn danger" style="width:100%;padding:12px" onclick="deleteProduct('${id}')">🗑 Eliminar producto</button>`:""}
- </div>`;
-}
-function saveProduct(id){
- let p=id?db.products.find(x=>x.id===id):{id:uuid(),created:Date.now()};
- const val=k=>document.getElementById(k).value; // getElementById en vez de variables globales
- // (ej. id="name" chocaba con window.name, que ya existe en todo navegador,
- // así que "name.value" nunca leía el campo real y Guardar fallaba en silencio)
- Object.assign(p,{ean:val("ean"),name:val("name").trim()||"Producto sin nombre",brand:val("brand").trim(),format:val("format").trim(),supplier:val("supplier").trim(),
- cost:Number(val("cost")||0),vat:Number(val("vat")||0),stock:Number(val("stock")||0),min:Number(val("min")||0)});
- if(!id)db.products.push(p);save();tab("products");
-}
-function deleteProduct(id){
- if(!confirm("¿Eliminar este producto? Esta acción no se puede deshacer."))return;
- let p=db.products.find(x=>x.id===id);
- db.products=db.products.filter(x=>x.id!==id);
- if(p) db.counts=db.counts.filter(c=>c.ean!==p.ean);
- save();tab("products");
-}
-function products(){
- app.innerHTML=`<div class="card"><h2>Productos</h2><input id="search" placeholder="Buscar nombre o EAN" oninput="renderProducts()"></div><div id="plist"></div>`;
- renderProducts();
-}
-function renderProducts(){
- let q=(document.getElementById("search")?.value||"").toLowerCase();
- let arr=db.products.filter(p=>(p.name+" "+p.ean+" "+p.brand).toLowerCase().includes(q));
- document.getElementById("plist").innerHTML=arr.map(p=>`<div class="card item"><div><b>${esc(p.name)}</b><div class="muted">${esc(p.ean)} · Stock ${p.stock}${p.stock<=p.min?' <span class="badge negative">bajo</span>':''}</div></div><button class="smallbtn" onclick="editProduct('${p.id}')">Editar</button></div>`).join("")||`<div class="card muted">No hay productos. Escanea uno para empezar.</div>`;
-}
-function count(){
- app.innerHTML=`<div class="card"><h2>Inventario físico</h2><p class="muted">Escanea productos o busca y registra la cantidad real.</p>
- <button class="primary" onclick="tab('scan')">📷 Escanear</button>
- <button class="primary" onclick="applyCounts()" style="background:#087f3e">✅ Aplicar conteo al stock</button>
- </div><div id="countlist"></div>`;
- renderCount();
-}
-function renderCount(){
- let el=document.getElementById("countlist");
- el.innerHTML=db.products.map(p=>{
-  let c=db.counts.find(x=>x.ean===p.ean);
-  let badge='<span class="badge">—</span>';
-  if(c){
-   let diff=c.physical-p.stock, cls=diff===0?"":(diff>0?"positive":"negative"), sign=diff>0?"+":"";
-   badge=`<span class="badge ${cls}">${c.physical} (${sign}${diff})</span>`;
-  }
-  return `<div class="card"><div class="item"><div><b>${esc(p.name)}</b><div class="muted">Teórico: ${p.stock} · EAN: ${esc(p.ean)}</div></div>${badge}</div>
-  <div class="row"><input id="c_${p.id}" type="number" step="0.01" placeholder="Cantidad física" value="${c?c.physical:""}"><button class="smallbtn" onclick="saveCount('${p.id}')">Guardar</button></div></div>`;
- }).join("")||`<div class="card muted">No hay productos registrados.</div>`;
-}
-function saveCount(id){
- let p=db.products.find(x=>x.id===id), v=Number(document.getElementById("c_"+id).value);
- if(!Number.isFinite(v))return;
- db.counts=db.counts.filter(c=>c.ean!==p.ean);db.counts.push({ean:p.ean,physical:v,date:new Date().toISOString()});save();renderCount();
-}
-function applyCounts(){
- if(!db.counts.length){alert("No hay conteos registrados todavía.");return}
- if(!confirm("Esto actualizará el stock teórico con las cantidades contadas. ¿Continuar?"))return;
- let applied=0;
- db.counts.forEach(c=>{
-  let p=db.products.find(x=>x.ean===c.ean);
-  if(p && p.stock!==c.physical){
-   db.movements.push({ean:p.ean,type:"ajuste",before:p.stock,after:c.physical,date:new Date().toISOString()});
-   p.stock=c.physical; applied++;
-  }
- });
- db.counts=[]; save();
- alert(applied+" producto(s) actualizados.");
- tab("home");
-}
-home();
-if("serviceWorker" in navigator){
- navigator.serviceWorker.register("sw.js").catch(()=>{/* offline caching is optional, app still works without it */});
-}
+
+render();
 </script>
-</body></html>
+</body>
+</html>
