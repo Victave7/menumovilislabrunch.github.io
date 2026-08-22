@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Brunch, Matcha y Ube en Elche — ISLA Brunch &amp; Bar</title>
-<meta name="description" content="ISLA Brunch &amp; Brunch Bar, en el centro de Elche: bagels signature, matcha ceremonial y ube latte. Café Especiales, cócteles y brunch. Carta en ES/EN/FR.">
+<meta name="description" content="ISLA Brunch &amp; Bar, en el centro de Elche: bagels signature, matcha ceremonial y ube latte. Café de especialidad, cócteles y brunch. Carta en ES/EN/FR.">
 <meta name="keywords" content="brunch Elche, bagels Elche, brioche Elche, brunch salado Elche, tostas Elche, matcha Elche, ube Elche, ube latte Elche, matcha latte Elche, matcha dátil Elche, matcha leche de avena Elche, cafetería Elche centro, café especialidad Elche, cócteles Elche, tardeo Elche, desayunos Elche, carta ISLA Elche">
 <meta name="robots" content="index, follow">
 <meta name="author" content="ISLA Brunch & Bar">
@@ -1329,6 +1329,21 @@ body.menu-landing .root { max-width:none; width:100%; min-height:100dvh; backgro
   .home-choice-content{bottom:58px}
   .landing-top-brand-main{font-size:38px}
   .home-choice-sub{font-size:8px;letter-spacing:.08em}
+
+  /* En pantallas de teléfono, dos paneles lado a lado a pantalla completa
+     dejan cada vídeo comprimido en una tira vertical de ~190px de ancho
+     por ~850px de alto: el contenido queda recortado y "encogido". Los
+     apilamos en dos mitades horizontales para que cada vídeo respire
+     con un encuadre ancho y bien centrado. */
+  .home-choice { grid-template-columns:1fr; grid-template-rows:1fr 1fr; }
+  .home-choice-card { min-height:0; height:100%; }
+  .home-choice-card + .home-choice-card { border-left:none; border-top:1px solid rgba(255,255,255,.20); }
+  .home-choice-content { bottom:clamp(20px,4svh,34px); }
+  .home-choice-divider {
+    top:50%; bottom:auto; left:0; right:0; width:auto; height:1px;
+    transform:translateY(-50%);
+    background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.45) 30%,rgba(255,255,255,.18) 70%,transparent 100%);
+  }
 }
 @media (max-width:360px) {
   .home-choice-title{font-size:28px}
