@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Brunch, Matcha y Ube en Elche — ISLA Brunch &amp; Bar</title>
-<meta name="description" content="ISLA Brunch &amp; Bar, en el centro de Elche: bagels y brioches signature, el mejor matcha ceremonial, ube latte y brunch de Elche. Café de especialidad, batidos tropicales y cócteles. Carta completa en ES/EN/FR.">
+<meta name="description" content="ISLA Brunch &amp; Brunch Bar, en el centro de Elche: bagels signature, matcha ceremonial y ube latte. Café Especiales, cócteles y brunch. Carta en ES/EN/FR.">
 <meta name="keywords" content="brunch Elche, bagels Elche, brioche Elche, brunch salado Elche, tostas Elche, matcha Elche, ube Elche, ube latte Elche, matcha latte Elche, matcha dátil Elche, matcha leche de avena Elche, cafetería Elche centro, café especialidad Elche, cócteles Elche, tardeo Elche, desayunos Elche, carta ISLA Elche">
 <meta name="robots" content="index, follow">
 <meta name="author" content="ISLA Brunch & Bar">
@@ -110,6 +110,24 @@ body {
   margin: 0 auto;
   background: transparent;
   min-height: 100dvh;
+}
+
+/* ── MARCO DE ESCRITORIO ──
+   La interfaz está diseñada para móvil (max-width: 430px de .root).
+   Por encima de ese ancho, en vez de dejar la carta flotando en un
+   mar de espacio vacío, la enmarcamos como una tarjeta centrada con
+   fondo ambiental. No se toca ninguna regla existente: esto solo
+   añade contexto visual alrededor de la columna móvil ya funcional. */
+@media (min-width: 431px) {
+  body {
+    background: radial-gradient(ellipse 1200px 800px at 50% 0%, #FFF8EE 0%, var(--sand) 55%, var(--warm) 100%);
+    padding: 32px 16px;
+    min-height: 100vh;
+  }
+  .root {
+    box-shadow: 0 24px 60px rgba(28,21,16,0.14), 0 2px 10px rgba(28,21,16,0.08);
+  }
+  body.menu-landing .root { box-shadow: none; }
 }
 
 button, a { font-family: inherit; }
@@ -368,7 +386,6 @@ body.menu-inside .nav-wrap { padding-top: 0; }
   border-color:var(--divider);
   font-size:16px;
 }
-.sub-tab-back:hover { background:var(--cream); }
 .sub-tab.on {
   background: var(--green);
   color: #fff;
@@ -1016,6 +1033,7 @@ body.menu-inside .nav-wrap { padding-top: 0; }
   .hero-mark-link:hover .hero-mark { filter: drop-shadow(0 3px 6px rgba(45,106,63,0.2)); }
   .lang-btn:not(.on):hover { border-color: var(--bark-light); color: var(--bark); }
   .cocktail-link:hover { background: rgba(255,255,255,0.85); border-color: var(--bark-mid); }
+  .sub-tab-back:hover { background:var(--cream); }
 }
 .mini-card:active, .pan-card:active { transform: scale(0.98); }
 
@@ -1158,7 +1176,10 @@ body.menu-landing .root { max-width:none; width:100%; min-height:100dvh; backgro
   background:radial-gradient(circle at 50% 65%,rgba(255,255,255,.10),transparent 42%);
   transition:opacity .35s ease;
 }
-.home-choice-card:hover::after { opacity:1; }
+@media (hover: hover) and (pointer: fine) {
+  .home-choice-card:hover::after { opacity:1; }
+}
+.home-choice-card:active::after { opacity:1; }
 
 .landing-top-brand {
   position:absolute;
@@ -1321,8 +1342,6 @@ body.menu-landing .root { max-width:none; width:100%; min-height:100dvh; backgro
 }
 
 </style>
-  <link rel="preload" as="video" href="videos/comerloop.mp4" type="video/mp4">
-<link rel="preload" as="video" href="videos/beberloop.mp4" type="video/mp4">
 </head>
 <body class="menu-landing">
 <!-- Google Tag Manager (noscript) -->
@@ -3702,6 +3721,9 @@ function showPage(id) {
     el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     window.scrollTo({ top: 0, behavior: 'smooth' });
     animateReveal(el);
+    // Inicio contiene los vídeos comer/beber: display:none los pausa al salir
+    // de esta pestaña, y el navegador no los reanuda por sí solo al volver.
+    if (id === 'inicio' && window.__bootHomeVideos) window.__bootHomeVideos();
   }
 }
 
@@ -3890,20 +3912,31 @@ document.addEventListener('DOMContentLoaded',function(){
 
 <script>
 (function(){
-  function bootVideos(){
-    document.querySelectorAll('.home-choice-video').forEach(function(v){
-      if (!(v instanceof HTMLVideoElement)) return;
-      v.muted = true;
-      v.defaultMuted = true;
-      v.playsInline = true;
-      v.setAttribute('muted','');
-      v.setAttribute('playsinline','');
-      v.setAttribute('webkit-playsinline','true');
+  function tryPlay(v){
+    if (!(v instanceof HTMLVideoElement)) return;
+    v.muted = true;
+    v.defaultMuted = true;
+    v.playsInline = true;
+    v.setAttribute('muted','');
+    v.setAttribute('playsinline','');
+    v.setAttribute('webkit-playsinline','true');
+    // Solo forzamos load() si el vídeo aún no ha empezado a cargar datos;
+    // llamarlo en cada boot reiniciaba la descarga desde cero y desincronizaba
+    // el loop, además de gastar datos móviles innecesariamente.
+    if (v.readyState === 0) {
       try { v.load(); } catch(e) {}
-      var p = v.play();
-      if (p && p.catch) p.catch(function(){});
-    });
+    }
+    var p = v.play();
+    if (p && p.catch) p.catch(function(){});
   }
+
+  function bootVideos(){
+    document.querySelectorAll('.home-choice-video').forEach(tryPlay);
+  }
+  // Expuesta para que la navegación por pestañas (showPage) pueda reanudar
+  // los vídeos al volver a Inicio, ya que display:none los pausa y el
+  // navegador no los reanuda solo.
+  window.__bootHomeVideos = bootVideos;
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', bootVideos, {once:true});
@@ -3916,19 +3949,40 @@ document.addEventListener('DOMContentLoaded',function(){
     if (!document.hidden) bootVideos();
   });
 
-  /* Si iOS decide bloquear autoplay, el primer toque en la portada
-     inicia ambos vídeos sin mostrar un botón de reproducción propio. */
+  /* Si iOS/Android deciden bloquear el autoplay, el primer toque en la
+     portada inicia ambos vídeos sin mostrar un botón de reproducción propio. */
   document.addEventListener('pointerdown', function(){
     document.querySelectorAll('.home-choice-video').forEach(function(v){
-      if (v.paused) {
-        v.muted = true;
-        var p=v.play();
-        if(p && p.catch) p.catch(function(){});
-      }
+      if (v.paused) tryPlay(v);
     });
   }, {passive:true});
+
+  /* Red de seguridad por scroll/visibilidad: algunos navegadores móviles
+     pausan automáticamente los vídeos cuando salen del viewport y no los
+     reanudan al volver a entrar. Este observer los reactiva en cuanto
+     vuelven a ser visibles (scroll, cambio de pestaña, etc.) y los pausa
+     mientras están fuera de vista para ahorrar batería/CPU. */
+  if ('IntersectionObserver' in window) {
+    var videoObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var v = entry.target;
+        if (entry.isIntersecting) {
+          if (v.paused) tryPlay(v);
+        } else if (!v.paused) {
+          v.pause();
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.home-choice-video').forEach(function(v){
+      videoObserver.observe(v);
+    });
+  }
 })();
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
