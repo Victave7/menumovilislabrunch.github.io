@@ -344,6 +344,9 @@ button, a { font-family: inherit; }
 
 .sub-tab {
   flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   padding: 8px 16px;
   font-size: 13px;
   font-weight: 600;
@@ -364,6 +367,7 @@ button, a { font-family: inherit; }
 }
 /* Subpestaña premium (Brioche Signature) — dorada incluso en reposo, para llamar la atención */
 .sub-tab-gold {
+  position: relative;
   background: linear-gradient(135deg, var(--copper-bg) 0%, #F0D9A8 100%);
   color: var(--copper-dark);
   border-color: var(--copper);
@@ -373,6 +377,28 @@ button, a { font-family: inherit; }
   background: linear-gradient(135deg, var(--copper) 0%, var(--copper-dark) 100%);
   color: #fff;
   border-color: var(--copper-dark);
+}
+.sub-tab-dot {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E65100 0%, #FF8A3D 100%);
+  box-shadow: 0 0 0 2px var(--white), 0 2px 6px rgba(230,81,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  line-height: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sub-tab-dot { animation: dotPulse 1.8s ease-in-out infinite; }
+  @keyframes dotPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+  }
 }
 
 /* ── SECCIONES ── */
@@ -579,17 +605,87 @@ button, a { font-family: inherit; }
 .premium-ribbon {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  font-size: 10.5px;
+  gap: 5px;
+  font-size: 12.5px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #F3D9A8;
   background: linear-gradient(135deg, var(--bark) 0%, #3E2A1C 100%);
-  padding: 4px 12px;
+  padding: 6px 14px;
   border-radius: 20px;
   margin-bottom: 10px;
   box-shadow: 0 2px 8px rgba(60,40,20,0.35);
+}
+.hot-ribbon {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #FFF3E9;
+  background: linear-gradient(135deg, #E65100 0%, #FF8A3D 100%);
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  margin-left: 6px;
+  box-shadow: 0 2px 8px rgba(230,81,0,0.35);
+  cursor: pointer;
+  transition: transform .15s var(--ease-out), box-shadow .2s;
+}
+.hot-ribbon:active { transform: scale(0.95); }
+@media (hover: hover) and (pointer: fine) {
+  .hot-ribbon:hover { box-shadow: 0 4px 14px rgba(230,81,0,0.45); transform: translateY(-1px); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hot-ribbon { animation: badgeShine 1.1s ease-out .5s both; background-size: 200% 100%; }
+
+  /* "Baile" de la tarjeta Revuelto al pulsar Recomendación del chef.
+     !important es necesario en la animación: body.menu-inside .page.on .card ya
+     fija su propia animación de entrada (islaCardIn) con más especificidad.
+     El halo va en un ::after aparte porque .card-gold fija su box-shadow con
+     !important (sistema "premium"), lo que bloquearía cualquier pulso de sombra
+     animado directamente sobre la tarjeta. */
+  .card-dance {
+    animation: cardDance .6s ease-in-out 2 !important;
+    z-index: 5;
+  }
+  .card-dance::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    box-shadow: 0 0 0 3px var(--copper), 0 8px 30px rgba(230,81,0,.55);
+    opacity: 0;
+    pointer-events: none;
+    animation: danceGlow 1.2s ease-in-out;
+  }
+  @keyframes cardDance {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    15%      { transform: translateX(-7px) rotate(-3deg); }
+    35%      { transform: translateX(7px) rotate(3deg); }
+    55%      { transform: translateX(-5px) rotate(-2deg); }
+    75%      { transform: translateX(4px) rotate(1.5deg); }
+    90%      { transform: translateX(-2px) rotate(-0.5deg); }
+  }
+  @keyframes danceGlow {
+    0%, 100% { opacity: 0; }
+    20%, 80% { opacity: 1; }
+  }
+}
+/* Sin animación de movimiento (accesibilidad): solo un resalte de color, sin transform */
+@media (prefers-reduced-motion: reduce) {
+  .card-dance::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    box-shadow: 0 0 0 3px var(--copper);
+    pointer-events: none;
+  }
 }
 .card-gold {
   background: linear-gradient(135deg, #FFFCF6 0%, var(--copper-bg) 100%);
@@ -1998,7 +2094,7 @@ video{
     scroll-padding-inline:16px;
     min-height:48px!important;
     padding:9px 16px 10px!important;
-    gap:22px!important;
+    gap:10px!important;
   }
 
   body.menu-inside .sub-nav::-webkit-scrollbar{
@@ -2007,10 +2103,10 @@ video{
 
   body.menu-inside .sub-nav .sub-tab{
     flex:0 0 auto!important;
-    min-height:30px!important;
-    padding:6px 0 8px!important;
-    font-size:10px!important;
-    letter-spacing:.07em!important;
+    min-height:36px!important;
+    padding:8px 14px!important;
+    font-size:11px!important;
+    letter-spacing:.04em!important;
     white-space:nowrap!important;
   }
 
@@ -2120,7 +2216,7 @@ video{
   }
 
   body.menu-inside .sub-nav{
-    gap:18px!important;
+    gap:8px!important;
   }
 }
 
@@ -2475,8 +2571,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </nav>
 
     <div id="subnav-comer" class="sub-nav" role="tablist" aria-label="Tipos de comida">
-      <button class="sub-tab on" data-page="brunch" onclick="showSub('brunch',this,'comer')" role="tab" aria-selected="true">🥯 <span data-en="Classics" data-fr="Classiques">Clásicos</span></button>
-      <button class="sub-tab sub-tab-gold" data-page="brioche" onclick="showSub('brioche',this,'comer')" role="tab" aria-selected="false">🥐 <span data-en="Signature Brioches" data-fr="Brioches Signature">Brioche Signature</span></button>
+      <button class="sub-tab sub-tab-gold on" data-page="brioche" onclick="showSub('brioche',this,'comer')" role="tab" aria-selected="true">🥐 <span data-en="Signature Brioches" data-fr="Brioches Signature">Brioche Signature</span><span class="sub-tab-dot" aria-hidden="true">🔥</span></button>
+      <button class="sub-tab" data-page="brunch" onclick="showSub('brunch',this,'comer')" role="tab" aria-selected="false">🥯 <span data-en="Classics" data-fr="Classiques">Clásicos</span></button>
       <button class="sub-tab" data-page="dulce" onclick="showSub('dulce',this,'comer')" role="tab" aria-selected="false">🥞 <span data-en="Sweet" data-fr="Sucré">Dulce</span></button>
       <button class="sub-tab" data-page="compartir" onclick="showSub('compartir',this,'comer')" role="tab" aria-selected="false">🫶 <span data-en="Sharing" data-fr="À partager">Compartir</span></button>
       <button class="sub-tab" data-page="diy" onclick="showSub('diy',this,'comer')" role="tab" aria-selected="false">🧪 <span data-en="ISLA Lab" data-fr="Laboratoire ISLA">Laboratorio ISLA</span></button>
@@ -2519,7 +2615,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  <span class="landing-copy">
  <span class="landing-kicker">ISLA BRUNCH</span>
  <strong data-en="EAT" data-fr="MANGER">COMER</strong>
- <span class="landing-desc">Brunch · Brioche · Dulce · Compartir</span>
+ <span class="landing-desc">Brioche · Brunch · Dulce · Compartir</span>
  <span class="landing-action">Explorar <b>→</b></span>
  </span>
  </button>
@@ -3068,12 +3164,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section id="sec-brioche" class="page brioche-premium" role="tabpanel" tabindex="0" aria-label="Brioche Signature">
     <div class="sec-head">
       <span class="premium-ribbon">✨ <span data-en="Signature" data-fr="Signature">Signature</span></span>
+      <button type="button" class="hot-ribbon" onclick="goToRevuelto()">🔥 <span data-en="Chef's pick" data-fr="Choix du chef">Recomendación del chef</span></button>
       <p class="eyebrow" data-en="Our house classic" data-fr="Notre classique maison">Nuestro clásico de la casa</p>
       <h2 class="sec-title" data-en="Signature Brioches" data-fr="Brioches Signature">Brioche Signature</h2>
       <p class="sec-note" data-en="Fluffy brioche, toasted and filled with our signature combinations." data-fr="Brioche moelleuse, toastée et garnie de nos combinaisons signature.">Brioche esponjosa, tostada y rellena con nuestras combinaciones signature.</p>
     </div>
 
-    <div class="card card-gold">
+    <div class="card card-gold" id="card-revuelto">
       <span class="badge badge-new">🏝️ <span data-en="ISLA Recommends" data-fr="Recommandation de l'ISLA">Recomendación de la Isla</span></span>
       <div class="card-row">
         <p class="item-name">Revuelto</p>
@@ -3575,7 +3672,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 const state = {
   cat: 'inicio',
   subs: {
-    comer: 'brunch',
+    comer: 'brioche',
     beber: 'matcha'
   }
 };
@@ -3586,7 +3683,7 @@ const state = {
 // Beber → Matcha / Ube / Café / Smoothies / Otras
 const catPages = {
   inicio: ['inicio'],
-  comer: ['brunch','brioche','dulce','compartir','diy'],
+  comer: ['brioche','brunch','dulce','compartir','diy'],
   beber: ['matcha','ube','cafe','batidos','otras']
 };
 
@@ -3680,6 +3777,39 @@ function showSub(pageId, btn, cat) {
 function toggleFoam(btn) {
   const expanded = btn.getAttribute('aria-expanded') === 'true';
   btn.setAttribute('aria-expanded', String(!expanded));
+}
+
+// ══════════ "RECOMENDACIÓN DEL CHEF" → lleva al Revuelto y lo hace bailar ══════════
+function goToRevuelto() {
+  const card = document.getElementById('card-revuelto');
+  if (!card) return;
+
+  card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+  // Reinicia la animación aunque se pulse varias veces seguidas
+  card.classList.remove('card-dance');
+  void card.offsetWidth; // fuerza reflow para poder reiniciar la animación
+
+  // Espera al siguiente frame antes de añadir la clase: si se pulsa el botón
+  // justo al entrar en la sección, la tarjeta puede seguir aún con su propia
+  // animación de entrada (reveal-in) a medias, y añadir la clase en el mismo
+  // frame provoca que el "primer toque" se vea cortado o sin efecto.
+  requestAnimationFrame(() => {
+    card.classList.add('card-dance');
+  });
+
+  // Solo limpiamos al terminar NUESTRA animación (cardDance / danceGlow):
+  // un listener sin filtrar podía capturar el animationend residual de
+  // reveal-in (la entrada de la tarjeta) y apagar el baile casi al instante,
+  // lo que se notaba sobre todo en el primer toque tras entrar en la sección.
+  const cleanup = (e) => {
+    if (e && e.animationName !== 'cardDance' && e.animationName !== 'danceGlow') return;
+    card.classList.remove('card-dance');
+    card.removeEventListener('animationend', cleanup);
+  };
+  card.addEventListener('animationend', cleanup);
+  // Red de seguridad por si el evento no llega a dispararse
+  setTimeout(() => card.classList.remove('card-dance'), 1600);
 }
 
 // ══════════ SELECTOR DE TOPPING (Personaliza tu Pancake) ══════════
