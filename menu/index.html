@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="menu-landing">
 <head>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -1276,6 +1276,7 @@ body.menu-landing .lang-bar,
 body.menu-landing .isla-nav-shell{display:none!important}
 body.menu-landing .root{max-width:none;width:100%;box-shadow:none}
 body.menu-landing{overflow:hidden;background:#07110c}
+html.menu-landing{overflow:hidden;height:100%}
 
 #sec-inicio{
  display:none;
@@ -3708,6 +3709,8 @@ function showCat(cat, btn) {
 
   document.body.classList.toggle('menu-landing', isHome);
   document.body.classList.toggle('menu-inside', !isHome);
+  document.documentElement.classList.toggle('menu-landing', isHome);
+  document.documentElement.classList.toggle('menu-inside', !isHome);
 
   document.querySelectorAll('.page').forEach(function(page) {
     page.classList.remove('on');
