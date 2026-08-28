@@ -123,7 +123,7 @@ section{position:relative;width:100%;}
   filter:blur(14px) brightness(.55) saturate(1.05);
   transition:filter 1.4s cubic-bezier(.2,.7,.2,1);
   background:
-    url('bebidadelmes/imagen/hot.jpeg') center/cover no-repeat,
+    url('/bebidadelmes/imagen/hot.jpeg') center/cover no-repeat,
     radial-gradient(60% 45% at 28% 38%, rgba(201,104,42,.55), transparent 70%),
     radial-gradient(55% 40% at 72% 30%, rgba(154,91,50,.5), transparent 70%),
     radial-gradient(70% 55% at 50% 78%, rgba(120,134,90,.22), transparent 70%),
@@ -201,17 +201,56 @@ section{position:relative;width:100%;}
   height:210px;position:relative;display:flex;align-items:flex-end;padding:16px;
   transition:background .45s cubic-bezier(.16,1,.3,1);
 }
-.chooser-video{
-  width:100%;height:210px;object-fit:cover;display:none;background:#000;
+.chooser-video{display:none;}
+.video-modal{
+  position:fixed;inset:0;z-index:1100;display:none;align-items:center;justify-content:center;
+  background:rgba(8,7,6,.94);backdrop-filter:blur(8px);
+  opacity:0;transition:opacity .3s ease;padding:18px;
 }
-.chooser-video.show{display:block;}
-.video-close{
-  position:absolute;top:10px;right:10px;z-index:5;display:none;
-  width:30px;height:30px;border-radius:50%;background:rgba(8,7,6,.75);
-  color:var(--cream);font-size:14px;align-items:center;justify-content:center;
-  border:1px solid rgba(232,216,194,.3);
+.video-modal.show{display:flex;opacity:1;}
+.video-window{
+  width:100%;max-width:640px;position:relative;
+  background:linear-gradient(160deg, rgba(53,26,16,.6), rgba(8,7,6,.96));
+  border:1px solid rgba(184,90,36,.5);
+  box-shadow:0 0 0 1px rgba(184,90,36,.15), 0 30px 80px -20px rgba(0,0,0,.8), 0 0 60px -10px rgba(184,90,36,.25);
+  transform:scale(.94);opacity:0;transition:transform .35s cubic-bezier(.16,1,.3,1), opacity .35s ease;
 }
-.video-close.show{display:flex;}
+.video-modal.show .video-window{transform:scale(1);opacity:1;}
+.video-window::before{
+  content:'';position:absolute;inset:-1px;pointer-events:none;
+  background:linear-gradient(90deg, var(--orange-burnt), transparent 30%, transparent 70%, var(--orange-burnt));
+  opacity:.5;z-index:-1;
+}
+.video-titlebar{
+  display:flex;align-items:center;gap:10px;padding:10px 12px;
+  border-bottom:1px solid rgba(184,90,36,.3);
+  background:rgba(8,7,6,.5);
+}
+.video-dots{display:flex;gap:6px;}
+.video-dots span{width:8px;height:8px;border-radius:50%;background:rgba(232,216,194,.25);}
+.video-dots span:nth-child(1){background:#C9682A;}
+.video-titlebar .fname{
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--orange-burnt);
+  text-transform:uppercase;flex:1;text-align:center;opacity:.9;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.video-titlebar .video-close{
+  position:static;width:22px;height:22px;flex-shrink:0;
+  background:transparent;border:1px solid rgba(232,216,194,.3);color:var(--cream);
+  font-size:12px;display:flex;align-items:center;justify-content:center;border-radius:50%;
+}
+.video-frame{
+  position:relative;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden;
+}
+.video-frame video{width:100%;height:100%;object-fit:cover;display:block;}
+.video-frame .scan{
+  position:absolute;inset:0;pointer-events:none;opacity:.12;
+  background:repeating-linear-gradient(to bottom, rgba(0,0,0,.7) 0 1px, transparent 1px 3px);
+}
+.video-footer{
+  display:flex;justify-content:space-between;align-items:center;padding:9px 12px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--cream);opacity:.5;text-transform:uppercase;
+}
 .photo.latte{background:linear-gradient(180deg, rgba(8,7,6,0) 40%, rgba(8,7,6,.75) 100%), url('/bebidadelmes/imagen/hot.jpeg') center/cover no-repeat, radial-gradient(120% 100% at 50% 100%, rgba(201,104,42,.65), transparent 60%), linear-gradient(150deg,#2a180d,#0f0906);}
 .photo.frappe{background:linear-gradient(180deg, rgba(8,7,6,0) 40%, rgba(8,7,6,.75) 100%), url('/bebidadelmes/imagen/frappe.jpeg') center/cover no-repeat, radial-gradient(120% 100% at 50% 100%, rgba(154,91,50,.55), transparent 60%), linear-gradient(150deg,#241b12,#0d0a08);}
 .photo.matcha{background:linear-gradient(180deg, rgba(8,7,6,0) 40%, rgba(8,7,6,.75) 100%), url('/bebidadelmes/imagen/matchai.jpeg') center/cover no-repeat, radial-gradient(120% 100% at 50% 100%, rgba(120,134,90,.4), rgba(184,90,36,.35) 55%, transparent 75%), linear-gradient(150deg,#1c1b10,#0d0906);}
@@ -381,8 +420,6 @@ footer{padding:26px 22px 40px;text-align:center;font-family:var(--mono);font-siz
       <span class="file-label" id="chooserBadge">MATCHA FILE</span>
       <svg class="cup-illustration" id="chooserCup" viewBox="0 0 64 74" fill="none" style="margin-left:auto;"><path d="M8 20h40l-4 40a6 6 0 0 1-6 5.5H18a6 6 0 0 1-6-5.5L8 20Z" fill="#78865A" opacity=".7"/><circle cx="28" cy="14" r="3" fill="#E8D8C2" opacity=".5"/></svg>
     </div>
-    <video class="chooser-video" id="chooserVideo" playsinline muted loop></video>
-    <button class="video-close" id="videoClose" aria-label="Cerrar vídeo">✕</button>
     <div class="chooser-body">
       <div class="file-id" id="chooserFile">PUMPKIN_SPICE_MATCHA.FILE</div>
       <h4 id="chooserName">Pumpkin Spice Matcha</h4>
@@ -391,6 +428,25 @@ footer{padding:26px 22px 40px;text-align:center;font-family:var(--mono);font-siz
     </div>
   </div>
 </section>
+
+<div class="video-modal" id="videoModal">
+  <div class="video-window">
+    <div class="video-titlebar">
+      <div class="video-dots"><span></span><span></span><span></span></div>
+      <div class="fname" id="modalFileName">PUMPKIN_SPICE.FILE</div>
+      <button class="video-close" id="videoClose" aria-label="Cerrar vídeo">✕</button>
+    </div>
+    <div class="video-frame">
+      <video id="modalVideo" playsinline controls poster="/bebidadelmes/imagen/hot.jpeg"></video>
+      <div class="scan"></div>
+    </div>
+    <div class="video-footer">
+      <span>ARCHIVO REPRODUCIÉNDOSE</span>
+      <span>ISLA · ELCHE</span>
+    </div>
+  </div>
+</div>
+
 
 <!-- DESCUENTO / WHATSAPP -->
 <section id="discount">
@@ -524,14 +580,17 @@ footer{padding:26px 22px 40px;text-align:center;font-family:var(--mono);font-siz
     latte:{cls:'latte',file:'PUMPKIN_SPICE_LATTE.FILE',name:'Pumpkin Spice Latte',badge:'HOT FILE',
       desc:'Espresso, leche cremosa y nuestra mezcla Pumpkin Spice, terminado con espuma y especias.',
       video:'/bebidadelmes/video/hot.mp4',
+      poster:'/bebidadelmes/imagen/hot.jpeg',
       cup:'<path d="M8 20h40l-4 40a6 6 0 0 1-6 5.5H18a6 6 0 0 1-6-5.5L8 20Z" fill="#C9682A" opacity=".85"/><path d="M48 26h6a8 8 0 0 1 0 16h-4" stroke="#E8D8C2" stroke-width="2.5" opacity=".7"/>'},
     frappe:{cls:'frappe',file:'PUMPKIN_SPICE_FRAPPE.FILE',name:'Pumpkin Spice Frappe',badge:'COLD FILE',
       desc:'Café frío, textura cremosa y Pumpkin Spice en una versión completamente adictiva.',
       video:'/bebidadelmes/video/frappe.mp4',
+      poster:'/bebidadelmes/imagen/frappe.jpeg',
       cup:'<path d="M10 16h44l-5 46a6 6 0 0 1-6 5H21a6 6 0 0 1-6-5l-5-46Z" fill="#9A5B32" opacity=".8"/><rect x="28" y="4" width="4" height="16" rx="2" fill="#E8D8C2" opacity=".6"/>'},
     matcha:{cls:'matcha',file:'PUMPKIN_SPICE_MATCHA.FILE',name:'Pumpkin Spice Matcha',badge:'MATCHA FILE',
       desc:'Nuestro matcha de Isla llevado al otoño con Pumpkin Spice y una capa cremosa de cold foam.',
       video:'/bebidadelmes/video/matchai.mp4',
+      poster:'/bebidadelmes/imagen/matchai.jpeg',
       cup:'<path d="M8 20h40l-4 40a6 6 0 0 1-6 5.5H18a6 6 0 0 1-6-5.5L8 20Z" fill="#78865A" opacity=".7"/><circle cx="28" cy="14" r="3" fill="#E8D8C2" opacity=".5"/>'}
   };
   var currentKey='matcha';
@@ -542,16 +601,18 @@ footer{padding:26px 22px 40px;text-align:center;font-family:var(--mono);font-siz
   var badgeEl=document.getElementById('chooserBadge');
   var nameEl=document.getElementById('chooserName');
   var descEl=document.getElementById('chooserDesc');
-  var videoEl=document.getElementById('chooserVideo');
+  var videoModal=document.getElementById('videoModal');
+  var modalVideo=document.getElementById('modalVideo');
+  var modalFileName=document.getElementById('modalFileName');
   var videoCloseBtn=document.getElementById('videoClose');
   var playBtn=document.getElementById('playVideoBtn');
 
   function stopVideo(){
-    videoEl.pause();
-    videoEl.classList.remove('show');
-    videoCloseBtn.classList.remove('show');
-    stagePhoto.style.display='flex';
-    playBtn.textContent='▶ Descubrir';
+    modalVideo.pause();
+    modalVideo.removeAttribute('src');
+    modalVideo.load();
+    videoModal.classList.remove('show');
+    document.body.style.overflow='';
   }
 
   function selectDrink(key){
@@ -573,23 +634,23 @@ footer{padding:26px 22px 40px;text-align:center;font-family:var(--mono);font-siz
   }
   tabs.forEach(function(t){ t.addEventListener('click', function(){selectDrink(t.dataset.tab);}); });
 
-  // ---- "Descubrir" -> reproduce el vídeo de la bebida seleccionada ----
+  // ---- "Descubrir" -> abre el vídeo de la bebida seleccionada en ventana modal ----
   playBtn.addEventListener('click', function(){
     var d=data[currentKey];
-    if(videoEl.classList.contains('show')){ stopVideo(); return; }
     if(!d.video){
       toast('VÍDEO PRÓXIMAMENTE');
       return;
     }
-    videoEl.src=d.video;
-    stagePhoto.style.display='none';
-    videoEl.classList.add('show');
-    videoCloseBtn.classList.add('show');
-    videoEl.play();
-    playBtn.textContent='✕ Cerrar vídeo';
+    modalVideo.src=d.video;
+    modalVideo.poster=d.poster||'/bebidadelmes/imagen/hot.jpeg';
+    modalFileName.textContent=d.file;
+    videoModal.classList.add('show');
+    document.body.style.overflow='hidden';
+    modalVideo.play();
     toast('ARCHIVO DE VÍDEO CARGADO');
   });
   videoCloseBtn.addEventListener('click', stopVideo);
+  videoModal.addEventListener('click', function(e){ if(e.target===videoModal){ stopVideo(); } });
 
   // ---- código de descuento filtrado + WhatsApp ----
   // sustituye por el número real de Isla en formato internacional sin '+' ni espacios (ej. 34600111222)
