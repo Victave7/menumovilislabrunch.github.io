@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Isla Student Elche | Brunch, Matcha & Smoothies</title>
+<meta name="description" content="Student brunch in Elche with matcha, ube, bagels, smoothies and customizable shakes. Build your Isla Student pack.">
+<meta name="theme-color" content="#F4EBDD">
+
+<!-- Open Graph -->
+<meta property="og:title" content="ISLA STUDENT — Your Campus. Your Island.">
+<meta property="og:description" content="Brunch, matcha, ube & shakes made your way. Build your Isla Student pack in Elche.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   ISLA STUDENT — DESIGN TOKENS
+   ============================================================ */
+:root{
+  /* brand palette — exact values from brief, used with restraint */
+  --sand:#F4EBDD;
+  --sand-2:#EDE1CE;
+  --paper:#FBF6EC;
+  --green:#60745B;
+  --green-dark:#17231B;
+  --ube:#9A7BC1;
+  --fruit:#E8A0A0;
+  --mango:#E5B95C;
+
+  --ink:#17231B;
+  --ink-soft:rgba(23,35,27,0.62);
+  --ink-faint:rgba(23,35,27,0.38);
+  --line:rgba(23,35,27,0.12);
+  --line-soft:rgba(23,35,27,0.08);
+
+  --display:'Bricolage Grotesque', system-ui, sans-serif;
+  --body:'Inter', system-ui, sans-serif;
+  --mono:'Space Mono', monospace;
+
+  --radius-s:14px;
+  --radius-m:22px;
+  --radius-l:32px;
+
+  --ease:cubic-bezier(.22,.9,.32,1);
+  --ease-soft:cubic-bezier(.4,0,.2,1);
+
+  --container: 560px; /* mobile-first content column, desktop composes around it */
+  --edge: 20px;
+}
+
+/* ============================================================
+   CONFIG — EDIT THESE BEFORE LAUNCH
+   ============================================================ */
+/* also mirrored in JS ISLA_CONFIG below for runtime use */
+
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+}
+body{
+  margin:0;
+  background:var(--sand);
+  color:var(--ink);
+  font-family:var(--body);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+button{font-family:inherit;}
+a{color:inherit;}
+::selection{background:var(--ube); color:var(--paper);}
+
+.wrap{
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 var(--edge);
+}
+@media (min-width:900px){
+  .wrap{max-width:1180px;}
+}
+
+/* focus states */
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+  outline:3px solid var(--ube);
+  outline-offset:3px;
+  border-radius:6px;
+}
+
+/* ============================================================
+   TYPE SCALE
+   ============================================================ */
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--green);
+  font-weight:700;
+}
+h1,h2,h3{
+  font-family:var(--display);
+  margin:0;
+  letter-spacing:-0.01em;
+  line-height:0.95;
+}
+.h-hero{
+  font-size:clamp(52px, 15vw, 92px);
+  font-weight:700;
+}
+.h-section{
+  font-size:clamp(34px, 9vw, 54px);
+  font-weight:700;
+}
+.h-card{
+  font-size:clamp(26px, 7vw, 32px);
+  font-weight:700;
+}
+p{
+  margin:0;
+  line-height:1.5;
+}
+.lede{
+  font-size:clamp(17px,4.6vw,20px);
+  color:var(--ink-soft);
+  max-width:34ch;
+}
+.price{
+  font-family:var(--mono);
+  font-weight:700;
+  font-variant-numeric:tabular-nums;
+}
+
+/* ============================================================
+   LANGUAGE TOGGLE
+   ============================================================ */
+.lang-toggle{
+  position:fixed;
+  top:16px;
+  right:16px;
+  z-index:900;
+  display:flex;
+  background:rgba(251,246,236,0.85);
+  backdrop-filter:blur(10px);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:3px;
+  gap:2px;
+}
+.lang-toggle button{
+  border:none;
+  background:transparent;
+  padding:6px 12px;
+  font-family:var(--mono);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:0.04em;
+  border-radius:999px;
+  cursor:pointer;
+  color:var(--ink-soft);
+  transition:background .25s var(--ease), color .25s var(--ease);
+}
+.lang-toggle button[aria-pressed="true"]{
+  background:var(--green-dark);
+  color:var(--sand);
+}
+
+/* ============================================================
+   ISLAND ARRIVAL — INTRO
+   ============================================================ */
+#intro{
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  background:var(--sand);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  transition:opacity .5s var(--ease-soft), visibility .5s;
+}
+#intro.hide{opacity:0; visibility:hidden; pointer-events:none;}
+.intro-mark{position:relative; text-align:center;}
+.intro-isla{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:20px;
+  letter-spacing:0.3em;
+  color:var(--green);
+  opacity:0;
+  transform:translateY(6px);
+}
+.intro-student{
+  font-family:var(--display);
+  font-weight:800;
+  font-size:clamp(40px,14vw,80px);
+  color:var(--green-dark);
+  opacity:0;
+  transform:translateY(10px);
+  letter-spacing:-0.02em;
+}
+#intro.run .intro-isla{animation:introIn .35s var(--ease) forwards;}
+#intro.run .intro-student{animation:introIn .4s var(--ease) .22s forwards;}
+@keyframes introIn{to{opacity:1; transform:translateY(0);}}
+.intro-wash{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 50% 55%, var(--mango) 0%, transparent 60%);
+  opacity:0;
+}
+#intro.run .intro-wash{animation:washPulse .5s var(--ease) .3s forwards;}
+@keyframes washPulse{0%{opacity:0;}50%{opacity:.18;}100%{opacity:0;}}
+.skip-intro{
+  position:absolute;
+  bottom:28px;
+  left:50%;
+  transform:translateX(-50%);
+  background:transparent;
+  border:1px solid var(--line);
+  color:var(--ink-soft);
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  padding:8px 16px;
+  border-radius:999px;
+  cursor:pointer;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#hero{
+  position:relative;
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:96px var(--edge) 140px;
+  overflow:hidden;
+  isolation:isolate;
+}
+.hero-texture{
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:
+    radial-gradient(ellipse 60% 40% at 85% 8%, rgba(154,123,193,0.16), transparent 60%),
+    radial-gradient(ellipse 55% 45% at 8% 92%, rgba(96,116,91,0.18), transparent 60%);
+}
+.leaf-shadow{
+  position:absolute;
+  z-index:-1;
+  opacity:0.5;
+  filter:blur(1px);
+  animation:leafDrift 14s ease-in-out infinite;
+}
+.leaf-shadow.l1{ top:6%; right:-6%; width:260px; transform:rotate(12deg);}
+.leaf-shadow.l2{ bottom:8%; left:-10%; width:220px; transform:rotate(-18deg); animation-delay:-6s;}
+@keyframes leafDrift{
+  0%,100%{transform:translateY(0) rotate(var(--r,10deg));}
+  50%{transform:translateY(14px) rotate(calc(var(--r,10deg) + 3deg));}
+}
+.hero-float{
+  position:absolute;
+  z-index:-1;
+  opacity:0;
+  animation:floatIn .9s var(--ease) forwards, bob 6s ease-in-out infinite;
+}
+.hero-float.f1{top:12%; left:6%; width:15vw; max-width:78px; animation-delay:.5s, 1.4s;}
+.hero-float.f2{top:20%; right:8%; width:13vw; max-width:64px; animation-delay:.7s, 2s;}
+.hero-float.f3{bottom:20%; right:12%; width:11vw; max-width:56px; animation-delay:.9s, 2.6s;}
+@keyframes floatIn{from{opacity:0; transform:translateY(18px) scale(.9);} to{opacity:1; transform:translateY(0) scale(1);}}
+@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+
+.hero-head{position:relative; z-index:1;}
+.hero-eyebrow{opacity:0; transform:translateY(10px); animation:riseIn .6s var(--ease) .15s forwards;}
+.h-hero{opacity:0; transform:translateY(16px); animation:riseIn .7s var(--ease) .3s forwards;}
+.hero-sub{
+  margin-top:18px;
+  opacity:0; transform:translateY(14px); animation:riseIn .6s var(--ease) .55s forwards;
+}
+.hero-tag{
+  margin-top:6px;
+  font-size:15px;
+  color:var(--ink-faint);
+  opacity:0; transform:translateY(10px); animation:riseIn .6s var(--ease) .7s forwards;
+}
+@keyframes riseIn{to{opacity:1; transform:translateY(0);}}
+
+.hero-actions{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:34px;
+  opacity:0; transform:translateY(14px); animation:riseIn .6s var(--ease) .85s forwards;
+}
+@media(min-width:520px){.hero-actions{flex-direction:row;}}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  border-radius:999px;
+  padding:16px 26px;
+  font-family:var(--body);
+  font-weight:700;
+  font-size:15px;
+  letter-spacing:0.01em;
+  border:none;
+  cursor:pointer;
+  text-decoration:none;
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease);
+  will-change:transform;
+}
+.btn:active{transform:scale(0.96);}
+.btn-primary{
+  background:var(--green-dark);
+  color:var(--sand);
+  animation:breathe 4s ease-in-out infinite;
+}
+.btn-primary:hover{box-shadow:0 10px 30px -8px rgba(23,35,27,0.45);}
+@keyframes breathe{0%,100%{box-shadow:0 0 0 0 rgba(23,35,27,0.0);}50%{box-shadow:0 0 0 6px rgba(23,35,27,0.05);}}
+.btn-ghost{
+  background:transparent;
+  border:1.5px solid var(--ink);
+  color:var(--ink);
+}
+.btn-ghost:hover{background:var(--ink); color:var(--sand);}
+.btn-sm{padding:11px 18px; font-size:13px;}
+
+.hero-scroll-cue{
+  position:absolute;
+  bottom:30px;
+  left:var(--edge);
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.08em;
+  color:var(--ink-faint);
+  text-transform:uppercase;
+}
+.scroll-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--green);
+  animation:dotPulse 1.6s ease-in-out infinite;
+}
+@keyframes dotPulse{0%,100%{opacity:.3;} 50%{opacity:1;}}
+
+/* ============================================================
+   SECTION GENERICS
+   ============================================================ */
+section{
+  padding:96px 0;
+  position:relative;
+}
+.section-head{margin-bottom:44px;}
+.section-head .eyebrow{margin-bottom:12px; display:block;}
+.reveal{
+  opacity:0;
+  transform:translateY(26px);
+  filter:blur(2px);
+  transition:opacity .7s var(--ease), transform .7s var(--ease), filter .7s var(--ease);
+}
+.reveal.is-in{opacity:1; transform:translateY(0); filter:blur(0);}
+.reveal-stagger > *{transition-delay:calc(var(--i,0) * 90ms);}
+
+.divider{
+  height:1px;
+  background:var(--line);
+  border:none;
+  margin:0;
+}
+
+/* ============================================================
+   HOW IT WORKS
+   ============================================================ */
+#how{background:var(--paper);}
+.steps{
+  display:grid;
+  gap:16px;
+  margin-top:8px;
+}
+@media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr); gap:20px;}}
+.step-card{
+  background:var(--sand);
+  border:1px solid var(--line-soft);
+  border-radius:var(--radius-m);
+  padding:28px 24px;
+  position:relative;
+  overflow:hidden;
+  transition:transform .5s var(--ease);
+}
+.step-card:hover{transform:translateY(-6px);}
+.step-num{
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--green);
+  font-weight:700;
+}
+.step-card h3{
+  font-size:22px;
+  margin-top:14px;
+  font-weight:700;
+}
+.step-card p{
+  margin-top:10px;
+  color:var(--ink-soft);
+  font-size:15px;
+}
+.how-tagline{
+  margin-top:40px;
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(20px,5vw,28px);
+  color:var(--green-dark);
+}
+
+/* ============================================================
+   PACKS
+   ============================================================ */
+#packs .section-head{margin-bottom:28px;}
+.pack-scroller{
+  display:flex;
+  gap:18px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding:6px var(--edge) 30px;
+  margin:0 calc(-1 * var(--edge));
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.pack-scroller::-webkit-scrollbar{display:none;}
+@media(min-width:900px){
+  .pack-scroller{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    max-width:1180px;
+    margin:0 auto;
+    padding:6px 0 30px;
+    overflow:visible;
+  }
+}
+.pack-card{
+  scroll-snap-align:center;
+  flex:0 0 82%;
+  max-width:340px;
+  border-radius:var(--radius-l);
+  padding:30px 26px 26px;
+  position:relative;
+  color:var(--sand);
+  display:flex;
+  flex-direction:column;
+  min-height:460px;
+  transition:transform .4s var(--ease);
+}
+@media(min-width:900px){.pack-card{flex:none; max-width:none;}}
+.pack-card:hover{transform:translateY(-8px);}
+.pack-card.p1{background:linear-gradient(155deg,#6b8062,var(--green-dark) 120%);}
+.pack-card.p2{background:linear-gradient(155deg,#7d9174,var(--green-dark) 120%);}
+.pack-card.p3{background:linear-gradient(155deg,var(--ube),#6b4f8f 120%);}
+.pack-card.p4{background:linear-gradient(155deg,#2a3a29,var(--green-dark) 120%);}
+.pack-badge{
+  position:absolute;
+  top:22px;
+  right:22px;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  background:rgba(251,246,236,0.16);
+  padding:6px 10px;
+  border-radius:999px;
+}
+.pack-num{
+  font-family:var(--mono);
+  font-size:13px;
+  opacity:.7;
+}
+.pack-name{
+  font-family:var(--display);
+  font-size:clamp(28px,7vw,34px);
+  font-weight:800;
+  margin-top:10px;
+  letter-spacing:-0.01em;
+}
+.pack-price{
+  font-family:var(--mono);
+  font-size:32px;
+  font-weight:700;
+  margin-top:10px;
+}
+.pack-copy{
+  margin-top:8px;
+  font-size:14px;
+  opacity:.85;
+  font-style:normal;
+}
+.pack-lists{
+  margin-top:20px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  flex:1;
+}
+.pack-list-label{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  opacity:.6;
+  margin-bottom:4px;
+}
+.pack-list{
+  font-size:13.5px;
+  line-height:1.6;
+  opacity:.92;
+}
+.pack-list .hl{
+  font-weight:700;
+}
+.pack-card .btn{
+  margin-top:22px;
+  width:100%;
+  background:rgba(251,246,236,0.94);
+  color:var(--green-dark);
+}
+
+/* ============================================================
+   BUILD YOUR PACK — CONSTRUCTOR
+   ============================================================ */
+#builder{background:var(--green-dark); color:var(--sand);}
+#builder .eyebrow{color:var(--mango);}
+#builder .lede{color:rgba(244,235,221,0.7);}
+.builder-flow{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex-wrap:wrap;
+  margin:26px 0 34px;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:rgba(244,235,221,0.5);
+}
+.builder-flow span.sep{opacity:.4;}
+.builder-flow .now{color:var(--mango);}
+
+.builder-panel{
+  background:rgba(244,235,221,0.05);
+  border:1px solid rgba(244,235,221,0.14);
+  border-radius:var(--radius-l);
+  padding:24px;
+}
+.builder-select-row{margin-bottom:22px;}
+.builder-select-row:last-of-type{margin-bottom:0;}
+.builder-label{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:rgba(244,235,221,0.55);
+  margin-bottom:10px;
+}
+.chip-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.chip{
+  border:1px solid rgba(244,235,221,0.25);
+  background:transparent;
+  color:var(--sand);
+  padding:10px 15px;
+  border-radius:999px;
+  font-size:13.5px;
+  cursor:pointer;
+  transition:background .3s var(--ease), border-color .3s var(--ease), transform .2s var(--ease);
+}
+.chip:hover{border-color:rgba(244,235,221,0.6);}
+.chip[aria-pressed="true"]{
+  background:var(--mango);
+  color:var(--green-dark);
+  border-color:var(--mango);
+  font-weight:700;
+}
+.chip .up{
+  font-family:var(--mono);
+  font-size:11px;
+  opacity:.7;
+  margin-left:4px;
+}
+
+.builder-total-bar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:26px;
+  padding-top:22px;
+  border-top:1px dashed rgba(244,235,221,0.2);
+}
+.builder-total-label{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:rgba(244,235,221,0.55);
+}
+.builder-total-price{
+  font-family:var(--mono);
+  font-size:34px;
+  font-weight:700;
+  color:var(--mango);
+  transition:transform .25s var(--ease);
+}
+.builder-total-price.bump{transform:scale(1.12);}
+#builder .btn-primary{
+  width:100%;
+  margin-top:20px;
+  background:var(--sand);
+  color:var(--green-dark);
+  animation:none;
+}
+
+/* ============================================================
+   CREATE YOUR SHAKE
+   ============================================================ */
+#shake{
+  background:linear-gradient(180deg, var(--ube) 0%, #8267ac 100%);
+  color:var(--sand);
+  overflow:hidden;
+}
+#shake .eyebrow{color:rgba(244,235,221,0.85);}
+#shake .lede{color:rgba(244,235,221,0.82);}
+.shake-stage{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin:30px 0 36px;
+}
+.glass-wrap{
+  position:relative;
+  width:180px;
+  height:240px;
+}
+.glass-svg{width:100%; height:100%; display:block;}
+#glassLiquid{transition:fill 0.6s var(--ease-soft);}
+.glass-fruit-orbit{
+  position:absolute;
+  inset:-40px;
+  pointer-events:none;
+}
+.orbit-fruit{
+  position:absolute;
+  font-size:26px;
+  opacity:0;
+  transform:scale(.4);
+  transition:opacity .5s var(--ease), transform .5s var(--ease);
+}
+.orbit-fruit.show{opacity:1; transform:scale(1);}
+.orbit-fruit:nth-child(1){top:0; left:10%;}
+.orbit-fruit:nth-child(2){top:20%; right:0;}
+.glass-protein-badge{
+  position:absolute;
+  bottom:6px; right:-30px;
+  background:var(--mango);
+  color:var(--green-dark);
+  font-family:var(--mono);
+  font-size:11px;
+  font-weight:700;
+  padding:5px 9px;
+  border-radius:999px;
+  opacity:0;
+  transform:translateY(6px);
+  transition:opacity .35s var(--ease), transform .35s var(--ease);
+}
+.glass-protein-badge.show{opacity:1; transform:translateY(0);}
+
+.shake-summary{
+  text-align:center;
+  margin-top:14px;
+  font-family:var(--mono);
+  font-size:13px;
+  color:rgba(244,235,221,0.85);
+  min-height:20px;
+}
+
+.shake-block{margin-top:6px;}
+.shake-block + .shake-block{margin-top:26px;}
+.shake-block-label{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:rgba(244,235,221,0.6);
+  margin-bottom:12px;
+}
+.fruit-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(94px,1fr));
+  gap:10px;
+}
+.fruit-card{
+  position:relative;
+  background:rgba(244,235,221,0.08);
+  border:1px solid rgba(244,235,221,0.18);
+  border-radius:var(--radius-s);
+  padding:14px 10px 12px;
+  text-align:center;
+  cursor:pointer;
+  transition:transform .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease);
+  color:var(--sand);
+}
+.fruit-card:hover{transform:translateY(-3px);}
+.fruit-card[aria-pressed="true"]{
+  background:rgba(244,235,221,0.95);
+  color:var(--green-dark);
+  border-color:rgba(244,235,221,0.95);
+  transform:translateY(-5px) scale(1.03);
+}
+.fruit-emoji{font-size:24px; display:block;}
+.fruit-name{font-size:11.5px; font-weight:600; margin-top:6px; line-height:1.25;}
+.fruit-price{font-family:var(--mono); font-size:11px; margin-top:3px; opacity:.75;}
+.fruit-check{
+  position:absolute; top:6px; right:6px;
+  width:16px; height:16px;
+  border-radius:50%;
+  background:var(--green-dark);
+  color:var(--sand);
+  font-size:10px;
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; transform:scale(.5);
+  transition:opacity .25s var(--ease), transform .25s var(--ease);
+}
+.fruit-card[aria-pressed="true"] .fruit-check{opacity:1; transform:scale(1);}
+
+.toggle-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:rgba(244,235,221,0.08);
+  border:1px solid rgba(244,235,221,0.18);
+  border-radius:var(--radius-s);
+  padding:14px 16px;
+  cursor:pointer;
+  margin-bottom:10px;
+}
+.toggle-row span{font-size:14px;}
+.toggle-row .up{font-family:var(--mono); font-size:12.5px; opacity:.75;}
+.switch{
+  width:40px; height:24px;
+  border-radius:999px;
+  background:rgba(244,235,221,0.25);
+  position:relative;
+  transition:background .3s var(--ease);
+  flex:0 0 auto;
+}
+.switch::after{
+  content:'';
+  position:absolute;
+  top:3px; left:3px;
+  width:18px; height:18px;
+  border-radius:50%;
+  background:var(--sand);
+  transition:transform .3s var(--ease);
+}
+.toggle-row[aria-pressed="true"] .switch{background:var(--mango);}
+.toggle-row[aria-pressed="true"] .switch::after{transform:translateX(16px); background:var(--green-dark);}
+
+.shake-limit-msg{
+  margin-top:10px;
+  font-size:12.5px;
+  color:var(--sand);
+  background:rgba(23,35,27,0.28);
+  border-radius:999px;
+  padding:8px 14px;
+  display:inline-flex;
+  opacity:0;
+  transform:translateY(-4px);
+  transition:opacity .3s var(--ease), transform .3s var(--ease);
+}
+.shake-limit-msg.show{opacity:1; transform:translateY(0);}
+
+.shake-total-bar{
+  margin-top:28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding-top:20px;
+  border-top:1px dashed rgba(244,235,221,0.25);
+}
+.shake-total-price{
+  font-family:var(--mono);
+  font-size:30px;
+  font-weight:700;
+  transition:transform .25s var(--ease);
+}
+.shake-total-price.bump{transform:scale(1.12);}
+#shake .btn-primary{
+  width:100%;
+  margin-top:18px;
+  background:var(--green-dark);
+  color:var(--sand);
+  animation:none;
+}
+
+/* ============================================================
+   TOP PICKS
+   ============================================================ */
+.picks-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+@media(min-width:760px){.picks-grid{grid-template-columns:repeat(3,1fr);}}
+.pick-card{
+  background:var(--paper);
+  border:1px solid var(--line-soft);
+  border-radius:var(--radius-m);
+  padding:20px 16px;
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.pick-card:hover{transform:translateY(-5px); box-shadow:0 14px 30px -14px rgba(23,35,27,0.25);}
+.pick-emoji{font-size:26px;}
+.pick-name{font-family:var(--display); font-weight:700; font-size:16px; margin-top:10px;}
+.picks-tagline{
+  margin-top:30px;
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(18px,4.6vw,24px);
+  color:var(--green-dark);
+  text-align:center;
+}
+
+/* ============================================================
+   MATCHA / UBE
+   ============================================================ */
+.flavor-section{padding:80px 0;}
+#matcha{background:linear-gradient(180deg,var(--paper),var(--sand));}
+#ube{background:linear-gradient(180deg,#ece3f4,var(--sand));}
+.flavor-title{
+  font-family:var(--display);
+  font-weight:800;
+  font-size:clamp(30px,8vw,46px);
+  line-height:1.02;
+}
+.flavor-title .accent-ube{color:var(--ube);}
+.flavor-title .accent-green{color:var(--green);}
+.flavor-copy{margin-top:12px; color:var(--ink-soft); font-style:italic; font-size:16px;}
+.flavor-list{
+  margin-top:26px;
+  display:flex;
+  flex-direction:column;
+}
+.flavor-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  padding:14px 0;
+  border-bottom:1px solid var(--line-soft);
+  font-size:15px;
+}
+.flavor-row .price{font-size:15px; color:var(--green-dark);}
+
+/* ============================================================
+   STUDENT RULES
+   ============================================================ */
+#rules{background:var(--green-dark); color:var(--sand); text-align:center;}
+#rules .eyebrow{color:var(--mango); justify-content:center;}
+.rules-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:1px solid rgba(244,235,221,0.3);
+  border-radius:999px;
+  padding:8px 18px;
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  margin-bottom:20px;
+}
+.rules-list{
+  margin-top:24px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  max-width:340px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.rules-item{
+  background:rgba(244,235,221,0.06);
+  border:1px solid rgba(244,235,221,0.14);
+  border-radius:var(--radius-s);
+  padding:16px;
+  font-size:14.5px;
+}
+
+/* ============================================================
+   FINAL CTA
+   ============================================================ */
+#final-cta{
+  text-align:center;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(154,123,193,0.16), transparent 60%), var(--sand);
+}
+#final-cta .h-section{margin-bottom:14px;}
+
+/* ============================================================
+   LOCATION / WHATSAPP
+   ============================================================ */
+#location{background:var(--paper);}
+.location-actions{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:26px;
+}
+.location-link{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 20px;
+  border:1px solid var(--line);
+  border-radius:var(--radius-m);
+  text-decoration:none;
+  color:var(--ink);
+  font-weight:600;
+  transition:background .3s var(--ease), border-color .3s var(--ease);
+}
+.location-link:hover{background:var(--sand); border-color:var(--green);}
+.location-link .arrow{color:var(--green); font-family:var(--mono);}
+.location-addr{margin-top:18px; color:var(--ink-soft); font-size:15px;}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{
+  padding:60px 0 120px;
+  text-align:center;
+  color:var(--ink-faint);
+  font-size:13px;
+}
+footer .foot-mark{
+  font-family:var(--display);
+  font-weight:800;
+  font-size:22px;
+  color:var(--green-dark);
+  margin-bottom:8px;
+}
+
+/* ============================================================
+   STICKY MOBILE CTA
+   ============================================================ */
+#sticky-cta{
+  position:fixed;
+  left:16px; right:16px; bottom:16px;
+  z-index:800;
+  display:flex;
+  opacity:0;
+  transform:translateY(120%);
+  transition:opacity .4s var(--ease), transform .4s var(--ease);
+  pointer-events:none;
+}
+#sticky-cta.show{opacity:1; transform:translateY(0); pointer-events:auto;}
+#sticky-cta .btn{
+  flex:1;
+  box-shadow:0 14px 34px -10px rgba(23,35,27,0.5);
+}
+@media(min-width:900px){#sticky-cta{display:none;}}
+
+/* util */
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     LANGUAGE TOGGLE
+     ============================================================ -->
+<div class="lang-toggle" role="group" aria-label="Language / Idioma">
+  <button type="button" id="langEs" aria-pressed="true">ES</button>
+  <button type="button" id="langEn" aria-pressed="false">EN</button>
+</div>
+
+<!-- ============================================================
+     ISLAND ARRIVAL INTRO
+     ============================================================ -->
+<div id="intro" role="status" aria-label="Loading Isla Student">
+  <div class="intro-wash" aria-hidden="true"></div>
+  <div class="intro-mark">
+    <div class="intro-isla">ISLA</div>
+    <div class="intro-student">STUDENT</div>
+  </div>
+  <button class="skip-intro" id="skipIntro" type="button" data-i18n="skipIntro">Skip intro</button>
+</div>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<header id="hero">
+  <div class="hero-texture" aria-hidden="true"></div>
+  <svg class="leaf-shadow l1" style="--r:12deg" viewBox="0 0 200 200" aria-hidden="true"><path d="M100 10C140 40 170 80 160 130C150 180 100 190 60 160C20 130 20 70 50 40C70 20 85 12 100 10Z" fill="#17231B"/></svg>
+  <svg class="leaf-shadow l2" style="--r:-18deg" viewBox="0 0 200 200" aria-hidden="true"><path d="M100 10C140 40 170 80 160 130C150 180 100 190 60 160C20 130 20 70 50 40C70 20 85 12 100 10Z" fill="#60745B"/></svg>
+
+  <span class="hero-float f1" aria-hidden="true">🥭</span>
+  <span class="hero-float f2" aria-hidden="true">🍓</span>
+  <span class="hero-float f3" aria-hidden="true">🍍</span>
+
+  <div class="wrap hero-head">
+    <span class="eyebrow hero-eyebrow" data-i18n="heroEyebrow">Isla Brunch &amp; Bar — Elche</span>
+    <h1 class="h-hero" data-i18n="heroTitle">YOUR CAMPUS.<br>YOUR ISLAND.</h1>
+    <p class="lede hero-sub" data-i18n="heroSub">Build your perfect combo.</p>
+    <p class="hero-tag" data-i18n="heroTag">4 ways to build your meal. Brunch, matcha, ube &amp; shakes made your way.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary" id="ctaBuild" data-i18n="btnBuildPack">BUILD MY PACK ↓</button>
+      <a class="btn btn-ghost" href="#packs" data-i18n="btnSeePacks">SEE THE 4 PACKS</a>
+    </div>
+  </div>
+  <div class="hero-scroll-cue" aria-hidden="true"><span class="scroll-dot"></span><span data-i18n="scroll">scroll</span></div>
+</header>
+
+<main id="maincontent">
+
+<!-- ============================================================
+     HOW IT WORKS
+     ============================================================ -->
+<section id="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="howEyebrow">How it works</span>
+      <h2 class="h-section" data-i18n="howTitle">BUILD YOUR ISLA</h2>
+    </div>
+    <div class="steps reveal-stagger">
+      <div class="step-card reveal" style="--i:0">
+        <span class="step-num">01</span>
+        <h3 data-i18n="how1Title">Pick your pack</h3>
+        <p data-i18n="how1Copy">Choose the level that matches your morning.</p>
+      </div>
+      <div class="step-card reveal" style="--i:1">
+        <span class="step-num">02</span>
+        <h3 data-i18n="how2Title">Choose your food</h3>
+        <p data-i18n="how2Copy">Drink, bagel or brioche — your call.</p>
+      </div>
+      <div class="step-card reveal" style="--i:2">
+        <span class="step-num">03</span>
+        <h3 data-i18n="how3Title">Make it yours</h3>
+        <p data-i18n="how3Copy">Fruit, protein, plant milk. Build it your way.</p>
+      </div>
+    </div>
+    <p class="how-tagline reveal" data-i18n="howTagline">Start simple. Go bigger. Make it yours.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     LOS 4 PACKS
+     ============================================================ -->
+<section id="packs">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="packsEyebrow">The 4 Isla Student packs</span>
+      <h2 class="h-section" data-i18n="packsTitle">PICK YOUR ISLA</h2>
+    </div>
+  </div>
+  <div class="pack-scroller" id="packScroller"></div>
+</section>
+
+<!-- ============================================================
+     BUILD YOUR PACK — CONSTRUCTOR
+     ============================================================ -->
+<section id="builder">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="builderEyebrow">Build your pack</span>
+      <h2 class="h-section" data-i18n="builderTitle">BUILD YOUR PACK</h2>
+      <p class="lede" data-i18n="builderLede" style="margin-top:12px;">Pack → Drink → Food → Extras → Total.</p>
+    </div>
+
+    <div class="builder-flow" id="builderFlow"></div>
+
+    <div class="builder-panel reveal">
+      <div class="builder-select-row">
+        <div class="builder-label" data-i18n="builderPackLabel">Pack</div>
+        <div class="chip-row" id="chipsPack"></div>
+      </div>
+      <div class="builder-select-row">
+        <div class="builder-label" data-i18n="builderDrinkLabel">Drink</div>
+        <div class="chip-row" id="chipsDrink"></div>
+      </div>
+      <div class="builder-select-row">
+        <div class="builder-label" data-i18n="builderFoodLabel">Food</div>
+        <div class="chip-row" id="chipsFood"></div>
+      </div>
+
+      <div class="builder-total-bar">
+        <span class="builder-total-label" data-i18n="total">Total</span>
+        <span class="builder-total-price" id="builderTotal">—</span>
+      </div>
+      <button class="btn btn-primary" id="builderCta" data-i18n="btnThisIsMyIsla">THIS IS MY ISLA</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CREATE YOUR SHAKE
+     ============================================================ -->
+<section id="shake">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="shakeEyebrow">Isla Shake · 11,90 €</span>
+      <h2 class="h-section" data-i18n="shakeTitle">CREATE YOUR SHAKE</h2>
+      <p class="lede" style="color:rgba(244,235,221,0.82); margin-top:12px;" data-i18n="shakeLede">Your fruit. Your combo. Your rules.</p>
+    </div>
+
+    <div class="shake-stage reveal">
+      <div class="glass-wrap">
+        <svg class="glass-svg" viewBox="0 0 180 240" aria-hidden="true">
+          <defs>
+            <clipPath id="glassClip"><path d="M35 20 H145 L130 220 Q112 236 90 236 Q68 236 50 220 Z"/></clipPath>
+          </defs>
+          <path d="M35 20 H145 L130 220 Q112 236 90 236 Q68 236 50 220 Z" fill="none" stroke="#FBF6EC" stroke-width="3" opacity="0.9"/>
+          <g clip-path="url(#glassClip)">
+            <rect id="glassLiquid" x="30" y="70" width="120" height="170" fill="#E5B95C"/>
+            <ellipse cx="90" cy="70" rx="60" ry="10" fill="#FBF6EC" opacity="0.5"/>
+          </g>
+          <path d="M35 20 H145" stroke="#FBF6EC" stroke-width="3" stroke-linecap="round"/>
+          <rect x="86" y="-6" width="6" height="34" rx="3" fill="#FBF6EC" transform="rotate(18 90 10)"/>
+        </svg>
+        <div class="glass-fruit-orbit" id="glassOrbit">
+          <span class="orbit-fruit" data-slot="0"></span>
+          <span class="orbit-fruit" data-slot="1"></span>
+        </div>
+        <div class="glass-protein-badge" id="proteinBadge" data-i18n="proteinBadge">+ PROTEIN</div>
+      </div>
+      <div class="shake-summary" id="shakeSummary" data-i18n="shakeSummaryEmpty">Pick your base to start.</div>
+    </div>
+
+    <div class="shake-block">
+      <div class="shake-block-label" data-i18n="shakeBaseLabel">Base — from 3,90 €</div>
+      <div class="chip-row" id="shakeBases"></div>
+    </div>
+
+    <div class="shake-block">
+      <div class="shake-block-label" data-i18n="shakeFruitLabel">Fruit — pick up to 2</div>
+      <div class="fruit-grid" id="fruitGrid"></div>
+      <div class="shake-limit-msg" id="shakeLimitMsg" data-i18n="shakeLimitMsg">Two fruits max 🌴 Keep it balanced.</div>
+    </div>
+
+    <div class="shake-block">
+      <div class="shake-block-label" data-i18n="shakeExtrasLabel">Extras</div>
+      <div class="toggle-row" id="toggleProtein" role="switch" aria-pressed="false" tabindex="0">
+        <span data-i18n="proteinLabel">Add protein</span>
+        <span class="up">+1,50 €</span>
+        <span class="switch" aria-hidden="true"></span>
+      </div>
+      <div class="toggle-row" id="togglePlantMilk" role="switch" aria-pressed="false" tabindex="0">
+        <span data-i18n="plantMilkLabel">Plant milk</span>
+        <span class="up">+0,80 €</span>
+        <span class="switch" aria-hidden="true"></span>
+      </div>
+    </div>
+
+    <div class="shake-total-bar">
+      <span class="builder-total-label" data-i18n="yourShake">Your shake</span>
+      <span class="shake-total-price" id="shakeTotal">3,90 €</span>
+    </div>
+    <button class="btn btn-primary" id="shakeCta" data-i18n="btnAddToPack">ADD TO MY PACK</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     TOP PICKS
+     ============================================================ -->
+<section id="faves">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="favesEyebrow">Isla favourites</span>
+      <h2 class="h-section" data-i18n="favesTitle">ISLA FAVES</h2>
+    </div>
+    <div class="picks-grid reveal-stagger" id="picksGrid"></div>
+    <p class="picks-tagline reveal" data-i18n="favesTagline">Some combinations just hit different.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     MATCHA
+     ============================================================ -->
+<section id="matcha" class="flavor-section">
+  <div class="wrap">
+    <h2 class="flavor-title reveal" data-i18n-html="matchaTitle">MATCHA PEOPLE,<br>WE SEE YOU.</h2>
+    <p class="flavor-copy reveal" data-i18n="matchaCopy">Ceremonial matcha. Your way.</p>
+    <div class="flavor-list reveal" id="matchaList"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     UBE
+     ============================================================ -->
+<section id="ube" class="flavor-section">
+  <div class="wrap">
+    <h2 class="flavor-title reveal"><span class="accent-ube" data-i18n="ubeTitle">PURPLE ENERGY.</span></h2>
+    <p class="flavor-copy reveal" data-i18n="ubeCopy">Small-batch ube, made in-house.</p>
+    <div class="flavor-list reveal" id="ubeList"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     STUDENT RULES
+     ============================================================ -->
+<section id="rules">
+  <div class="wrap">
+    <span class="rules-badge" data-i18n="rulesBadge">🎓 Student only</span>
+    <h2 class="h-section reveal" data-i18n="rulesTitle">STUDENT ONLY</h2>
+    <div class="rules-list reveal-stagger">
+      <div class="rules-item reveal" style="--i:0" data-i18n="rulesId">Bring your student ID.</div>
+      <div class="rules-item reveal" style="--i:1" id="rulesSchedule">Available Monday–Friday.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FINAL CTA
+     ============================================================ -->
+<section id="final-cta">
+  <div class="wrap">
+    <h2 class="h-section reveal" data-i18n="readyTitle">READY?</h2>
+    <p class="lede reveal" style="margin:0 auto 28px;" data-i18n="readyCopy">Come hungry. Leave happy.</p>
+    <a class="btn btn-primary reveal" id="whatsappCta" href="#" target="_blank" rel="noopener" data-i18n="btnOrderWhatsapp">ORDER / ASK ON WHATSAPP</a>
+  </div>
+</section>
+
+<!-- ============================================================
+     LOCATION
+     ============================================================ -->
+<section id="location">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="locationEyebrow">Find us</span>
+      <h2 class="h-section" data-i18n="locationTitle">FIND YOUR ISLAND</h2>
+      <p class="location-addr" id="locationAddr">ISLA BRUNCH &amp; BAR · Elche</p>
+    </div>
+    <div class="location-actions reveal">
+      <a class="location-link" id="mapsLink" href="#" target="_blank" rel="noopener">
+        <span data-i18n="btnOpenMaps">Open Google Maps</span><span class="arrow">→</span>
+      </a>
+      <a class="location-link" id="waLink2" href="#" target="_blank" rel="noopener">
+        <span>WhatsApp</span><span class="arrow">→</span>
+      </a>
+      <a class="location-link" id="igLink" href="#" target="_blank" rel="noopener">
+        <span>Instagram</span><span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-mark">ISLA STUDENT</div>
+    <p data-i18n="footTag">Your campus. Your island.</p>
+  </div>
+</footer>
+
+<!-- ============================================================
+     STICKY MOBILE CTA
+     ============================================================ -->
+<div id="sticky-cta">
+  <button class="btn btn-primary" id="stickyBuild" data-i18n="btnBuildPack">BUILD MY PACK ↓</button>
+</div>
+
+<script>
+/* ============================================================
+   ISLA STUDENT — app.js
+   Vanilla JS. No dependencies. No frameworks.
+   ============================================================ */
+(function(){
+"use strict";
+
+/* ============================================================
+   0. CONFIG — EDIT THESE BEFORE LAUNCH
+   ============================================================ */
+const ISLA_CONFIG = {
+  WHATSAPP_NUMBER: "34697759434",       // digits only, country code first
+  ADDRESS: "Carrer Mare de Déu del Carme, 11, 03201 Elche",
+  GOOGLE_MAPS_URL: "https://maps.app.goo.gl/5VZ9m8DdHEJQggr59",        // full https://maps.app.goo.gl/... link
+  INSTAGRAM_URL: "https://instagram.com/islabrunchbar",
+  STUDENT_START_TIME: "",     // e.g. "09:00"
+  STUDENT_END_TIME: "",       // e.g. "13:00"
+  MOST_POPULAR_PACK: "bagel"  // "start" | "bagel" | "shake" | "brioche" — configurable anchor for the badge
+};
+
+/* ============================================================
+   1. PRODUCT DATA — exact products & prices from the brief.
+      Nothing invented. Names kept as menu items (not translated).
+   ============================================================ */
+const PACKS = [
+  {
+    id:"start", num:"01", price:6.90, badge:null,
+    accent:"p1",
+    drinks:["Espresso","Cortado","Americano","Café con leche"],
+    food:[{name:"Croissant Gourmet", included:true}],
+    upgrades:[{name:"Breakfast Croissant", price:1.00}]
+  },
+  {
+    id:"bagel", num:"02", price:9.90, badge:null,
+    accent:"p2",
+    drinks:["Café con leche","Latte","Cappuccino","Matcha Latte","Ube Latte"],
+    food:[
+      {name:"Veggie Bagel", included:true},
+      {name:"Bagel York Classic", included:true},
+      {name:"Brunch Bagel", price:1.00, tag:"⭐"},
+      {name:"York Mediterráneo", price:1.00},
+      {name:"Nordic Bagel", price:1.00},
+      {name:"Serranito Bagel", price:1.00, tag:"🔥"},
+      {name:"Island Chicken Bagel", price:1.00, tag:"🔥"}
+    ]
+  },
+  {
+    id:"shake", num:"03", price:11.90, badge:null,
+    accent:"p3",
+    drinks:["Isla Shake (build below)"],
+    food:[
+      {name:"Veggie Bagel", included:true},
+      {name:"Bagel York Classic", included:true},
+      {name:"Brunch Bagel", price:1.00, tag:"⭐"},
+      {name:"Serranito Bagel", price:1.00, tag:"🔥"},
+      {name:"Island Chicken Bagel", price:1.00, tag:"🔥"}
+    ]
+  },
+  {
+    id:"brioche", num:"04", price:13.90, badge:null,
+    accent:"p4",
+    drinks:["Ice Matcha Frutal","Coconut Water Matcha","Elche Matcha","Matcha Ube","Ube Fruit","Ube Matcha","Ube Passion Frappé","Frappé","Iced Coffee"],
+    food:[
+      {name:"Fru Creation", included:true},
+      {name:"Revuelto", included:true},
+      {name:"Brioche York Deluxe", included:true},
+      {name:"Nordic Brioche", included:true},
+      {name:"Serranito Brioche", price:1.00, tag:"🔥"},
+      {name:"Island Chicken Brioche", price:1.00, tag:"🔥"}
+    ]
+  }
+];
+PACKS.find(p=>p.id===ISLA_CONFIG.MOST_POPULAR_PACK) && (PACKS.find(p=>p.id===ISLA_CONFIG.MOST_POPULAR_PACK).badge = "mostPopular");
+
+const FRUITS = [
+  {id:"mango", emoji:"🥭", name:"Mango", price:1.80},
+  {id:"fresa", emoji:"🍓", name:"Fresa", price:1.50},
+  {id:"maracuya", emoji:"🧡", name:"Maracuyá", price:1.90},
+  {id:"platano", emoji:"🍌", name:"Plátano", price:1.50},
+  {id:"pina", emoji:"🍍", name:"Piña", price:1.50},
+  {id:"cerezaagria", emoji:"🍒", name:"Cereza agria", price:2.00},
+  {id:"cherry", emoji:"🍒", name:"Cherry", price:1.80},
+  {id:"manzanaverde", emoji:"🍏", name:"Manzana verde", price:1.20},
+  {id:"coco", emoji:"🥥", name:"Coco", price:1.80},
+  {id:"melocoton", emoji:"🍑", name:"Melocotón blanco", price:1.70},
+  {id:"granadilla", emoji:"🟠", name:"Granadilla", price:1.80}
+];
+const SECOND_FRUIT_FLAT = 1.00;
+const SHAKE_BASE_PRICE = 3.90;
+const PROTEIN_PRICE = 1.50;
+const PLANT_MILK_PRICE = 0.80;
+
+const MATCHA = [
+  {name:"Ice Matcha Frutal", price:5.00},
+  {name:"Coconut Water Matcha", price:5.50},
+  {name:"Matcha Latte", price:4.50},
+  {name:"Elche Matcha", price:5.90},
+  {name:"Matcha Ube", price:6.00}
+];
+const UBE = [
+  {name:"Ube Latte", price:4.90},
+  {name:"Ube Passion Frappé", price:5.50},
+  {name:"Dirty Ube Espresso", price:5.40},
+  {name:"Isla Ube Breeze", price:5.50},
+  {name:"Ube Fruit", price:6.00},
+  {name:"Ube Matcha", price:6.00}
+];
+const FAVES = [
+  {emoji:"🔥", name:"Island Chicken"},
+  {emoji:"🔥", name:"Serranito"},
+  {emoji:"⭐", name:"Brunch Bagel"},
+  {emoji:"🍵", name:"Ice Matcha"},
+  {emoji:"💜", name:"Ube Matcha"},
+  {emoji:"🥭", name:"Create Your Shake", link:"#shake"}
+];
+
+/* ============================================================
+   2. I18N
+   ============================================================ */
+const I18N = {
+es:{
+  skipIntro:"Saltar intro",
+  heroEyebrow:"Isla Brunch & Bar — Elche",
+  heroTitle:"TU CAMPUS.<br>TU ISLA.",
+  heroSub:"Construye tu combo perfecto.",
+  heroTag:"4 formas de montar tu comida. Brunch, matcha, ube y batidos a tu manera.",
+  btnBuildPack:"MONTAR MI PACK ↓",
+  btnSeePacks:"VER LOS 4 PACKS",
+  scroll:"scroll",
+  howEyebrow:"Cómo funciona",
+  howTitle:"MONTA TU ISLA",
+  how1Title:"Elige tu pack",
+  how1Copy:"Elige el nivel que va con tu mañana.",
+  how2Title:"Elige tu comida",
+  how2Copy:"Bebida, bagel o brioche — tú decides.",
+  how3Title:"Hazlo tuyo",
+  how3Copy:"Fruta, proteína, leche vegetal. A tu manera.",
+  howTagline:"Empieza simple. Ve a más. Hazlo tuyo.",
+  packsEyebrow:"Los 4 packs Isla Student",
+  packsTitle:"ELIGE TU ISLA",
+  builderEyebrow:"Constructor",
+  builderTitle:"MONTA TU PACK",
+  builderLede:"Pack → Bebida → Comida → Extras → Total.",
+  builderPackLabel:"Pack",
+  builderDrinkLabel:"Bebida",
+  builderFoodLabel:"Comida",
+  total:"Total",
+  btnThisIsMyIsla:"ESTA ES MI ISLA",
+  shakeEyebrow:"Isla Shake · 11,90 €",
+  shakeTitle:"CREA TU BATIDO",
+  shakeLede:"Tu fruta. Tu combo. Tus reglas.",
+  shakeSummaryEmpty:"Elige tu base para empezar.",
+  proteinBadge:"+ PROTEÍNA",
+  shakeBaseLabel:"Base — desde 3,90 €",
+  shakeFruitLabel:"Fruta — elige hasta 2",
+  shakeLimitMsg:"Dos frutas máximo 🌴 Mantén el equilibrio.",
+  shakeExtrasLabel:"Extras",
+  proteinLabel:"Añadir proteína",
+  plantMilkLabel:"Leche vegetal",
+  yourShake:"Tu batido",
+  btnAddToPack:"AÑADIR A MI PACK",
+  favesEyebrow:"Los favoritos de Isla",
+  favesTitle:"ISLA FAVES",
+  favesTagline:"Algunas combinaciones simplemente encajan distinto.",
+  matchaTitle:"GENTE DEL MATCHA,<br>OS VEMOS.",
+  matchaCopy:"Matcha ceremonial. A tu manera.",
+  ubeTitle:"ENERGÍA MORADA.",
+  ubeCopy:"Ube artesanal, hecho en casa.",
+  rulesBadge:"🎓 Solo estudiantes",
+  rulesTitle:"SOLO ESTUDIANTES",
+  rulesId:"Trae tu carnet de estudiante.",
+  rulesScheduleDefault:"Disponible de lunes a viernes.",
+  readyTitle:"¿LISTO?",
+  readyCopy:"Ven con hambre. Vete feliz.",
+  btnOrderWhatsapp:"PEDIR / PREGUNTAR POR WHATSAPP",
+  locationEyebrow:"Dónde estamos",
+  locationTitle:"ENCUENTRA TU ISLA",
+  btnOpenMaps:"Abrir Google Maps",
+  footTag:"Tu campus. Tu isla.",
+  mostPopular:"MÁS POPULAR",
+  included:"incluido",
+  configureLink:"Enlace por configurar"
+},
+en:{
+  skipIntro:"Skip intro",
+  heroEyebrow:"Isla Brunch & Bar — Elche",
+  heroTitle:"YOUR CAMPUS.<br>YOUR ISLAND.",
+  heroSub:"Build your perfect combo.",
+  heroTag:"4 ways to build your meal. Brunch, matcha, ube & shakes made your way.",
+  btnBuildPack:"BUILD MY PACK ↓",
+  btnSeePacks:"SEE THE 4 PACKS",
+  scroll:"scroll",
+  howEyebrow:"How it works",
+  howTitle:"BUILD YOUR ISLA",
+  how1Title:"Pick your pack",
+  how1Copy:"Choose the level that matches your morning.",
+  how2Title:"Choose your food",
+  how2Copy:"Drink, bagel or brioche — your call.",
+  how3Title:"Make it yours",
+  how3Copy:"Fruit, protein, plant milk. Build it your way.",
+  howTagline:"Start simple. Go bigger. Make it yours.",
+  packsEyebrow:"The 4 Isla Student packs",
+  packsTitle:"PICK YOUR ISLA",
+  builderEyebrow:"Build your pack",
+  builderTitle:"BUILD YOUR PACK",
+  builderLede:"Pack → Drink → Food → Extras → Total.",
+  builderPackLabel:"Pack",
+  builderDrinkLabel:"Drink",
+  builderFoodLabel:"Food",
+  total:"Total",
+  btnThisIsMyIsla:"THIS IS MY ISLA",
+  shakeEyebrow:"Isla Shake · 11.90 €",
+  shakeTitle:"CREATE YOUR SHAKE",
+  shakeLede:"Your fruit. Your combo. Your rules.",
+  shakeSummaryEmpty:"Pick your base to start.",
+  proteinBadge:"+ PROTEIN",
+  shakeBaseLabel:"Base — from 3.90 €",
+  shakeFruitLabel:"Fruit — pick up to 2",
+  shakeLimitMsg:"Two fruits max 🌴 Keep it balanced.",
+  shakeExtrasLabel:"Extras",
+  proteinLabel:"Add protein",
+  plantMilkLabel:"Plant milk",
+  yourShake:"Your shake",
+  btnAddToPack:"ADD TO MY PACK",
+  favesEyebrow:"Isla favourites",
+  favesTitle:"ISLA FAVES",
+  favesTagline:"Some combinations just hit different.",
+  matchaTitle:"MATCHA PEOPLE,<br>WE SEE YOU.",
+  matchaCopy:"Ceremonial matcha. Your way.",
+  ubeTitle:"PURPLE ENERGY.",
+  ubeCopy:"Small-batch ube, made in-house.",
+  rulesBadge:"🎓 Student only",
+  rulesTitle:"STUDENT ONLY",
+  rulesId:"Bring your student ID.",
+  rulesScheduleDefault:"Available Monday–Friday.",
+  readyTitle:"READY?",
+  readyCopy:"Come hungry. Leave happy.",
+  btnOrderWhatsapp:"ORDER / ASK ON WHATSAPP",
+  locationEyebrow:"Find us",
+  locationTitle:"FIND YOUR ISLAND",
+  btnOpenMaps:"Open Google Maps",
+  footTag:"Your campus. Your island.",
+  mostPopular:"MOST POPULAR",
+  included:"included",
+  configureLink:"Link to configure"
+}
+};
+
+let LANG = "es";
+
+function fmt(n){ return n.toFixed(2).replace(".", ",") + " €"; }
+function t(key){ return I18N[LANG][key] || I18N.es[key] || key; }
+
+/* ============================================================
+   3. ANALYTICS (no personal data — event name + product context only)
+   ============================================================ */
+window.dataLayer = window.dataLayer || [];
+function trackEvent(name, data){
+  const payload = Object.assign({event:name, timestamp:new Date().toISOString()}, data||{});
+  window.dataLayer.push(payload);
+}
+(function captureUTM(){
+  const p = new URLSearchParams(location.search);
+  const utm = {
+    utm_source:p.get("utm_source"),
+    utm_medium:p.get("utm_medium"),
+    utm_campaign:p.get("utm_campaign")
+  };
+  if(utm.utm_source || utm.utm_medium || utm.utm_campaign){
+    trackEvent("view_student_menu", utm);
+  } else {
+    trackEvent("view_student_menu", {});
+  }
+})();
+
+/* ============================================================
+   4. CONFIG-DRIVEN LINKS
+   ============================================================ */
+function waLink(prefillMessage){
+  if(!ISLA_CONFIG.WHATSAPP_NUMBER) return null;
+  const base = "https://wa.me/" + ISLA_CONFIG.WHATSAPP_NUMBER;
+  return prefillMessage ? base + "?text=" + encodeURIComponent(prefillMessage) : base;
+}
+function bindConfigurableLink(el, url, label){
+  if(url){
+    el.href = url;
+  } else {
+    el.href = "#";
+    el.setAttribute("aria-disabled","true");
+    el.addEventListener("click", function(e){
+      e.preventDefault();
+      console.warn("[ISLA_CONFIG] " + label + " is not set yet.");
+    });
+  }
+}
+
+/* ============================================================
+   5. RENDER: PACKS
+   ============================================================ */
+function renderPacks(){
+  const el = document.getElementById("packScroller");
+  el.innerHTML = "";
+  PACKS.forEach((pack, i)=>{
+    const card = document.createElement("article");
+    card.className = "pack-card reveal " + pack.accent;
+    card.style.setProperty("--i", i);
+
+    const included = pack.food.filter(f=>f.included).map(f=>f.name).join(", ");
+    const upsells = (pack.food.filter(f=>!f.included).length ? pack.food.filter(f=>!f.included) : (pack.upgrades||[]))
+      .map(f=> (f.tag?f.tag+" ":"") + f.name + " +" + f.price.toFixed(2).replace(".",",") + " €").join(" · ");
+
+    card.innerHTML = `
+      ${pack.badge ? `<span class="pack-badge">${t("mostPopular")}</span>` : ""}
+      <span class="pack-num">PACK ${pack.num}</span>
+      <h3 class="pack-name">${packLabel(pack.id)}</h3>
+      <div class="pack-price price">${fmt(pack.price)}</div>
+      <p class="pack-copy">${packCopy(pack.id)}</p>
+      <div class="pack-lists">
+        <div>
+          <div class="pack-list-label">${LANG==="es"?"Bebida":"Drink"}</div>
+          <div class="pack-list">${pack.drinks.join(" · ")}</div>
+        </div>
+        <div>
+          <div class="pack-list-label">${LANG==="es"?"Comida":"Food"}</div>
+          <div class="pack-list"><span class="hl">${included}</span></div>
+        </div>
+        ${upsells ? `<div>
+          <div class="pack-list-label">${LANG==="es"?"Extras":"Extras"}</div>
+          <div class="pack-list">${upsells}</div>
+        </div>` : ""}
+      </div>
+      <button class="btn" data-pack="${pack.id}">${LANG==="es"?"ELEGIR "+pack.num:"CHOOSE PACK "+pack.num}</button>
+    `;
+    el.appendChild(card);
+  });
+  el.querySelectorAll("button[data-pack]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const id = btn.getAttribute("data-pack");
+      trackEvent("select_pack", {pack:id, price:PACKS.find(p=>p.id===id).price});
+      state.pack = id;
+      state.drink = null; state.food = null;
+      renderBuilder();
+      document.getElementById("builder").scrollIntoView({behavior:"smooth", block:"start"});
+    });
+  });
+  observeReveal();
+}
+function packLabel(id){
+  return {start:"ISLA START", bagel:"ISLA BAGEL", shake:"ISLA SHAKE", brioche:"ISLA BRIOCHE"}[id];
+}
+function packCopy(id){
+  const copy = {
+    es:{start:"Rápido. Fácil. Isla.", bagel:"Tu mejora del día a día.", shake:"Batido + Bagel, a tu manera.", brioche:"Mood grande. Brunch más grande."},
+    en:{start:"Quick. Easy. Island.", bagel:"Your everyday upgrade.", shake:"Shake + Bagel, made your way.", brioche:"Big mood. Bigger brunch."}
+  };
+  return copy[LANG][id];
+}
+
+/* ============================================================
+   6. BUILDER STATE + RENDER
+   ============================================================ */
+const state = {
+  pack:"bagel", drink:null, food:null,
+  shake:{ base:true, fruits:[], protein:false, plantMilk:false }
+};
+
+function renderBuilder(){
+  const pack = PACKS.find(p=>p.id===state.pack);
+  if(!state.drink) state.drink = pack.drinks[0];
+  if(!state.food) state.food = pack.food[0].name;
+
+  // flow trail
+  const flow = document.getElementById("builderFlow");
+  const steps = [packLabel(pack.id), state.drink, state.food];
+  flow.innerHTML = steps.map((s,i)=> `<span class="${i===steps.length-1?'now':''}">${s}</span>` ).join('<span class="sep">→</span>');
+
+  // pack chips
+  const chipsPack = document.getElementById("chipsPack");
+  chipsPack.innerHTML = "";
+  PACKS.forEach(p=>{
+    const chip = document.createElement("button");
+    chip.className = "chip"; chip.type="button";
+    chip.setAttribute("aria-pressed", p.id===state.pack ? "true":"false");
+    chip.textContent = packLabel(p.id) + " · " + fmt(p.price);
+    chip.addEventListener("click", ()=>{
+      state.pack = p.id; state.drink=null; state.food=null;
+      trackEvent("select_pack", {pack:p.id, price:p.price});
+      renderBuilder();
+    });
+    chipsPack.appendChild(chip);
+  });
+
+  // drink chips
+  const chipsDrink = document.getElementById("chipsDrink");
+  chipsDrink.innerHTML = "";
+  pack.drinks.forEach(d=>{
+    const chip = document.createElement("button");
+    chip.className="chip"; chip.type="button";
+    chip.setAttribute("aria-pressed", d===state.drink?"true":"false");
+    chip.textContent = d;
+    chip.addEventListener("click", ()=>{
+      state.drink = d;
+      trackEvent("select_drink", {pack:pack.id, product:d});
+      renderBuilder();
+    });
+    chipsDrink.appendChild(chip);
+  });
+
+  // food chips
+  const chipsFood = document.getElementById("chipsFood");
+  chipsFood.innerHTML = "";
+  pack.food.forEach(f=>{
+    const chip = document.createElement("button");
+    chip.className="chip"; chip.type="button";
+    chip.setAttribute("aria-pressed", f.name===state.food?"true":"false");
+    chip.innerHTML = (f.tag?f.tag+" ":"") + f.name + (f.price? `<span class="up">+${f.price.toFixed(2).replace(".",",")} €</span>` : `<span class="up">${t("included")}</span>`);
+    chip.addEventListener("click", ()=>{
+      state.food = f.name;
+      trackEvent("select_food", {pack:pack.id, product:f.name, price: f.price||0});
+      renderBuilder();
+    });
+    chipsFood.appendChild(chip);
+  });
+
+  // total
+  const foodObj = pack.food.find(f=>f.name===state.food);
+  const total = pack.price + (foodObj && foodObj.price ? foodObj.price : 0);
+  const totalEl = document.getElementById("builderTotal");
+  totalEl.textContent = fmt(total);
+  totalEl.classList.remove("bump");
+  void totalEl.offsetWidth;
+  totalEl.classList.add("bump");
+}
+
+document.addEventListener("DOMContentLoaded", ()=>{
+  document.getElementById("builderCta").addEventListener("click", ()=>{
+    const pack = PACKS.find(p=>p.id===state.pack);
+    const foodObj = pack.food.find(f=>f.name===state.food);
+    const total = pack.price + (foodObj && foodObj.price ? foodObj.price : 0);
+    trackEvent("build_pack", {pack:pack.id, drink:state.drink, food:state.food, price: total});
+    const msg = `Hola! Quiero pedir: ${packLabel(pack.id)} — ${state.drink} + ${state.food} (${fmt(total)})`;
+    goToWhatsapp(msg);
+  });
+});
+
+/* ============================================================
+   7. CREATE YOUR SHAKE
+   ============================================================ */
+function shakeTotal(){
+  let total = SHAKE_BASE_PRICE;
+  state.shake.fruits.forEach((fid, idx)=>{
+    const fruit = FRUITS.find(f=>f.id===fid);
+    total += idx===0 ? fruit.price : SECOND_FRUIT_FLAT;
+  });
+  if(state.shake.protein) total += PROTEIN_PRICE;
+  if(state.shake.plantMilk) total += PLANT_MILK_PRICE;
+  return total;
+}
+function renderFruitGrid(){
+  const grid = document.getElementById("fruitGrid");
+  grid.innerHTML = "";
+  FRUITS.forEach(f=>{
+    const selected = state.shake.fruits.includes(f.id);
+    const idx = state.shake.fruits.indexOf(f.id);
+    const priceLabel = selected && idx===1 ? "+"+SECOND_FRUIT_FLAT.toFixed(2).replace(".",",")+" €" : fmt(f.price);
+    const card = document.createElement("button");
+    card.type="button";
+    card.className="fruit-card";
+    card.setAttribute("aria-pressed", selected ? "true":"false");
+    card.innerHTML = `<span class="fruit-check">✓</span><span class="fruit-emoji" aria-hidden="true">${f.emoji}</span><span class="fruit-name">${f.name}</span><span class="fruit-price">${priceLabel}</span>`;
+    card.addEventListener("click", ()=> toggleFruit(f.id));
+    grid.appendChild(card);
+  });
+}
+function toggleFruit(id){
+  const list = state.shake.fruits;
+  const msgEl = document.getElementById("shakeLimitMsg");
+  const i = list.indexOf(id);
+  if(i > -1){
+    list.splice(i,1);
+    msgEl.classList.remove("show");
+  } else {
+    if(list.length >= 2){
+      msgEl.classList.add("show");
+      setTimeout(()=>msgEl.classList.remove("show"), 2200);
+      return;
+    }
+    list.push(id);
+    trackEvent("select_fruit", {product:id, price: list.length===1 ? FRUITS.find(f=>f.id===id).price : SECOND_FRUIT_FLAT});
+  }
+  renderFruitGrid();
+  renderShakeGlass();
+  updateShakeTotal();
+}
+function renderShakeGlass(){
+  const liquid = document.getElementById("glassLiquid");
+  const colors = {mango:"#E5B95C", fresa:"#E8A0A0", maracuya:"#E5B95C", platano:"#F0DDA0", pina:"#E9CE72",
+    cerezaagria:"#C2637E", cherry:"#B24A63", manzanaverde:"#B9CDA0", coco:"#F4EBDD", melocoton:"#F1C2A8", granadilla:"#E38B4E"};
+  const primary = state.shake.fruits[0];
+  liquid.setAttribute("fill", primary ? (colors[primary]||"#E5B95C") : "#E5B95C");
+
+  const orbit = document.getElementById("glassOrbit");
+  const slots = orbit.querySelectorAll(".orbit-fruit");
+  slots.forEach((slot,i)=>{
+    const fid = state.shake.fruits[i];
+    if(fid){
+      slot.textContent = FRUITS.find(f=>f.id===fid).emoji;
+      slot.classList.add("show");
+    } else {
+      slot.classList.remove("show");
+    }
+  });
+
+  document.getElementById("proteinBadge").classList.toggle("show", state.shake.protein);
+
+  const summary = document.getElementById("shakeSummary");
+  if(state.shake.fruits.length===0){
+    summary.textContent = t("shakeSummaryEmpty");
+  } else {
+    summary.textContent = state.shake.fruits.map(fid=>FRUITS.find(f=>f.id===fid).emoji + " " + FRUITS.find(f=>f.id===fid).name).join("  +  ");
+  }
+}
+function updateShakeTotal(){
+  const el = document.getElementById("shakeTotal");
+  el.textContent = fmt(shakeTotal());
+  el.classList.remove("bump");
+  void el.offsetWidth;
+  el.classList.add("bump");
+}
+function renderShakeBase(){
+  const el = document.getElementById("shakeBases");
+  el.innerHTML = "";
+  const chip = document.createElement("button");
+  chip.type="button"; chip.className="chip";
+  chip.setAttribute("aria-pressed","true");
+  chip.textContent = (LANG==="es"?"Base batido":"Smoothie base") + " · " + fmt(SHAKE_BASE_PRICE);
+  el.appendChild(chip);
+}
+function initShake(){
+  renderShakeBase();
+  renderFruitGrid();
+  renderShakeGlass();
+  updateShakeTotal();
+
+  const proteinToggle = document.getElementById("toggleProtein");
+  const milkToggle = document.getElementById("togglePlantMilk");
+
+  function bindToggle(el, key, eventName){
+    function flip(){
+      state.shake[key] = !state.shake[key];
+      el.setAttribute("aria-pressed", state.shake[key] ? "true":"false");
+      if(state.shake[key]) trackEvent(eventName, {price: key==="protein"?PROTEIN_PRICE:PLANT_MILK_PRICE});
+      renderShakeGlass();
+      updateShakeTotal();
+    }
+    el.addEventListener("click", flip);
+    el.addEventListener("keydown", (e)=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); flip(); } });
+  }
+  bindToggle(proteinToggle, "protein", "add_protein");
+  bindToggle(milkToggle, "plantMilk", "add_plant_milk");
+
+  document.getElementById("shakeCta").addEventListener("click", ()=>{
+    const fruitsTxt = state.shake.fruits.map(fid=>FRUITS.find(f=>f.id===fid).name).join(" + ") || (LANG==="es"?"sin fruta":"no fruit");
+    trackEvent("build_pack", {pack:"shake", fruits:state.shake.fruits, protein:state.shake.protein, plantMilk:state.shake.plantMilk, price:shakeTotal()});
+    const msg = `Hola! Quiero mi Isla Shake: ${fruitsTxt}${state.shake.protein?" + proteína":""}${state.shake.plantMilk?" + leche vegetal":""} (${fmt(shakeTotal())})`;
+    goToWhatsapp(msg);
+  });
+}
+
+/* ============================================================
+   8. TOP PICKS / MATCHA / UBE RENDER
+   ============================================================ */
+function renderFaves(){
+  const grid = document.getElementById("picksGrid");
+  grid.innerHTML = "";
+  FAVES.forEach((f,i)=>{
+    const card = document.createElement(f.link ? "a" : "div");
+    card.className = "pick-card reveal";
+    card.style.setProperty("--i", i);
+    if(f.link) card.href = f.link;
+    card.innerHTML = `<div class="pick-emoji">${f.emoji}</div><div class="pick-name">${f.name}</div>`;
+    grid.appendChild(card);
+  });
+  observeReveal();
+}
+function renderFlavorList(containerId, items){
+  const el = document.getElementById(containerId);
+  el.innerHTML = items.map(i=>`<div class="flavor-row"><span>${i.name}</span><span class="price">${fmt(i.price)}</span></div>`).join("");
+}
+
+/* ============================================================
+   9. LOCATION / WHATSAPP LINKS
+   ============================================================ */
+function goToWhatsapp(message){
+  trackEvent("click_whatsapp", {});
+  const link = waLink(message);
+  if(link){ window.open(link, "_blank", "noopener"); }
+  else { console.warn("[ISLA_CONFIG] WHATSAPP_NUMBER is not set yet."); alert(LANG==="es" ? "Configura el número de WhatsApp en ISLA_CONFIG." : "Set the WhatsApp number in ISLA_CONFIG."); }
+}
+function bindLocation(){
+  const wa = document.getElementById("waLink2");
+  const wa1 = document.getElementById("whatsappCta");
+  const maps = document.getElementById("mapsLink");
+  const ig = document.getElementById("igLink");
+  const addrEl = document.getElementById("locationAddr");
+
+  bindConfigurableLink(wa, waLink(), "WHATSAPP_NUMBER");
+  bindConfigurableLink(wa1, waLink(), "WHATSAPP_NUMBER");
+  bindConfigurableLink(maps, ISLA_CONFIG.GOOGLE_MAPS_URL, "GOOGLE_MAPS_URL");
+  bindConfigurableLink(ig, ISLA_CONFIG.INSTAGRAM_URL, "INSTAGRAM_URL");
+
+  addrEl.textContent = "ISLA BRUNCH & BAR · Elche" + (ISLA_CONFIG.ADDRESS ? " · " + ISLA_CONFIG.ADDRESS : "");
+
+  [wa, wa1].forEach(el=> el.addEventListener("click", ()=> trackEvent("click_whatsapp", {})));
+  maps.addEventListener("click", ()=> trackEvent("click_maps", {}));
+  ig.addEventListener("click", ()=> trackEvent("click_instagram", {}));
+}
+function renderSchedule(){
+  const el = document.getElementById("rulesSchedule");
+  if(ISLA_CONFIG.STUDENT_START_TIME && ISLA_CONFIG.STUDENT_END_TIME){
+    el.textContent = (LANG==="es" ? "Lunes a viernes, " : "Monday–Friday, ") + ISLA_CONFIG.STUDENT_START_TIME + "–" + ISLA_CONFIG.STUDENT_END_TIME;
+  } else {
+    el.textContent = t("rulesScheduleDefault");
+  }
+}
+
+/* ============================================================
+   10. I18N APPLY
+   ============================================================ */
+function applyI18n(){
+  document.documentElement.lang = LANG;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    el.textContent = t(el.getAttribute("data-i18n"));
+  });
+  document.querySelectorAll("[data-i18n-html]").forEach(el=>{
+    el.innerHTML = t(el.getAttribute("data-i18n-html"));
+  });
+  const heroTitle = document.querySelector(".h-hero");
+  if(heroTitle) heroTitle.innerHTML = t("heroTitle");
+  const matchaTitle = document.querySelector('[data-i18n-html="matchaTitle"]');
+  if(matchaTitle) matchaTitle.innerHTML = t("matchaTitle");
+  renderSchedule();
+  renderPacks();
+  renderBuilder();
+  renderShakeBase();
+  renderFruitGrid();
+  renderShakeGlass();
+  renderFaves();
+  renderFlavorList("matchaList", MATCHA);
+  renderFlavorList("ubeList", UBE);
+}
+
+function setLang(lang){
+  LANG = lang;
+  document.getElementById("langEs").setAttribute("aria-pressed", lang==="es" ? "true":"false");
+  document.getElementById("langEn").setAttribute("aria-pressed", lang==="en" ? "true":"false");
+  applyI18n();
+}
+
+/* ============================================================
+   11. SCROLL REVEAL
+   ============================================================ */
+let revealObserver;
+function observeReveal(){
+  if(!revealObserver){
+    revealObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("is-in");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.15, rootMargin:"0px 0px -8% 0px"});
+  }
+  document.querySelectorAll(".reveal:not(.is-in)").forEach(el=> revealObserver.observe(el));
+}
+
+/* ============================================================
+   12. STICKY CTA
+   ============================================================ */
+function initStickyCta(){
+  const sticky = document.getElementById("sticky-cta");
+  const hero = document.getElementById("hero");
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      sticky.classList.toggle("show", !entry.isIntersecting);
+    });
+  }, {threshold:0});
+  io.observe(hero);
+  document.getElementById("stickyBuild").addEventListener("click", scrollToBuilder);
+}
+function scrollToBuilder(){
+  document.getElementById("builder").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+/* ============================================================
+   13. INTRO — ISLAND ARRIVAL
+   ============================================================ */
+function initIntro(){
+  const intro = document.getElementById("intro");
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const skipBtn = document.getElementById("skipIntro");
+
+  function dismiss(){
+    intro.classList.add("hide");
+    document.body.style.overflow = "";
+    setTimeout(()=> intro.remove(), 600);
+  }
+
+  if(reduced){
+    dismiss();
+    return;
+  }
+
+  document.body.style.overflow = "hidden";
+  requestAnimationFrame(()=> intro.classList.add("run"));
+  const timer = setTimeout(dismiss, 1000);
+  skipBtn.addEventListener("click", ()=>{ clearTimeout(timer); dismiss(); });
+}
+
+/* ============================================================
+   14. INIT
+   ============================================================ */
+document.addEventListener("DOMContentLoaded", ()=>{
+  initIntro();
+  bindLocation();
+  initShake();
+  initStickyCta();
+  applyI18n();
+  observeReveal();
+
+  document.getElementById("langEs").addEventListener("click", ()=> setLang("es"));
+  document.getElementById("langEn").addEventListener("click", ()=> setLang("en"));
+  document.getElementById("ctaBuild").addEventListener("click", scrollToBuilder);
+});
+
+})();
+
+</script>
+</body>
+</html>
