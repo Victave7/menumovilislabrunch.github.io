@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="menu-landing">
 <head>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -643,26 +643,49 @@ button, a { font-family: inherit; }
 @media (prefers-reduced-motion: no-preference) {
   .hot-ribbon { animation: badgeShine 1.1s ease-out .5s both; background-size: 200% 100%; }
 
-  /* "Baile" de la tarjeta Revuelto al pulsar Recomendación del chef */
+  /* "Baile" de la tarjeta Revuelto al pulsar Recomendación del chef.
+     !important es necesario en la animación: body.menu-inside .page.on .card ya
+     fija su propia animación de entrada (islaCardIn) con más especificidad.
+     El halo va en un ::after aparte porque .card-gold fija su box-shadow con
+     !important (sistema "premium"), lo que bloquearía cualquier pulso de sombra
+     animado directamente sobre la tarjeta. */
   .card-dance {
-    animation: cardDance .6s ease-in-out 2, dancePulse 1.2s ease-in-out;
+    animation: cardDance .6s ease-in-out 2 !important;
+    z-index: 5;
+  }
+  .card-dance::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    box-shadow: 0 0 0 3px var(--copper), 0 8px 30px rgba(230,81,0,.55);
+    opacity: 0;
+    pointer-events: none;
+    animation: danceGlow 1.2s ease-in-out;
   }
   @keyframes cardDance {
     0%, 100% { transform: translateX(0) rotate(0deg); }
-    15%      { transform: translateX(-5px) rotate(-2deg); }
-    35%      { transform: translateX(5px) rotate(2deg); }
-    55%      { transform: translateX(-4px) rotate(-1.5deg); }
-    75%      { transform: translateX(3px) rotate(1deg); }
+    15%      { transform: translateX(-7px) rotate(-3deg); }
+    35%      { transform: translateX(7px) rotate(3deg); }
+    55%      { transform: translateX(-5px) rotate(-2deg); }
+    75%      { transform: translateX(4px) rotate(1.5deg); }
     90%      { transform: translateX(-2px) rotate(-0.5deg); }
   }
-  @keyframes dancePulse {
-    0%, 100% { box-shadow: 0 2px 10px rgba(168,103,30,0.16); }
-    50%      { box-shadow: 0 4px 22px rgba(230,81,0,0.5); }
+  @keyframes danceGlow {
+    0%, 100% { opacity: 0; }
+    20%, 80% { opacity: 1; }
   }
 }
 /* Sin animación de movimiento (accesibilidad): solo un resalte de color, sin transform */
 @media (prefers-reduced-motion: reduce) {
-  .card-dance { box-shadow: 0 0 0 3px var(--copper); }
+  .card-dance::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    box-shadow: 0 0 0 3px var(--copper);
+    pointer-events: none;
+  }
 }
 .card-gold {
   background: linear-gradient(135deg, #FFFCF6 0%, var(--copper-bg) 100%);
@@ -1253,6 +1276,7 @@ body.menu-landing .lang-bar,
 body.menu-landing .isla-nav-shell{display:none!important}
 body.menu-landing .root{max-width:none;width:100%;box-shadow:none}
 body.menu-landing{overflow:hidden;background:#07110c}
+html.menu-landing{overflow:hidden;height:100%}
 
 #sec-inicio{
  display:none;
@@ -2341,6 +2365,58 @@ body.menu-inside :focus-visible{
      Do not block /menu/, /menu/imagen/, or /menu/videos/ in robots.txt.
 -->
 
+<style id="isla-v2-experience">
+:root{--v2-bg:#f4eee4;--v2-ink:#12241b;--v2-green:#173f2d;--v2-accent:#b88952;--v2-ube:#7654a8;--v2-radius:22px}
+html,body{overscroll-behavior-x:none}
+body.menu-inside{background:linear-gradient(180deg,#f7f2ea 0%,#eee7dc 100%)}
+body.menu-inside .root{max-width:980px;margin:auto;box-shadow:0 0 80px rgba(23,63,45,.06)}
+body.menu-inside .hero{display:none!important}
+body.menu-inside .identity-bar{display:none!important}
+body.menu-inside .lang-bar{background:rgba(255,255,255,.76);backdrop-filter:blur(18px);position:sticky;top:0;z-index:45;border:0}
+body.menu-inside .nav-wrap{top:0;background:rgba(250,248,244,.76);backdrop-filter:blur(20px);border:0;box-shadow:0 8px 30px rgba(23,63,45,.08)}
+body.menu-inside .nav-cats{padding:9px 10px;border:0;gap:5px;mask-image:none;-webkit-mask-image:none}
+body.menu-inside .cat-tab{border:0!important;border-radius:999px;padding:9px 14px;background:transparent;transition:transform .28s cubic-bezier(.2,.8,.2,1),background .28s,color .28s}
+body.menu-inside .cat-tab.on{background:var(--v2-green);color:white;transform:translateY(-1px);box-shadow:0 6px 18px rgba(23,63,45,.18)}
+body.menu-inside .sub-nav{background:transparent;padding:8px 10px;gap:7px;border:0;mask-image:none;-webkit-mask-image:none}
+body.menu-inside .sub-tab{border:1px solid rgba(23,63,45,.11);background:rgba(255,255,255,.72);padding:9px 14px;transition:all .3s cubic-bezier(.2,.8,.2,1)}
+body.menu-inside .sub-tab.on{background:#173f2d;color:#fff;border-color:#173f2d;transform:scale(1.02)}
+body.menu-inside .page{padding:clamp(24px,5vw,52px) clamp(16px,4vw,42px) 110px;max-width:900px;margin:auto}
+body.menu-inside .sec-head{padding:8px 2px 22px;margin-bottom:4px}
+body.menu-inside .eyebrow{color:var(--v2-accent);font-size:10px;letter-spacing:.28em}
+body.menu-inside .sec-title{font-size:clamp(34px,7vw,64px);line-height:.95;letter-spacing:-.02em;color:var(--v2-ink)}
+body.menu-inside .sec-note{max-width:620px;font-size:13px;color:#6b655d;margin-top:13px}
+body.menu-inside .group-label-food{top:var(--nav-h,100px);background:rgba(244,238,228,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(23,63,45,.16);padding:12px 2px 9px;font-size:24px}
+body.menu-inside .card{border:1px solid rgba(23,63,45,.09);border-radius:18px;padding:17px 18px;margin-bottom:10px;background:rgba(255,255,255,.8);box-shadow:0 3px 16px rgba(31,43,35,.035);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
+@media(hover:hover) and (pointer:fine){body.menu-inside .card:hover{transform:translateY(-4px);box-shadow:0 14px 35px rgba(31,43,35,.09);border-color:rgba(23,63,45,.18)}}
+body.menu-inside .item-name{font-size:16px;font-weight:600;color:var(--v2-ink)}
+body.menu-inside .item-price{font-size:21px;color:#8c633b}
+body.menu-inside .item-desc{font-size:12.5px;color:#756f67}
+body.menu-inside .card-mat{background:linear-gradient(135deg,#eff6ed,#fff)}
+body.menu-inside .card-ube{background:linear-gradient(135deg,#f2ecfa,#fff)}
+body.menu-inside .card-gold{background:linear-gradient(135deg,#fffaf0,#f4e4ca);border-color:rgba(184,137,82,.38)}
+body.menu-inside .fruit-card,body.menu-inside .foam-card,body.menu-inside .mini-card,body.menu-inside .pan-card{border-radius:16px;background:rgba(255,255,255,.78);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s}
+@media(hover:hover) and (pointer:fine){body.menu-inside .fruit-card:hover,body.menu-inside .foam-card:hover,body.menu-inside .mini-card:hover,body.menu-inside .pan-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(31,43,35,.07)}}
+body.menu-inside .footer{background:#173f2d;color:rgba(255,255,255,.72);border:0;padding:46px 24px 60px}
+body.menu-inside .footer strong{color:#fff;font-family:'Cormorant Garamond',serif;font-size:24px}
+#sec-inicio{display:none;position:relative;padding:0!important;width:100%;height:100dvh;min-height:100svh;overflow:hidden;background:#08150f;color:#fff}
+#sec-inicio.on{display:block}
+body.menu-landing,html.menu-landing{background:#08150f;overflow:hidden}
+body.menu-landing .root{max-width:none;width:100%;box-shadow:none}
+.v2-landing-noise{position:absolute;inset:0;opacity:.075;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");pointer-events:none;mix-blend-mode:screen}
+.v2-orbit{position:absolute;border:1px solid rgba(255,255,255,.12);border-radius:50%;pointer-events:none}.v2-orbit-a{width:70vw;height:70vw;right:-25vw;top:-15vw}.v2-orbit-b{width:42vw;height:42vw;left:-18vw;bottom:-14vw;border-color:rgba(196,151,106,.18)}
+.v2-landing-top{position:absolute;z-index:4;top:20px;left:24px;right:24px;display:flex;justify-content:space-between;font-size:9px;letter-spacing:.22em;color:rgba(255,255,255,.58);text-transform:uppercase}
+.v2-hero-copy{position:absolute;z-index:4;left:clamp(20px,5vw,60px);top:clamp(65px,10vh,110px);pointer-events:none}.v2-kicker{font-size:9px;letter-spacing:.3em;color:#d7c0a1;margin-bottom:13px}.v2-hero-copy h1{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,11vw,110px);line-height:.75;font-weight:600;letter-spacing:-.035em;margin:0}.v2-hero-copy h1 em{font-style:italic;color:#e2d5bd}.v2-sub{font-size:12px;color:rgba(255,255,255,.68);max-width:330px;margin-top:22px;line-height:1.5}
+.v2-landing-grid{position:absolute;inset:34% 20px 46px;display:grid;grid-template-columns:1fr 1fr;gap:10px;z-index:3}
+.v2-choice{position:relative;border:1px solid rgba(255,255,255,.2);border-radius:var(--v2-radius);overflow:hidden;background:#12241b;color:#fff;text-align:left;padding:0;cursor:pointer;isolation:isolate;transform:translateZ(0);transition:transform .65s cubic-bezier(.2,.8,.2,1),border-color .4s,box-shadow .5s}
+.v2-choice-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transform:scale(1.06);filter:saturate(.82) contrast(1.02);transition:transform 1.2s cubic-bezier(.2,.8,.2,1),filter 1s}
+.v2-choice-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.02) 15%,rgba(4,13,9,.78) 100%);z-index:-1}
+.v2-choice-meta{position:absolute;inset:auto 17px 17px;display:flex;flex-direction:column}.v2-choice-meta small{font-size:9px;letter-spacing:.18em;color:rgba(255,255,255,.6);margin-bottom:7px}.v2-choice-meta b{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,8vw,72px);line-height:.82;letter-spacing:-.03em}.v2-choice-meta i{font-style:normal;font-size:10px;color:rgba(255,255,255,.72);margin-top:10px;line-height:1.35}.v2-choice-meta strong{font-size:9px;letter-spacing:.2em;margin-top:16px;color:#e2c89f}
+@media(hover:hover) and (pointer:fine){.v2-choice:hover{transform:translateY(-8px) scale(1.012);border-color:rgba(255,255,255,.48);box-shadow:0 24px 60px rgba(0,0,0,.32)}.v2-choice:hover .v2-choice-video{transform:scale(1.14);filter:saturate(1.02)}}
+.v2-scroll-cue{position:absolute;z-index:5;bottom:15px;left:50%;transform:translateX(-50%);font-size:8px;letter-spacing:.2em;color:rgba(255,255,255,.48);display:flex;align-items:center;gap:8px;white-space:nowrap}.v2-scroll-cue span{display:block;width:18px;height:1px;background:#b88952;animation:v2Pulse 1.6s ease-in-out infinite}@keyframes v2Pulse{0%,100%{transform:scaleX(.5);opacity:.4}50%{transform:scaleX(1);opacity:1}}
+@media(max-width:600px){.v2-landing-grid{inset:35% 14px 46px;gap:8px}.v2-landing-top{left:16px;right:16px}.v2-choice{border-radius:18px}.v2-choice-meta{inset:auto 13px 14px}.v2-choice-meta i{font-size:9px}.v2-choice-meta strong{font-size:8px;margin-top:12px}}
+@media(min-width:800px){.v2-landing-grid{inset:34% clamp(40px,8vw,120px) 60px;gap:18px}.v2-hero-copy{left:clamp(40px,8vw,120px)}}
+@media(prefers-reduced-motion:reduce){.v2-choice,.v2-choice-video,.v2-scroll-cue span,body.menu-inside .card{transition:none!important;animation:none!important}}
+</style>
 </head>
 <body class="menu-landing">
 <!-- Google Tag Manager (noscript) -->
@@ -2566,51 +2642,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- ══════════ INICIO / LANDING ══════════ -->
   <section id="sec-inicio" class="page on" role="tabpanel" tabindex="0" aria-label="Inicio">
- <div class="landing-brand-lockup">
- <span class="landing-wordmark">ISLA</span>
- <span class="landing-tag">BRUNCH &amp; BAR · ELCHE</span>
- </div>
-
- <div class="landing-palm-shadow" aria-hidden="true">
- <svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
- <path d="M160 420 C154 326 155 245 166 168 C174 112 194 66 223 28"/>
- <path d="M166 169 C129 132 85 116 31 117"/>
- <path d="M166 169 C126 91 82 55 28 35"/>
- <path d="M167 168 C163 93 183 45 229 8"/>
- <path d="M168 169 C216 111 263 91 311 89"/>
- <path d="M166 170 C113 170 71 190 35 228"/>
- <path d="M167 170 C132 220 115 270 115 329"/>
- </svg>
- </div>
-
- <div class="landing-choice">
- <button class="landing-side" type="button" onclick="goHome('comer')" aria-label="Abrir menú de comida">
- <video class="landing-video" autoplay muted loop playsinline preload="auto" webkit-playsinline="true" preload="auto" aria-hidden="true">
- <source src="videos/comerloop.mp4" type="video/mp4">
- </video>
- <span class="landing-shade"></span>
- <span class="landing-copy">
- <span class="landing-kicker">ISLA BRUNCH</span>
- <strong data-en="EAT" data-fr="MANGER">COMER</strong>
- <span class="landing-desc">Brioche · Brunch · Dulce · Compartir</span>
- <span class="landing-action">Explorar <b>→</b></span>
- </span>
- </button>
-
- <button class="landing-side" type="button" onclick="goHome('beber')" aria-label="Abrir menú de bebidas">
- <video class="landing-video" autoplay muted loop playsinline preload="auto" webkit-playsinline="true" preload="auto" aria-hidden="true">
- <source src="videos/beberloop.mp4" type="video/mp4">
- </video>
- <span class="landing-shade"></span>
- <span class="landing-copy">
- <span class="landing-kicker">ISLA DRINKS</span>
- <strong data-en="DRINK" data-fr="BOIRE">BEBER</strong>
- <span class="landing-desc">Matcha · Ube · Café · Smoothies</span>
- <span class="landing-action">Explorar <b>→</b></span>
- </span>
- </button>
- </div>
-</section>
+    <div class="v2-landing-noise" aria-hidden="true"></div>
+    <div class="v2-orbit v2-orbit-a" aria-hidden="true"></div>
+    <div class="v2-orbit v2-orbit-b" aria-hidden="true"></div>
+    <div class="v2-landing-top">
+      <span>ISLA BRUNCH & BAR</span><span>ELCHE · 2026</span>
+    </div>
+    <div class="v2-hero-copy">
+      <p class="v2-kicker">BRUNCH · MATCHA · UBE · BAR</p>
+      <h1>YOUR<br><em>ISLAND.</em></h1>
+      <p class="v2-sub">Una carta para descubrir, deslizar y elegir a tu manera.</p>
+    </div>
+    <div class="v2-landing-grid">
+      <button class="v2-choice v2-choice-eat" type="button" onclick="goHome('comer')" aria-label="Explorar comida">
+        <video class="v2-choice-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="videos/comerloop.mp4" type="video/mp4"></video>
+        <span class="v2-choice-shade"></span>
+        <span class="v2-choice-meta"><small>01</small><b>EAT</b><i>Brunch · Brioche · Sweet</i><strong>EXPLORE →</strong></span>
+      </button>
+      <button class="v2-choice v2-choice-drink" type="button" onclick="goHome('beber')" aria-label="Explorar bebidas">
+        <video class="v2-choice-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="videos/beberloop.mp4" type="video/mp4"></video>
+        <span class="v2-choice-shade"></span>
+        <span class="v2-choice-meta"><small>02</small><b>DRINK</b><i>Matcha · Ube · Coffee · Shakes</i><strong>EXPLORE →</strong></span>
+      </button>
+    </div>
+    <div class="v2-scroll-cue"><span></span> SWIPE / TAP TO ENTER</div>
+  </section>
 
   <!-- ══════════ BEBIDAS ══════════ -->
 
@@ -2670,6 +2726,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="item-price">5,90€</p>
       </div>
       <p class="item-desc" data-en="Ceremonial matcha with creamy oat milk over a date base — naturally sweet, no added sugar." data-fr="Matcha cérémoniel au lait d'avoine crémeux sur une base de dattes — douceur naturelle, sans sucre ajouté.">Matcha ceremonial con leche de avena cremosa sobre un fondo de dátiles — dulzor natural, sin azúcar añadido.</p>
+    </div>
+
+    <div class="card card-cute">
+      <span class="badge badge-new">🆕 <span data-en="New" data-fr="Nouveau">NUEVO</span></span>
+      <div class="card-row">
+        <p class="item-name" data-en="Matcha Ube" data-fr="Matcha Ube">Matcha Ube</p>
+        <p class="item-price">6,00€</p>
+      </div>
+      <p class="item-desc" data-en="Ceremonial matcha and ube swirled together in one cup — the signature duo, half and half." data-fr="Matcha cérémoniel et ube tourbillonnés dans une même tasse — le duo signature, moitié-moitié.">Matcha ceremonial y ube en un remolino dentro de la misma taza — el dúo firma, mitad y mitad.</p>
     </div>
 
     <div class="card card-hero card-hero-sm">
@@ -2743,6 +2808,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="item-price">6,00€</p>
       </div>
       <p class="item-desc" data-en="Ube blended with your choice of fruit purée: mango, strawberry or passion fruit." data-fr="Ube mixé avec un coulis de fruit au choix : mangue, fraise ou fruit de la passion.">Ube batido con puré de fruta a elegir: mango, fresa o maracuyá.</p>
+    </div>
+
+    <div class="card card-cute">
+      <span class="badge badge-new">🆕 <span data-en="New" data-fr="Nouveau">NUEVO</span></span>
+      <div class="card-row">
+        <p class="item-name" data-en="Ube Matcha" data-fr="Ube Matcha">Ube Matcha</p>
+        <p class="item-price">6,00€</p>
+      </div>
+      <p class="item-desc" data-en="Ube and ceremonial matcha swirled together in one cup — the signature duo, half and half." data-fr="Ube et matcha cérémoniel tourbillonnés dans une même tasse — le duo signature, moitié-moitié.">Ube y matcha ceremonial en un remolino dentro de la misma taza — el dúo firma, mitad y mitad.</p>
     </div>
 
     <div class="card card-hero card-hero-sm">
@@ -3685,6 +3759,8 @@ function showCat(cat, btn) {
 
   document.body.classList.toggle('menu-landing', isHome);
   document.body.classList.toggle('menu-inside', !isHome);
+  document.documentElement.classList.toggle('menu-landing', isHome);
+  document.documentElement.classList.toggle('menu-inside', !isHome);
 
   document.querySelectorAll('.page').forEach(function(page) {
     page.classList.remove('on');
@@ -3766,12 +3842,27 @@ function goToRevuelto() {
   // Reinicia la animación aunque se pulse varias veces seguidas
   card.classList.remove('card-dance');
   void card.offsetWidth; // fuerza reflow para poder reiniciar la animación
-  card.classList.add('card-dance');
 
-  const cleanup = () => card.classList.remove('card-dance');
-  card.addEventListener('animationend', cleanup, { once: true });
+  // Espera al siguiente frame antes de añadir la clase: si se pulsa el botón
+  // justo al entrar en la sección, la tarjeta puede seguir aún con su propia
+  // animación de entrada (reveal-in) a medias, y añadir la clase en el mismo
+  // frame provoca que el "primer toque" se vea cortado o sin efecto.
+  requestAnimationFrame(() => {
+    card.classList.add('card-dance');
+  });
+
+  // Solo limpiamos al terminar NUESTRA animación (cardDance / danceGlow):
+  // un listener sin filtrar podía capturar el animationend residual de
+  // reveal-in (la entrada de la tarjeta) y apagar el baile casi al instante,
+  // lo que se notaba sobre todo en el primer toque tras entrar en la sección.
+  const cleanup = (e) => {
+    if (e && e.animationName !== 'cardDance' && e.animationName !== 'danceGlow') return;
+    card.classList.remove('card-dance');
+    card.removeEventListener('animationend', cleanup);
+  };
+  card.addEventListener('animationend', cleanup);
   // Red de seguridad por si el evento no llega a dispararse
-  setTimeout(cleanup, 1500);
+  setTimeout(() => card.classList.remove('card-dance'), 1600);
 }
 
 // ══════════ SELECTOR DE TOPPING (Personaliza tu Pancake) ══════════
@@ -4191,5 +4282,25 @@ body.menu-inside .isla-nav-shell::after{
 })();
 </script>
 
+<script id="isla-v2-motion">
+(function(){
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const nav=document.querySelector('.nav-cats');
+  const tabs=nav?[...nav.querySelectorAll('.cat-tab')]:[];
+  let sx=0, sy=0, tracking=false;
+  const catOrder=['inicio','comer','beber'];
+  function activeIndex(){const i=tabs.findIndex(t=>t.classList.contains('on'));return i<0?0:i}
+  function go(delta){const i=Math.max(0,Math.min(catOrder.length-1,activeIndex()+delta));const b=tabs.find(t=>t.dataset.cat===catOrder[i]);if(b)b.click()}
+  if(nav){nav.addEventListener('touchstart',e=>{const t=e.changedTouches[0];sx=t.clientX;sy=t.clientY;tracking=true},{passive:true});nav.addEventListener('touchend',e=>{if(!tracking)return;const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;tracking=false;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.25)go(dx<0?1:-1)},{passive:true})}
+  const root=document.querySelector('.root');
+  if(root){root.addEventListener('touchstart',e=>{const t=e.changedTouches[0];sx=t.clientX;sy=t.clientY;tracking=true},{passive:true});root.addEventListener('touchend',e=>{if(!tracking)return;const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;tracking=false;if(Math.abs(dx)>75&&Math.abs(dx)>Math.abs(dy)*1.35){if(document.body.classList.contains('menu-landing')){go(dx<0?1:-1)} else if(nav){go(dx<0?1:-1)}}},{passive:true})}
+  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1)});
+  // Smooth active tab centering
+  const center=()=>{const a=document.querySelector('.cat-tab.on');if(a&&!reduce)a.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'})};
+  new MutationObserver(()=>center()).observe(nav||document.body,{subtree:true,attributes:true,attributeFilter:['class']});
+  // Reveal product cards on entry, using IntersectionObserver rather than replaying all animations on every tab.
+  if(!reduce&&'IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v2-visible');io.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll('.card,.fruit-card,.mini-card,.pan-card,.foam-card').forEach((el,i)=>{el.style.transitionDelay=Math.min(i,5)*18+'ms';io.observe(el)})}
+})();
+</script>
 </body>
 </html>
