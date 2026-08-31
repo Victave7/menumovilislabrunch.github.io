@@ -527,11 +527,15 @@ button, a { font-family: inherit; }
 .card-media {
   display: block;
   width: calc(100% + 32px);
+  max-width: calc(100% + 32px);
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: calc(var(--r) - 4px);
   margin: -14px -16px 10px;
   background: var(--sand);
+}
+video.card-media {
+  height: auto;
 }
 
 .card-row {
@@ -674,18 +678,42 @@ button, a { font-family: inherit; }
   border-radius: 20px;
 }
 
-/* ── TARJETA PUMPKIN SPICE (edición otoño) ── */
+/* ── TARJETA PUMPKIN SPICE (edición otoño / Halloween) ── */
 .card-pumpkin {
-  background: linear-gradient(160deg, #2A160D 0%, #351A10 100%);
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 88% -10%, rgba(122,58,140,0.38), transparent 55%),
+    linear-gradient(160deg, #1B0E08 0%, #2E1710 55%, #331321 100%);
   border: 1px solid rgba(201,104,42,0.5);
   border-left: 4px solid #C9682A;
+  box-shadow: 0 0 0 1px rgba(122,58,140,0.18), 0 6px 22px rgba(20,8,14,0.45);
+  animation: pumpkin-glow 4.5s ease-in-out infinite;
+}
+.card-pumpkin::before {
+  content: '🕸️';
+  position: absolute;
+  top: -10px;
+  right: -8px;
+  font-size: 46px;
+  opacity: 0.14;
+  transform: rotate(8deg);
+  pointer-events: none;
 }
 .card-pumpkin .item-name { color: #F5D9B8; }
 .card-pumpkin .item-price { color: #E89A54; }
 .card-pumpkin .item-desc { color: #C9B39C; }
 .badge-pumpkin {
-  background: linear-gradient(135deg, #C9682A 0%, #9A5B32 100%);
+  background: linear-gradient(135deg, #C9682A 0%, #6B2F7A 100%);
   color: #FBEFE1;
+  box-shadow: 0 0 10px rgba(122,58,140,0.5);
+}
+@keyframes pumpkin-glow {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(122,58,140,0.18), 0 6px 22px rgba(20,8,14,0.45); }
+  50% { box-shadow: 0 0 0 1px rgba(122,58,140,0.35), 0 6px 26px rgba(122,58,140,0.4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-pumpkin { animation: none; }
 }
 
 /* ── BRIOCHE SIGNATURE: tratamiento premium ── */
@@ -3307,7 +3335,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="card card-gold card-with-media" id="card-revuelto">
-      <video class="card-media" src="video/revueltobrioche.mp4" autoplay muted loop playsinline aria-label="Vídeo de la Brioche Revuelto"></video>
+      <video class="card-media" src="video/revueltobrioche.mp4" width="800" height="600" autoplay muted loop playsinline preload="auto" aria-label="Vídeo de la Brioche Revuelto"></video>
       <span class="badge badge-new">🏝️ <span data-en="ISLA Recommends" data-fr="Recommandation de l'ISLA">Recomendación de la Isla</span></span>
       <div class="card-row">
         <p class="item-name">Revuelto</p>
