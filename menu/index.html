@@ -44,25 +44,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Fraunces:ital,opsz,wght@1,9..144,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --white:      #FFFFFF;
-  --cream:      #FAF8F4;
-  --sand:       #F2EDE3;
-  --warm:       #E8DFD0;
-  --bark:       #5C3D28;
-  --bark-mid:   #8B5E3C;
-  --bark-light: #C4976A;
+  --cream:      #F9FAF7;
+  --sand:       #F0F2EC;
+  --warm:       #E6E9E0;
+  --bark:       #1E2A20;
+  --bark-mid:   #545B4E;
+  --bark-light: #8FA37F;
   --green:      #2D6A3F;
   --green-lt:   #4A8A5A;
   --green-bg:   #EEF5EC;
   --ube:        #6B4FA0;
   --ube-mid:    #9B79C8;
   --ube-bg:     #F0EAF9;
-  --text:       #1C1510;
-  --muted:      #6B5A47;
-  --divider:    rgba(92,61,40,0.11);
+  --text:       #141915;
+  --muted:      #5B6259;
+  --divider:    rgba(30,42,32,0.11);
   --copper:       #A8671E;
   --copper-dark:  #7A4A15;
   --copper-bg:    #FBF0DC;
@@ -134,7 +134,7 @@ button, a { font-family: inherit; }
 
 /* ── HERO ── */
 .hero {
-  background: linear-gradient(180deg, #FFF3E6 0%, #FFE1CC 35%, #FFF6ED 70%, var(--white) 100%);
+  background: linear-gradient(180deg, #F1F6EC 0%, #E3EEDD 35%, #F6F8F2 70%, var(--white) 100%);
   padding: 1.8rem 1.5rem 0;
   text-align: center;
   position: relative;
@@ -168,7 +168,7 @@ button, a { font-family: inherit; }
   letter-spacing: 0.14em;
   text-transform: uppercase;
   padding: 5px 10px 5px 7px;
-  border: 1px solid rgba(92,61,40,0.22);
+  border: 1px solid rgba(30,42,32,0.22);
   border-radius: 20px;
   background: rgba(255,255,255,0.55);
   backdrop-filter: blur(2px);
@@ -194,16 +194,14 @@ button, a { font-family: inherit; }
   margin-bottom: -6px;
 }
 .hero-logo-copy {
-  font-family: 'Fraunces', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-optical-sizing: auto;
-  font-variation-settings: 'opsz' 144;
-  font-weight: 500;
-  font-size: clamp(46px, 15vw, 64px);
-  line-height: 1;
+  font-weight: 600;
+  font-size: clamp(50px, 16vw, 70px);
+  line-height: 1.05;
   color: var(--bark);
   margin: 0 auto 0.5rem;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
 .hero-tagline {
   font-size: 10.5px;
@@ -524,6 +522,22 @@ button, a { font-family: inherit; }
 }
 .card:active { transform: scale(0.99); }
 
+/* ── TARJETA CON FOTO/VÍDEO REAL ── */
+.card-with-media { padding-top: 14px; }
+.card-media {
+  display: block;
+  width: calc(100% + 32px);
+  max-width: calc(100% + 32px);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: calc(var(--r) - 4px);
+  margin: -14px -16px 10px;
+  background: var(--sand);
+}
+video.card-media {
+  height: auto;
+}
+
 .card-row {
   display: flex;
   justify-content: space-between;
@@ -594,7 +608,112 @@ button, a { font-family: inherit; }
 .card-hero {
   background: linear-gradient(135deg, #FDF6EE 0%, #F5E8D3 100%);
   border-color: var(--bark-light);
-  box-shadow: 0 3px 16px rgba(196,151,106,0.25);
+  box-shadow: 0 3px 16px rgba(143,163,127,0.25);
+}
+
+/* ── BEBIDA DEL MES: banner de temporada (Pumpkin Spice) ── */
+.month-banner {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1C0F09 0%, #351A10 55%, #4A2412 100%);
+  border-radius: 18px;
+  padding: 16px 16px 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 8px 26px rgba(28,15,9,0.35);
+}
+.month-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 88% -10%, rgba(201,104,42,0.45), transparent 60%);
+  pointer-events: none;
+}
+.month-banner-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #F5D9B8;
+  background: rgba(201,104,42,0.28);
+  border: 1px solid rgba(201,104,42,0.55);
+  padding: 4px 11px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+.month-banner-name {
+  position: relative;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 1.1;
+  color: #FBEFE1;
+  margin-bottom: 4px;
+}
+.month-banner-desc {
+  position: relative;
+  font-size: 12px;
+  color: #E8D8C2;
+  font-weight: 300;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  max-width: 32ch;
+}
+.month-banner-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.month-banner-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: #C9682A;
+  background: #FBEFE1;
+  padding: 3px 13px;
+  border-radius: 20px;
+}
+
+/* ── TARJETA PUMPKIN SPICE (edición otoño / Halloween) ── */
+.card-pumpkin {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 88% -10%, rgba(122,58,140,0.38), transparent 55%),
+    linear-gradient(160deg, #1B0E08 0%, #2E1710 55%, #331321 100%);
+  border: 1px solid rgba(201,104,42,0.5);
+  border-left: 4px solid #C9682A;
+  box-shadow: 0 0 0 1px rgba(122,58,140,0.18), 0 6px 22px rgba(20,8,14,0.45);
+  animation: pumpkin-glow 4.5s ease-in-out infinite;
+}
+.card-pumpkin::before {
+  content: '🕸️';
+  position: absolute;
+  top: -10px;
+  right: -8px;
+  font-size: 46px;
+  opacity: 0.14;
+  transform: rotate(8deg);
+  pointer-events: none;
+}
+.card-pumpkin .item-name { color: #F5D9B8; }
+.card-pumpkin .item-price { color: #E89A54; }
+.card-pumpkin .item-desc { color: #C9B39C; }
+.badge-pumpkin {
+  background: linear-gradient(135deg, #C9682A 0%, #6B2F7A 100%);
+  color: #FBEFE1;
+  box-shadow: 0 0 10px rgba(122,58,140,0.5);
+}
+@keyframes pumpkin-glow {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(122,58,140,0.18), 0 6px 22px rgba(20,8,14,0.45); }
+  50% { box-shadow: 0 0 0 1px rgba(122,58,140,0.35), 0 6px 26px rgba(122,58,140,0.4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-pumpkin { animation: none; }
 }
 
 /* ── BRIOCHE SIGNATURE: tratamiento premium ── */
@@ -726,7 +845,7 @@ button, a { font-family: inherit; }
 .badge-ube { background: var(--ube-bg); color: var(--ube); }
 .badge-mat { background: var(--green-bg); color: var(--green); }
 .badge-fav { background: #FFF3E0; color: #E65100; }
-.badge-new { background: linear-gradient(90deg, var(--bark-light) 0%, #F0A857 100%); color: #FFF8EF; }
+.badge-new { background: linear-gradient(90deg, #E6A23C 0%, #F0B85C 100%); color: #FFF8EF; }
 .badge-rust { background: var(--rust-bg); color: var(--rust); }
 
 /* ── OPCIONALES RÁPIDOS DENTRO DE UNA TARJETA (extras del propio plato) ── */
@@ -857,7 +976,7 @@ button, a { font-family: inherit; }
   transition: box-shadow .2s, border-color .2s;
 }
 
-.foam-card.premium { background: linear-gradient(135deg, #FDF6EE 0%, #F5E8D3 100%); border-color: rgba(196,151,106,0.4); }
+.foam-card.premium { background: linear-gradient(135deg, #FDF6EE 0%, #F5E8D3 100%); border-color: rgba(143,163,127,0.4); }
 .foam-icon {
   flex: 0 0 auto;
   width: 32px;
@@ -956,7 +1075,7 @@ button, a { font-family: inherit; }
   font-family: inherit;
   -webkit-tap-highlight-color: transparent;
 }
-.foam-toggle:active { background: rgba(92,61,40,0.05); }
+.foam-toggle:active { background: rgba(30,42,32,0.05); }
 .foam-toggle-icon {
   flex: 0 0 auto;
   width: 36px;
@@ -1007,7 +1126,7 @@ button, a { font-family: inherit; }
 /* Acordeón anidado dentro de la tarjeta dorada "Personalízalo" */
 .card-hero .foam-accordion {
   background: rgba(255,255,255,0.5);
-  border-color: rgba(196,151,106,0.4);
+  border-color: rgba(143,163,127,0.4);
   margin: 12px 0 0;
 }
 .card-hero .foam-toggle-icon,
@@ -1372,8 +1491,8 @@ html.menu-landing{overflow:hidden;height:100%}
  filter:drop-shadow(0 4px 14px rgba(0,0,0,.35));
 }
 .landing-wordmark{
- display:block;font:500 clamp(43px,7vw,70px)/.78 'Fraunces',serif;
- font-style:italic;letter-spacing:.02em;
+ display:block;font:600 clamp(46px,7vw,74px)/1.02 'Cormorant Garamond',serif;
+ font-style:italic;letter-spacing:.01em;
 }
 .landing-tag{
  display:block;margin-top:9px;
@@ -1646,13 +1765,13 @@ body.menu-landing .landing-brand-lockup::after{
    ========================================================= */
 
 :root{
-  --isla-bg:#F5EFE6;
-  --isla-surface:#FBF8F2;
-  --isla-surface-2:#EEE7DC;
-  --isla-ink:#242424;
+  --isla-bg:#F9FAF7;
+  --isla-surface:#FBFCF9;
+  --isla-surface-2:#ECEEE7;
+  --isla-ink:#1A211C;
   --isla-green:#17352A;
   --isla-sage:#A8B5A2;
-  --isla-gold:#C9A86A;
+  --isla-gold:#A9955C;
   --isla-lav:#A89BBE;
   --isla-line:rgba(36,36,36,.10);
   --isla-line-strong:rgba(23,53,42,.18);
@@ -2646,6 +2765,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="sec-note" data-en="First-grade ceremonial matcha. Rich in antioxidants, with clean energy and no jitters." data-fr="Matcha cérémoniel de première qualité. Riche en antioxydants, pour une énergie douce sans nervosité.">Matcha ceremonial de primer grado. Rico en antioxidantes y con un toque de energía sin nerviosismo.</p>
     </div>
 
+    <div class="month-banner">
+      <span class="month-banner-eyebrow">🎃 <span data-en="Drink of the month" data-fr="Boisson du mois">Bebida del mes</span></span>
+      <p class="month-banner-name">Matcha Pumpkin Spice</p>
+      <p class="month-banner-desc" data-en="Ceremonial matcha meets warm autumn spice. Limited edition." data-fr="Matcha cérémoniel et épices d'automne chaleureuses. Édition limitée.">Matcha ceremonial con especias cálidas de otoño. Edición limitada.</p>
+      <div class="month-banner-row">
+        <span class="month-banner-price">6,00€</span>
+      </div>
+    </div>
+
     <div class="card card-mat">
       <span class="badge badge-mat">⭐ <span data-en="Star" data-fr="Vedette">Estrella</span></span>
       <div class="card-row">
@@ -2784,7 +2912,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="item-name" data-en="Ube Matcha" data-fr="Ube Matcha">Ube Matcha</p>
         <p class="item-price">6,00€</p>
       </div>
-      <p class="item-desc" data-en="Ube and ceremonial matcha swirled together in one cup — the signature duo, half and half." data-fr="Ube et matcha cérémoniel tourbillonnés dans une même tasse — le duo signature, moitié-moitié.">Ube y matcha ceremonial en un remolino dentro de la misma taza — el dúo firma, mitad y mitad.</p>
+      <p class="item-desc" data-en="Ceremonial matcha and ube swirled together in one cup — the signature duo, half and half." data-fr="Matcha cérémoniel et ube tourbillonnés dans une même tasse — le duo signature, moitié-moitié.">Matcha ceremonial y ube en un remolino dentro de la misma taza — el dúo firma, mitad y mitad.</p>
     </div>
 
     <div class="card card-hero card-hero-sm">
@@ -2830,6 +2958,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <p class="group-label" data-en="Specialty coffees" data-fr="Cafés spéciaux">Cafés especiales</p>
+    <div class="card card-pumpkin">
+      <span class="badge badge-pumpkin">🎃 <span data-en="Seasonal" data-fr="De saison">De temporada</span></span>
+      <div class="card-row">
+        <p class="item-name" data-en="Pumpkin Spice Latte" data-fr="Latte Pumpkin Spice">Pumpkin Spice Latte</p>
+        <p class="item-price">4,80€</p>
+      </div>
+      <p class="item-desc" data-en="Espresso with pumpkin spice syrup, warm cinnamon and steamed milk." data-fr="Espresso au sirop pumpkin spice, cannelle chaude et lait vaporisé.">Espresso con sirope pumpkin spice, canela cálida y leche vaporizada.</p>
+    </div>
+    <div class="card card-pumpkin">
+      <span class="badge badge-pumpkin">🎃 <span data-en="Seasonal" data-fr="De saison">De temporada</span></span>
+      <div class="card-row">
+        <p class="item-name" data-en="Pumpkin Spice Frappé" data-fr="Frappé Pumpkin Spice">Pumpkin Spice Frappé</p>
+        <p class="item-price">5,00€</p>
+      </div>
+      <p class="item-desc" data-en="Iced and blended version of our pumpkin spice, topped with cinnamon." data-fr="Version glacée et mixée de notre pumpkin spice, saupoudrée de cannelle.">Versión helada y batida de nuestro pumpkin spice, coronada con canela.</p>
+    </div>
     <div class="card">
       <span class="badge badge-sig" data-en="Special" data-fr="Spécial">Especial</span>
       <div class="card-row">
@@ -3137,7 +3281,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <p class="item-desc" data-en="Crystal bread with golden bacon, scrambled eggs, Edam cheese and Isla sauce." data-fr="Pain croustillant, bacon doré, œufs brouillés, fromage Edam et sauce Isla.">Pan cristal con bacon dorado, huevo revuelto, queso Edam y salsa Isla.</p>
     </div>
-    <div class="card">
+    <div class="card card-with-media">
+      <img class="card-media" src="fotos/serranito.jpeg" alt="Serranito Toast, pan tostado con jamón serrano, queso crema con ajo, mozzarella, tomate cherry y miel" loading="lazy" width="800" height="600">
       <div class="card-row">
         <p class="item-name" data-en="Serranito Toast" data-fr="Toast Serranito">Serranito Toast</p>
         <p class="item-price">8,90€</p>
@@ -3189,7 +3334,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="sec-note" data-en="Fluffy brioche, toasted and filled with our signature combinations." data-fr="Brioche moelleuse, toastée et garnie de nos combinaisons signature.">Brioche esponjosa, tostada y rellena con nuestras combinaciones signature.</p>
     </div>
 
-    <div class="card card-gold" id="card-revuelto">
+    <div class="card card-gold card-with-media" id="card-revuelto">
+      <video class="card-media" src="video/revueltobrioche.mp4" width="800" height="600" autoplay muted loop playsinline preload="auto" aria-label="Vídeo de la Brioche Revuelto"></video>
       <span class="badge badge-new">🏝️ <span data-en="ISLA Recommends" data-fr="Recommandation de l'ISLA">Recomendación de la Isla</span></span>
       <div class="card-row">
         <p class="item-name">Revuelto</p>
@@ -3585,7 +3731,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   margin:0 auto;
   padding:22px 20px 30px;
   color:#17352A;
-  background:#F5EFE6;
+  background:#F9FAF7;
 }
 .seo-intro h2{
   font-family:'Cormorant Garamond',serif;
@@ -3632,9 +3778,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       "url": "https://www.islabrunchbar.com/",
       "telephone": "+34691769434",
       "priceRange": "€€",
-      "servesCuisine": ["Brunch", "Café", "Smoothies"],
+      "servesCuisine": [
+        "Brunch",
+        "Café",
+        "Smoothies"
+      ],
       "menu": "https://www.islabrunchbar.com/menu/",
-      "sameAs": ["https://instagram.com/islabrunchbar"],
+      "sameAs": [
+        "https://instagram.com/islabrunchbar"
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Carrer Mare de Déu del Carme, 11",
@@ -3648,7 +3800,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         "@id": "https://www.islabrunchbar.com/menu/#menu",
         "name": "Carta ISLA Brunch & Bar",
         "url": "https://www.islabrunchbar.com/menu/",
-        "inLanguage": ["es", "en", "fr"]
+        "inLanguage": [
+          "es",
+          "en",
+          "fr"
+        ]
       }
     },
     {
@@ -3656,28 +3812,896 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       "@id": "https://www.islabrunchbar.com/menu/#menu",
       "name": "Carta ISLA Brunch & Bar",
       "url": "https://www.islabrunchbar.com/menu/",
-      "inLanguage": ["es", "en", "fr"],
+      "inLanguage": [
+        "es",
+        "en",
+        "fr"
+      ],
       "hasMenuSection": [
         {
           "@type": "MenuSection",
           "name": "Comer",
           "hasMenuSection": [
-            {"@type":"MenuSection","name":"Clásicos"},
-            {"@type":"MenuSection","name":"Brioche Signature"},
-            {"@type":"MenuSection","name":"Dulce"},
-            {"@type":"MenuSection","name":"Compartir"},
-            {"@type":"MenuSection","name":"Laboratorio ISLA"}
+            {
+              "@type": "MenuSection",
+              "name": "Clásicos",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "name": "Sesame Bagel",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "7.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Bagel de sésamo, aguacate, tomate rallado, bacon crujiente y huevo revuelto."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Brunch Bagel",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "7.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Bagel tostado con huevo revuelto, bacon crujiente, queso Edam y salsa Isla."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Nordic Bagel Isla",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "8.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Bagel con salmón ahumado, queso crema, rúcula y salsa Isla."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Veggie Bagel",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "7.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Bagel con aguacate, tomate cherry, queso crema y brotes frescos."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Serranito Bagel",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "8.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Bagel con jamón serrano, queso crema con ajo, tomate cherry y miel."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Bagel York Classic",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "7.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Bagel de sésamo, jamón York, queso Edam, huevo revuelto y salsa Isla."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Bagel York Mediterráneo",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "8.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Bagel de sésamo, jamón York, aguacate, tomate rallado y aceite de oliva virgen extra."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Island Chicken Bagel",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "8.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Bagel sésamo con pechuga de pollo a la plancha, bacon crujiente, queso Edam, tomate cherry y salsa Isla."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Isla Veggie",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Masa madre, aguacate, tomates cherry, queso crema, AOVE y sal."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Nordic Isla Toast",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Pan de masa madre con salmón ahumado, queso crema, rúcula y salsa Isla."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Tuna Mayo",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "5.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Atún con mayonesa y un toque vibrante de limón."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Bacon Brunch",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Pan cristal con bacon dorado, huevo revuelto, queso Edam y salsa Isla."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Serranito Toast",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "8.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Pan tostado con jamón serrano, queso crema con ajo, mozzarella, tomate cherry y miel."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Tosta York Cherry",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "7.20",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Pan de cristal, jamón York, mozzarella, tomates cherry."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Croissant Gourmet",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "4.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Jamón York y queso Edam fundido en hojaldre crujiente."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Breakfast Croissant",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Croissant con huevo revuelto, bacon, queso Edam y salsa Isla."
+                }
+              ]
+            },
+            {
+              "@type": "MenuSection",
+              "name": "Brioche Signature",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "name": "Revuelto",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "8.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Brioche con huevo revuelto, bacon, cebolla frita crujiente y salsa peach chipotle mayo."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Serranito Brioche",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "9.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Brioche, queso crema con ajo, jamón serrano, mozzarella, tomate cherry y miel."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Fru Creation",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "8.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Brioche con aguacate, huevo revuelto, tomate cherry y un toque de miel picante."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Nordic Brioche",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "9.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Brioche con salmón ahumado, queso crema y rúcula."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Brioche York Deluxe",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "9.00",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Pan brioche, jamón York, huevo revuelto, mozzarella y salsa Isla."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Island Chicken Brioche",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "9.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Pan brioche con pechuga de pollo a la plancha, mozzarella, bacon crujiente, tomate cherry y salsa Isla."
+                }
+              ]
+            },
+            {
+              "@type": "MenuSection",
+              "name": "Dulce",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "name": "New York",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "8.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Tortitas americanas, bacon crujiente, huevo revuelto y sirope de arce."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Brioche dulce",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Brioche esponjosa con fruta fresca de temporada."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Yogurt de la Isla",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "5.20",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Yogur cremoso, fruta del día, miel de agave y granola crujiente."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "PROTEIN YOGURT",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Yogur griego + proteína + fruta + granola."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "MATCHA YOGURT",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Yogur griego + matcha + fruta + granola + coco."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "TROPICAL PASSION",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Yogur natural, maracuyá, granola, y miel."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Muffin Lotus",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "3.50",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Mini Croissant relleno",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "1.50",
+                    "priceCurrency": "EUR"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "MenuSection",
+              "name": "Compartir",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "name": "La Isla de Zeian",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "9.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Patata, pollo desmenuzado, ketchup, mayo y queso mozzarella gratinado."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Patatas Bravas Isla",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Patatas fritas crujientes con alioli y nuestra salsa brava Isla."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Batata Isla",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "7.00",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Bastones de batata con un huevo en el corazón de la montaña, con alioli o salsa brava Isla."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Mozzarella Bacon Tosta",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.00",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Tosta de pan con ajo, mozzarella fundida y trozos de bacon por encima."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Provolone Isla",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "8.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Queso provolone fundido con especias y pan tostado para mojar."
+                }
+              ]
+            },
+            {
+              "@type": "MenuSection",
+              "name": "Laboratorio ISLA"
+            }
           ]
         },
         {
           "@type": "MenuSection",
           "name": "Beber",
           "hasMenuSection": [
-            {"@type":"MenuSection","name":"Matcha"},
-            {"@type":"MenuSection","name":"Ube"},
-            {"@type":"MenuSection","name":"Café"},
-            {"@type":"MenuSection","name":"Smoothies"},
-            {"@type":"MenuSection","name":"Otras bebidas"}
+            {
+              "@type": "MenuSection",
+              "name": "Matcha",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "name": "Matcha Pumpkin Spice",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.00",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Matcha ceremonial con sirope pumpkin spice y canela cálida."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Coconut Water Matcha",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "5.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Matcha ceremonial combinado con la pureza del agua de coco."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Ice Matcha Frutal",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "5.00",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Versión helada con notas frutales: mango, fresa o maracuyá."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Matcha Latte",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "4.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Energía limpia con la textura cremosa de la leche vaporizada."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Matcha Tradicional",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "3.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "La experiencia pura del matcha batido de forma artesanal."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Té de Matcha",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "3.00",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Infusión ligera, limpia y antioxidante."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Matcha Elche",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "5.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Matcha ceremonial con leche de avena cremosa sobre un fondo de dátiles — dulzor natural, sin azúcar añadido."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Matcha Ube",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.00",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Matcha ceremonial y ube en un remolino dentro de la misma taza — el dúo firma, mitad y mitad."
+                }
+              ]
+            },
+            {
+              "@type": "MenuSection",
+              "name": "Ube",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "name": "Ube Latte",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "4.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Elixir de ube con vainilla y coco, batido con leche cremosa. Caliente o con hielo."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Ube Passion Frappé",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "5.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Ube con la acidez eléctrica del maracuyá. Cremoso y exótico."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Dirty Ube Espresso",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "5.40",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Base dulce de Ube Latte coronada con un shot de espresso intenso."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Isla Ube Breeze",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "5.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Agua de coco natural infusionada con ube. Ligero e hidratante."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Ube Fruit",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.00",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Ube batido con puré de fruta a elegir: mango, fresa o maracuyá."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Ube Matcha",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.00",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Matcha ceremonial y ube en un remolino dentro de la misma taza — el dúo firma, mitad y mitad."
+                }
+              ]
+            },
+            {
+              "@type": "MenuSection",
+              "name": "Café",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "name": "Pumpkin Spice Latte",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "4.80",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Espresso con sirope pumpkin spice, canela cálida y leche vaporizada."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Pumpkin Spice Frappé",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "5.00",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Versión helada y batida de nuestro pumpkin spice, coronada con canela."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Pistacho Latte",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "4.80",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Espresso con crema de pistacho y leche vaporizada."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Frappés",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "4.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Avellana, chocolate, vainilla o caramelo. Extra sirope +0,50€."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Iced Coffee",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "3.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Café helado con sirope, sabor a elegir incluido."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Espresso",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "1.60",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Doble espresso",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "1.90",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Cortado",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "1.70",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Americano",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "1.80",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Café con leche",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "2.10",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Bombón",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "2.50",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Latte",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "2.50",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Cappuccino",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "2.70",
+                    "priceCurrency": "EUR"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "MenuSection",
+              "name": "Smoothies",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "name": "Blue Power Shake",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Espirulina azul, mango, piña y yogurt."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Pink Paradise",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.80",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Frutas silvestres y yogurt. El más fotogénico."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Passion Mango Tropic",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.90",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Mango maduro, maracuyá y piña. Puro trópico."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Isla Fit Power Shake",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "7.00",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Plátano, frutas silvestres y proteína con leche de almendras."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Wild Berry Protein",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.80",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Frutas silvestres (frambuesa, arándanos y mora), fresa y proteína con agua de coco."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Isla Tropical Exotic",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.80",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Papaya, mango, piña, melón canario, melón Galia y uvas con leche de avena."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Morir Soñando",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "4.00",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Zumo de naranja y leche. El clásico caribeño."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Avena con Limón",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "4.00",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Avena con Maracuyá",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "4.00",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Zumo de Naranja Natural",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "2.50",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "100% recién exprimido."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Limonada Casera",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "3.50",
+                    "priceCurrency": "EUR"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "MenuSection",
+              "name": "Otras bebidas",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "name": "Coca-Cola / Zero",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "2.50",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Sprite",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "2.50",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Fanta",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "2.50",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Aquarius",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "2.60",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Nestea",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "2.80",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Tónica Schweppes",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "2.80",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Bitter Kas",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "2.50",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Sidra Maeloc",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "3.00",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Agua Nestlé",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "1.80",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Agua con gas",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "2.00",
+                    "priceCurrency": "EUR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Agua de coco",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "3.50",
+                    "priceCurrency": "EUR"
+                  }
+                }
+              ]
+            }
           ]
         }
       ]
