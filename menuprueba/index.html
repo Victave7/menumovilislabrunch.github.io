@@ -607,6 +607,87 @@ button, a { font-family: inherit; }
   box-shadow: 0 3px 16px rgba(143,163,127,0.25);
 }
 
+/* ── BEBIDA DEL MES: banner de temporada (Pumpkin Spice) ── */
+.month-banner {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1C0F09 0%, #351A10 55%, #4A2412 100%);
+  border-radius: 18px;
+  padding: 16px 16px 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 8px 26px rgba(28,15,9,0.35);
+}
+.month-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 88% -10%, rgba(201,104,42,0.45), transparent 60%);
+  pointer-events: none;
+}
+.month-banner-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #F5D9B8;
+  background: rgba(201,104,42,0.28);
+  border: 1px solid rgba(201,104,42,0.55);
+  padding: 4px 11px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+.month-banner-name {
+  position: relative;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 1.1;
+  color: #FBEFE1;
+  margin-bottom: 4px;
+}
+.month-banner-desc {
+  position: relative;
+  font-size: 12px;
+  color: #E8D8C2;
+  font-weight: 300;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  max-width: 32ch;
+}
+.month-banner-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.month-banner-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: #C9682A;
+  background: #FBEFE1;
+  padding: 3px 13px;
+  border-radius: 20px;
+}
+
+/* ── TARJETA PUMPKIN SPICE (edición otoño) ── */
+.card-pumpkin {
+  background: linear-gradient(160deg, #2A160D 0%, #351A10 100%);
+  border: 1px solid rgba(201,104,42,0.5);
+  border-left: 4px solid #C9682A;
+}
+.card-pumpkin .item-name { color: #F5D9B8; }
+.card-pumpkin .item-price { color: #E89A54; }
+.card-pumpkin .item-desc { color: #C9B39C; }
+.badge-pumpkin {
+  background: linear-gradient(135deg, #C9682A 0%, #9A5B32 100%);
+  color: #FBEFE1;
+}
+
 /* ── BRIOCHE SIGNATURE: tratamiento premium ── */
 .brioche-premium {
   background: linear-gradient(180deg, var(--copper-bg) 0%, transparent 260px);
@@ -2656,6 +2737,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="sec-note" data-en="First-grade ceremonial matcha. Rich in antioxidants, with clean energy and no jitters." data-fr="Matcha cérémoniel de première qualité. Riche en antioxydants, pour une énergie douce sans nervosité.">Matcha ceremonial de primer grado. Rico en antioxidantes y con un toque de energía sin nerviosismo.</p>
     </div>
 
+    <div class="month-banner">
+      <span class="month-banner-eyebrow">🎃 <span data-en="Drink of the month" data-fr="Boisson du mois">Bebida del mes</span></span>
+      <p class="month-banner-name">Matcha Pumpkin Spice</p>
+      <p class="month-banner-desc" data-en="Ceremonial matcha meets warm autumn spice. Limited edition." data-fr="Matcha cérémoniel et épices d'automne chaleureuses. Édition limitée.">Matcha ceremonial con especias cálidas de otoño. Edición limitada.</p>
+      <div class="month-banner-row">
+        <span class="month-banner-price">6,00€</span>
+      </div>
+    </div>
+
     <div class="card card-mat">
       <span class="badge badge-mat">⭐ <span data-en="Star" data-fr="Vedette">Estrella</span></span>
       <div class="card-row">
@@ -2794,7 +2884,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="item-name" data-en="Ube Matcha" data-fr="Ube Matcha">Ube Matcha</p>
         <p class="item-price">6,00€</p>
       </div>
-      <p class="item-desc" data-en="Ube and ceremonial matcha swirled together in one cup — the signature duo, half and half." data-fr="Ube et matcha cérémoniel tourbillonnés dans une même tasse — le duo signature, moitié-moitié.">Ube y matcha ceremonial en un remolino dentro de la misma taza — el dúo firma, mitad y mitad.</p>
+      <p class="item-desc" data-en="Ceremonial matcha and ube swirled together in one cup — the signature duo, half and half." data-fr="Matcha cérémoniel et ube tourbillonnés dans une même tasse — le duo signature, moitié-moitié.">Matcha ceremonial y ube en un remolino dentro de la misma taza — el dúo firma, mitad y mitad.</p>
     </div>
 
     <div class="card card-hero card-hero-sm">
@@ -2840,6 +2930,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <p class="group-label" data-en="Specialty coffees" data-fr="Cafés spéciaux">Cafés especiales</p>
+    <div class="card card-pumpkin">
+      <span class="badge badge-pumpkin">🎃 <span data-en="Seasonal" data-fr="De saison">De temporada</span></span>
+      <div class="card-row">
+        <p class="item-name" data-en="Pumpkin Spice Latte" data-fr="Latte Pumpkin Spice">Pumpkin Spice Latte</p>
+        <p class="item-price">4,80€</p>
+      </div>
+      <p class="item-desc" data-en="Espresso with pumpkin spice syrup, warm cinnamon and steamed milk." data-fr="Espresso au sirop pumpkin spice, cannelle chaude et lait vaporisé.">Espresso con sirope pumpkin spice, canela cálida y leche vaporizada.</p>
+    </div>
+    <div class="card card-pumpkin">
+      <span class="badge badge-pumpkin">🎃 <span data-en="Seasonal" data-fr="De saison">De temporada</span></span>
+      <div class="card-row">
+        <p class="item-name" data-en="Pumpkin Spice Frappé" data-fr="Frappé Pumpkin Spice">Pumpkin Spice Frappé</p>
+        <p class="item-price">5,00€</p>
+      </div>
+      <p class="item-desc" data-en="Iced and blended version of our pumpkin spice, topped with cinnamon." data-fr="Version glacée et mixée de notre pumpkin spice, saupoudrée de cannelle.">Versión helada y batida de nuestro pumpkin spice, coronada con canela.</p>
+    </div>
     <div class="card">
       <span class="badge badge-sig" data-en="Special" data-fr="Spécial">Especial</span>
       <div class="card-row">
@@ -4076,6 +4182,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               "hasMenuItem": [
                 {
                   "@type": "MenuItem",
+                  "name": "Matcha Pumpkin Spice",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "6.00",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Matcha ceremonial con sirope pumpkin spice y canela cálida."
+                },
+                {
+                  "@type": "MenuItem",
                   "name": "Coconut Water Matcha",
                   "offers": {
                     "@type": "Offer",
@@ -4208,7 +4324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     "price": "6.00",
                     "priceCurrency": "EUR"
                   },
-                  "description": "Ube y matcha ceremonial en un remolino dentro de la misma taza — el dúo firma, mitad y mitad."
+                  "description": "Matcha ceremonial y ube en un remolino dentro de la misma taza — el dúo firma, mitad y mitad."
                 }
               ]
             },
@@ -4216,6 +4332,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               "@type": "MenuSection",
               "name": "Café",
               "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "name": "Pumpkin Spice Latte",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "4.80",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Espresso con sirope pumpkin spice, canela cálida y leche vaporizada."
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Pumpkin Spice Frappé",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "5.00",
+                    "priceCurrency": "EUR"
+                  },
+                  "description": "Versión helada y batida de nuestro pumpkin spice, coronada con canela."
+                },
                 {
                   "@type": "MenuItem",
                   "name": "Pistacho Latte",
