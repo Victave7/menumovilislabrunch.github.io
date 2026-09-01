@@ -359,6 +359,35 @@ footer{padding:26px 22px 40px;text-align:center;font-family:var(--mono);font-siz
 .reel-wrap{max-width:500px;margin:0 auto 20px}.reel-card{position:relative;border:1px solid rgba(184,90,36,.45);background:#050403;overflow:hidden}.reel-card video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:#050403}.reel-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;background:linear-gradient(180deg,transparent 45%,rgba(8,7,6,.9) 100%);pointer-events:none}.reel-kicker{font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--orange-burnt);text-transform:uppercase}.reel-title{font-size:28px;line-height:1;font-weight:900;margin-top:6px}.reel-title em{color:var(--orange)}.drink-links{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;max-width:500px;margin:0 auto}.drink-link{border:1px solid rgba(232,216,194,.18);background:rgba(8,7,6,.5);overflow:hidden;display:block;transition:.25s ease}.drink-link:hover{transform:translateY(-2px);border-color:var(--orange)}.drink-link img{width:100%;height:92px;object-fit:cover}.drink-link-body{padding:10px 8px 12px;text-align:center}.drink-link strong{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em}.drink-link span{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.08em;color:var(--orange-burnt);margin-top:5px;text-transform:uppercase}.discount-mini{max-width:420px;margin:0 auto;text-align:center}.discount-amount{font-size:44px;line-height:1;font-style:italic;font-weight:900;color:var(--orange);margin:10px 0 7px}.discount-code{font-family:var(--mono);font-weight:700;font-size:30px;letter-spacing:.08em;color:var(--cream);margin:8px 0}.discount-note{font-family:var(--mono);font-size:9px;line-height:1.5;letter-spacing:.06em;color:var(--cream);opacity:.5;text-transform:uppercase;margin-bottom:16px}.discount-mini .btn{width:100%;justify-content:center}.copy-btn{margin-top:8px!important}.final-note{margin-bottom:22px}.compact-section{padding-top:42px!important;padding-bottom:42px!important}
 @media(max-width:420px){.drink-link img{height:82px}.drink-link-body{padding:9px 4px 11px}.discount-amount{font-size:40px}}
 
+
+/* iOS / Safari video reliability */
+.reel-card{position:relative;background:#050403;overflow:hidden}
+.reel-card video{
+  display:block;width:100%;aspect-ratio:9/16;object-fit:cover;
+  background:#050403;-webkit-transform:translateZ(0);transform:translateZ(0);
+}
+.reel-poster{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  z-index:2;transition:opacity .25s ease;pointer-events:none;
+}
+.reel-card.video-ready .reel-poster{opacity:0}
+.reel-play-overlay{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  z-index:4;width:58px;height:58px;border:1px solid rgba(232,216,194,.7);
+  border-radius:50%;background:rgba(8,7,6,.62);display:flex;
+  align-items:center;justify-content:center;color:var(--cream);
+  font-family:var(--mono);font-size:18px;pointer-events:none;
+  transition:opacity .25s ease,transform .25s ease;
+}
+.reel-card.video-ready .reel-play-overlay{opacity:0;transform:translate(-50%,-50%) scale(.9)}
+.reel-ios-note{
+  position:absolute;left:50%;bottom:14px;transform:translateX(-50%);
+  z-index:4;font-family:var(--mono);font-size:8px;letter-spacing:.08em;
+  text-transform:uppercase;background:rgba(8,7,6,.72);border:1px solid rgba(232,216,194,.2);
+  padding:7px 10px;white-space:nowrap;opacity:.75;pointer-events:none;
+}
+.reel-card.video-ready .reel-ios-note{opacity:0}
+
 </style>
 </head>
 <body>
@@ -402,10 +431,19 @@ footer{padding:26px 22px 40px;text-align:center;font-family:var(--mono);font-siz
   </div>
 
   <div class="reel-wrap reveal">
-    <div class="reel-card">
-      <video id="reelVideo" playsinline controls preload="metadata" poster="">
+    <div class="reel-card" id="reelCard">
+      <video id="reelVideo"
+        playsinline
+        webkit-playsinline
+        controls
+        preload="auto"
+        poster="/bebidadelmes/imagen/hot.jpeg"
+        muted>
         <source src="/bebidadelmes/video/REL.mp4" type="video/mp4">
       </video>
+      <img class="reel-poster" src="/bebidadelmes/imagen/hot.jpeg" alt="Pumpkin Spice — Isla Brunch & Bar">
+      <div class="reel-play-overlay">▶</div>
+      <div class="reel-ios-note">Toca para reproducir</div>
       <div class="reel-overlay">
         <div class="reel-kicker">PUMPKIN_SPICE_2026.REEL</div>
         <div class="reel-title">¿Cuál es<br><em>la tuya?</em></div>
@@ -475,7 +513,44 @@ footer{padding:26px 22px 40px;text-align:center;font-family:var(--mono);font-siz
   var code='PUMPKIN10',wa=document.getElementById('whatsappBtn'),copy=document.getElementById('copyCodeBtn');
   if(wa){wa.href='https://wa.me/34697759434?text='+encodeURIComponent('Hola! Vengo de la web de Pumpkin Spice 🎃 Quiero utilizar mi código '+code+' para obtener el 10% de descuento en una bebida Pumpkin Spice.');}
   if(copy){copy.addEventListener('click',function(){var done=function(){copy.textContent='Código copiado ✓';toast('PUMPKIN10 COPIADO');setTimeout(function(){copy.textContent='Copiar código';},1800);};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(code).then(done).catch(done);}else{var ta=document.createElement('textarea');ta.value=code;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();done();}});}
-  var reel=document.getElementById('reelVideo');if(reel&&!reduced){var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){reel.play().catch(function(){});}else{reel.pause();}});},{threshold:.55});ro.observe(reel);}
+  var reel=document.getElementById('reelVideo');
+  var reelCard=document.getElementById('reelCard');
+  if(reel){
+    // Safari/iPhone: explicitly load the MP4 and keep it muted so autoplay is permitted.
+    reel.muted=true;
+    reel.setAttribute('muted','');
+    reel.setAttribute('playsinline','');
+    reel.setAttribute('webkit-playsinline','');
+    reel.preload='auto';
+    reel.load();
+
+    function reelReady(){
+      if(reelCard) reelCard.classList.add('video-ready');
+    }
+    reel.addEventListener('loadeddata',reelReady,{once:true});
+    reel.addEventListener('playing',reelReady,{once:true});
+
+    // Try muted autoplay when the Reel enters the viewport.
+    if(!reduced && 'IntersectionObserver' in window){
+      var ro=new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if(e.isIntersecting){
+            var p=reel.play();
+            if(p&&p.catch){p.catch(function(){/* Safari may require a tap; native controls remain available. */});}
+          }else{
+            reel.pause();
+          }
+        });
+      },{threshold:.25});
+      ro.observe(reel);
+    }
+
+    // Any direct tap/click on the video is a user gesture and reliably starts Safari playback.
+    reel.addEventListener('click',function(){
+      var p=reel.play();
+      if(p&&p.then){p.then(reelReady).catch(function(){});}
+    });
+  }
 })();
 </script>
 
