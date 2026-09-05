@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cócteles en Elche | Isla Brunch & Bar</title>
+<meta name="description" content="Cócteles de autor, Don Julio, tropical cocktails, mojitos y experiencias nocturnas en Isla Brunch & Bar, Elche.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://islabrunchbar.com/cocteles/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cócteles en Elche | Isla Brunch & Bar">
+<meta property="og:description" content="Tropical cocktails. Don Julio. Signature creations. Desde las 20:00, ISLA cambia de ritmo.">
+<meta property="og:url" content="https://islabrunchbar.com/cocteles/">
+<meta property="og:locale" content="es_ES">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,480;0,9..144,600;1,9..144,420&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BarOrPub",
+  "name": "Isla Brunch & Bar",
+  "url": "https://islabrunchbar.com/cocteles/",
+  "servesCuisine": "Cocktails",
+  "address": {"@type":"PostalAddress","streetAddress":"C/ Nuestra Señora del Carmen 11","addressLocality":"Elche","addressRegion":"Alicante","addressCountry":"ES"},
+  "hasMenu": {"@type":"Menu","name":"Carta de cócteles ISLA","hasMenuSection":[
+    {"@type":"MenuSection","name":"Don Julio"},
+    {"@type":"MenuSection","name":"Isla Originals"},
+    {"@type":"MenuSection","name":"Isla Signature"},
+    {"@type":"MenuSection","name":"Isla Ritual"}
+  ]}
+}
+</script>
+
+<style>
+:root{
+  --ink:#f3ede0;
+  --ink-dim:#c9cebd;
+  --ink-mute:#8c9787;
+  --page:#121d18;
+  --page-2:#0e1713;
+  --line:rgba(243,237,224,.12);
+  --line-strong:rgba(243,237,224,.24);
+  --clay-soft:#e08a52;
+  --clay:#bd6d3f;
+  --clay-deep:#20130a;
+  --gold:#d3ac68;
+  --gold-soft:#ecd8a4;
+  --moss-soft:#9dbb8f;
+  --moss:#7c9a72;
+  --moss-deep:#14201a;
+  --ember:#b4552f;
+  --ember-deep:#14100a;
+  --disp:'Fraunces', serif;
+  --body:'Work Sans', sans-serif;
+  --pad:22px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation:none !important; transition-duration:.001ms !important;} }
+body{margin:0; background:var(--page); color:var(--ink); font-family:var(--body); font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased; overflow-x:hidden;}
+h1,h2,h3{font-family:var(--disp); font-weight:460; margin:0;}
+a{color:inherit;} button{font-family:inherit; cursor:pointer; background:none; border:none; color:inherit;}
+::selection{background:var(--gold); color:#1c1206;}
+:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+svg.icon{stroke:currentColor; fill:none; stroke-width:1.3; stroke-linecap:round; stroke-linejoin:round;}
+.emboss{text-shadow:0 1px 0 rgba(255,255,255,.05), 0 -1px 2px rgba(0,0,0,.5);}
+
+@keyframes riseIn{from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);}}
+@keyframes breathe{0%,100%{opacity:.45; transform:scale(1);} 50%{opacity:.85; transform:scale(1.06);}}
+@keyframes flicker{0%,100%{opacity:.65;} 45%{opacity:1;} 55%{opacity:.9;}}
+
+/* ---------------- PHOTO SLOT (works with or without a real photo) ---------------- */
+.photo-slot{position:relative; overflow:hidden; border-radius:4px; isolation:isolate;
+  background:radial-gradient(130% 110% at 28% 18%, var(--tone-soft) 0%, var(--tone-deep) 72%);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), inset 0 18px 40px rgba(0,0,0,.35);}
+.photo-slot img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+.photo-slot .fallback{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:rgba(243,237,224,.82);}
+.photo-slot .glow{position:absolute; inset:-40%; background:radial-gradient(circle at 50% 38%, rgba(255,255,255,.22), transparent 62%); mix-blend-mode:overlay; animation:breathe 7s ease-in-out infinite;}
+.photo-slot .grain{position:absolute; inset:0; opacity:.10; mix-blend-mode:overlay; pointer-events:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");}
+.photo-slot::after{content:''; position:absolute; inset:0; background:linear-gradient(115deg, transparent 38%, rgba(255,255,255,.20) 50%, transparent 62%); transform:translateX(-140%); transition:transform .85s cubic-bezier(.2,.7,.2,1); pointer-events:none;}
+.photo-slot.glint::after{transform:translateX(140%);}
+.tone-clay{--tone-soft:#8a4a26; --tone-deep:var(--clay-deep);}
+.tone-moss{--tone-soft:#3c5a3a; --tone-deep:var(--moss-deep);}
+.tone-gold{--tone-soft:#5a4522; --tone-deep:var(--ember-deep);}
+
+/* ---------------- HERO ---------------- */
+.hero{position:relative; padding:calc(46px + env(safe-area-inset-top)) var(--pad) 54px; overflow:hidden;
+  background:radial-gradient(90% 60% at 50% -10%, rgba(211,172,104,.10), transparent 65%);}
+.hero-top{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--ink-mute); letter-spacing:.03em;}
+.hero-badge{border:1px solid var(--line-strong); border-radius:99px; padding:5px 12px; font-size:12px;}
+.hero-main{margin-top:56px; display:flex; align-items:flex-end; gap:26px;}
+.hero-word{font-size:clamp(58px,20vw,88px); line-height:.86; animation:riseIn .9s cubic-bezier(.2,.8,.2,1) both;}
+.hero-illust{flex:0 0 auto; width:78px; height:112px; color:var(--gold-soft); opacity:.92; margin-bottom:6px;
+  animation:riseIn 1.05s .18s cubic-bezier(.2,.8,.2,1) both; transition:transform .05s linear;}
+.hero-sub{font-family:var(--disp); font-style:italic; font-weight:420; font-size:clamp(19px,5.6vw,25px); color:var(--gold); margin-top:14px;
+  animation:riseIn .9s .12s cubic-bezier(.2,.8,.2,1) both;}
+.hero-tag{margin-top:14px; font-size:15.5px; color:var(--ink-dim); max-width:32ch; animation:riseIn .9s .22s cubic-bezier(.2,.8,.2,1) both;}
+.hero-rule{margin-top:30px; border:none; border-top:1px solid var(--line);}
+
+/* ---------------- NAV ---------------- */
+.navwrap{position:sticky; top:0; z-index:40; background:rgba(18,29,24,.94); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+.navscroll{display:flex; gap:22px; overflow-x:auto; padding:15px var(--pad); scrollbar-width:none; -webkit-overflow-scrolling:touch;}
+.navscroll::-webkit-scrollbar{display:none;}
+.navlink{flex:0 0 auto; white-space:nowrap; font-size:13px; letter-spacing:.03em; color:var(--ink-mute); padding-bottom:4px; border-bottom:1px solid transparent; transition:color .2s, border-color .2s;}
+.navlink.active{color:var(--ink); border-bottom-color:var(--gold);}
+
+/* ---------------- SECTION SHELL ---------------- */
+.section{padding:64px var(--pad) 10px;}
+.section-head{max-width:38ch; margin-bottom:32px;}
+.section-eyebrow{font-size:12.5px; color:var(--ink-mute); margin-bottom:6px;}
+.section-title{font-size:clamp(29px,8vw,39px);}
+.section-sub{font-family:var(--disp); font-style:italic; color:var(--gold); font-size:16.5px; margin-top:6px;}
+.section-note{font-size:14px; color:var(--ink-dim); margin-top:10px;}
+.band{position:relative;}
+.band.--clay{background:linear-gradient(180deg,var(--clay-deep),var(--page) 88%);}
+.band.--ember{background:linear-gradient(180deg,var(--ember-deep),var(--page) 88%); overflow:hidden;}
+.band.--ember::before{content:''; position:absolute; inset:0; background:radial-gradient(52% 42% at 50% 14%, rgba(211,172,104,.16), transparent 72%); animation:flicker 6s ease-in-out infinite; pointer-events:none;}
+
+/* ---------------- MENU ROWS (with mini photo-slot thumbnail) ---------------- */
+.menu-list{border-top:1px solid var(--line);}
+.menu-row{display:flex; align-items:center; gap:12px; padding:14px 0; border-bottom:1px solid var(--line); cursor:pointer; transition:padding-left .25s ease;}
+.menu-row:active{padding-left:4px;}
+.menu-row .thumb{width:38px; height:38px; flex:0 0 auto;}
+.menu-row .thumb .fallback svg{width:18px; height:18px;}
+.menu-row .name{font-size:16.5px;}
+.menu-row .leader{flex:1; border-bottom:1px dotted var(--line-strong); transform:translateY(-4px); min-width:8px;}
+.menu-row .price{font-family:var(--disp); font-size:15px; white-space:nowrap; color:var(--ink-dim);}
+.menu-row.--donjulio .price{color:var(--clay-soft);}
+.menu-row.--tint .price{color:var(--moss-soft);}
+
+/* ---------------- DON JULIO FEATURE ---------------- */
+.dj-feature{position:relative; margin-bottom:34px; cursor:pointer;}
+.dj-feature .photo-slot{aspect-ratio:5/4;}
+.dj-feature .fallback svg{width:52px; height:52px;}
+.dj-feature .cap{margin-top:16px;}
+.dj-feature .f-name{font-size:clamp(28px,8.5vw,36px); line-height:1.03;}
+.dj-feature .f-desc{margin-top:8px; font-size:15px; color:var(--ink-dim); font-style:italic; font-family:var(--disp);}
+.dj-feature .f-price{margin-top:14px; font-family:var(--disp); font-size:19px; color:var(--clay-soft);}
+
+/* ---------------- VOLCAN mystery ---------------- */
+.mystery{position:relative; margin-bottom:32px; cursor:pointer;}
+.mystery .photo-slot{aspect-ratio:16/10;}
+.mystery .fallback svg{width:44px; height:44px;}
+.mystery .stamp{position:absolute; top:14px; left:14px; z-index:2; font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:#1c1206; background:var(--gold); padding:5px 10px; border-radius:99px; font-weight:600;}
+.mystery .cap{margin-top:16px;}
+.mystery .f-name{font-size:clamp(26px,7.5vw,32px);}
+.mystery .redacted{display:inline-block; margin-top:8px; font-family:var(--disp); font-style:italic; color:var(--ink-mute);}
+.mystery .redacted .bar{display:inline-block; width:118px; height:12px; background:var(--ink-mute); opacity:.4; border-radius:2px; vertical-align:middle; margin:0 3px;}
+.mystery .f-price{margin-top:14px; font-family:var(--disp); font-size:18px; color:var(--moss-soft);}
+
+/* ---------------- SIGNATURE ---------------- */
+.sig-grid{display:grid; grid-template-columns:1fr; gap:28px;}
+.sig-item{cursor:pointer;}
+.sig-item .photo-slot{aspect-ratio:4/3; margin-bottom:14px;}
+.sig-item .fallback svg{width:36px; height:36px;}
+.sig-item .tag{font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold);}
+.sig-item .f-name{font-size:23px; margin-top:6px;}
+.sig-item .f-desc{margin-top:5px; color:var(--ink-dim); font-size:14.5px;}
+.sig-item .f-price{margin-top:10px; font-family:var(--disp); color:var(--gold); font-size:17px;}
+@media(min-width:640px){.sig-grid{grid-template-columns:1fr 1fr;}}
+
+/* ---------------- RITUAL TICKETS ---------------- */
+.ticket{position:relative; border:1px solid var(--line-strong); padding:18px; margin-bottom:18px; display:flex; gap:16px; cursor:pointer;}
+.ticket .photo-slot{width:88px; height:88px; flex:0 0 auto;}
+.ticket .fallback svg{width:32px; height:32px;}
+.ticket .f-name{font-size:21px;}
+.ticket .f-desc{margin-top:4px; color:var(--ink-dim); font-size:13.5px;}
+.ticket .service-note{margin-top:10px; font-size:12px; color:var(--ink-mute); letter-spacing:.02em;}
+.ticket .f-price{margin-top:12px; font-family:var(--disp); font-size:17px; color:var(--gold);}
+.ticket-btns{display:flex; gap:8px; margin-top:14px;}
+.btn{flex:1; text-align:center; padding:11px 14px; border-radius:99px; font-size:13px; border:1px solid var(--line-strong); color:var(--ink-dim); transition:background .2s,color .2s,border-color .2s;}
+.btn.--primary{background:var(--ink); color:var(--page); border-color:var(--ink); font-weight:600;}
+.btn.--gold{border-color:var(--gold); color:var(--gold); font-weight:600;}
+.btn:active{transform:scale(.97);}
+
+/* ---------------- DESTILADOS ---------------- */
+.segrow{display:flex; gap:18px; margin-bottom:8px; border-bottom:1px solid var(--line);}
+.seg{font-size:13px; color:var(--ink-mute); padding-bottom:10px; border-bottom:1px solid transparent; margin-bottom:-1px; transition:color .2s, border-color .2s;}
+.seg.active{color:var(--ink); border-color:var(--gold);}
+.spirit-label{font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-mute); margin:26px 0 4px;}
+
+/* ---------------- AFTER DARK ---------------- */
+.afterdark{position:relative; padding:76px var(--pad); text-align:center; border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden;}
+.afterdark::before{content:''; position:absolute; inset:0; background:radial-gradient(60% 60% at 50% 100%, rgba(180,85,47,.16), transparent 70%); animation:flicker 8s ease-in-out infinite;}
+.afterdark-title{position:relative; font-size:clamp(34px,11vw,52px);}
+.afterdark-copy{position:relative; margin-top:8px; color:var(--ink-mute); font-size:14px;}
+
+/* ---------------- FINAL ---------------- */
+.final{padding:60px var(--pad) 46px; text-align:center;}
+.final-title{font-size:clamp(22px,6.5vw,28px); max-width:16ch; margin:0 auto 24px;}
+.final-btns{display:flex; flex-direction:column; gap:9px; max-width:320px; margin:0 auto;}
+.final-btn{padding:15px; border-radius:2px; border:1px solid var(--line-strong); font-size:13px; letter-spacing:.05em; text-transform:uppercase; transition:transform .15s;}
+.final-btn:active{transform:scale(.97);}
+.final-btn.--gold{background:var(--gold); color:#1c1206; border-color:var(--gold); font-weight:600;}
+.final-foot{margin-top:30px; font-size:12px; color:var(--ink-mute);}
+footer.site{padding:22px var(--pad) 40px; text-align:center; font-size:12px; color:var(--ink-mute); border-top:1px solid var(--line);}
+
+/* ---------------- BOTTOM SHEET ---------------- */
+.sheet-overlay{position:fixed; inset:0; background:rgba(6,10,8,.64); z-index:80; opacity:0; pointer-events:none; transition:opacity .25s;}
+.sheet-overlay.open{opacity:1; pointer-events:auto;}
+.sheet{position:fixed; left:0; right:0; bottom:0; z-index:81; background:var(--page); border:1px solid var(--line-strong); border-bottom:none; border-radius:6px 6px 0 0; transform:translateY(100%); transition:transform .38s cubic-bezier(.16,.9,.24,1); max-height:82svh; overflow-y:auto; padding-bottom:calc(26px + env(safe-area-inset-bottom));}
+.sheet.open{transform:translateY(0);}
+.sheet-handle{width:34px; height:3px; background:var(--line-strong); border-radius:99px; margin:14px auto 6px;}
+.sheet .photo-slot{margin:2px var(--pad) 0; border-radius:8px; aspect-ratio:16/10;}
+.sheet .fallback svg{width:44px; height:44px;}
+.sheet-body{padding:18px var(--pad) 4px;}
+.sheet-name{font-size:25px;}
+.sheet-desc{margin-top:8px; color:var(--ink-dim); font-size:15px;}
+.sheet-meta{margin-top:14px; display:flex; gap:8px; flex-wrap:wrap;}
+.chip{font-size:11.5px; padding:5px 10px; border:1px solid var(--line-strong); border-radius:99px; color:var(--ink-mute);}
+.sheet-price{font-family:var(--disp); font-size:20px; margin-top:16px;}
+.sheet-close{position:absolute; top:16px; right:16px; width:32px; height:32px; border-radius:99px; border:1px solid var(--line-strong); font-size:15px; z-index:3; background:rgba(0,0,0,.2);}
+
+@media(min-width:900px){ .dj-feature .photo-slot{aspect-ratio:16/9;} }
+</style>
+</head>
+<body>
+
+<div class="hero" id="top">
+  <div class="hero-top">
+    <span>Isla Brunch &amp; Bar · Elche</span>
+    <span class="hero-badge" id="heroClock">—</span>
+  </div>
+  <div class="hero-main">
+    <div>
+      <h1 class="hero-word emboss">ISLA</h1>
+      <div class="hero-sub">Cocktails after dark</div>
+      <p class="hero-tag">Tropical cocktails. Don Julio. Signature creations. Desde las 20:00, ISLA cambia de ritmo.</p>
+    </div>
+    <svg class="icon hero-illust" id="heroIllust" viewBox="0 0 60 90"><path d="M30 86C34 60 40 40 44 20C36 30 32 45 30 60C28 45 24 30 16 20C20 40 26 60 30 86Z"/><path d="M30 86V56"/></svg>
+  </div>
+  <hr class="hero-rule">
+</div>
+
+<nav class="navwrap">
+  <div class="navscroll" id="navscroll">
+    <button class="navlink" data-target="donjulio">Don Julio</button>
+    <button class="navlink" data-target="originals">Isla Originals</button>
+    <button class="navlink" data-target="signature">Signature</button>
+    <button class="navlink" data-target="ritual">Ritual</button>
+    <button class="navlink" data-target="destilados">Destilados</button>
+    <button class="navlink" data-target="mojitos">Mojitos</button>
+    <button class="navlink" data-target="classics">Classics</button>
+    <button class="navlink" data-target="shots">Shots</button>
+  </div>
+</nav>
+
+<main>
+  <div class="band --clay">
+    <section class="section" id="donjulio" data-nav="donjulio">
+      <div class="section-head">
+        <div class="section-eyebrow">La especialidad de ISLA</div>
+        <h2 class="section-title emboss">Don Julio</h2>
+        <div class="section-sub">Tequila, a la manera de ISLA.</div>
+        <p class="section-note">Creaciones tropicales con Don Julio.</p>
+      </div>
+      <div id="djFeature"></div>
+      <div class="menu-list" id="djList"></div>
+    </section>
+  </div>
+
+  <section class="section" id="originals" data-nav="originals">
+    <div class="section-head">
+      <h2 class="section-title emboss">Isla Originals</h2>
+      <div class="section-sub">Creados en ISLA.</div>
+    </div>
+    <div id="volcanBlock"></div>
+    <div class="menu-list" id="origList"></div>
+  </section>
+
+  <section class="section" id="signature" data-nav="signature">
+    <div class="section-head"><h2 class="section-title emboss">Isla Signature</h2></div>
+    <div class="sig-grid" id="sigGrid"></div>
+  </section>
+
+  <div class="band --ember">
+    <section class="section" id="ritual" data-nav="ritual">
+      <div class="section-head">
+        <h2 class="section-title emboss">Isla Ritual</h2>
+        <div class="section-sub">Una forma distinta de beber.</div>
+        <p class="section-note">Destilados, aroma, hielo y presentación. No es un pack obligatorio: puedes pedir el cóctel tal cual, o elevarlo.</p>
+      </div>
+      <div id="ritualList"></div>
+    </section>
+  </div>
+
+  <section class="section" id="destilados" data-nav="destilados">
+    <div class="section-head">
+      <h2 class="section-title emboss">Destilados Isla</h2>
+      <div class="section-sub">Para beberlos a tu manera.</div>
+    </div>
+    <div class="segrow" id="destSeg">
+      <button class="seg active" data-seg="solo">Solo</button>
+      <button class="seg" data-seg="hielo">Con hielo</button>
+      <button class="seg" data-seg="ritual">Ritual</button>
+    </div>
+    <div class="spirit-label">Ron</div><div class="menu-list" id="ronList"></div>
+    <div class="spirit-label">Whisky</div><div class="menu-list" id="whiskyList"></div>
+    <div class="spirit-label">Agave</div><div class="menu-list" id="agaveList"></div>
+  </section>
+
+  <section class="section" id="mojitos" data-nav="mojitos">
+    <div class="section-head"><h2 class="section-title emboss">Mojitos</h2></div>
+    <div class="menu-list" id="mojitosList"></div>
+  </section>
+
+  <section class="section" id="classics" data-nav="classics">
+    <div class="section-head"><h2 class="section-title emboss">Classics</h2></div>
+    <div class="menu-list" id="classicsList"></div>
+  </section>
+
+  <section class="section" id="shots" data-nav="shots">
+    <div class="section-head"><h2 class="section-title emboss">Shots</h2></div>
+    <div class="menu-list" id="shotsList"></div>
+  </section>
+
+  <div class="afterdark">
+    <div class="afterdark-title emboss">After Dark</div>
+    <p class="afterdark-copy">Cuando cae el sol, ISLA cambia.</p>
+  </div>
+
+  <div class="final">
+    <h2 class="final-title emboss">¿Qué vas a tomar esta noche?</h2>
+    <div class="final-btns">
+      <a class="final-btn --gold" href="#donjulio">Don Julio</a>
+      <a class="final-btn" href="#signature">Signature</a>
+      <a class="final-btn" href="#ritual">Ritual</a>
+    </div>
+    <div class="final-foot">Isla Brunch &amp; Bar · Elche</div>
+  </div>
+</main>
+
+<footer class="site">C/ Nuestra Señora del Carmen 11 · Elche</footer>
+
+<div class="sheet-overlay" id="sheetOverlay"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true">
+  <button class="sheet-close" id="sheetClose" aria-label="Cerrar">✕</button>
+  <div class="sheet-handle"></div>
+  <div class="photo-slot" id="sheetPhoto"><div class="glow"></div><div class="grain"></div><div class="fallback" id="sheetFallback"></div></div>
+  <div class="sheet-body">
+    <h3 class="sheet-name" id="sheetName"></h3>
+    <p class="sheet-desc" id="sheetDesc"></p>
+    <div class="sheet-meta" id="sheetMeta"></div>
+    <div class="sheet-price" id="sheetPrice"></div>
+    <div class="ticket-btns" id="sheetBtns" style="margin-top:18px;"></div>
+  </div>
+</div>
+
+<script>
+/* ================================================================
+   FOTOS: cada producto tiene un campo "photo": null.
+   En cuanto tengas la foto real, pon aquí la URL (photo:'https://...')
+   y la carta la muestra automáticamente — no hay que tocar nada más.
+   ================================================================ */
+
+const ICONS = {
+  citrus: 'M16 4v24M16 4L9 24M16 4l7 20M16 4L4 16M16 4l12 12M6 20l20-8M6 12l20 8',
+  agave: 'M16 3L23 16L16 29L9 16Z M16 3V29',
+  volcano: 'M6 26L16 7L26 26Z M14 6a2 2 0 104 0',
+  ice: 'M8 12L16 6L24 12L24 22L16 28L8 22Z M8 12L16 18L24 12 M16 18V28',
+  palm: 'M16 28C18 18 22 10 26 4C20 8 16 15 15 22C14 15 10 8 4 4C8 10 12 18 14 28Z M16 28V20',
+  date: 'M16 6C21 6 23 11 23 16C23 22 20 26 16 26C12 26 9 22 9 16C9 11 11 6 16 6Z M16 6V2',
+  cacao: 'M16 4C22 4 24 13 22 19C20 25 12 25 10 19C8 13 10 4 16 4Z M12 9C14 10 18 10 20 9 M11 15C14 16 18 16 21 15',
+  shot: 'M11 6H21L20 24A3 3 0 0117 27H15A3 3 0 0112 24L11 6Z',
+  smoke: 'M11 27C11 21 17 21 17 15C17 9 11 9 11 3 M21 27C21 21 27 21 27 15',
+  drop: 'M16 4C22 12 26 18 26 22C26 27 21 30 16 30C11 30 6 27 6 22C6 18 10 12 16 4Z'
+};
+function iconPathStr(name){ return ICONS[name] || ICONS.drop; }
+function svgIconInner(name){
+  return iconPathStr(name).split(' M').map((seg,i)=> i===0? `<path d="${seg}"/>` : `<path d="M${seg}"/>`).join('');
+}
+function svgIcon(name, size){ return `<svg class="icon" width="${size||20}" height="${size||20}" viewBox="0 0 32 32">${svgIconInner(name)}</svg>`; }
+
+/* photo-slot markup: shows real <img> if item.photo is set, otherwise the crafted tone+icon fallback */
+function photoSlot(item, tone){
+  const img = item.photo ? `<img src="${item.photo}" alt="${item.name}" loading="lazy">` : '';
+  const fallback = item.photo ? '' : `<div class="fallback">${svgIcon(item.icon,44)}</div>`;
+  return `<div class="photo-slot tone-${tone}">${img}<div class="glow"></div><div class="grain"></div>${fallback}</div>`;
+}
+
+const MENU = {
+  donjulio: [
+    {id:'dj2', name:'Don Julio Enamorado', price:'10,50 €', desc:'Mango. Maracuyá. Tequila.', icon:'citrus', photo:null, feature:true},
+    {id:'dj1', name:'Don Julio Palomo de Tamarindo', price:'10,50 €', desc:'Tamarindo. Tequila. ISLA.', icon:'citrus', photo:null},
+    {id:'dj3', name:'Don Julio Cherry Bomb', price:'10,50 €', desc:'Cereza. Tequila. Cítrico.', icon:'drop', photo:null},
+    {id:'dj4', name:'Don Julio Piña Spice', price:'10,50 €', desc:'Piña. Especias. Tequila.', icon:'citrus', photo:null},
+    {id:'dj5', name:'Mexican Sunset', price:'10,50 €', desc:'Tequila. Atardecer. ISLA.', icon:'agave', photo:null},
+    {id:'dj6', name:'El Don Pega', price:'9,50 €', desc:'Tequila con carácter.', icon:'agave', photo:null}
+  ],
+  volcan: {id:'or1', name:'Volcán Tropical', price:'9,00 €', icon:'volcano', photo:null},
+  originals: [
+    {id:'or2', name:'Tamarindo Dark Sunset', price:'9,00 €', desc:'Tamarindo · ron oscuro · cítrico', icon:'citrus', photo:null},
+    {id:'or3', name:'Rubí Frozen', price:'8,00 €', desc:'Frozen · cereza · tequila', icon:'drop', photo:null},
+    {id:'or4', name:'Cherry Vodka Sour', price:'8,00 €', desc:'Cereza · cítrico · vodka', icon:'drop', photo:null},
+    {id:'or5', name:'Island Tie', price:'8,50 €', desc:'Manzana verde · piña · ron', icon:'palm', photo:null}
+  ],
+  signature: [
+    {id:'sg1', name:'Pilicoco', price:'10,50 €', desc:'Piña · coco · lima', icon:'palm', photo:null},
+    {id:'sg2', name:'Oasis Mule', price:'9,00 €', desc:'Vodka · dátil · lima', icon:'date', photo:null}
+  ],
+  ritual: [
+    {id:'rt1', name:'Isla Ember', price:'14,50 €', desc:'Ron · tamarindo · cítrico', icon:'ice', photo:null},
+    {id:'rt2', name:'Isla Dark', price:'15,00 €', desc:'Ron · cacao · tamarindo', icon:'cacao', photo:null},
+    {id:'rt3', name:'Isla Fire', price:'16,00 €', desc:'Tequila · mango · maracuyá', icon:'agave', photo:null}
+  ],
+  ron: [
+    {id:'ro1', name:'Santa Teresa 1796', price:'8,50 €', desc:'Madera · especias · caramelo', icon:'cacao', photo:null},
+    {id:'ro2', name:'Appleton Estate 12', price:'10,00 €', desc:'Roble · cacao · naranja', icon:'cacao', photo:null}
+  ],
+  whisky: [
+    {id:'wh1', name:'The Gold', price:'7,50 €', desc:'Dulce · vainilla · caramelo', icon:'cacao', photo:null},
+    {id:'wh2', name:'The Smoke', price:'10,00 €', desc:'Ahumado · turba · madera', icon:'smoke', photo:null}
+  ],
+  agave: [
+    {id:'ag1', name:'Don Julio 70', price:'12,00 €', desc:'Elegante · suave · cristalino', icon:'agave', photo:null}
+  ],
+  mojitos: [
+    {id:'mj1', name:'Mojito', price:'7,50 €', icon:'drop', photo:null},
+    {id:'mj2', name:'Maracuyá', price:'8,00 €', icon:'citrus', photo:null},
+    {id:'mj3', name:'Mango', price:'8,00 €', icon:'citrus', photo:null},
+    {id:'mj4', name:'Fresa', price:'8,00 €', icon:'drop', photo:null},
+    {id:'mj5', name:'Piña', price:'8,00 €', icon:'palm', photo:null},
+    {id:'mj6', name:'Coco', price:'8,50 €', icon:'palm', photo:null}
+  ],
+  classics: [
+    {id:'cl1', name:'Piña Colada', price:'7,00 €', icon:'palm', photo:null},
+    {id:'cl2', name:'Daiquiri Strawberry Frozen', price:'8,00 €', icon:'drop', photo:null},
+    {id:'cl3', name:'Sex on the Beach', price:'8,00 €', icon:'citrus', photo:null},
+    {id:'cl4', name:'Cuba Libre', price:'8,00 €', icon:'drop', photo:null}
+  ],
+  shots: [
+    {id:'sh1', name:'Papi Ven', price:'8,00 € / 2', desc:'Ron · fresa · granadina', icon:'shot', photo:null}
+  ]
+};
+const ALL = [].concat(MENU.donjulio, [MENU.volcan], MENU.originals, MENU.signature, MENU.ritual, MENU.ron, MENU.whisky, MENU.agave, MENU.mojitos, MENU.classics, MENU.shots);
+const byId = Object.fromEntries(ALL.map(i => [i.id, i]));
+const toneOf = id => {
+  if(MENU.donjulio.some(i=>i.id===id)) return 'clay';
+  if(MENU.ritual.some(i=>i.id===id) || MENU.agave.some(i=>i.id===id)) return 'gold';
+  return 'moss';
+};
+
+function rowHTML(item, cls){
+  return `<div class="menu-row ${cls||''}" data-id="${item.id}" tabindex="0">
+    <div class="thumb">${photoSlot(item, toneOf(item.id))}</div>
+    <span class="name">${item.name}</span>
+    <span class="leader"></span>
+    <span class="price">${item.price}</span>
+  </div>`;
+}
+function listHTML(elId, items, cls){ document.getElementById(elId).innerHTML = items.map(i=>rowHTML(i,cls)).join(''); }
+
+/* Don Julio feature */
+document.getElementById('djFeature').innerHTML = (()=>{ const f = MENU.donjulio.find(i=>i.feature);
+  return `<div class="dj-feature" data-id="${f.id}" tabindex="0">
+    ${photoSlot(f,'clay')}
+    <div class="cap">
+      <div class="f-name emboss">${f.name}</div>
+      <div class="f-desc">${f.desc}</div>
+      <div class="f-price">${f.price}</div>
+    </div>
+  </div>`; })();
+listHTML('djList', MENU.donjulio.filter(i=>!i.feature), '--donjulio');
+
+/* Originals: Volcán mystery + list */
+document.getElementById('volcanBlock').innerHTML = `<div class="mystery" data-id="${MENU.volcan.id}" tabindex="0">
+  ${photoSlot(MENU.volcan,'moss')}
+  <div class="stamp">Bestseller</div>
+  <div class="cap">
+    <div class="f-name emboss">${MENU.volcan.name}</div>
+    <div class="redacted">Receta secreta<span class="bar"></span>de ISLA.</div>
+    <div class="f-price">${MENU.volcan.price}</div>
+  </div>
+</div>`;
+listHTML('origList', MENU.originals, '--tint');
+
+/* Signature */
+document.getElementById('sigGrid').innerHTML = MENU.signature.map(it => `
+  <div class="sig-item" data-id="${it.id}" tabindex="0">
+    ${photoSlot(it,'gold')}
+    <div class="tag">Isla Signature</div>
+    <div class="f-name">${it.name}</div>
+    <div class="f-desc">${it.desc}</div>
+    <div class="f-price">${it.price}</div>
+  </div>`).join('');
+
+/* Ritual tickets */
+document.getElementById('ritualList').innerHTML = MENU.ritual.map(it => `
+  <div class="ticket" data-id="${it.id}" tabindex="0">
+    ${photoSlot(it,'gold')}
+    <div>
+      <div class="f-name">${it.name}</div>
+      <div class="f-desc">${it.desc}</div>
+      <div class="service-note">Aromatización · hielo premium · presentación especial</div>
+      <div class="f-price">${it.price}</div>
+      <div class="ticket-btns">
+        <button class="btn --primary" data-order="${it.id}">Pedir</button>
+        <button class="btn --gold" data-elevate="${it.id}">Elevar a ritual</button>
+      </div>
+    </div>
+  </div>`).join('');
+
+listHTML('ronList', MENU.ron, '--tint');
+listHTML('whiskyList', MENU.whisky, '--tint');
+listHTML('agaveList', MENU.agave, '--tint');
+listHTML('mojitosList', MENU.mojitos, '--tint');
+listHTML('classicsList', MENU.classics, '--tint');
+listHTML('shotsList', MENU.shots, '--tint');
+
+document.getElementById('destSeg').addEventListener('click', e=>{
+  const b = e.target.closest('.seg'); if(!b) return;
+  document.querySelectorAll('#destSeg .seg').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+});
+
+/* ---- nav active state ---- */
+const navlinks = [...document.querySelectorAll('.navlink')];
+navlinks.forEach(p => p.addEventListener('click', () => document.getElementById(p.dataset.target).scrollIntoView({behavior:'smooth', block:'start'})));
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){
+    navlinks.forEach(p => p.classList.toggle('active', p.dataset.target === e.target.dataset.nav));
+    const a = document.querySelector('.navlink.active'); if(a) a.scrollIntoView({inline:'center', block:'nearest', behavior:'smooth'});
+  }});
+}, {rootMargin:'-40% 0px -50% 0px'});
+document.querySelectorAll('.section[data-nav]').forEach(s => io.observe(s));
+
+/* ---- signature glint on tap: one deliberate tactile moment per interaction ---- */
+document.addEventListener('pointerdown', e => {
+  const slot = e.target.closest('.photo-slot');
+  if(slot){ slot.classList.remove('glint'); void slot.offsetWidth; slot.classList.add('glint'); }
+});
+
+/* ---- gentle hero parallax (single, subtle, deliberate) ---- */
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if(ticking) return; ticking = true;
+  requestAnimationFrame(() => {
+    const y = Math.min(window.scrollY, 300);
+    const illust = document.getElementById('heroIllust');
+    if(illust) illust.style.transform = `translateY(${y*0.08}px)`;
+    ticking = false;
+  });
+}, {passive:true});
+
+/* ---- bottom sheet ---- */
+const sheet = document.getElementById('sheet');
+const overlay = document.getElementById('sheetOverlay');
+function openSheet(item){
+  const tone = toneOf(item.id);
+  const slot = document.getElementById('sheetPhoto');
+  slot.className = 'photo-slot tone-' + tone;
+  slot.innerHTML = item.photo ? `<img src="${item.photo}" alt="${item.name}">` : `<div class="glow"></div><div class="grain"></div><div class="fallback">${svgIcon(item.icon,44)}</div>`;
+  document.getElementById('sheetName').textContent = item.name;
+  document.getElementById('sheetDesc').textContent = item.desc || '';
+  document.getElementById('sheetPrice').textContent = item.price;
+  document.getElementById('sheetPrice').style.color = tone==='clay' ? 'var(--clay-soft)' : (tone==='gold' ? 'var(--gold)' : 'var(--moss-soft)');
+  const meta = document.getElementById('sheetMeta');
+  meta.innerHTML = MENU.ritual.some(r=>r.id===item.id) ? `<span class="chip">Aromatización</span><span class="chip">Hielo premium</span>` : '';
+  const btns = document.getElementById('sheetBtns');
+  btns.innerHTML = MENU.ritual.some(r=>r.id===item.id) ? `<button class="btn --primary" style="flex:1">Pedir</button><button class="btn --gold" style="flex:1">Elevar a ritual</button>` : `<button class="btn --primary" style="flex:1">Pedir</button>`;
+  sheet.classList.add('open'); overlay.classList.add('open');
+  setTimeout(()=>slot.classList.add('glint'), 260);
+}
+function closeSheet(){ sheet.classList.remove('open'); overlay.classList.remove('open'); }
+document.addEventListener('click', e => {
+  const row = e.target.closest('[data-id]');
+  if(row && !e.target.closest('[data-order],[data-elevate]')){ const item = byId[row.dataset.id]; if(item) openSheet(item); }
+  if(e.target.id === 'sheetClose' || e.target === overlay) closeSheet();
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeSheet(); });
+
+const hnow = new Date().getHours();
+document.getElementById('heroClock').textContent = (hnow >= 20 || hnow < 5) ? 'After Dark' : 'Elche';
+</script>
+</body>
+</html>
