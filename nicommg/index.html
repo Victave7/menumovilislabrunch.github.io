@@ -93,28 +93,33 @@
   .home-photo{
     height:58vh;
     min-height:400px;
-    background:var(--crema);
-    display:flex;
-    align-items:center;
-    justify-content:center;
   }
-  .home-photo::before{display:none;}
+  .aura-logo-hero{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center;
+    padding:22px;
+    background:var(--crema);
+  }
+
   .home-photo .blob{
     position:absolute;
     inset:0;
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:18px;
   }
-  .home-photo .aura-logo{
-    width:100%;
-    max-width:390px;
-    max-height:52vh;
-    height:auto;
-    object-fit:contain;
-    mix-blend-mode:multiply;
+  .home-photo .plate-mark{
+    width:190px; height:190px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,0.6);
+    display:flex; align-items:center; justify-content:center;
   }
+  .home-photo .plate-mark svg{ width:86px; height:86px; opacity:.85; }
+
   .home-content{
     flex:1;
     background:var(--crema);
@@ -127,16 +132,6 @@
     align-items:center;
     text-align:center;
   }
-  .logo-aura{
-    width:min(88%, 390px);
-    height:auto;
-    object-fit:contain;
-    mix-blend-mode:multiply;
-    margin:0 auto 8px;
-    opacity:0;
-    animation:riseIn .9s cubic-bezier(.2,.7,.3,1) .22s forwards;
-  }
-
   .wordmark{
     font-size:15px;
     letter-spacing:.42em;
@@ -565,11 +560,11 @@
   <!-- ============ HOME / SPLASH ============ -->
   <section id="home">
     <div class="photo home-photo">
-      <div class="blob">
-        <img class="aura-logo" src="nicommg/logo/logoaura.jpeg">
-      </div>
+      <img class="aura-logo-hero" src="nicommg/logo/logoaura.jpeg" alt="AURA Brunch" />
     </div>
     <div class="home-content">
+      <div class="wordmark">AURA</div>
+      <div class="wordmark-main">Brunch</div>
       <p class="tagline">Brunch, coffee &amp; sweet moments</p>
       <button class="cta-ver-menu" onclick="openMenu()">VER MENÚ</button>
       <div class="home-foot">SANTIAGO&nbsp; DE&nbsp; COMPOSTELA</div>
