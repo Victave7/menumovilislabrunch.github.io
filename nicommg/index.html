@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>AURA BRUNCH — Menú Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rosa-empolvado:#E7C7C9;
+    --rosa-pastel:#F4DEE0;
+    --rosa-bebe:#FBE9EA;
+    --acento:#B4405C;
+    --acento-dark:#8F2E44;
+    --crema:#FBF7F2;
+    --crema-2:#F6EFE8;
+    --dorado:#C6A467;
+    --texto:#3A2A2E;
+    --texto-suave:#8A7175;
+    --linea:rgba(58,42,46,0.10);
+    --sombra: 0 18px 40px rgba(58,42,46,0.10);
+    --radius-a: 28px 28px 28px 6px;
+    --radius-b: 6px 28px 28px 28px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope', sans-serif;
+    background:var(--crema);
+    color:var(--texto);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  button{font-family:inherit; border:none; background:none; cursor:pointer;}
+  ::selection{background:var(--rosa-pastel); color:var(--acento-dark);}
+
+  .display{font-family:'Fraunces', serif;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ---------- APP SHELL ---------- */
+  .app{
+    max-width:480px;
+    margin:0 auto;
+    min-height:100vh;
+    position:relative;
+    background:var(--crema);
+    padding-bottom:96px;
+  }
+
+  /* ---------- PHOTO PLACEHOLDER PANELS ---------- */
+  .photo{
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(120% 90% at 15% 10%, #fff3ee 0%, transparent 55%),
+      radial-gradient(110% 90% at 85% 100%, var(--rosa-empolvado) 0%, transparent 60%),
+      linear-gradient(150deg, var(--rosa-pastel) 0%, var(--rosa-bebe) 45%, #fbe0d8 100%);
+  }
+  .photo::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(115deg, rgba(255,255,255,0.35) 0 2px, transparent 2px 34px);
+    mix-blend-mode:overlay;
+    opacity:.5;
+  }
+  .photo .photo-caption{
+    position:absolute;
+    left:14px; bottom:12px;
+    font-size:10.5px;
+    letter-spacing:.06em;
+    color:rgba(58,42,46,0.55);
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(6px);
+    padding:5px 10px;
+    border-radius:20px;
+  }
+
+  /* ---------- HOME SCREEN ---------- */
+  #home{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    position:relative;
+  }
+  .home-photo{
+    height:58vh;
+    min-height:400px;
+  }
+  .home-photo .blob{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .home-photo .plate-mark{
+    width:190px; height:190px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,0.6);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .home-photo .plate-mark svg{ width:86px; height:86px; opacity:.85; }
+
+  .home-content{
+    flex:1;
+    background:var(--crema);
+    border-radius:34px 34px 0 0;
+    margin-top:-30px;
+    position:relative;
+    padding:38px 28px 40px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+  .wordmark{
+    font-size:15px;
+    letter-spacing:.42em;
+    color:var(--acento);
+    font-weight:600;
+    opacity:0;
+    animation:riseIn .8s cubic-bezier(.2,.7,.3,1) .15s forwards;
+  }
+  .wordmark-main{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:500;
+    font-size:clamp(48px, 15vw, 64px);
+    line-height:.92;
+    color:var(--texto);
+    margin-top:6px;
+    opacity:0;
+    animation:riseIn .9s cubic-bezier(.2,.7,.3,1) .32s forwards;
+  }
+  .tagline{
+    margin-top:16px;
+    font-size:15.5px;
+    color:var(--texto-suave);
+    font-style:italic;
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    opacity:0;
+    animation:riseIn .9s cubic-bezier(.2,.7,.3,1) .48s forwards;
+  }
+  @keyframes riseIn{
+    from{ opacity:0; transform:translateY(14px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .cta-ver-menu{
+    margin-top:34px;
+    background:var(--texto);
+    color:var(--crema);
+    padding:17px 46px;
+    border-radius:999px;
+    font-size:14px;
+    letter-spacing:.14em;
+    font-weight:700;
+    box-shadow:0 14px 30px rgba(58,42,46,0.22);
+    opacity:0;
+    animation:riseIn .9s cubic-bezier(.2,.7,.3,1) .64s forwards;
+    transition:transform .35s cubic-bezier(.2,.8,.3,1), box-shadow .35s;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-ver-menu:active{ transform:scale(.96); box-shadow:0 8px 18px rgba(58,42,46,0.2); }
+
+  .home-foot{
+    margin-top:auto;
+    padding-top:44px;
+    font-size:10.5px;
+    letter-spacing:.18em;
+    color:var(--texto-suave);
+    opacity:0;
+    animation:riseIn .9s ease .8s forwards;
+  }
+
+  /* ---------- MENU VIEW ---------- */
+  #menu-view{ display:none; }
+  #menu-view.active{ display:block; }
+  #home.hidden{ display:none; }
+
+  .menu-header{
+    padding:26px 24px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .menu-header .brand{
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    font-weight:500;
+    letter-spacing:.02em;
+  }
+  .icon-btn{
+    width:38px; height:38px;
+    border-radius:50%;
+    background:var(--rosa-bebe);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--acento-dark);
+  }
+
+  /* Aura Moments carousel */
+  .moments{
+    padding:6px 0 26px;
+  }
+  .moments-head{
+    padding:0 24px;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:14px;
+  }
+  .moments-head h2{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:20px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .moments-head span{
+    font-size:11.5px;
+    color:var(--texto-suave);
+  }
+  .moments-track{
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    padding:2px 24px 10px;
+    scroll-snap-type:x mandatory;
+    -ms-overflow-style:none;
+    scrollbar-width:none;
+  }
+  .moments-track::-webkit-scrollbar{ display:none; }
+  .moment-card{
+    flex:0 0 auto;
+    width:150px;
+    scroll-snap-align:start;
+  }
+  .moment-card .photo{
+    height:150px;
+    border-radius:22px;
+    margin-bottom:10px;
+  }
+  .moment-card .moment-tag{
+    position:absolute;
+    top:10px; left:10px;
+    background:rgba(255,255,255,0.85);
+    color:var(--acento-dark);
+    font-size:9.5px;
+    font-weight:700;
+    letter-spacing:.08em;
+    padding:5px 9px;
+    border-radius:20px;
+  }
+  .moment-card h3{
+    font-family:'Fraunces', serif;
+    font-size:14.5px;
+    font-weight:500;
+  }
+  .moment-card p{
+    font-size:12px;
+    color:var(--acento);
+    font-weight:700;
+    margin-top:2px;
+  }
+
+  /* Category sections */
+  .category-section{
+    padding:30px 24px 6px;
+    scroll-margin-top:20px;
+  }
+  .category-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:20px;
+    border-bottom:1px solid var(--linea);
+    padding-bottom:14px;
+  }
+  .category-head .num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--rosa-empolvado);
+    font-size:15px;
+  }
+  .category-head h2{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:25px;
+  }
+
+  .product-grid{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+  }
+  .product-card{
+    display:grid;
+    grid-template-columns:104px 1fr;
+    gap:16px;
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .product-card.in-view{ opacity:1; transform:translateY(0); }
+  .product-card:nth-child(even){ grid-template-columns:1fr 104px; }
+  .product-card:nth-child(even) .product-photo{ order:2; }
+  .product-card .product-photo{
+    width:104px; height:104px;
+    border-radius:var(--radius-a);
+  }
+  .product-card:nth-child(even) .product-photo{ border-radius:var(--radius-b); }
+  .product-info{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .product-info h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:16.5px;
+    line-height:1.25;
+  }
+  .product-info p.desc{
+    font-size:12.5px;
+    color:var(--texto-suave);
+    margin-top:4px;
+    line-height:1.45;
+  }
+  .product-info .row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:11px;
+  }
+  .price{
+    font-weight:800;
+    font-size:14.5px;
+    color:var(--texto);
+  }
+  .ver-mas{
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:.08em;
+    color:var(--acento);
+    padding:8px 14px;
+    border:1px solid var(--acento);
+    border-radius:999px;
+    transition:background .3s, color .3s, transform .2s;
+  }
+  .ver-mas:active{ transform:scale(.94); }
+
+  /* QR footer */
+  .qr-footer{
+    margin:52px 24px 20px;
+    background:linear-gradient(135deg, var(--texto) 0%, #4a3339 100%);
+    color:var(--crema);
+    border-radius:26px;
+    padding:30px 26px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .qr-footer::after{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(circle at 80% -10%, rgba(198,164,103,0.35), transparent 55%);
+  }
+  .qr-footer .qr-box{
+    width:64px; height:64px;
+    margin:0 auto 16px;
+    background:var(--crema);
+    border-radius:14px;
+    display:flex; align-items:center; justify-content:center;
+    position:relative; z-index:1;
+  }
+  .qr-footer .qr-steps{
+    position:relative; z-index:1;
+    font-size:11.5px;
+    letter-spacing:.22em;
+    font-weight:700;
+    color:var(--dorado);
+  }
+  .qr-footer p{
+    position:relative; z-index:1;
+    margin-top:10px;
+    font-size:12.5px;
+    color:rgba(251,247,242,0.75);
+    font-family:'Fraunces', serif;
+    font-style:italic;
+  }
+
+  /* ---------- BOTTOM NAV ---------- */
+  .bottom-nav{
+    position:fixed;
+    left:50%; bottom:14px;
+    transform:translateX(-50%);
+    width:calc(100% - 28px);
+    max-width:452px;
+    background:rgba(255,255,255,0.86);
+    backdrop-filter:blur(16px) saturate(160%);
+    border:1px solid rgba(255,255,255,0.6);
+    border-radius:26px;
+    box-shadow:0 16px 34px rgba(58,42,46,0.16);
+    display:flex;
+    justify-content:space-between;
+    padding:9px 8px;
+    z-index:40;
+  }
+  .nav-item{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+    padding:7px 2px;
+    border-radius:16px;
+    color:var(--texto-suave);
+    transition:color .3s, background .3s;
+  }
+  .nav-item svg{ width:19px; height:19px; }
+  .nav-item span{ font-size:9.5px; font-weight:700; letter-spacing:.03em; }
+  .nav-item.active{ color:var(--acento-dark); background:var(--rosa-bebe); }
+
+  /* ---------- PRODUCT SHEET (MODAL) ---------- */
+  .sheet-overlay{
+    position:fixed; inset:0;
+    background:rgba(58,42,46,0.42);
+    backdrop-filter:blur(2px);
+    opacity:0; pointer-events:none;
+    transition:opacity .35s ease;
+    z-index:60;
+  }
+  .sheet-overlay.open{ opacity:1; pointer-events:auto; }
+  .sheet{
+    position:fixed;
+    left:50%; bottom:0;
+    transform:translate(-50%, 100%);
+    width:100%; max-width:480px;
+    max-height:88vh;
+    background:var(--crema);
+    border-radius:30px 30px 0 0;
+    z-index:61;
+    transition:transform .45s cubic-bezier(.2,.85,.25,1);
+    overflow-y:auto;
+    padding-bottom:36px;
+  }
+  .sheet.open{ transform:translate(-50%, 0); }
+  .sheet-photo{
+    height:230px;
+    border-radius:30px 30px 0 0;
+    position:relative;
+  }
+  .sheet-close{
+    position:absolute; top:16px; right:16px;
+    width:34px; height:34px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.8);
+    backdrop-filter:blur(6px);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--texto);
+  }
+  .sheet-handle{
+    width:38px; height:4px;
+    background:rgba(58,42,46,0.18);
+    border-radius:4px;
+    position:absolute;
+    top:-14px; left:50%;
+    transform:translateX(-50%);
+  }
+  .sheet-body{ padding:26px 26px 4px; }
+  .sheet-body h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:25px;
+    line-height:1.15;
+  }
+  .sheet-price{
+    font-weight:800;
+    font-size:18px;
+    color:var(--acento-dark);
+    margin-top:6px;
+  }
+  .sheet-desc{
+    margin-top:14px;
+    font-size:14px;
+    line-height:1.6;
+    color:var(--texto-suave);
+  }
+  .sheet-block{ margin-top:22px; }
+  .sheet-block h4{
+    font-size:10.5px;
+    letter-spacing:.14em;
+    color:var(--acento);
+    font-weight:800;
+    margin-bottom:10px;
+  }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{
+    font-size:12px;
+    padding:8px 13px;
+    background:var(--rosa-bebe);
+    border-radius:999px;
+    color:var(--texto);
+  }
+  .chip.alergeno{ background:var(--crema-2); border:1px solid var(--linea); color:var(--texto-suave); }
+  .extras-list{ display:flex; flex-direction:column; gap:10px; }
+  .extra-row{
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:13.5px;
+    padding:12px 14px;
+    background:#fff;
+    border:1px solid var(--linea);
+    border-radius:14px;
+  }
+  .extra-row b{ color:var(--acento-dark); font-weight:800; }
+  .sheet-add{
+    margin:26px 26px 0;
+    background:var(--texto);
+    color:var(--crema);
+    padding:16px;
+    border-radius:16px;
+    text-align:center;
+    font-weight:700;
+    font-size:13.5px;
+    letter-spacing:.05em;
+  }
+
+  @media (min-width:481px){
+    body{ background:var(--crema-2); }
+    .app{ box-shadow:0 40px 90px rgba(58,42,46,0.16); }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============ HOME / SPLASH ============ -->
+  <section id="home">
+    <div class="photo home-photo">
+      <div class="blob">
+        <div class="plate-mark">
+          <svg viewBox="0 0 100 100" fill="none" stroke="#B4405C" stroke-width="1.4">
+            <circle cx="50" cy="50" r="30"/>
+            <circle cx="50" cy="50" r="19"/>
+            <path d="M50 20 v6 M50 74 v6 M20 50 h6 M74 50 h6" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <span class="photo-caption">fotografía de producto — a completar</span>
+    </div>
+    <div class="home-content">
+      <div class="wordmark">AURA</div>
+      <div class="wordmark-main">Brunch</div>
+      <p class="tagline">Brunch, coffee &amp; sweet moments</p>
+      <button class="cta-ver-menu" onclick="openMenu()">VER MENÚ</button>
+      <div class="home-foot">SANTIAGO&nbsp; DE&nbsp; COMPOSTELA</div>
+    </div>
+  </section>
+
+  <!-- ============ MENU VIEW ============ -->
+  <section id="menu-view">
+
+    <div class="menu-header">
+      <div class="brand display">AURA</div>
+      <button class="icon-btn" onclick="closeMenu()" aria-label="Volver al inicio">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      </button>
+    </div>
+
+    <!-- AURA MOMENTS -->
+    <div class="moments">
+      <div class="moments-head">
+        <h2>✨ Aura Moments</h2>
+        <span>lo más fotografiado</span>
+      </div>
+      <div class="moments-track" id="moments-track"></div>
+    </div>
+
+    <!-- BRUNCH -->
+    <div class="category-section" id="cat-brunch">
+      <div class="category-head"><span class="num">01</span><h2>Brunch</h2></div>
+      <div class="product-grid" id="grid-brunch"></div>
+    </div>
+
+    <!-- BEBIDAS -->
+    <div class="category-section" id="cat-bebidas">
+      <div class="category-head"><span class="num">02</span><h2>Bebidas</h2></div>
+      <div class="product-grid" id="grid-bebidas"></div>
+    </div>
+
+    <!-- CAFÉ -->
+    <div class="category-section" id="cat-cafe">
+      <div class="category-head"><span class="num">03</span><h2>Café</h2></div>
+      <div class="product-grid" id="grid-cafe"></div>
+    </div>
+
+    <!-- DULCE -->
+    <div class="category-section" id="cat-dulce">
+      <div class="category-head"><span class="num">04</span><h2>Dulce</h2></div>
+      <div class="product-grid" id="grid-dulce"></div>
+    </div>
+
+    <!-- EXTRAS -->
+    <div class="category-section" id="cat-extras">
+      <div class="category-head"><span class="num">05</span><h2>Extras</h2></div>
+      <div class="product-grid" id="grid-extras"></div>
+    </div>
+
+    <div class="qr-footer">
+      <div class="qr-box">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#3A2A2E" stroke-width="1.6">
+          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <path d="M14 14h3v3h-3zM20 14v3M14 20h3M20 20v.01" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="qr-steps">ESCANEA · ELIGE · DISFRUTA</div>
+      <p>Un código en cada mesa. La carta entera en tu mano.</p>
+    </div>
+
+  </section>
+
+  <!-- ============ BOTTOM NAV ============ -->
+  <nav class="bottom-nav" id="bottom-nav">
+    <button class="nav-item active" data-target="cat-brunch">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18M4 10v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M8 10V6a4 4 0 0 1 8 0v4"/></svg>
+      <span>Brunch</span>
+    </button>
+    <button class="nav-item" data-target="cat-bebidas">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l-1.5 15.5a2 2 0 0 1-2 1.5h-5a2 2 0 0 1-2-1.5L6 3zM6.5 9h11"/></svg>
+      <span>Bebidas</span>
+    </button>
+    <button class="nav-item" data-target="cat-cafe">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8zM17 9h1.5a2.5 2.5 0 0 1 0 5H17M7 3c0 1-1 1-1 2M11 3c0 1-1 1-1 2"/></svg>
+      <span>Café</span>
+    </button>
+    <button class="nav-item" data-target="cat-dulce">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="7"/><path d="M9 3.5c1 1 2 1 3 0s2-1 3 0"/></svg>
+      <span>Dulce</span>
+    </button>
+    <button class="nav-item" data-target="cat-extras">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+      <span>Extras</span>
+    </button>
+  </nav>
+
+  <!-- ============ PRODUCT SHEET ============ -->
+  <div class="sheet-overlay" id="sheet-overlay" onclick="closeSheet()"></div>
+  <div class="sheet" id="sheet">
+    <div class="photo sheet-photo" id="sheet-photo">
+      <div class="sheet-handle"></div>
+      <button class="sheet-close" onclick="closeSheet()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="sheet-body">
+      <h3 id="sheet-name">—</h3>
+      <div class="sheet-price" id="sheet-price">—</div>
+      <p class="sheet-desc" id="sheet-desc">—</p>
+      <div class="sheet-block">
+        <h4>INGREDIENTES</h4>
+        <div class="chip-row" id="sheet-ingredientes"></div>
+      </div>
+      <div class="sheet-block">
+        <h4>ALÉRGENOS</h4>
+        <div class="chip-row" id="sheet-alergenos"></div>
+      </div>
+      <div class="sheet-block" id="sheet-extras-block">
+        <h4>EXTRAS</h4>
+        <div class="extras-list" id="sheet-extras"></div>
+      </div>
+      <div class="sheet-add">Pide en barra o a tu camarero/a</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ============ DEMO DATA ============
+   Contenido de demostración — productos habituales de brunch usados
+   únicamente para dar cuerpo visual al prototipo. Sustituir por la
+   carta real de AURA BRUNCH antes de publicar. */
+const DATA = {
+  brunch: [
+    { id:'p1', name:'AURA Pancakes', desc:'Pancakes esponjosos, fruta de temporada, crema chantillí y toppings a elegir.', price:'12,50 €', ing:['Harina de trigo','Huevo','Leche','Fruta fresca','Nata'], alg:['Gluten','Huevo','Lácteos'], moment:true, momentTag:'FAVORITO', extras:[{n:'Sirope de arce',p:'+1,20 €'},{n:'Fruta extra',p:'+1,50 €'},{n:'Nutella',p:'+1,00 €'}] },
+    { id:'p2', name:'Rosé French Toast', desc:'Brioche caramelizado, compota de frutos rojos, queso mascarpone y flor de sal.', price:'11,90 €', ing:['Brioche','Huevo','Frutos rojos','Mascarpone'], alg:['Gluten','Huevo','Lácteos'], moment:true, momentTag:'NUEVO', extras:[{n:'Nata montada',p:'+1,00 €'},{n:'Almendra tostada',p:'+1,20 €'}] },
+    { id:'p3', name:'Bloom Bagel', desc:'Salmón ahumado, queso crema, rúcula baby y semillas de sésamo negro.', price:'10,90 €', ing:['Bagel','Salmón ahumado','Queso crema','Rúcula'], alg:['Gluten','Pescado','Lácteos'], extras:[{n:'Aguacate',p:'+1,80 €'}] },
+    { id:'p4', name:'Petal Avocado Toast', desc:'Pan de masa madre, aguacate, tomate cherry asado, huevo poché y semillas.', price:'9,90 €', ing:['Pan de masa madre','Aguacate','Huevo','Tomate cherry'], alg:['Gluten','Huevo'], moment:true, momentTag:'FAVORITO', extras:[{n:'Bacon crujiente',p:'+2,00 €'},{n:'Feta',p:'+1,50 €'}] },
+    { id:'p5', name:'Aura Bowl', desc:'Yogur griego, granola artesana, mango, frutos rojos y miel cruda.', price:'8,90 €', ing:['Yogur griego','Granola','Mango','Frutos rojos','Miel'], alg:['Lácteos','Frutos secos'], extras:[{n:'Proteína extra',p:'+1,80 €'}] },
+  ],
+  bebidas: [
+    { id:'b1', name:'Rosé Lemonade', desc:'Limonada casera con jarabe de rosas y un toque de hibisco.', price:'5,50 €', ing:['Limón','Jarabe de rosas','Hibisco'], alg:[] },
+    { id:'b2', name:'Sunset Smoothie', desc:'Mango, maracuyá, naranja y jengibre. Sin azúcares añadidos.', price:'6,20 €', ing:['Mango','Maracuyá','Naranja','Jengibre'], alg:[] },
+    { id:'b3', name:'Berry Bloom Juice', desc:'Zumo prensado en frío de frutos rojos, manzana y remolacha.', price:'5,90 €', ing:['Frutos rojos','Manzana','Remolacha'], alg:[] },
+  ],
+  cafe: [
+    { id:'c1', name:'Aura Matcha Latte', desc:'Matcha ceremonial japonés con leche de avena y espuma de rosas.', price:'5,20 €', ing:['Matcha','Leche de avena'], alg:['Puede contener trazas de frutos secos'], moment:true, momentTag:'ICÓNICO' },
+    { id:'c2', name:'Blush Flat White', desc:'Espresso doble con microespuma de leche y un velo de canela rosa.', price:'3,80 €', ing:['Café espresso','Leche'], alg:['Lácteos'] },
+    { id:'c3', name:'Café de Especialidad', desc:'Selección de origen único, tueste ligero, notas florales y afrutadas.', price:'3,50 €', ing:['Café de especialidad'], alg:[] },
+  ],
+  dulce: [
+    { id:'d1', name:'Rose Petal Cookie', desc:'Cookie tierna de chocolate blanco, pistacho y pétalos comestibles.', price:'4,20 €', ing:['Harina','Mantequilla','Chocolate blanco','Pistacho'], alg:['Gluten','Lácteos','Frutos secos'] },
+    { id:'d2', name:'Aura Tart', desc:'Tarta de frutos rojos con crema pastelera y base crujiente de almendra.', price:'5,90 €', ing:['Frutos rojos','Crema pastelera','Almendra'], alg:['Gluten','Lácteos','Huevo','Frutos secos'], moment:true, momentTag:'DE TEMPORADA' },
+    { id:'d3', name:'Blossom Cinnamon Roll', desc:'Roll de canela glaseado con crema de rosas y azúcar perlado.', price:'4,50 €', ing:['Harina','Canela','Mantequilla'], alg:['Gluten','Lácteos'] },
+  ],
+  extras: [
+    { id:'e1', name:'Huevo Poché', desc:'Para acompañar cualquier plato salado.', price:'1,80 €', ing:['Huevo'], alg:['Huevo'] },
+    { id:'e2', name:'Aguacate', desc:'Media pieza laminada.', price:'1,80 €', ing:['Aguacate'], alg:[] },
+    { id:'e3', name:'Bacon Crujiente', desc:'Panceta curada al horno.', price:'2,00 €', ing:['Panceta'], alg:[] },
+  ]
+};
+
+function productCardHTML(item, index){
+  return `
+    <div class="product-card" data-id="${item.id}" onclick="openSheet('${item.id}')">
+      <div class="photo product-photo"></div>
+      <div class="product-info">
+        <h3 class="display">${item.name}</h3>
+        <p class="desc">${item.desc}</p>
+        <div class="row">
+          <span class="price">${item.price}</span>
+          <span class="ver-mas">VER MÁS</span>
+        </div>
+      </div>
+    </div>`;
+}
+
+function momentCardHTML(item){
+  return `
+    <div class="moment-card" data-id="${item.id}" onclick="openSheet('${item.id}')">
+      <div class="photo" style="position:relative;">
+        <span class="moment-tag">${item.momentTag}</span>
+      </div>
+      <h3 class="display">${item.name}</h3>
+      <p>${item.price}</p>
+    </div>`;
+}
+
+function render(){
+  document.getElementById('grid-brunch').innerHTML = DATA.brunch.map(productCardHTML).join('');
+  document.getElementById('grid-bebidas').innerHTML = DATA.bebidas.map(productCardHTML).join('');
+  document.getElementById('grid-cafe').innerHTML = DATA.cafe.map(productCardHTML).join('');
+  document.getElementById('grid-dulce').innerHTML = DATA.dulce.map(productCardHTML).join('');
+  document.getElementById('grid-extras').innerHTML = DATA.extras.map(productCardHTML).join('');
+
+  const all = [...DATA.brunch, ...DATA.bebidas, ...DATA.cafe, ...DATA.dulce, ...DATA.extras];
+  const moments = all.filter(p => p.moment);
+  document.getElementById('moments-track').innerHTML = moments.map(momentCardHTML).join('');
+}
+
+function findItem(id){
+  const all = [...DATA.brunch, ...DATA.bebidas, ...DATA.cafe, ...DATA.dulce, ...DATA.extras];
+  return all.find(p => p.id === id);
+}
+
+/* ---- HOME / MENU TRANSITION ---- */
+function openMenu(){
+  document.getElementById('home').classList.add('hidden');
+  document.getElementById('menu-view').classList.add('active');
+  window.scrollTo(0,0);
+}
+function closeMenu(){
+  document.getElementById('menu-view').classList.remove('active');
+  document.getElementById('home').classList.remove('hidden');
+}
+
+/* ---- BOTTOM NAV ---- */
+const navItems = document.querySelectorAll('.nav-item');
+navItems.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    navItems.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.target).scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+
+/* update nav active state on scroll */
+const sections = ['cat-brunch','cat-bebidas','cat-cafe','cat-dulce','cat-extras'];
+const menuView = document.getElementById('menu-view');
+menuView.addEventListener('scroll', ()=>{
+  let current = sections[0];
+  for(const id of sections){
+    const el = document.getElementById(id);
+    if(el.getBoundingClientRect().top - 140 <= 0) current = id;
+  }
+  navItems.forEach(b=>b.classList.toggle('active', b.dataset.target === current));
+}, {passive:true});
+
+/* ---- PRODUCT SHEET ---- */
+function openSheet(id){
+  const item = findItem(id);
+  if(!item) return;
+  document.getElementById('sheet-name').textContent = item.name;
+  document.getElementById('sheet-price').textContent = item.price;
+  document.getElementById('sheet-desc').textContent = item.desc;
+  document.getElementById('sheet-ingredientes').innerHTML = item.ing.map(i=>`<span class="chip">${i}</span>`).join('') || '<span class="chip">—</span>';
+  document.getElementById('sheet-alergenos').innerHTML = item.alg.length ? item.alg.map(a=>`<span class="chip alergeno">${a}</span>`).join('') : '<span class="chip alergeno">Sin alérgenos destacados</span>';
+
+  const extrasBlock = document.getElementById('sheet-extras-block');
+  if(item.extras && item.extras.length){
+    extrasBlock.style.display = 'block';
+    document.getElementById('sheet-extras').innerHTML = item.extras.map(e=>`<div class="extra-row"><span>${e.n}</span><b>${e.p}</b></div>`).join('');
+  } else {
+    extrasBlock.style.display = 'none';
+  }
+
+  document.getElementById('sheet-overlay').classList.add('open');
+  document.getElementById('sheet').classList.add('open');
+}
+function closeSheet(){
+  document.getElementById('sheet-overlay').classList.remove('open');
+  document.getElementById('sheet').classList.remove('open');
+}
+
+/* ---- SCROLL REVEAL ---- */
+function setupReveal(){
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); obs.unobserve(e.target); } });
+  }, {threshold:0.15});
+  document.querySelectorAll('.product-card').forEach(c=>obs.observe(c));
+}
+
+render();
+setupReveal();
+</script>
+</body>
+</html>
