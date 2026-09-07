@@ -121,6 +121,16 @@
     align-items:center;
     text-align:center;
   }
+  .logo-aura{
+    width:min(88%, 390px);
+    height:auto;
+    object-fit:contain;
+    mix-blend-mode:multiply;
+    margin:0 auto 8px;
+    opacity:0;
+    animation:riseIn .9s cubic-bezier(.2,.7,.3,1) .22s forwards;
+  }
+
   .wordmark{
     font-size:15px;
     letter-spacing:.42em;
@@ -561,8 +571,7 @@
       <span class="photo-caption">fotografía de producto — a completar</span>
     </div>
     <div class="home-content">
-      <div class="wordmark">AURA</div>
-      <div class="wordmark-main">Brunch</div>
+      <img class="logo-aura" src="logoaura.jpeg" alt="AURA Brunch">
       <p class="tagline">Brunch, coffee &amp; sweet moments</p>
       <button class="cta-ver-menu" onclick="openMenu()">VER MENÚ</button>
       <div class="home-foot">SANTIAGO&nbsp; DE&nbsp; COMPOSTELA</div>
