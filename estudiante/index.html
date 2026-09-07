@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
@@ -10,528 +9,1112 @@
 <meta content="index,follow" name="robots"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&amp;family=DM+Mono:wght@400;500;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
-/* ===== Base: reset, tipografía, contenedores, header/nav ===== */
-:root{--green:#17352a;--green2:#284c3b;--cream:#fbf8f1;--paper:#f0e8da;--sage:#dfe9da;--ube:#eee7f7;--gold:#b89557;--ink:#17231b;--muted:#667066;--line:#d9ddd5;--display:'Bricolage Grotesque',sans-serif;--body:Inter,system-ui,sans-serif;--mono:'DM Mono',monospace;--radius:22px}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:110px}body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);line-height:1.45}a{color:inherit;text-decoration:none}button{font:inherit} .wrap{width:min(1180px,calc(100% - 32px));margin:auto}.mono,.eyebrow{font:500 10px var(--mono);letter-spacing:.13em;text-transform:uppercase}.eyebrow{color:var(--green)}
-.header{position:sticky;top:0;z-index:50;background:rgba(251,248,241,.96);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{font:800 28px/1 var(--display);letter-spacing:-.08em;flex:none}.brand small{display:block;font:500 7px var(--mono);letter-spacing:.18em;margin-top:5px}.nav-menu{font:700 9px var(--mono);letter-spacing:.09em;text-transform:uppercase;border:1px solid var(--green);color:#fff;background:var(--green);padding:10px 14px;border-radius:999px;white-space:nowrap}
-.menu-head{padding:42px 0 28px;border-bottom:1px solid var(--line)}.head-row{display:flex;justify-content:space-between;align-items:end;gap:30px}.head-row h1{font:800 clamp(54px,8vw,100px)/.82 var(--display);letter-spacing:-.085em;margin:9px 0 0}.head-row p{max-width:430px;margin:0;color:var(--muted);font-size:14px}.head-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px}.meta{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font:500 9px var(--mono);letter-spacing:.08em;text-transform:uppercase}
-.category-bar{position:sticky;top:0;z-index:40;background:var(--cream);border-bottom:1px solid var(--line);overflow:auto;scrollbar-width:none}.category-bar::-webkit-scrollbar{display:none}.category-inner{display:flex;gap:7px;padding:10px 0;min-width:max-content}.category-inner a{padding:9px 13px;border:1px solid var(--line);background:#fff;border-radius:999px;font:700 9px var(--mono);letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+/* ============================================================
+   ISLA STUDENT — design tokens
+   ============================================================ */
+:root{
+  --forest:#173a2b;--forest-2:#0f2a1f;--forest-3:#2c5744;
+  --cream:#faf6ee;--paper:#f2e8d5;--sage:#e1ead9;--sage-2:#cfe0c4;
+  --ube:#efe4f8;--ube-2:#ddc9ef;
+  --gold:#b8874a;--gold-soft:#f2e3c8;
+  --ink:#12201a;--muted:#68715f;--muted-2:#8a9184;
+  --line:rgba(18,32,26,.11);--line-soft:rgba(18,32,26,.07);
+  --white:#fff;
+  --display:'Bricolage Grotesque',sans-serif;--body:'Inter',system-ui,sans-serif;--mono:'DM Mono',monospace;
+  --r-lg:28px;--r-md:20px;--r-sm:14px;--r-pill:999px;
+  --shadow-sm:0 2px 10px rgba(15,42,31,.06);
+  --shadow-md:0 18px 40px rgba(15,42,31,.14);
+  --ease:cubic-bezier(.22,.8,.24,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
+img,video{max-width:100%;display:block}
+ul{margin:0;padding:0;list-style:none}
+h1,h2,h3{margin:0;font-family:var(--display)}
+.wrap{width:min(1160px,calc(100% - 40px));margin:0 auto}
+.mono{font:600 11px/1 var(--mono);letter-spacing:.02em}
+:focus-visible{outline:2px solid var(--forest);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* ============================================================
+   Header + tactile pill navigation
+   ============================================================ */
+.header{position:sticky;top:0;z-index:60;background:rgba(250,246,238,.86);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);border-bottom:1px solid var(--line-soft)}
+.header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.brand{display:flex;flex-direction:column;line-height:1}
+.brand b{font:800 21px/1 var(--display);letter-spacing:-.03em}
+.brand span{font:600 9px/1 var(--mono);letter-spacing:.14em;color:var(--muted);margin-top:4px}
+.full-link{display:flex;align-items:center;gap:6px;font:600 12px/1 var(--body);color:var(--forest);padding:9px 14px;border:1px solid var(--line);border-radius:var(--r-pill);white-space:nowrap;transition:background .18s var(--ease),transform .18s var(--ease)}
+.full-link:hover{background:var(--sage)}
+.full-link:active{transform:scale(.96)}
+
+.catnav{position:sticky;top:64px;z-index:55;background:var(--cream)/*fallback*/;background:rgba(250,246,238,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line-soft)}
+.catnav-inner{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:12px 0;scroll-padding-inline:20px}
+.catnav-inner::-webkit-scrollbar{display:none}
+.catnav a{flex:none;scroll-snap-align:start;display:flex;align-items:center;gap:7px;padding:9px 15px;border-radius:var(--r-pill);border:1px solid var(--line);background:var(--white);font:600 13px/1 var(--body);color:var(--muted);white-space:nowrap;transition:background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease),transform .15s var(--ease)}
+.catnav a i{font:600 9px/1 var(--mono);opacity:.5}
+.catnav a:hover{transform:translateY(-1px)}
+.catnav a:active{transform:scale(.95)}
+.catnav a.active{background:var(--forest);border-color:var(--forest);color:#fff}
+.catnav a.active i{color:#cfe0c4;opacity:1}
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero{background:radial-gradient(120% 140% at 15% 0%,var(--forest-3) 0%,var(--forest) 45%,var(--forest-2) 100%);color:#fff;padding:36px 0 26px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 90% 10%,rgba(255,255,255,.08),transparent 70%)}
+.hero .wrap{position:relative}
+.hero-kicker{font:600 11px/1 var(--mono);letter-spacing:.1em;color:#cfe0c4;text-transform:uppercase;margin-bottom:18px;opacity:.85}
+.hero h1{font:800 clamp(2.9rem,13vw,5.2rem)/.86 var(--display);letter-spacing:-.03em}
+.hero h1 i{font-style:normal;color:#dcead4}
+.hero-sub{font:700 clamp(1rem,4.4vw,1.3rem)/1.25 var(--display);letter-spacing:-.01em;margin:16px 0 8px;color:#eef4e8}
+.hero-copy{max-width:520px;color:rgba(255,255,255,.72);font-size:14.5px;margin:0 0 22px}
+.hero-scroller{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;margin:0 -20px;padding:2px 20px 6px;scroll-snap-type:x mandatory}
+.hero-scroller::-webkit-scrollbar{display:none}
+.hero-offer{scroll-snap-align:start;flex:0 0 auto;width:168px;background:#fff;color:var(--forest);border-radius:var(--r-md);padding:16px;display:flex;flex-direction:column;gap:14px;min-height:104px}
+.hero-offer span{font:700 10px/1 var(--mono);letter-spacing:.06em;color:var(--gold)}
+.hero-offer strong{font:800 28px/.9 var(--display);letter-spacing:-.03em}
+.hero-offer small{font-size:11px;color:var(--muted);line-height:1.35}
+.hero-extra{margin-top:12px;border:1px solid rgba(255,255,255,.18);border-radius:var(--r-sm);padding:12px 14px;font-size:12.5px;color:rgba(255,255,255,.85);display:flex;flex-wrap:wrap;gap:6px 10px}
+.hero-extra b{color:#f2dcae;font-weight:700}
+
+/* ============================================================
+   Section shells / rhythm
+   ============================================================ */
 .page{display:none}
-.page.on{display:block}
-section{padding:58px 0}.section-title{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:22px}.section-title h2{font:800 clamp(38px,6vw,68px)/.86 var(--display);letter-spacing:-.075em;margin:8px 0 0}.section-title p{max-width:450px;color:var(--muted);font-size:13px;margin:0}.section-note{font:500 9px var(--mono);color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
-.student{background:var(--paper)}.packs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pack{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;min-height:270px;overflow:hidden;word-break:normal}.pack:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(23,53,42,.09)}.pack.featured{background:var(--green);color:#fff;border-color:var(--green)}.pack.green{background:var(--sage)}.pack.gold{background:#f4ead7}.pack-top{display:flex;justify-content:space-between;align-items:center}.pack-num{font:500 9px var(--mono);letter-spacing:.12em;color:#7d867e}.featured .pack-num{color:rgba(255,255,255,.55)}.tag{font:700 8px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:6px 8px;border-radius:999px;background:#edf0eb;color:var(--green)}.featured .tag{background:#fff;color:var(--green)}.pack h3{font:800 clamp(28px,3vw,36px)/.92 var(--display);letter-spacing:-.06em;margin:20px 0 9px}.pack p{font-size:13px;color:var(--muted);margin:0 0 13px}.featured p{color:rgba(255,255,255,.7)}.pack ul{list-style:none;padding:0;margin:0 0 15px;font-size:12px}.pack li{padding:4px 0;border-bottom:1px solid #edf0eb}.pack li:last-child{border-bottom:0}.featured li{border-color:rgba(255,255,255,.12)}.pack li::before{content:'·';font-weight:800;color:var(--gold);margin-right:8px}.drink-line{margin-top:auto;border-top:1px solid var(--line);padding-top:12px;font-size:12px;color:var(--muted)}.featured .drink-line{border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.7)}.drink-line strong{font:700 9px var(--mono);letter-spacing:.1em;color:var(--green)}.featured .drink-line strong{color:#e4d0a1}.price-row{display:flex;justify-content:space-between;align-items:end;margin-top:14px}.price{font:700 25px var(--mono);letter-spacing:-.04em}.price-label{font:500 8px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}.featured .price-label{color:rgba(255,255,255,.55)}
-.student-value{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 18px;padding:13px 16px;background:var(--green);color:#fff;border-radius:16px}.student-value strong{font:800 13px var(--display);letter-spacing:-.02em}.student-value span{font:500 9px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.68)}.include-box{margin:3px 0 12px;padding:11px 12px;border:1px solid var(--line);border-radius:14px;background:#fbfcf9}.featured .include-box{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16)}.include-box .label{font:700 8px var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--green);margin-bottom:5px}.featured .include-box .label{color:#e4d0a0}.include-box ul{margin:0}.extra-line{margin-top:8px;padding:9px 10px;border-radius:11px;background:#f4ead7;color:var(--green);font:600 9px var(--mono);letter-spacing:.02em}.featured .extra-line{background:rgba(255,255,255,.1);color:#f1e5c8}.extra-line strong{font-weight:800}.pack .price-row{border-top:0}.pack .price-label{font-weight:700;color:var(--green)}.featured .price-label{color:#e4d0a0}.saving{font:700 8px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#8b6a2f}.featured .saving{color:#e4d0a0}.student-value+ .packs{}
-.matcha{background:#e5eee0}.matcha-lead{display:grid;grid-template-columns:1.05fr .95fr;gap:10px;margin-bottom:10px}.matcha-intro{background:var(--green);color:#fff;border-radius:var(--radius);padding:34px;min-height:350px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}.matcha-intro:after{content:'抹茶';position:absolute;right:20px;top:-25px;font-size:190px;line-height:1;color:rgba(255,255,255,.045);font-weight:800}.matcha-intro h2{font:800 clamp(50px,7vw,82px)/.82 var(--display);letter-spacing:-.08em;margin:10px 0 13px;position:relative;z-index:1}.matcha-intro h2 em{font-style:normal;color:#dcead7}.matcha-intro p{max-width:470px;color:rgba(255,255,255,.7);font-size:13px;position:relative;z-index:1}.matcha-photo{min-height:350px;border-radius:var(--radius);background:radial-gradient(circle at 50% 32%,#f8f5ec 0 10%,#bdd0b1 11% 21%,#769576 22% 38%,#2d523e 39% 67%,#17352a 68%);display:grid;place-items:center;overflow:hidden}.cup{width:150px;height:190px;border-radius:18px 18px 34px 34px;background:linear-gradient(#91b27f 0 30%,#f7f3e9 31%);box-shadow:0 30px 70px rgba(0,0,0,.25);transform:rotate(-6deg);display:flex;flex-direction:column;align-items:center;justify-content:center;border:5px solid rgba(255,255,255,.12)}.cup b{font:800 25px var(--display);letter-spacing:-.08em;margin-top:32px}.cup small{font:700 7px var(--mono);letter-spacing:.18em}.matcha-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.drink-card{background:#fff;border:1px solid rgba(23,53,42,.12);border-radius:18px;padding:18px;min-height:170px;display:flex;flex-direction:column}.drink-card:nth-child(3){background:#d9e7d2}.drink-card:nth-child(6){background:#f1e5cf}.drink-card:nth-child(7){background:#eee7f7}.drink-card h3{font:800 23px/.9 var(--display);letter-spacing:-.05em;margin:13px 0 7px}.drink-card p{font-size:10px;color:var(--muted);margin:0}.drink-card .dprice{margin-top:auto;font:700 15px var(--mono)}.pairing{margin-top:10px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:20px}.pairing h3{font:800 31px/.9 var(--display);letter-spacing:-.06em;margin:7px 0}.pairing p{margin:0;color:var(--muted);font-size:12px}.pairing-list{display:grid;grid-template-columns:1fr 1fr;gap:7px}.pairing-list div{border:1px solid var(--line);border-radius:12px;padding:10px;font-size:10px}.pairing-list b{display:block;font:700 9px var(--mono);margin-top:3px}
-.duo{background:#f4ead7}.duo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.duo-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:grid;grid-template-columns:1fr auto;gap:15px}.duo-card.featured{background:var(--green);color:#fff;border-color:var(--green)}.duo-card h3{font:800 29px/.9 var(--display);letter-spacing:-.06em;margin:0 0 9px}.duo-card p{font-size:11px;color:var(--muted);margin:0}.featured p{color:rgba(255,255,255,.67)}.duo-price{font:700 15px var(--mono);white-space:nowrap}.duo-small{margin-top:10px;color:var(--muted);font-size:10px}
-.menu-section{background:var(--green);color:#fff}.menu-section .eyebrow{color:#d7e5d2}.menu-section .section-title p{color:rgba(255,255,255,.63)}.food-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.food-group{border:1px solid rgba(255,255,255,.13);border-radius:20px;padding:20px;background:rgba(255,255,255,.045)}.food-group h3{font:800 27px/.9 var(--display);letter-spacing:-.05em;margin:0 0 14px}.food-group .sub{font:700 8px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.42);margin:17px 0 7px}.food-item{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1)}.food-item:last-child{border-bottom:0}.food-name{display:flex;justify-content:space-between;gap:12px;font-size:11px}.food-name b{font:500 10px var(--mono);color:#e4d2a9;white-space:nowrap}.food-desc{font-size:9px;color:rgba(255,255,255,.48);margin-top:3px;line-height:1.45}
-.ube-section{background:#f0eaf7}.ube-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.ube-card{background:#fff;border:1px solid #ded5e8;border-radius:18px;padding:19px;min-height:150px}.ube-card:nth-child(2),.ube-card:nth-child(4){background:#e8def2}.ube-card h3{font:800 24px/.9 var(--display);letter-spacing:-.05em;margin:10px 0 7px}.ube-card p{font-size:10px;color:var(--muted);margin:0}.ube-price{margin-top:14px;font:700 14px var(--mono)}
-.shakes{background:#e9efe5}.shake-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.shake-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px}.shake-card h3{font:800 31px/.9 var(--display);letter-spacing:-.06em;margin:8px 0}.shake-card p{font-size:11px;color:var(--muted)}.shake-items{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:16px}.shake-items div{padding:10px;border:1px solid var(--line);border-radius:11px;font-size:10px;display:flex;justify-content:space-between;gap:8px}.shake-items b{font:500 9px var(--mono);white-space:nowrap}
-.club{background:#eee4d3}.club-box{background:var(--green);color:#fff;border-radius:var(--radius);padding:28px;display:grid;grid-template-columns:1fr .9fr;gap:35px;align-items:center}.club-box h2{font:800 clamp(45px,6vw,72px)/.84 var(--display);letter-spacing:-.08em;margin:8px 0}.club-box p{font-size:12px;color:rgba(255,255,255,.66);max-width:470px}.stamps{background:#fff;color:var(--ink);border-radius:20px;padding:22px}.stamp-row{display:grid;grid-template-columns:repeat(12,1fr);gap:5px;margin:15px 0}.stamp{aspect-ratio:1;border-radius:50%;border:1px dashed #aeb6ae;display:grid;place-items:center;font:500 8px var(--mono);color:#7a837b}.stamp.on{background:#f2e5ca;border-style:solid;border-color:var(--gold);color:var(--ink)}.rewards{border-top:1px solid var(--line);padding-top:12px;display:grid;gap:8px}.reward{display:flex;justify-content:space-between;gap:15px;font-size:10px}.reward b{font:700 8px var(--mono);letter-spacing:.08em;color:var(--green)}
-.full{padding:35px 0 60px}.full-card{border:1px solid var(--line);background:#fff;border-radius:var(--radius);padding:22px;display:flex;justify-content:space-between;align-items:center;gap:20px}.full-card h3{font:800 28px/.9 var(--display);margin:0 0 5px}.full-card p{margin:0;color:var(--muted);font-size:11px}.full-btn{background:var(--green);color:#fff;padding:13px 17px;border-radius:999px;font:700 9px var(--mono);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}.footer{background:var(--green);color:#fff;padding:34px 0}.footer-row{display:flex;justify-content:space-between;gap:30px}.footer p{color:rgba(255,255,255,.55);font-size:10px}.footer-links{display:flex;gap:16px;flex-wrap:wrap;font:700 9px var(--mono);letter-spacing:.08em;text-transform:uppercase}.footer-bottom{border-top:1px solid rgba(255,255,255,.13);padding-top:15px;margin-top:25px;display:flex;justify-content:space-between;gap:15px;font:500 8px var(--mono);letter-spacing:.08em;color:rgba(255,255,255,.45)}
-@media(max-width:950px){.nav{padding:10px 0}.header{position:sticky}.category-bar{top:72px}.head-row{display:block}.head-row p{margin-top:18px}.packs{grid-template-columns:1fr 1fr}.matcha-lead{grid-template-columns:1fr}.matcha-grid{grid-template-columns:1fr 1fr}.food-grid{grid-template-columns:1fr 1fr}.club-box{grid-template-columns:1fr}.duo-grid,.shake-grid{grid-template-columns:1fr}}
-.pack,.drink-card,.ube-card,.duo-card,.shake-card,.food-group{animation:riseIn .55s ease both}.pack:nth-child(2),.drink-card:nth-child(2),.ube-card:nth-child(2){animation-delay:.06s}.pack:nth-child(3),.drink-card:nth-child(3),.ube-card:nth-child(3){animation-delay:.12s}@keyframes riseIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.pack,.drink-card,.ube-card,.duo-card,.shake-card,.food-group{animation:none!important}.pack:hover{transform:none}}
-@media(max-width:620px){.wrap{width:calc(100% - 22px)}.nav-menu{margin-left:auto}.category-bar{top:72px}.menu-head{padding-top:30px}.head-row h1{font-size:62px}.packs,.matcha-grid,.food-grid,.ube-grid{grid-template-columns:1fr}.pack{min-height:0;width:100%;padding:20px}.pack h3{font-size:32px}.pack li{font-size:12px}.drink-line{font-size:12px}.price{font-size:24px}.section-title{display:block}.section-title p{margin-top:12px}.matcha-intro,.matcha-photo{min-height:300px}.pairing{grid-template-columns:1fr}.pairing-list,.shake-items{grid-template-columns:1fr}.duo-card{grid-template-columns:1fr}.duo-price{justify-self:start}.stamp-row{grid-template-columns:repeat(6,1fr)}.full-card{display:block}.full-btn{display:inline-flex;margin-top:16px}.footer-row,.footer-bottom{display:block}.footer-links{margin-top:18px}.footer-bottom span{display:block;margin-top:7px}}
+.page.on{display:block;animation:fadeIn .35s var(--ease) both}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+section{padding:40px 0 56px}
+.sec-head{margin-bottom:22px}
+.sec-head .kicker{font:600 11px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--forest);opacity:.7;margin-bottom:10px}
+.sec-head h2{font:800 clamp(2.1rem,8vw,3.1rem)/.9 var(--display);letter-spacing:-.025em}
+.sec-head p{max-width:440px;color:var(--muted);font-size:14.5px;margin:12px 0 0}
 
-/* ===== Include-box / drink-line / extra-line (packs) — ajustes ===== */
-.include-box{margin-top:16px;border-top:1px solid var(--line);padding-top:14px}.include-box .label{font:700 11px/1.2 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase}.include-box ul{margin:8px 0 0;padding-left:18px}.include-box li{margin:4px 0}.drink-line{margin-top:14px;padding:11px 12px;background:rgba(24,62,49,.07);border-left:3px solid var(--green);font-size:13px;line-height:1.45}.extra-line{margin-top:8px;font-size:12px;color:var(--muted);line-height:1.45}.extra-line strong{color:var(--ink)}@media(max-width:700px){.pack{padding:18px!important}}
+.tone-paper{background:var(--paper)}
+.tone-sage{background:var(--sage)}
+.tone-cream{background:var(--cream)}
+.tone-ube{background:var(--ube)}
+.tone-forest{background:var(--forest);color:#fff}
+.tone-forest .sec-head .kicker{color:#cfe0c4;opacity:.9}
+.tone-forest .sec-head h2{color:#fff}
+.tone-forest .sec-head p{color:rgba(255,255,255,.66)}
 
-/* ===== Packs: estabilidad en móvil (overflow, salto de línea) ===== */
-/* Student menu mobile polish */
-.pack{overflow:hidden;min-width:0}
-.pack .include-box{min-width:0}
-.pack .include-box ul{min-width:0}
-.pack .include-box li{overflow-wrap:anywhere}
+/* ============================================================
+   Chips / pills — shared vocabulary for included vs paid
+   ============================================================ */
+.chip{display:inline-flex;align-items:baseline;gap:5px;padding:8px 12px;border-radius:var(--r-pill);font-size:12.5px;line-height:1;background:var(--white);border:1px solid var(--line)}
+.chip b{font-weight:700}
+.chip--include{background:var(--sage);border-color:transparent;color:var(--forest)}
+.chip--paid{background:var(--gold-soft);border-color:transparent;color:#7a5626}
 
+.pill-row{display:flex;flex-wrap:wrap;gap:8px}
+.pill{padding:10px 14px;border-radius:var(--r-pill);border:1px solid var(--line);background:var(--white);font-size:13px;font-weight:600;color:var(--ink);transition:background .16s var(--ease),color .16s var(--ease),border-color .16s var(--ease),transform .12s var(--ease)}
+.pill:active{transform:scale(.96)}
+.pill.is-selected{background:var(--forest);border-color:var(--forest);color:#fff}
+.pill--drink{display:flex;flex-direction:column;gap:2px;align-items:flex-start;min-width:118px}
+.pill--drink .pill__add{font:600 10.5px/1 var(--mono);color:var(--gold);opacity:.9}
+.pill--drink.is-selected .pill__add{color:#f2dcae}
+.pill--drink[data-add="0"] .pill__add{color:var(--forest);opacity:.55}
+.pill--drink[data-add="0"].is-selected .pill__add{color:#cfe0c4}
 
-@media(max-width:620px){
-  .packs{grid-template-columns:1fr;gap:12px}
-  .pack{width:100%;padding:18px;border-radius:18px}
-  .pack h3{font-size:30px}
-  .pack p{font-size:13px}
-  .pack .include-box ul{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
-  .pack .include-box li{font-size:10px;line-height:1.35;padding:6px 0}
-  .pack .drink-line,.pack .extra-line{font-size:11px}
-  .price-row{margin-top:12px}
-  .price{font-size:24px}
+/* ============================================================
+   Expandable "Personalizar" disclosure
+   ============================================================ */
+details.disclose{border-top:1px solid var(--line-soft);margin-top:14px;padding-top:2px}
+details.disclose summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:12px 0;font:700 13px/1 var(--body);color:var(--forest)}
+details.disclose summary::-webkit-details-marker{display:none}
+details.disclose summary:after{content:"";width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transition:transform .25s var(--ease);margin-right:2px}
+details.disclose[open] summary:after{transform:rotate(-135deg)}
+.disclose-body{padding:4px 0 14px;display:grid;gap:16px}
+.opt-label{display:block;font:600 11px/1 var(--mono);letter-spacing:.04em;color:var(--muted);text-transform:uppercase;margin-bottom:9px}
+
+/* ============================================================
+   Student packs
+   ============================================================ */
+.student-highlight{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--forest);color:#fff;border-radius:var(--r-md);padding:15px 18px;margin-bottom:20px}
+.student-highlight strong{font:800 15px var(--display)}
+.student-highlight span{font-size:11.5px;color:rgba(255,255,255,.68)}
+
+.pack-list{display:grid;gap:16px}
+.pack-card{background:var(--white);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--line-soft);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.pack-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.pack-card.is-featured{background:var(--forest);color:#fff;border-color:var(--forest)}
+.pack-media-wrap{position:relative;aspect-ratio:16/10;background:var(--sage);overflow:hidden}
+.pack-media-wrap img,.pack-media-wrap video{width:100%;height:100%;object-fit:cover}
+.pack-badge{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.92);color:var(--forest);font:700 10.5px/1 var(--mono);letter-spacing:.04em;padding:7px 11px;border-radius:var(--r-pill)}
+.pack-card__body{padding:20px}
+.pack-card__row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.pack-card__name{font:800 clamp(1.5rem,5.6vw,1.9rem)/.95 var(--display);letter-spacing:-.02em}
+.pack-price{text-align:right;flex:none}
+.pack-price .price{display:block;font:800 24px/1 var(--mono);letter-spacing:-.02em}
+.pack-price small{font:600 9.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.is-featured .pack-price small{color:rgba(255,255,255,.6)}
+.pack-card__desc{font-size:13.5px;color:var(--muted);margin:8px 0 14px;max-width:44ch}
+.is-featured .pack-card__desc{color:rgba(255,255,255,.72)}
+.pack-card__summary{display:flex;flex-wrap:wrap;gap:8px}
+.is-featured .chip{background:rgba(255,255,255,.12);border-color:transparent;color:#fff}
+.is-featured .chip--include{background:rgba(255,255,255,.16)}
+.is-featured details.disclose{border-color:rgba(255,255,255,.18)}
+.is-featured details.disclose summary{color:#fff}
+.is-featured .opt-label{color:rgba(255,255,255,.55)}
+.is-featured .pill{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff}
+.is-featured .pill.is-selected{background:#fff;color:var(--forest);border-color:#fff}
+
+/* ============================================================
+   Duo
+   ============================================================ */
+.duo-list{display:grid;gap:16px}
+.duo-card{background:var(--white);border:1px solid var(--line-soft);border-radius:var(--r-lg);padding:22px;box-shadow:var(--shadow-sm)}
+.duo-card.is-featured{background:var(--forest);color:#fff}
+.duo-card h3{font:800 clamp(1.5rem,6vw,2rem)/.9 var(--display);letter-spacing:-.02em}
+.duo-card p{font-size:13.5px;color:var(--muted);margin:8px 0 16px}
+.is-featured .duo-card p{color:rgba(255,255,255,.7)}
+.duo-rows{display:grid;gap:8px}
+.duo-row{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r-sm);font-size:13.5px}
+.is-featured .duo-row{border-color:rgba(255,255,255,.18)}
+.duo-row b{font:700 13.5px/1 var(--mono);white-space:nowrap}
+.duo-upgrade{margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--gold-soft);color:#7a5626;border-radius:var(--r-sm);padding:12px 14px}
+.duo-upgrade div{display:flex;flex-direction:column;gap:2px}
+.duo-upgrade span{font:700 10px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase}
+.duo-upgrade strong{font-size:13px}
+.duo-upgrade b{font:800 15px var(--mono);white-space:nowrap}
+.duo-foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.is-featured .duo-foot{border-color:rgba(255,255,255,.18)}
+.duo-foot strong{display:block;font:800 20px var(--mono)}
+.duo-foot span{font-size:11px;color:var(--muted)}
+.is-featured .duo-foot span{color:rgba(255,255,255,.6)}
+
+/* ============================================================
+   Matcha
+   ============================================================ */
+.matcha-hero{background:var(--forest);color:#fff;border-radius:var(--r-lg);padding:26px;position:relative;overflow:hidden;margin-bottom:16px}
+.matcha-hero:before{content:'抹茶';position:absolute;right:-6px;top:-30px;font-size:170px;line-height:1;color:rgba(255,255,255,.045);font-weight:800}
+.matcha-hero .kicker{position:relative;z-index:1;font:600 11px var(--mono);letter-spacing:.08em;color:#cfe0c4;text-transform:uppercase}
+.matcha-hero h2{position:relative;z-index:1;font:800 clamp(2.4rem,11vw,3.6rem)/.84 var(--display);letter-spacing:-.03em;margin:12px 0 10px}
+.matcha-hero h2 i{font-style:normal;color:#dcead4}
+.matcha-hero p{position:relative;z-index:1;color:rgba(255,255,255,.7);font-size:13.5px;max-width:420px}
+.matcha-pills{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.matcha-pills span{font:700 11px var(--mono);padding:8px 12px;border:1px solid rgba(255,255,255,.22);border-radius:var(--r-pill);color:#fff}
+.matcha-video{position:relative;z-index:1;width:100%;height:180px;object-fit:cover;border-radius:var(--r-md);margin-top:18px;background:#234f3b}
+
+.pairing{background:var(--white);border:1px solid var(--line-soft);border-radius:var(--r-lg);padding:22px;margin-bottom:20px;box-shadow:var(--shadow-sm)}
+.pairing .kicker{font:600 11px var(--mono);letter-spacing:.08em;color:var(--forest);text-transform:uppercase;opacity:.7}
+.pairing h3{font:800 clamp(1.6rem,7vw,2.1rem)/.92 var(--display);letter-spacing:-.02em;margin:8px 0}
+.pairing>p{color:var(--muted);font-size:13.5px;margin:0 0 16px}
+.pairing-scroller{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -22px;padding:2px 22px}
+.pairing-scroller::-webkit-scrollbar{display:none}
+.pairing-item{flex:0 0 auto;width:180px;border:1px solid var(--line);border-radius:var(--r-sm);padding:12px 14px}
+.pairing-item span{display:block;font:700 12px/1 var(--body);margin-bottom:6px}
+.pairing-item b{display:block;font:600 11px/1.4 var(--mono);color:var(--muted);font-weight:500}
+
+.matcha-pack{margin-bottom:18px}
+
+/* list rows — used for Matcha drinks, Ube, Café, Comer static items */
+.item-list{display:grid;gap:0}
+.item-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--line-soft)}
+.item-list>.item-row:last-child{border-bottom:0}
+.item-row__main{min-width:0}
+.item-row__name{font:700 15px/1.25 var(--display);letter-spacing:-.01em}
+.item-row__desc{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.4}
+.item-row__price{flex:none;font:700 14px/1 var(--mono);color:var(--forest);white-space:nowrap;padding-top:2px}
+.item-row__note{flex:none;font:600 10px/1 var(--mono);letter-spacing:.05em;color:var(--gold);text-transform:uppercase;padding-top:2px}
+
+.drink-cards{display:grid;gap:10px;margin-top:18px}
+.drink-tile{background:var(--white);border:1px solid var(--line-soft);border-radius:var(--r-md);padding:16px;display:flex;justify-content:space-between;align-items:center;gap:14px;box-shadow:var(--shadow-sm)}
+.drink-tile:nth-child(3n+2){background:var(--sage-2)}
+.drink-tile:nth-child(3n+3){background:var(--gold-soft)}
+.drink-tile__num{font:600 10px/1 var(--mono);color:var(--muted);opacity:.7;display:block;margin-bottom:6px}
+.drink-tile h3{font:800 21px/.9 var(--display);letter-spacing:-.02em}
+.drink-tile p{font-size:11.5px;color:var(--muted);margin:5px 0 0}
+.drink-tile b{font:700 16px var(--mono);white-space:nowrap;flex:none}
+
+/* ============================================================
+   Ube
+   ============================================================ */
+.ube-list{display:grid;gap:10px}
+.ube-tile{background:var(--white);border:1px solid #e2d3f0;border-radius:var(--r-md);padding:17px 18px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.ube-tile:nth-child(even){background:var(--ube-2)}
+.ube-tile__num{font:600 10px/1 var(--mono);color:#8a6da8;opacity:.75;display:block;margin-bottom:5px}
+.ube-tile h3{font:800 20px/.95 var(--display);letter-spacing:-.02em}
+.ube-tile p{font-size:11.5px;color:var(--muted);margin:4px 0 0}
+.ube-tile b{font:700 15px var(--mono);white-space:nowrap;flex:none}
+
+/* ============================================================
+   Café
+   ============================================================ */
+.cafe-groups{display:grid;gap:14px}
+.cafe-group{background:var(--white);border:1px solid var(--line-soft);border-radius:var(--r-lg);padding:20px;box-shadow:var(--shadow-sm)}
+.cafe-group h3{font:800 22px/.9 var(--display);letter-spacing:-.02em;margin-bottom:6px}
+.cafe-group .item-row{padding:11px 0}
+.cafe-group .item-row__name{font-size:14px;font-weight:600;font-family:var(--body)}
+
+/* ============================================================
+   Smoothies
+   ============================================================ */
+.shake-list{display:grid;gap:16px}
+.shake-card{background:var(--white);border:1px solid var(--line-soft);border-radius:var(--r-lg);padding:22px;box-shadow:var(--shadow-sm)}
+.shake-card .kicker{font:600 11px var(--mono);letter-spacing:.08em;color:var(--forest);text-transform:uppercase;opacity:.7}
+.shake-card h3{font:800 clamp(1.5rem,6vw,1.9rem)/.9 var(--display);letter-spacing:-.02em;margin:8px 0 4px}
+.shake-card>p{color:var(--muted);font-size:13.5px;margin:0 0 14px}
+.protein-callout{background:var(--forest);color:#fff;border-radius:var(--r-sm);padding:14px 16px;margin-bottom:14px}
+.protein-callout strong{display:block;font:800 18px var(--display);letter-spacing:-.02em}
+.protein-callout span{font-size:12px;color:rgba(255,255,255,.72)}
+.shake-items{display:grid;gap:8px}
+.shake-item{display:flex;justify-content:space-between;gap:10px;padding:11px 13px;border:1px solid var(--line);border-radius:var(--r-sm);font-size:13px}
+.shake-item b{font:700 13px var(--mono);white-space:nowrap}
+
+/* ============================================================
+   Comer — accordion groups (progressive disclosure)
+   ============================================================ */
+.comer-groups{display:grid;gap:12px}
+.comer-group{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.13);border-radius:var(--r-lg);overflow:hidden}
+.comer-group summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:20px 22px}
+.comer-group summary::-webkit-details-marker{display:none}
+.comer-group summary h3{font:800 24px/.9 var(--display);letter-spacing:-.02em;color:#fff}
+.comer-group summary .count{font:600 10.5px/1 var(--mono);letter-spacing:.05em;color:rgba(255,255,255,.5);text-transform:uppercase}
+.comer-group summary .chev{width:11px;height:11px;flex:none;border-right:2px solid rgba(255,255,255,.6);border-bottom:2px solid rgba(255,255,255,.6);transform:rotate(45deg);transition:transform .25s var(--ease)}
+.comer-group[open] summary .chev{transform:rotate(-135deg)}
+.comer-body{padding:0 22px 20px}
+.food-item{padding:13px 0;border-top:1px solid rgba(255,255,255,.1)}
+.food-item:first-child{border-top:0}
+.food-media{display:block;width:100%;height:190px;object-fit:cover;border-radius:var(--r-md);margin:2px 0 12px;background:rgba(255,255,255,.08)}
+.food-name{display:flex;justify-content:space-between;gap:14px;color:#fff;font-size:14.5px;font-weight:600}
+.food-name b{font:700 13.5px/1 var(--mono);color:#e9d3a4;white-space:nowrap;font-weight:700}
+.food-desc{font-size:11.5px;color:rgba(255,255,255,.5);margin-top:5px;line-height:1.5}
+
+/* ============================================================
+   Club / loyalty
+   ============================================================ */
+.club-panel{background:var(--forest);color:#fff;border-radius:var(--r-lg);padding:26px;margin-bottom:16px}
+.club-panel h2{font:800 clamp(2.2rem,9vw,3rem)/.88 var(--display);letter-spacing:-.03em;margin:10px 0}
+.club-panel p{font-size:13.5px;color:rgba(255,255,255,.72);max-width:460px;margin:0 0 20px}
+.club-panel p strong{color:#fff}
+.whatsapp-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--forest);padding:13px 18px;border-radius:var(--r-pill);font:700 13px/1 var(--body);transition:transform .18s var(--ease),box-shadow .18s var(--ease)}
+.whatsapp-btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.18)}
+.whatsapp-btn:active{transform:scale(.97)}
+.club-note{font-size:11.5px;color:rgba(255,255,255,.55);margin:14px 0 0;max-width:440px}
+
+.stamp-panel{background:var(--white);border-radius:var(--r-lg);padding:22px;box-shadow:var(--shadow-sm)}
+.stamp-panel .mono{color:var(--muted);letter-spacing:.06em}
+.stamp-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:16px 0}
+.stamp{aspect-ratio:1;border-radius:50%;border:1.5px dashed var(--line);display:grid;place-items:center;font:600 11px/1 var(--mono);color:var(--muted-2)}
+.rewards{border-top:1px solid var(--line);padding-top:14px;display:grid;gap:10px}
+.reward-row{display:flex;justify-content:space-between;gap:14px;font-size:12.5px}
+.reward-row b{font:700 10.5px/1 var(--mono);letter-spacing:.04em;color:var(--gold);text-transform:uppercase}
+
+/* ============================================================
+   Full menu CTA + footer
+   ============================================================ */
+.full-cta{padding:0 0 8px}
+.full-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;display:flex;flex-direction:column;gap:16px}
+.full-card h3{font:800 26px/.95 var(--display);letter-spacing:-.02em}
+.full-card p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.full-btn{align-self:flex-start;background:var(--forest);color:#fff;padding:13px 20px;border-radius:var(--r-pill);font:700 13px/1 var(--body);transition:transform .18s var(--ease),opacity .18s var(--ease)}
+.full-btn:hover{opacity:.92;transform:translateY(-2px)}
+
+.footer{background:var(--forest-2);color:#fff;padding:32px 0}
+.footer-top{display:flex;flex-direction:column;gap:18px}
+.footer .mono{color:rgba(255,255,255,.5)}
+.footer address{font-style:normal;color:rgba(255,255,255,.62);font-size:13px;margin-top:8px}
+.footer-links{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;font-weight:600}
+.footer-links a{color:rgba(255,255,255,.78)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.13);margin-top:22px;padding-top:16px;display:flex;flex-direction:column;gap:6px;font:600 10.5px/1 var(--mono);letter-spacing:.05em;color:rgba(255,255,255,.4)}
+
+/* ============================================================
+   Media fallback
+   ============================================================ */
+.media-missing{background:linear-gradient(135deg,var(--sage),var(--paper));display:flex;align-items:center;justify-content:center;font:600 12px var(--mono);color:var(--muted);text-align:center;min-height:120px}
+
+/* ============================================================
+   Scroll reveal
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(14px)}
+.reveal.is-visible{animation:riseIn .6s var(--ease) both}
+@keyframes riseIn{to{opacity:1;transform:none}}
+
+/* ============================================================
+   Tablet / desktop enhancements (mobile-first upscale)
+   ============================================================ */
+@media(min-width:640px){
+  .pack-list{grid-template-columns:1fr 1fr}
+  .duo-list{grid-template-columns:1fr 1fr}
+  .drink-cards{grid-template-columns:1fr 1fr}
+  .ube-list{grid-template-columns:1fr 1fr}
+  .shake-list{grid-template-columns:1fr 1fr}
+  .cafe-groups{grid-template-columns:repeat(3,1fr)}
 }
-
-/* ===== Packs: estabilidad en móvil (fase 2) + duo-pairing ===== */
-/* Student menu: mobile-first card stability */
-.pack{overflow:hidden;min-width:0}
-.pack h3,.pack p,.pack li,.drink-line,.extra-line{overflow-wrap:anywhere}
-
-
-@media(max-width:620px){
-  .category-inner{padding:8px 0;gap:6px}
-  .category-inner a{padding:9px 12px}
-  .packs{grid-template-columns:1fr!important;gap:12px}
-  .pack{width:100%;padding:18px!important;border-radius:18px}
-  .pack .include-box ul{grid-template-columns:1fr!important}
-  .pack h3{font-size:34px;line-height:.9}
-  .drink-line,.extra-line{font-size:11px}
-  .price-row{align-items:center}
-  .price{font-size:25px}
-  .duo-card{width:100%;min-width:0}
+@media(min-width:960px){
+  .wrap{width:min(1160px,calc(100% - 64px))}
+  .header .wrap{height:76px}
+  .brand b{font-size:24px}
+  .hero{padding:56px 0 34px}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:end}
+  .hero-scroller{overflow:visible;display:grid;grid-template-columns:repeat(3,1fr);margin:0}
+  .hero-offer{width:auto}
+  .pack-list{grid-template-columns:repeat(3,1fr)}
+  .pack-list .pack-card:first-child{grid-column:span 3}
+  .pack-list .pack-card:first-child .pack-card__body{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start}
+  .pack-list .pack-card:first-child .pack-media-wrap{aspect-ratio:21/9}
+  .duo-list{grid-template-columns:1fr 1fr}
+  .matcha-lead{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;align-items:stretch}
+  .matcha-hero{margin-bottom:0}
+  .drink-cards{grid-template-columns:repeat(4,1fr)}
+  .ube-list{grid-template-columns:repeat(3,1fr)}
+  .shake-list{grid-template-columns:1fr 1fr}
+  .cafe-groups{grid-template-columns:repeat(3,1fr)}
+  .full-card{flex-direction:row;align-items:center;justify-content:space-between}
+  .footer-top{flex-direction:row;align-items:flex-start;justify-content:space-between}
+  .footer-bottom{flex-direction:row;align-items:center;justify-content:space-between}
 }
-.duo-pairing{background:var(--sage);padding:18px 0 8px}.duo-pairing .pairing{margin:0 auto 10px}
-
-/* ===== Pulido visual final: tamaños de texto, animaciones de scroll, Campus Club ===== */
-/* Final visual polish */
-body{font-size:16px}
-.pack h3{font-size:clamp(32px,3.4vw,42px);line-height:.92}
-.pack p,.drink-line,.extra-line{font-size:13px;line-height:1.5}
-.pack ul{font-size:13px;line-height:1.45}
-.pack li{padding:6px 0}
-.drink-line{padding:13px 14px}
-.drink-line strong{font-size:10px}
-.price{font-size:28px}
-.price-label,.saving{font-size:9px}
-.section-title p{font-size:14px;line-height:1.55}
-.category-inner a{font-size:10px;padding:10px 14px}
-
-/* Scroll reveals + tactile motion */
-@keyframes menuReveal{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.pack,.drink-card,.ube-card,.duo-card,.shake-card,.food-group,.club-box,.full-card{animation:menuReveal .65s cubic-bezier(.2,.7,.2,1) both}
-.pack:hover,.drink-card:hover,.ube-card:hover,.duo-card:hover,.shake-card:hover,.food-group:hover{transform:translateY(-4px);transition:transform .22s ease,box-shadow .22s ease;box-shadow:0 14px 32px rgba(23,53,42,.10)}
-.category-inner a{transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease}
-.category-inner a:active,.full-btn:active{transform:scale(.97)}
-.full-btn{transition:transform .18s ease,opacity .18s ease}
-.full-btn:hover{opacity:.9;transform:translateY(-2px)}
-
-/* Campus Club */
-.club-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px}
-.whatsapp-btn{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--green);padding:12px 16px;border-radius:999px;font:800 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;transition:transform .18s ease,box-shadow .18s ease}
-.whatsapp-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.12)}
-.club-note{font-size:11px!important;color:rgba(255,255,255,.58)!important;margin-top:10px}
-@media(max-width:620px){
-  .pack h3{font-size:34px}
-  .pack p,.drink-line,.extra-line{font-size:13px}
-  .pack ul{font-size:13px}
-  .category-inner a{font-size:10px}
-  .club-actions{display:block}.whatsapp-btn{width:100%}
-}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.pack,.drink-card,.ube-card,.duo-card,.shake-card,.food-group,.club-box,.full-card{animation:none!important}.pack:hover,.drink-card:hover,.ube-card:hover,.duo-card:hover,.shake-card:hover,.food-group:hover,.whatsapp-btn:hover,.full-btn:hover{transform:none!important}}
-
-/* STUDENT HERO + MOTION */
-.student-hero{background:var(--green);color:#fff;padding:54px 0 28px;overflow:hidden;position:relative}.student-hero:before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;right:-180px;top:-260px;background:rgba(255,255,255,.035)}.hero-kicker{font:700 10px var(--mono);letter-spacing:.16em;color:#d8e6d3;text-transform:uppercase;margin-bottom:28px}.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:end}.student-hero h1{font:800 clamp(62px,10vw,128px)/.78 var(--display);letter-spacing:-.09em;margin:0}.student-hero h1 em{font-style:normal;color:#dcead7}.hero-sub{font:800 clamp(18px,2.2vw,27px)/1 var(--display);letter-spacing:-.04em;margin:24px 0 12px}.hero-copy{max-width:540px;color:rgba(255,255,255,.68);font-size:14px;margin:0}.hero-offers{display:grid;grid-template-columns:1fr 1fr;gap:8px}.hero-offer{background:#fff;color:var(--green);border-radius:18px;padding:18px 18px 16px;min-height:106px;display:flex;flex-direction:column;justify-content:space-between;gap:4px}.hero-offer span{font:700 9px var(--mono);letter-spacing:.1em}.hero-offer strong{font:800 31px/.9 var(--display);letter-spacing:-.05em}.hero-extra{grid-column:1/-1;border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:12px 14px;color:rgba(255,255,255,.75);font:500 10px var(--mono);letter-spacing:.03em}.hero-extra b{color:#ead5a4}.hero-bottom{display:flex;gap:8px;flex-wrap:wrap;margin-top:30px;padding-top:18px;border-top:1px solid rgba(255,255,255,.13)}.hero-bottom span{font:700 8px var(--mono);letter-spacing:.1em;color:rgba(255,255,255,.58);padding:7px 10px;border:1px solid rgba(255,255,255,.13);border-radius:999px}.category-bar{box-shadow:0 8px 24px rgba(23,53,42,.07)}
-@keyframes islaUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}@keyframes islaFade{from{opacity:0}to{opacity:1}}.student-hero .hero-kicker{animation:islaFade .5s ease both}.student-hero h1{animation:islaUp .65s ease .08s both}.hero-sub{animation:islaUp .65s ease .16s both}.hero-copy{animation:islaUp .65s ease .22s both}.hero-offer{animation:islaUp .6s ease both}.hero-offer:nth-child(2){animation-delay:.08s}.hero-offer:nth-child(3){animation-delay:.16s}.hero-extra{animation:islaUp .6s ease .24s both}.hero-bottom{animation:islaFade .7s ease .32s both}.pack,.drink-card,.ube-card,.duo-card,.shake-card,.food-group,.club-box{transition:transform .35s ease,box-shadow .35s ease}.pack:hover,.drink-card:hover,.ube-card:hover,.duo-card:hover,.shake-card:hover,.food-group:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(23,53,42,.10)}
-@media(max-width:700px){.student-hero{padding:38px 0 20px}.hero-grid{grid-template-columns:1fr;gap:26px}.student-hero h1{font-size:72px}.hero-sub{font-size:20px}.hero-copy{font-size:13px}.hero-offer{min-height:96px;padding:15px}.hero-offer strong{font-size:27px}.hero-extra{font-size:9px;line-height:1.5}.hero-bottom{margin-top:22px;overflow:auto;flex-wrap:nowrap;white-space:nowrap}.hero-bottom span{flex:none}.category-bar{top:72px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.student-hero *,.pack,.drink-card,.ube-card,.duo-card,.shake-card,.food-group{animation:none!important;transition:none!important}}
-
-.reveal{opacity:1;transform:none}.reveal.is-visible{animation:islaReveal .6s cubic-bezier(.2,.75,.25,1) both}@keyframes islaReveal{from{opacity:.55;transform:translateY(12px)}to{opacity:1;transform:none}}.student-hero .hero-offer{transition:transform .25s ease,box-shadow .25s ease}.student-hero .hero-offer:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.16)}
-@media(max-width:700px){.student-hero h1{font-size:72px}.hero-copy{font-size:14px}.hero-offer strong{font-size:29px}.category-inner a{font-size:10px;padding:10px 14px}}
-@media(prefers-reduced-motion:reduce){.pack,.drink-card,.ube-card,.duo-card,.shake-card,.food-group,.pairing,.club-box{opacity:1;transform:none;transition:none}.student-hero *{animation:none!important}}
-
-/* ===== Hero Student + selector de categorías ===== */
-/* Student menu refinement */
-.category-inner a{transition:background .18s ease,color .18s ease,border-color .18s ease,transform .12s ease;}
-.category-inner a:hover{transform:translateY(-1px)}
-.category-inner a.active{background:var(--green);border-color:var(--green);color:#fff}
-.pack,.drink-card,.duo-card,.food-group,.shake-card,.pairing,.full-card{transition:transform .45s cubic-bezier(.2,.75,.2,1),box-shadow .45s ease,opacity .55s ease}
-.pack:hover,.drink-card:hover,.duo-card:hover,.food-group:hover,.shake-card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(23,53,42,.10)}
-.reveal{opacity:1;transform:none}
-.reveal.is-visible{animation:islaReveal .6s cubic-bezier(.2,.75,.25,1) both}
-.pack.compact{min-height:0;padding:16px;border-radius:18px}
-.pack.compact h3{font-size:25px;margin:12px 0 6px}
-.pack.compact p{font-size:11px;margin-bottom:8px}
-.pack.compact .include-box{margin-top:8px;padding-top:9px}
-.pack.compact .drink-line{font-size:10px;padding-top:8px;margin-top:8px}
-.pack.compact .extra-line{font-size:10px;margin-top:6px}
-.pack.compact .price-row{margin-top:10px}
-.student-intro{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px}
-.student-intro .pack{height:100%}
-@media(max-width:620px){
-  body{font-size:15px}
-  .section-title h2{font-size:44px}
-  .section-title p{font-size:14px;line-height:1.5}
-  .packs{grid-template-columns:1fr}
-  .student-intro{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
-  .student-intro .pack{padding:12px!important;border-radius:15px}
-  .student-intro .pack h3{font-size:19px;line-height:.95}
-  .student-intro .pack p{font-size:9px;line-height:1.25}
-  .student-intro .pack .include-box{font-size:9px}
-  .student-intro .pack .drink-line{font-size:9px;line-height:1.25}
-  .student-intro .pack .extra-line{font-size:8px;line-height:1.25}
-  .student-intro .price{font-size:17px}
-  .student-intro .price-label{font-size:7px}
-  #cafe .food-grid{grid-template-columns:1fr!important}
-  #cafe .food-group{width:100%;min-width:0}
-  #smoothies .shake-grid{grid-template-columns:1fr!important}
-  #smoothies .shake-items{grid-template-columns:1fr!important}
-  #smoothies .shake-card{width:100%;min-width:0}
-  #comer .food-grid{grid-template-columns:1fr!important}
-  #comer .food-group{width:100%;min-width:0}
-  .duo-grid,.pairing-list{grid-template-columns:1fr!important}
-  .duo-card,.pairing,.food-group,.shake-card{overflow:hidden;min-width:0}
-  .food-name{font-size:13px;align-items:flex-start}
-  .food-desc{font-size:10px}
-  .drink-card h3{font-size:25px}
-  .drink-card p{font-size:11px}
-  .duo-price{font-size:14px;white-space:normal}
-}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1!important;transform:none!important}}
-@media(max-width:620px){.protein-student{grid-template-columns:1fr!important}.protein-student .shake-items{grid-template-columns:1fr!important}}
-
-.revuelto-item{overflow:hidden}.revuelto-video{display:block;width:100%;height:220px;object-fit:cover;border-radius:14px;margin-top:10px;background:#dfe9da}.food-item .revuelto-video{max-width:100%}
-@media(max-width:620px){.revuelto-video{height:190px;border-radius:12px}.food-grid,.food-group,.food-item,.food-name{min-width:0;max-width:100%}.food-name span{overflow-wrap:anywhere}.food-name b{flex:0 0 auto}.section-title h2{line-height:.9}.section-title p{max-width:100%}}
-
-/* ===== Ajustes finales de legibilidad en móvil (pairing, duo, food, packs) ===== */
-/* Final Student menu: mobile-first readability */
-.student-intro{align-items:stretch}
-.student-intro .pack.compact{min-width:0;overflow:hidden}
-.student-intro .pack.compact .extra-line{white-space:normal}
-.pairing-list div{font-size:13px;line-height:1.35;padding:13px 14px}
-.pairing-list div span{display:block;font-size:12px;font-weight:700;margin-bottom:5px}
-.pairing-list div b{font-size:11px;line-height:1.35}
-.duo-card{min-width:0}
-.duo-card h3{font-size:31px}
-.duo-card p{font-size:13px;line-height:1.45}
-.duo-price{font-size:16px;line-height:1.45}
-.food-item.has-media{padding:0 0 14px;margin-bottom:4px}
-.food-media{display:block;width:100%;height:210px;object-fit:cover;border-radius:14px;margin:0 0 12px;background:#dfe9da}
-.food-item.has-media .food-name,.food-item.has-media .food-desc{padding-left:2px;padding-right:2px}
-.food-item.has-media .food-name{font-size:14px}
-.food-item.has-media .food-desc{font-size:11px;line-height:1.5}
-.video-media{object-fit:cover}
-.protein-pack{display:grid;gap:4px;margin:16px 0 12px;padding:15px;border-radius:15px;background:var(--green);color:#fff}
-.protein-pack strong{font:800 21px var(--display);letter-spacing:-.04em}
-.protein-pack span{font-size:12px;line-height:1.45;color:rgba(255,255,255,.75)}
-@media(max-width:620px){
-  .student-intro{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
-  .student-intro .pack.compact{padding:13px 10px!important;border-radius:16px}
-  .student-intro .pack.compact .pack-num{font-size:7px;letter-spacing:.08em}
-  .student-intro .pack.compact h3{font-size:18px;line-height:.95;margin:10px 0 7px}
-  .student-intro .pack.compact p{font-size:9px;line-height:1.3}
-  .student-intro .pack.compact .include-box{font-size:10px}
-  .student-intro .pack.compact .drink-line{font-size:9.5px;line-height:1.35}
-  .student-intro .pack.compact .extra-line{font-size:9px;line-height:1.3}
-  .student-intro .pack.compact .price{font-size:18px}
-  .student-intro .pack.compact .price-label{font-size:7px}
-  .pairing{padding:18px 15px}
-  .pairing h3{font-size:38px}
-  .pairing p{font-size:14px;line-height:1.5}
-  .pairing-list{gap:8px}
-  .pairing-list div{font-size:13px;padding:14px}
-  .pairing-list div span{font-size:12px}
-  .pairing-list div b{font-size:11px}
-  .duo-card{padding:20px}
-  .duo-card h3{font-size:28px}
-  .duo-card p{font-size:13px}
-  .duo-price{font-size:15px}
-  .food-media{height:200px;border-radius:13px}
-  #cafe .food-name,#smoothies .food-name,#comer .food-name{font-size:14px}
-  #cafe .food-desc,#smoothies .food-desc,#comer .food-desc{font-size:11px}
-}
-.pack-media{display:block;width:100%;height:170px;object-fit:cover;border-radius:16px;margin:12px 0 4px;background:#dfe9da}.matcha-feature-video{width:100%;height:190px;object-fit:cover;border-radius:16px;margin-top:18px;background:#234f3b}.matcha-extra-pills{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px}.matcha-extra-pills span{font:700 9px var(--mono);padding:8px 10px;border:1px solid rgba(255,255,255,.18);border-radius:999px;color:#fff}.duo-food-list{display:grid;gap:8px;margin-top:15px}.duo-food-list div{display:flex;justify-content:space-between;gap:12px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;font-size:12px}.duo-food-list span{font:700 11px var(--mono);white-space:nowrap}@media(max-width:620px){.pack-media{height:145px;margin:8px 0 2px;border-radius:12px}.matcha-feature-video{height:180px}.matcha-extra-pills{display:grid;grid-template-columns:1fr}.matcha-extra-pills span{font-size:9px}.duo-food-list div{font-size:13px}.duo-food-list span{font-size:11px}}
-
-/* ===== Media (fotos/vídeos): fit y tamaño base ===== */
-.food-media,.pack-media,.matcha-feature-video{
-  display:block;
-  width:100%;
-  object-fit:cover;
-}
-.food-media{height:210px;border-radius:14px;}
-.pack-media{height:170px;border-radius:16px;}
-.matcha-feature-video{height:190px;border-radius:16px;}
-@media(max-width:620px){
-  .food-media{height:200px;border-radius:13px;}
-  .pack-media{height:145px;border-radius:12px;}
-  .matcha-feature-video{height:180px;border-radius:13px;}
-}
-
-/* ===== Media: fallback visual cuando falta una foto/vídeo ===== */
-img.food-media,img.pack-media,video.food-media,video.pack-media,video.matcha-feature-video{
-  background:#dfe9da;object-fit:cover;
-}
-.media-missing{
-  display:grid!important;place-items:center;min-height:145px;
-  background:#dfe9da;color:#17352a;border-radius:16px;
-  font:700 9px 'DM Mono',monospace;letter-spacing:.08em;
-  text-transform:uppercase;text-align:center;padding:18px;
-}
-@media(max-width:620px){.media-missing{min-height:120px}}
-
-/* ===== Media: proporciones responsive (aspect-ratio) ===== */
-/* ISLA media sizing: balanced editorial crops, responsive on desktop + mobile */
-.food-media,.pack-media{
-  display:block;
-  width:100%;
-  height:auto !important;
-  aspect-ratio:4 / 3;
-  object-fit:cover;
-  object-position:center center;
-}
-.matcha-feature-video{
-  display:block;
-  width:100%;
-  height:auto !important;
-  aspect-ratio:4 / 5;
-  object-fit:cover;
-  object-position:center center;
-}
-@media(max-width:620px){
-  .food-media,.pack-media{aspect-ratio:4 / 3;}
-  .matcha-feature-video{aspect-ratio:4 / 5;}
-}
-
-/* ===== PACKS: agrupación (principales / selector / otros) ===== */
-/* PACKS FIRST; MATCHA PACK INSIDE MATCHA CATEGORY */
-.student-quick-group{margin:6px 0 34px}
-.student-main-packs{margin-top:6px}
-.student-other-packs{margin-top:34px;padding-top:24px;border-top:1px solid var(--line)}
-.student-group-head{margin:24px 0 14px}
-.student-group-kicker{display:inline-block;font:700 9px var(--mono);letter-spacing:.14em;text-transform:uppercase;opacity:.62;margin-bottom:6px}
-.student-group-head h3{margin:0;font-size:clamp(24px,3vw,36px);letter-spacing:-.05em}
-.student-group-head p{margin:5px 0 0;color:var(--muted);font-size:12px}
-.student-quick-group-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.student-quick-group-grid .pack{min-height:0}
-.student-main-packs-grid{display:grid;grid-template-columns:1.08fr 1fr 1fr;gap:16px}
-.student-main-packs-grid .pack{min-height:390px}
-.student-other-packs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.student-other-packs-grid .pack{min-height:0}
-.matcha-student-pack{grid-column:1/-1;background:var(--green)!important;color:#fff;border-color:var(--green)!important}
-.matcha-student-pack p{color:rgba(255,255,255,.7)!important}
-.matcha-student-pack .include-box{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16)}
-.matcha-student-pack .drink-line{border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.7)}
-.matcha-student-pack .drink-line strong{color:#e4d0a1}
-@media(max-width:950px){
- .student-main-packs-grid{grid-template-columns:1fr 1fr}
- .student-main-packs-grid .pack:first-child{grid-column:1/-1}
- .student-other-packs-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:620px){
- .student-quick-group-grid,.student-main-packs-grid,.student-other-packs-grid{grid-template-columns:1fr}
- .student-main-packs-grid .pack:first-child{grid-column:auto}
- .student-main-packs-grid .pack{min-height:0}
- .matcha-student-pack{grid-column:auto}
-}
-
-/* ===== Bloque 11 ===== */
-/* V6 — Student packs: green hero cards + selector */
-.student-green-card{background:#dcebd7!important;border-color:#a9c69f!important;color:#172118!important;box-shadow:0 16px 36px rgba(28,62,31,.10)}
-.student-green-card h3,.student-green-card p,.student-green-card li,.student-green-card .drink-line,.student-green-card .pack-num,.student-green-card .price-label{color:#172118!important}
-.student-green-card .include-box{background:rgba(255,255,255,.58)!important;border-color:rgba(28,62,31,.16)!important}
-.student-green-card .tag{background:#173b20!important;color:#fff!important}
-.student-green-card .price{color:#173b20!important}
-.student-main-packs-first{margin-top:4px}
-.student-main-packs-first .student-main-packs-grid{margin-top:18px}
-
-
-
-
-
-
-
-
-
-.duo-pairing{margin-top:0}
-@media(max-width:760px){.student-main-packs-first .student-main-packs-grid{grid-template-columns:1fr}.student-green-card{min-height:0!important}}
-
-/* ===== Selector modernizado estilo Apple: opciones de comida + bebida ===== */
-.opt-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
-.include-box .opt-list{margin-top:10px}
-.opt-btn{appearance:none;-webkit-appearance:none;position:relative;border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:9px 14px 9px 32px;font:600 12px/1.25 var(--body);letter-spacing:.005em;cursor:pointer;text-align:left;transition:background .22s cubic-bezier(.4,0,.2,1),border-color .22s cubic-bezier(.4,0,.2,1),transform .16s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease,color .18s ease}
-.opt-btn::before{content:'';position:absolute;left:9px;top:50%;transform:translateY(-50%);width:16px;height:16px;border-radius:50%;border:1.5px solid #c7cfc1;background:#fff;transition:background .2s ease,border-color .2s ease}
-.opt-btn::after{content:'';position:absolute;left:13.5px;top:50%;width:5px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:translateY(-70%) rotate(45deg) scale(0);opacity:0;transition:transform .22s cubic-bezier(.34,1.56,.64,1),opacity .16s ease}
-.opt-btn:hover{border-color:var(--green);transform:translateY(-1px)}
-.opt-btn:active{transform:scale(.96)}
-.opt-btn.is-selected{background:var(--green);border-color:var(--green);color:#fff;box-shadow:0 5px 16px rgba(23,53,42,.24)}
-.opt-btn.is-selected::before{background:var(--green);border-color:#fff}
-.opt-btn.is-selected::after{transform:translateY(-70%) rotate(45deg) scale(1);opacity:1}
-.featured .opt-btn,.student-green-card .opt-btn{background:rgba(255,255,255,.55);border-color:rgba(23,53,42,.16)}
-.featured .opt-btn::before,.student-green-card .opt-btn::before{background:#fff;border-color:rgba(23,53,42,.28)}
-.featured .opt-btn:hover,.student-green-card .opt-btn:hover{border-color:var(--green)}
-.featured .opt-btn.is-selected,.student-green-card .opt-btn.is-selected{background:var(--green);color:#fff;border-color:var(--green)}
-.featured .opt-btn.is-selected::before,.student-green-card .opt-btn.is-selected::before{background:var(--green);border-color:#fff}
-.drink-upgrade-label{font:700 9px var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--green);opacity:.75;margin:14px 0 8px}
-.featured .drink-upgrade-label,.student-green-card .drink-upgrade-label{color:#173b20}
-.drink-upgrade{display:flex;flex-direction:column;gap:7px;margin-top:0}
-.opt-btn--drink{display:flex;width:100%;align-items:center;justify-content:space-between;gap:10px;border-radius:14px;padding:12px 14px 12px 38px}
-.opt-btn--drink::before{left:14px}
-.opt-btn--drink::after{left:18.5px}
-.opt-btn--drink .opt-name{font:600 12.5px var(--body)}
-.opt-btn--drink .opt-add{font:700 11px var(--mono);letter-spacing:.02em;color:var(--green)}
-.opt-btn--drink.is-selected .opt-add{color:#fff}
-.pack .price.price-updated{animation:priceBump .35s ease}
-@keyframes priceBump{0%{transform:scale(1)}35%{transform:scale(1.12)}100%{transform:scale(1)}}
-@media(max-width:620px){.opt-btn{font-size:11px;padding:9px 12px 9px 30px}.opt-btn--drink{padding:12px 12px 12px 34px}.opt-btn--drink .opt-add{font-size:10px}}
-
-/* ===== Grid unificada: todas las opciones de packs juntas (sin niveles) ===== */
-.all-packs-head{margin:22px 0 16px}
-.all-packs-head .student-group-kicker{color:var(--green);opacity:1;font-weight:800}
-.student-all-packs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.student-all-packs-grid .pack{min-height:0}
-@media(max-width:950px){.student-all-packs-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:620px){.student-all-packs-grid{grid-template-columns:1fr;gap:12px}}
-</style>
-
-<style id="contrast-bebida-incluida">
-/* Contraste y jerarquía: etiqueta de bebida incluida. */
-.drink-line strong { color:#17352a !important; font-weight:800; }
-.featured .drink-line strong { color:#ffffff !important; font-weight:800; }
-.hero-copy,.featured p,.featured .drink-line,.hero-extra,.hero-bottom span,.club-box p,.club-note,.menu-section .section-title p { color:rgba(255,255,255,.78); }
-.featured .pack-num,.featured .price-label { color:rgba(255,255,255,.78) !important; }
-.matcha-intro p { color:rgba(255,255,255,.78); }
-.food-group .sub { color:rgba(255,255,255,.62); }
-.food-desc { color:rgba(255,255,255,.68); }
-</style>
-<style id="duo-star-pack">.duo-grid{align-items:stretch}.duo-card{position:relative}.duo-bundle{display:flex;flex-direction:column;gap:3px;margin-top:12px;padding:11px 12px;border-radius:13px;background:var(--sage);color:var(--green);border:1px solid rgba(23,53,42,.12)}.duo-bundle strong{font:800 10px var(--mono);letter-spacing:.06em}.duo-bundle span{font-size:10px;line-height:1.4}.duo-bundle-light{background:rgba(255,255,255,.10);color:#fff;border-color:rgba(255,255,255,.18)}.duo-card .duo-price{font-size:15px;align-self:start;text-align:right}.duo-card .duo-price strong{font-weight:800}@media(max-width:620px){.duo-card .duo-price{text-align:left}.duo-bundle span{font-size:10px}}</style>
-<style id="duo-beer-upgrade">
-.duo-upgrade{margin:16px 0 0;padding:14px 16px;border:1px solid #cfd8cc;border-radius:16px;background:#f5f8f2;display:flex;align-items:center;justify-content:space-between;gap:16px;color:#17352a;}
-.duo-upgrade-label{display:block;font-size:10px;letter-spacing:.12em;font-weight:800;opacity:.62;margin-bottom:3px;}
-.duo-upgrade strong{display:block;font-size:16px;line-height:1.15;}
-.duo-upgrade small{display:block;margin-top:4px;font-size:12px;opacity:.72;}
-.duo-upgrade>b{font-size:16px;white-space:nowrap;}
-@media(max-width:520px){.duo-upgrade{align-items:flex-start}.duo-upgrade>b{margin-top:3px;}}
 </style>
 </head>
 <body>
+
 <header class="header">
-<div class="wrap nav">
-<a aria-label="ISLA Student" class="brand" href="#top">ISLA<small>STUDENT · ELCHE</small></a>
-<a class="nav-menu" href="https://islabrunchbar.com/menu/">Carta completa ↗</a>
-</div>
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="ISLA Student">
+      <b>ISLA</b>
+      <span>STUDENT · ELCHE</span>
+    </a>
+    <a class="full-link" href="https://islabrunchbar.com/menu/">Carta completa ↗</a>
+  </div>
 </header>
+
+<nav class="catnav" aria-label="Categorías del menú">
+  <div class="wrap catnav-inner">
+    <a href="#packs"><i>01</i>Student</a>
+    <a href="#duo"><i>02</i>Duo</a>
+    <a href="#matcha"><i>03</i>Matcha</a>
+    <a href="#ube"><i>04</i>Ube</a>
+    <a href="#cafe"><i>05</i>Café</a>
+    <a href="#smoothies"><i>06</i>Smoothies</a>
+    <a href="#comer"><i>07</i>Comer</a>
+    <a href="#club"><i>08</i>Club</a>
+  </div>
+</nav>
+
 <main id="top">
-<section class="student-hero" id="inicio"><div class="wrap">
-<div class="hero-kicker">ISLA BRUNCH &amp; BAR · ELCHE</div>
-<div class="hero-grid"><div><h1>ISLA<br/><em>STUDENT.</em></h1><p class="hero-sub">TU DESAYUNO. TU PAUSA. TU ISLA.</p><p class="hero-copy">Packs pensados para estudiantes: café, brunch, matcha, ube y smoothies con precios especiales para volver una y otra vez.</p></div><div class="hero-offers"><div class="hero-offer"><span>CAFÉ + MINI</span><strong>3,50 €</strong><small style="font:500 9px var(--mono);color:rgba(23,53,42,.55)">Café con leche + Mini Croissant relleno</small></div><div class="hero-offer"><span>DESAYUNO</span><strong>5,90 €</strong><small style="font:500 9px var(--mono);color:rgba(23,53,42,.55)">Café + Croissant Gourmet</small></div><div class="hero-offer"><span>BRUNCH + BEBIDA</span><strong>8,90 €</strong><small style="font:500 9px var(--mono);color:rgba(23,53,42,.55)">Pack Campus o New York Break</small></div><div class="hero-extra"><b>EXTRA STUDENT</b> · Matcha Latte +1,50 € · Matcha Fruit +2,00 € · Batido Proteína +3,00 €</div></div></div>
-<div class="hero-bottom"><span>PRECIOS STUDENT</span><span>DUO PARA 2</span><span>MATCHA + FOOD</span><span>CAMPUS CLUB</span></div></div></section>
-<div class="category-bar"><div class="wrap category-inner"><a href="#packs">Student</a><a href="#duo">Duo</a><a href="#matcha">Matcha</a><a href="#ube">Ube</a><a href="#cafe">Café</a><a href="#smoothies">Smoothies</a><a href="#comer">Comer</a><a href="#club">Club</a></div></div>
-<section class="student page on" id="packs"><div class="wrap">
-<div class="section-title"><div><div class="eyebrow">01 · MENÚ STUDENT</div><h2>PACKS</h2></div><p>Todas las opciones que tenemos con precio Student, en un mismo sitio.</p></div>
-<div class="all-packs-head"><span class="student-group-kicker">TODAS LAS OPCIONES DISPONIBLES</span><h3>6 packs con precio Student</h3><p>Cada pack tiene su propio precio Student. Dentro de cada uno, eliges tu opción y la bebida que te apetezca.</p></div>
-<div class="student-all-packs-grid">
-<article class="pack featured student-green-card" data-base-price="8.90" data-pack="campus"><div class="pack-top"><span class="pack-num">01 · CAMPUS</span><span class="tag">Go-to</span></div><h3>ISLA CAMPUS</h3><p>El pack central del menú Student: comida salada + bebida.</p><div class="include-box"><div class="label">Elige 1 opción</div><div aria-label="Elige tu opción" class="opt-list" role="radiogroup"><button aria-pressed="true" class="opt-btn is-selected" data-group="food" type="button">Veggie Bagel</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Bagel York Classic</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Brunch Bagel</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Sesame Bagel</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Nordic Isla Toast</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Bacon Brunch</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Tosta York Cherry</button></div></div><div class="drink-line"><strong>Bebida incluida</strong> · Café (espresso, cortado, americano o con leche).</div><div class="drink-upgrade-label">Elige tu bebida</div><div aria-label="Sube tu bebida" class="opt-list drink-upgrade" role="radiogroup"><button aria-pressed="true" class="opt-btn opt-btn--drink is-selected" data-add="0" data-group="drink" type="button"><span class="opt-name">Café incluido</span><span class="opt-add">Incluido</span></button><button aria-pressed="false" class="opt-btn opt-btn--drink" data-add="1.50" data-group="drink" type="button"><span class="opt-name">Matcha Latte</span><span class="opt-add">+1,50 €</span></button><button aria-pressed="false" class="opt-btn opt-btn--drink" data-add="2.00" data-group="drink" type="button"><span class="opt-name">Matcha Fruit</span><span class="opt-add">+2,00 €</span></button><button aria-pressed="false" class="opt-btn opt-btn--drink" data-add="3.00" data-group="drink" type="button"><span class="opt-name">Batido con Proteína</span><span class="opt-add">+3,00 €</span></button></div><div class="price-row"><span class="price-label">Student</span><b class="price">8,90 €</b></div></article>
-<article class="pack has-pack-media student-green-card" data-base-price="10.50" data-pack="signature"><div class="pack-top"><span class="pack-num">02 · SIGNATURE</span><span class="tag">Premium</span></div><video aria-label="Revuelto ISLA" autoplay class="pack-media video-media" loop muted playsinline preload="auto" src="./videos/revueltobrioche1.mp4"></video><h3>ISLA SIGNATURE</h3><p>Brioche Signature + bebida.</p><div class="include-box"><div class="label">Elige 1 opción</div><div aria-label="Elige tu opción" class="opt-list" role="radiogroup"><button aria-pressed="true" class="opt-btn is-selected" data-group="food" type="button">Revuelto</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Serranito Brioche</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Fru Creation</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Nordic Brioche</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Brioche York Deluxe</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Island Chicken Brioche</button></div></div><div class="drink-line"><strong>Bebida incluida</strong> · Café (espresso, cortado, americano o con leche).</div><div class="drink-upgrade-label">Elige tu bebida</div><div aria-label="Sube tu bebida" class="opt-list drink-upgrade" role="radiogroup"><button aria-pressed="true" class="opt-btn opt-btn--drink is-selected" data-add="0" data-group="drink" type="button"><span class="opt-name">Café incluido</span><span class="opt-add">Incluido</span></button><button aria-pressed="false" class="opt-btn opt-btn--drink" data-add="1.50" data-group="drink" type="button"><span class="opt-name">Matcha Latte</span><span class="opt-add">+1,50 €</span></button><button aria-pressed="false" class="opt-btn opt-btn--drink" data-add="2.00" data-group="drink" type="button"><span class="opt-name">Matcha Fruit</span><span class="opt-add">+2,00 €</span></button><button aria-pressed="false" class="opt-btn opt-btn--drink" data-add="3.00" data-group="drink" type="button"><span class="opt-name">Batido con Proteína</span><span class="opt-add">+3,00 €</span></button></div><div class="price-row"><span class="price-label">Student</span><b class="price">10,50 €</b></div></article>
-<article class="pack has-pack-media student-green-card" data-base-price="8.90" data-pack="newyork"><div class="pack-top"><span class="pack-num">03 · FULL</span><span class="tag">Brunch</span></div><img alt="New York Break ISLA" class="pack-media" decoding="async" loading="lazy" src="./fotos/newyork.png"/><h3>NEW YORK BREAK</h3><p>Pancakes, bacon, huevo y maple.</p><div class="include-box"><ul><li>Pancakes</li><li>Bacon crujiente</li><li>Huevos revueltos</li><li>Maple syrup</li></ul></div><div class="drink-line"><strong>Bebida incluida</strong> · Café (espresso, cortado, americano o con leche).</div><div class="drink-upgrade-label">Elige tu bebida</div><div aria-label="Sube tu bebida" class="opt-list drink-upgrade" role="radiogroup"><button aria-pressed="true" class="opt-btn opt-btn--drink is-selected" data-add="0" data-group="drink" type="button"><span class="opt-name">Café incluido</span><span class="opt-add">Incluido</span></button><button aria-pressed="false" class="opt-btn opt-btn--drink" data-add="1.50" data-group="drink" type="button"><span class="opt-name">Matcha Latte</span><span class="opt-add">+1,50 €</span></button><button aria-pressed="false" class="opt-btn opt-btn--drink" data-add="2.00" data-group="drink" type="button"><span class="opt-name">Matcha Fruit</span><span class="opt-add">+2,00 €</span></button><button aria-pressed="false" class="opt-btn opt-btn--drink" data-add="3.00" data-group="drink" type="button"><span class="opt-name">Batido con Proteína</span><span class="opt-add">+3,00 €</span></button></div><div class="price-row"><span class="price-label">Student</span><b class="price">8,90 €</b></div></article>
-<article class="pack green has-pack-media" data-base-price="10.20"><div class="pack-top"><span class="pack-num">04 · BIG</span></div><video aria-label="Revuelto ISLA" autoplay class="pack-media video-media" loop muted playsinline preload="auto" src="./videos/revueltobrioche1.mp4"></video><h3>ISLA BIG</h3><p>Para cuando tienes hambre de verdad.</p><div class="include-box"><div class="label">Elige 1 opción</div><div aria-label="Elige tu opción" class="opt-list" role="radiogroup"><button aria-pressed="true" class="opt-btn is-selected" data-group="food" type="button">Nordic Bagel Isla</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Bagel York Mediterráneo</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Serranito Bagel</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Island Chicken Bagel</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Serranito Toast</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Revuelto</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Fru Creation</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Brioche York Deluxe</button></div></div><div class="drink-line"><strong>Bebida incluida</strong> · Café (espresso, cortado, americano o con leche).</div><div class="drink-upgrade-label">Elige tu bebida</div><div aria-label="Sube tu bebida" class="opt-list drink-upgrade" role="radiogroup"><button aria-pressed="true" class="opt-btn opt-btn--drink is-selected" data-add="0" data-group="drink" type="button"><span class="opt-name">Café incluido</span><span class="opt-add">Incluido</span></button><button aria-pressed="false" class="opt-btn opt-btn--drink" data-add="1.50" data-group="drink" type="button"><span class="opt-name">Matcha Latte</span><span class="opt-add">+1,50 €</span></button><button aria-pressed="false" class="opt-btn opt-btn--drink" data-add="2.00" data-group="drink" type="button"><span class="opt-name">Matcha Fruit</span><span class="opt-add">+2,00 €</span></button><button aria-pressed="false" class="opt-btn opt-btn--drink" data-add="3.00" data-group="drink" type="button"><span class="opt-name">Batido con Proteína</span><span class="opt-add">+3,00 €</span></button></div><div class="price-row"><span class="price-label">Student</span><b class="price">10,20 €</b></div></article><article class="pack has-pack-media" data-base-price="8.20"><div class="pack-top"><span class="pack-num">05 · SWEET</span></div><img alt="ISLA Pancakes" class="pack-media" loading="lazy" src="./fotos/pancakes.png"/><h3>ISLA PANCAKES</h3><p>Pancakes con topping a elegir. Todos incluidos.</p><div class="include-box"><div class="label">Elige 1 opción</div><div aria-label="Elige tu opción" class="opt-list" role="radiogroup"><button aria-pressed="true" class="opt-btn is-selected" data-group="food" type="button">Lotus</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Nutella</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Dulce de leche</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Pistacho</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Fruta de temporada</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Miel picante</button></div></div><div class="drink-line"><strong>Bebida incluida</strong> · Café (espresso, cortado, americano o con leche).</div><div class="drink-upgrade-label">Elige tu bebida</div><div aria-label="Sube tu bebida" class="opt-list drink-upgrade" role="radiogroup"><button aria-pressed="true" class="opt-btn opt-btn--drink is-selected" data-add="0" data-group="drink" type="button"><span class="opt-name">Café incluido</span><span class="opt-add">Incluido</span></button><button aria-pressed="false" class="opt-btn opt-btn--drink" data-add="1.50" data-group="drink" type="button"><span class="opt-name">Matcha Latte</span><span class="opt-add">+1,50 €</span></button><button aria-pressed="false" class="opt-btn opt-btn--drink" data-add="2.00" data-group="drink" type="button"><span class="opt-name">Matcha Fruit</span><span class="opt-add">+2,00 €</span></button><button aria-pressed="false" class="opt-btn opt-btn--drink" data-add="3.00" data-group="drink" type="button"><span class="opt-name">Batido con Proteína</span><span class="opt-add">+3,00 €</span></button></div><div class="price-row"><span class="price-label">Student</span><b class="price">8,20 €</b></div></article><article class="pack has-pack-media" data-base-price="8.00"><div class="pack-top"><span class="pack-num">06 · SWEET BRIOCHE</span></div><video aria-label="Brioche dulce ISLA" autoplay class="pack-media video-media" loop muted playsinline preload="auto" src="./videos/briochedulce.mp4"></video><h3>SWEET BRIOCHE</h3><p>Brioche dulce con tu crema favorita.</p><div class="include-box"><div class="label">Elige 1 opción</div><div aria-label="Elige tu opción" class="opt-list" role="radiogroup"><button aria-pressed="true" class="opt-btn is-selected" data-group="food" type="button">Nutella</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Lotus</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Pistacho</button><button aria-pressed="false" class="opt-btn" data-group="food" type="button">Dulce de leche</button></div></div><div class="drink-line"><strong>Bebida incluida</strong> · Café (espresso, cortado, americano o con leche).</div><div class="drink-upgrade-label">Elige tu bebida</div><div aria-label="Sube tu bebida" class="opt-list drink-upgrade" role="radiogroup"><button aria-pressed="true" class="opt-btn opt-btn--drink is-selected" data-add="0" data-group="drink" type="button"><span class="opt-name">Café incluido</span><span class="opt-add">Incluido</span></button><button aria-pressed="false" class="opt-btn opt-btn--drink" data-add="1.50" data-group="drink" type="button"><span class="opt-name">Matcha Latte</span><span class="opt-add">+1,50 €</span></button><button aria-pressed="false" class="opt-btn opt-btn--drink" data-add="2.00" data-group="drink" type="button"><span class="opt-name">Matcha Fruit</span><span class="opt-add">+2,00 €</span></button><button aria-pressed="false" class="opt-btn opt-btn--drink" data-add="3.00" data-group="drink" type="button"><span class="opt-name">Batido con Proteína</span><span class="opt-add">+3,00 €</span></button></div><div class="price-row"><span class="price-label">Student</span><b class="price">8,00 €</b></div></article>
-</div>
+
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-kicker">ISLA BRUNCH &amp; BAR · ELCHE</div>
+        <h1>ISLA<br/><i>STUDENT.</i></h1>
+        <p class="hero-sub">Tu desayuno. Tu pausa. Tu isla.</p>
+        <p class="hero-copy">Packs pensados para estudiantes: café, brunch, matcha, ube y smoothies con precios especiales para volver una y otra vez.</p>
+      </div>
+      <div>
+        <div class="hero-scroller">
+          <div class="hero-offer"><span>CAFÉ + MINI</span><strong>3,50 €</strong><small>Café con leche + Mini Croissant relleno</small></div>
+          <div class="hero-offer"><span>DESAYUNO</span><strong>5,90 €</strong><small>Café + Croissant Gourmet</small></div>
+          <div class="hero-offer"><span>BRUNCH + BEBIDA</span><strong>8,90 €</strong><small>Pack Campus o New York Break</small></div>
+        </div>
+        <div class="hero-extra"><span><b>Extra Student</b> · Matcha Latte +1,50 € · Matcha Fruit +2,00 € · Batido Proteína +3,00 €</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     01 · STUDENT / PACKS
+     ============================================================ -->
+<section class="page on tone-paper" id="packs"><div class="wrap">
+  <div class="sec-head">
+    <div class="kicker">01 · Menú Student</div>
+    <h2>Packs</h2>
+    <p>Todas las opciones que tenemos con precio Student, en un mismo sitio.</p>
+  </div>
+
+  <div class="student-highlight">
+    <strong>6 packs con precio Student</strong>
+    <span>Elige tu opción y tu bebida en cada uno</span>
+  </div>
+
+  <div class="pack-list">
+
+    <article class="pack-card is-featured" data-base-price="8.90">
+      <div class="pack-card__body">
+        <div class="pack-card__row">
+          <div>
+            <span class="pack-badge" style="position:static;display:inline-block;margin-bottom:10px;background:rgba(255,255,255,.14);color:#fff">Go-to</span>
+            <h3 class="pack-card__name">ISLA CAMPUS</h3>
+          </div>
+          <div class="pack-price"><b class="price">8,90 €</b><small>Student</small></div>
+        </div>
+        <p class="pack-card__desc">El pack central del menú Student: comida salada + bebida.</p>
+        <div class="pack-card__summary">
+          <span class="chip chip--include">Incluye <b class="sel-food">Veggie Bagel</b></span>
+          <span class="chip chip--include">Bebida <b class="sel-drink">Café incluido</b></span>
+        </div>
+        <details class="disclose">
+          <summary>Personalizar pedido</summary>
+          <div class="disclose-body">
+            <div>
+              <span class="opt-label">Elige 1 opción</span>
+              <div class="pill-row" role="radiogroup" aria-label="Elige tu opción">
+                <button class="pill is-selected" data-group="food" type="button">Veggie Bagel</button>
+                <button class="pill" data-group="food" type="button">Bagel York Classic</button>
+                <button class="pill" data-group="food" type="button">Brunch Bagel</button>
+                <button class="pill" data-group="food" type="button">Sesame Bagel</button>
+                <button class="pill" data-group="food" type="button">Nordic Isla Toast</button>
+                <button class="pill" data-group="food" type="button">Bacon Brunch</button>
+                <button class="pill" data-group="food" type="button">Tosta York Cherry</button>
+              </div>
+            </div>
+            <div>
+              <span class="opt-label">Bebida incluida — café (espresso, cortado, americano o con leche)</span>
+              <div class="pill-row" role="radiogroup" aria-label="Sube tu bebida">
+                <button class="pill pill--drink is-selected" data-group="drink" data-add="0" type="button"><span class="pill__name">Café incluido</span><span class="pill__add">Incluido</span></button>
+                <button class="pill pill--drink" data-group="drink" data-add="1.50" type="button"><span class="pill__name">Matcha Latte</span><span class="pill__add">+1,50 €</span></button>
+                <button class="pill pill--drink" data-group="drink" data-add="2.00" type="button"><span class="pill__name">Matcha Fruit</span><span class="pill__add">+2,00 €</span></button>
+                <button class="pill pill--drink" data-group="drink" data-add="3.00" type="button"><span class="pill__name">Batido con Proteína</span><span class="pill__add">+3,00 €</span></button>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="pack-card" data-base-price="10.50">
+      <div class="pack-media-wrap">
+        <span class="pack-badge">Premium</span>
+        <video aria-label="Revuelto ISLA" autoplay loop muted playsinline preload="auto" src="./videos/revueltobrioche1.mp4"></video>
+      </div>
+      <div class="pack-card__body">
+        <div class="pack-card__row">
+          <h3 class="pack-card__name">ISLA SIGNATURE</h3>
+          <div class="pack-price"><b class="price">10,50 €</b><small>Student</small></div>
+        </div>
+        <p class="pack-card__desc">Brioche Signature + bebida.</p>
+        <div class="pack-card__summary">
+          <span class="chip chip--include">Incluye <b class="sel-food">Revuelto</b></span>
+          <span class="chip chip--include">Bebida <b class="sel-drink">Café incluido</b></span>
+        </div>
+        <details class="disclose">
+          <summary>Personalizar pedido</summary>
+          <div class="disclose-body">
+            <div>
+              <span class="opt-label">Elige 1 opción</span>
+              <div class="pill-row" role="radiogroup" aria-label="Elige tu opción">
+                <button class="pill is-selected" data-group="food" type="button">Revuelto</button>
+                <button class="pill" data-group="food" type="button">Serranito Brioche</button>
+                <button class="pill" data-group="food" type="button">Fru Creation</button>
+                <button class="pill" data-group="food" type="button">Nordic Brioche</button>
+                <button class="pill" data-group="food" type="button">Brioche York Deluxe</button>
+                <button class="pill" data-group="food" type="button">Island Chicken Brioche</button>
+              </div>
+            </div>
+            <div>
+              <span class="opt-label">Bebida incluida — café (espresso, cortado, americano o con leche)</span>
+              <div class="pill-row" role="radiogroup" aria-label="Sube tu bebida">
+                <button class="pill pill--drink is-selected" data-group="drink" data-add="0" type="button"><span class="pill__name">Café incluido</span><span class="pill__add">Incluido</span></button>
+                <button class="pill pill--drink" data-group="drink" data-add="1.50" type="button"><span class="pill__name">Matcha Latte</span><span class="pill__add">+1,50 €</span></button>
+                <button class="pill pill--drink" data-group="drink" data-add="2.00" type="button"><span class="pill__name">Matcha Fruit</span><span class="pill__add">+2,00 €</span></button>
+                <button class="pill pill--drink" data-group="drink" data-add="3.00" type="button"><span class="pill__name">Batido con Proteína</span><span class="pill__add">+3,00 €</span></button>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="pack-card" data-base-price="8.90">
+      <div class="pack-media-wrap">
+        <span class="pack-badge">Brunch</span>
+        <img alt="New York Break ISLA" decoding="async" loading="lazy" src="./fotos/newyork.png"/>
+      </div>
+      <div class="pack-card__body">
+        <div class="pack-card__row">
+          <h3 class="pack-card__name">NEW YORK BREAK</h3>
+          <div class="pack-price"><b class="price">8,90 €</b><small>Student</small></div>
+        </div>
+        <p class="pack-card__desc">Pancakes, bacon, huevo y maple.</p>
+        <div class="pack-card__summary">
+          <span class="chip chip--include">Pancakes</span>
+          <span class="chip chip--include">Bacon crujiente</span>
+          <span class="chip chip--include">Huevos revueltos</span>
+          <span class="chip chip--include">Maple syrup</span>
+        </div>
+        <details class="disclose">
+          <summary>Personalizar bebida</summary>
+          <div class="disclose-body">
+            <div>
+              <span class="opt-label">Bebida incluida — café (espresso, cortado, americano o con leche)</span>
+              <div class="pill-row" role="radiogroup" aria-label="Sube tu bebida">
+                <button class="pill pill--drink is-selected" data-group="drink" data-add="0" type="button"><span class="pill__name">Café incluido</span><span class="pill__add">Incluido</span></button>
+                <button class="pill pill--drink" data-group="drink" data-add="1.50" type="button"><span class="pill__name">Matcha Latte</span><span class="pill__add">+1,50 €</span></button>
+                <button class="pill pill--drink" data-group="drink" data-add="2.00" type="button"><span class="pill__name">Matcha Fruit</span><span class="pill__add">+2,00 €</span></button>
+                <button class="pill pill--drink" data-group="drink" data-add="3.00" type="button"><span class="pill__name">Batido con Proteína</span><span class="pill__add">+3,00 €</span></button>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="pack-card" data-base-price="10.20">
+      <div class="pack-media-wrap">
+        <span class="pack-badge">Big</span>
+        <video aria-label="Revuelto ISLA" autoplay loop muted playsinline preload="auto" src="./videos/revueltobrioche1.mp4"></video>
+      </div>
+      <div class="pack-card__body">
+        <div class="pack-card__row">
+          <h3 class="pack-card__name">ISLA BIG</h3>
+          <div class="pack-price"><b class="price">10,20 €</b><small>Student</small></div>
+        </div>
+        <p class="pack-card__desc">Para cuando tienes hambre de verdad.</p>
+        <div class="pack-card__summary">
+          <span class="chip chip--include">Incluye <b class="sel-food">Nordic Bagel Isla</b></span>
+          <span class="chip chip--include">Bebida <b class="sel-drink">Café incluido</b></span>
+        </div>
+        <details class="disclose">
+          <summary>Personalizar pedido</summary>
+          <div class="disclose-body">
+            <div>
+              <span class="opt-label">Elige 1 opción</span>
+              <div class="pill-row" role="radiogroup" aria-label="Elige tu opción">
+                <button class="pill is-selected" data-group="food" type="button">Nordic Bagel Isla</button>
+                <button class="pill" data-group="food" type="button">Bagel York Mediterráneo</button>
+                <button class="pill" data-group="food" type="button">Serranito Bagel</button>
+                <button class="pill" data-group="food" type="button">Island Chicken Bagel</button>
+                <button class="pill" data-group="food" type="button">Serranito Toast</button>
+                <button class="pill" data-group="food" type="button">Revuelto</button>
+                <button class="pill" data-group="food" type="button">Fru Creation</button>
+                <button class="pill" data-group="food" type="button">Brioche York Deluxe</button>
+              </div>
+            </div>
+            <div>
+              <span class="opt-label">Bebida incluida — café (espresso, cortado, americano o con leche)</span>
+              <div class="pill-row" role="radiogroup" aria-label="Sube tu bebida">
+                <button class="pill pill--drink is-selected" data-group="drink" data-add="0" type="button"><span class="pill__name">Café incluido</span><span class="pill__add">Incluido</span></button>
+                <button class="pill pill--drink" data-group="drink" data-add="1.50" type="button"><span class="pill__name">Matcha Latte</span><span class="pill__add">+1,50 €</span></button>
+                <button class="pill pill--drink" data-group="drink" data-add="2.00" type="button"><span class="pill__name">Matcha Fruit</span><span class="pill__add">+2,00 €</span></button>
+                <button class="pill pill--drink" data-group="drink" data-add="3.00" type="button"><span class="pill__name">Batido con Proteína</span><span class="pill__add">+3,00 €</span></button>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="pack-card" data-base-price="8.20">
+      <div class="pack-media-wrap">
+        <span class="pack-badge">Sweet</span>
+        <img alt="ISLA Pancakes" loading="lazy" src="./fotos/pancakes.png"/>
+      </div>
+      <div class="pack-card__body">
+        <div class="pack-card__row">
+          <h3 class="pack-card__name">ISLA PANCAKES</h3>
+          <div class="pack-price"><b class="price">8,20 €</b><small>Student</small></div>
+        </div>
+        <p class="pack-card__desc">Pancakes con topping a elegir. Todos incluidos.</p>
+        <div class="pack-card__summary">
+          <span class="chip chip--include">Topping <b class="sel-food">Lotus</b></span>
+          <span class="chip chip--include">Bebida <b class="sel-drink">Café incluido</b></span>
+        </div>
+        <details class="disclose">
+          <summary>Personalizar pedido</summary>
+          <div class="disclose-body">
+            <div>
+              <span class="opt-label">Elige 1 opción</span>
+              <div class="pill-row" role="radiogroup" aria-label="Elige tu opción">
+                <button class="pill is-selected" data-group="food" type="button">Lotus</button>
+                <button class="pill" data-group="food" type="button">Nutella</button>
+                <button class="pill" data-group="food" type="button">Dulce de leche</button>
+                <button class="pill" data-group="food" type="button">Pistacho</button>
+                <button class="pill" data-group="food" type="button">Fruta de temporada</button>
+                <button class="pill" data-group="food" type="button">Miel picante</button>
+              </div>
+            </div>
+            <div>
+              <span class="opt-label">Bebida incluida — café (espresso, cortado, americano o con leche)</span>
+              <div class="pill-row" role="radiogroup" aria-label="Sube tu bebida">
+                <button class="pill pill--drink is-selected" data-group="drink" data-add="0" type="button"><span class="pill__name">Café incluido</span><span class="pill__add">Incluido</span></button>
+                <button class="pill pill--drink" data-group="drink" data-add="1.50" type="button"><span class="pill__name">Matcha Latte</span><span class="pill__add">+1,50 €</span></button>
+                <button class="pill pill--drink" data-group="drink" data-add="2.00" type="button"><span class="pill__name">Matcha Fruit</span><span class="pill__add">+2,00 €</span></button>
+                <button class="pill pill--drink" data-group="drink" data-add="3.00" type="button"><span class="pill__name">Batido con Proteína</span><span class="pill__add">+3,00 €</span></button>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="pack-card" data-base-price="8.00">
+      <div class="pack-media-wrap">
+        <span class="pack-badge">Sweet Brioche</span>
+        <video aria-label="Brioche dulce ISLA" autoplay loop muted playsinline preload="auto" src="./videos/briochedulce.mp4"></video>
+      </div>
+      <div class="pack-card__body">
+        <div class="pack-card__row">
+          <h3 class="pack-card__name">SWEET BRIOCHE</h3>
+          <div class="pack-price"><b class="price">8,00 €</b><small>Student</small></div>
+        </div>
+        <p class="pack-card__desc">Brioche dulce con tu crema favorita.</p>
+        <div class="pack-card__summary">
+          <span class="chip chip--include">Crema <b class="sel-food">Nutella</b></span>
+          <span class="chip chip--include">Bebida <b class="sel-drink">Café incluido</b></span>
+        </div>
+        <details class="disclose">
+          <summary>Personalizar pedido</summary>
+          <div class="disclose-body">
+            <div>
+              <span class="opt-label">Elige 1 opción</span>
+              <div class="pill-row" role="radiogroup" aria-label="Elige tu opción">
+                <button class="pill is-selected" data-group="food" type="button">Nutella</button>
+                <button class="pill" data-group="food" type="button">Lotus</button>
+                <button class="pill" data-group="food" type="button">Pistacho</button>
+                <button class="pill" data-group="food" type="button">Dulce de leche</button>
+              </div>
+            </div>
+            <div>
+              <span class="opt-label">Bebida incluida — café (espresso, cortado, americano o con leche)</span>
+              <div class="pill-row" role="radiogroup" aria-label="Sube tu bebida">
+                <button class="pill pill--drink is-selected" data-group="drink" data-add="0" type="button"><span class="pill__name">Café incluido</span><span class="pill__add">Incluido</span></button>
+                <button class="pill pill--drink" data-group="drink" data-add="1.50" type="button"><span class="pill__name">Matcha Latte</span><span class="pill__add">+1,50 €</span></button>
+                <button class="pill pill--drink" data-group="drink" data-add="2.00" type="button"><span class="pill__name">Matcha Fruit</span><span class="pill__add">+2,00 €</span></button>
+                <button class="pill pill--drink" data-group="drink" data-add="3.00" type="button"><span class="pill__name">Batido con Proteína</span><span class="pill__add">+3,00 €</span></button>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </article>
+
+  </div>
 </div></section>
-<section class="duo page" id="duo"><div class="wrap"><div class="section-title"><div><div class="eyebrow">02 · PARA DOS</div><h2>DUO</h2></div><p>Ven con alguien y convertid dos pedidos en un combo más atractivo.</p></div><div class="duo-grid"><article class="duo-card featured"><div><h3>DUO BEBIDAS</h3><p>Elegid dos bebidas y compartid el momento.</p><div class="duo-food-list"><div><strong>2 Cafés con leche</strong><span>3,90 €</span></div><div><strong>2 Matcha Latte</strong><span>7,90 €</span></div><div><strong>2 Ube Latte</strong><span>8,50 €</span></div><div><strong>2 Estrella Galicia</strong><span>5,00 €</span></div></div></div><div class="duo-price"><strong>Desde 3,90 €</strong><br/><span>2 bebidas</span></div></article><article class="duo-card"><div><h3>DUO FOOD</h3><p><strong>2 para compartir</strong>. Elige vuestra combinación.</p><div class="duo-food-list"><div><strong>Quesadilla + Mozzarella Bacon</strong><span>9,90 €</span></div><div><strong>Quesadilla + Provolone</strong><span>12,90 €</span></div><div><strong>Mozzarella Bacon + Provolone</strong><span>13,90 €</span></div></div><div class="duo-upgrade"><div><span class="duo-upgrade-label">UPGRADE BEBIDA</span><strong>2 Estrella Galicia</strong><small>Añádelas a vuestro Duo por 5,00 €</small></div><b>+5,00 €</b></div></div><div class="duo-price"><strong>Desde 9,90 €</strong><br/><span>2 comidas + upgrade opcional</span></div></article></div></div></section>
-<section class="matcha page" id="matcha"><div class="wrap">
-<div class="section-title"><div><div class="eyebrow">03 · MENÚ MATCHA</div><h2>MATCHA</h2></div><p>Una sección propia y visible para quien viene por un bagel, un brunch o simplemente por Matcha.</p></div>
-<div class="matcha-lead"><div class="matcha-intro"><div class="eyebrow" style="color:#d7e5d2">ISLA MATCHA</div><h2>GREEN<br/><em>MATCHA.</em></h2><p>Matcha clásico, latte, frutal y mezclas firma.</p><div class="matcha-extra-pills"><span>Student · Matcha Latte +1,50 €</span><span>Student · Matcha Fruit +2,00 €</span></div><video aria-label="Coconut Matcha ISLA" autoplay="" class="matcha-feature-video" loop="" muted="" playsinline="" preload="auto" src="./videos/matchacoco.mp4"></video></div></div>
-<section aria-label="Matcha con comida" class="duo-pairing"><div class="wrap"><div class="pairing"><div><div class="eyebrow">MATCHA + FOOD</div><h3>NO ES SOLO<br/>MATCHA.</h3><p>Tu brunch también puede ser una excusa para pedir Matcha.</p></div><div class="pairing-list"><div><span>ISLA CAMPUS</span><b>Matcha Latte +1,50 € · Matcha Fruit +2,00 €</b></div><div><span>ISLA SIGNATURE</span><b>Matcha Latte +1,50 € · Matcha Fruit +2,00 €</b></div><div><span>ISLA BIG</span><b>Matcha Latte +1,50 € · Matcha Fruit +2,00 €</b></div><div><span>ISLA PANCAKES</span><b>Matcha Latte +1,50 € · Matcha Fruit +2,00 €</b></div><div><span>NEW YORK BREAK</span><b>Matcha Latte +1,50 € · Matcha Fruit +2,00 €</b></div><div><span>SWEET BRIOCHE</span><b>Matcha Latte +1,50 € · Matcha Fruit +2,00 €</b></div></div></div></div></section><div class="matcha-grid"><article class="pack green matcha-student-pack"><div class="pack-top"><span class="pack-num">PACK · MATCHA</span><span class="tag">Green pick</span></div><h3>MATCHA YOGURT BREAK</h3><p>Yogurt + matcha + fruta + granola + coco.</p><div class="include-box"><ul><li>Matcha Yogurt</li></ul></div><div class="drink-line"><strong>Bebida incluida</strong> · Matcha Latte.</div><div class="extra-line"><strong>Extra Student:</strong> Sube a Matcha Fruit +2,00 €</div><div class="price-row"><span class="price-label">Descuento<br/><span class="saving">Student</span></span><b class="price">8,50 €</b></div></article>
-<article class="drink-card"><span class="section-note">01 · TRADICIONAL</span><h3>Matcha Tradicional</h3><p>La versión pura de ISLA.</p><b class="dprice">3,50 €</b></article>
-<article class="drink-card"><span class="section-note">02 · FAVORITO</span><h3>Matcha Latte</h3><p>Cremoso y perfecto para brunch.</p><b class="dprice">4,50 €</b></article>
-<article class="drink-card"><span class="section-note">03 · FRUTAL</span><h3>Ice Matcha Frutal</h3><p>Matcha frío con perfil frutal.</p><b class="dprice">5,00 €</b></article>
-<article class="drink-card"><span class="section-note">04 · TROPICAL</span><h3>Coconut Water Matcha</h3><p>Matcha con agua de coco.</p><b class="dprice">5,50 €</b></article>
-<article class="drink-card"><span class="section-note">05 · FIRMA</span><h3>Matcha Elche</h3><p>Una mezcla propia de ISLA.</p><b class="dprice">5,90 €</b></article>
-<article class="drink-card"><span class="section-note">06 · DUO</span><h3>Matcha Ube</h3><p>Verde + violeta.</p><b class="dprice">6,00 €</b></article>
-<article class="drink-card"><span class="section-note">07 · SEASONAL</span><h3>Matcha Pumpkin Spice</h3><p>Matcha de temporada.</p><b class="dprice">6,00 €</b></article>
-</div>
+
+<!-- ============================================================
+     02 · DUO
+     ============================================================ -->
+<section class="page tone-cream" id="duo"><div class="wrap">
+  <div class="sec-head">
+    <div class="kicker">02 · Para dos</div>
+    <h2>Duo</h2>
+    <p>Ven con alguien y convertid dos pedidos en un combo más atractivo.</p>
+  </div>
+  <div class="duo-list">
+    <article class="duo-card is-featured">
+      <h3>DUO BEBIDAS</h3>
+      <p>Elegid dos bebidas y compartid el momento.</p>
+      <div class="duo-rows">
+        <div class="duo-row"><span>2 Cafés con leche</span><b>3,90 €</b></div>
+        <div class="duo-row"><span>2 Matcha Latte</span><b>7,90 €</b></div>
+        <div class="duo-row"><span>2 Ube Latte</span><b>8,50 €</b></div>
+        <div class="duo-row"><span>2 Estrella Galicia</span><b>5,00 €</b></div>
+      </div>
+      <div class="duo-foot"><strong>Desde 3,90 €</strong><span>2 bebidas</span></div>
+    </article>
+    <article class="duo-card">
+      <h3>DUO FOOD</h3>
+      <p><strong>2 para compartir.</strong> Elige vuestra combinación.</p>
+      <div class="duo-rows">
+        <div class="duo-row"><span>Quesadilla + Mozzarella Bacon</span><b>9,90 €</b></div>
+        <div class="duo-row"><span>Quesadilla + Provolone</span><b>12,90 €</b></div>
+        <div class="duo-row"><span>Mozzarella Bacon + Provolone</span><b>13,90 €</b></div>
+      </div>
+      <div class="duo-upgrade">
+        <div><span>Upgrade bebida</span><strong>2 Estrella Galicia</strong></div>
+        <b>+5,00 €</b>
+      </div>
+      <div class="duo-foot"><strong>Desde 9,90 €</strong><span>2 comidas + upgrade opcional</span></div>
+    </article>
+  </div>
 </div></section>
-<section class="ube-section page" id="ube"><div class="wrap"><div class="section-title"><div><div class="eyebrow">04 · MENÚ UBE</div><h2>UBE</h2></div><p>Bebidas de ube, suaves, frías y cremosas.</p></div><div class="ube-grid">
-<article class="ube-card"><span class="section-note">01</span><h3>Ube Latte</h3><p>Cremoso, suave y naturalmente dulce.</p><div class="ube-price">4,90 €</div></article>
-<article class="ube-card"><span class="section-note">02</span><h3>Dirty Ube Espresso</h3><p>Ube + espresso.</p><div class="ube-price">5,40 €</div></article>
-<article class="ube-card"><span class="section-note">03</span><h3>Ube Passion Frappé</h3><p>Frappé de ube con perfil tropical.</p><div class="ube-price">5,50 €</div></article>
-<article class="ube-card"><span class="section-note">04</span><h3>Isla Ube Breeze</h3><p>Ube en versión fresca.</p><div class="ube-price">5,50 €</div></article>
-<article class="ube-card"><span class="section-note">05</span><h3>Ube Fruit</h3><p>Ube + fruta.</p><div class="ube-price">6,00 €</div></article>
-<article class="ube-card"><span class="section-note">06</span><h3>Ube Matcha</h3><p>La combinación verde + violeta.</p><div class="ube-price">6,00 €</div></article>
-</div></div></section>
-<section class="page" id="cafe"><div class="wrap"><div class="section-title"><div><div class="eyebrow">05 · CAFÉ</div><h2>CAFÉ</h2></div><p>Clásicos, cremosos y fríos.</p></div><div class="food-grid" style="grid-template-columns:repeat(3,1fr)">
-<div class="food-group" style="background:#fff;color:var(--ink);border-color:var(--line)"><h3>Clásicos</h3><div class="food-item"><div class="food-name"><span>Espresso</span><b style="color:var(--green)">1,60 €</b></div></div><div class="food-item"><div class="food-name"><span>Doble espresso</span><b style="color:var(--green)">1,90 €</b></div></div><div class="food-item"><div class="food-name"><span>Cortado</span><b style="color:var(--green)">1,70 €</b></div></div><div class="food-item"><div class="food-name"><span>Americano</span><b style="color:var(--green)">1,80 €</b></div></div><div class="food-item"><div class="food-name"><span>Café con leche</span><b style="color:var(--green)">2,10 €</b></div></div></div>
-<div class="food-group" style="background:#f5efe2;color:var(--ink);border-color:var(--line)"><h3>Cremosos</h3><div class="food-item"><div class="food-name"><span>Bombón</span><b style="color:var(--green)">2,50 €</b></div></div><div class="food-item"><div class="food-name"><span>Latte</span><b style="color:var(--green)">2,50 €</b></div></div><div class="food-item"><div class="food-name"><span>Cappuccino</span><b style="color:var(--green)">2,70 €</b></div></div><div class="food-item"><div class="food-name"><span>Pumpkin Spice Latte</span><b style="color:var(--green)">4,80 €</b></div></div><div class="food-item"><div class="food-name"><span>Pistacho Latte</span><b style="color:var(--green)">4,80 €</b></div></div><div class="food-item"><div class="food-name"><span>Moca</span><b style="color:var(--green)">3,20 €</b></div></div></div>
-<div class="food-group" style="background:#e5eee0;color:var(--ink);border-color:var(--line)"><h3>Fríos</h3><div class="food-item"><div class="food-name"><span>Frappés</span><b style="color:var(--green)">4,50 €</b></div></div><div class="food-item"><div class="food-name"><span>Iced Coffee</span><b style="color:var(--green)">3,50 €</b></div></div><div class="food-item"><div class="food-name"><span>Iced Moca</span><b style="color:var(--green)">4,00 €</b></div></div></div>
-</div></div></section>
-<section class="shakes page" id="smoothies"><div class="wrap"><div class="section-title"><div><div class="eyebrow">06 · SMOOTHIES</div><h2>SHAKES</h2></div><p>Una categoría visible para quien viene por algo frío. El suplemento de proteína se mantiene donde corresponda.</p></div><div class="shake-grid"><article class="shake-card"><div class="eyebrow">ISLA SHAKE</div><h3>SMOOTHIES</h3><p>Seis favoritos para elegir.</p><div class="shake-items"><div><span>Pink Paradise</span><b>6,80 €</b></div><div><span>Wild Berry Protein</span><b>6,80 €</b></div><div><span>Blue Power Shake</span><b>6,90 €</b></div><div><span>Passion Mango Tropic</span><b>6,90 €</b></div><div><span>Isla Fit Power Shake</span><b>7,00 €</b></div><div><span>Isla Tropical Exotic</span><b>6,80 €</b></div></div></article><article class="shake-card"><div class="eyebrow">PROTEIN</div><h3>PROTEIN BREAK</h3><p>El pack Student de proteína, junto a nuestros batidos proteicos.</p><div class="protein-pack"><strong>8,50 € Student</strong><span>Protein Yogurt + fruta + granola + café</span></div><div class="shake-items"><div><span>Wild Berry Protein</span><b>6,80 €</b></div><div><span>Isla Fit Power Shake</span><b>7,00 €</b></div></div></article></div></div></section>
-<section class="menu-section page" id="comer"><div class="wrap"><div class="section-title"><div><div class="eyebrow">07 · COMER</div><h2>BRUNCH · BAGELS · BRIOCHES</h2></div><p>Brunch, bagels, tostas y brioches para comer a tu ritmo.</p></div><div class="food-grid">
-<div class="food-group"><h3>Bagels</h3><div class="food-item has-media"><video aria-label="Sesame Bagel ISLA" autoplay="" class="food-media video-media" loop="" muted="" playsinline="" preload="auto" src="./videos/bagelsesamo.mp4"></video><div class="food-name"><span>Sesame Bagel</span><b>7,50 €</b></div><div class="food-desc">Sésamo, aguacate, tomate rallado, bacon crujiente y huevo revuelto.</div></div><div class="food-item"><div class="food-name"><span>Brunch Bagel</span><b>7,90 €</b></div></div><div class="food-item"><div class="food-name"><span>Veggie Bagel</span><b>7,50 €</b></div></div><div class="food-item"><div class="food-name"><span>Bagel York Classic</span><b>7,50 €</b></div></div><div class="food-item"><div class="food-name"><span>Nordic Bagel Isla</span><b>8,50 €</b></div></div><div class="food-item"><div class="food-name"><span>Bagel York Mediterráneo</span><b>8,50 €</b></div></div><div class="food-item"><div class="food-name"><span>Serranito Bagel</span><b>8,90 €</b></div></div><div class="food-item"><div class="food-name"><span>Island Chicken Bagel</span><b>8,90 €</b></div></div></div>
-<div class="food-group"><h3>Tostas &amp; Croissants</h3><div class="food-item"><div class="food-name"><span>Isla Veggie</span><b>6,50 €</b></div></div><div class="food-item"><div class="food-name"><span>Nordic Isla Toast</span><b>6,90 €</b></div></div><div class="food-item"><div class="food-name"><span>Tuna Mayo</span><b>6,00 €</b></div></div><div class="food-item"><div class="food-name"><span>Bacon Brunch</span><b>6,90 €</b></div></div><div class="food-item has-media"><img alt="Serranito Toast ISLA" class="food-media" loading="lazy" src="./fotos/serranito.jpeg"/><div class="food-name"><span>Serranito Toast</span><b>8,90 €</b></div></div><div class="food-item"><div class="food-name"><span>Tosta York Cherry</span><b>7,20 €</b></div></div><div class="food-item has-media"><img alt="Croissant Gourmet ISLA" class="food-media" decoding="async" loading="lazy" src="./fotos/cross.jpeg"/><div class="food-name"><span>Croissant Gourmet</span><b>4,50 €</b></div></div><div class="food-item has-media"><img alt="Breakfast Croissant ISLA" class="food-media" decoding="async" loading="lazy" src="./fotos/crossyork.png"/><div class="food-name"><span>Breakfast Croissant</span><b>6,50 €</b></div></div></div>
-<div class="food-group"><h3>Brioches</h3><div class="food-item has-media revuelto-item"><video aria-label="Revuelto ISLA" autoplay="" class="food-media video-media" loop="" muted="" playsinline="" preload="auto" src="./videos/revueltobrioche1.mp4"></video><div class="food-name"><span>Revuelto</span><b>8,90 €</b></div><div class="food-desc">Brioche con huevo revuelto, bacon, cebolla crujiente y salsa peach chipotle mayo.</div></div><div class="food-item"><div class="food-name"><span>Serranito Brioche</span><b>9,90 €</b></div></div><div class="food-item"><div class="food-name"><span>Fru Creation</span><b>8,90 €</b></div></div><div class="food-item"><div class="food-name"><span>Nordic Brioche</span><b>9,50 €</b></div></div><div class="food-item"><div class="food-name"><span>Brioche York Deluxe</span><b>9,00 €</b></div></div><div class="food-item"><div class="food-name"><span>Island Chicken Brioche</span><b>9,90 €</b></div></div></div>
-<div class="food-group"><h3>Yogurt &amp; Dulce</h3><div class="food-item"><div class="food-name"><span>ISLA YOGURT · Student</span><b>6,90 €</b></div><div class="food-desc">Yogurt de la Isla + fruta + agave + granola + café.</div></div><div class="food-item"><div class="food-name"><span>Protein Yogurt</span><b>6,90 €</b></div></div><div class="food-item has-media"><video aria-label="Brioche dulce ISLA" autoplay="" class="food-media video-media" loop="" muted="" playsinline="" preload="auto" src="./videos/briochedulce.mp4"></video><div class="food-name"><span>Brioche dulce</span><b>6,90 €</b></div></div><div class="food-item"><div class="food-name"><span>Yogurt de la Isla</span><b>5,20 €</b></div></div><div class="food-item"><div class="food-name"><span>Matcha Yogurt</span><b>6,50 €</b></div></div><div class="food-item"><div class="food-name"><span>Muffin Lotus</span><b>3,50 €</b></div></div><div class="food-item"><div class="food-name"><span>Mini Croissant relleno</span><b>1,50 €</b></div></div></div>
-<div class="food-group"><h3>Compartir</h3><div class="food-item"><div class="food-name"><span>Quesadilla Isla</span><b>5,50 €</b></div></div><div class="food-item"><div class="food-name"><span>Patatas Bravas Isla</span><b>6,50 €</b></div></div><div class="food-item"><div class="food-name"><span>Batata Isla</span><b>7,00 €</b></div></div><div class="food-item"><div class="food-name"><span>Mozzarella Bacon Tosta</span><b>6,00 €</b></div></div><div class="food-item"><div class="food-name"><span>Provolone Isla</span><b>8,90 €</b></div></div></div>
-<div class="food-group"><h3>Otras bebidas</h3><div class="food-item"><div class="food-name"><span>Morir Soñando</span><b>4,00 €</b></div></div><div class="food-item"><div class="food-name"><span>Avena con Limón</span><b>4,00 €</b></div></div><div class="food-item"><div class="food-name"><span>Avena con Maracuyá</span><b>4,00 €</b></div></div><div class="food-item"><div class="food-name"><span>Zumo de Naranja Natural</span><b>2,50 €</b></div></div><div class="food-item"><div class="food-name"><span>Limonada Casera</span><b>3,50 €</b></div></div><div class="food-item"><div class="food-name"><span>Agua de coco</span><b>3,50 €</b></div></div></div>
-</div></div></section>
-<section class="club page" id="club"><div class="wrap"><div class="club-box"><div><div class="eyebrow" style="color:#d7e5d2">08 · CAMPUS CLUB</div><h2>VUELVE A<br/>ISLA.</h2><p>1 compra Student = 1 sello. <strong>7 sellos → bebida gratis.</strong> <strong>12 sellos → ISLA Campus gratis.</strong></p><div class="club-actions"><a class="whatsapp-btn" href="https://wa.me/34691769434?text=Hola%20ISLA%2C%20quiero%20reclamar%20mi%20premio%20del%20Campus%20Club." rel="noopener" target="_blank">Reclamar por WhatsApp ↗</a></div><p class="club-note">Pide tu tarjeta Student en caja. Te ponemos 1 sello por cada compra Student. Cuando completes 7 o 12, conserva la tarjeta y escríbenos por WhatsApp para reclamar.</p></div><div class="stamps"><div class="mono">TUS SELLOS · 1 COMPRA = 1 SELLO</div><div class="stamp-row"><span class="stamp">1</span><span class="stamp">2</span><span class="stamp">3</span><span class="stamp">4</span><span class="stamp">5</span><span class="stamp">6</span><span class="stamp">7</span><span class="stamp">8</span><span class="stamp">9</span><span class="stamp">10</span><span class="stamp">11</span><span class="stamp">12</span></div><div class="rewards"><div class="reward"><span>7 sellos</span><b>BEBIDA GRATIS</b></div><div class="reward"><span>12 sellos</span><b>ISLA CAMPUS GRATIS</b></div></div></div></div></div></section>
-<section class="full"><div class="wrap"><div class="full-card"><div><h3>¿Quieres ver toda la carta?</h3><p>La carta completa de ISLA está en islabrunchbar.com/menu/</p></div><a class="full-btn" href="https://islabrunchbar.com/menu/">Abrir carta completa ↗</a></div></div></section>
+
+<!-- ============================================================
+     03 · MATCHA
+     ============================================================ -->
+<section class="page tone-sage" id="matcha"><div class="wrap">
+  <div class="sec-head">
+    <div class="kicker">03 · Menú Matcha</div>
+    <h2>Matcha</h2>
+    <p>Una sección propia y visible para quien viene por un bagel, un brunch o simplemente por Matcha.</p>
+  </div>
+
+  <div class="matcha-lead">
+    <div class="matcha-hero">
+      <div class="kicker">ISLA MATCHA</div>
+      <h2>GREEN<br/><i>MATCHA.</i></h2>
+      <p>Matcha clásico, latte, frutal y mezclas firma.</p>
+      <div class="matcha-pills">
+        <span>Student · Matcha Latte +1,50 €</span>
+        <span>Student · Matcha Fruit +2,00 €</span>
+      </div>
+      <video class="matcha-video" aria-label="Coconut Matcha ISLA" autoplay loop muted playsinline preload="auto" src="./videos/matchacoco.mp4"></video>
+    </div>
+
+    <article class="pack-card matcha-pack">
+      <div class="pack-card__body">
+        <div class="pack-card__row">
+          <div>
+            <span class="pack-badge" style="position:static;display:inline-block;margin-bottom:10px;background:var(--sage);color:var(--forest)">Green pick</span>
+            <h3 class="pack-card__name">MATCHA YOGURT BREAK</h3>
+          </div>
+          <div class="pack-price"><b class="price">8,50 €</b><small>Student</small></div>
+        </div>
+        <p class="pack-card__desc">Yogurt + matcha + fruta + granola + coco.</p>
+        <div class="pack-card__summary">
+          <span class="chip chip--include">Matcha Yogurt</span>
+          <span class="chip chip--include">Bebida: Matcha Latte</span>
+          <span class="chip chip--paid">Sube a Matcha Fruit +2,00 €</span>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="pairing">
+    <div class="kicker">Matcha + food</div>
+    <h3>No es solo<br/>matcha.</h3>
+    <p>Tu brunch también puede ser una excusa para pedir Matcha.</p>
+    <div class="pairing-scroller">
+      <div class="pairing-item"><span>ISLA CAMPUS</span><b>Matcha Latte +1,50 € · Matcha Fruit +2,00 €</b></div>
+      <div class="pairing-item"><span>ISLA SIGNATURE</span><b>Matcha Latte +1,50 € · Matcha Fruit +2,00 €</b></div>
+      <div class="pairing-item"><span>ISLA BIG</span><b>Matcha Latte +1,50 € · Matcha Fruit +2,00 €</b></div>
+      <div class="pairing-item"><span>ISLA PANCAKES</span><b>Matcha Latte +1,50 € · Matcha Fruit +2,00 €</b></div>
+      <div class="pairing-item"><span>NEW YORK BREAK</span><b>Matcha Latte +1,50 € · Matcha Fruit +2,00 €</b></div>
+      <div class="pairing-item"><span>SWEET BRIOCHE</span><b>Matcha Latte +1,50 € · Matcha Fruit +2,00 €</b></div>
+    </div>
+  </div>
+
+  <div class="drink-cards">
+    <article class="drink-tile"><div><span class="drink-tile__num">01 · Tradicional</span><h3>Matcha Tradicional</h3><p>La versión pura de ISLA.</p></div><b>3,50 €</b></article>
+    <article class="drink-tile"><div><span class="drink-tile__num">02 · Favorito</span><h3>Matcha Latte</h3><p>Cremoso y perfecto para brunch.</p></div><b>4,50 €</b></article>
+    <article class="drink-tile"><div><span class="drink-tile__num">03 · Frutal</span><h3>Ice Matcha Frutal</h3><p>Matcha frío con perfil frutal.</p></div><b>5,00 €</b></article>
+    <article class="drink-tile"><div><span class="drink-tile__num">04 · Tropical</span><h3>Coconut Water Matcha</h3><p>Matcha con agua de coco.</p></div><b>5,50 €</b></article>
+    <article class="drink-tile"><div><span class="drink-tile__num">05 · Firma</span><h3>Matcha Elche</h3><p>Una mezcla propia de ISLA.</p></div><b>5,90 €</b></article>
+    <article class="drink-tile"><div><span class="drink-tile__num">06 · Duo</span><h3>Matcha Ube</h3><p>Verde + violeta.</p></div><b>6,00 €</b></article>
+    <article class="drink-tile"><div><span class="drink-tile__num">07 · Seasonal</span><h3>Matcha Pumpkin Spice</h3><p>Matcha de temporada.</p></div><b>6,00 €</b></article>
+  </div>
+</div></section>
+
+<!-- ============================================================
+     04 · UBE
+     ============================================================ -->
+<section class="page tone-ube" id="ube"><div class="wrap">
+  <div class="sec-head">
+    <div class="kicker">04 · Menú Ube</div>
+    <h2>Ube</h2>
+    <p>Bebidas de ube, suaves, frías y cremosas.</p>
+  </div>
+  <div class="ube-list">
+    <article class="ube-tile"><div><span class="ube-tile__num">01</span><h3>Ube Latte</h3><p>Cremoso, suave y naturalmente dulce.</p></div><b>4,90 €</b></article>
+    <article class="ube-tile"><div><span class="ube-tile__num">02</span><h3>Dirty Ube Espresso</h3><p>Ube + espresso.</p></div><b>5,40 €</b></article>
+    <article class="ube-tile"><div><span class="ube-tile__num">03</span><h3>Ube Passion Frappé</h3><p>Frappé de ube con perfil tropical.</p></div><b>5,50 €</b></article>
+    <article class="ube-tile"><div><span class="ube-tile__num">04</span><h3>Isla Ube Breeze</h3><p>Ube en versión fresca.</p></div><b>5,50 €</b></article>
+    <article class="ube-tile"><div><span class="ube-tile__num">05</span><h3>Ube Fruit</h3><p>Ube + fruta.</p></div><b>6,00 €</b></article>
+    <article class="ube-tile"><div><span class="ube-tile__num">06</span><h3>Ube Matcha</h3><p>La combinación verde + violeta.</p></div><b>6,00 €</b></article>
+  </div>
+</div></section>
+
+<!-- ============================================================
+     05 · CAFÉ
+     ============================================================ -->
+<section class="page tone-cream" id="cafe"><div class="wrap">
+  <div class="sec-head">
+    <div class="kicker">05 · Café</div>
+    <h2>Café</h2>
+    <p>Clásicos, cremosos y fríos.</p>
+  </div>
+  <div class="cafe-groups">
+    <div class="cafe-group">
+      <h3>Clásicos</h3>
+      <div class="item-list">
+        <div class="item-row"><span class="item-row__name">Espresso</span><b class="item-row__price">1,60 €</b></div>
+        <div class="item-row"><span class="item-row__name">Doble espresso</span><b class="item-row__price">1,90 €</b></div>
+        <div class="item-row"><span class="item-row__name">Cortado</span><b class="item-row__price">1,70 €</b></div>
+        <div class="item-row"><span class="item-row__name">Americano</span><b class="item-row__price">1,80 €</b></div>
+        <div class="item-row"><span class="item-row__name">Café con leche</span><b class="item-row__price">2,10 €</b></div>
+      </div>
+    </div>
+    <div class="cafe-group">
+      <h3>Cremosos</h3>
+      <div class="item-list">
+        <div class="item-row"><span class="item-row__name">Bombón</span><b class="item-row__price">2,50 €</b></div>
+        <div class="item-row"><span class="item-row__name">Latte</span><b class="item-row__price">2,50 €</b></div>
+        <div class="item-row"><span class="item-row__name">Cappuccino</span><b class="item-row__price">2,70 €</b></div>
+        <div class="item-row"><span class="item-row__name">Pumpkin Spice Latte</span><b class="item-row__price">4,80 €</b></div>
+        <div class="item-row"><span class="item-row__name">Pistacho Latte</span><b class="item-row__price">4,80 €</b></div>
+        <div class="item-row"><span class="item-row__name">Moca</span><b class="item-row__price">3,20 €</b></div>
+      </div>
+    </div>
+    <div class="cafe-group">
+      <h3>Fríos</h3>
+      <div class="item-list">
+        <div class="item-row"><span class="item-row__name">Frappés</span><b class="item-row__price">4,50 €</b></div>
+        <div class="item-row"><span class="item-row__name">Iced Coffee</span><b class="item-row__price">3,50 €</b></div>
+        <div class="item-row"><span class="item-row__name">Iced Moca</span><b class="item-row__price">4,00 €</b></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============================================================
+     06 · SMOOTHIES
+     ============================================================ -->
+<section class="page tone-sage" id="smoothies"><div class="wrap">
+  <div class="sec-head">
+    <div class="kicker">06 · Smoothies</div>
+    <h2>Shakes</h2>
+    <p>Una categoría visible para quien viene por algo frío. El suplemento de proteína se mantiene donde corresponda.</p>
+  </div>
+  <div class="shake-list">
+    <article class="shake-card">
+      <div class="kicker">ISLA SHAKE</div>
+      <h3>Smoothies</h3>
+      <p>Seis favoritos para elegir.</p>
+      <div class="shake-items">
+        <div class="shake-item"><span>Pink Paradise</span><b>6,80 €</b></div>
+        <div class="shake-item"><span>Wild Berry Protein</span><b>6,80 €</b></div>
+        <div class="shake-item"><span>Blue Power Shake</span><b>6,90 €</b></div>
+        <div class="shake-item"><span>Passion Mango Tropic</span><b>6,90 €</b></div>
+        <div class="shake-item"><span>Isla Fit Power Shake</span><b>7,00 €</b></div>
+        <div class="shake-item"><span>Isla Tropical Exotic</span><b>6,80 €</b></div>
+      </div>
+    </article>
+    <article class="shake-card">
+      <div class="kicker">PROTEIN</div>
+      <h3>Protein Break</h3>
+      <p>El pack Student de proteína, junto a nuestros batidos proteicos.</p>
+      <div class="protein-callout"><strong>8,50 € Student</strong><span>Protein Yogurt + fruta + granola + café</span></div>
+      <div class="shake-items">
+        <div class="shake-item"><span>Wild Berry Protein</span><b>6,80 €</b></div>
+        <div class="shake-item"><span>Isla Fit Power Shake</span><b>7,00 €</b></div>
+      </div>
+    </article>
+  </div>
+</div></section>
+
+<!-- ============================================================
+     07 · COMER
+     ============================================================ -->
+<section class="page tone-forest" id="comer"><div class="wrap">
+  <div class="sec-head">
+    <div class="kicker">07 · Comer</div>
+    <h2>Brunch · Bagels · Brioches</h2>
+    <p>Brunch, bagels, tostas y brioches para comer a tu ritmo.</p>
+  </div>
+  <div class="comer-groups">
+
+    <details class="comer-group" open>
+      <summary><h3>Bagels</h3><span class="chev"></span></summary>
+      <div class="comer-body">
+        <div class="food-item">
+          <video class="food-media video-media" aria-label="Sesame Bagel ISLA" autoplay loop muted playsinline preload="auto" src="./videos/bagelsesamo.mp4"></video>
+          <div class="food-name"><span>Sesame Bagel</span><b>7,50 €</b></div>
+          <div class="food-desc">Sésamo, aguacate, tomate rallado, bacon crujiente y huevo revuelto.</div>
+        </div>
+        <div class="food-item"><div class="food-name"><span>Brunch Bagel</span><b>7,90 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Veggie Bagel</span><b>7,50 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Bagel York Classic</span><b>7,50 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Nordic Bagel Isla</span><b>8,50 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Bagel York Mediterráneo</span><b>8,50 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Serranito Bagel</span><b>8,90 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Island Chicken Bagel</span><b>8,90 €</b></div></div>
+      </div>
+    </details>
+
+    <details class="comer-group">
+      <summary><h3>Tostas &amp; Croissants</h3><span class="chev"></span></summary>
+      <div class="comer-body">
+        <div class="food-item"><div class="food-name"><span>Isla Veggie</span><b>6,50 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Nordic Isla Toast</span><b>6,90 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Tuna Mayo</span><b>6,00 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Bacon Brunch</span><b>6,90 €</b></div></div>
+        <div class="food-item">
+          <img class="food-media" alt="Serranito Toast ISLA" loading="lazy" src="./fotos/serranito.jpeg"/>
+          <div class="food-name"><span>Serranito Toast</span><b>8,90 €</b></div>
+        </div>
+        <div class="food-item"><div class="food-name"><span>Tosta York Cherry</span><b>7,20 €</b></div></div>
+        <div class="food-item">
+          <img class="food-media" alt="Croissant Gourmet ISLA" decoding="async" loading="lazy" src="./fotos/cross.jpeg"/>
+          <div class="food-name"><span>Croissant Gourmet</span><b>4,50 €</b></div>
+        </div>
+        <div class="food-item">
+          <img class="food-media" alt="Breakfast Croissant ISLA" decoding="async" loading="lazy" src="./fotos/crossyork.png"/>
+          <div class="food-name"><span>Breakfast Croissant</span><b>6,50 €</b></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="comer-group">
+      <summary><h3>Brioches</h3><span class="chev"></span></summary>
+      <div class="comer-body">
+        <div class="food-item">
+          <video class="food-media video-media" aria-label="Revuelto ISLA" autoplay loop muted playsinline preload="auto" src="./videos/revueltobrioche1.mp4"></video>
+          <div class="food-name"><span>Revuelto</span><b>8,90 €</b></div>
+          <div class="food-desc">Brioche con huevo revuelto, bacon, cebolla crujiente y salsa peach chipotle mayo.</div>
+        </div>
+        <div class="food-item"><div class="food-name"><span>Serranito Brioche</span><b>9,90 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Fru Creation</span><b>8,90 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Nordic Brioche</span><b>9,50 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Brioche York Deluxe</span><b>9,00 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Island Chicken Brioche</span><b>9,90 €</b></div></div>
+      </div>
+    </details>
+
+    <details class="comer-group">
+      <summary><h3>Yogurt &amp; Dulce</h3><span class="chev"></span></summary>
+      <div class="comer-body">
+        <div class="food-item">
+          <div class="food-name"><span>ISLA YOGURT · Student</span><b>6,90 €</b></div>
+          <div class="food-desc">Yogurt de la Isla + fruta + agave + granola + café.</div>
+        </div>
+        <div class="food-item"><div class="food-name"><span>Protein Yogurt</span><b>6,90 €</b></div></div>
+        <div class="food-item">
+          <video class="food-media video-media" aria-label="Brioche dulce ISLA" autoplay loop muted playsinline preload="auto" src="./videos/briochedulce.mp4"></video>
+          <div class="food-name"><span>Brioche dulce</span><b>6,90 €</b></div>
+        </div>
+        <div class="food-item"><div class="food-name"><span>Yogurt de la Isla</span><b>5,20 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Matcha Yogurt</span><b>6,50 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Muffin Lotus</span><b>3,50 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Mini Croissant relleno</span><b>1,50 €</b></div></div>
+      </div>
+    </details>
+
+    <details class="comer-group">
+      <summary><h3>Compartir</h3><span class="chev"></span></summary>
+      <div class="comer-body">
+        <div class="food-item"><div class="food-name"><span>Quesadilla Isla</span><b>5,50 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Patatas Bravas Isla</span><b>6,50 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Batata Isla</span><b>7,00 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Mozzarella Bacon Tosta</span><b>6,00 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Provolone Isla</span><b>8,90 €</b></div></div>
+      </div>
+    </details>
+
+    <details class="comer-group">
+      <summary><h3>Otras bebidas</h3><span class="chev"></span></summary>
+      <div class="comer-body">
+        <div class="food-item"><div class="food-name"><span>Morir Soñando</span><b>4,00 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Avena con Limón</span><b>4,00 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Avena con Maracuyá</span><b>4,00 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Zumo de Naranja Natural</span><b>2,50 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Limonada Casera</span><b>3,50 €</b></div></div>
+        <div class="food-item"><div class="food-name"><span>Agua de coco</span><b>3,50 €</b></div></div>
+      </div>
+    </details>
+
+  </div>
+</div></section>
+
+<!-- ============================================================
+     08 · CLUB
+     ============================================================ -->
+<section class="page tone-paper" id="club"><div class="wrap">
+  <div class="sec-head">
+    <div class="kicker">08 · Campus Club</div>
+    <h2>Vuelve a Isla.</h2>
+  </div>
+  <div class="club-panel">
+    <p>1 compra Student = 1 sello. <strong>7 sellos → bebida gratis.</strong> <strong>12 sellos → ISLA Campus gratis.</strong></p>
+    <a class="whatsapp-btn" href="https://wa.me/34691769434?text=Hola%20ISLA%2C%20quiero%20reclamar%20mi%20premio%20del%20Campus%20Club." rel="noopener" target="_blank">Reclamar por WhatsApp ↗</a>
+    <p class="club-note">Pide tu tarjeta Student en caja. Te ponemos 1 sello por cada compra Student. Cuando completes 7 o 12, conserva la tarjeta y escríbenos por WhatsApp para reclamar.</p>
+  </div>
+  <div class="stamp-panel">
+    <div class="mono">TUS SELLOS · 1 COMPRA = 1 SELLO</div>
+    <div class="stamp-grid">
+      <span class="stamp">1</span><span class="stamp">2</span><span class="stamp">3</span><span class="stamp">4</span><span class="stamp">5</span><span class="stamp">6</span>
+      <span class="stamp">7</span><span class="stamp">8</span><span class="stamp">9</span><span class="stamp">10</span><span class="stamp">11</span><span class="stamp">12</span>
+    </div>
+    <div class="rewards">
+      <div class="reward-row"><span>7 sellos</span><b>Bebida gratis</b></div>
+      <div class="reward-row"><span>12 sellos</span><b>ISLA Campus gratis</b></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="full-cta"><div class="wrap">
+  <div class="full-card">
+    <div>
+      <h3>¿Quieres ver toda la carta?</h3>
+      <p>La carta completa de ISLA está en islabrunchbar.com/menu/</p>
+    </div>
+    <a class="full-btn" href="https://islabrunchbar.com/menu/">Abrir carta completa ↗</a>
+  </div>
+</div></section>
+
 </main>
-<footer class="footer"><div class="wrap"><div class="footer-row"><div><div class="mono">ISLA BRUNCH &amp; BAR · ELCHE</div><p>Carrer Mare de Déu del Carme, 11</p></div><div class="footer-links"><a href="#packs">Student</a><a href="#matcha">Matcha</a><a href="#comer">Comer</a><a href="https://islabrunchbar.com/menu/">Carta completa</a></div></div><div class="footer-bottom"><span>BRUNCH · MATCHA · UBE · CAFÉ · SMOOTHIES</span><span>MENÚ STUDENT</span></div></div></footer>
+
+<footer class="footer"><div class="wrap">
+  <div class="footer-top">
+    <div>
+      <div class="mono">ISLA BRUNCH &amp; BAR · ELCHE</div>
+      <address>Carrer Mare de Déu del Carme, 11</address>
+    </div>
+    <div class="footer-links">
+      <a href="#packs">Student</a>
+      <a href="#matcha">Matcha</a>
+      <a href="#comer">Comer</a>
+      <a href="https://islabrunchbar.com/menu/">Carta completa</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>BRUNCH · MATCHA · UBE · CAFÉ · SMOOTHIES</span>
+    <span>MENÚ STUDENT</span>
+  </div>
+</div></footer>
+
 <script>
-// ===== Categorías como pestañas: se muestra una a la vez, no scroll infinito =====
-document.addEventListener('DOMContentLoaded',()=>{
-  document.body.classList.add('reveal-ready');
-  const links=[...document.querySelectorAll('.category-inner a')];
-  const pages=[...document.querySelectorAll('.page')];
-  const validIds=pages.map(p=>p.id);
+// ===== Category tabs: single page visible at a time, hash-synced, tactile nav =====
+document.addEventListener('DOMContentLoaded', function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.catnav a'));
+  var pages = Array.prototype.slice.call(document.querySelectorAll('.page'));
+  var validIds = pages.map(function(p){ return p.id; });
 
   function revealNow(page){
-    page.querySelectorAll('.pack,.drink-card,.ube-card,.duo-card,.shake-card,.food-group,.pairing,.club-box,.full-card').forEach((el,i)=>{
+    var items = page.querySelectorAll('.pack-card,.duo-card,.drink-tile,.ube-tile,.shake-card,.cafe-group,.comer-group,.club-panel,.stamp-panel,.pairing,.full-card');
+    items.forEach(function(el,i){
       el.classList.add('reveal');
       if(!el.classList.contains('is-visible')){
-        el.style.transitionDelay=(Math.min(i%6,5)*45)+'ms';
-        requestAnimationFrame(()=>el.classList.add('is-visible'));
+        el.style.transitionDelay = (Math.min(i % 6, 5) * 40) + 'ms';
+        requestAnimationFrame(function(){ el.classList.add('is-visible'); });
       }
     });
   }
 
   function showCat(id){
-    if(!validIds.includes(id)) id='packs';
-    pages.forEach(p=>p.classList.toggle('on', p.id===id));
-    links.forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+id));
-    const shown=document.getElementById(id);
+    if(validIds.indexOf(id) === -1) id = 'packs';
+    pages.forEach(function(p){ p.classList.toggle('on', p.id === id); });
+    links.forEach(function(a){
+      var isActive = a.getAttribute('href') === '#' + id;
+      a.classList.toggle('active', isActive);
+      if(isActive){ a.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); }
+    });
+    var shown = document.getElementById(id);
     if(shown) revealNow(shown);
   }
 
-  links.forEach(a=>a.addEventListener('click',(e)=>{
-    e.preventDefault();
-    const id=a.getAttribute('href').slice(1);
-    showCat(id);
-    history.replaceState(null,'','#'+id);
-    document.querySelector('.category-bar').scrollIntoView({behavior:'smooth',block:'start'});
-  }));
-
-  const initial=(location.hash||'#packs').slice(1);
-  showCat(initial);
-
-  const fullSection=document.querySelector('.full');
-  if(fullSection) revealNow(fullSection);
-});
-
-// ===== Fallback visual si falta una foto/vídeo =====
-document.addEventListener("DOMContentLoaded",function(){
-  document.querySelectorAll("img[src],video[src]").forEach(function(media){
-    media.addEventListener("error",function(){
-      media.classList.add("media-missing");
-      media.removeAttribute("src");
-      media.removeAttribute("poster");
-      media.textContent="Foto / vídeo ISLA";
-    },{once:true});
-  });
-});
-
-// ===== Autoplay robusto de los vídeos del menú =====
-(function(){
-  function startVideo(v){
-    v.muted=true;
-    v.defaultMuted=true;
-    v.setAttribute('muted','');
-    v.setAttribute('autoplay','');
-    v.setAttribute('playsinline','');
-    v.setAttribute('webkit-playsinline','');
-    var p=v.play();
-    if(p && p.catch) p.catch(function(){
-      var retry=function(){ var q=v.play(); if(q&&q.catch) q.catch(function(){}); v.removeEventListener('canplay',retry); };
-      v.addEventListener('canplay',retry,{once:true});
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var id = a.getAttribute('href').slice(1);
+      showCat(id);
+      history.replaceState(null, '', '#' + id);
+      document.querySelector('.catnav').scrollIntoView({behavior:'smooth', block:'start'});
     });
-  }
-  function boot(){ document.querySelectorAll('video[src]').forEach(function(v){ startVideo(v); v.addEventListener('loadedmetadata',function(){startVideo(v)},{once:true}); v.addEventListener('canplay',function(){startVideo(v)},{once:true}); }); }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot();
-  window.addEventListener('pageshow',boot);
-})();
+  });
 
-// ===== Selector integrado en cada tarjeta (comida + upgrade de bebida) =====
+  var initial = (location.hash || '#packs').slice(1);
+  showCat(initial);
+});
+
+// ===== Product-card selectors: choose food option + drink upgrade, live price recalc =====
 (function(){
-  const packs = document.querySelectorAll('.pack[data-base-price]');
-  packs.forEach(function(pack){
-    const base = parseFloat(pack.getAttribute('data-base-price'));
-    const priceEl = pack.querySelector('.price');
-    const foodBtns = pack.querySelectorAll('.opt-btn[data-group="food"]');
-    const drinkBtns = pack.querySelectorAll('.opt-btn[data-group="drink"]');
+  var cards = document.querySelectorAll('.pack-card[data-base-price]');
+  cards.forEach(function(card){
+    var base = parseFloat(card.getAttribute('data-base-price'));
+    var priceEl = card.querySelector('.price');
+    var foodBtns = card.querySelectorAll('[data-group="food"]');
+    var drinkBtns = card.querySelectorAll('[data-group="drink"]');
+    var selFood = card.querySelector('.sel-food');
+    var selDrink = card.querySelector('.sel-drink');
     if(!priceEl || (!foodBtns.length && !drinkBtns.length)) return;
 
     function selectIn(list, btn){
@@ -539,21 +1122,67 @@ document.addEventListener("DOMContentLoaded",function(){
       btn.classList.add('is-selected'); btn.setAttribute('aria-pressed','true');
     }
     function recalc(){
-      let add = 0;
+      var add = 0;
       drinkBtns.forEach(function(b){ if(b.classList.contains('is-selected')) add = parseFloat(b.getAttribute('data-add')) || 0; });
-      const total = base + add;
+      var total = base + add;
       priceEl.textContent = total.toFixed(2).replace('.', ',') + ' €';
-      priceEl.classList.remove('price-updated');
-      void priceEl.offsetWidth;
-      priceEl.classList.add('price-updated');
     }
     foodBtns.forEach(function(btn){
-      btn.addEventListener('click', function(){ selectIn(foodBtns, btn); });
+      btn.addEventListener('click', function(){
+        selectIn(foodBtns, btn);
+        if(selFood) selFood.textContent = btn.textContent.trim();
+      });
     });
     drinkBtns.forEach(function(btn){
-      btn.addEventListener('click', function(){ selectIn(drinkBtns, btn); recalc(); });
+      btn.addEventListener('click', function(){
+        selectIn(drinkBtns, btn);
+        recalc();
+        if(selDrink){
+          var nameEl = btn.querySelector('.pill__name');
+          selDrink.textContent = nameEl ? nameEl.textContent.trim() : btn.textContent.trim();
+        }
+      });
     });
   });
 })();
+
+// ===== Robust video autoplay =====
+(function(){
+  function startVideo(v){
+    v.muted = true;
+    v.defaultMuted = true;
+    v.setAttribute('muted','');
+    v.setAttribute('autoplay','');
+    v.setAttribute('playsinline','');
+    v.setAttribute('webkit-playsinline','');
+    var p = v.play();
+    if(p && p.catch) p.catch(function(){
+      var retry = function(){ var q = v.play(); if(q && q.catch) q.catch(function(){}); v.removeEventListener('canplay', retry); };
+      v.addEventListener('canplay', retry, {once:true});
+    });
+  }
+  function boot(){
+    document.querySelectorAll('video[src]').forEach(function(v){
+      startVideo(v);
+      v.addEventListener('loadedmetadata', function(){ startVideo(v); }, {once:true});
+      v.addEventListener('canplay', function(){ startVideo(v); }, {once:true});
+    });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+  window.addEventListener('pageshow', boot);
+})();
+
+// ===== Media fallback if a photo/video fails to load =====
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('img[src],video[src]').forEach(function(media){
+    media.addEventListener('error', function(){
+      media.classList.add('media-missing');
+      media.removeAttribute('src');
+      media.removeAttribute('poster');
+      media.textContent = 'Foto / vídeo ISLA';
+    }, {once:true});
+  });
+});
 </script>
-</body></html>
+</body>
+</html>
