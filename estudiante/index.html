@@ -200,7 +200,7 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
 .matcha-hero p{position:relative;z-index:1;color:rgba(255,255,255,.7);font-size:13.5px;max-width:420px}
 .matcha-pills{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .matcha-pills span{font:700 11px var(--mono);padding:8px 12px;border:1px solid rgba(255,255,255,.22);border-radius:var(--r-pill);color:#fff}
-.matcha-video{position:relative;z-index:1;width:100%;height:180px;object-fit:cover;border-radius:var(--r-md);margin-top:18px;background:#234f3b}
+.matcha-video{position:relative;z-index:1;display:block;width:min(100%,360px);aspect-ratio:9/16;height:auto;object-fit:cover;border-radius:var(--r-md);margin:18px auto 0;background:#234f3b}
 
 .pairing{background:var(--white);border:1px solid var(--line-soft);border-radius:var(--r-lg);padding:22px;margin-bottom:20px;box-shadow:var(--shadow-sm)}
 .pairing .kicker{font:600 11px var(--mono);letter-spacing:.08em;color:var(--forest);text-transform:uppercase;opacity:.7}
@@ -283,6 +283,7 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
 .food-item{padding:13px 0;border-top:1px solid rgba(255,255,255,.1)}
 .food-item:first-child{border-top:0}
 .food-media{display:block;width:100%;height:190px;object-fit:cover;border-radius:var(--r-md);margin:2px 0 12px;background:rgba(255,255,255,.08)}
+.bagel-media{padding:18px 22px 0}.bagel-media .food-media{height:clamp(220px,48vw,430px);margin:0;object-fit:cover}
 .food-name{display:flex;justify-content:space-between;gap:14px;color:#fff;font-size:14.5px;font-weight:600}
 .food-name b{font:700 13.5px/1 var(--mono);color:#e9d3a4;white-space:nowrap;font-weight:700}
 .food-desc{font-size:11.5px;color:rgba(255,255,255,.5);margin-top:5px;line-height:1.5}
@@ -371,6 +372,103 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
   .footer-top{flex-direction:row;align-items:flex-start;justify-content:space-between}
   .footer-bottom{flex-direction:row;align-items:center;justify-content:space-between}
 }
+
+/* ===== V3 — CONTINUOUS MOBILE MENU / PHOTO FIRST ===== */
+html{scroll-padding-top:118px}
+body{background:#f7f3ea}
+.wrap{width:min(1180px,calc(100% - 32px))}
+.header .wrap{height:60px}
+.catnav{top:60px;box-shadow:0 8px 24px rgba(15,42,31,.06)}
+.catnav-inner{padding:9px 0;gap:7px}
+.catnav a{padding:10px 14px;font-size:12px}
+.page{display:block!important;scroll-margin-top:118px}
+.page.on{display:block!important;animation:none}
+section.page{border-top:1px solid rgba(18,32,26,.05)}
+.hero{padding:24px 0 22px}
+.hero-grid{display:grid;gap:18px}
+.hero-visual{position:relative;border-radius:28px;overflow:hidden;min-height:310px;background:#173a2b;box-shadow:0 20px 50px rgba(15,42,31,.18)}
+.hero-visual video,.hero-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,17,12,.04),rgba(7,17,12,.68))}
+.hero-visual-copy{position:absolute;z-index:2;left:18px;right:18px;bottom:18px;color:#fff}
+.hero-visual-copy span{font:600 10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#dcead4}
+.hero-visual-copy strong{display:block;font:800 34px/.9 var(--display);letter-spacing:-.03em;margin-top:7px}
+.hero-visual-copy small{display:block;margin-top:7px;font-size:12px;color:rgba(255,255,255,.78)}
+.hero-scroller{margin:0; padding:0; overflow:visible;display:grid;grid-template-columns:repeat(3,1fr)}
+.hero-offer{width:auto;min-height:112px}
+.section-visual{position:relative;border-radius:26px;overflow:hidden;min-height:220px;margin:0 0 18px;background:#173a2b;box-shadow:var(--shadow-sm)}
+.section-visual img,.section-visual video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.section-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(10,24,18,.72))}
+.section-visual-copy{position:absolute;z-index:2;left:18px;right:18px;bottom:16px;color:#fff}
+.section-visual-copy .mono{color:#dcead4;opacity:.9;text-transform:uppercase}
+.section-visual-copy strong{display:block;font:800 30px/.9 var(--display);margin-top:6px}
+.section-visual-copy small{display:block;margin-top:6px;color:rgba(255,255,255,.78);font-size:12px}
+.pack-card{box-shadow:0 8px 28px rgba(15,42,31,.08)}
+.pack-media-wrap{aspect-ratio:4/3}
+.pack-card:first-child .pack-media-wrap{display:block}
+.duo-list{grid-template-columns:1fr}
+.duo-card{overflow:hidden;padding:0}
+.duo-card .duo-visual{height:220px;position:relative;overflow:hidden;background:#173a2b}
+.duo-card .duo-visual img,.duo-card .duo-visual video{width:100%;height:100%;object-fit:cover}
+.duo-card .duo-inner{padding:22px}
+.duo-card.is-featured .duo-inner{background:var(--forest)}
+.cafe-group{overflow:hidden}
+.cafe-visual{height:150px;position:relative;margin:-20px -20px 16px;overflow:hidden}
+.cafe-visual img,.cafe-visual video{width:100%;height:100%;object-fit:cover}
+.cafe-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(15,42,31,.42))}
+.shake-card{overflow:hidden}
+.shake-visual{height:210px;position:relative;margin:-22px -22px 18px;overflow:hidden}
+.shake-visual img,.shake-visual video{width:100%;height:100%;object-fit:cover}
+.shake-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(15,42,31,.45))}
+.ube-list{grid-template-columns:1fr}
+.ube-visual{position:relative;height:230px;border-radius:26px;overflow:hidden;margin-bottom:16px;background:#6e4d86}
+.ube-visual video,.ube-visual img{width:100%;height:100%;object-fit:cover}
+.ube-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(45,23,62,.72))}
+.ube-visual-copy{position:absolute;z-index:2;left:18px;bottom:16px;color:#fff}
+.ube-visual-copy strong{display:block;font:800 34px/.9 var(--display)}
+.ube-visual-copy small{font-size:12px;color:rgba(255,255,255,.8)}
+.comer-groups{gap:14px}
+.food-item{display:grid;grid-template-columns:1fr;gap:0}
+.food-media{height:210px}
+/* photo-led category header */
+.category-intro{display:grid;gap:14px;margin-bottom:20px}
+@media(min-width:700px){
+ .wrap{width:min(1180px,calc(100% - 56px))}
+ .hero-grid{grid-template-columns:.9fr 1.1fr;align-items:stretch}
+ .hero-visual{min-height:360px}
+ .section-visual{min-height:280px}
+ .duo-list{grid-template-columns:1fr 1fr}
+ .duo-card .duo-visual{height:240px}
+ .comer-body{display:grid;grid-template-columns:repeat(2,1fr);gap:0 18px}
+ .food-item{min-width:0}
+}
+@media(min-width:960px){
+ .header .wrap{height:70px}
+ .catnav{top:70px}
+ html{scroll-padding-top:128px}
+ .hero{padding:36px 0 28px}
+ .hero-grid{grid-template-columns:.85fr 1.15fr;gap:28px}
+ .hero-visual{min-height:430px}
+ .pack-list{grid-template-columns:repeat(2,1fr)}
+ .pack-list .pack-card:first-child{grid-column:1/-1}
+ .pack-list .pack-card:first-child .pack-card__body{display:grid;grid-template-columns:1.1fr .9fr;gap:28px}
+ .section-visual{min-height:330px}
+ .comer-body{grid-template-columns:repeat(3,1fr)}
+}
+
+
+/* Student refinements */
+.pack-media-wrap--reel { aspect-ratio: 9 / 16; max-height: 520px; overflow: hidden; }
+.pack-media-wrap--reel .pack-reel { width:100%; height:100%; object-fit:cover; display:block; }
+.shake-card--wide { grid-column: 1 / -1; }
+.fruit-builder { margin-top:18px; padding-top:18px; border-top:1px solid rgba(20,40,30,.14); }
+.fruit-builder__title { display:flex; justify-content:space-between; gap:12px; align-items:baseline; margin-bottom:6px; }
+.fruit-builder__title h4 { margin:0; font-size:1.15rem; }
+.fruit-builder__title b { font-size:1rem; }
+.fruit-builder__sub { margin:0 0 12px; opacity:.72; font-size:.92rem; }
+.fruit-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+.fruit-choice { display:flex; justify-content:space-between; align-items:center; padding:11px 12px; border:1px solid rgba(20,40,30,.14); border-radius:14px; background:rgba(255,255,255,.58); }
+.fruit-choice b { white-space:nowrap; }
+@media (min-width:760px){ .fruit-grid{grid-template-columns:repeat(3,minmax(0,1fr));} .pack-media-wrap--reel{max-height:620px;} }
 </style>
 </head>
 <body>
@@ -410,7 +508,11 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
         <p class="hero-copy">Packs pensados para estudiantes: café, brunch, matcha, ube y smoothies con precios especiales para volver una y otra vez.</p>
       </div>
       <div>
-        <div class="hero-scroller">
+        <div class="hero-visual">
+          <video autoplay loop muted playsinline preload="metadata" src="./videos/revueltobrioche1.mp4" aria-label="Brunch ISLA"></video>
+          <div class="hero-visual-copy"><span>ISLA STUDENT · ELCHE</span><strong>Tu pausa empieza aquí.</strong><small>Brunch, café, matcha, ube y smoothies pensados para volver.</small></div>
+        </div>
+        <div class="hero-scroller" style="margin-top:12px">
           <div class="hero-offer"><span>CAFÉ + MINI</span><strong>3,50 €</strong><small>Café con leche + Mini Croissant relleno</small></div>
           <div class="hero-offer"><span>DESAYUNO</span><strong>5,90 €</strong><small>Café + Croissant Gourmet</small></div>
           <div class="hero-offer"><span>BRUNCH + BEBIDA</span><strong>8,90 €</strong><small>Pack Campus o New York Break</small></div>
@@ -439,6 +541,10 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
   <div class="pack-list">
 
     <article class="pack-card is-featured" data-base-price="8.90">
+      <div class="pack-media-wrap pack-media-wrap--reel">
+        <span class="pack-badge">Brunch Bagel</span>
+        <video class="pack-reel" aria-label="Brunch Bagel ISLA" autoplay loop muted playsinline preload="auto" src="./videos/bagelsesamo.mp4"></video>
+      </div>
       <div class="pack-card__body">
         <div class="pack-card__row">
           <div>
@@ -449,18 +555,18 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
         </div>
         <p class="pack-card__desc">El pack central del menú Student: comida salada + bebida.</p>
         <div class="pack-card__summary">
-          <span class="chip chip--include">Incluye <b class="sel-food">Veggie Bagel</b></span>
+          <span class="chip chip--include">Incluye <b class="sel-food">Brunch Bagel</b></span>
           <span class="chip chip--include">Bebida <b class="sel-drink">Café incluido</b></span>
         </div>
-        <details class="disclose">
+        <details class="disclose" open>
           <summary>Personalizar pedido</summary>
           <div class="disclose-body">
             <div>
               <span class="opt-label">Elige 1 opción</span>
               <div class="pill-row" role="radiogroup" aria-label="Elige tu opción">
-                <button class="pill is-selected" data-group="food" type="button">Veggie Bagel</button>
+                <button class="pill" data-group="food" type="button">Veggie Bagel</button>
                 <button class="pill" data-group="food" type="button">Bagel York Classic</button>
-                <button class="pill" data-group="food" type="button">Brunch Bagel</button>
+                <button class="pill is-selected" data-group="food" type="button">Brunch Bagel</button>
                 <button class="pill" data-group="food" type="button">Sesame Bagel</button>
                 <button class="pill" data-group="food" type="button">Nordic Isla Toast</button>
                 <button class="pill" data-group="food" type="button">Bacon Brunch</button>
@@ -496,7 +602,7 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
           <span class="chip chip--include">Incluye <b class="sel-food">Revuelto</b></span>
           <span class="chip chip--include">Bebida <b class="sel-drink">Café incluido</b></span>
         </div>
-        <details class="disclose">
+        <details class="disclose" open>
           <summary>Personalizar pedido</summary>
           <div class="disclose-body">
             <div>
@@ -541,7 +647,7 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
           <span class="chip chip--include">Huevos revueltos</span>
           <span class="chip chip--include">Maple syrup</span>
         </div>
-        <details class="disclose">
+        <details class="disclose" open>
           <summary>Personalizar bebida</summary>
           <div class="disclose-body">
             <div>
@@ -573,7 +679,7 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
           <span class="chip chip--include">Incluye <b class="sel-food">Nordic Bagel Isla</b></span>
           <span class="chip chip--include">Bebida <b class="sel-drink">Café incluido</b></span>
         </div>
-        <details class="disclose">
+        <details class="disclose" open>
           <summary>Personalizar pedido</summary>
           <div class="disclose-body">
             <div>
@@ -618,7 +724,7 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
           <span class="chip chip--include">Topping <b class="sel-food">Lotus</b></span>
           <span class="chip chip--include">Bebida <b class="sel-drink">Café incluido</b></span>
         </div>
-        <details class="disclose">
+        <details class="disclose" open>
           <summary>Personalizar pedido</summary>
           <div class="disclose-body">
             <div>
@@ -661,7 +767,7 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
           <span class="chip chip--include">Crema <b class="sel-food">Nutella</b></span>
           <span class="chip chip--include">Bebida <b class="sel-drink">Café incluido</b></span>
         </div>
-        <details class="disclose">
+        <details class="disclose" open>
           <summary>Personalizar pedido</summary>
           <div class="disclose-body">
             <div>
@@ -699,8 +805,13 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
     <h2>Duo</h2>
     <p>Ven con alguien y convertid dos pedidos en un combo más atractivo.</p>
   </div>
+  <div class="section-visual">
+    <img src="./fotos/newyork.png" alt="ISLA brunch para compartir" loading="lazy">
+    <div class="section-visual-copy"><span class="mono">PARA COMPARTIR</span><strong>Duo sin complicarte.</strong><small>Dos bebidas o dos comidas. Elige y comparte.</small></div>
+  </div>
   <div class="duo-list">
     <article class="duo-card is-featured">
+      <div class="duo-visual"><img src="./fotos/newyork.png" alt="Duo bebidas ISLA" loading="lazy"></div><div class="duo-inner">
       <h3>DUO BEBIDAS</h3>
       <p>Elegid dos bebidas y compartid el momento.</p>
       <div class="duo-rows">
@@ -709,9 +820,10 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
         <div class="duo-row"><span>2 Ube Latte</span><b>8,50 €</b></div>
         <div class="duo-row"><span>2 Estrella Galicia</span><b>5,00 €</b></div>
       </div>
-      <div class="duo-foot"><strong>Desde 3,90 €</strong><span>2 bebidas</span></div>
+      <div class="duo-foot"><strong>Desde 3,90 €</strong><span>2 bebidas</span></div></div>
     </article>
     <article class="duo-card">
+      <div class="duo-visual"><video autoplay loop muted playsinline preload="metadata" src="./videos/revueltobrioche1.mp4" aria-label="Comida ISLA para compartir"></video></div><div class="duo-inner">
       <h3>DUO FOOD</h3>
       <p><strong>2 para compartir.</strong> Elige vuestra combinación.</p>
       <div class="duo-rows">
@@ -723,7 +835,7 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
         <div><span>Upgrade bebida</span><strong>2 Estrella Galicia</strong></div>
         <b>+5,00 €</b>
       </div>
-      <div class="duo-foot"><strong>Desde 9,90 €</strong><span>2 comidas + upgrade opcional</span></div>
+      <div class="duo-foot"><strong>Desde 9,90 €</strong><span>2 comidas + upgrade opcional</span></div></div>
     </article>
   </div>
 </div></section>
@@ -864,11 +976,15 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
     <h2>Shakes</h2>
     <p>Una categoría visible para quien viene por algo frío. El suplemento de proteína se mantiene donde corresponda.</p>
   </div>
+  <div class="section-visual">
+    <img src="./fotos/newyork.png" alt="Desayuno ISLA" loading="lazy">
+    <div class="section-visual-copy"><span class="mono">ISLA SHAKE</span><strong>Frío, fruta y energía.</strong><small>Elige tu smoothie y hazlo tuyo.</small></div>
+  </div>
   <div class="shake-list">
     <article class="shake-card">
       <div class="kicker">ISLA SHAKE</div>
       <h3>Smoothies</h3>
-      <p>Seis favoritos para elegir.</p>
+      <p>Batidos de fruta preparados al momento.</p>
       <div class="shake-items">
         <div class="shake-item"><span>Pink Paradise</span><b>6,80 €</b></div>
         <div class="shake-item"><span>Wild Berry Protein</span><b>6,80 €</b></div>
@@ -876,16 +992,33 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
         <div class="shake-item"><span>Passion Mango Tropic</span><b>6,90 €</b></div>
         <div class="shake-item"><span>Isla Fit Power Shake</span><b>7,00 €</b></div>
         <div class="shake-item"><span>Isla Tropical Exotic</span><b>6,80 €</b></div>
+        <div class="shake-item"><span>Pistachio Pro</span><b>6,50 €</b></div>
+        <div class="shake-item"><span>Banana Peanut Pro</span><b>6,50 €</b></div>
+      </div>
+      <div class="fruit-builder">
+        <div class="fruit-builder__title"><h4>Smoothie de fruta</h4><b>5,00 €</b></div>
+        <p class="fruit-builder__sub">Elige una fruta. Añade una segunda por +0,90 €.</p>
+        <div class="fruit-grid">
+          <div class="fruit-choice"><span>Mango</span><b>5,00 €</b></div>
+          <div class="fruit-choice"><span>Piña</span><b>5,00 €</b></div>
+          <div class="fruit-choice"><span>Papaya</span><b>5,00 €</b></div>
+          <div class="fruit-choice"><span>Uva</span><b>5,00 €</b></div>
+          <div class="fruit-choice"><span>Melón Galia</span><b>5,00 €</b></div>
+          <div class="fruit-choice"><span>Melón Canario</span><b>5,00 €</b></div>
+        </div>
       </div>
     </article>
+
     <article class="shake-card">
       <div class="kicker">PROTEIN</div>
       <h3>Protein Break</h3>
-      <p>El pack Student de proteína, junto a nuestros batidos proteicos.</p>
+      <p>La parte del menú pensada para una opción más completa y proteica.</p>
       <div class="protein-callout"><strong>8,50 € Student</strong><span>Protein Yogurt + fruta + granola + café</span></div>
       <div class="shake-items">
         <div class="shake-item"><span>Wild Berry Protein</span><b>6,80 €</b></div>
         <div class="shake-item"><span>Isla Fit Power Shake</span><b>7,00 €</b></div>
+        <div class="shake-item"><span>Pistachio Pro</span><b>6,50 €</b></div>
+        <div class="shake-item"><span>Banana Peanut Pro</span><b>6,50 €</b></div>
       </div>
     </article>
   </div>
@@ -904,12 +1037,11 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
 
     <details class="comer-group" open>
       <summary><h3>Bagels</h3><span class="chev"></span></summary>
+      <div class="bagel-media">
+        <video class="food-media video-media" aria-label="Sesame Bagel ISLA" autoplay loop muted playsinline preload="auto" src="./videos/bagelsesamo.mp4"></video>
+      </div>
       <div class="comer-body">
-        <div class="food-item">
-          <video class="food-media video-media" aria-label="Sesame Bagel ISLA" autoplay loop muted playsinline preload="auto" src="./videos/bagelsesamo.mp4"></video>
-          <div class="food-name"><span>Sesame Bagel</span><b>7,50 €</b></div>
-          <div class="food-desc">Sésamo, aguacate, tomate rallado, bacon crujiente y huevo revuelto.</div>
-        </div>
+        <div class="food-item"><div class="food-name"><span>Sesame Bagel</span><b>7,50 €</b></div><div class="food-desc">Sésamo, aguacate, tomate rallado, bacon crujiente y huevo revuelto.</div></div>
         <div class="food-item"><div class="food-name"><span>Brunch Bagel</span><b>7,90 €</b></div></div>
         <div class="food-item"><div class="food-name"><span>Veggie Bagel</span><b>7,50 €</b></div></div>
         <div class="food-item"><div class="food-name"><span>Bagel York Classic</span><b>7,50 €</b></div></div>
@@ -1062,126 +1194,21 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
 </div></footer>
 
 <script>
-// ===== Category tabs: single page visible at a time, hash-synced, tactile nav =====
 document.addEventListener('DOMContentLoaded', function(){
-  var links = Array.prototype.slice.call(document.querySelectorAll('.catnav a'));
-  var pages = Array.prototype.slice.call(document.querySelectorAll('.page'));
-  var validIds = pages.map(function(p){ return p.id; });
-
-  function revealNow(page){
-    var items = page.querySelectorAll('.pack-card,.duo-card,.drink-tile,.ube-tile,.shake-card,.cafe-group,.comer-group,.club-panel,.stamp-panel,.pairing,.full-card');
-    items.forEach(function(el,i){
-      el.classList.add('reveal');
-      if(!el.classList.contains('is-visible')){
-        el.style.transitionDelay = (Math.min(i % 6, 5) * 40) + 'ms';
-        requestAnimationFrame(function(){ el.classList.add('is-visible'); });
-      }
-    });
-  }
-
-  function showCat(id){
-    if(validIds.indexOf(id) === -1) id = 'packs';
-    pages.forEach(function(p){ p.classList.toggle('on', p.id === id); });
-    links.forEach(function(a){
-      var isActive = a.getAttribute('href') === '#' + id;
-      a.classList.toggle('active', isActive);
-      if(isActive){ a.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); }
-    });
-    var shown = document.getElementById(id);
-    if(shown) revealNow(shown);
-  }
-
-  links.forEach(function(a){
-    a.addEventListener('click', function(e){
-      e.preventDefault();
-      var id = a.getAttribute('href').slice(1);
-      showCat(id);
-      history.replaceState(null, '', '#' + id);
-      document.querySelector('.catnav').scrollIntoView({behavior:'smooth', block:'start'});
-    });
+  const links=[...document.querySelectorAll('.catnav a')];
+  const sections=[...document.querySelectorAll('main > .page')];
+  const setActive=id=>links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));
+  links.forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth',block:'start'});history.replaceState(null,'',a.getAttribute('href'));}));
+  const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)setActive(entry.target.id)}),{rootMargin:'-28% 0px -62% 0px',threshold:0});
+  sections.forEach(s=>io.observe(s));
+  setActive((location.hash||'#packs').slice(1));
+  document.querySelectorAll('.pack-card[data-base-price]').forEach(card=>{
+    const base=parseFloat(card.dataset.basePrice),priceEl=card.querySelector('.price'),foods=[...card.querySelectorAll('[data-group="food"]')],drinks=[...card.querySelectorAll('[data-group="drink"]')],sf=card.querySelector('.sel-food'),sd=card.querySelector('.sel-drink');
+    const select=(list,b)=>{list.forEach(x=>x.classList.remove('is-selected'));b.classList.add('is-selected')};
+    foods.forEach(b=>b.addEventListener('click',()=>{select(foods,b);if(sf)sf.textContent=b.textContent.trim()}));
+    drinks.forEach(b=>b.addEventListener('click',()=>{select(drinks,b);const add=parseFloat(b.dataset.add)||0;priceEl.textContent=(base+add).toFixed(2).replace('.',',')+' €';if(sd)sd.textContent=b.querySelector('.pill__name')?.textContent.trim()||b.textContent.trim()}));
   });
-
-  var initial = (location.hash || '#packs').slice(1);
-  showCat(initial);
-});
-
-// ===== Product-card selectors: choose food option + drink upgrade, live price recalc =====
-(function(){
-  var cards = document.querySelectorAll('.pack-card[data-base-price]');
-  cards.forEach(function(card){
-    var base = parseFloat(card.getAttribute('data-base-price'));
-    var priceEl = card.querySelector('.price');
-    var foodBtns = card.querySelectorAll('[data-group="food"]');
-    var drinkBtns = card.querySelectorAll('[data-group="drink"]');
-    var selFood = card.querySelector('.sel-food');
-    var selDrink = card.querySelector('.sel-drink');
-    if(!priceEl || (!foodBtns.length && !drinkBtns.length)) return;
-
-    function selectIn(list, btn){
-      list.forEach(function(b){ b.classList.remove('is-selected'); b.setAttribute('aria-pressed','false'); });
-      btn.classList.add('is-selected'); btn.setAttribute('aria-pressed','true');
-    }
-    function recalc(){
-      var add = 0;
-      drinkBtns.forEach(function(b){ if(b.classList.contains('is-selected')) add = parseFloat(b.getAttribute('data-add')) || 0; });
-      var total = base + add;
-      priceEl.textContent = total.toFixed(2).replace('.', ',') + ' €';
-    }
-    foodBtns.forEach(function(btn){
-      btn.addEventListener('click', function(){
-        selectIn(foodBtns, btn);
-        if(selFood) selFood.textContent = btn.textContent.trim();
-      });
-    });
-    drinkBtns.forEach(function(btn){
-      btn.addEventListener('click', function(){
-        selectIn(drinkBtns, btn);
-        recalc();
-        if(selDrink){
-          var nameEl = btn.querySelector('.pill__name');
-          selDrink.textContent = nameEl ? nameEl.textContent.trim() : btn.textContent.trim();
-        }
-      });
-    });
-  });
-})();
-
-// ===== Robust video autoplay =====
-(function(){
-  function startVideo(v){
-    v.muted = true;
-    v.defaultMuted = true;
-    v.setAttribute('muted','');
-    v.setAttribute('autoplay','');
-    v.setAttribute('playsinline','');
-    v.setAttribute('webkit-playsinline','');
-    var p = v.play();
-    if(p && p.catch) p.catch(function(){
-      var retry = function(){ var q = v.play(); if(q && q.catch) q.catch(function(){}); v.removeEventListener('canplay', retry); };
-      v.addEventListener('canplay', retry, {once:true});
-    });
-  }
-  function boot(){
-    document.querySelectorAll('video[src]').forEach(function(v){
-      startVideo(v);
-      v.addEventListener('loadedmetadata', function(){ startVideo(v); }, {once:true});
-      v.addEventListener('canplay', function(){ startVideo(v); }, {once:true});
-    });
-  }
-  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
-  window.addEventListener('pageshow', boot);
-})();
-
-// ===== Media fallback if a photo/video fails to load =====
-document.addEventListener('DOMContentLoaded', function(){
-  document.querySelectorAll('img[src],video[src]').forEach(function(media){
-    media.addEventListener('error', function(){
-      media.classList.add('media-missing');
-      media.removeAttribute('src');
-      media.removeAttribute('poster');
-      media.textContent = 'Foto / vídeo ISLA';
-    }, {once:true});
-  });
+  document.querySelectorAll('video[src]').forEach(v=>{v.muted=true;v.playsInline=true;v.setAttribute('muted','');v.setAttribute('playsinline','');const play=()=>v.play().catch(()=>{});play();v.addEventListener('canplay',play,{once:true})});
 });
 </script>
 </body>
