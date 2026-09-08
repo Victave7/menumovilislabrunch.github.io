@@ -200,7 +200,7 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
 .matcha-hero p{position:relative;z-index:1;color:rgba(255,255,255,.7);font-size:13.5px;max-width:420px}
 .matcha-pills{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .matcha-pills span{font:700 11px var(--mono);padding:8px 12px;border:1px solid rgba(255,255,255,.22);border-radius:var(--r-pill);color:#fff}
-.matcha-video{position:relative;z-index:1;width:100%;height:180px;object-fit:cover;border-radius:var(--r-md);margin-top:18px;background:#234f3b}
+.matcha-video{position:relative;z-index:1;display:block;width:min(100%,360px);aspect-ratio:9/16;height:auto;object-fit:cover;border-radius:var(--r-md);margin:18px auto 0;background:#234f3b}
 
 .pairing{background:var(--white);border:1px solid var(--line-soft);border-radius:var(--r-lg);padding:22px;margin-bottom:20px;box-shadow:var(--shadow-sm)}
 .pairing .kicker{font:600 11px var(--mono);letter-spacing:.08em;color:var(--forest);text-transform:uppercase;opacity:.7}
@@ -283,6 +283,7 @@ details.disclose[open] summary:after{transform:rotate(-135deg)}
 .food-item{padding:13px 0;border-top:1px solid rgba(255,255,255,.1)}
 .food-item:first-child{border-top:0}
 .food-media{display:block;width:100%;height:190px;object-fit:cover;border-radius:var(--r-md);margin:2px 0 12px;background:rgba(255,255,255,.08)}
+.bagel-media{padding:18px 22px 0}.bagel-media .food-media{height:clamp(220px,48vw,430px);margin:0;object-fit:cover}
 .food-name{display:flex;justify-content:space-between;gap:14px;color:#fff;font-size:14.5px;font-weight:600}
 .food-name b{font:700 13.5px/1 var(--mono);color:#e9d3a4;white-space:nowrap;font-weight:700}
 .food-desc{font-size:11.5px;color:rgba(255,255,255,.5);margin-top:5px;line-height:1.5}
@@ -539,7 +540,7 @@ section.page{border-top:1px solid rgba(18,32,26,.05)}
           <span class="chip chip--include">Incluye <b class="sel-food">Veggie Bagel</b></span>
           <span class="chip chip--include">Bebida <b class="sel-drink">Café incluido</b></span>
         </div>
-        <details class="disclose">
+        <details class="disclose" open>
           <summary>Personalizar pedido</summary>
           <div class="disclose-body">
             <div>
@@ -583,7 +584,7 @@ section.page{border-top:1px solid rgba(18,32,26,.05)}
           <span class="chip chip--include">Incluye <b class="sel-food">Revuelto</b></span>
           <span class="chip chip--include">Bebida <b class="sel-drink">Café incluido</b></span>
         </div>
-        <details class="disclose">
+        <details class="disclose" open>
           <summary>Personalizar pedido</summary>
           <div class="disclose-body">
             <div>
@@ -628,7 +629,7 @@ section.page{border-top:1px solid rgba(18,32,26,.05)}
           <span class="chip chip--include">Huevos revueltos</span>
           <span class="chip chip--include">Maple syrup</span>
         </div>
-        <details class="disclose">
+        <details class="disclose" open>
           <summary>Personalizar bebida</summary>
           <div class="disclose-body">
             <div>
@@ -660,7 +661,7 @@ section.page{border-top:1px solid rgba(18,32,26,.05)}
           <span class="chip chip--include">Incluye <b class="sel-food">Nordic Bagel Isla</b></span>
           <span class="chip chip--include">Bebida <b class="sel-drink">Café incluido</b></span>
         </div>
-        <details class="disclose">
+        <details class="disclose" open>
           <summary>Personalizar pedido</summary>
           <div class="disclose-body">
             <div>
@@ -705,7 +706,7 @@ section.page{border-top:1px solid rgba(18,32,26,.05)}
           <span class="chip chip--include">Topping <b class="sel-food">Lotus</b></span>
           <span class="chip chip--include">Bebida <b class="sel-drink">Café incluido</b></span>
         </div>
-        <details class="disclose">
+        <details class="disclose" open>
           <summary>Personalizar pedido</summary>
           <div class="disclose-body">
             <div>
@@ -748,7 +749,7 @@ section.page{border-top:1px solid rgba(18,32,26,.05)}
           <span class="chip chip--include">Crema <b class="sel-food">Nutella</b></span>
           <span class="chip chip--include">Bebida <b class="sel-drink">Café incluido</b></span>
         </div>
-        <details class="disclose">
+        <details class="disclose" open>
           <summary>Personalizar pedido</summary>
           <div class="disclose-body">
             <div>
@@ -896,10 +897,6 @@ section.page{border-top:1px solid rgba(18,32,26,.05)}
     <h2>Ube</h2>
     <p>Bebidas de ube, suaves, frías y cremosas.</p>
   </div>
-  <div class="ube-visual">
-    <video autoplay loop muted playsinline preload="metadata" src="./videos/matchacoco.mp4" aria-label="Bebida ISLA"></video>
-    <div class="ube-visual-copy"><strong>UBE.</strong><small>Suave · cremoso · diferente.</small></div>
-  </div>
   <div class="ube-list">
     <article class="ube-tile"><div><span class="ube-tile__num">01</span><h3>Ube Latte</h3><p>Cremoso, suave y naturalmente dulce.</p></div><b>4,90 €</b></article>
     <article class="ube-tile"><div><span class="ube-tile__num">02</span><h3>Dirty Ube Espresso</h3><p>Ube + espresso.</p></div><b>5,40 €</b></article>
@@ -919,13 +916,9 @@ section.page{border-top:1px solid rgba(18,32,26,.05)}
     <h2>Café</h2>
     <p>Clásicos, cremosos y fríos.</p>
   </div>
-  <div class="section-visual">
-    <img src="./fotos/cross.jpeg" alt="Café y desayuno ISLA" loading="lazy">
-    <div class="section-visual-copy"><span class="mono">SPECIALTY COFFEE</span><strong>Café para cualquier momento.</strong><small>Clásicos, cremosos y fríos.</small></div>
-  </div>
   <div class="cafe-groups">
     <div class="cafe-group">
-      <div class="cafe-visual"><img src="./fotos/cross.jpeg" alt="Desayuno ISLA" loading="lazy"></div><h3>Clásicos</h3>
+      <h3>Clásicos</h3>
       <div class="item-list">
         <div class="item-row"><span class="item-row__name">Espresso</span><b class="item-row__price">1,60 €</b></div>
         <div class="item-row"><span class="item-row__name">Doble espresso</span><b class="item-row__price">1,90 €</b></div>
@@ -935,7 +928,7 @@ section.page{border-top:1px solid rgba(18,32,26,.05)}
       </div>
     </div>
     <div class="cafe-group">
-      <div class="cafe-visual"><img src="./fotos/crossyork.png" alt="Café y croissant ISLA" loading="lazy"></div><h3>Cremosos</h3>
+      <h3>Cremosos</h3>
       <div class="item-list">
         <div class="item-row"><span class="item-row__name">Bombón</span><b class="item-row__price">2,50 €</b></div>
         <div class="item-row"><span class="item-row__name">Latte</span><b class="item-row__price">2,50 €</b></div>
@@ -966,7 +959,7 @@ section.page{border-top:1px solid rgba(18,32,26,.05)}
     <p>Una categoría visible para quien viene por algo frío. El suplemento de proteína se mantiene donde corresponda.</p>
   </div>
   <div class="section-visual">
-    <video autoplay loop muted playsinline preload="metadata" src="./videos/matchacoco.mp4" aria-label="Bebidas ISLA"></video>
+    <img src="./fotos/newyork.png" alt="Desayuno ISLA" loading="lazy">
     <div class="section-visual-copy"><span class="mono">ISLA SHAKE</span><strong>Frío, fruta y energía.</strong><small>Elige tu smoothie y hazlo tuyo.</small></div>
   </div>
   <div class="shake-list">
@@ -1009,12 +1002,11 @@ section.page{border-top:1px solid rgba(18,32,26,.05)}
 
     <details class="comer-group" open>
       <summary><h3>Bagels</h3><span class="chev"></span></summary>
+      <div class="bagel-media">
+        <video class="food-media video-media" aria-label="Sesame Bagel ISLA" autoplay loop muted playsinline preload="auto" src="./videos/bagelsesamo.mp4"></video>
+      </div>
       <div class="comer-body">
-        <div class="food-item">
-          <video class="food-media video-media" aria-label="Sesame Bagel ISLA" autoplay loop muted playsinline preload="auto" src="./videos/bagelsesamo.mp4"></video>
-          <div class="food-name"><span>Sesame Bagel</span><b>7,50 €</b></div>
-          <div class="food-desc">Sésamo, aguacate, tomate rallado, bacon crujiente y huevo revuelto.</div>
-        </div>
+        <div class="food-item"><div class="food-name"><span>Sesame Bagel</span><b>7,50 €</b></div><div class="food-desc">Sésamo, aguacate, tomate rallado, bacon crujiente y huevo revuelto.</div></div>
         <div class="food-item"><div class="food-name"><span>Brunch Bagel</span><b>7,90 €</b></div></div>
         <div class="food-item"><div class="food-name"><span>Veggie Bagel</span><b>7,50 €</b></div></div>
         <div class="food-item"><div class="food-name"><span>Bagel York Classic</span><b>7,50 €</b></div></div>
