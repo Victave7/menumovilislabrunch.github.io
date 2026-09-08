@@ -1,1055 +1,171 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>AURA BRUNCH — Menú Digital</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<base href="./"/>
+<title>ISLA Student · Packs, Matcha, Ube y menú Student · Elche</title>
+<meta name="description" content="Menú ISLA Student en Elche: packs de desayuno y brunch, Matcha, Ube, café, smoothies y opciones Duo."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --rosa-empolvado:#E7C7C9;
-    --rosa-pastel:#F4DEE0;
-    --rosa-bebe:#FBE9EA;
-    --acento:#B4405C;
-    --acento-dark:#8F2E44;
-    --crema:#FBF7F2;
-    --crema-2:#F6EFE8;
-    --dorado:#C6A467;
-    --texto:#3A2A2E;
-    --texto-suave:#8A7175;
-    --linea:rgba(58,42,46,0.10);
-    --sombra: 0 18px 40px rgba(58,42,46,0.10);
-    --radius-a: 28px 28px 28px 6px;
-    --radius-b: 6px 28px 28px 28px;
-  }
+:root{{--forest:#173a2b;--forest2:#0f2a1f;--cream:#faf6ee;--paper:#f2e8d5;--sage:#e1ead9;--sage2:#cfe0c4;--ube:#efe4f8;--ube2:#ddc9ef;--gold:#b8874a;--ink:#12201a;--muted:#68715f;--line:rgba(18,32,26,.10);--display:'Bricolage Grotesque',sans-serif;--body:Inter,system-ui,sans-serif;--mono:'DM Mono',monospace}}
+*{{box-sizing:border-box}}html{{scroll-behavior:smooth}}body{{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased}}a{{color:inherit;text-decoration:none}}button{{font:inherit;border:0;background:none;cursor:pointer}}img{{display:block;max-width:100%}}.wrap{{width:min(1120px,calc(100% - 32px));margin:auto}}
+.header{{position:sticky;top:0;z-index:50;background:rgba(250,246,238,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}}.header-in{{height:58px;display:flex;align-items:center;justify-content:space-between}}.logo{{font:800 20px/1 var(--display);letter-spacing:-.04em}}.logo small{{font:600 8px/1 var(--mono);letter-spacing:.16em;color:var(--muted);display:block;margin-top:3px}}.menu-link{{font:600 11px var(--mono);border:1px solid var(--line);padding:9px 12px;border-radius:99px}}
+.subnav{{position:sticky;top:58px;z-index:45;background:rgba(250,246,238,.96);border-bottom:1px solid var(--line);overflow:auto;white-space:nowrap}}.subnav-in{{display:flex;gap:4px;padding:9px 0}}.subnav a{{padding:8px 11px;border-radius:99px;font-size:11px;font-weight:700;color:var(--muted)}}.subnav a.active{{background:var(--forest);color:#fff}}
+.hero{{padding:54px 0 70px;background:var(--cream)}}.hero-grid{{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:end}}.eyebrow{{font:600 10px var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--forest);margin-bottom:15px}}h1{{font:800 clamp(48px,9vw,92px)/.82 var(--display);letter-spacing:-.065em;margin:0;max-width:760px}}h1 em{{font-style:normal;color:var(--forest)}}.hero-copy{{font-size:15px;line-height:1.6;color:var(--muted);max-width:470px;margin:22px 0}}.hero-cta{{display:inline-flex;background:var(--forest);color:#fff;border-radius:99px;padding:14px 18px;font-weight:800;font-size:12px}}.hero-price{{justify-self:end;border-left:1px solid var(--line);padding-left:28px;max-width:250px}}.hero-price b{{display:block;font:800 54px/.9 var(--display);letter-spacing:-.05em;color:var(--forest)}}.hero-price span{{font-size:12px;color:var(--muted)}}
+.section{{padding:62px 0}}.section.alt{{background:var(--paper)}}.section.sage{{background:var(--sage)}}.head{{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:26px}}.head h2{{font:800 clamp(30px,5vw,52px)/.9 var(--display);letter-spacing:-.045em;margin:0}}.head p{{max-width:370px;color:var(--muted);font-size:13px;line-height:1.5;margin:0}}
+.choices{{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}}.choice{{background:var(--cream);padding:24px 18px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;transition:.2s}}.choice:hover{{background:#fff}}.choice-num{{font:700 10px var(--mono);color:var(--muted)}}.choice h3{{font:800 23px/.95 var(--display);letter-spacing:-.03em;margin:18px 0 6px}}.choice span{{font-size:11px;color:var(--muted)}}
+.packs{{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}}.pack{{background:#fff;border:1px solid var(--line);display:grid;grid-template-columns:38% 62%;min-height:270px;overflow:hidden}}.media{{background:var(--sage);min-height:100%;display:flex;align-items:center;justify-content:center;color:var(--muted);font:600 10px var(--mono);text-transform:uppercase}}.pack-body{{padding:22px;display:flex;flex-direction:column}}.pack-top{{display:flex;justify-content:space-between;gap:10px}}.pack-name{{font:800 23px/.95 var(--display);letter-spacing:-.035em}}.pack-price{{font:800 25px/.9 var(--display);color:var(--forest);white-space:nowrap}}.badge{{font:600 9px var(--mono);letter-spacing:.08em;color:var(--gold);text-transform:uppercase;margin:11px 0 15px}}.includes{{font-size:12px;line-height:1.55;color:var(--muted);margin-bottom:18px}}.drink{{margin-top:auto;border-top:1px solid var(--line);padding-top:13px;font-size:11px}}.drink strong{{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px}}.pills{{display:flex;gap:6px;flex-wrap:wrap}}.pill{{border:1px solid var(--line);border-radius:99px;padding:8px 10px;font-size:10px;font-weight:700}}.pill.selected{{background:var(--forest);color:#fff;border-color:var(--forest)}}
+.drinks{{display:grid;grid-template-columns:1.4fr .8fr .8fr;gap:1px;background:var(--line)}}.drink-card{{min-height:280px;padding:25px;background:#fff;display:flex;flex-direction:column;justify-content:end}}.drink-card.featured{{background:var(--forest);color:#fff;min-height:360px}}.drink-card.ube{{background:var(--ube)}}.drink-card h3{{font:800 34px/.9 var(--display);letter-spacing:-.04em;margin:0 0 8px}}.drink-card p{{font-size:12px;line-height:1.5;color:var(--muted);max-width:260px}}.drink-card.featured p{{color:rgba(255,255,255,.72)}}.drink-price{{font:800 21px var(--display);margin-top:12px}}
+.duo{{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}}.duo-card{{background:#fff;padding:28px;min-height:230px;display:flex;flex-direction:column;justify-content:space-between}}.duo-card h3{{font:800 32px/.9 var(--display);letter-spacing:-.04em;margin:0}}.duo-card p{{font-size:13px;color:var(--muted)}}.duo-card strong{{font:800 30px var(--display);color:var(--forest)}}
+.comer{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}}.item{{background:#fff;border:1px solid var(--line);padding:17px;min-height:105px}}.item small{{display:block;font:600 9px var(--mono);color:var(--muted);text-transform:uppercase;margin-bottom:18px}}.item b{{font-size:13px}}.item span{{float:right;font:800 16px var(--display);color:var(--forest)}}
+.club{{background:var(--forest);color:#fff;padding:34px;display:grid;grid-template-columns:1fr 1fr;gap:30px}}.club h2{{font:800 48px/.88 var(--display);letter-spacing:-.05em;margin:0 0 14px}}.club p{{font-size:13px;color:rgba(255,255,255,.7);line-height:1.6}}.rewards{{display:grid;gap:1px;background:rgba(255,255,255,.13)}}.reward{{background:var(--forest);padding:17px;display:flex;justify-content:space-between;font-size:12px}}.reward b{{color:#f2dcae}}
+.footer{{background:var(--forest2);color:#fff;padding:28px 0;font-size:11px}}.footer-in{{display:flex;justify-content:space-between;gap:20px}}@media(max-width:760px){{.hero{{padding:38px 0 50px}}.hero-grid{{grid-template-columns:1fr;gap:26px}}.hero-price{{justify-self:start;border-left:0;border-top:1px solid var(--line);padding:18px 0 0;max-width:none;width:100%}}.hero-price b{{font-size:42px}}.choices{{grid-template-columns:1fr 1fr}}.choice{{min-height:125px;padding:18px 14px}}.choice h3{{font-size:19px}}.packs{{grid-template-columns:1fr}}.pack{{grid-template-columns:34% 66%;min-height:245px}}.pack-body{{padding:16px}}.pack-name{{font-size:20px}}.pack-price{{font-size:22px}}.drinks{{grid-template-columns:1fr 1fr}}.drink-card.featured{{grid-column:1/-1;min-height:300px}}.duo,.club{{grid-template-columns:1fr}}.comer{{grid-template-columns:1fr 1fr}}.head{{display:block}}.head p{{margin-top:10px}}.footer-in{{display:block}}}}
+@media(max-width:430px){{.wrap{{width:min(100% - 24px,1120px)}}.subnav-in{{padding-left:4px}}.pack{{grid-template-columns:1fr}}.media{{aspect-ratio:16/8;min-height:100px}}.comer{{grid-template-columns:1fr}}}}
 
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:'Manrope', sans-serif;
-    background:var(--crema);
-    color:var(--texto);
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  img{max-width:100%; display:block;}
-  button{font-family:inherit; border:none; background:none; cursor:pointer;}
-  ::selection{background:var(--rosa-pastel); color:var(--acento-dark);}
-
-  .display{font-family:'Fraunces', serif;}
-
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
-  }
-
-  /* ---------- APP SHELL ---------- */
-  .app{
-    max-width:480px;
-    margin:0 auto;
-    min-height:100vh;
-    position:relative;
-    background:var(--crema);
-    padding-bottom:96px;
-  }
-
-  /* ---------- PHOTO PLACEHOLDER PANELS ---------- */
-  .photo{
-    position:relative;
-    overflow:hidden;
-    background:
-      radial-gradient(120% 90% at 15% 10%, #fff3ee 0%, transparent 55%),
-      radial-gradient(110% 90% at 85% 100%, var(--rosa-empolvado) 0%, transparent 60%),
-      linear-gradient(150deg, var(--rosa-pastel) 0%, var(--rosa-bebe) 45%, #fbe0d8 100%);
-  }
-  .photo::before{
-    content:"";
-    position:absolute; inset:0;
-    background-image:
-      repeating-linear-gradient(115deg, rgba(255,255,255,0.35) 0 2px, transparent 2px 34px);
-    mix-blend-mode:overlay;
-    opacity:.5;
-  }
-  .photo .photo-caption{
-    position:absolute;
-    left:14px; bottom:12px;
-    font-size:10.5px;
-    letter-spacing:.06em;
-    color:rgba(58,42,46,0.55);
-    background:rgba(255,255,255,0.55);
-    backdrop-filter:blur(6px);
-    padding:5px 10px;
-    border-radius:20px;
-  }
-
-  /* ---------- HOME SCREEN ---------- */
-  #home{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    position:relative;
-    overflow:hidden;
-  }
-  .home-photo{
-    height:58vh;
-    height:56dvh;
-    min-height:340px;
-    max-height:480px;
-    animation:photoZoom 9s cubic-bezier(.25,.1,.25,1) forwards;
-  }
-  @keyframes photoZoom{
-    from{ transform:scale(1.08); }
-    to{ transform:scale(1); }
-  }
-  .logo-frame{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:var(--crema);
-  }
-  .aura-logo-hero{
-    width:100%;
-    height:100%;
-    max-width:340px;
-    object-fit:contain;
-    object-position:center;
-    padding:clamp(20px, 8vw, 40px);
-    margin:0 auto;
-    animation:logoFloat 5.5s ease-in-out .9s infinite alternate;
-  }
-  .logo-fallback{
-    display:none;
-    position:absolute;
-    inset:0;
-    align-items:center;
-    justify-content:center;
-    background:var(--crema);
-    animation:logoFloat 5.5s ease-in-out .9s infinite alternate;
-  }
-  .logo-fallback span{
-    font-size:clamp(34px, 11vw, 46px);
-    color:var(--acento);
-    letter-spacing:.04em;
-  }
-  @keyframes logoFloat{
-    from{ transform:translateY(0); }
-    to{ transform:translateY(-7px); }
-  }
-  @media (max-width:360px){
-    .aura-logo-hero{ max-width:260px; padding:16px; }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .home-photo, .aura-logo-hero, .logo-fallback{ animation:none !important; }
-  }
-
-  .home-photo .blob{
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .home-photo .plate-mark{
-    width:190px; height:190px;
-    border-radius:50%;
-    border:1px solid rgba(255,255,255,0.6);
-    display:flex; align-items:center; justify-content:center;
-  }
-  .home-photo .plate-mark svg{ width:86px; height:86px; opacity:.85; }
-
-  .home-content{
-    flex:1;
-    background:var(--crema);
-    border-radius:34px 34px 0 0;
-    margin-top:-30px;
-    position:relative;
-    padding:38px 28px 40px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
-  }
-  .wordmark{
-    font-size:15px;
-    letter-spacing:.42em;
-    color:var(--acento);
-    font-weight:600;
-    opacity:0;
-    animation:riseIn .8s cubic-bezier(.2,.7,.3,1) .15s forwards;
-  }
-  .wordmark-main{
-    font-family:'Fraunces', serif;
-    font-optical-sizing:auto;
-    font-weight:500;
-    font-size:clamp(48px, 15vw, 64px);
-    line-height:.92;
-    color:var(--texto);
-    margin-top:6px;
-    opacity:0;
-    animation:riseIn .9s cubic-bezier(.2,.7,.3,1) .32s forwards;
-  }
-  .tagline{
-    margin-top:16px;
-    font-size:15.5px;
-    color:var(--texto-suave);
-    font-style:italic;
-    font-family:'Fraunces', serif;
-    font-weight:400;
-    opacity:0;
-    animation:riseIn .9s cubic-bezier(.2,.7,.3,1) .48s forwards;
-  }
-  @keyframes riseIn{
-    from{ opacity:0; transform:translateY(14px) scale(.985); filter:blur(2px); }
-    to{ opacity:1; transform:translateY(0) scale(1); filter:blur(0); }
-  }
-
-  /* ---------- PETALS (falling flowers) ---------- */
-  .petals-layer{
-    position:absolute;
-    inset:0;
-    overflow:hidden;
-    pointer-events:none;
-    z-index:6;
-  }
-  .petal{
-    position:absolute;
-    top:-8%;
-    will-change:transform;
-    animation-timing-function:linear;
-    animation-iteration-count:infinite;
-    opacity:.88;
-    filter:drop-shadow(0 3px 4px rgba(58,42,46,0.08));
-  }
-  .petal svg{ width:100%; height:100%; display:block; }
-  @keyframes petal-fall-a{
-    0%   { transform:translate3d(0,0,0) rotate(-8deg); }
-    20%  { transform:translate3d(18px,22vh,0) rotate(60deg); }
-    40%  { transform:translate3d(-14px,42vh,0) rotate(140deg); }
-    60%  { transform:translate3d(20px,62vh,0) rotate(210deg); }
-    80%  { transform:translate3d(-10px,82vh,0) rotate(300deg); }
-    100% { transform:translate3d(6px,112vh,0) rotate(370deg); }
-  }
-  @keyframes petal-fall-b{
-    0%   { transform:translate3d(0,0,0) rotate(6deg); }
-    20%  { transform:translate3d(-20px,20vh,0) rotate(-70deg); }
-    40%  { transform:translate3d(16px,40vh,0) rotate(-150deg); }
-    60%  { transform:translate3d(-18px,60vh,0) rotate(-220deg); }
-    80%  { transform:translate3d(12px,80vh,0) rotate(-300deg); }
-    100% { transform:translate3d(-8px,112vh,0) rotate(-380deg); }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .petals-layer{ display:none; }
-  }
-
-  .cta-ver-menu{
-    margin-top:34px;
-    background:var(--texto);
-    color:var(--crema);
-    padding:17px 46px;
-    border-radius:999px;
-    font-size:14px;
-    letter-spacing:.14em;
-    font-weight:700;
-    box-shadow:0 14px 30px rgba(58,42,46,0.22);
-    opacity:0;
-    animation:riseIn .9s cubic-bezier(.2,.7,.3,1) .64s forwards;
-    transition:transform .35s cubic-bezier(.2,.8,.3,1), box-shadow .35s;
-    position:relative;
-    overflow:hidden;
-  }
-  .cta-ver-menu:active{ transform:scale(.96); box-shadow:0 8px 18px rgba(58,42,46,0.2); }
-  .cta-ver-menu.pressed{ transform:scale(.96); box-shadow:0 8px 18px rgba(58,42,46,0.2); }
-  .cta-ver-menu:hover{ transform:translateY(-2px); box-shadow:0 18px 36px rgba(58,42,46,0.26); }
-  .cta-ver-menu::after{
-    content:"";
-    position:absolute;
-    top:0; left:-60%;
-    width:40%; height:100%;
-    background:linear-gradient(115deg, transparent, rgba(255,255,255,0.35), transparent);
-    transform:skewX(-20deg);
-    animation:shine 3.4s ease-in-out 1.6s infinite;
-  }
-  @keyframes shine{
-    0%{ left:-60%; }
-    35%{ left:130%; }
-    100%{ left:130%; }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .cta-ver-menu::after{ animation:none; }
-  }
-
-  .home-foot{
-    margin-top:auto;
-    padding-top:44px;
-    font-size:10.5px;
-    letter-spacing:.18em;
-    color:var(--texto-suave);
-    opacity:0;
-    animation:riseIn .9s ease .8s forwards;
-  }
-
-  /* ---------- MENU VIEW ---------- */
-  #menu-view{ display:none; }
-  #menu-view.active{ display:block; }
-  #home.hidden{ display:none; }
-
-  .menu-header{
-    padding:26px 24px 18px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-  }
-  .menu-header .brand{
-    font-family:'Fraunces', serif;
-    font-size:22px;
-    font-weight:500;
-    letter-spacing:.02em;
-  }
-  .icon-btn{
-    width:38px; height:38px;
-    border-radius:50%;
-    background:var(--rosa-bebe);
-    display:flex; align-items:center; justify-content:center;
-    color:var(--acento-dark);
-    transition:transform .15s cubic-bezier(.3,.7,.4,1);
-  }
-  .icon-btn:active{ transform:scale(.88); }
-
-  /* Aura Moments carousel */
-  .moments{
-    padding:6px 0 26px;
-  }
-  .moments-head{
-    padding:0 24px;
-    display:flex;
-    align-items:baseline;
-    justify-content:space-between;
-    margin-bottom:14px;
-  }
-  .moments-head h2{
-    font-family:'Fraunces', serif;
-    font-weight:500;
-    font-size:20px;
-    display:flex;
-    align-items:center;
-    gap:8px;
-  }
-  .moments-head span{
-    font-size:11.5px;
-    color:var(--texto-suave);
-  }
-  .moments-track{
-    display:flex;
-    gap:14px;
-    overflow-x:auto;
-    padding:2px 24px 10px;
-    scroll-snap-type:x mandatory;
-    -ms-overflow-style:none;
-    scrollbar-width:none;
-  }
-  .moments-track::-webkit-scrollbar{ display:none; }
-  .moment-card{
-    flex:0 0 auto;
-    width:150px;
-    scroll-snap-align:start;
-    transition:transform .25s cubic-bezier(.22,.8,.3,1);
-  }
-  .moment-card:active{ transform:scale(.96); }
-  .moment-card .photo{
-    height:150px;
-    border-radius:22px;
-    margin-bottom:10px;
-    transition:box-shadow .3s ease;
-  }
-  @media (hover:hover){
-    .moment-card:hover .photo{ box-shadow:0 16px 30px rgba(58,42,46,0.18); }
-  }
-  .moment-card .moment-tag{
-    position:absolute;
-    top:10px; left:10px;
-    background:rgba(255,255,255,0.85);
-    color:var(--acento-dark);
-    font-size:9.5px;
-    font-weight:700;
-    letter-spacing:.08em;
-    padding:5px 9px;
-    border-radius:20px;
-  }
-  .moment-card h3{
-    font-family:'Fraunces', serif;
-    font-size:14.5px;
-    font-weight:500;
-  }
-  .moment-card p{
-    font-size:12px;
-    color:var(--acento);
-    font-weight:700;
-    margin-top:2px;
-  }
-
-  /* Category sections */
-  .category-section{
-    padding:30px 24px 6px;
-    scroll-margin-top:20px;
-  }
-  .category-head{
-    display:flex;
-    align-items:baseline;
-    gap:12px;
-    margin-bottom:20px;
-    border-bottom:1px solid var(--linea);
-    padding-bottom:14px;
-    opacity:0;
-    transform:translateX(-10px);
-    transition:opacity .6s cubic-bezier(.22,.8,.3,1), transform .6s cubic-bezier(.22,.8,.3,1);
-  }
-  .category-head.in-view{ opacity:1; transform:translateX(0); }
-  .category-head .num{
-    font-family:'Fraunces', serif;
-    font-style:italic;
-    color:var(--rosa-empolvado);
-    font-size:15px;
-  }
-  .category-head h2{
-    font-family:'Fraunces', serif;
-    font-weight:500;
-    font-size:25px;
-  }
-
-  .product-grid{
-    display:flex;
-    flex-direction:column;
-    gap:22px;
-  }
-  .product-card{
-    display:grid;
-    grid-template-columns:104px 1fr;
-    gap:16px;
-    opacity:0;
-    transform:translateY(18px) scale(.98);
-    transition:opacity .6s cubic-bezier(.22,.8,.3,1), transform .6s cubic-bezier(.22,.8,.3,1), box-shadow .3s ease;
-    border-radius:20px;
-  }
-  .product-card.in-view{ opacity:1; transform:translateY(0) scale(1); }
-  .product-card:active{ transform:scale(.975); }
-  @media (hover:hover){
-    .product-card:hover .product-photo{ transform:scale(1.04); box-shadow:0 14px 26px rgba(58,42,46,0.16); }
-    .product-card:hover .ver-mas{ background:var(--acento); color:#fff; }
-  }
-  .product-card .product-photo{ transition:transform .4s cubic-bezier(.22,.8,.3,1), box-shadow .4s ease; }
-  .product-card:nth-child(even){ grid-template-columns:1fr 104px; }
-  .product-card:nth-child(even) .product-photo{ order:2; }
-  .product-card .product-photo{
-    width:104px; height:104px;
-    border-radius:var(--radius-a);
-  }
-  .product-card:nth-child(even) .product-photo{ border-radius:var(--radius-b); }
-  .product-info{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-  }
-  .product-info h3{
-    font-family:'Fraunces', serif;
-    font-weight:500;
-    font-size:16.5px;
-    line-height:1.25;
-  }
-  .product-info p.desc{
-    font-size:12.5px;
-    color:var(--texto-suave);
-    margin-top:4px;
-    line-height:1.45;
-  }
-  .product-info .row{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-top:11px;
-  }
-  .price{
-    font-weight:800;
-    font-size:14.5px;
-    color:var(--texto);
-  }
-  .ver-mas{
-    font-size:10.5px;
-    font-weight:700;
-    letter-spacing:.08em;
-    color:var(--acento);
-    padding:8px 14px;
-    border:1px solid var(--acento);
-    border-radius:999px;
-    transition:background .3s, color .3s, transform .2s;
-  }
-  .ver-mas:active{ transform:scale(.94); }
-
-  /* QR footer */
-  .qr-footer{
-    margin:52px 24px 20px;
-    background:linear-gradient(135deg, var(--texto) 0%, #4a3339 100%);
-    color:var(--crema);
-    border-radius:26px;
-    padding:30px 26px;
-    text-align:center;
-    position:relative;
-    overflow:hidden;
-  }
-  .qr-footer::after{
-    content:"";
-    position:absolute; inset:0;
-    background:radial-gradient(circle at 80% -10%, rgba(198,164,103,0.35), transparent 55%);
-  }
-  .qr-footer .qr-box{
-    width:64px; height:64px;
-    margin:0 auto 16px;
-    background:var(--crema);
-    border-radius:14px;
-    display:flex; align-items:center; justify-content:center;
-    position:relative; z-index:1;
-  }
-  .qr-footer .qr-steps{
-    position:relative; z-index:1;
-    font-size:11.5px;
-    letter-spacing:.22em;
-    font-weight:700;
-    color:var(--dorado);
-  }
-  .qr-footer p{
-    position:relative; z-index:1;
-    margin-top:10px;
-    font-size:12.5px;
-    color:rgba(251,247,242,0.75);
-    font-family:'Fraunces', serif;
-    font-style:italic;
-  }
-
-  /* ---------- BOTTOM NAV ---------- */
-  .bottom-nav{
-    position:fixed;
-    left:50%; bottom:14px;
-    transform:translateX(-50%);
-    width:calc(100% - 28px);
-    max-width:452px;
-    background:rgba(255,255,255,0.86);
-    backdrop-filter:blur(16px) saturate(160%);
-    border:1px solid rgba(255,255,255,0.6);
-    border-radius:26px;
-    box-shadow:0 16px 34px rgba(58,42,46,0.16);
-    display:flex;
-    justify-content:space-between;
-    padding:9px 8px;
-    z-index:40;
-  }
-  .nav-item{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:4px;
-    padding:7px 2px;
-    border-radius:16px;
-    color:var(--texto-suave);
-    transition:color .3s, transform .15s cubic-bezier(.3,.7,.4,1);
-    position:relative;
-    z-index:1;
-  }
-  .nav-item:active{ transform:scale(.92); }
-  .nav-item svg{ width:19px; height:19px; transition:transform .3s cubic-bezier(.34,1.3,.4,1); }
-  .nav-item span{ font-size:9.5px; font-weight:700; letter-spacing:.03em; }
-  .nav-item.active{ color:var(--acento-dark); }
-  .nav-item.active svg{ transform:translateY(-1px) scale(1.08); }
-  .nav-indicator{
-    position:absolute;
-    top:9px; left:8px;
-    height:calc(100% - 18px);
-    background:var(--rosa-bebe);
-    border-radius:16px;
-    transition:transform .38s cubic-bezier(.22,.85,.25,1), width .38s cubic-bezier(.22,.85,.25,1);
-    z-index:0;
-  }
-  @media (prefers-reduced-motion: reduce){
-    .nav-indicator{ transition:opacity .2s ease; }
-  }
-
-  /* ---------- PRODUCT SHEET (MODAL) ---------- */
-  .sheet-overlay{
-    position:fixed; inset:0;
-    background:rgba(58,42,46,0.42);
-    backdrop-filter:blur(2px);
-    opacity:0; pointer-events:none;
-    transition:opacity .35s ease;
-    z-index:60;
-  }
-  .sheet-overlay.open{ opacity:1; pointer-events:auto; }
-  .sheet{
-    position:fixed;
-    left:50%; bottom:0;
-    transform:translate(-50%, 100%);
-    width:100%; max-width:480px;
-    max-height:88vh;
-    background:var(--crema);
-    border-radius:30px 30px 0 0;
-    z-index:61;
-    transition:transform .5s cubic-bezier(.32,.72,0,1);
-    overflow-y:auto;
-    padding-bottom:36px;
-  }
-  .sheet.open{ transform:translate(-50%, 0); }
-  .sheet.closing{ transition:transform .32s cubic-bezier(.4,0,1,1); }
-  .sheet-photo{
-    height:230px;
-    border-radius:30px 30px 0 0;
-    position:relative;
-  }
-  .sheet-close{
-    position:absolute; top:16px; right:16px;
-    width:34px; height:34px;
-    border-radius:50%;
-    background:rgba(255,255,255,0.8);
-    backdrop-filter:blur(6px);
-    display:flex; align-items:center; justify-content:center;
-    color:var(--texto);
-    transition:transform .15s cubic-bezier(.3,.7,.4,1);
-  }
-  .sheet-close:active{ transform:scale(.85); }
-  .sheet-handle{
-    width:38px; height:4px;
-    background:rgba(58,42,46,0.18);
-    border-radius:4px;
-    position:absolute;
-    top:-14px; left:50%;
-    transform:translateX(-50%);
-  }
-  .sheet-body{ padding:26px 26px 4px; }
-  .sheet-body h3{
-    font-family:'Fraunces', serif;
-    font-weight:500;
-    font-size:25px;
-    line-height:1.15;
-  }
-  .sheet-price{
-    font-weight:800;
-    font-size:18px;
-    color:var(--acento-dark);
-    margin-top:6px;
-  }
-  .sheet-desc{
-    margin-top:14px;
-    font-size:14px;
-    line-height:1.6;
-    color:var(--texto-suave);
-  }
-  .sheet-block{ margin-top:22px; }
-  .sheet-block h4{
-    font-size:10.5px;
-    letter-spacing:.14em;
-    color:var(--acento);
-    font-weight:800;
-    margin-bottom:10px;
-  }
-  .chip-row{ display:flex; flex-wrap:wrap; gap:8px; }
-  .chip{
-    font-size:12px;
-    padding:8px 13px;
-    background:var(--rosa-bebe);
-    border-radius:999px;
-    color:var(--texto);
-  }
-  .chip.alergeno{ background:var(--crema-2); border:1px solid var(--linea); color:var(--texto-suave); }
-  .extras-list{ display:flex; flex-direction:column; gap:10px; }
-  .extra-row{
-    display:flex; justify-content:space-between; align-items:center;
-    font-size:13.5px;
-    padding:12px 14px;
-    background:#fff;
-    border:1px solid var(--linea);
-    border-radius:14px;
-  }
-  .extra-row b{ color:var(--acento-dark); font-weight:800; }
-  .sheet-add{
-    margin:26px 26px 0;
-    background:var(--texto);
-    color:var(--crema);
-    padding:16px;
-    border-radius:16px;
-    text-align:center;
-    font-weight:700;
-    font-size:13.5px;
-    letter-spacing:.05em;
-  }
-
-  @media (min-width:481px){
-    body{ background:var(--crema-2); }
-    .app{ box-shadow:0 40px 90px rgba(58,42,46,0.16); }
-  }
-</style>
-</head>
-<body>
-
-<div class="app">
-
-  <!-- ============ HOME / SPLASH ============ -->
-  <section id="home">
-    <div class="petals-layer" id="petals-layer" aria-hidden="true"></div>
-    <div class="photo home-photo">
-      <div class="logo-frame">
-        <img class="aura-logo-hero" src="logo/logoaura.jpeg" alt="AURA Brunch"
-             onerror="this.closest('.logo-frame').style.display='none'; document.getElementById('logo-fallback').style.display='flex';" />
-      </div>
-      <div class="logo-fallback" id="logo-fallback">
-        <span class="display">AURA</span>
-      </div>
-    </div>
-    <div class="home-content">
-      <div class="wordmark">AURA</div>
-      <div class="wordmark-main">Brunch</div>
-      <p class="tagline">Brunch, coffee &amp; sweet moments</p>
-      <button class="cta-ver-menu" onclick="openMenu()">VER MENÚ</button>
-      <div class="home-foot">SANTIAGO&nbsp; DE&nbsp; COMPOSTELA</div>
-    </div>
-  </section>
-
-  <!-- ============ MENU VIEW ============ -->
-  <section id="menu-view">
-
-    <div class="menu-header">
-      <div class="brand display">AURA</div>
-      <button class="icon-btn" onclick="closeMenu()" aria-label="Volver al inicio">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
-      </button>
-    </div>
-
-    <!-- AURA MOMENTS -->
-    <div class="moments">
-      <div class="moments-head">
-        <h2>✨ Aura Moments</h2>
-        <span>lo más fotografiado</span>
-      </div>
-      <div class="moments-track" id="moments-track"></div>
-    </div>
-
-    <!-- BRUNCH -->
-    <div class="category-section" id="cat-brunch">
-      <div class="category-head"><span class="num">01</span><h2>Brunch</h2></div>
-      <div class="product-grid" id="grid-brunch"></div>
-    </div>
-
-    <!-- BEBIDAS -->
-    <div class="category-section" id="cat-bebidas">
-      <div class="category-head"><span class="num">02</span><h2>Bebidas</h2></div>
-      <div class="product-grid" id="grid-bebidas"></div>
-    </div>
-
-    <!-- CAFÉ -->
-    <div class="category-section" id="cat-cafe">
-      <div class="category-head"><span class="num">03</span><h2>Café</h2></div>
-      <div class="product-grid" id="grid-cafe"></div>
-    </div>
-
-    <!-- DULCE -->
-    <div class="category-section" id="cat-dulce">
-      <div class="category-head"><span class="num">04</span><h2>Dulce</h2></div>
-      <div class="product-grid" id="grid-dulce"></div>
-    </div>
-
-    <!-- EXTRAS -->
-    <div class="category-section" id="cat-extras">
-      <div class="category-head"><span class="num">05</span><h2>Extras</h2></div>
-      <div class="product-grid" id="grid-extras"></div>
-    </div>
-
-    <div class="qr-footer">
-      <div class="qr-box">
-        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#3A2A2E" stroke-width="1.6">
-          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
-          <rect x="3" y="14" width="7" height="7" rx="1"/>
-          <path d="M14 14h3v3h-3zM20 14v3M14 20h3M20 20v.01" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="qr-steps">ESCANEA · ELIGE · DISFRUTA</div>
-      <p>Un código en cada mesa. La carta entera en tu mano.</p>
-    </div>
-
-  </section>
-
-  <!-- ============ BOTTOM NAV ============ -->
-  <nav class="bottom-nav" id="bottom-nav">
-    <div class="nav-indicator" id="nav-indicator"></div>
-    <button class="nav-item active" data-target="cat-brunch">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18M4 10v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M8 10V6a4 4 0 0 1 8 0v4"/></svg>
-      <span>Brunch</span>
-    </button>
-    <button class="nav-item" data-target="cat-bebidas">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l-1.5 15.5a2 2 0 0 1-2 1.5h-5a2 2 0 0 1-2-1.5L6 3zM6.5 9h11"/></svg>
-      <span>Bebidas</span>
-    </button>
-    <button class="nav-item" data-target="cat-cafe">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8zM17 9h1.5a2.5 2.5 0 0 1 0 5H17M7 3c0 1-1 1-1 2M11 3c0 1-1 1-1 2"/></svg>
-      <span>Café</span>
-    </button>
-    <button class="nav-item" data-target="cat-dulce">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="7"/><path d="M9 3.5c1 1 2 1 3 0s2-1 3 0"/></svg>
-      <span>Dulce</span>
-    </button>
-    <button class="nav-item" data-target="cat-extras">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-      <span>Extras</span>
-    </button>
-  </nav>
-
-  <!-- ============ PRODUCT SHEET ============ -->
-  <div class="sheet-overlay" id="sheet-overlay" onclick="closeSheet()"></div>
-  <div class="sheet" id="sheet">
-    <div class="photo sheet-photo" id="sheet-photo">
-      <div class="sheet-handle"></div>
-      <button class="sheet-close" onclick="closeSheet()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
-    </div>
-    <div class="sheet-body">
-      <h3 id="sheet-name">—</h3>
-      <div class="sheet-price" id="sheet-price">—</div>
-      <p class="sheet-desc" id="sheet-desc">—</p>
-      <div class="sheet-block">
-        <h4>INGREDIENTES</h4>
-        <div class="chip-row" id="sheet-ingredientes"></div>
-      </div>
-      <div class="sheet-block">
-        <h4>ALÉRGENOS</h4>
-        <div class="chip-row" id="sheet-alergenos"></div>
-      </div>
-      <div class="sheet-block" id="sheet-extras-block">
-        <h4>EXTRAS</h4>
-        <div class="extras-list" id="sheet-extras"></div>
-      </div>
-      <div class="sheet-add">Pide en barra o a tu camarero/a</div>
-    </div>
-  </div>
-
-</div>
-
+/* FINAL ISLA ART DIRECTION */
+.hero{min-height:610px;display:flex;align-items:flex-end;padding:0!important;background:var(--forest);position:relative}
+.hero .wrap{padding:72px 0 48px!important}
+.hero h1{font-size:clamp(4.2rem,14vw,8.8rem)!important;line-height:.78!important}
+.hero-copy{max-width:500px!important}
+.hero-offers{display:none!important}
+.hero:after{content:"ISLA";position:absolute;right:-20px;bottom:-70px;font:800 240px/.8 var(--display);letter-spacing:-.12em;color:rgba(255,255,255,.045);pointer-events:none}
+.catnav{top:56px!important;background:rgba(250,246,238,.92)!important}
+.catnav-inner{padding:8px 0!important}
+.catnav a{border:0!important;border-radius:999px!important;padding:9px 12px!important}
+.catnav a.active{background:var(--forest)!important;color:#fff!important}
+.page{display:block!important}
+.page.on{display:block!important;animation:none!important}
+#rapido,#desayuno{display:none!important}
+.favorites-grid{display:grid;grid-template-columns:repeat(12,1fr)!important;gap:14px!important}
+.fav-card{grid-column:span 4!important;border:0!important;box-shadow:none!important;background:var(--cream)!important;border-radius:26px!important;overflow:hidden}
+.fav-card:nth-child(1){grid-column:span 6!important}.fav-card:nth-child(4){grid-column:span 6!important}
+.fav-media{aspect-ratio:1.15!important;background:var(--sage)!important}
+.fav-content{padding:18px 2px!important}.fav-name{font:750 21px/1 var(--display)!important}.fav-price{font-size:24px!important;margin-top:3px}.fav-badge{background:var(--forest)!important;border-radius:999px!important}
+#inicio .customize-section{margin-top:0}
+.customize-section{border-radius:26px!important;padding:18px!important;background:var(--sage)!important}
+.customize-item{border-radius:18px!important;box-shadow:none!important}
+#inicio>section:nth-of-type(4){padding-top:35px!important}
+#inicio>section:nth-of-type(4) .sec-head h2{max-width:650px}
+#packs{background:var(--paper)!important}
+#packs .pack-grid{grid-template-columns:repeat(12,1fr)!important;gap:16px!important}
+#packs .pack-card{grid-column:span 6!important;border:0!important;border-radius:28px!important;box-shadow:0 10px 35px rgba(15,42,31,.07)!important}
+#packs .pack-card:nth-child(1){grid-column:span 7!important}#packs .pack-card:nth-child(2){grid-column:span 5!important}
+#packs .pack-media-wrap{aspect-ratio:16/9!important}.pack-content{padding:20px!important}.pack-name{font-size:23px!important}.pack-price{font-size:28px!important}
+#matcha .drink-grid{grid-template-columns:repeat(3,1fr)!important;gap:14px!important}.drink-tile,.ube-tile{min-height:290px!important;border-radius:28px!important;padding:24px!important}
+#duo{background:var(--ube)!important}#duo .duo-card{border:0!important;border-radius:28px!important;box-shadow:none!important}
+#club .club-section,#club-preview .club-section{border-radius:30px!important}
+@media(max-width:700px){.hero{min-height:560px}.hero .wrap{padding:58px 0 34px!important}.hero h1{font-size:clamp(4rem,21vw,6.7rem)!important}.favorites-grid{grid-template-columns:1fr 1fr!important}.fav-card,.fav-card:nth-child(1),.fav-card:nth-child(4){grid-column:span 1!important}.fav-card:first-child{grid-column:span 2!important}.fav-media{aspect-ratio:1.05!important}.fav-name{font-size:18px!important}.fav-price{font-size:21px!important}#packs .pack-grid{grid-template-columns:1fr!important}#packs .pack-card,#packs .pack-card:nth-child(1),#packs .pack-card:nth-child(2){grid-column:span 1!important}#matcha .drink-grid{grid-template-columns:1fr 1fr!important}.drink-tile,.ube-tile{min-height:210px!important;padding:18px!important}.drink-name,.ube-name{font-size:21px!important}.drink-price,.ube-price{font-size:24px!important}.sec-head{display:block!important}.sec-head p{margin-top:12px!important}.customize-grid{grid-template-columns:1fr 1fr!important}.club-tier{grid-template-columns:1fr!important}}
+</style></head><body>
+<header class="header"><div class="wrap header-in"><a class="logo" href="#top">ISLA<small>STUDENT</small></a><a class="menu-link" href="https://islabrunchbar.com/menu/">Carta completa ↗</a></div></header>
+<nav class="subnav"><div class="wrap subnav-in"><a href="#top" class="active">Inicio</a><a href="#packs">Student</a><a href="#drinks">Bebidas</a><a href="#duo">Duo</a><a href="#comer">Comer</a><a href="#club">Club</a></div></nav>
+<main id="top">
+<section class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">Menú exclusivo Student · Elche</div><h1>Tu pausa.<br><em>Tu isla.</em></h1><p class="hero-copy">Desayunos, brunch, matcha, ube y smoothies pensados para comer bien sin complicarte.</p><a class="hero-cta" href="#packs">VER MENÚ STUDENT ↓</a></div><div class="hero-price"><b>3,50 €</b><span>Opciones Student desde aquí. Sube cuando quieras a algo más completo.</span></div></div></section>
+<section class="section"><div class="wrap"><div class="head"><h2>¿Qué te apetece?</h2><p>Elige por momento. Después te enseñamos lo que realmente merece la pena.</p></div><div class="choices"><a class="choice" href="#packs"><span class="choice-num">01 · RÁPIDO</span><div><h3>Algo rápido</h3><span>Para seguir con tu día.</span></div></a><a class="choice" href="#packs"><span class="choice-num">02 · DESAYUNO</span><div><h3>Desayunar</h3><span>Algo más completo.</span></div></a><a class="choice" href="#packs"><span class="choice-num">03 · COMER</span><div><h3>Comer bien</h3><span>Cuando quieres sentarte.</span></div></a><a class="choice" href="#packs"><span class="choice-num">04 · HAMBRE</span><div><h3>Tengo hambre</h3><span>Ve a por todo.</span></div></a></div></div></section>
+<section class="section alt" id="packs"><div class="wrap"><div class="head"><h2>Student picks</h2><p>Los packs son el centro del menú. Café incluido y posibilidad de cambiar de bebida.</p></div><div class="packs" id="packs-grid"></div></div></section>
+<section class="section sage" id="drinks"><div class="wrap"><div class="head"><h2>Algo diferente.</h2><p>Matcha, ube y proteína para salir del café de siempre.</p></div><div class="drinks" id="drinks-grid"></div></div></section>
+<section class="section" id="duo"><div class="wrap"><div class="head"><h2>¿Venís dos?</h2><p>Soluciones para compartir, sin tener que hacer cuentas.</p></div><div class="duo" id="duo-grid"></div></div></section>
+<section class="section alt" id="comer"><div class="wrap"><div class="head"><h2>Solo una cosa.</h2><p>Si no quieres pack, elige lo que te apetezca.</p></div><div class="comer" id="comer-grid"></div></div></section>
+<section class="section" id="club"><div class="wrap"><div class="club"><div><div class="eyebrow" style="color:#cfe0c4">Campus Club</div><h2>Compra.<br>Acumula.<br>Vuelve.</h2><p>Cada compra Student suma un sello. La próxima visita empieza a pagarse sola.</p></div><div class="rewards"><div class="reward"><span>1 compra</span><b>1 sello</b></div><div class="reward"><span>7 sellos</span><b>Bebida gratis</b></div><div class="reward"><span>12 sellos</span><b>ISLA Campus gratis</b></div></div></div></div></section>
+</main><footer class="footer"><div class="wrap footer-in"><span>ISLA BRUNCH & BAR · ELCHE</span><span>BRUNCH · MATCHA · UBE · CAFÉ · SMOOTHIES</span></div></footer>
 <script>
-/* ============ DEMO DATA ============
-   Contenido de demostración — productos habituales de brunch usados
-   únicamente para dar cuerpo visual al prototipo. Sustituir por la
-   carta real de AURA BRUNCH antes de publicar. */
-const DATA = {
-  brunch: [
-    { id:'p1', name:'AURA Pancakes', desc:'Pancakes esponjosos, fruta de temporada, crema chantillí y toppings a elegir.', price:'12,50 €', ing:['Harina de trigo','Huevo','Leche','Fruta fresca','Nata'], alg:['Gluten','Huevo','Lácteos'], moment:true, momentTag:'FAVORITO', extras:[{n:'Sirope de arce',p:'+1,20 €'},{n:'Fruta extra',p:'+1,50 €'},{n:'Nutella',p:'+1,00 €'}] },
-    { id:'p2', name:'Rosé French Toast', desc:'Brioche caramelizado, compota de frutos rojos, queso mascarpone y flor de sal.', price:'11,90 €', ing:['Brioche','Huevo','Frutos rojos','Mascarpone'], alg:['Gluten','Huevo','Lácteos'], moment:true, momentTag:'NUEVO', extras:[{n:'Nata montada',p:'+1,00 €'},{n:'Almendra tostada',p:'+1,20 €'}] },
-    { id:'p3', name:'Bloom Bagel', desc:'Salmón ahumado, queso crema, rúcula baby y semillas de sésamo negro.', price:'10,90 €', ing:['Bagel','Salmón ahumado','Queso crema','Rúcula'], alg:['Gluten','Pescado','Lácteos'], extras:[{n:'Aguacate',p:'+1,80 €'}] },
-    { id:'p4', name:'Petal Avocado Toast', desc:'Pan de masa madre, aguacate, tomate cherry asado, huevo poché y semillas.', price:'9,90 €', ing:['Pan de masa madre','Aguacate','Huevo','Tomate cherry'], alg:['Gluten','Huevo'], moment:true, momentTag:'FAVORITO', extras:[{n:'Bacon crujiente',p:'+2,00 €'},{n:'Feta',p:'+1,50 €'}] },
-    { id:'p5', name:'Aura Bowl', desc:'Yogur griego, granola artesana, mango, frutos rojos y miel cruda.', price:'8,90 €', ing:['Yogur griego','Granola','Mango','Frutos rojos','Miel'], alg:['Lácteos','Frutos secos'], extras:[{n:'Proteína extra',p:'+1,80 €'}] },
+const allProducts = {
+  favorites: [
+    {
+      id: 'isla-campus',
+      name: 'ISLA Campus',
+      price: 8.90,
+      badge: 'MÁS PEDIDO',
+      media: 'video',
+      desc: 'El clásico'
+    },
+    {
+      id: 'new-york-break',
+      name: 'New York Break',
+      price: 8.50,
+      badge: 'MEJOR VALOR',
+      media: 'image',
+      desc: 'Saciante'
+    },
+    {
+      id: 'isla-pancakes',
+      name: 'ISLA Pancakes',
+      price: 7.90,
+      badge: 'DULCE',
+      media: 'image',
+      desc: 'Mañanero'
+    },
+    {
+      id: 'sweet-brioche',
+      name: 'Sweet Brioche',
+      price: 6.50,
+      badge: 'DULCE',
+      media: 'image',
+      desc: 'Rápido'
+    },
+    {
+      id: 'isla-big',
+      name: 'ISLA Big',
+      price: 9.50,
+      badge: 'MÁS COMPLETO',
+      media: 'video',
+      desc: 'Premium'
+    },
+    {
+      id: 'isla-signature',
+      name: 'ISLA Signature',
+      price: 8.20,
+      badge: 'PREMIUM',
+      media: 'image',
+      desc: 'Clásico'
+    }
   ],
-  bebidas: [
-    { id:'b1', name:'Rosé Lemonade', desc:'Limonada casera con jarabe de rosas y un toque de hibisco.', price:'5,50 €', ing:['Limón','Jarabe de rosas','Hibisco'], alg:[] },
-    { id:'b2', name:'Sunset Smoothie', desc:'Mango, maracuyá, naranja y jengibre. Sin azúcares añadidos.', price:'6,20 €', ing:['Mango','Maracuyá','Naranja','Jengibre'], alg:[] },
-    { id:'b3', name:'Berry Bloom Juice', desc:'Zumo prensado en frío de frutos rojos, manzana y remolacha.', price:'5,90 €', ing:['Frutos rojos','Manzana','Remolacha'], alg:[] },
+
+  packs: [
+    { id: 'sweet-brioche', name: 'Sweet Brioche', price: 6.50, category: ['rapido', 'dulce'] },
+    { id: 'island-berry', name: 'Island Berry Smoothie', price: 7.50, category: ['desayuno'] },
+    { id: 'isla-campus', name: 'ISLA Campus', price: 8.90, category: ['desayuno', 'completo'] },
+    { id: 'new-york-break', name: 'New York Break', price: 8.50, category: ['desayuno', 'completo'] },
+    { id: 'isla-pancakes', name: 'ISLA Pancakes', price: 7.90, category: ['desayuno', 'dulce'] },
+    { id: 'isla-big', name: 'ISLA Big', price: 9.50, category: ['completo', 'premium'] },
+    { id: 'isla-signature', name: 'ISLA Signature', price: 8.20, category: ['completo'] }
   ],
-  cafe: [
-    { id:'c1', name:'Aura Matcha Latte', desc:'Matcha ceremonial japonés con leche de avena y espuma de rosas.', price:'5,20 €', ing:['Matcha','Leche de avena'], alg:['Puede contener trazas de frutos secos'], moment:true, momentTag:'ICÓNICO' },
-    { id:'c2', name:'Blush Flat White', desc:'Espresso doble con microespuma de leche y un velo de canela rosa.', price:'3,80 €', ing:['Café espresso','Leche'], alg:['Lácteos'] },
-    { id:'c3', name:'Café de Especialidad', desc:'Selección de origen único, tueste ligero, notas florales y afrutadas.', price:'3,50 €', ing:['Café de especialidad'], alg:[] },
+
+  drinks: [
+    { id: 'matcha-latte', name: 'Matcha Latte', price: 3.50, category: 'matcha', add: 1.50 },
+    { id: 'matcha-frutal', name: 'Matcha Frutal', price: 4.50, category: 'matcha', add: 2.00 },
+    { id: 'ube-original', name: 'Ube Latte', price: 4.20, category: 'ube', add: 1.70 },
+    { id: 'protein-smoothie', name: 'Protein Smoothie', price: 5.50, category: 'matcha', add: 3.00 }
   ],
-  dulce: [
-    { id:'d1', name:'Rose Petal Cookie', desc:'Cookie tierna de chocolate blanco, pistacho y pétalos comestibles.', price:'4,20 €', ing:['Harina','Mantequilla','Chocolate blanco','Pistacho'], alg:['Gluten','Lácteos','Frutos secos'] },
-    { id:'d2', name:'Aura Tart', desc:'Tarta de frutos rojos con crema pastelera y base crujiente de almendra.', price:'5,90 €', ing:['Frutos rojos','Crema pastelera','Almendra'], alg:['Gluten','Lácteos','Huevo','Frutos secos'], moment:true, momentTag:'DE TEMPORADA' },
-    { id:'d3', name:'Blossom Cinnamon Roll', desc:'Roll de canela glaseado con crema de rosas y azúcar perlado.', price:'4,50 €', ing:['Harina','Canela','Mantequilla'], alg:['Gluten','Lácteos'] },
+
+  duo: [
+    { id: 'duo-drinks', name: 'DÚO Bebidas', price: 6.50, desc: 'Dos bebidas a elegir' },
+    { id: 'duo-food', name: 'DÚO Food', price: 14.90, desc: 'Pack + Pack para compartir' }
   ],
-  extras: [
-    { id:'e1', name:'Huevo Poché', desc:'Para acompañar cualquier plato salado.', price:'1,80 €', ing:['Huevo'], alg:['Huevo'] },
-    { id:'e2', name:'Aguacate', desc:'Media pieza laminada.', price:'1,80 €', ing:['Aguacate'], alg:[] },
-    { id:'e3', name:'Bacon Crujiente', desc:'Panceta curada al horno.', price:'2,00 €', ing:['Panceta'], alg:[] },
+
+  comer: [
+    { group: 'Pasteles', items: [
+      { id: 'croissant', name: 'Croissant', price: 2.20 },
+      { id: 'dolor', name: 'Dolor de cabeza', price: 2.50 }
+    ]},
+    { group: 'Sándwiches', items: [
+      { id: 'club', name: 'Club Sandwich', price: 6.50 }
+    ]}
   ]
 };
-
-function productCardHTML(item, index){
-  return `
-    <div class="product-card" data-id="${item.id}" onclick="openSheet('${item.id}')">
-      <div class="photo product-photo"></div>
-      <div class="product-info">
-        <h3 class="display">${item.name}</h3>
-        <p class="desc">${item.desc}</p>
-        <div class="row">
-          <span class="price">${item.price}</span>
-          <span class="ver-mas">VER MÁS</span>
-        </div>
-      </div>
-    </div>`;
-}
-
-function momentCardHTML(item){
-  return `
-    <div class="moment-card" data-id="${item.id}" onclick="openSheet('${item.id}')">
-      <div class="photo" style="position:relative;">
-        <span class="moment-tag">${item.momentTag}</span>
-      </div>
-      <h3 class="display">${item.name}</h3>
-      <p>${item.price}</p>
-    </div>`;
-}
-
-function render(){
-  document.getElementById('grid-brunch').innerHTML = DATA.brunch.map(productCardHTML).join('');
-  document.getElementById('grid-bebidas').innerHTML = DATA.bebidas.map(productCardHTML).join('');
-  document.getElementById('grid-cafe').innerHTML = DATA.cafe.map(productCardHTML).join('');
-  document.getElementById('grid-dulce').innerHTML = DATA.dulce.map(productCardHTML).join('');
-  document.getElementById('grid-extras').innerHTML = DATA.extras.map(productCardHTML).join('');
-
-  const all = [...DATA.brunch, ...DATA.bebidas, ...DATA.cafe, ...DATA.dulce, ...DATA.extras];
-  const moments = all.filter(p => p.moment);
-  document.getElementById('moments-track').innerHTML = moments.map(momentCardHTML).join('');
-}
-
-function findItem(id){
-  const all = [...DATA.brunch, ...DATA.bebidas, ...DATA.cafe, ...DATA.dulce, ...DATA.extras];
-  return all.find(p => p.id === id);
-}
-
-/* ---- PETALS (flores cayendo) ---- */
-function createPetals(){
-  const layer = document.getElementById('petals-layer');
-  if(!layer || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const colors = ['var(--rosa-empolvado)','var(--rosa-pastel)','var(--dorado)','var(--acento)'];
-  // Un solo pétalo de flor de cerezo (con pequeña muesca en la punta),
-  // repetido 5 veces en rotación alrededor del centro para formar la flor de sakura.
-  const sakuraPetal = 'M12 12 C9.9 12 8.2 10.15 8.2 7.7 C8.2 5.55 9.65 3.6 11.55 1.7 C11.75 2.15 12.25 2.15 12.45 1.7 C14.35 3.6 15.8 5.55 15.8 7.7 C15.8 10.15 14.1 12 12 12 Z';
-  const sakuraSVG = `
-    <svg viewBox="0 0 24 24">
-      <g fill="currentColor">
-        <path d="${sakuraPetal}" transform="rotate(0 12 12)"/>
-        <path d="${sakuraPetal}" transform="rotate(72 12 12)"/>
-        <path d="${sakuraPetal}" transform="rotate(144 12 12)"/>
-        <path d="${sakuraPetal}" transform="rotate(216 12 12)"/>
-        <path d="${sakuraPetal}" transform="rotate(288 12 12)"/>
-      </g>
-      <circle cx="12" cy="12" r="1.5" fill="#FFF9F4" opacity="0.9"/>
-    </svg>`;
-  const COUNT = 16;
-
-  for(let i=0; i<COUNT; i++){
-    const el = document.createElement('div');
-    el.className = 'petal';
-    const size = 13 + Math.random()*15;
-    const left = Math.random()*100;
-    const duration = 9 + Math.random()*9;
-    const delay = -(Math.random()*duration);
-    const anim = Math.random() > 0.5 ? 'petal-fall-a' : 'petal-fall-b';
-    const color = colors[Math.floor(Math.random()*colors.length)];
-    const opacity = 0.55 + Math.random()*0.35;
-
-    el.style.left = left + '%';
-    el.style.width = size + 'px';
-    el.style.height = size + 'px';
-    el.style.color = color;
-    el.style.opacity = opacity;
-    el.style.animationName = anim;
-    el.style.animationDuration = duration + 's';
-    el.style.animationDelay = delay + 's';
-    el.innerHTML = sakuraSVG;
-    layer.appendChild(el);
-  }
-}
-
-/* ---- HOME / MENU TRANSITION ---- */
-function openMenu(){
-  document.getElementById('home').classList.add('hidden');
-  document.getElementById('menu-view').classList.add('active');
-  window.scrollTo(0,0);
-}
-function closeMenu(){
-  document.getElementById('menu-view').classList.remove('active');
-  document.getElementById('home').classList.remove('hidden');
-}
-
-/* ---- BOTTOM NAV ---- */
-const navItems = document.querySelectorAll('.nav-item');
-const navIndicator = document.getElementById('nav-indicator');
-
-function moveIndicatorTo(btn){
-  if(!navIndicator || !btn) return;
-  navIndicator.style.width = btn.offsetWidth + 'px';
-  navIndicator.style.transform = `translateX(${btn.offsetLeft - 8}px)`;
-}
-
-navItems.forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    navItems.forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    moveIndicatorTo(btn);
-    document.getElementById(btn.dataset.target).scrollIntoView({behavior:'smooth', block:'start'});
-  });
-});
-
-/* update nav active state on scroll */
-const sections = ['cat-brunch','cat-bebidas','cat-cafe','cat-dulce','cat-extras'];
-const menuView = document.getElementById('menu-view');
-menuView.addEventListener('scroll', ()=>{
-  let current = sections[0];
-  for(const id of sections){
-    const el = document.getElementById(id);
-    if(el.getBoundingClientRect().top - 140 <= 0) current = id;
-  }
-  navItems.forEach(b=>{
-    const isActive = b.dataset.target === current;
-    b.classList.toggle('active', isActive);
-    if(isActive) moveIndicatorTo(b);
-  });
-}, {passive:true});
-
-window.addEventListener('resize', ()=>{
-  const active = document.querySelector('.nav-item.active');
-  if(active) moveIndicatorTo(active);
-});
-
-/* ---- PRODUCT SHEET ---- */
-function openSheet(id){
-  const item = findItem(id);
-  if(!item) return;
-  document.getElementById('sheet-name').textContent = item.name;
-  document.getElementById('sheet-price').textContent = item.price;
-  document.getElementById('sheet-desc').textContent = item.desc;
-  document.getElementById('sheet-ingredientes').innerHTML = item.ing.map(i=>`<span class="chip">${i}</span>`).join('') || '<span class="chip">—</span>';
-  document.getElementById('sheet-alergenos').innerHTML = item.alg.length ? item.alg.map(a=>`<span class="chip alergeno">${a}</span>`).join('') : '<span class="chip alergeno">Sin alérgenos destacados</span>';
-
-  const extrasBlock = document.getElementById('sheet-extras-block');
-  if(item.extras && item.extras.length){
-    extrasBlock.style.display = 'block';
-    document.getElementById('sheet-extras').innerHTML = item.extras.map(e=>`<div class="extra-row"><span>${e.n}</span><b>${e.p}</b></div>`).join('');
-  } else {
-    extrasBlock.style.display = 'none';
-  }
-
-  document.getElementById('sheet-overlay').classList.add('open');
-  document.getElementById('sheet').classList.add('open');
-}
-function closeSheet(){
-  const sheet = document.getElementById('sheet');
-  sheet.classList.add('closing');
-  document.getElementById('sheet-overlay').classList.remove('open');
-  sheet.classList.remove('open');
-  setTimeout(()=> sheet.classList.remove('closing'), 350);
-}
-
-/* ---- SCROLL REVEAL ---- */
-function setupReveal(){
-  const obs = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); obs.unobserve(e.target); } });
-  }, {threshold:0.15});
-  document.querySelectorAll('.product-card, .category-head').forEach(c=>obs.observe(c));
-}
-
-render();
-setupReveal();
-createPetals();
-requestAnimationFrame(()=> moveIndicatorTo(document.querySelector('.nav-item.active')));
-</script>
-</body>
-</html>
+function euro(n){{return n.toFixed(2).replace('.',',')+' €'}}
+function renderPacks(){{
+ const el=document.getElementById('packs-grid');
+ el.innerHTML=allProducts.packs.map((p,i)=>{{
+   const badge=i===0?'STUDENT':(p.price<=7.9?'DULCE':p.price>=9.5?'MÁS COMPLETO':'FAVORITO');
+   return `<article class="pack"><div class="media">ISLA · ${p.name}</div><div class="pack-body"><div class="pack-top"><div class="pack-name">${p.name}</div><div class="pack-price">${euro(p.price)}</div></div><div class="badge">${badge}</div><div class="includes">Pack Student pensado para acompañarte con una bebida incluida. Selecciona tu opción y disfruta.</div><div class="drink"><strong>Bebida</strong><div class="pills"><button class="pill selected">Café · incluido</button><button class="pill">Matcha +1,50 €</button></div></div></div></article>`
+ }}).join('')
+}}
+function renderDrinks(){{
+ const items=[...allProducts.drinks,{id:'ube-smoothie',name:'Ube Smoothie',price:4.80}];
+ document.getElementById('drinks-grid').innerHTML=items.map((d,i)=>`<article class="drink-card ${i===0?'featured':''} ${d.name.toLowerCase().includes('ube')?'ube':''}"><div><h3>${d.name}</h3><p>${d.name==='Protein Smoothie'?'Una opción más completa cuando quieres proteína.':d.name.includes('Ube')?'Cremoso, diferente y con ese punto visual de ISLA.':'Matcha para cambiar el ritmo.'}</p><div class="drink-price">${euro(d.price)}</div></div></article>`).join('')
+}}
+function renderDuo(){{document.getElementById('duo-grid').innerHTML=allProducts.duo.map(d=>`<article class="duo-card"><div><h3>${d.name}</h3><p>${d.desc}</p></div><strong>${euro(d.price)}</strong></article>`).join('')}}
+function renderComer(){{document.getElementById('comer-grid').innerHTML=allProducts.comer.flatMap(g=>g.items.map(x=>`<article class="item"><small>${g.group}</small><b>${x.name}</b><span>${euro(x.price)}</span></article>`)).join('')}}
+function setup(){{renderPacks();renderDrinks();renderDuo();renderComer();document.querySelectorAll('.pill').forEach(p=>p.onclick=()=>{{p.parentElement.querySelectorAll('.pill').forEach(x=>x.classList.remove('selected'));p.classList.add('selected')}});const links=[...document.querySelectorAll('.subnav a')];const obs=new IntersectionObserver(es=>es.forEach(e=>{{if(e.isIntersecting){{links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id||e.target.id==='top'&&a.getAttribute('href')==='#top'))}}}}),{{rootMargin:'-35% 0px -55%'}});['top','packs','drinks','duo','comer','club'].forEach(id=>{{const e=document.getElementById(id);if(e)obs.observe(e)}})}}document.addEventListener('DOMContentLoaded',setup);
+</script></body></html>
