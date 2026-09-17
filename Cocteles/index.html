@@ -820,6 +820,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
 .li.has-media.side{flex-direction:row;align-items:center;gap:18px;}
 .li.has-media.side .li-thumb{width:96px;aspect-ratio:1/1;flex:none;}
 @media(min-width:760px){.li.has-media.side .li-thumb{width:128px;}}
+.li.has-media.side .li-thumb.bare{background:none;aspect-ratio:auto;width:auto;height:100px;}
+.li.has-media.side .li-thumb.bare img{width:auto;height:100%;object-fit:contain;}
+@media(min-width:760px){.li.has-media.side .li-thumb.bare{height:132px;}}
 .li.has-media .li-body{flex:1;min-width:0;display:grid;grid-template-columns:1fr auto;gap:10px 22px;align-items:baseline;}
 .li.has-media .li-body h4{grid-column:1/2;}
 .li.has-media .li-body .price{grid-row:1/2;grid-column:2/3;}
@@ -1061,7 +1064,7 @@ function islaMedia(root){
 <div class="ls">
 <div class="li rv"><h4>Volcán Tropical</h4><span class="price">9,00 €</span><p class="story" data-i18n="story_volcan-tropical">Nuestro cóctel insignia: una combinación profunda de sabores que no vamos a spoilear.</p><p class="ing" data-i18n="ing_volcan-tropical">Receta de la casa · Fruta de temporada</p></div>
 <div class="li rv"><h4>Abuela Kills</h4><span class="price">12,50 €</span><p class="story" data-i18n="story_abuela-kills">El nombre lo dice todo. Dulce como la abuela, con un golpe que no perdona.</p><p class="ing" data-i18n="ing_abuela-kills">Amaretto · Tequila Don Julio · Cóctel de fruta</p></div>
-<div class="li rv has-media side"><div class="li-thumb mask"><img data-media="liElche" alt="" aria-hidden="true" loading="lazy" decoding="async"></div><div class="li-body"><h4>Elche Mule</h4><span class="price">9,00 €</span><p class="story" data-i18n="story_elche-mule">Nuestra versión del clásico, con dátil de la tierra en vez de jengibre.</p><p class="ing" data-i18n="ing_elche-mule">Vodka · Dátil · Lima</p></div></div>
+<div class="li rv has-media side"><div class="li-thumb mask bare"><img data-media="liElche" alt="" aria-hidden="true" loading="lazy" decoding="async"></div><div class="li-body"><h4>Elche Mule</h4><span class="price">9,00 €</span><p class="story" data-i18n="story_elche-mule">Nuestra versión del clásico, con dátil de la tierra en vez de jengibre.</p><p class="ing" data-i18n="ing_elche-mule">Vodka · Dátil · Lima</p></div></div>
 <div class="li rv"><h4>Don July Tamarindo</h4><span class="price">11,50 €</span><p class="story" data-i18n="story_don-july-tamarindo">Prima hermana del Dark Sunset, con un toque más intenso de tamarindo.</p><p class="ing" data-i18n="ing_don-july-tamarindo">Ron oscuro · Pulpa de tamarindo · Lima · Sirope de caña</p></div>
 <div class="li rv"><h4>Mollar Spritz</h4><span class="price">7,50 €</span><p class="story" data-i18n="story_mollar-spritz">Ligero, con burbuja y granada. El que pides antes de decidir qué cenar.</p><p class="ing" data-i18n="ing_mollar-spritz">Ginebra · Zumo de granada · Lima · Soda</p></div>
 <div class="li rv"><h4>Pilicoco</h4><span class="price">8,00 €</span><p class="story" data-i18n="story_pilicoco">Piña, coco y ron. Cierra los ojos y estás en otra isla.</p><p class="ing" data-i18n="ing_pilicoco">Ron · Zumo de piña · Lima · Coco rallado</p></div>
