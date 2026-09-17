@@ -337,6 +337,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             },
             {
               "@type": "MenuItem",
+              "name": "Bimbombum",
+              "description": "Vodka · Cereza · Pomelo · Granadilla · Soda",
+              "offers": {
+                "@type": "Offer",
+                "price": "8.50",
+                "priceCurrency": "EUR"
+              }
+            },
+            {
+              "@type": "MenuItem",
               "name": "Cuba Libre",
               "description": "Ron · Cola · Lima",
               "offers": {
@@ -1051,7 +1061,7 @@ function islaMedia(root){
 <div class="ls">
 <div class="li rv"><h4>Volcán Tropical</h4><span class="price">9,00 €</span><p class="story" data-i18n="story_volcan-tropical">Nuestro cóctel insignia: una combinación profunda de sabores que no vamos a spoilear.</p><p class="ing" data-i18n="ing_volcan-tropical">Receta de la casa · Fruta de temporada</p></div>
 <div class="li rv"><h4>Abuela Kills</h4><span class="price">12,50 €</span><p class="story" data-i18n="story_abuela-kills">El nombre lo dice todo. Dulce como la abuela, con un golpe que no perdona.</p><p class="ing" data-i18n="ing_abuela-kills">Amaretto · Tequila Don Julio · Cóctel de fruta</p></div>
-<div class="li rv has-media side"><div class="li-thumb mask contain"><img data-media="liElche" alt="" aria-hidden="true" loading="lazy" decoding="async"></div><div class="li-body"><h4>Elche Mule</h4><span class="price">9,00 €</span><p class="story" data-i18n="story_elche-mule">Nuestra versión del clásico, con dátil de la tierra en vez de jengibre.</p><p class="ing" data-i18n="ing_elche-mule">Vodka · Dátil · Lima</p></div></div>
+<div class="li rv has-media side"><div class="li-thumb mask"><img data-media="liElche" alt="" aria-hidden="true" loading="lazy" decoding="async"></div><div class="li-body"><h4>Elche Mule</h4><span class="price">9,00 €</span><p class="story" data-i18n="story_elche-mule">Nuestra versión del clásico, con dátil de la tierra en vez de jengibre.</p><p class="ing" data-i18n="ing_elche-mule">Vodka · Dátil · Lima</p></div></div>
 <div class="li rv"><h4>Don July Tamarindo</h4><span class="price">11,50 €</span><p class="story" data-i18n="story_don-july-tamarindo">Prima hermana del Dark Sunset, con un toque más intenso de tamarindo.</p><p class="ing" data-i18n="ing_don-july-tamarindo">Ron oscuro · Pulpa de tamarindo · Lima · Sirope de caña</p></div>
 <div class="li rv"><h4>Mollar Spritz</h4><span class="price">7,50 €</span><p class="story" data-i18n="story_mollar-spritz">Ligero, con burbuja y granada. El que pides antes de decidir qué cenar.</p><p class="ing" data-i18n="ing_mollar-spritz">Ginebra · Zumo de granada · Lima · Soda</p></div>
 <div class="li rv"><h4>Pilicoco</h4><span class="price">8,00 €</span><p class="story" data-i18n="story_pilicoco">Piña, coco y ron. Cierra los ojos y estás en otra isla.</p><p class="ing" data-i18n="ing_pilicoco">Ron · Zumo de piña · Lima · Coco rallado</p></div>
@@ -1065,6 +1075,7 @@ function islaMedia(root){
 <div class="li rv"><h4>Piña Colada</h4><span class="price">7,00 €</span><p class="story" data-i18n="story_pina-colada">El original. Sin trucos, sin prisa.</p><p class="ing" data-i18n="ing_pina-colada">Ron · Piña · Coco</p></div>
 <div class="li rv"><h4>Cuba Libre</h4><span class="price">8,00 €</span><p class="story" data-i18n="story_cuba-libre">Sencillo y directo, con una lima que lo cambia todo.</p><p class="ing" data-i18n="ing_cuba-libre">Ron · Cola · Lima</p></div>
 <div class="li rv"><h4>Ron Cola</h4><span class="price">7,00 €</span><p class="story" data-i18n="story_ron-cola">Para los que ya saben lo que quieren.</p><p class="ing" data-i18n="ing_ron-cola">Ron · Cola</p></div>
+<div class="li rv"><h4><span class="lab" style="display:block;margin-bottom:6px" data-i18n="lab_lollipop">Piruleta</span>Bimbombum</h4><span class="price">8,50 €</span><p class="story" data-i18n="story_bimbombum">Un invento con lo que quedó en la barra luego de una noche larga. Refrescante y embriagante.</p><p class="ing" data-i18n="ing_bimbombum">Vodka · Cereza · Pomelo · Granadilla · Soda</p></div>
 </div>
 </div></section>
 
@@ -1192,6 +1203,7 @@ function islaMedia(root){
       lab_fav: "House favourite",
       lab_top: "Best seller",
       lab_new: "New",
+      lab_lollipop: "Lollipop",
       close_k: "Cocktails · Food · Good nights",
       f_hours: "Cocktails, tapas and dinner.",
       f_where: "Elche, Alicante",
@@ -1265,6 +1277,7 @@ function islaMedia(root){
       "ing_daiquiri-strawberry-frozen": "White rum · Strawberries · Lemon",
       "ing_sex-on-the-beach": "Vodka · Peach liqueur · Orange juice · Grenadine",
       "ing_ron-cola": "Rum · Cola",
+      "ing_bimbombum": "Vodka · Cherry · Grapefruit · Granadilla · Soda",
       "ing_cuba-libre": "Rum · Cola · Lime",
       "ing_papi-ven": "Brugal Rum · Strawberry · Grenadine"
     },
@@ -1309,6 +1322,7 @@ function islaMedia(root){
       lab_fav: "Le favori de la maison",
       lab_top: "Le plus demandé",
       lab_new: "Nouveau",
+      lab_lollipop: "Sucette",
       close_k: "Cocktails · Cuisine · Belles nuits",
       f_hours: "Cocktails, tapas et dîner.",
       f_where: "Elche, Alicante",
@@ -1383,6 +1397,7 @@ function islaMedia(root){
       "ing_daiquiri-strawberry-frozen": "Rhum blanc · Fraises · Citron",
       "ing_sex-on-the-beach": "Vodka · Liqueur de pêche · Jus d'orange · Grenadine",
       "ing_ron-cola": "Rhum · Cola",
+      "ing_bimbombum": "Vodka · Cerise · Pamplemousse · Granadilla · Soda",
       "ing_cuba-libre": "Rhum · Cola · Citron vert",
       "ing_papi-ven": "Rhum Brugal · Fraise · Grenadine"
     }
