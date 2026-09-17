@@ -638,7 +638,8 @@ h1,h2,h3{margin:0;font-family:'Bodoni Moda',Georgia,serif;font-weight:400;line-h
 .nav{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .4s var(--ease),border-color .4s var(--ease);border-bottom:1px solid transparent;}
 .nav.on{background:rgba(9,10,10,.72);backdrop-filter:blur(16px) saturate(1.2);border-bottom-color:var(--line);}
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px;}
-.brand{font-family:'Bodoni Moda',serif;font-size:19px;letter-spacing:.42em;padding-left:.42em;}
+.brand{display:flex;align-items:center;font-family:'Bodoni Moda',serif;font-size:19px;letter-spacing:.42em;padding-left:.42em;}
+.brand img{display:block;height:58px;px;width:auto;}
 .nav-links{display:none;gap:30px;align-items:center;}
 .nav-links a{font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);transition:color .3s var(--ease);position:relative;padding:6px 0;}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--amber);transition:width .35s var(--ease);}
@@ -934,7 +935,7 @@ function islaMedia(root){
 
 <nav class="nav" id="nav">
   <div class="wrap nav-in">
-    <a href="https://www.islabrunchbar.com/" class="brand">ISLA</a>
+    <a href="https://www.islabrunchbar.com/" class="brand"><img src="fotos/logo.png" alt="ISLA Cocktails Bar" width="800" height="400"></a>
     <div class="nav-links">
       <a href="#temporada" data-i18n="nav_season">Temporada</a>
       <a href="#firmas" data-i18n="nav_dj">Don Julio</a>
@@ -1217,9 +1218,7 @@ function islaMedia(root){
       "desc_brioche-york-deluxe": "Brioche bread, York ham, scrambled egg, mozzarella and Isla sauce.",
       "desc_island-chicken-brioche": "Brioche bread with grilled chicken breast, mozzarella, crispy bacon, cherry tomato and Isla sauce.",
       "desc_provolone-isla": "Melted provolone cheese with spices and toasted bread for dipping.",
-      "desc_la-isla-de-zeian": "Potato, shredded chicken, ketchup, mayo and gratinated mozzarella cheese.",
       "desc_patatas-bravas-isla": "Crispy fries with alioli and our house brava sauce.",
-      "desc_batata-isla": "Sweet potato fries with an egg at the heart of the mound, with alioli or Isla brava sauce.",
       "desc_mozzarella-bacon-tosta": "Garlic toast with melted mozzarella and crispy bacon on top.",
       "desc_quesadilla-isla": "Quesadilla with mozzarella cheese and pink sauce.",
       "desc_serranito-island-mood": "Sourdough bread, garlic cream cheese, Serrano ham, mozzarella, cherry tomato and honey.",
@@ -1334,7 +1333,6 @@ function islaMedia(root){
       "desc_provolone-isla": "Fromage provolone fondu aux épices, servi avec du pain grillé à tremper.",
       "desc_la-isla-de-zeian": "Pomme de terre, poulet effiloché, ketchup, mayo et mozzarella gratinée.",
       "desc_patatas-bravas-isla": "Frites croustillantes avec alioli et notre sauce brava maison.",
-      "desc_batata-isla": "Frites de patate douce avec un œuf au cœur du monticule, avec alioli ou sauce brava Isla.",
       "desc_mozzarella-bacon-tosta": "Tartine à l'ail avec mozzarella fondue et lardons croustillants sur le dessus.",
       "desc_quesadilla-isla": "Quesadilla au fromage mozzarella et sauce rose.",
       "desc_serranito-island-mood": "Pain au levain, crème de fromage à l'ail, jambon serrano, mozzarella, tomate cerise et miel.",
