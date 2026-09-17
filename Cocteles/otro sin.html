@@ -1481,17 +1481,6 @@ function islaMedia(root){
   }
   onScroll();
 
-  /* red de seguridad: si por lo que sea el observer de scroll no revela
-     algun elemento (fallo del navegador, timing, etc.), lo forzamos a
-     mostrarse igualmente para que nunca quede invisible para siempre */
-  window.addEventListener('load', function(){
-    setTimeout(function(){
-      Array.prototype.forEach.call(document.querySelectorAll('.rv:not(.in),.mask:not(.in)'), function(el){
-        el.classList.add('in');
-      });
-    }, 1500);
-  });
-
   /* ---------------- vídeos ---------------- */
   var vids = document.querySelectorAll('video[data-src]');
   var slow = navigator.connection && (navigator.connection.saveData || /2g/.test(navigator.connection.effectiveType || ''));
@@ -1506,21 +1495,6 @@ function islaMedia(root){
       });
     }, { threshold: .2 });
     Array.prototype.forEach.call(vids, function(v){ vo.observe(v); });
-  } else if (vids.length && !slow){
-    /* sin IntersectionObserver o reduce activo: carga los vídeos igualmente */
-    Array.prototype.forEach.call(vids, function(v){ if (!v.src) v.src = v.dataset.src; });
-  }
-
-  /* red de seguridad: si el observer de vídeo no ha cargado alguno
-     pasado un tiempo, lo forzamos igual que con las fotos */
-  if (vids.length && !slow){
-    window.addEventListener('load', function(){
-      setTimeout(function(){
-        Array.prototype.forEach.call(vids, function(v){
-          if (!v.src && v.dataset.src) v.src = v.dataset.src;
-        });
-      }, 1500);
-    });
   }
 
   /* la foto de portada solo se ve si no hay vídeo reproduciéndose */
