@@ -1469,28 +1469,40 @@ function islaMedia(root){
     }
   }
 
+  var revealTargets = Array.prototype.slice.call(document.querySelectorAll('.rv,.mask'));
+  function revealCheck(){
+    var vh = window.innerHeight;
+    for (var i = revealTargets.length - 1; i >= 0; i--){
+      var el = revealTargets[i];
+      if (el.classList.contains('in')){ revealTargets.splice(i, 1); continue; }
+      var r = el.getBoundingClientRect();
+      if (r.top < vh * 0.94 && r.bottom > 0){ el.classList.add('in'); revealTargets.splice(i, 1); }
+    }
+  }
+
   if ('IntersectionObserver' in window && !reduce){
     var io = new IntersectionObserver(function(es){
       es.forEach(function(e){
         if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
       });
     }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
-    Array.prototype.forEach.call(document.querySelectorAll('.rv,.mask'), function(el){ io.observe(el); });
+    Array.prototype.forEach.call(revealTargets, function(el){ io.observe(el); });
   } else {
     Array.prototype.forEach.call(document.querySelectorAll('.rv,.mask'), function(el){ el.classList.add('in'); });
   }
   onScroll();
 
-  /* red de seguridad: si por lo que sea el observer de scroll no revela
-     algun elemento (fallo del navegador, timing, etc.), lo forzamos a
-     mostrarse igualmente para que nunca quede invisible para siempre */
-  window.addEventListener('load', function(){
-    setTimeout(function(){
-      Array.prototype.forEach.call(document.querySelectorAll('.rv:not(.in),.mask:not(.in)'), function(el){
-        el.classList.add('in');
-      });
-    }, 1500);
-  });
+  /* red de seguridad: en cada scroll, comprobamos tambien manualmente
+     que lo visible en pantalla tenga su clase 'in'. Si el observer
+     de scroll falla por lo que sea en algun navegador, esta comprobacion
+     hace lo mismo (revelar segun se hace scroll), en vez de mostrar
+     todo de golpe. Es barato: solo mira lo que aun no se ha revelado. */
+  window.addEventListener('scroll', function(){
+    if (revealTargets.length) window.requestAnimationFrame(revealCheck);
+  }, { passive: true });
+  window.addEventListener('resize', revealCheck);
+  window.addEventListener('load', revealCheck);
+  revealCheck();
 
   /* ---------------- vídeos ---------------- */
   var vids = document.querySelectorAll('video[data-src]');
@@ -1511,16 +1523,31 @@ function islaMedia(root){
     Array.prototype.forEach.call(vids, function(v){ if (!v.src) v.src = v.dataset.src; });
   }
 
-  /* red de seguridad: si el observer de vídeo no ha cargado alguno
-     pasado un tiempo, lo forzamos igual que con las fotos */
+  /* red de seguridad: por si el observer de vídeo falla en algún
+     navegador, comprobamos también en cada scroll si algún vídeo
+     pendiente ya está cerca de la pantalla y lo cargamos entonces,
+     igual que haría el observer. No carga todos de golpe. */
   if (vids.length && !slow){
-    window.addEventListener('load', function(){
-      setTimeout(function(){
-        Array.prototype.forEach.call(vids, function(v){
-          if (!v.src && v.dataset.src) v.src = v.dataset.src;
-        });
-      }, 1500);
-    });
+    var pendingVids = Array.prototype.slice.call(vids);
+    var checkVids = function(){
+      var vh = window.innerHeight;
+      for (var i = pendingVids.length - 1; i >= 0; i--){
+        var v = pendingVids[i];
+        if (v.src){ pendingVids.splice(i, 1); continue; }
+        var r = v.getBoundingClientRect();
+        if (r.top < vh * 1.2 && r.bottom > -vh * 0.2){
+          v.src = v.dataset.src;
+          var p = v.play(); if (p && p.catch) p.catch(function(){});
+          pendingVids.splice(i, 1);
+        }
+      }
+    };
+    window.addEventListener('scroll', function(){
+      if (pendingVids.length) window.requestAnimationFrame(checkVids);
+    }, { passive: true });
+    window.addEventListener('resize', checkVids);
+    window.addEventListener('load', checkVids);
+    checkVids();
   }
 
   /* la foto de portada solo se ve si no hay vídeo reproduciéndose */

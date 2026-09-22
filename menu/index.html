@@ -2694,7 +2694,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button class="sub-tab sub-tab-gold on" data-page="brioche" onclick="showSub('brioche',this,'comer')" role="tab" aria-selected="true">🥐 <span data-en="Signature Brioches" data-fr="Brioches Signature">Brioche Signature</span><span class="sub-tab-dot" aria-hidden="true">🔥</span></button>
       <button class="sub-tab" data-page="brunch" onclick="showSub('brunch',this,'comer')" role="tab" aria-selected="false">🥯 <span data-en="Classics" data-fr="Classiques">Clásicos</span></button>
       <button class="sub-tab" data-page="dulce" onclick="showSub('dulce',this,'comer')" role="tab" aria-selected="false">🥞 <span data-en="Sweet" data-fr="Sucré">Dulce</span></button>
-      <button class="sub-tab" data-page="compartir" onclick="showSub('compartir',this,'comer')" role="tab" aria-selected="false">🫶 <span data-en="Sharing" data-fr="À partager">Compartir</span></button>
+      <button class="sub-tab" data-page="compartir" onclick="showSub('compartir',this,'comer')" role="tab" aria-selected="false">🫶 <span data-en="Centerpiece" data-fr="Plats à partager">Centro de Mesa</span></button>
       <button class="sub-tab" data-page="diy" onclick="showSub('diy',this,'comer')" role="tab" aria-selected="false">🧪 <span data-en="ISLA Lab" data-fr="Laboratoire ISLA">Laboratorio ISLA</span></button>
     </div>
 
@@ -2735,7 +2735,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  <span class="landing-copy">
  <span class="landing-kicker">ISLA BRUNCH</span>
  <strong data-en="EAT" data-fr="MANGER">COMER</strong>
- <span class="landing-desc">Brioche · Brunch · Dulce · Compartir</span>
+ <span class="landing-desc">Brioche · Brunch · Dulce · Centro de Mesa</span>
  <span class="landing-action">Explorar <b>→</b></span>
  </span>
  </button>
@@ -3415,7 +3415,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <p class="item-desc" data-en="Brioche with pulled pork, mozzarella and Sweet Isla sauce." data-fr="Brioche avec pulled pork, mozzarella et sauce Sweet Isla.">Pulled pork con mozzarella y salsa Sweet Isla.</p>
       <div class="item-opt-row">
-        <span class="opt-chip">🥒 <span data-en="Pickles — optional" data-fr="Cornichons — optionnels">Pepinillo — opcional</span></span>
         <span class="opt-chip">🌶️ <span data-en="Jalapeño — optional" data-fr="Jalapeño — optionnel">Jalapeño — opcional</span></span>
       </div>
     </div>
@@ -3681,20 +3680,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ══════════ COMPARTIR ══════════ -->
-  <section id="sec-compartir" class="page" role="tabpanel" tabindex="0" aria-label="Para compartir">
+  <section id="sec-compartir" class="page" role="tabpanel" tabindex="0" aria-label="Centro de mesa">
     <div class="sec-head">
-      <p class="eyebrow" data-en="To share" data-fr="À partager">Para compartir</p>
+      <p class="eyebrow" data-en="Centerpiece" data-fr="Plats à partager">Centro de Mesa</p>
       <h2 class="sec-title" data-en="A table for everyone" data-fr="Une table pour tous">Mesa para todos</h2>
       <p class="sec-note" data-en="The perfect dishes to place in the middle for everyone to try." data-fr="Les plats parfaits à poser au centre pour que tout le monde goûte.">Los platos perfectos para poner en el centro y que todo el mundo pruebe.</p>
     </div>
 
     <div class="card card-hero">
-      <span class="badge badge-fav">❤️ <span data-en="Favorite" data-fr="Favori">Favorito</span></span>
+      <span class="badge badge-new">🆕 <span data-en="New" data-fr="Nouveau">NUEVO</span></span>
       <div class="card-row">
-        <p class="item-name">La Isla de Zeian</p>
+        <p class="item-name" data-en="Nachos Pulled Isla" data-fr="Nachos Pulled Isla">Nachos Pulled Isla</p>
         <p class="item-price">9,90€</p>
       </div>
-      <p class="item-desc" data-en="Potato, shredded chicken, ketchup, mayo and gratinated mozzarella cheese." data-fr="Pomme de terre, poulet effiloché, ketchup, mayo et mozzarella gratinée.">Patata, pollo desmenuzado, ketchup, mayo y queso mozzarella gratinado.</p>
+      <p class="item-desc" data-en="Nachos with cheddar cheese, homemade pulled pork, guacamole, pico de gallo and Isla Peach Spice sauce." data-fr="Nachos au fromage cheddar, pulled pork maison, guacamole, pico de gallo et sauce Isla Peach Spice.">Queso cheddar, nachos, pulled pork casero, guacamole, pico de gallo y salsa Isla Peach Spice.</p>
     </div>
 
     <div class="card">
@@ -4204,17 +4203,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             },
             {
               "@type": "MenuSection",
-              "name": "Compartir",
+              "name": "Centro de Mesa",
               "hasMenuItem": [
                 {
                   "@type": "MenuItem",
-                  "name": "La Isla de Zeian",
+                  "name": "Nachos Pulled Isla",
                   "offers": {
                     "@type": "Offer",
                     "price": "9.90",
                     "priceCurrency": "EUR"
                   },
-                  "description": "Patata, pollo desmenuzado, ketchup, mayo y queso mozzarella gratinado."
+                  "description": "Nachos con queso cheddar, pulled pork casero, guacamole, pico de gallo y salsa Isla Peach Spice."
                 },
                 {
                   "@type": "MenuItem",
@@ -4836,7 +4835,7 @@ const state = {
 
 // Arquitectura:
 // Inicio → portada visual
-// Comer → Clásicos / Signature / Dulce / Compartir / Laboratorio
+// Comer → Clásicos / Signature / Dulce / Centro de Mesa / Laboratorio
 // Beber → Matcha / Ube / Café / Smoothies / Otras
 const catPages = {
   inicio: ['inicio'],
