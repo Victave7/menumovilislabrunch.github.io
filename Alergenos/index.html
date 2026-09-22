@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alérgenos | ISLA Brunch & Bar</title>
-<meta name="description" content="Consulta los alérgenos de cada plato de la carta de ISLA Brunch & Bar en Elche: gluten, huevo, leche, soja, mostaza, sésamo, pescado y frutos de cáscara por producto.">
+<meta name="description" content="Consulta los alérgenos de cada plato de ISLA Brunch & Bar en Elche. Información completa sobre los 14 alérgenos declarables según normativa UE 1169/2011.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="ISLA Brunch & Bar">
 <meta name="theme-color" content="#2D6A3F">
@@ -29,12 +29,17 @@
   --divider:rgba(92,61,40,0.11);
   --shadow:0 4px 20px rgba(0,0,0,.08);
   --radius:16px;
+  --orange:#F0A857;
 }
 
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
@@ -53,6 +58,10 @@ body{
   background:linear-gradient(180deg,#FFF3E6 0%, #FFF8F2 100%);
   padding:50px 25px 35px;
   text-align:center;
+  position:sticky;
+  top:0;
+  z-index:10;
+  box-shadow:var(--shadow);
 }
 
 .logo{
@@ -79,11 +88,18 @@ body{
 .alert{
   margin:20px;
   background:#FFF4E8;
-  border-left:4px solid #F0A857;
+  border-left:4px solid var(--orange);
   padding:14px;
   border-radius:12px;
   font-size:13px;
   color:var(--bark);
+  line-height:1.6;
+}
+
+.alert strong{
+  display:block;
+  margin-bottom:8px;
+  color:var(--text);
 }
 
 .legend{
@@ -119,6 +135,8 @@ body{
   color:var(--bark);
   font-size:30px;
   margin-bottom:15px;
+  padding-top:20px;
+  border-top:1px solid var(--divider);
 }
 
 .card{
@@ -128,12 +146,26 @@ body{
   margin-bottom:12px;
   border:1px solid var(--divider);
   box-shadow:var(--shadow);
+  transition:transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 24px rgba(0,0,0,.12);
 }
 
 .food-name{
   font-size:16px;
   font-weight:600;
+  margin-bottom:8px;
+  color:var(--text);
+}
+
+.price{
+  font-size:13px;
+  color:var(--muted);
   margin-bottom:12px;
+  font-style:italic;
 }
 
 .tags{
@@ -149,6 +181,7 @@ body{
   padding:7px 12px;
   font-size:12px;
   font-weight:500;
+  white-space:nowrap;
 }
 
 .tag.none{
@@ -161,12 +194,29 @@ body{
   color:var(--bark);
 }
 
+.badge{
+  display:inline-block;
+  background:#E8F5E9;
+  color:#2E7D32;
+  padding:4px 8px;
+  border-radius:4px;
+  font-size:11px;
+  font-weight:600;
+  margin-bottom:8px;
+}
+
+.badge.nuevo{
+  background:#FFE5E5;
+  color:#C62828;
+}
+
 .disclaimer{
   margin:20px;
   background:white;
   border-radius:20px;
   padding:25px;
   border:1px solid var(--divider);
+  border-left:4px solid var(--green);
 }
 
 .disclaimer h3{
@@ -182,17 +232,87 @@ body{
   margin-bottom:15px;
 }
 
+.disclaimer ul{
+  margin-left:20px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.8;
+}
+
+.disclaimer li{
+  margin-bottom:8px;
+}
+
+.toc{
+  background:var(--green-bg);
+  border-radius:16px;
+  padding:20px;
+  margin:20px;
+}
+
+.toc h3{
+  color:var(--green);
+  font-size:16px;
+  margin-bottom:12px;
+  font-weight:600;
+}
+
+.toc a{
+  display:block;
+  color:var(--green);
+  text-decoration:none;
+  font-size:13px;
+  padding:6px 0;
+  border-bottom:1px solid rgba(45,106,63,0.1);
+}
+
+.toc a:last-child{
+  border-bottom:none;
+}
+
+.toc a:hover{
+  font-weight:600;
+}
+
 .footer{
   text-align:center;
   padding:30px;
   font-size:12px;
   color:var(--muted);
   line-height:1.9;
+  border-top:1px solid var(--divider);
 }
 
 .footer a{
   color:var(--green);
   text-decoration:none;
+  font-weight:600;
+}
+
+.footer a:hover{
+  text-decoration:underline;
+}
+
+@media (max-width:480px){
+  .legend{
+    grid-template-columns:1fr 1fr;
+  }
+  
+  .legend-item{
+    font-size:10px;
+  }
+  
+  .hero{
+    padding:40px 20px 30px;
+  }
+  
+  .logo{
+    font-size:38px;
+  }
+  
+  .hero h1{
+    font-size:24px;
+  }
 }
 </style>
 </head>
@@ -210,7 +330,21 @@ body{
 </div>
 
 <div class="alert">
-⚠️ Los siguientes datos son orientativos y están basados en los ingredientes habituales de cada producto.
+  <strong>⚠️ Importante:</strong> Los datos que aparecen a continuación están basados en los ingredientes habituales de cada producto. No podemos garantizar la ausencia total de trazas por riesgo de contaminación cruzada.
+</div>
+
+<div class="toc">
+  <h3>📍 Ir a una sección:</h3>
+  <a href="#bagels">🥯 Bagels</a>
+  <a href="#tostas">🥖 Tostas</a>
+  <a href="#croissants">🥐 Croissants</a>
+  <a href="#brioche">🍞 Brioche</a>
+  <a href="#dulce">🥞 Dulce</a>
+  <a href="#cafe">☕ Café & Matcha</a>
+  <a href="#ube">💜 Ube</a>
+  <a href="#batidos">🍹 Batidos</a>
+  <a href="#cocteles">🍸 Cócteles</a>
+  <a href="#centro">🍽️ Centro de Mesa</a>
 </div>
 
 <div class="legend">
@@ -219,53 +353,88 @@ body{
   <div class="legend-item"><span>🥚</span>Huevo</div>
   <div class="legend-item"><span>🐟</span>Pescado</div>
   <div class="legend-item"><span>🥜</span>Cacahuetes</div>
+  <div class="legend-item"><span>🌰</span>Frutos de cáscara</div>
   <div class="legend-item"><span>🫘</span>Soja</div>
   <div class="legend-item"><span>🥛</span>Leche</div>
-  <div class="legend-item"><span>🌰</span>Frutos de cáscara</div>
   <div class="legend-item"><span>🥬</span>Apio</div>
   <div class="legend-item"><span>🟡</span>Mostaza</div>
   <div class="legend-item"><span>🌱</span>Sésamo</div>
   <div class="legend-item"><span>🧪</span>Sulfitos</div>
-  <div class="legend-item"><span>🌿</span>Altramuces</div>
-  <div class="legend-item"><span>🦑</span>Moluscos</div>
+  <div class="legend-item"><span>🧅</span>Altramuces</div>
+  <div class="legend-item"><span>🦑</span>Moluscos</span></div>
 </div>
 
 <!-- BAGELS -->
 <section class="section">
-<h2 class="section-title">🥯 Bagels</h2>
+<h2 class="section-title" id="bagels">🥯 Bagels</h2>
 
 <div class="card">
 <div class="food-name">Sesame Bagel</div>
 <div class="tags">
-<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🫘 Soja</span><span class="tag">🟡 Mostaza</span><span class="tag">🌱 Sésamo</span>
+<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🫘 Soja</span><span class="tag">🌱 Sésamo</span>
 </div>
 </div>
 
 <div class="card">
 <div class="food-name">Bagel York Classic</div>
 <div class="tags">
-<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🫘 Soja</span><span class="tag">🟡 Mostaza</span><span class="tag">🌱 Sésamo</span>
+<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🫘 Soja</span>
 </div>
 </div>
 
 <div class="card">
 <div class="food-name">Bagel Mediterráneo</div>
 <div class="tags">
-<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🫘 Soja</span><span class="tag">🟡 Mostaza</span><span class="tag">🌱 Sésamo</span>
+<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🫘 Soja</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Brunch Bagel</div>
+<div class="tags">
+<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Nordic Bagel Isla</div>
+<div class="tags">
+<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🐟 Pescado</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Veggie Bagel</div>
+<div class="tags">
+<span class="tag">🌾 Gluten</span><span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Serranito Bagel</div>
+<div class="tags">
+<span class="tag">🌾 Gluten</span><span class="tag">🥛 Leche</span>
 </div>
 </div>
 
 <div class="card">
 <div class="food-name">Bagel Salmón Deluxe</div>
 <div class="tags">
-<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🫘 Soja</span><span class="tag">🟡 Mostaza</span><span class="tag">🌱 Sésamo</span><span class="tag">🐟 Pescado</span>
+<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🐟 Pescado</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Island Chicken Bagel</div>
+<div class="tags">
+<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span>
 </div>
 </div>
 
 <div class="card">
 <div class="food-name">Bagel Caprese</div>
 <div class="tags">
-<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🫘 Soja</span><span class="tag">🟡 Mostaza</span><span class="tag">🌱 Sésamo</span>
+<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span>
 </div>
 </div>
 
@@ -273,40 +442,67 @@ body{
 
 <!-- TOSTAS -->
 <section class="section">
-<h2 class="section-title">🥖 Tostas</h2>
+<h2 class="section-title" id="tostas">🥖 Tostas</h2>
 
 <div class="card">
-<div class="food-name">Tosta Bacon Brunch</div>
+<div class="food-name">Isla Veggie</div>
 <div class="tags">
-<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🫘 Soja</span><span class="tag">🟡 Mostaza</span>
-</div>
-</div>
-
-<div class="card">
-<div class="food-name">Tosta York</div>
-<div class="tags">
-<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🫘 Soja</span><span class="tag">🟡 Mostaza</span>
+<span class="tag">🌾 Gluten</span><span class="tag">🥛 Leche</span>
 </div>
 </div>
 
 <div class="card">
-<div class="food-name">Tosta Mediterránea</div>
+<div class="food-name">Nordic Isla Toast</div>
 <div class="tags">
-<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🫘 Soja</span><span class="tag">🟡 Mostaza</span>
+<span class="tag">🌾 Gluten</span><span class="tag">🥛 Leche</span><span class="tag">🐟 Pescado</span>
 </div>
 </div>
 
 <div class="card">
-<div class="food-name">Tosta Salmón</div>
+<div class="food-name">Tuna Mayo</div>
 <div class="tags">
-<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🫘 Soja</span><span class="tag">🟡 Mostaza</span><span class="tag">🐟 Pescado</span>
+<span class="tag">🌾 Gluten</span><span class="tag">🐟 Pescado</span>
 </div>
 </div>
 
 <div class="card">
-<div class="food-name">Tosta Caprese</div>
+<div class="food-name">Bacon Brunch</div>
 <div class="tags">
-<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🫘 Soja</span><span class="tag">🟡 Mostaza</span>
+<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Serranito Toast</div>
+<div class="tags">
+<span class="tag">🌾 Gluten</span><span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+</section>
+
+<!-- CROISSANTS -->
+<section class="section">
+<h2 class="section-title" id="croissants">🥐 Croissants</h2>
+
+<div class="card">
+<div class="food-name">Croissant Gourmet</div>
+<div class="tags">
+<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Breakfast Croissant</div>
+<div class="tags">
+<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Nordic Croissant Isla</div>
+<div class="tags">
+<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🐟 Pescado</span>
 </div>
 </div>
 
@@ -314,47 +510,76 @@ body{
 
 <!-- BRIOCHE SIGNATURE -->
 <section class="section">
-<h2 class="section-title">🥐 Brioche Signature</h2>
+<h2 class="section-title" id="brioche">🍞 Brioche Signature</h2>
 
 <div class="card">
-<div class="food-name">Brioche Breakfast</div>
+<div class="food-name">Revuelto</div>
 <div class="tags">
-<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🫘 Soja</span><span class="tag">🟡 Mostaza</span>
-</div>
-</div>
-
-<div class="card">
-<div class="food-name">Brioche York Deluxe</div>
-<div class="tags">
-<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🫘 Soja</span><span class="tag">🟡 Mostaza</span>
+<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span>
 </div>
 </div>
 
 <div class="card">
-<div class="food-name">Brioche Mediterráneo</div>
+<span class="badge nuevo">NUEVO</span>
+<div class="food-name">Pulled Porky</div>
 <div class="tags">
-<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🫘 Soja</span><span class="tag">🟡 Mostaza</span>
+<span class="tag">🌾 Gluten</span><span class="tag">🥛 Leche</span>
 </div>
 </div>
 
 <div class="card">
-<div class="food-name">Brioche Caprese</div>
+<div class="food-name">Serranito Brioche</div>
 <div class="tags">
-<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🫘 Soja</span><span class="tag">🟡 Mostaza</span>
+<span class="tag">🌾 Gluten</span><span class="tag">🥛 Leche</span>
 </div>
 </div>
 
 <div class="card">
 <div class="food-name">Fru Creation</div>
 <div class="tags">
-<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🫘 Soja</span><span class="tag">🟡 Mostaza</span>
+<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Nordic Brioche</div>
+<div class="tags">
+<span class="tag">🌾 Gluten</span><span class="tag">🥛 Leche</span><span class="tag">🐟 Pescado</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Brioche York Deluxe</div>
+<div class="tags">
+<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Island Chicken Brioche</div>
+<div class="tags">
+<span class="tag">🌾 Gluten</span><span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Brioche Mediterráneo</div>
+<div class="tags">
+<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Brioche Caprese</div>
+<div class="tags">
+<span class="tag">🌾 Gluten</span><span class="tag">🥛 Leche</span>
 </div>
 </div>
 
 <div class="card">
 <div class="food-name">Brioche Salmón Deluxe</div>
 <div class="tags">
-<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🫘 Soja</span><span class="tag">🟡 Mostaza</span><span class="tag">🐟 Pescado</span>
+<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🐟 Pescado</span>
 </div>
 </div>
 
@@ -362,10 +587,17 @@ body{
 
 <!-- DULCE -->
 <section class="section">
-<h2 class="section-title">🥞 Dulce</h2>
+<h2 class="section-title" id="dulce">🥞 Brunch Dulce</h2>
 
 <div class="card">
-<div class="food-name">Pancakes Clásicos</div>
+<div class="food-name">New York</div>
+<div class="tags">
+<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">ISLA Pancakes</div>
 <div class="tags">
 <span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span>
 </div>
@@ -393,6 +625,13 @@ body{
 </div>
 
 <div class="card">
+<div class="food-name">Sweet Brioche</div>
+<div class="tags">
+<span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
 <div class="food-name">Brioche Nutella</div>
 <div class="tags">
 <span class="tag">🌾 Gluten</span><span class="tag">🥚 Huevo</span><span class="tag">🥛 Leche</span><span class="tag">🌰 Frutos de cáscara</span>
@@ -414,7 +653,35 @@ body{
 </div>
 
 <div class="card">
-<div class="food-name">Yogur con fruta</div>
+<div class="food-name">Yogur de la Isla</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">ISLA Crunch</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span><span class="tag">🌰 Frutos de cáscara</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Protein Yogurt</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Matcha Yogurt</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span><span class="tag">🌱 Sésamo</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Tropical Passion</div>
 <div class="tags">
 <span class="tag">🥛 Leche</span>
 </div>
@@ -422,98 +689,9 @@ body{
 
 </section>
 
-<!-- MATCHA -->
+<!-- CAFÉ & MATCHA -->
 <section class="section">
-<h2 class="section-title">🍵 Matcha</h2>
-
-<div class="card">
-<div class="food-name">Matcha Tradicional</div>
-<div class="tags">
-<span class="tag none">✅ Sin alérgenos declarables</span>
-</div>
-</div>
-
-<div class="card">
-<div class="food-name">Té Matcha</div>
-<div class="tags">
-<span class="tag none">✅ Sin alérgenos declarables</span>
-</div>
-</div>
-
-<div class="card">
-<div class="food-name">Coconut Water Matcha</div>
-<div class="tags">
-<span class="tag none">✅ Sin alérgenos declarables</span>
-</div>
-</div>
-
-<div class="card">
-<div class="food-name">Ice Matcha Frutal</div>
-<div class="tags">
-<span class="tag none">✅ Sin alérgenos declarables</span>
-</div>
-</div>
-
-<div class="card">
-<div class="food-name">Matcha Latte</div>
-<div class="tags">
-<span class="tag">🥛 Leche</span>
-</div>
-</div>
-
-<div class="card">
-<div class="food-name">Matcha Elche</div>
-<div class="tags">
-<span class="tag">🥛 Leche</span>
-</div>
-</div>
-
-</section>
-
-<!-- UBE -->
-<section class="section">
-<h2 class="section-title">💜 Ube</h2>
-
-<div class="card">
-<div class="food-name">Ube Latte</div>
-<div class="tags">
-<span class="tag">🥛 Leche</span>
-</div>
-</div>
-
-<div class="card">
-<div class="food-name">Ube Passion Frappé</div>
-<div class="tags">
-<span class="tag">🥛 Leche</span>
-</div>
-</div>
-
-<div class="card">
-<div class="food-name">Dirty Ube Espresso</div>
-<div class="tags">
-<span class="tag">🥛 Leche</span>
-</div>
-</div>
-
-<div class="card">
-<div class="food-name">Isla Ube Breeze</div>
-<div class="tags">
-<span class="tag none">✅ Sin alérgenos declarables</span>
-</div>
-</div>
-
-<div class="card">
-<div class="food-name">Ube Fruit</div>
-<div class="tags">
-<span class="tag">🥛 Leche</span>
-</div>
-</div>
-
-</section>
-
-<!-- CAFÉ -->
-<section class="section">
-<h2 class="section-title">☕ Café</h2>
+<h2 class="section-title" id="cafe">☕ Café & Matcha</h2>
 
 <div class="card">
 <div class="food-name">Espresso</div>
@@ -571,11 +749,229 @@ body{
 </div>
 </div>
 
+<div class="card">
+<div class="food-name">Pumpkin Spice Latte</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Pumpkin Spice Frappé</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Pistacho Latte</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span><span class="tag">🌰 Frutos de cáscara</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Matcha Tradicional</div>
+<div class="tags">
+<span class="tag none">✅ Sin alérgenos declarables</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Matcha Pumpkin Spice</div>
+<div class="tags">
+<span class="tag none">✅ Sin alérgenos declarables</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Coconut Water Matcha</div>
+<div class="tags">
+<span class="tag none">✅ Sin alérgenos declarables</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Ice Matcha Frutal</div>
+<div class="tags">
+<span class="tag none">✅ Sin alérgenos declarables</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Strawberry Coconut Cloud</div>
+<div class="tags">
+<span class="tag none">✅ Sin alérgenos declarables</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Passion Tropic</div>
+<div class="tags">
+<span class="tag none">✅ Sin alérgenos declarables</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Matcha Latte</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Matcha Elche</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<span class="badge nuevo">NUEVO</span>
+<div class="food-name">Matcha Ube</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Ice White Chocolate Matcha</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Cold Foam Matcha</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+</section>
+
+<!-- UBE -->
+<section class="section">
+<h2 class="section-title" id="ube">💜 Ube</h2>
+
+<div class="card">
+<div class="food-name">Ube Latte</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Ube Passion Frappé</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Dirty Ube Espresso</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Isla Ube Breeze</div>
+<div class="tags">
+<span class="tag none">✅ Sin alérgenos declarables</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Ube Fruit</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Ube White</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<span class="badge nuevo">NUEVO</span>
+<div class="food-name">Ube Matcha</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Cold Foam Ube</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
 </section>
 
 <!-- BATIDOS -->
 <section class="section">
-<h2 class="section-title">🍹 Batidos</h2>
+<h2 class="section-title" id="batidos">🍹 Batidos & Zumos</h2>
+
+<div class="card">
+<div class="food-name">Blue Power Shake</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Pink Paradise</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Passion Mango Tropic</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Healthy Energy Protein</div>
+<div class="tags">
+<span class="tag">🥜 Cacahuetes</span><span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Pistachio Dream</div>
+<div class="tags">
+<span class="tag">🌰 Frutos de cáscara</span><span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Isla Fit Power Shake</div>
+<div class="tags">
+<span class="tag">🌰 Frutos de cáscara</span><span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Wild Berry Protein</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Isla Tropical Exotic</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
 
 <div class="card">
 <div class="food-name">Batidos con leche</div>
@@ -594,7 +990,310 @@ body{
 <div class="card">
 <div class="food-name">Batidos con bebida vegetal</div>
 <div class="tags">
-<span class="tag variable">Según la bebida utilizada (soja, avena, etc.)</span>
+<span class="tag variable">Según bebida: soja, avena, etc.</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Morir Soñando</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Avena con Limón</div>
+<div class="tags">
+<span class="tag none">✅ Sin alérgenos declarables</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Avena con Maracuyá</div>
+<div class="tags">
+<span class="tag none">✅ Sin alérgenos declarables</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Zumo de Naranja Natural</div>
+<div class="tags">
+<span class="tag none">✅ Sin alérgenos declarables</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Limonada Casera</div>
+<div class="tags">
+<span class="tag none">✅ Sin alérgenos declarables</span>
+</div>
+</div>
+
+</section>
+
+<!-- CÓCTELES -->
+<section class="section">
+<h2 class="section-title" id="cocteles">🍸 Cócteles</h2>
+
+<div class="alert">
+  <strong>⚠️ Sobre el alcohol:</strong> Todos los cócteles contienen alcohol. Algunos pueden contener <strong>sulfitos</strong> (presente en vino y bebidas destiladas).
+</div>
+
+<div class="card">
+<div class="food-name">Tamarindo Dark Sunset</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Don Julio Enamorado</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Don Julio Palomo de Tamarindo</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Don Julio Cherry Bomb</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Mexican Sunset</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Don Julio Piña Spice</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">El Don Pega</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Volcán Tropical</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Abuela Kills</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Elche Mule</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Don July Tamarindo</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Mollar Spritz</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Pilicoco</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Rubí Frozen</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Cherry Vodka Sour</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Island Tie</div>
+<div class="tags">
+<span class="tag">🌰 Frutos de cáscara</span><span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Cherry Cherrs</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Daiquiri Strawberry Frozen</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Papi Ven</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Sex on the Beach</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Piña Colada</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span><span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Cuba Libre</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Ron Cola</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Mojitos (varios sabores)</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Mojito Coco</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">PiruletaBimbombum</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Beer Margarita</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol y cerveza</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Michelada de Mango</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol y cerveza</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Beer Mojito</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol y cerveza</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Chelada Tropical</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol y cerveza</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Radler Tropical</div>
+<div class="tags">
+<span class="tag">🧪 Sulfitos</span><span class="tag variable">Contiene alcohol y cerveza</span>
+</div>
+</div>
+
+</section>
+
+<!-- CENTRO DE MESA -->
+<section class="section">
+<h2 class="section-title" id="centro">🍽️ Centro de Mesa</h2>
+
+<div class="card">
+<div class="food-name">Nachos Pulled Isla</div>
+<div class="tags">
+<span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Patatas Bravas Isla</div>
+<div class="tags">
+<span class="tag">🥚 Huevo</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Mozzarella Bacon Tosta</div>
+<div class="tags">
+<span class="tag">🌾 Gluten</span><span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Provolone Isla</div>
+<div class="tags">
+<span class="tag">🌾 Gluten</span><span class="tag">🥛 Leche</span>
+</div>
+</div>
+
+<div class="card">
+<div class="food-name">Quesadilla Isla</div>
+<div class="tags">
+<span class="tag">🌾 Gluten</span><span class="tag">🥛 Leche</span>
 </div>
 </div>
 
@@ -603,23 +1302,41 @@ body{
 <!-- DISCLAIMER -->
 <div class="disclaimer">
 
-<h3>⚠️ Información importante</h3>
+<h3>⚠️ Información Legal Importante</h3>
 
 <p>
-En ISLA Brunch & Bar se manipulan productos que contienen gluten, huevo, leche, soja, mostaza, sésamo, pescado y frutos de cáscara.
+En ISLA Brunch & Bar se manipulan productos que contienen los 14 alérgenos declarables: <strong>gluten, crustáceos, huevo, pescado, cacahuetes, frutos de cáscara, soja, leche, apio, mostaza, sésamo, altramuces, moluscos y sulfitos</strong>.
 </p>
 
 <p>
-No podemos garantizar la ausencia total de trazas debido al riesgo de contaminación cruzada. Si padeces alguna alergia o intolerancia alimentaria, consulta con nuestro personal antes de realizar tu pedido.
+No podemos garantizar la ausencia total de trazas debido al riesgo de contaminación cruzada en nuestras instalaciones. Algunos productos pueden contener ingredientes no listados que pueden causar reacciones alérgicas.
 </p>
+
+<p>
+<strong>Si padeces alguna alergia o intolerancia alimentaria, CONSULTA CON NUESTRO PERSONAL ANTES DE REALIZAR TU PEDIDO.</strong> Nuestro equipo puede proporcionarte información detallada sobre la composición exacta de cada plato.
+</p>
+
+<p>
+Esta información se ofrece de acuerdo con el <strong>Reglamento (UE) Nº 1169/2011</strong> sobre información alimentaria facilitada al consumidor y el <strong>Real Decreto 126/2015</strong> en España.
+</p>
+
+<ul>
+  <li>✓ Información basada en ingredientes habituales</li>
+  <li>✓ Sujeta a cambios según disponibilidad de proveedores</li>
+  <li>✓ No responsables por contaminación cruzada no identificada</li>
+  <li>✓ Pueden existir trazas no identificadas</li>
+</ul>
 
 </div>
 
 <div class="footer">
-ISLA Brunch &amp; Bar &middot; Carrer Mare de Déu del Carme, 11, Elche<br>
-<a href="tel:+34691769434">691 769 434</a>
-&nbsp;&middot;&nbsp;
-<a href="/">Volver a la carta</a>
+ISLA Brunch &amp; Bar · Carrer Mare de Déu del Carme, 11, Elche<br>
+<a href="tel:+34691769434">📱 691 769 434</a>
+&nbsp;·&nbsp;
+<a href="https://islabrunchbar.com/menu">🍽️ Ver la carta completa</a>
+<br><br>
+Última actualización: Septiembre 2026<br>
+Cumplimiento normativa UE 1169/2011 y RD 126/2015
 </div>
 
 </div>
