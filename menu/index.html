@@ -848,6 +848,52 @@ video.card-media {
 .badge-new { background: linear-gradient(90deg, #E6A23C 0%, #F0B85C 100%); color: #FFF8EF; }
 .badge-rust { background: var(--rust-bg); color: var(--rust); }
 
+/* ── AGOTADO: sello sobre la foto + contador ── */
+.card.is-soldout .card-media {
+  filter: grayscale(0.85) brightness(0.75) sepia(0.15);
+}
+.card.is-soldout .item-name,
+.card.is-soldout .item-price { color: var(--muted); }
+.soldout-stamp {
+  position: absolute;
+  top: 22px;
+  left: 10px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bark);
+  color: #FDF8F2;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 20px;
+  transform: rotate(-5deg);
+  box-shadow: var(--shadow-md);
+  animation: soldoutPulse 2.6s var(--ease-out) infinite;
+}
+@keyframes soldoutPulse {
+  0%, 100% { box-shadow: var(--shadow-md), 0 0 0 0 rgba(181,80,47,0.5); }
+  50%      { box-shadow: var(--shadow-md), 0 0 0 7px rgba(181,80,47,0); }
+}
+.soldout-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--copper-dark);
+  background: var(--copper-bg);
+  border: 1px solid rgba(168,103,30,0.25);
+  border-radius: 20px;
+  padding: 4px 10px;
+  line-height: 1.2;
+  margin-top: 9px;
+}
+.soldout-count b { font-weight: 600; font-variant-numeric: tabular-nums; }
+
 /* ── OPCIONALES RÁPIDOS DENTRO DE UNA TARJETA (extras del propio plato) ── */
 .item-opt-row {
   display: flex;
@@ -3406,9 +3452,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="item-desc" data-en="Brioche with scrambled eggs, bacon, crispy fried onion and peach chipotle mayo sauce." data-fr="Brioche aux œufs brouillés, bacon, oignon frit croustillant et sauce mayo pêche-chipotle.">Brioche con huevo revuelto, bacon, cebolla frita crujiente y salsa peach chipotle mayo.</p>
     </div>
 
-    <div class="card card-gold card-with-media" id="card-pulled-porky">
+    <div class="card card-gold card-with-media is-soldout" id="card-pulled-porky">
       <img class="card-media" src="fotos/pulled.png" width="800" height="600" loading="lazy" decoding="async" alt="Pulled Porky — brioche con pulled pork, mozzarella y salsa Sweet Isla">
-      <span class="badge badge-new">🆕 <span data-en="New" data-fr="Nouveau">NUEVO</span></span>
+      <span class="soldout-stamp">⏳ <span data-en="Sold out" data-fr="Épuisé">Agotado</span></span>
       <div class="card-row">
         <p class="item-name" data-en="Pulled Porky" data-fr="Pulled Porky">Pulled Porky</p>
         <p class="item-price">10,50€</p>
@@ -3417,6 +3463,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="item-opt-row">
         <span class="opt-chip">🌶️ <span data-en="Jalapeño — optional" data-fr="Jalapeño — optionnel">Jalapeño — opcional</span></span>
       </div>
+      <span class="soldout-count" data-countdown-target="mon9"><span data-en="Back in" data-fr="De retour dans">Disponible de nuevo en</span> <b class="cd-num">—</b></span>
     </div>
     <div class="card card-gold">
       <span class="badge badge-fav">⭐ <span data-en="ISLA Favorite" data-fr="Favori de l'ISLA">Favorito ISLA</span></span>
@@ -3429,9 +3476,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="opt-chip">🌶️ <span data-en="Spicy Honey — included, no extra cost" data-fr="Miel Piquante — incluse, sans supplément">Miel Picante — incluida, sin coste</span></span>
       </div>
     </div>
-    <div class="card card-gold">
+    <div class="card card-gold card-with-media">
+      <img class="card-media" src="fotos/fru.png" width="800" height="600" loading="lazy" decoding="async" alt="Fru Creation — brioche con aguacate, huevo revuelto, tomate cherry y un toque de miel picante">
       <div class="card-row">
-        <img class="card-media" src="fotos/fru.png" width="800" height="600" loading="lazy" decoding="async" alt="Fru Creation — brioche con aguacate, huevo revuelto, tomate cherry y un toque de miel picante">
         <p class="item-name">Fru Creation</p>
         <p class="item-price">8,90€</p>
       </div>
@@ -5372,6 +5419,56 @@ body.menu-inside .isla-nav-shell::after{
 
   window.addEventListener('pageshow',syncVideos);
   window.addEventListener('resize',syncVideos,{passive:true});
+})();
+</script>
+
+<script id="isla-soldout-countdown">
+(function(){
+  var counters = Array.prototype.slice.call(document.querySelectorAll('[data-countdown-target="mon9"]'));
+  if (!counters.length) return;
+
+  function nextMonday9(){
+    var now = new Date();
+    var d = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 9, 0, 0, 0);
+    var day = d.getDay(); // 0 = domingo, 1 = lunes ...
+    var diff = (1 - day + 7) % 7; // días hasta el próximo lunes
+    d.setDate(d.getDate() + diff);
+    if (d.getTime() <= now.getTime()) d.setDate(d.getDate() + 7); // si ya pasó, la semana que viene
+    return d;
+  }
+
+  function pad(n){ return String(n).padStart(2, '0'); }
+
+  function render(){
+    var target = nextMonday9();
+    var now = new Date();
+    var ms = target.getTime() - now.getTime();
+    if (ms <= 0){
+      counters.forEach(function(el){
+        var card = el.closest('.card');
+        if (card) card.classList.remove('is-soldout');
+        var stamp = card && card.querySelector('.soldout-stamp');
+        if (stamp) stamp.style.display = 'none';
+        el.style.display = 'none';
+      });
+      return false;
+    }
+    var totalSec = Math.floor(ms / 1000);
+    var days = Math.floor(totalSec / 86400);
+    var hours = Math.floor((totalSec % 86400) / 3600);
+    var mins = Math.floor((totalSec % 3600) / 60);
+    var secs = totalSec % 60;
+    var text = (days > 0 ? days + 'd ' : '') + pad(hours) + 'h ' + pad(mins) + 'm ' + pad(secs) + 's';
+    counters.forEach(function(el){
+      var num = el.querySelector('.cd-num');
+      if (num) num.textContent = text;
+    });
+    return true;
+  }
+
+  if (render()){
+    window.setInterval(render, 1000);
+  }
 })();
 </script>
 
