@@ -926,10 +926,6 @@ var ISLA_MEDIA = {
   liNachos     : "fotos/nachos.png",
   liLingote    : "fotos/lingotes.png",
 
-  /* isla tequila experience — una imagen por experiencia */
-  tequilaExp1  : "fotos/experiencia1.png",
-  tequilaExp2  : "fotos/experiencia2.png",
-
   /* cierre */
   edClosing    : "fotos/banner.png"
 
@@ -1101,17 +1097,10 @@ function islaMedia(root){
   .tequila-slide{flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always;}
   .tequila-slide-inner{
     position:relative;height:100%;box-sizing:border-box;
-    padding:0 clamp(20px,5vw,36px) clamp(24px,4vw,32px);
+    padding:clamp(26px,5vw,40px) clamp(20px,5vw,36px) clamp(24px,4vw,32px);
   }
-  /* imagen a sangre arriba, se funde con el fondo oscuro; sirve con o sin fondo propio */
-  .tq-fig{margin:0 calc(-1 * clamp(20px,5vw,36px));line-height:0;}
-  .tq-fig img{
-    display:block;width:100%;height:auto;max-height:340px;object-fit:cover;object-position:center;
-    -webkit-mask-image:linear-gradient(180deg,#000 55%,transparent 100%);
-            mask-image:linear-gradient(180deg,#000 55%,transparent 100%);
-  }
-  .tq-fig:not(:empty) + .tq-head{margin-top:-46px;position:relative;}
-  .tq-fig:empty + .tq-head{padding-top:clamp(26px,5vw,40px);}
+  .tequila-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.5;pointer-events:none;}
+  .tequila-slide-inner > *:not(.tequila-canvas){position:relative;z-index:1;}
   .tequila-dot.active{background:var(--amber) !important;width:8px !important;height:8px !important;}
 
   /* cabecera de experiencia */
@@ -1182,8 +1171,7 @@ function islaMedia(root){
 
     <!-- EXPERIENCIA 01 · ISLA TROPICAL -->
     <div class="tequila-slide" data-exp="01-tropical">
-      <div class="tequila-slide-inner">
-        <figure class="tq-fig"><img data-media="tequilaExp1" alt="Isla Tequila Experience 01 · Isla Tropical: Ola, Marea y Fuego" decoding="async"></figure>
+      <div class="tequila-slide-inner"><canvas class="tequila-canvas" data-mode="ola"></canvas>
         <div class="tq-head">
           <h3 class="tq-exp">EXPERIENCIA 01</h3>
           <h4 class="tq-name">ISLA TROPICAL</h4>
@@ -1222,8 +1210,7 @@ function islaMedia(root){
 
     <!-- EXPERIENCIA 02 · ISLA TROPICAL · TEXTURA -->
     <div class="tequila-slide" data-exp="02-tropical">
-      <div class="tequila-slide-inner" style="background:linear-gradient(135deg,rgba(199,154,82,.08),rgba(96,122,72,.06));">
-        <figure class="tq-fig"><img data-media="tequilaExp2" alt="Isla Tequila Experience 02 · Isla Tropical: Mango, Velvet y Maracuyá" decoding="async"></figure>
+      <div class="tequila-slide-inner" style="background:linear-gradient(135deg,rgba(199,154,82,.08),rgba(96,122,72,.06));"><canvas class="tequila-canvas" data-mode="sun"></canvas>
         <div class="tq-head">
           <h3 class="tq-exp">EXPERIENCIA 02</h3>
           <h4 class="tq-name">ISLA TROPICAL</h4>
@@ -1280,7 +1267,7 @@ function islaMedia(root){
 <!-- EDICIÓN DEL MES · CIERRE -->
 <div class="rv" style="text-align:center;margin-top:40px;">
   <span class="lab" style="color:var(--amber);">EDICIÓN DEL MES</span>
-  <p style="margin:10px 0 6px;color:var(--txt);font-family:'Bodoni Moda',serif;font-size:1.15rem;">“Esta ronda termina el 1 de octubre.”</p>
+  <p style="margin:10px 0 6px;color:var(--txt);font-family:'Bodoni Moda',serif;font-size:1.15rem;">“Esta ronda termina el 31 de octubre.”</p>
   <p style="margin:0;color:var(--mut);font-size:12px;letter-spacing:.04em;">“Los sabores cambian. La experiencia también.”</p>
   <span class="tq-next"><b></b>NEXT DROP · PRÓXIMA RONDA</span>
 </div>
@@ -1785,10 +1772,10 @@ function islaMedia(root){
      cada carga de página sea la misma coreografía cuidada — no aleatoriedad de una vez,
      sino un patrón afinado que se repite con calma, como un ritual. ────────────────────────── */
   var tequilaArt = (function(){
-    if (reduce) return { activate: function(){}, resize: function(){}, modeFor: function(){ return null; } };
+    if (reduce) return { activate: function(){}, resize: function(){} };
 
     var canvases = Array.prototype.slice.call(document.querySelectorAll('.tequila-canvas'));
-    if (!canvases.length) return { activate: function(){}, resize: function(){}, modeFor: function(){ return null; } };
+    if (!canvases.length) return { activate: function(){}, resize: function(){} };
 
     var amber = [199,154,82], olive = [96,122,72], cream = [242,239,232];
 
