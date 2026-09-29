@@ -1084,197 +1084,196 @@ function islaMedia(root){
 </div>
 </div></section>
 
-<!-- ══════════ ISLA TEQUILA EXPERIENCE · CARRUSEL SCROLL LATERAL ══════════ -->
+<!-- ══════════ ISLA TEQUILA EXPERIENCE · 2 EXPERIENCIAS · SCROLL LATERAL ══════════ -->
 <style>
-  /* Carrusel de scroll lateral nativo (swipe), con snap por slide */
   .tequila-track{
-    display:flex;
-    overflow-x:auto;
-    overflow-y:hidden;
-    scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;
-    scroll-behavior:smooth;
-    border-radius:12px;
-    border:1px solid rgba(199,154,82,.2);
+    display:flex;overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;
+    border-radius:12px;border:1px solid rgba(199,154,82,.2);
     background:linear-gradient(135deg,rgba(96,122,72,.1) 0%,rgba(199,154,82,.08) 100%);
-    scrollbar-width:none;
-    -ms-overflow-style:none;
+    scrollbar-width:none;-ms-overflow-style:none;
   }
   .tequila-track::-webkit-scrollbar{display:none;}
-  .tequila-slide{
-    flex:0 0 100%;
-    scroll-snap-align:center;
-    scroll-snap-stop:always;
-    min-height:440px;
-  }
+  .tequila-slide{flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always;}
   .tequila-slide-inner{
-    display:flex;flex-direction:column;justify-content:center;height:100%;min-height:440px;
-    padding:clamp(32px,6vw,48px);text-align:center;
+    position:relative;height:100%;box-sizing:border-box;
+    padding:clamp(26px,5vw,40px) clamp(20px,5vw,36px) clamp(24px,4vw,32px);
   }
-  .tequila-price-tag{
-    display:inline-block;margin:0 0 24px;padding:6px 16px;
-    border:1px solid var(--amber);border-radius:999px;
-    font-family:'Archivo',sans-serif;font-weight:600;color:var(--amber);
-    font-size:.95rem;letter-spacing:.02em;
-  }
+  .tequila-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.5;pointer-events:none;}
+  .tequila-slide-inner > *:not(.tequila-canvas){position:relative;z-index:1;}
   .tequila-dot.active{background:var(--amber) !important;width:8px !important;height:8px !important;}
-  @media (max-width:640px){
-    .tequila-slide{ scroll-snap-align:start; }
+
+  /* cabecera de experiencia */
+  .tq-head{text-align:center;margin-bottom:26px;}
+  .tq-exp{font-family:'Bodoni Moda',serif;font-size:clamp(1.7rem,6.5vw,2.1rem);color:var(--amber);font-weight:400;letter-spacing:-.01em;margin:0 0 2px;}
+  .tq-name{font-family:'Bodoni Moda',serif;font-size:1.3rem;color:var(--txt);font-weight:400;margin:0 0 10px;}
+  .tq-kind{display:block;color:var(--mut);font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 14px;}
+
+  /* pasos 01 → 02 → 03 (orden obligatorio) */
+  .tq-step{position:relative;padding-left:62px;margin:0 0 34px;min-height:44px;}
+  .tq-step:last-of-type{margin-bottom:0;}
+  .tq-num{
+    position:absolute;left:0;top:-4px;width:42px;text-align:center;
+    font-family:'Bodoni Moda',serif;font-size:2.6rem;line-height:1;color:var(--amber);font-weight:400;
   }
-  /* arte generativo de fondo, una sensación distinta por trago */
-  .tequila-slide-inner{ position:relative; }
-  .tequila-canvas{
-    position:absolute; inset:0; width:100%; height:100%;
-    z-index:0; opacity:.6; pointer-events:none;
+  .tq-step:not(:last-of-type)::after{
+    content:"";position:absolute;left:21px;top:50px;bottom:-26px;width:1px;
+    background:linear-gradient(180deg,var(--amber),rgba(199,154,82,.25));
   }
-  .tequila-slide-inner > *:not(.tequila-canvas){ position:relative; z-index:1; }
+  .tq-step:not(:last-of-type)::before{
+    content:"";position:absolute;left:17px;bottom:-26px;width:8px;height:8px;
+    border-right:1px solid var(--amber);border-bottom:1px solid var(--amber);transform:rotate(45deg);
+  }
+  .tq-t{font-family:'Bodoni Moda',serif;font-size:1.3rem;color:var(--txt);font-weight:400;margin:0 0 4px;letter-spacing:.02em;}
+  .tq-ing{color:var(--mut);font-size:13px;line-height:1.5;margin:0 0 8px;}
+  .tq-sens{color:var(--amber);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin:0 0 6px;line-height:1.6;}
+  .tq-how{color:var(--mut);font-size:12px;line-height:1.55;margin:0;font-style:italic;}
+  .tq-badge{
+    display:inline-block;margin:0 0 8px;padding:3px 10px;border:1px solid rgba(199,154,82,.5);border-radius:999px;
+    color:var(--amber);font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  }
+  /* mini copa Velvet: tequila abajo, cold foam arriba, sin mezclar */
+  .tq-layers{display:flex;align-items:center;gap:10px;margin:0 0 8px;}
+  .tq-glass{
+    display:flex;flex-direction:column;width:22px;height:30px;flex:none;overflow:hidden;
+    border:1px solid rgba(199,154,82,.6);border-radius:2px 2px 8px 8px;
+  }
+  .tq-glass i{display:block;width:100%;}
+  .tq-glass .f{height:42%;background:rgba(242,239,232,.85);}
+  .tq-glass .t{flex:1;background:var(--amber);}
+  .tq-layers span{color:var(--txt);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;line-height:1.5;}
+  .tq-route{
+    margin:26px 0 0;padding-top:16px;border-top:1px solid rgba(199,154,82,.2);
+    text-align:center;color:var(--txt);font-size:12px;letter-spacing:.1em;
+  }
+  .tq-price{display:inline-block;margin:0;padding:5px 14px;border:1px solid var(--amber);border-radius:999px;
+    font-family:'Archivo',sans-serif;font-weight:600;color:var(--amber);font-size:.9rem;letter-spacing:.02em;}
+  .tq-next{
+    display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:7px 16px;
+    border:1px solid rgba(199,154,82,.4);border-radius:999px;color:var(--amber);
+    font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  }
+  .tq-next b{width:6px;height:6px;border-radius:50%;background:var(--amber);animation:tqPulse 2s ease-in-out infinite;}
+  @keyframes tqPulse{0%,100%{opacity:.35;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}
+  @media (prefers-reduced-motion:reduce){.tq-next b{animation:none}}
 </style>
 <section class="blk" id="tequila-experience" style="position:relative;overflow:hidden;padding:clamp(48px,9vh,96px) 0;"><div class="wrap rv">
 
-<div style="text-align:center;margin-bottom:56px;">
+<div style="text-align:center;margin-bottom:36px;">
   <span class="lab" style="color:var(--amber);">⭐ EDICIÓN DEL MES</span>
   <h2 style="font-size:clamp(2.4rem,8vw,4.2rem);margin-top:16px;margin-bottom:8px;">ISLA TEQUILA<br>EXPERIENCE</h2>
-  <p style="color:var(--mut);font-size:13px;letter-spacing:.12em;text-transform:uppercase;">3 SHOTS · 3 SENSACIONES · 1 RITUAL</p>
+  <p style="color:var(--amber);font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 14px;">3 SHOTS · 3 SENSACIONES · 1 RITUAL</p>
+  <p style="color:var(--mut);font-size:13px;line-height:1.6;max-width:42ch;margin:0 auto;">Dos experiencias de tequila. Cada una sigue un orden diseñado para transformar el sabor, la temperatura y la textura.</p>
 </div>
 
 <div class="tequila-slider" style="position:relative;max-width:600px;margin:0 auto;">
-  <!-- PISTA DE SCROLL LATERAL -->
   <div class="tequila-track">
 
-    <!-- EXPERIENCIA 01 - TROPICAL -->
+    <!-- EXPERIENCIA 01 · ISLA TROPICAL -->
     <div class="tequila-slide" data-exp="01-tropical">
       <div class="tequila-slide-inner"><canvas class="tequila-canvas" data-mode="ola"></canvas>
-        <h3 style="font-family:'Bodoni Moda',serif;font-size:2.2rem;color:var(--amber);margin:0 0 6px;font-weight:400;letter-spacing:-.01em;">EXPERIENCIA 01</h3>
-        <h4 style="font-family:'Bodoni Moda',serif;font-size:1.6rem;color:var(--txt);margin:0 0 20px;font-weight:400;">ISLA TROPICAL</h4>
-        <p style="color:var(--mut);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 16px;">OLA · MAREA · FUEGO</p>
-        <span class="tequila-price-tag">9,90 € · los 3 pasos</span>
-        <div style="height:2px;background:linear-gradient(90deg,transparent,var(--amber),transparent);margin:0 0 28px;"></div>
-        <h5 style="font-family:'Bodoni Moda',serif;font-size:1.35rem;color:var(--txt);margin:0 0 8px;font-weight:400;">OLA</h5>
-        <p style="color:var(--mut);font-size:13px;line-height:1.6;margin:0 auto 14px;max-width:44ch;">Tequila blanco · piña · lima · agave · sal</p>
-        <div style="font-size:11px;color:var(--mut);line-height:1.8;">
-          <p style="margin:0;"><span style="color:var(--amber);font-weight:600;">Sensación:</span> frío · fresco · tropical</p>
-          <p style="margin:6px 0 0;"><span style="color:var(--amber);font-weight:600;">Bebida:</span> De un solo trago</p>
+        <div class="tq-head">
+          <h3 class="tq-exp">EXPERIENCIA 01</h3>
+          <h4 class="tq-name">ISLA TROPICAL</h4>
+          <span class="tq-kind">Una evolución de temperatura y sabor. El orden importa.</span>
+          <span class="tq-price">9,90 € · los 3 pasos</span>
         </div>
+
+        <div class="tq-step">
+          <span class="tq-num">01</span>
+          <h5 class="tq-t">OLA</h5>
+          <p class="tq-ing">Tequila blanco · piña · lima · agave · sal</p>
+          <p class="tq-sens">Frío · Fresco · Tropical</p>
+          <p class="tq-how">De un solo trago.</p>
+        </div>
+
+        <div class="tq-step">
+          <span class="tq-num">02</span>
+          <h5 class="tq-t">MAREA</h5>
+          <span class="tq-badge">Servido ligeramente templado</span>
+          <p class="tq-ing">Tequila blanco · tamarindo · lima · agave · sal</p>
+          <p class="tq-sens">Templado · Ácido · Aromático</p>
+          <p class="tq-how">Primero huélelo. Después déjalo unos segundos en boca.</p>
+        </div>
+
+        <div class="tq-step">
+          <span class="tq-num">03</span>
+          <h5 class="tq-t">FUEGO</h5>
+          <p class="tq-ing">Tequila reposado · mango · tamarindo · agave · lima</p>
+          <p class="tq-sens">Fruta · Dulce · Intenso</p>
+          <p class="tq-how">De un solo trago.</p>
+        </div>
+
+        <p class="tq-route">❄️ OLA → ☀️ MAREA → 🔥 FUEGO</p>
       </div>
     </div>
 
-    <!-- EXPERIENCIA 01 - MAREA -->
-    <div class="tequila-slide" data-exp="01-marea">
-      <div class="tequila-slide-inner"><canvas class="tequila-canvas" data-mode="marea"></canvas>
-        <h3 style="font-family:'Bodoni Moda',serif;font-size:2.2rem;color:var(--amber);margin:0 0 6px;font-weight:400;letter-spacing:-.01em;">EXPERIENCIA 01</h3>
-        <h4 style="font-family:'Bodoni Moda',serif;font-size:1.6rem;color:var(--txt);margin:0 0 20px;font-weight:400;">ISLA TROPICAL</h4>
-        <p style="color:var(--mut);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 16px;">OLA · MAREA · FUEGO</p>
-        <span class="tequila-price-tag">9,90 € · los 3 pasos</span>
-        <div style="height:2px;background:linear-gradient(90deg,transparent,var(--amber),transparent);margin:0 0 28px;"></div>
-        <h5 style="font-family:'Bodoni Moda',serif;font-size:1.35rem;color:var(--txt);margin:0 0 8px;font-weight:400;">MAREA</h5>
-        <p style="color:var(--mut);font-size:13px;line-height:1.6;margin:0 auto 14px;max-width:44ch;">Tequila blanco · tamarindo · lima · agave · sal</p>
-        <div style="font-size:11px;color:var(--mut);line-height:1.8;">
-          <p style="margin:0;"><span style="color:var(--amber);font-weight:600;">Sensación:</span> ácido · intenso · salino</p>
-          <p style="margin:6px 0 0;"><span style="color:var(--amber);font-weight:600;">Bebida:</span> Déjalo 1 seg en boca</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- EXPERIENCIA 01 - FUEGO -->
-    <div class="tequila-slide" data-exp="01-fuego">
-      <div class="tequila-slide-inner" style="background:linear-gradient(135deg,rgba(199,154,82,.1),rgba(199,154,82,.05));"><canvas class="tequila-canvas" data-mode="fuego"></canvas>
-        <h3 style="font-family:'Bodoni Moda',serif;font-size:2.2rem;color:var(--amber);margin:0 0 6px;font-weight:400;letter-spacing:-.01em;">EXPERIENCIA 01</h3>
-        <h4 style="font-family:'Bodoni Moda',serif;font-size:1.6rem;color:var(--txt);margin:0 0 20px;font-weight:400;">ISLA TROPICAL</h4>
-        <p style="color:var(--mut);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 16px;">OLA · MAREA · FUEGO</p>
-        <span class="tequila-price-tag">9,90 € · los 3 pasos</span>
-        <div style="height:2px;background:linear-gradient(90deg,transparent,var(--amber),transparent);margin:0 0 28px;"></div>
-        <h5 style="font-family:'Bodoni Moda',serif;font-size:1.35rem;color:var(--txt);margin:0 0 8px;font-weight:400;">🔥 FUEGO</h5>
-        <p style="color:var(--mut);font-size:13px;line-height:1.6;margin:0 auto 14px;max-width:44ch;">Tequila reposado · mango · tamarindo · agave · lima · chipotle</p>
-        <div style="font-size:11px;color:var(--mut);line-height:1.8;">
-          <p style="margin:0;"><span style="color:var(--amber);font-weight:600;">Sensación:</span> dulce · ahumado · picante</p>
-          <p style="margin:6px 0 0;"><span style="color:var(--amber);font-weight:600;">Bebida:</span> Trago rápido. Fruta primero.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- EXPERIENCIA 02 - ICE -->
-    <div class="tequila-slide" data-exp="02-ice">
-      <div class="tequila-slide-inner"><canvas class="tequila-canvas" data-mode="ice"></canvas>
-        <h3 style="font-family:'Bodoni Moda',serif;font-size:2.2rem;color:var(--amber);margin:0 0 6px;font-weight:400;letter-spacing:-.01em;">EXPERIENCIA 02</h3>
-        <h4 style="font-family:'Bodoni Moda',serif;font-size:1.6rem;color:var(--txt);margin:0 0 20px;font-weight:400;">TEMPERATURE</h4>
-        <p style="color:var(--mut);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 16px;">ICE · SUN · NIGHT</p>
-        <span class="tequila-price-tag">11,90 € · los 3 pasos</span>
-        <div style="height:2px;background:linear-gradient(90deg,transparent,var(--amber),transparent);margin:0 0 28px;"></div>
-        <h5 style="font-family:'Bodoni Moda',serif;font-size:1.35rem;color:var(--txt);margin:0 0 8px;font-weight:400;">❄️ ICE</h5>
-        <p style="color:var(--mut);font-size:13px;line-height:1.6;margin:0 auto 14px;max-width:44ch;">Tequila blanco · pepino · lima · agave · menta</p>
-        <div style="font-size:11px;color:var(--mut);line-height:1.8;">
-          <p style="margin:0;"><span style="color:var(--amber);font-weight:600;">Sensación:</span> frío · limpio · vegetal</p>
-          <p style="margin:6px 0 0;"><span style="color:var(--amber);font-weight:600;">Bebida:</span> Muy frío, de un trago</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- EXPERIENCIA 02 - SUN -->
-    <div class="tequila-slide" data-exp="02-sun">
+    <!-- EXPERIENCIA 02 · ISLA TROPICAL · TEXTURA -->
+    <div class="tequila-slide" data-exp="02-tropical">
       <div class="tequila-slide-inner" style="background:linear-gradient(135deg,rgba(199,154,82,.08),rgba(96,122,72,.06));"><canvas class="tequila-canvas" data-mode="sun"></canvas>
-        <h3 style="font-family:'Bodoni Moda',serif;font-size:2.2rem;color:var(--amber);margin:0 0 6px;font-weight:400;letter-spacing:-.01em;">EXPERIENCIA 02</h3>
-        <h4 style="font-family:'Bodoni Moda',serif;font-size:1.6rem;color:var(--txt);margin:0 0 20px;font-weight:400;">TEMPERATURE</h4>
-        <p style="color:var(--mut);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 16px;">ICE · SUN · NIGHT</p>
-        <span class="tequila-price-tag">11,90 € · los 3 pasos</span>
-        <div style="height:2px;background:linear-gradient(90deg,transparent,var(--amber),transparent);margin:0 0 28px;"></div>
-        <h5 style="font-family:'Bodoni Moda',serif;font-size:1.35rem;color:var(--txt);margin:0 0 8px;font-weight:400;">☀️ SUN</h5>
-        <p style="color:var(--mut);font-size:13px;line-height:1.6;margin:0 auto 14px;max-width:44ch;">Tequila reposado · piña · naranja · agave · canela</p>
-        <div style="font-size:11px;color:var(--mut);line-height:1.8;">
-          <p style="margin:0;"><span style="color:var(--amber);font-weight:600;">Sensación:</span> templado · aromático · especiado</p>
-          <p style="margin:6px 0 0;"><span style="color:var(--amber);font-weight:600;">Bebida:</span> Huele primero, sorbo lento</p>
+        <div class="tq-head">
+          <h3 class="tq-exp">EXPERIENCIA 02</h3>
+          <h4 class="tq-name">ISLA TROPICAL</h4>
+          <span class="tq-kind">Textura · Cremosidad · Capas</span>
+          <span class="tq-price">11,90 € · los 3 pasos</span>
         </div>
-      </div>
-    </div>
 
-    <!-- EXPERIENCIA 02 - NIGHT -->
-    <div class="tequila-slide" data-exp="02-night">
-      <div class="tequila-slide-inner" style="background:linear-gradient(135deg,rgba(199,154,82,.1),rgba(199,154,82,.06));"><canvas class="tequila-canvas" data-mode="night"></canvas>
-        <h3 style="font-family:'Bodoni Moda',serif;font-size:2.2rem;color:var(--amber);margin:0 0 6px;font-weight:400;letter-spacing:-.01em;">EXPERIENCIA 02</h3>
-        <h4 style="font-family:'Bodoni Moda',serif;font-size:1.6rem;color:var(--txt);margin:0 0 20px;font-weight:400;">TEMPERATURE</h4>
-        <p style="color:var(--mut);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 16px;">ICE · SUN · NIGHT</p>
-        <span class="tequila-price-tag">11,90 € · los 3 pasos</span>
-        <div style="height:2px;background:linear-gradient(90deg,transparent,var(--amber),transparent);margin:0 0 28px;"></div>
-        <h5 style="font-family:'Bodoni Moda',serif;font-size:1.35rem;color:var(--txt);margin:0 0 8px;font-weight:400;">🌙 NIGHT</h5>
-        <p style="color:var(--mut);font-size:13px;line-height:1.6;margin:0 auto 14px;max-width:44ch;">Tequila blanco · tamarindo · lima · agave · chipotle</p>
-        <div style="font-size:11px;color:var(--mut);line-height:1.8;">
-          <p style="margin:0;"><span style="color:var(--amber);font-weight:600;">Sensación:</span> frío · ácido · ahumado · picante</p>
-          <p style="margin:6px 0 0;"><span style="color:var(--amber);font-weight:600;">Bebida:</span> Trago final. El cierre.</p>
+        <div class="tq-step">
+          <span class="tq-num">01</span>
+          <h5 class="tq-t">MANGO</h5>
+          <p class="tq-ing">Tequila blanco · mango · agave</p>
+          <p class="tq-sens">Dulce · Tropical · Suave</p>
+          <p class="tq-how">De un solo trago.</p>
         </div>
+
+        <div class="tq-step">
+          <span class="tq-num">02</span>
+          <h5 class="tq-t">VELVET</h5>
+          <div class="tq-layers"><span class="tq-glass" aria-hidden="true"><i class="f"></i><i class="t"></i></span><span>Cold foam arriba · Tequila abajo</span></div>
+          <p class="tq-ing">Tequila reposado · cold foam de mango · maracuyá · vainilla</p>
+          <p class="tq-sens">Cremoso · Tropical · Ácido · Vainilla</p>
+          <p class="tq-how">No remover. Beber directamente para experimentar primero el cold foam y después el tequila.</p>
+        </div>
+
+        <div class="tq-step">
+          <span class="tq-num">03</span>
+          <h5 class="tq-t">MARACUYÁ</h5>
+          <p class="tq-ing">Tequila blanco · maracuyá · lima · agave · menta</p>
+          <p class="tq-sens">Ácido · Fresco · Tropical · Herbal</p>
+          <p class="tq-how">De un solo trago.</p>
+        </div>
+
+        <p class="tq-route">🥭 MANGO → ☁️ VELVET → 🌿 MARACUYÁ</p>
       </div>
     </div>
 
   </div>
 
   <!-- CONTROLES -->
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:32px;gap:16px;">
-    <button class="tequila-prev" style="flex:1;padding:14px 20px;border:1px solid var(--line);background:transparent;color:var(--txt);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s var(--ease);border-radius:4px;display:flex;align-items:center;justify-content:center;gap:8px;">
-      <span>←</span> ATRÁS
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:28px;gap:16px;">
+    <button class="tequila-prev" aria-label="Experiencia anterior" style="flex:1;padding:14px 20px;border:1px solid var(--line);background:transparent;color:var(--txt);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s var(--ease);border-radius:4px;display:flex;align-items:center;justify-content:center;gap:8px;">
+      <span>←</span> 01
     </button>
-
-    <!-- INDICADORES -->
-    <div style="display:flex;gap:4px;flex:1;justify-content:center;">
+    <div style="display:flex;gap:6px;flex:1;justify-content:center;">
       <div class="tequila-dot" data-index="0" style="width:6px;height:6px;border-radius:50%;background:rgba(199,154,82,.3);transition:all .3s var(--ease);cursor:pointer;"></div>
       <div class="tequila-dot" data-index="1" style="width:6px;height:6px;border-radius:50%;background:rgba(199,154,82,.3);transition:all .3s var(--ease);cursor:pointer;"></div>
-      <div class="tequila-dot" data-index="2" style="width:6px;height:6px;border-radius:50%;background:rgba(199,154,82,.3);transition:all .3s var(--ease);cursor:pointer;"></div>
-      <div class="tequila-dot" data-index="3" style="width:6px;height:6px;border-radius:50%;background:rgba(199,154,82,.3);transition:all .3s var(--ease);cursor:pointer;"></div>
-      <div class="tequila-dot" data-index="4" style="width:6px;height:6px;border-radius:50%;background:rgba(199,154,82,.3);transition:all .3s var(--ease);cursor:pointer;"></div>
-      <div class="tequila-dot" data-index="5" style="width:6px;height:6px;border-radius:50%;background:rgba(199,154,82,.3);transition:all .3s var(--ease);cursor:pointer;"></div>
     </div>
-
-    <button class="tequila-next" style="flex:1;padding:14px 20px;border:1px solid var(--line);background:transparent;color:var(--txt);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s var(--ease);border-radius:4px;display:flex;align-items:center;justify-content:center;gap:8px;border-color:var(--amber);color:var(--amber);">
-      SIGUIENTE <span>→</span>
+    <button class="tequila-next" aria-label="Experiencia siguiente" style="flex:1;padding:14px 20px;border:1px solid var(--line);background:transparent;color:var(--txt);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s var(--ease);border-radius:4px;display:flex;align-items:center;justify-content:center;gap:8px;border-color:var(--amber);color:var(--amber);">
+      02 <span>→</span>
     </button>
   </div>
-
 </div>
 
-<p style="text-align:center;margin-top:42px;color:var(--mut);font-size:13px;line-height:1.7;max-width:56ch;margin-left:auto;margin-right:auto;" class="rv">
-  <em style="color:var(--txt);font-style:italic;">Esta ronda es un viaje. Respeta el orden, mantén el ritmo, y deja que cada shot cuente su historia.</em><br>
-  <span style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-top:12px;">🍂 Edición limitada · esta ronda termina el 30/09/2026</span>
-</p>
+<!-- EDICIÓN DEL MES · CIERRE -->
+<div class="rv" style="text-align:center;margin-top:40px;">
+  <span class="lab" style="color:var(--amber);">EDICIÓN DEL MES</span>
+  <p style="margin:10px 0 6px;color:var(--txt);font-family:'Bodoni Moda',serif;font-size:1.15rem;">“Esta ronda termina el 31 de octubre.”</p>
+  <p style="margin:0;color:var(--mut);font-size:12px;letter-spacing:.04em;">“Los sabores cambian. La experiencia también.”</p>
+  <span class="tq-next"><b></b>NEXT DROP · PRÓXIMA RONDA</span>
+</div>
 
 <!-- OPCIÓN COMBINADA · THE DOUBLE EXPERIENCE -->
-<div class="rv" style="max-width:600px;margin:36px auto 0;padding:clamp(20px,4vw,28px) clamp(20px,5vw,32px);border:1px solid var(--amber);border-radius:12px;background:linear-gradient(135deg,rgba(199,154,82,.14),rgba(96,122,72,.08));display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<div class="rv" style="max-width:600px;margin:32px auto 0;padding:clamp(20px,4vw,28px) clamp(20px,5vw,32px);border:1px solid var(--amber);border-radius:12px;background:linear-gradient(135deg,rgba(199,154,82,.14),rgba(96,122,72,.08));display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
   <div>
     <span class="lab" style="color:var(--amber);">🔥 THE DOUBLE EXPERIENCE</span>
     <p style="margin:8px 0 0;color:var(--txt);font-size:14px;">Las dos experiencias · 6 pasos</p>
