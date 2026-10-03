@@ -1,0 +1,492 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aura Brunch Santiago</title>
+<meta name="description" content="Aura Brunch: desayunos, brunch y pequeños antojos en Santiago de Compostela.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#fff8f3; --white:#fffdfb; --blush:#fbe3e6; --powder:#f2c4cc; --rose:#e8909f;
+  --strawberry:#d9566e; --deep:#8c2f45; --cherry:#c2203f; --sage:#c9d8c3; --sage-d:#6f8a68;
+  --gold:#c9a66b; --ink:#4a2a33; --muted:#8a6a72;
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Jost',system-ui,sans-serif; --hand:'Caveat',cursive;
+  --shadow:0 10px 30px -12px rgba(140,47,69,.22);
+  --r:26px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+.hand{font-family:var(--hand);color:var(--strawberry);font-size:1.5rem;line-height:1}
+.eyebrow{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--strawberry);font-weight:500}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.02;color:var(--deep)}
+h2{font-size:clamp(2.3rem,6vw,4.2rem)}
+em{font-style:italic}
+
+/* NAV */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .3s,box-shadow .3s}
+.nav.solid{background:rgba(255,248,243,.88);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(217,86,110,.12)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-family:var(--serif);font-size:1.35rem;letter-spacing:.14em;color:var(--deep);font-weight:600}
+.links{display:flex;gap:30px}
+.links a{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;position:relative;padding:6px 0}
+.links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--strawberry);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.links a:hover::after,.links a.on::after{transform:scaleX(1)}
+.burger{display:none;width:44px;height:44px;border-radius:50%;background:var(--blush);position:relative}
+.burger i{position:absolute;left:13px;right:13px;height:1.5px;background:var(--deep);transition:.3s}
+.burger i:nth-child(1){top:17px}.burger i:nth-child(2){top:25px}
+.burger.open i:nth-child(1){top:21px;transform:rotate(45deg)}.burger.open i:nth-child(2){top:21px;transform:rotate(-45deg)}
+.drawer{position:fixed;inset:0;z-index:40;background:var(--cream);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;opacity:0;pointer-events:none;transition:opacity .35s}
+.drawer.open{opacity:1;pointer-events:auto}
+.drawer a{font-family:var(--serif);font-size:2.6rem;color:var(--deep);transform:translateY(14px);opacity:0;transition:.45s}
+.drawer.open a{transform:none;opacity:1}
+.drawer.open a:nth-child(2){transition-delay:.05s}.drawer.open a:nth-child(3){transition-delay:.1s}.drawer.open a:nth-child(4){transition-delay:.15s}.drawer.open a:nth-child(5){transition-delay:.2s}.drawer.open a:nth-child(6){transition-delay:.25s}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 26px;border-radius:999px;font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;transition:transform .25s,box-shadow .25s,background .25s,color .25s;min-height:46px}
+.btn-p{background:var(--strawberry);color:#fff;box-shadow:0 8px 20px -8px rgba(217,86,110,.7)}
+.btn-p:hover{transform:translateY(-2px);background:var(--deep)}
+.btn-s{border:1px solid var(--strawberry);color:var(--deep);background:rgba(255,253,251,.6)}
+.btn-s:hover{background:var(--blush);transform:translateY(-2px)}
+.btn:active{transform:scale(.97)}
+
+/* HERO */
+.hero{position:relative;min-height:100svh;display:grid;place-items:center;text-align:center;padding:110px 0 70px;background:radial-gradient(ellipse at 20% 15%,var(--blush),transparent 55%),radial-gradient(ellipse at 85% 85%,#fdeaea,transparent 50%),var(--cream);overflow:hidden}
+.hero .in{position:relative;z-index:2;max-width:760px;padding:0 20px}
+.logo{width:clamp(120px,26vw,190px);margin:0 auto 18px;border-radius:50%}
+.logo-fallback{font-family:var(--serif);letter-spacing:.3em;color:var(--deep);font-size:1.1rem;margin-bottom:18px}
+.hero h1{font-size:clamp(3rem,10.5vw,7rem);letter-spacing:-.01em}
+.hero h1 em{color:var(--strawberry)}
+.hero p.sub{margin:22px auto 30px;max-width:460px;color:var(--muted);font-size:1.05rem}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.hero .note{position:absolute;z-index:2;font-family:var(--hand);color:var(--strawberry);font-size:1.5rem;transform:rotate(-6deg)}
+.deco{position:absolute;pointer-events:none;will-change:transform}
+.deco svg{display:block;width:100%;height:100%}
+.float{animation:float 7s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-12px) rotate(4deg)}}
+.rise{opacity:0;transform:translateY(22px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* WELCOME */
+section{position:relative}
+.welcome{padding:110px 0}
+.welcome .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.welcome h2{margin:14px 0 22px}
+.welcome p{font-family:var(--serif);font-size:clamp(1.4rem,3vw,2rem);line-height:1.25;color:var(--ink);max-width:520px}
+.arch{position:relative;aspect-ratio:3/4;max-width:360px;margin-inline:auto;border-radius:200px 200px 28px 28px;background:linear-gradient(170deg,var(--blush),var(--powder));display:grid;place-items:center;box-shadow:var(--shadow)}
+.arch::before{content:"";position:absolute;inset:12px;border:1px solid rgba(255,255,255,.8);border-radius:190px 190px 20px 20px}
+.arch .logo{width:62%;margin:0}
+.arch .logo-fallback{margin:0;font-size:1.3rem}
+.sticker{position:absolute;background:var(--white);padding:8px 16px;border-radius:999px;box-shadow:var(--shadow);font-family:var(--hand);font-size:1.3rem;color:var(--strawberry)}
+
+/* MENU */
+.menu{padding:90px 0 110px;background:linear-gradient(var(--cream),var(--white) 12%,var(--white) 88%,var(--cream))}
+.menu-head{text-align:center;margin-bottom:34px}
+.menu-head h2{margin-top:10px}
+.tabs-wrap{position:sticky;top:64px;z-index:20;padding:10px 0;background:linear-gradient(var(--white) 70%,transparent)}
+.tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:4px 16px;justify-content:safe center;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;padding:11px 22px;border-radius:999px;border:1px solid var(--powder);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--deep);background:var(--white);transition:.3s;min-height:44px}
+.tab:hover{background:var(--blush)}
+.tab.on{background:var(--deep);color:#fff;border-color:var(--deep);box-shadow:0 8px 18px -8px rgba(140,47,69,.6)}
+.panel{margin-top:36px;animation:panelIn .5s cubic-bezier(.2,.7,.2,1)}
+@keyframes panelIn{from{opacity:0;transform:translateY(14px)}}
+.phead{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 24px;margin-bottom:26px}
+.phead h3{font-size:clamp(1.9rem,4.5vw,3rem)}
+.hours{display:inline-flex;align-items:center;gap:8px;background:var(--blush);color:var(--deep);padding:7px 16px;border-radius:999px;font-size:.78rem;letter-spacing:.16em}
+.sub-h{font-family:var(--serif);font-size:1.5rem;color:var(--strawberry);margin:34px 0 16px;font-style:italic}
+.feature{position:relative;border-radius:var(--r);padding:32px 30px;background:linear-gradient(135deg,var(--powder),var(--blush));box-shadow:var(--shadow);overflow:hidden;margin-bottom:10px}
+.feature .tag{font-family:var(--hand);font-size:1.4rem;color:var(--deep)}
+.feature h4{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,5vw,3rem);color:var(--deep);line-height:1;margin:4px 0 12px}
+.feature p{max-width:520px;color:var(--ink)}
+.feature p b{font-weight:500}
+.feature .spark{position:absolute;right:-10px;top:-10px;width:130px;opacity:.55}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.card{position:relative;background:var(--cream);border:1px solid rgba(242,196,204,.6);border-radius:var(--r);padding:22px 22px 20px;transition:transform .35s,box-shadow .35s,border-color .35s;overflow:hidden}
+.card:nth-child(3n+2){border-radius:var(--r) var(--r) 60px var(--r)}
+.card:nth-child(3n){border-radius:60px var(--r) var(--r) var(--r)}
+.card:hover{transform:translateY(-5px) rotate(-.4deg);box-shadow:var(--shadow);border-color:var(--rose)}
+.card .ph{display:none;aspect-ratio:4/3;margin:-22px -22px 16px;object-fit:cover;width:calc(100% + 44px);max-width:none}
+.card.has-img .ph{display:block}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.card h4{font-family:var(--serif);font-weight:600;font-size:1.55rem;line-height:1.05;color:var(--deep)}
+.price{font-family:var(--serif);font-weight:600;font-size:1.5rem;color:var(--strawberry);white-space:nowrap}
+.price small{font-size:.8em}
+.card p{margin-top:8px;color:var(--muted);font-size:.93rem}
+.mark{position:absolute;right:12px;bottom:6px;font-size:1.4rem;opacity:0;transform:scale(.5) rotate(-20deg);transition:.35s;color:var(--rose)}
+.card:hover .mark{opacity:.8;transform:none}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.chip{padding:7px 14px;border-radius:999px;border:1px solid var(--powder);background:var(--white);font-size:.8rem;color:var(--deep);transition:.25s;min-height:34px}
+.chip:hover{border-color:var(--rose)}
+.chip[aria-pressed=true]{background:var(--strawberry);border-color:var(--strawberry);color:#fff;transform:scale(1.04)}
+.chip.sel-hint::before{content:"♡ "}
+.chip[aria-pressed=true]::before{content:"♥ "}
+.chip b{font-weight:500;opacity:.8;margin-left:4px}
+.chips-label{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:14px}
+.extras-box{background:var(--cream);border-radius:var(--r);padding:28px;border:1px dashed var(--rose)}
+.extras-box .chips{margin-top:0;gap:10px}
+.extras-box .chip{padding:12px 20px;font-size:.92rem}
+.tray{margin-top:22px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-family:var(--serif);font-size:1.4rem;color:var(--deep)}
+.tray .price{font-size:1.9rem}
+.tray button{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:underline;color:var(--muted);font-family:var(--sans)}
+.share-banner,.sweet-banner{border-radius:var(--r);padding:26px 30px;margin-bottom:22px}
+.share-banner{background:var(--sage);color:#33472f}
+.sweet-banner{background:var(--blush)}
+.share-banner .hand{color:var(--sage-d)}
+.sweet-banner p,.share-banner p{font-family:var(--serif);font-size:1.4rem;font-style:italic}
+.panel.share .card{background:#f6faf4;border-color:#dbe7d6}
+.panel.share .price{color:var(--sage-d)}
+.panel.share .card:hover{border-color:var(--sage-d)}
+
+/* SAUCES */
+.sauces{padding:100px 0;text-align:center;background:var(--blush);overflow:hidden}
+.sauces h2{margin:8px 0 34px}
+.stickers{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+.stk{padding:14px 26px;background:var(--white);border:2px dashed var(--rose);border-radius:999px;font-size:.85rem;letter-spacing:.24em;font-weight:500;color:var(--deep);box-shadow:var(--shadow);transition:transform .3s}
+.stk:nth-child(odd){transform:rotate(-3deg)}.stk:nth-child(even){transform:rotate(2.5deg)}
+.stk:nth-child(3){background:var(--strawberry);color:#fff;border-color:#fff}
+.stk:hover{transform:rotate(0) scale(1.1)}
+
+/* SANTIAGO */
+.santiago{padding:120px 0;text-align:center}
+.santiago .big{font-family:var(--serif);font-size:clamp(3rem,13vw,9.5rem);line-height:.9;color:var(--deep);letter-spacing:-.01em;margin:22px 0 10px}
+.santiago .big em{color:var(--strawberry)}
+.santiago .city{letter-spacing:.5em;font-size:.8rem;text-transform:uppercase;color:var(--gold);font-weight:500}
+.santiago p.t{max-width:480px;margin:26px auto 0;font-family:var(--serif);font-size:1.5rem;line-height:1.25}
+
+/* RESERVE */
+.reserve{padding:110px 0;text-align:center;background:linear-gradient(160deg,var(--deep),#5e1e30);color:#fff;overflow:hidden}
+.reserve h2{color:#fff;margin:10px 0 16px}
+.reserve .eyebrow{color:var(--powder)}
+.reserve p{font-family:var(--serif);font-size:1.6rem;font-style:italic;color:var(--blush);margin-bottom:34px}
+.reserve .btn-p{background:#fff;color:var(--deep);box-shadow:none;padding:16px 36px}
+.reserve .btn-p:hover{background:var(--blush)}
+.reserve .btn-s{color:#fff;border-color:rgba(255,255,255,.6);background:none}
+.reserve .btn-s:hover{background:rgba(255,255,255,.12)}
+
+/* FOOTER */
+footer{padding:50px 0 36px;background:var(--cream);text-align:center}
+footer .logo{width:80px;margin-bottom:6px}
+footer .brand{display:block;margin-bottom:6px}
+footer .tag{color:var(--muted);font-size:.85rem;letter-spacing:.14em}
+footer nav{display:flex;gap:26px;justify-content:center;margin:22px 0;flex-wrap:wrap}
+footer nav a{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase}
+footer nav a:hover{color:var(--strawberry)}
+footer small{color:var(--muted);font-size:.75rem}
+
+/* UI */
+.top{position:fixed;right:16px;bottom:18px;z-index:45;width:48px;height:48px;border-radius:50%;background:var(--white);color:var(--deep);box-shadow:var(--shadow);border:1px solid var(--powder);display:grid;place-items:center;font-size:1.2rem;opacity:0;transform:translateY(12px);pointer-events:none;transition:.3s}
+.top.show{opacity:1;transform:none;pointer-events:auto}
+.top:hover{background:var(--blush)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,30px);background:var(--deep);color:#fff;padding:12px 22px;border-radius:999px;font-size:.85rem;opacity:0;pointer-events:none;transition:.35s;z-index:60;max-width:calc(100% - 32px);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:820px){
+  .links{display:none}.burger{display:block}
+  .welcome{padding:80px 0}.welcome .grid{grid-template-columns:1fr;gap:44px;text-align:center}.welcome p{margin-inline:auto}
+  .cards{grid-template-columns:1fr}
+  .hero .note{display:none}
+  .tabs{justify-content:flex-start}
+  .santiago{padding:90px 0}
+}
+@media (max-width:820px){.deco.hide-m{display:none}.float{animation-duration:10s}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal,.rise{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- SVG sprites (decoración dibujada, sin imágenes externas) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="cherry" viewBox="0 0 64 64"><path d="M22 40 C26 24 32 14 44 6 M42 40 C42 26 42 16 44 6" fill="none" stroke="#6f8a68" stroke-width="2.4" stroke-linecap="round"/><path d="M44 6c8 0 12 4 14 8-6 1-11-1-14-8z" fill="#c9d8c3" stroke="#6f8a68" stroke-width="1.5"/><circle cx="20" cy="46" r="11" fill="#c2203f"/><circle cx="43" cy="46" r="11" fill="#d9566e"/><circle cx="16" cy="42" r="2.6" fill="#fff" opacity=".6"/><circle cx="39" cy="42" r="2.6" fill="#fff" opacity=".6"/></symbol>
+    <symbol id="flower" viewBox="0 0 64 64"><g fill="#fbe3e6" stroke="#e8909f" stroke-width="1.6"><ellipse cx="32" cy="14" rx="9" ry="13"/><ellipse cx="32" cy="50" rx="9" ry="13"/><ellipse cx="14" cy="32" rx="13" ry="9"/><ellipse cx="50" cy="32" rx="13" ry="9"/></g><circle cx="32" cy="32" r="7" fill="#c9a66b"/></symbol>
+    <symbol id="heart" viewBox="0 0 64 64"><path d="M32 54C10 38 6 26 6 19a14 14 0 0 1 26-6 14 14 0 0 1 26 6c0 7-4 19-26 35z" fill="none" stroke="#d9566e" stroke-width="3" stroke-linejoin="round"/></symbol>
+    <symbol id="star" viewBox="0 0 64 64"><path d="M32 4c2 14 6 26 28 28-22 2-26 14-28 28-2-14-6-26-28-28C26 30 30 18 32 4z" fill="#c9a66b" opacity=".85"/></symbol>
+    <symbol id="bow" viewBox="0 0 80 64"><path d="M40 32C26 12 4 8 4 24s20 18 36 8zM40 32c14-20 36-24 36-8S56 42 40 32z" fill="#f2c4cc" stroke="#d9566e" stroke-width="2" stroke-linejoin="round"/><path d="M40 32 28 56M40 32l12 24" stroke="#d9566e" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="40" cy="32" r="6" fill="#d9566e"/></symbol>
+    <symbol id="squig" viewBox="0 0 120 30"><path d="M4 18c10-14 16 14 28 0s16 14 28 0 16 14 28 0 14 10 28 0" fill="none" stroke="#e8909f" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#inicio" class="brand" aria-label="Aura Brunch, inicio">AURA</a>
+    <nav class="links" aria-label="Principal">
+      <a href="#inicio">Inicio</a><a href="#menu" data-go="desayuno">Desayuno</a><a href="#menu" data-go="comida">Comida</a><a href="#menu" data-go="antojos">Antojos</a><a href="#menu" data-go="extras">Extras</a><a href="#reservar">Reservar</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false"><i></i><i></i></button>
+  </div>
+</header>
+<div class="drawer" id="drawer">
+  <a href="#inicio">Inicio</a><a href="#menu" data-go="desayuno">Desayuno</a><a href="#menu" data-go="comida">Comida</a><a href="#menu" data-go="antojos">Antojos</a><a href="#menu" data-go="extras">Extras</a><a href="#reservar">Reservar</a>
+</div>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="deco float" data-p=".04" style="left:7%;top:20%;width:64px;height:64px"><svg><use href="#cherry"/></svg></div>
+  <div class="deco float hide-m" data-p=".07" style="right:9%;top:17%;width:78px;height:78px;animation-delay:-2s"><svg><use href="#flower"/></svg></div>
+  <div class="deco float hide-m" data-p=".05" style="left:14%;bottom:16%;width:56px;height:56px;animation-delay:-4s"><svg><use href="#heart"/></svg></div>
+  <div class="deco float" data-p=".06" style="right:12%;bottom:18%;width:34px;height:34px;animation-delay:-1s"><svg><use href="#star"/></svg></div>
+  <div class="deco float" data-p=".03" style="left:46%;top:11%;width:74px;height:60px;animation-delay:-3s"><svg><use href="#bow"/></svg></div>
+  <div class="deco hide-m" style="left:6%;bottom:30%;width:110px;height:28px;opacity:.7"><svg><use href="#squig"/></svg></div>
+  <span class="note hide-m" style="right:7%;bottom:30%">sin prisa ♡</span>
+
+  <div class="in">
+    <img class="logo rise" src="fotos/aura.png" alt="Aura Brunch" onerror="this.outerHTML='<div class=&quot;logo-fallback rise&quot;>AURA BRUNCH</div>'">
+    <h1 class="rise" style="animation-delay:.12s">YOUR HAPPY PLACE <em>IN SANTIAGO</em></h1>
+    <p class="sub rise" style="animation-delay:.25s">Brunch, desayunos y pequeños antojos para disfrutar sin prisa.</p>
+    <div class="cta rise" style="animation-delay:.38s">
+      <a href="#menu" class="btn btn-p">Ver menú</a>
+      <a href="#reservar" class="btn btn-s">Reservar mesa</a>
+    </div>
+  </div>
+</section>
+
+<section class="welcome" id="aura">
+  <div class="wrap grid">
+    <div class="reveal">
+      <span class="hand">hola, bonita</span>
+      <h2>WELCOME TO <em>AURA</em> ♡</h2>
+      <p>Un rincón bonito en Santiago para desayunar, brunchear, compartir y darse un capricho.</p>
+    </div>
+    <div class="reveal" style="transition-delay:.15s">
+      <div class="arch">
+        <img class="logo" src="fotos/aura.png" alt="Aura Brunch" onerror="this.outerHTML='<div class=&quot;logo-fallback&quot;>AURA<br>BRUNCH</div>'">
+        <div class="deco float" style="left:-22px;top:18%;width:58px;height:58px"><svg><use href="#cherry"/></svg></div>
+        <div class="deco float" style="right:-18px;bottom:24%;width:62px;height:62px;animation-delay:-3s"><svg><use href="#flower"/></svg></div>
+        <span class="sticker" style="left:-14px;bottom:10%;transform:rotate(-6deg)">brunch boutique</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="menu-head reveal">
+      <span class="eyebrow">La carta</span>
+      <h2>Elige tu <em>momento</em></h2>
+    </div>
+  </div>
+  <div class="tabs-wrap">
+    <div class="tabs" id="tabs" role="tablist" aria-label="Categorías del menú"></div>
+  </div>
+  <div class="wrap"><div id="panel"></div></div>
+</section>
+
+<section class="sauces">
+  <div class="wrap reveal">
+    <span class="hand">a tu gusto</span>
+    <h2>MAKE IT <em>YOURS</em> ♡</h2>
+    <div class="stickers">
+      <span class="stk">ALIOLI</span><span class="stk">KIMCHI</span><span class="stk">TOCINETA</span><span class="stk">TRUFA</span><span class="stk">CHEDDAR</span>
+    </div>
+  </div>
+</section>
+
+<section class="santiago">
+  <div class="wrap reveal">
+    <span class="eyebrow">Hello, Santiago ♡</span>
+    <div class="big">AURA <em>BRUNCH</em></div>
+    <div class="city">Santiago de Compostela</div>
+    <p class="t">Un pequeño rincón de brunch en Santiago de Compostela para empezar el día bonito.</p>
+  </div>
+</section>
+
+<section class="reserve" id="reservar">
+  <div class="deco float hide-m" style="left:9%;top:20%;width:60px;height:60px;opacity:.9"><svg><use href="#cherry"/></svg></div>
+  <div class="deco float hide-m" style="right:10%;bottom:20%;width:56px;height:56px;animation-delay:-3s"><svg><use href="#flower"/></svg></div>
+  <div class="wrap reveal">
+    <span class="eyebrow">Reservas</span>
+    <h2>SEE YOU AT <em>AURA</em>? ♡</h2>
+    <p>Tu próxima cita de brunch empieza aquí.</p>
+    <div class="cta">
+      <a href="#" class="btn btn-p" data-link="reserva">Reservar mesa</a>
+      <a href="#" class="btn btn-s" data-link="ubicacion">Ver ubicación</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img class="logo" src="fotos/aura.png" alt="Aura Brunch" onerror="this.remove()">
+    <span class="brand">AURA BRUNCH</span>
+    <div class="tag">Santiago de Compostela</div>
+    <nav>
+      <a href="#inicio">Inicio</a><a href="#menu">Menú</a><a href="#reservar">Reservar</a><a href="#" data-link="instagram">Instagram</a>
+    </nav>
+    <small>© Aura Brunch</small>
+  </div>
+</footer>
+
+<button class="top" id="top" aria-label="Volver arriba">↑</button>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ====== CONFIGURA AQUÍ los datos reales cuando los tengas ====== */
+const LINKS = {
+  reserva: "",     // p. ej. enlace de reservas / WhatsApp
+  ubicacion: "",   // enlace de Google Maps
+  instagram: ""    // URL de Instagram
+};
+
+/* ====== CARTA ======
+   Para añadir fotos reales: img:"fotos/nombre.jpg" en el plato. */
+const eur = n => n.toFixed(2).replace(".", ",") + " €";
+const MENU = {
+  desayuno:{label:"Desayuno", title:"Desayuno", hours:"08:00 — 13:00",
+    feature:{tag:"el clásico", name:"DESAYUNO AURA", text:"Tostada + café normal o té + zumo de naranja pequeño + bowl de yogurt"},
+    groups:[{h:"Tostas", items:[
+      {n:"Beso de Albaca",p:6.8,d:"Tomate triturado con Jamón Serrano o Pavo y aceite de albaca.",opts:["Jamón Serrano","Pavo"]},
+      {n:"La Artesana",p:4.2,d:"Mermelada y mantequilla de oveja."},
+      {n:"Suspiro de Pistacho",p:7.6,d:"Burrata, pistacho, miel, ralladura de limón y rúcula."},
+      {n:"Jardín de Aura",p:8.6,d:"Aguacate, huevo poché, tomate confitado, pesto verde y queso de cabra."},
+      {n:"Entre Mieles",p:7.4,d:"Queso de cabra, nueces y fruta de temporada."},
+      {n:"Avocado Garden",p:7.9,d:"Rúcula, burrata, aguacate, tomate cherry y semillas de sésamo."},
+      {n:"Salmón Benedict",p:10.4,d:"Queso crema, salmón, huevo poché, tomate seco, brotes y rabanitos."},
+      {n:"La Silvestre",p:7.7,d:"Hummus, huevos revueltos con setas y rúcula."}
+    ]}]},
+  brioche:{label:"Brioche", title:"BRIOCHE BOTÁNICO ♡", groups:[{items:[
+      {n:"Pollo & Cheddar",p:7.2,d:"Pechuga de pollo, huevo frito, cebolla caramelizada y salsa cheddar."},
+      {n:"Salmón & Aguacate",p:8.9,d:"Salmón, queso crema, aguacate y cebolla encurtida."},
+      {n:"Tocino & Huevo",p:6.4,d:"Tocino, huevos revueltos, cebolla caramelizada, rúcula y salsa tocineta."},
+      {n:"Sandwich Club",p:10,d:"Pechuga de pollo desmenuzada, queso, pavo, lechuga, tomate y salsas."}
+    ]}]},
+  comida:{label:"Comida", title:"AURA, PERO PARA COMER", hours:"13:00 — 16:00", groups:[{items:[
+      {n:"Salmón",p:11.9,d:"Salmón a la plancha con patatas y ensalada."},
+      {n:"Milanesa de pollo",p:10.3,d:"Milanesa de pollo a la plancha con patatas fritas y ensalada."},
+      {n:"Raxo",p:10.5,d:"Raxo con cebolla, patatas fritas y ensalada."},
+      {n:"Ensalada Mixta",p:6.9,d:"Lechuga, tomate, aceitunas, zanahoria y huevo."},
+      {n:"Ensalada Burrata",p:8.2,d:"Rúcula, tomate cherry, aceite de albaca y nueces."},
+      {n:"Ensalada César",p:9.2,d:"Lechuga, picatostes, pechuga de pollo rebozada, salsa César y queso parmesano."}
+    ]}]},
+  compartir:{label:"Para compartir", title:"LET'S SHARE ♡", cls:"share", banner:["para dos (o tres)","Platos para el centro de la mesa."], groups:[{items:[
+      {n:"Croquetas",p:8,d:"8 unidades.",opts:["Jamón ibérico","Boletus"]},
+      {n:"Fingers de Pollo",p:7.2,d:"Con miel y mostaza."},
+      {n:"Nachos con carne picada",p:8.9,d:"Pico de gallo, guacamole y salsa cheddar."},
+      {n:"Patatas con salsa",p:7.5,d:"Elige tu salsa.",opts:["Tocineta","Alioli","Kimchi"]},
+      {n:"Surtido de quesos gallegos",p:17,d:"Rulo, brie, de tetilla y curado."},
+      {n:"Tabla mixta",p:19.5,d:"Jamón ibérico, lomo ibérico, salchichón ibérico, chorizo ibérico, queso manchego y queso ahumado."},
+      {n:"Bowl de yogurt",p:5.8,d:"Fruta de temporada y granola.",opts:["Crema de pistacho","Crema de cacahuete","Miel"]}
+    ]}]},
+  antojos:{label:"Antojos", title:"SOMETHING SWEET ♡", banner:["con mucho cariño","Porque siempre hay sitio para un poquito más."], groups:[{items:[
+      {n:"Croissant normal",p:1.9},
+      {n:"Croissant relleno",p:3.2,opts:["Lotus","Nutella","Pistacho"]},
+      {n:"Tortitas normales",p:5.6,d:"Con sirope y miel."},
+      {n:"Tortitas especiales",p:6.2,opts:["Lotus","Dulce de leche","Pistacho","Nutella"]},
+      {n:"Crepes rellenos",p:3.8,opts:["Lotus","Dulce de leche","Pistacho","Nutella"]},
+      {n:"Tarta de queso cremosa"},
+      {n:"Tarta cremosa de pistacho",p:6.2},
+      {n:"Tarta de 3 leches",p:5.5},
+      {n:"Cookies",p:1.9},
+      {n:"Bizcocho de carrot cake",p:3.8},
+      {n:"Brownie con helado de vainilla",p:4.2}
+    ]}]},
+  extras:{label:"Extras", title:"EXTRAS", extras:[
+      ["Salsas",.5],["Jamón Serrano",2],["Pavo",1.4],["Aguacate",1.8],["Salmón",2.5],["Huevo Poché",1.2],["Mantequilla de Oveja",1.5]]}
+};
+const KEYS = Object.keys(MENU);
+const $ = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function card(it){
+  const price = it.p!=null ? `<span class="price">${eur(it.p)}</span>` : "";
+  const chips = it.opts ? `<div class="chips" role="group" aria-label="Opciones de ${esc(it.n)}">${it.opts.map(o=>`<button class="chip sel-hint" aria-pressed="false">${esc(o)}</button>`).join("")}</div>` : "";
+  return `<article class="card ${it.img?'has-img':''}">
+    <img class="ph" ${it.img?`src="${esc(it.img)}"`:""} alt="${esc(it.n)}" loading="lazy">
+    <div class="row"><h4>${esc(it.n)}</h4>${price}</div>
+    ${it.d?`<p>${esc(it.d)}</p>`:""}${chips}<span class="mark">♡</span></article>`;
+}
+
+function render(key){
+  const m = MENU[key];
+  let h = `<div class="panel ${m.cls||""}" role="tabpanel"><div class="phead"><h3>${m.title}</h3>${m.hours?`<span class="hours">◷ ${m.hours}</span>`:""}</div>`;
+  if(m.feature) h += `<div class="feature"><svg class="spark"><use href="#flower"/></svg><span class="tag">${m.feature.tag}</span><h4>${m.feature.name}</h4><p><b>Incluye:</b> ${m.feature.text}</p></div>`;
+  if(m.banner) h += `<div class="${m.cls==="share"?"share-banner":"sweet-banner"}"><span class="hand">${m.banner[0]}</span><p>${m.banner[1]}</p></div>`;
+  (m.groups||[]).forEach(g=>{
+    if(g.h) h += `<div class="sub-h">${g.h}</div>`;
+    h += `<div class="cards">${g.items.map(card).join("")}</div>`;
+  });
+  if(m.extras){
+    h += `<div class="extras-box"><div class="chips" id="extras">${m.extras.map(([n,p],i)=>`<button class="chip" aria-pressed="false" data-i="${i}">${n}<b>${eur(p)}</b></button>`).join("")}</div>
+    <div class="tray"><span>Tu selección <span class="price" id="sum">0,00 €</span></span><button id="clr">Limpiar</button></div></div>`;
+  }
+  h += `</div>`;
+  $("#panel").innerHTML = h;
+}
+
+let current = "desayuno";
+function show(key, scroll){
+  current = key;
+  $$(".tab").forEach(t=>{const on=t.dataset.k===key;t.classList.toggle("on",on);t.setAttribute("aria-selected",on);if(on&&scroll!==false)t.scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"})});
+  render(key);
+}
+$("#tabs").innerHTML = KEYS.map(k=>`<button class="tab" role="tab" data-k="${k}">${MENU[k].label}</button>`).join("");
+$("#tabs").addEventListener("click",e=>{const t=e.target.closest(".tab");if(t)show(t.dataset.k)});
+
+/* chips */
+$("#panel").addEventListener("click",e=>{
+  const c=e.target.closest(".chip"); if(c){
+    const group=c.closest(".chips");
+    if(group.id==="extras"){ c.setAttribute("aria-pressed",c.getAttribute("aria-pressed")!=="true"); sum(); }
+    else { const was=c.getAttribute("aria-pressed")==="true"; $$(".chip",group).forEach(x=>x.setAttribute("aria-pressed","false")); c.setAttribute("aria-pressed",!was); }
+  }
+  if(e.target.id==="clr"){ $$("#extras .chip").forEach(x=>x.setAttribute("aria-pressed","false")); sum(); }
+});
+function sum(){ const ex=MENU.extras.extras; let t=0; $$("#extras .chip[aria-pressed=true]").forEach(c=>t+=ex[c.dataset.i][1]); $("#sum").textContent=eur(t); }
+
+/* navegación a categorías */
+$$("[data-go]").forEach(a=>a.addEventListener("click",()=>{show(a.dataset.go,false);closeDrawer()}));
+
+/* drawer */
+const burger=$("#burger"),drawer=$("#drawer");
+function closeDrawer(){burger.classList.remove("open");drawer.classList.remove("open");burger.setAttribute("aria-expanded","false");document.body.style.overflow=""}
+burger.addEventListener("click",()=>{const o=!drawer.classList.contains("open");burger.classList.toggle("open",o);drawer.classList.toggle("open",o);burger.setAttribute("aria-expanded",o);document.body.style.overflow=o?"hidden":""});
+$$("#drawer a").forEach(a=>a.addEventListener("click",closeDrawer));
+
+/* enlaces pendientes */
+const toast=$("#toast"); let tt;
+function say(m){toast.textContent=m;toast.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove("show"),2600)}
+$$("[data-link]").forEach(a=>a.addEventListener("click",e=>{
+  const u=LINKS[a.dataset.link];
+  if(u){a.href=u;a.target="_blank";a.rel="noopener";return}
+  e.preventDefault(); say("Este enlace aún no está configurado ♡");
+}));
+
+/* scroll: nav, top, reveal, parallax */
+const nav=$("#nav"),topB=$("#top");
+const decos=$$(".deco[data-p]");
+const mobile=matchMedia("(max-width:820px)").matches;
+let tick=false;
+function onScroll(){
+  const y=scrollY;
+  nav.classList.toggle("solid",y>30); topB.classList.toggle("show",y>700);
+  if(!mobile) decos.forEach(d=>d.style.translate=`0 ${y*-parseFloat(d.dataset.p)}px`);
+  tick=false;
+}
+addEventListener("scroll",()=>{if(!tick){tick=true;requestAnimationFrame(onScroll)}},{passive:true});
+onScroll();
+topB.addEventListener("click",()=>scrollTo({top:0,behavior:"smooth"}));
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target)}}),{threshold:.12});
+$$(".reveal").forEach(el=>io.observe(el));
+
+/* link activo */
+const navIO=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){$$(".links a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+en.target.id&&!a.dataset.go))}}),{rootMargin:"-45% 0px -50% 0px"});
+["inicio","reservar"].forEach(id=>navIO.observe(document.getElementById(id)));
+
+show("desayuno",false);
+</script>
+</body>
+</html>
+
+</body></html>
