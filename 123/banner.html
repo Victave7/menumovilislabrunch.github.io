@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Banner TV dia/noche</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+    cursor: none;
+  }
+  #stage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform-origin: top left;
+  }
+  video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover; /* cover: llena todo; contain: muestra el video entero con barras negras */
+  }
+</style>
+</head>
+<body>
+  <div id="stage">
+    <video autoplay muted loop playsinline preload="auto"></video>
+  </div>
+
+  <script>
+    /* ====== CONFIGURACIÓN ====== */
+    const VIDEO_DIA   = 'loopi_dia.mp4';    // se reproduce de día
+    const VIDEO_NOCHE = 'loopi_noche.mp4';  // se reproduce de noche
+    const HORA_INICIO_DIA   = 7;   // el video de día empieza a las 07:00
+    const HORA_INICIO_NOCHE = 20;  // el video de noche empieza a las 20:00
+    const ROTACION_POR_DEFECTO = 270; // 0, 90 o 270
+    /* =========================== */
+
+    /*
+      Opciones por URL (sirven para probar):
+        banner.html?modo=dia      -> fuerza el video de día
+        banner.html?modo=noche    -> fuerza el video de noche
+        banner.html?rot=0         -> sin giro (si el video ya viene girado)
+        banner.html?rot=90 / 270  -> giro a un lado u otro
+        banner.html?fit=contain   -> muestra el video entero con barras negras
+      Se pueden combinar: banner.html?rot=0&modo=noche
+    */
+    const params = new URLSearchParams(location.search);
+    const stage = document.getElementById('stage');
+    const v = document.querySelector('video');
+
+    if (params.get('fit') === 'contain') v.style.objectFit = 'contain';
+
+    /* ---- Rotación ---- */
+    function layout() {
+      const W = window.innerWidth, H = window.innerHeight;
+      const rot = params.has('rot') ? parseInt(params.get('rot'), 10) : ROTACION_POR_DEFECTO;
+
+      if (rot === 90) {
+        stage.style.width = H + 'px';
+        stage.style.height = W + 'px';
+        stage.style.left = W + 'px';
+        stage.style.top = '0px';
+        stage.style.transform = 'rotate(90deg)';
+      } else if (rot === 270) {
+        stage.style.width = H + 'px';
+        stage.style.height = W + 'px';
+        stage.style.left = '0px';
+        stage.style.top = H + 'px';
+        stage.style.transform = 'rotate(-90deg)';
+      } else {
+        stage.style.width = W + 'px';
+        stage.style.height = H + 'px';
+        stage.style.left = '0px';
+        stage.style.top = '0px';
+        stage.style.transform = 'none';
+      }
+    }
+    layout();
+    window.addEventListener('resize', layout);
+
+    /* ---- Día / noche ---- */
+    function modoActual() {
+      const forzado = params.get('modo') || guardado();
+      if (forzado === 'dia' || forzado === 'noche') return forzado;
+
+      const h = new Date().getHours() + new Date().getMinutes() / 60;
+      const esDia = HORA_INICIO_DIA < HORA_INICIO_NOCHE
+        ? (h >= HORA_INICIO_DIA && h < HORA_INICIO_NOCHE)
+        : (h >= HORA_INICIO_DIA || h < HORA_INICIO_NOCHE);
+      return esDia ? 'dia' : 'noche';
+    }
+
+    let modoReproduciendo = null;
+    function actualizarVideo() {
+      const modo = modoActual();
+      if (modo === modoReproduciendo) return; // no tocar nada si no cambia
+      modoReproduciendo = modo;
+      v.src = modo === 'dia' ? VIDEO_DIA : VIDEO_NOCHE;
+      v.load();
+      v.play().catch(() => {});
+    }
+    actualizarVideo();
+    setInterval(actualizarVideo, 30 * 1000); // comprueba cada 30 s
+
+    /* ---- Elección manual (se recuerda aunque apagues la TV) ---- */
+    function guardado() {
+      try { return localStorage.getItem('modoManual'); } catch (e) { return null; }
+    }
+    function guardar(modo) {
+      try {
+        if (modo) localStorage.setItem('modoManual', modo);
+        else localStorage.removeItem('modoManual');
+      } catch (e) {}
+    }
+
+    const toast = document.createElement('div');
+    toast.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);' +
+      'background:rgba(0,0,0,.7);color:#fff;font:bold 28px sans-serif;padding:12px 28px;' +
+      'border-radius:12px;opacity:0;transition:opacity .3s;z-index:10;pointer-events:none';
+    document.body.appendChild(toast);
+    let toastTimer;
+    function avisar(texto) {
+      toast.textContent = texto;
+      toast.style.opacity = 1;
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => { toast.style.opacity = 0; }, 2000);
+    }
+
+    function elegir(modo) { // 'dia', 'noche' o null (automático)
+      guardar(modo);
+      actualizarVideo();
+      avisar(modo === 'dia' ? 'Modo DÍA' : modo === 'noche' ? 'Modo NOCHE' : 'Modo AUTOMÁTICO');
+    }
+
+    /*
+      Mando del Fire TV:  izquierda = día, derecha = noche, arriba/abajo = automático
+      Teclado:            D = día, N = noche, A = automático
+    */
+    document.addEventListener('keydown', e => {
+      const k = e.key.toLowerCase();
+      if (k === 'arrowleft'  || k === 'd') elegir('dia');
+      if (k === 'arrowright' || k === 'n') elegir('noche');
+      if (k === 'arrowup' || k === 'arrowdown' || k === 'a') elegir(null);
+    });
+
+    /* ---- Mantener siempre en reproducción ---- */
+    v.addEventListener('pause', () => v.play().catch(() => {}));
+    v.addEventListener('ended', () => { v.currentTime = 0; v.play(); });
+
+    /* ---- Botón central (Seleccionar) del mando: cambia día → noche → automático ---- */
+    let ultimoCambio = 0;
+    function ciclar() {
+      const ahora = Date.now();
+      if (ahora - ultimoCambio < 500) return; // evita dobles pulsaciones
+      ultimoCambio = ahora;
+      const actual = params.get('modo') || guardado();
+      elegir(actual === 'dia' ? 'noche' : actual === 'noche' ? null : 'dia');
+    }
+    document.addEventListener('click', ciclar);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.keyCode === 13 || e.keyCode === 23) ciclar(); // 23 = Select en Android/Fire TV
+    });
+  </script>
+</body>
+</html>
