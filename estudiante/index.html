@@ -47,12 +47,13 @@
     const params = new URLSearchParams(location.search);
     const stage = document.getElementById('stage');
     const v = document.querySelector('video');
+    if (params.get('v')) v.src = params.get('v'); // ej: banner.html?rot=0&v=loopi_tv.mp4
 
     if (params.get('fit') === 'contain') v.style.objectFit = 'contain';
 
     function layout() {
       const W = window.innerWidth, H = window.innerHeight;
-      let rot = params.has('rot') ? parseInt(params.get('rot'), 10) : 90;
+      let rot = params.has('rot') ? parseInt(params.get('rot'), 10) : 270;
 
       if (rot === 90) {
         stage.style.width = H + 'px';
