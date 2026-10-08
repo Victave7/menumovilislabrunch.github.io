@@ -30,7 +30,7 @@
 </head>
 <body>
   <div id="stage">
-    <video src="videos/loopi.mp4" autoplay muted loop playsinline preload="auto"></video>
+    <video src="loopi.mp4" autoplay muted loop playsinline preload="auto"></video>
   </div>
 
   <script>
@@ -52,7 +52,7 @@
 
     function layout() {
       const W = window.innerWidth, H = window.innerHeight;
-      let rot = params.has('rot') ? parseInt(params.get('rot'), 10) : 90;
+      let rot = params.has('rot') ? parseInt(params.get('rot'), 10) : (W > H ? 90 : 0);
 
       if (rot === 90) {
         stage.style.width = H + 'px';
