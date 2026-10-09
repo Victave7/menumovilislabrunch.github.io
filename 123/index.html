@@ -67,7 +67,8 @@
 </head>
 <body>
   <div id="stage">
-    <video muted loop playsinline preload="auto"></video>
+    <!-- SIN atributo loop: el bucle lo hacemos nosotros (más fiable en Fire TV / Silk) -->
+    <video muted autoplay playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback></video>
 
     <div id="menu">
       <h1>Banner TV</h1>
@@ -92,6 +93,8 @@
     const HORA_INICIO_NOCHE = 20;  // el video de noche empieza a las 20:00
     const ROTACION_POR_DEFECTO = 0; // 0 si el video ya viene girado. Si no, 90 o 270 (también se cambia desde el menú)
     const SEGUNDOS_MENU = 8;        // el menú se oculta solo pasado este tiempo
+    const MODO_KIOSCO = true;       // true: arranca solo al abrir la página, sin pulsar nada, y no se detiene
+    const RECARGAR_CADA_HORAS = 4;  // recarga la página cada X horas para liberar memoria (0 = nunca)
     /* =========================== */
 
     /*
@@ -108,6 +111,8 @@
     const botones = Array.from(menu.querySelectorAll('button'));
     const bRot = document.getElementById('b-rot');
 
+    v.muted = true;
+    v.loop = false; // el bucle se gestiona con 'ended' + vigilante
     if (params.get('fit') === 'contain') v.style.objectFit = 'contain';
 
     /* ---- Almacenamiento (se recuerda al apagar la TV) ---- */
@@ -158,6 +163,12 @@
       return esDia ? 'dia' : 'noche';
     }
 
+    function arrancar() {
+      v.muted = true;
+      const p = v.play();
+      if (p && p.catch) p.catch(() => {});
+    }
+
     let modoReproduciendo = null;
     function actualizarVideo() {
       const modo = modoActual();
@@ -166,7 +177,7 @@
         v.src = modo === 'dia' ? VIDEO_DIA : VIDEO_NOCHE;
         v.load();
       }
-      v.play().catch(() => {});
+      arrancar();
       etiquetas();
     }
     setInterval(actualizarVideo, 30 * 1000); // en automático, cambia solo a la hora
@@ -212,6 +223,7 @@
     /* ---- Acciones de los botones ---- */
     function reproducir(modoElegido) { // 'dia', 'noche' o null (automático)
       escribir('modoManual', modoElegido);
+      escribir('kiosco', '1'); // recuerda que ya se pulsó play: la próxima vez arranca solo
       jugando = true;
       actualizarVideo();
       ocultarMenu();
@@ -261,20 +273,77 @@
     ['fullscreenchange', 'webkitfullscreenchange'].forEach(ev =>
       document.addEventListener(ev, () => { if (!enPantallaCompleta() && jugando) mostrarMenu(); }));
 
-    /* ---- Mantener siempre en reproducción y avisar si falla ---- */
-    v.addEventListener('pause', () => v.play().catch(() => {}));
+    /* ====== BUCLE INFINITO / KIOSCO ====== */
+
+    // Al terminar el video, vuelve al principio y sigue (bucle manual)
+    function reiniciar() {
+      try { v.currentTime = 0; } catch (e) {}
+      arrancar();
+    }
+    v.addEventListener('ended', reiniciar);
+
+    // Si algo lo pausa (menos el menú), lo vuelve a arrancar
+    v.addEventListener('pause', () => { if (!v.ended) arrancar(); });
+
+    // Error de carga: muestra aviso y reintenta cada 10 s
     v.addEventListener('error', () => {
       const c = v.error ? v.error.code : '?';
       const motivo = { 1: 'cancelado', 2: 'error de red', 3: 'no se pudo decodificar', 4: 'no se encuentra o formato no compatible' }[c] || 'desconocido';
       mostrarMenu();
       estado.textContent = 'No carga ' + v.getAttribute('src') + ' (' + motivo + ')';
-      setTimeout(() => { v.load(); v.play().catch(() => {}); }, 10000);
+      setTimeout(() => { v.load(); arrancar(); }, 10000);
     });
 
-    /* ---- Inicio: se ve el video de fondo con el menú encima ---- */
+    // Que la pantalla no se apague / no salte el salvapantallas
+    let bloqueo = null;
+    async function pedirBloqueo() {
+      try {
+        if ('wakeLock' in navigator && document.visibilityState === 'visible' && !bloqueo) {
+          bloqueo = await navigator.wakeLock.request('screen');
+          bloqueo.addEventListener('release', () => { bloqueo = null; });
+        }
+      } catch (e) {}
+    }
+    pedirBloqueo();
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') { pedirBloqueo(); arrancar(); }
+    });
+
+    // Vigilante: si el video se para, se congela o termina sin reiniciarse, lo recarga
+    let ultimoTiempo = -1, sinAvance = 0;
+    setInterval(() => {
+      const avanzo = Math.abs(v.currentTime - ultimoTiempo) > 0.01;
+      ultimoTiempo = v.currentTime;
+      if (v.ended) { reiniciar(); sinAvance = 0; return; }
+      if (v.paused || !avanzo) sinAvance++; else sinAvance = 0;
+      if (sinAvance >= 3) { // unos 9 segundos sin moverse
+        sinAvance = 0;
+        const t = v.currentTime;
+        v.load();
+        v.addEventListener('loadedmetadata', function f() {
+          v.removeEventListener('loadedmetadata', f);
+          try { v.currentTime = Math.min(t, (v.duration || 0) - 1); } catch (e) {}
+        });
+        arrancar();
+      }
+    }, 3000);
+
+    // Recarga completa cada X horas (libera memoria; al volver arranca solo en modo kiosco)
+    if (RECARGAR_CADA_HORAS > 0) {
+      setTimeout(() => { location.reload(); }, RECARGAR_CADA_HORAS * 3600 * 1000);
+    }
+
+    /* ---- Inicio ---- */
     actualizarVideo();
     mostrarMenu();
     botones[0].focus();
+
+    // Modo kiosco: si ya se pulsó play alguna vez (o MODO_KIOSCO), arranca solo y oculta el menú
+    if (MODO_KIOSCO || leer('kiosco') === '1') {
+      jugando = true;
+      setTimeout(ocultarMenu, 1500);
+      pantallaCompleta(); // algunos navegadores solo lo permiten tras una pulsación; no pasa nada si falla
+    }
   </script>
 </body>
 </html>
