@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Banner TV dia/noche</title>
+<title>Reproductor TV dia/noche</title>
 <style>
   html, body {
     margin: 0;
@@ -12,13 +12,14 @@
     height: 100%;
     background: #000;
     overflow: hidden;
-    cursor: none;
+    font-family: Arial, Helvetica, sans-serif;
   }
   #stage {
     position: fixed;
     top: 0;
     left: 0;
     transform-origin: top left;
+    background: #000;
   }
   video {
     width: 100%;
@@ -26,78 +27,115 @@
     display: block;
     object-fit: cover; /* cover: llena todo; contain: muestra el video entero con barras negras */
   }
+
+  /* ---- Menú tipo reproductor ---- */
+  #menu {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    background: rgba(0, 0, 0, .70);
+    color: #fff;
+    transition: opacity .3s;
+  }
+  #menu.oculto { opacity: 0; pointer-events: none; }
+  #menu h1 { margin: 0; font-size: 56px; }
+  #estado { font-size: 30px; opacity: .9; min-height: 40px; text-align: center; padding: 0 40px; }
+  .fila { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; padding: 0 30px; }
+  button {
+    font-size: 36px;
+    padding: 24px 46px;
+    border-radius: 18px;
+    border: 4px solid transparent;
+    background: #2b2b2b;
+    color: #fff;
+    cursor: pointer;
+  }
+  button.principal { background: #c62828; }
+  button:focus {
+    outline: none;
+    border-color: #ffb300;
+    background: #4a4a4a;
+    transform: scale(1.06);
+  }
+  button.principal:focus { background: #e53935; }
+  #ayuda { font-size: 22px; opacity: .6; text-align: center; padding: 0 40px; }
 </style>
 </head>
 <body>
   <div id="stage">
-    <video autoplay muted loop playsinline preload="auto"></video>
+    <video muted loop playsinline preload="auto"></video>
+
+    <div id="menu">
+      <h1>Banner TV</h1>
+      <div id="estado"></div>
+      <div class="fila">
+        <button id="b-auto" class="principal" data-act="auto">&#9654; Reproducir (automático)</button>
+      </div>
+      <div class="fila">
+        <button id="b-dia" data-act="dia">&#9728; Día</button>
+        <button id="b-noche" data-act="noche">&#9790; Noche</button>
+        <button id="b-rot" data-act="rot">Giro</button>
+      </div>
+      <div id="ayuda">Flechas del mando: moverte &nbsp;·&nbsp; Seleccionar: elegir &nbsp;·&nbsp; Con el video en marcha, cualquier botón vuelve a este menú</div>
+    </div>
   </div>
 
   <script>
     /* ====== CONFIGURACIÓN ====== */
-    const VIDEO_DIA   = 'videos/dia.mp4';    // se reproduce de día (sin "/" al principio)
-    const VIDEO_NOCHE = 'videos/noche.mp4';  // se reproduce de noche (sin "/" al principio)
+    const VIDEO_DIA   = 'videos/dia.mp4';    // se reproduce de día
+    const VIDEO_NOCHE = 'videos/noche.mp4';  // se reproduce de noche
     const HORA_INICIO_DIA   = 7;   // el video de día empieza a las 07:00
     const HORA_INICIO_NOCHE = 20;  // el video de noche empieza a las 20:00
-    const ROTACION_POR_DEFECTO = 270; // 0, 90 o 270
+    const ROTACION_POR_DEFECTO = 0; // 0 si el video ya viene girado. Si no, 90 o 270 (también se cambia desde el menú)
+    const SEGUNDOS_MENU = 8;        // el menú se oculta solo pasado este tiempo
     /* =========================== */
 
     /*
-      Opciones por URL (sirven para probar):
-        banner.html?modo=dia      -> fuerza el video de día
-        banner.html?modo=noche    -> fuerza el video de noche
-        banner.html?rot=0         -> sin giro (si el video ya viene girado)
-        banner.html?rot=90 / 270  -> giro a un lado u otro
-        banner.html?fit=contain   -> muestra el video entero con barras negras
-      Se pueden combinar: banner.html?rot=0&modo=noche
+      Opciones por URL (opcionales):
+        ?modo=dia | ?modo=noche   -> fuerza un video
+        ?rot=0 | 90 | 270         -> fuerza el giro por CSS
+        ?fit=contain              -> muestra el video entero con barras negras
     */
     const params = new URLSearchParams(location.search);
     const stage = document.getElementById('stage');
     const v = document.querySelector('video');
+    const menu = document.getElementById('menu');
+    const estado = document.getElementById('estado');
+    const botones = Array.from(menu.querySelectorAll('button'));
+    const bRot = document.getElementById('b-rot');
 
     if (params.get('fit') === 'contain') v.style.objectFit = 'contain';
 
-    /* ---- Rotación (la dirección ?rot= manda; si no, lo guardado con el mando; si no, el valor por defecto) ---- */
-    function rotGuardada() {
-      try {
-        const r = localStorage.getItem('rot');
-        return r === null ? null : parseInt(r, 10);
-      } catch (e) { return null; }
-    }
-    function rotActual() {
-      if (params.has('rot')) return parseInt(params.get('rot'), 10);
-      const g = rotGuardada();
-      return g === null ? ROTACION_POR_DEFECTO : g;
-    }
-    function cambiarRotacion() { // 0 -> 90 -> 270 -> 0
-      const r = rotActual();
-      const sig = r === 0 ? 90 : r === 90 ? 270 : 0;
-      try { localStorage.setItem('rot', String(sig)); } catch (e) {}
-      layout();
-      avisar('Giro: ' + sig + '°' + (params.has('rot') ? ' (la dirección ?rot= tiene prioridad)' : ''));
+    /* ---- Almacenamiento (se recuerda al apagar la TV) ---- */
+    function leer(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+    function escribir(k, val) {
+      try { if (val === null) localStorage.removeItem(k); else localStorage.setItem(k, val); } catch (e) {}
     }
 
+    /* ---- Rotación por CSS (solo si el video NO viene ya girado) ---- */
+    function rotActual() {
+      if (params.has('rot')) return parseInt(params.get('rot'), 10);
+      const g = leer('rot');
+      return g === null ? ROTACION_POR_DEFECTO : parseInt(g, 10);
+    }
     function layout() {
       const W = window.innerWidth, H = window.innerHeight;
       const rot = rotActual();
-
       if (rot === 90) {
-        stage.style.width = H + 'px';
-        stage.style.height = W + 'px';
-        stage.style.left = W + 'px';
-        stage.style.top = '0px';
+        stage.style.width = H + 'px'; stage.style.height = W + 'px';
+        stage.style.left = W + 'px';  stage.style.top = '0px';
         stage.style.transform = 'rotate(90deg)';
       } else if (rot === 270) {
-        stage.style.width = H + 'px';
-        stage.style.height = W + 'px';
-        stage.style.left = '0px';
-        stage.style.top = H + 'px';
+        stage.style.width = H + 'px'; stage.style.height = W + 'px';
+        stage.style.left = '0px';     stage.style.top = H + 'px';
         stage.style.transform = 'rotate(-90deg)';
       } else {
-        stage.style.width = W + 'px';
-        stage.style.height = H + 'px';
-        stage.style.left = '0px';
-        stage.style.top = '0px';
+        stage.style.width = W + 'px'; stage.style.height = H + 'px';
+        stage.style.left = '0px';     stage.style.top = '0px';
         stage.style.transform = 'none';
       }
     }
@@ -105,11 +143,15 @@
     window.addEventListener('resize', layout);
 
     /* ---- Día / noche ---- */
+    function modoManual() {
+      const m = params.get('modo') || leer('modoManual');
+      return (m === 'dia' || m === 'noche') ? m : null;
+    }
     function modoActual() {
-      const forzado = params.get('modo') || guardado();
-      if (forzado === 'dia' || forzado === 'noche') return forzado;
-
-      const h = new Date().getHours() + new Date().getMinutes() / 60;
+      const m = modoManual();
+      if (m) return m;
+      const d = new Date();
+      const h = d.getHours() + d.getMinutes() / 60;
       const esDia = HORA_INICIO_DIA < HORA_INICIO_NOCHE
         ? (h >= HORA_INICIO_DIA && h < HORA_INICIO_NOCHE)
         : (h >= HORA_INICIO_DIA || h < HORA_INICIO_NOCHE);
@@ -119,109 +161,120 @@
     let modoReproduciendo = null;
     function actualizarVideo() {
       const modo = modoActual();
-      if (modo === modoReproduciendo) return; // no tocar nada si no cambia
-      modoReproduciendo = modo;
-      v.src = modo === 'dia' ? VIDEO_DIA : VIDEO_NOCHE;
-      v.load();
+      if (modo !== modoReproduciendo) {
+        modoReproduciendo = modo;
+        v.src = modo === 'dia' ? VIDEO_DIA : VIDEO_NOCHE;
+        v.load();
+      }
       v.play().catch(() => {});
+      etiquetas();
     }
-    actualizarVideo();
-    setInterval(actualizarVideo, 30 * 1000); // comprueba cada 30 s
+    setInterval(actualizarVideo, 30 * 1000); // en automático, cambia solo a la hora
 
-    /* ---- Elección manual (se recuerda aunque apagues la TV) ---- */
-    function guardado() {
-      try { return localStorage.getItem('modoManual'); } catch (e) { return null; }
-    }
-    function guardar(modo) {
-      try {
-        if (modo) localStorage.setItem('modoManual', modo);
-        else localStorage.removeItem('modoManual');
-      } catch (e) {}
+    function etiquetas() {
+      const nombre = modoReproduciendo === 'dia' ? 'DÍA' : 'NOCHE';
+      estado.textContent = 'Video actual: ' + nombre + (modoManual() ? ' (elegido a mano)' : ' (automático por hora)');
+      bRot.textContent = 'Giro: ' + rotActual() + '°';
     }
 
-    const toast = document.createElement('div');
-    toast.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);' +
-      'background:rgba(0,0,0,.7);color:#fff;font:bold 28px sans-serif;padding:12px 28px;' +
-      'border-radius:12px;opacity:0;transition:opacity .3s;z-index:10;pointer-events:none';
-    document.body.appendChild(toast);
-    let toastTimer;
-    function avisar(texto) {
-      toast.textContent = texto;
-      toast.style.opacity = 1;
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => { toast.style.opacity = 0; }, 2000);
-    }
-
-    function elegir(modo) { // 'dia', 'noche' o null (automático)
-      guardar(modo);
-      actualizarVideo();
-      avisar(modo === 'dia' ? 'Modo DÍA' : modo === 'noche' ? 'Modo NOCHE' : 'Modo AUTOMÁTICO');
-    }
-
-    /*
-      Mando del Fire TV:  izquierda = día, derecha = noche, arriba/abajo = automático
-      Teclado:            D = día, N = noche, A = automático
-    */
-    document.addEventListener('keydown', e => {
-      const k = e.key.toLowerCase();
-      if (k === 'arrowleft'  || k === 'd') elegir('dia');
-      if (k === 'arrowright' || k === 'n') elegir('noche');
-      if (k === 'arrowup' || k === 'arrowdown' || k === 'a') elegir(null);
-    });
-
-    /* ---- Mantener siempre en reproducción ---- */
-    v.addEventListener('pause', () => v.play().catch(() => {}));
-    v.addEventListener('ended', () => { v.currentTime = 0; v.play(); });
-
-    /* ---- Si el video falla, lo dice en pantalla y reintenta ---- */
-    v.addEventListener('error', () => {
-      const c = v.error ? v.error.code : '?';
-      const motivo = { 1: 'cancelado', 2: 'error de red', 3: 'no se pudo decodificar', 4: 'no se encuentra o formato no compatible' }[c] || 'desconocido';
-      avisar('No carga ' + v.getAttribute('src') + ' (' + motivo + ')');
-      setTimeout(() => { v.load(); v.play().catch(() => {}); }, 10000);
-    });
-
-    /* ---- Botón central (Seleccionar) del mando: cambia día → noche → automático ---- */
-    let ultimoCambio = 0;
-    function ciclar() {
-      const ahora = Date.now();
-      if (ahora - ultimoCambio < 500) return; // evita dobles pulsaciones
-      ultimoCambio = ahora;
-      const actual = params.get('modo') || guardado();
-      elegir(actual === 'dia' ? 'noche' : actual === 'noche' ? null : 'dia');
-    }
-    document.addEventListener('click', ciclar);
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.keyCode === 13 || e.keyCode === 23) ciclar(); // 23 = Select en Android/Fire TV
-    });
-
-    /* ---- Pantalla completa: se intenta con cualquier pulsación del mando (los navegadores lo exigen) ---- */
+    /* ---- Pantalla completa (necesita una pulsación del mando) ---- */
     function pantallaCompleta() {
       const el = document.documentElement;
       if (document.fullscreenElement || document.webkitFullscreenElement) return;
       const pedir = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
       if (!pedir) return;
-      try {
-        const p = pedir.call(el);
-        if (p && p.catch) p.catch(() => {});
-      } catch (e) {}
+      try { const p = pedir.call(el); if (p && p.catch) p.catch(() => {}); } catch (e) {}
     }
-    pantallaCompleta(); // intento al cargar (algunos navegadores de TV sí lo permiten)
-    document.addEventListener('click', pantallaCompleta, true);
-    document.addEventListener('keydown', pantallaCompleta, true);
-    document.addEventListener('touchstart', pantallaCompleta, true);
+    function enPantallaCompleta() {
+      return !!(document.fullscreenElement || document.webkitFullscreenElement);
+    }
 
-    /* ---- Cambiar el giro desde el mando: botón Menú (☰), Play/Pausa, o tecla R ---- */
-    let ultimoGiro = 0;
+    /* ---- Mostrar / ocultar el menú ---- */
+    let jugando = false;
+    let temporizador;
+    function ocultarMenu() {
+      menu.classList.add('oculto');
+      document.body.style.cursor = 'none';
+    }
+    function menuOculto() { return menu.classList.contains('oculto'); }
+    function programarOcultar() {
+      clearTimeout(temporizador);
+      if (jugando) temporizador = setTimeout(ocultarMenu, SEGUNDOS_MENU * 1000);
+    }
+    function mostrarMenu() {
+      menu.classList.remove('oculto');
+      document.body.style.cursor = 'default';
+      etiquetas();
+      if (!botones.includes(document.activeElement)) botones[0].focus();
+      programarOcultar();
+    }
+
+    /* ---- Acciones de los botones ---- */
+    function reproducir(modoElegido) { // 'dia', 'noche' o null (automático)
+      escribir('modoManual', modoElegido);
+      jugando = true;
+      actualizarVideo();
+      ocultarMenu();
+      pantallaCompleta();
+    }
+    function cambiarRotacion() {
+      const r = rotActual();
+      escribir('rot', String(r === 0 ? 90 : r === 90 ? 270 : 0));
+      layout();
+      etiquetas();
+      programarOcultar();
+    }
+    botones.forEach(b => b.addEventListener('click', e => {
+      e.stopPropagation();
+      const a = b.dataset.act;
+      if (a === 'auto') reproducir(null);
+      else if (a === 'dia') reproducir('dia');
+      else if (a === 'noche') reproducir('noche');
+      else if (a === 'rot') cambiarRotacion();
+    }));
+
+    /* ---- Mando del Fire TV ---- */
     document.addEventListener('keydown', e => {
-      const esGiro = e.keyCode === 82 || e.keyCode === 179 || e.key === 'ContextMenu' ||
-                     e.key === 'MediaPlayPause' || e.key.toLowerCase() === 'r';
-      if (!esGiro) return;
-      const ahora = Date.now();
-      if (ahora - ultimoGiro < 500) return;
-      ultimoGiro = ahora;
-      cambiarRotacion();
+      if (menuOculto()) {            // con el video en marcha, cualquier botón abre el menú
+        e.preventDefault();
+        mostrarMenu();
+        return;
+      }
+      programarOcultar();
+      const k = e.key;
+      const i = botones.indexOf(document.activeElement);
+      if (k === 'ArrowRight' || k === 'ArrowDown') {
+        e.preventDefault();
+        botones[(i + 1 + botones.length) % botones.length].focus();
+      } else if (k === 'ArrowLeft' || k === 'ArrowUp') {
+        e.preventDefault();
+        botones[(i - 1 + botones.length) % botones.length].focus();
+      } else if (e.keyCode === 23) {  // 23 = botón central en Android/Fire TV
+        e.preventDefault();
+        (botones[i] || botones[0]).click();
+      }
+      // Enter normal lo gestiona el propio botón enfocado
     });
+    document.addEventListener('click', () => { if (menuOculto()) mostrarMenu(); });
+
+    // Si salen de la pantalla completa (botón Atrás), vuelve el menú
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(ev =>
+      document.addEventListener(ev, () => { if (!enPantallaCompleta() && jugando) mostrarMenu(); }));
+
+    /* ---- Mantener siempre en reproducción y avisar si falla ---- */
+    v.addEventListener('pause', () => v.play().catch(() => {}));
+    v.addEventListener('error', () => {
+      const c = v.error ? v.error.code : '?';
+      const motivo = { 1: 'cancelado', 2: 'error de red', 3: 'no se pudo decodificar', 4: 'no se encuentra o formato no compatible' }[c] || 'desconocido';
+      mostrarMenu();
+      estado.textContent = 'No carga ' + v.getAttribute('src') + ' (' + motivo + ')';
+      setTimeout(() => { v.load(); v.play().catch(() => {}); }, 10000);
+    });
+
+    /* ---- Inicio: se ve el video de fondo con el menú encima ---- */
+    actualizarVideo();
+    mostrarMenu();
+    botones[0].focus();
   </script>
 </body>
 </html>
