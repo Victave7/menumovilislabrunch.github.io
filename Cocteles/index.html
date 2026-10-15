@@ -68,6 +68,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "hasMenuSection": [
         {
           "@type": "MenuSection",
+          "name": "Autumn Signatures · Cócteles de autor de temporada",
+          "hasMenuItem": [
+            {
+              "@type": "MenuItem",
+              "name": "ISLA Don Pumpkin",
+              "description": "Tequila Don Julio Silver o Reposado · Pumpkin casero · Lima fresca"
+            },
+            {
+              "@type": "MenuItem",
+              "name": "ISLA Pumpkin Coconut",
+              "description": "Ron blanco · Pumpkin casero · Leche de coco · Lima fresca"
+            },
+            {
+              "@type": "MenuItem",
+              "name": "ISLA Pumpkin Chai Sour",
+              "description": "Vodka · Pumpkin casero · Sirope chai · Limón fresco"
+            },
+            {
+              "@type": "MenuItem",
+              "name": "ISLA Pumpkin Old Fashioned",
+              "description": "Jack Daniel’s Old No. 7 · Pumpkin casero"
+            }
+          ]
+        },
+        {
+          "@type": "MenuSection",
           "name": "Firmas Don Julio",
           "hasMenuItem": [
             {
@@ -660,7 +686,12 @@ h1,h2,h3{margin:0;font-family:'Bodoni Moda',Georgia,serif;font-weight:400;line-h
 .nav-links a{font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);transition:color .3s var(--ease);position:relative;padding:6px 0;}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--amber);transition:width .35s var(--ease);}
 .nav-links a:hover{color:var(--txt);}
-.nav-links a:hover::after{width:100%;}
+.nav-links a:hover::after,.nav-links a[aria-current="true"]::after{width:100%;}
+.nav-links a[aria-current="true"]{color:var(--txt);}
+.sheet > a[aria-current="true"]{color:var(--amber);}
+section[id]{scroll-margin-top:64px;}
+body.menu-open{overflow:hidden;}
+.nav-links a:focus-visible,.burger:focus-visible,.lang button:focus-visible,.sheet a:focus-visible{outline:2px solid var(--amber);outline-offset:4px;}
 .lang{display:flex;gap:2px;margin-left:8px;}
 .lang button{background:none;border:0;padding:8px 6px;font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--mut);cursor:pointer;transition:color .3s var(--ease);}
 .lang button[aria-pressed="true"]{color:var(--amber);}
@@ -681,6 +712,7 @@ body.menu-open .sheet a:nth-child(2){transition-delay:.14s}
 body.menu-open .sheet a:nth-child(3){transition-delay:.2s}
 body.menu-open .sheet a:nth-child(4){transition-delay:.26s}
 body.menu-open .sheet a:nth-child(5){transition-delay:.32s}
+body.menu-open .sheet a:nth-child(6){transition-delay:.38s}
 .sheet .foot{margin-top:38px;display:flex;gap:18px;align-items:center;}
 
 /* ---------- hero ---------- */
@@ -889,7 +921,7 @@ footer{padding:56px 0 46px;border-top:1px solid var(--line);}
 </style>
 </head>
 <body>
-<a href="#main" class="skip-link">Saltar al contenido</a>
+<a href="#main" class="skip-link" data-i18n="skip">Saltar al contenido</a>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MHHRLL7J"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -926,23 +958,19 @@ var ISLA_MEDIA = {
   liNachos     : "fotos/nachos.png",
   liLingote    : "fotos/lingotes.png",
 
-  /* isla tequila experience — una imagen por experiencia */
-  tequilaExp1  : "fotos/experiencia1.png",
-  tequilaExp2  : "fotos/experiencia2.png",
+  /* autumn signatures — coleccion de otono (formato recomendado: .webp, 4:5 los cocteles, 16:10 hero y editorial) */
+  autumn1      : "fotos/donjuliopump.jpg",
+  autumn2      : "fotos/cocopump.jpg",
+  autumn3      : "fotos/chaipump.jpg",
+  autumn4      : "fotos/oldpump.jpg",
 
   /* cierre */
   edClosing    : "fotos/banner.png"
 
   /* ────────────────────────────────────────────────────────────
-     Cuando fotografies otro cóctel o plato y quieras darle su
-     propio bloque grande (como el del Tamarindo):
-       1) copia la <section class="ed">...</section> del Tamarindo
-          (justo debajo de este script, dentro de <main>)
-       2) cambia el texto y ponle una clave nueva en data-media,
-          por ejemplo data-media="edAbuela"
-       3) añade aqui arriba una linea: edAbuela : "img/abuela-kills.jpg",
-     Con eso solo, ya aparece la foto. No hay que tocar nada mas
-     del codigo ni de la lista de cocteles.
+     Fotos de la colección de otoño (Autumn Signatures): sube cada
+     archivo con el nombre de arriba (autumn1..autumn4). Mientras no exista la foto, la pieza se queda
+     con su fondo oscuro degradado y el texto encima.
      ──────────────────────────────────────────────────────────── */
 };
 
@@ -974,13 +1002,13 @@ function islaMedia(root){
       <a href="#food" data-i18n="nav_food">Food</a>
       <a href="#cervezas" data-i18n="nav_drinks">Drinks</a>
       <a href="https://maps.google.com/?q=ISLA+Brunch+Bar+Elche" target="_blank" rel="noopener" data-i18n="nav_dir">Cómo llegar</a>
-      <span class="lang" id="lang" role="group" aria-label="Idioma">
+      <span class="lang" id="lang" role="group" aria-label="Idioma" data-i18n-attrs="aria-label:aria_lang">
         <button type="button" data-lang="es" aria-pressed="true">ES</button>
         <button type="button" data-lang="en" aria-pressed="false">EN</button>
         <button type="button" data-lang="fr" aria-pressed="false">FR</button>
       </span>
     </div>
-    <button type="button" class="burger" id="burger" aria-label="Menú" aria-expanded="false">
+    <button type="button" class="burger" id="burger" aria-label="Menú" data-i18n-attrs="aria-label:aria_menu" aria-expanded="false" aria-controls="sheet">
       <span></span><span></span>
     </button>
   </div>
@@ -994,7 +1022,7 @@ function islaMedia(root){
   <a href="#cervezas" data-i18n="nav_drinks">Drinks</a>
   <a href="https://maps.google.com/?q=ISLA+Brunch+Bar+Elche" target="_blank" rel="noopener" data-i18n="nav_dir">Cómo llegar</a>
   <div class="foot">
-    <span class="lang" id="lang2" role="group" aria-label="Idioma">
+    <span class="lang" id="lang2" role="group" aria-label="Idioma" data-i18n-attrs="aria-label:aria_lang">
       <button type="button" data-lang="es" aria-pressed="true">ES</button>
       <button type="button" data-lang="en" aria-pressed="false">EN</button>
       <button type="button" data-lang="fr" aria-pressed="false">FR</button>
@@ -1047,9 +1075,168 @@ function islaMedia(root){
   </a>
 </section>
 
-<!-- ══════════ BEBIDA DE TEMPORADA · unica con foto por ahora ══════════ -->
-<section class="blk blk-tight" id="temporada"><div class="wrap"><div class="shead rv"><span class="lab" data-i18n="lab_season">Bebida de temporada</span><h2 data-i18n="h_season">La de ahora mismo</h2><p class="k" data-i18n="k_season">Una sola, elegida a mano. Cuando cambie la temporada, cambia ella.</p></div></div></section>
-<section class="ed"><div class="m mask" data-par><img data-media="edTamarindo" alt="Tamarindo Dark Sunset"  decoding="async"></div><div class="wrap"><div class="rv"><span class="lab" data-i18n="lab_start">Empieza por aquí</span><h3>Tamarindo Dark Sunset</h3><p class="story" data-i18n="story_tamarindo-dark-sunset">El que abre la noche: dulce, oscuro y con un golpe de ron añejo que no se disculpa.</p><p class="ing" data-i18n="ing_tamarindo-dark-sunset">Ron oscuro · Pulpa de tamarindo · Lima · Sirope de caña</p><span class="price">9,00 €</span></div></div></section>
+<!-- ══════════ TEMPORADA · AUTUMN SIGNATURES (cócteles de autor de temporada) ══════════ -->
+<style>
+  /* Todo el CSS de esta sección va acotado bajo .au para no afectar al resto de la web */
+  .au{--cop:#B8622A;--pump:#D9772B;position:relative;overflow:hidden;background:var(--ink);padding-bottom:clamp(28px,5vh,56px);}
+
+  /* cabecera compacta de temporada: solo letras, sin foto */
+  .au-head{padding-top:clamp(48px,8vh,88px);}
+  .au-tag{display:inline-flex;align-items:center;gap:12px;font-size:10.5px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--amber);}
+  .au-tag::before{content:"";width:28px;height:1px;background:var(--amber);}
+  .au-head h2{font-size:clamp(2.6rem,10vw,5.2rem);line-height:.95;margin-top:16px;}
+  .au-head h2 em{font-style:italic;color:var(--pump);}
+  .au-lead{margin-top:14px;font-family:'Bodoni Moda',serif;font-style:italic;font-size:clamp(1.15rem,4.2vw,1.6rem);line-height:1.2;}
+  .au-desc{margin-top:10px;color:var(--mut);max-width:50ch;font-size:15px;}
+  .au-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px;}
+  .au-hint{display:flex;align-items:center;gap:12px;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--mut);}
+  .au-hint i{display:block;width:34px;height:1px;background:var(--line);position:relative;overflow:hidden;}
+  .au-hint i::after{content:"";position:absolute;inset:0;background:var(--amber);transform:translateX(-100%);animation:auHint 2.4s var(--ease) infinite;}
+  @keyframes auHint{50%{transform:translateX(0);}100%{transform:translateX(100%);}}
+  .au-arrows{display:none;gap:10px;}
+  .au-arrow{width:46px;height:46px;border:1px solid var(--line);background:transparent;color:var(--txt);cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:border-color .3s var(--ease),color .3s var(--ease),opacity .3s var(--ease);}
+  .au-arrow svg{width:18px;height:18px;}
+  .au-arrow:hover:not(:disabled){border-color:var(--amber);color:var(--amber);}
+  .au-arrow:disabled{opacity:.3;cursor:default;}
+  @media(min-width:900px){.au-arrows{display:flex;}}
+
+  /* carrusel */
+  .au-viewport{position:relative;}
+  .au-track{
+    display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+    --au-x:max(var(--pad),calc((100% - 1320px)/2 + var(--pad)));padding:6px var(--pad) 14px var(--au-x);scroll-padding-left:var(--au-x);
+    scrollbar-width:none;-ms-overflow-style:none;
+  }
+  .au-track::-webkit-scrollbar{display:none;}
+  .au-track:focus-visible{outline:2px solid var(--amber);outline-offset:-2px;}
+  .au-card{
+    flex:0 0 82%;max-width:420px;scroll-snap-align:start;display:flex;flex-direction:column;
+    background:var(--coal);border:1px solid var(--line);position:relative;
+  }
+  @media(min-width:600px){.au-card{flex-basis:56%;max-width:460px;}}
+  @media(min-width:900px){.au-track{gap:22px;}.au-card{flex-basis:40%;max-width:500px;}}
+  .au-fig{position:relative;margin:0;aspect-ratio:4/5;overflow:hidden;background:
+    radial-gradient(70% 60% at 62% 30%,rgba(217,119,43,.26),transparent 64%),
+    radial-gradient(60% 60% at 18% 84%,rgba(96,122,72,.16),transparent 66%),var(--surf);}
+  .au-fig img{width:100%;height:100%;object-fit:cover;}
+  .au-fig::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,10,10,.25) 0%,transparent 22%,transparent 50%,rgba(9,10,10,.94) 100%);pointer-events:none;}
+  @media(min-width:900px){.au-fig{aspect-ratio:5/6;}}
+  .au-n{position:absolute;top:14px;left:16px;z-index:2;font-family:'Bodoni Moda',serif;font-size:1.5rem;color:var(--amber);}
+  .au-body{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 clamp(18px,4vw,26px) clamp(20px,4vw,26px);display:flex;flex-direction:column;}
+  .au-body h4{margin:0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(1.5rem,5.4vw,1.9rem);line-height:1.04;letter-spacing:-.01em;}
+  .au-desc2{margin-top:6px;font-family:'Bodoni Moda',serif;font-style:italic;color:var(--pump);font-size:1.02rem;}
+  .au-ing{margin-top:8px;color:var(--mut);font-size:12.5px;line-height:1.5;}
+  .au-prof{padding-top:12px;font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);}
+
+  /* tarjeta insignia */
+  .au-card.crown{border-color:rgba(199,154,82,.65);background:linear-gradient(180deg,#1A1814 0%,var(--coal) 100%);
+    box-shadow:0 0 0 1px rgba(199,154,82,.12),0 24px 60px -24px rgba(217,119,43,.35);}
+  @media(min-width:900px){.au-card.crown{flex-basis:44%;}}
+  .au-card.crown h4{font-size:clamp(1.8rem,6.4vw,2.4rem);}
+  .au-crown{position:absolute;top:14px;right:14px;z-index:3;padding:6px 12px;background:var(--amber);color:#14100A;font-size:9.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;}
+  .au-star{display:block;margin-bottom:8px;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);}
+
+  .au-dots{display:flex;gap:10px;justify-content:center;padding:0 var(--pad);}
+  .au-dot{width:28px;height:28px;border:0;background:none;padding:0;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .au-dot::before{content:"";display:block;width:22px;height:2px;background:var(--line);transition:background .3s var(--ease),width .3s var(--ease);}
+  .au-dot[aria-current="true"]::before{background:var(--amber);width:30px;}
+  .au-dot:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
+
+  @media (prefers-reduced-motion:reduce){
+    .au-track{scroll-behavior:auto;}
+    .au-hint i::after{animation:none;transform:none;}
+  }
+</style>
+
+<section class="au" id="temporada" aria-labelledby="au-title">
+
+  <!-- CABECERA COMPACTA -->
+  <div class="wrap au-head">
+    <div class="rv">
+      <span class="au-tag" data-i18n="au_tag">Autumn Collection · Edición de temporada</span>
+      <h2 id="au-title">Autumn <em>Signatures</em></h2>
+      <p class="au-lead" data-i18n="au_lead">El otoño tiene otro sabor.</p>
+      <p class="au-desc" data-i18n="au_desc">Cuatro cócteles de autor. Una esencia tropical. Nuestro pumpkin casero como protagonista.</p>
+    </div>
+    <div class="au-bar">
+      <span class="au-hint" aria-hidden="true"><i></i><span data-i18n="au_hint">Desliza · 4 cócteles</span></span>
+      <div class="au-arrows">
+        <button type="button" class="au-arrow" id="auPrev" aria-label="Cóctel anterior" data-i18n-attrs="aria-label:au_prev" aria-controls="auTrack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+        <button type="button" class="au-arrow" id="auNext" aria-label="Cóctel siguiente" data-i18n-attrs="aria-label:au_next" aria-controls="auTrack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARRUSEL -->
+  <div class="au-viewport" role="region" aria-roledescription="carrusel" aria-label="Autumn Signatures: cuatro cócteles de autor" data-i18n-attrs="aria-roledescription:au_carousel,aria-label:au_region">
+    <div class="au-track" id="auTrack" role="group" tabindex="0" aria-label="Cócteles de temporada. Usa las flechas del teclado para moverte." data-i18n-attrs="aria-label:au_track">
+
+      <article class="au-card crown" role="group" aria-roledescription="diapositiva" aria-label="1 de 4: ISLA Don Pumpkin" data-i18n-attrs="aria-roledescription:au_slide,aria-label:au_c1_aria">
+        <span class="au-crown">The Crown Jewel</span>
+        <figure class="au-fig">
+          <img data-media="autumn1" alt="ISLA Don Pumpkin: cóctel ámbar servido en vaso bajo con hielo" data-i18n-attrs="alt:au_c1_alt" width="800" height="1000" loading="lazy" decoding="async">
+          <span class="au-n" aria-hidden="true">01</span>
+        </figure>
+        <div class="au-body">
+          <span class="au-star" data-i18n="au_star">El protagonista · Signature cocktail</span>
+          <h4>ISLA Don Pumpkin</h4>
+          <p class="au-desc2" data-i18n="au_c1_desc">Agave, especias y carácter tropical.</p>
+          <p class="au-ing"><span data-i18n="au_c1_ing">Tequila Don Julio Silver o Reposado · Pumpkin casero · Lima fresca</span></p>
+          <p class="au-prof" data-i18n="au_c1_prof">Cítrico · Especiado · Intenso</p>
+        </div>
+      </article>
+
+      <article class="au-card" role="group" aria-roledescription="diapositiva" aria-label="2 de 4: ISLA Pumpkin Coconut" data-i18n-attrs="aria-roledescription:au_slide,aria-label:au_c2_aria">
+        <figure class="au-fig">
+          <img data-media="autumn2" alt="ISLA Pumpkin Coconut: cóctel cremoso en tonos marfil y ámbar, servido en vaso de cristal" data-i18n-attrs="alt:au_c2_alt" width="800" height="1000" loading="lazy" decoding="async">
+          <span class="au-n" aria-hidden="true">02</span>
+        </figure>
+        <div class="au-body">
+          <h4>ISLA Pumpkin Coconut</h4>
+          <p class="au-desc2" data-i18n="au_c2_desc">El trópico se encuentra con el otoño.</p>
+          <p class="au-ing"><span data-i18n="au_c2_ing">Ron blanco · Pumpkin casero · Leche de coco · Lima fresca</span></p>
+          <p class="au-prof" data-i18n="au_c2_prof">Tropical · Cremoso · Especiado</p>
+        </div>
+      </article>
+
+      <article class="au-card" role="group" aria-roledescription="diapositiva" aria-label="3 de 4: ISLA Pumpkin Chai Sour" data-i18n-attrs="aria-roledescription:au_slide,aria-label:au_c3_aria">
+        <figure class="au-fig">
+          <img data-media="autumn3" alt="ISLA Pumpkin Chai Sour: cóctel en tonos ámbar y cobre sobre fondo oscuro" data-i18n-attrs="alt:au_c3_alt" width="800" height="1000" loading="lazy" decoding="async">
+          <span class="au-n" aria-hidden="true">03</span>
+        </figure>
+        <div class="au-body">
+          <h4>ISLA Pumpkin Chai Sour</h4>
+          <p class="au-desc2" data-i18n="au_c3_desc">Especias cálidas. Final cítrico.</p>
+          <p class="au-ing"><span data-i18n="au_c3_ing">Vodka · Pumpkin casero · Sirope chai · Limón fresco</span></p>
+          <p class="au-prof" data-i18n="au_c3_prof">Aromático · Cítrico · Especiado</p>
+        </div>
+      </article>
+
+      <article class="au-card" role="group" aria-roledescription="diapositiva" aria-label="4 de 4: ISLA Pumpkin Old Fashioned" data-i18n-attrs="aria-roledescription:au_slide,aria-label:au_c4_aria">
+        <figure class="au-fig">
+          <img data-media="autumn4" alt="ISLA Pumpkin Old Fashioned: vaso bajo con un gran cubo de hielo transparente en tonos ámbar y dorado" data-i18n-attrs="alt:au_c4_alt" width="800" height="1000" loading="lazy" decoding="async">
+          <span class="au-n" aria-hidden="true">04</span>
+        </figure>
+        <div class="au-body">
+          <h4>ISLA Pumpkin Old Fashioned</h4>
+          <p class="au-desc2" data-i18n="au_c4_desc">Carácter, madera y especias.</p>
+          <p class="au-ing"><span data-i18n="au_c4_ing">Jack Daniel’s Old No. 7 · Pumpkin casero</span></p>
+          <p class="au-prof" data-i18n="au_c4_prof">Intenso · Amaderado · Cálido</p>
+        </div>
+      </article>
+
+    </div>
+    <div class="au-dots" id="auDots" role="group" aria-label="Elegir cóctel" data-i18n-attrs="aria-label:au_dots">
+      <button type="button" class="au-dot" aria-label="Ir al cóctel 1: ISLA Don Pumpkin" data-i18n-attrs="aria-label:au_d1"></button>
+      <button type="button" class="au-dot" aria-label="Ir al cóctel 2: ISLA Pumpkin Coconut" data-i18n-attrs="aria-label:au_d2"></button>
+      <button type="button" class="au-dot" aria-label="Ir al cóctel 3: ISLA Pumpkin Chai Sour" data-i18n-attrs="aria-label:au_d3"></button>
+      <button type="button" class="au-dot" aria-label="Ir al cóctel 4: ISLA Pumpkin Old Fashioned" data-i18n-attrs="aria-label:au_d4"></button>
+    </div>
+  </div>
+
+</section>
 
 <!-- ══════════ DON JULIO · la firma personal ══════════ -->
 <section class="blk house" id="firmas"><div class="wrap">
@@ -1071,6 +1258,7 @@ function islaMedia(root){
 <div class="li rv"><h4>Volcán Tropical</h4><span class="price">9,00 €</span><p class="story" data-i18n="story_volcan-tropical">Nuestro cóctel insignia: una combinación profunda de sabores que no vamos a spoilear.</p><p class="ing" data-i18n="ing_volcan-tropical">Receta de la casa · Fruta de temporada</p></div>
 <div class="li rv"><h4>Abuela Kills</h4><span class="price">12,50 €</span><p class="story" data-i18n="story_abuela-kills">El nombre lo dice todo. Dulce como la abuela, con un golpe que no perdona.</p><p class="ing" data-i18n="ing_abuela-kills">Amaretto · Tequila Don Julio · Cóctel de fruta</p></div>
 <div class="li rv has-media side"><div class="li-thumb mask bare"><img data-media="liElche" alt="" aria-hidden="true"  decoding="async"></div><div class="li-body"><h4>Elche Mule</h4><span class="price">9,00 €</span><p class="story" data-i18n="story_elche-mule">Nuestra versión del clásico, con dátil de la tierra en vez de jengibre.</p><p class="ing" data-i18n="ing_elche-mule">Vodka · Dátil · Lima · Ginger Beer </p></div></div>
+<div class="li rv has-media side"><div class="li-thumb mask bare"><img data-media="edTamarindo" alt="" aria-hidden="true" loading="lazy" decoding="async"></div><div class="li-body"><h4>Tamarindo Dark Sunset</h4><span class="price">9,00 €</span><p class="story" data-i18n="story_tamarindo-dark-sunset">El que abre la noche: dulce, oscuro y con un golpe de ron añejo que no se disculpa.</p><p class="ing" data-i18n="ing_tamarindo-dark-sunset">Ron oscuro · Pulpa de tamarindo · Lima · Sirope de caña</p></div></div>
 <div class="li rv"><h4>Whisky Tamarindo</h4><span class="price">10,50 €</span><p class="story" data-i18n="story_don-july-tamarindo">Prima hermana del Dark Sunset, con un toque más intenso de tamarindo.</p><p class="ing" data-i18n="ing_don-july-tamarindo"> Whisky Jacks Daniels · Pulpa de tamarindo · Lima · Sirope de caña </p></div>
 <div class="li rv"><h4>Mollar Spritz</h4><span class="price">7,50 €</span><p class="story" data-i18n="story_mollar-spritz">Ligero, con burbuja y granada. El que pides antes de decidir qué cenar.</p><p class="ing" data-i18n="ing_mollar-spritz">Ginebra · Zumo de granada · Lima · Soda</p></div>
 <div class="li rv"><h4>Pilicoco</h4><span class="price">8,00 €</span><p class="story" data-i18n="story_pilicoco">Piña, coco y ron. Cierra los ojos y estás en otra isla.</p><p class="ing" data-i18n="ing_pilicoco">Ron · Zumo de piña · Lima · Coco rallado</p></div>
@@ -1088,213 +1276,7 @@ function islaMedia(root){
 </div>
 </div></section>
 
-<!-- ══════════ ISLA TEQUILA EXPERIENCE · 2 EXPERIENCIAS · SCROLL LATERAL ══════════ -->
-<style>
-  .tequila-track{
-    display:flex;overflow-x:auto;overflow-y:hidden;
-    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;
-    border-radius:12px;border:1px solid rgba(199,154,82,.2);
-    background:linear-gradient(135deg,rgba(96,122,72,.1) 0%,rgba(199,154,82,.08) 100%);
-    scrollbar-width:none;-ms-overflow-style:none;
-  }
-  .tequila-track::-webkit-scrollbar{display:none;}
-  .tequila-slide{flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always;}
-  .tequila-slide-inner{
-    position:relative;height:100%;box-sizing:border-box;
-    padding:0 clamp(20px,5vw,36px) clamp(24px,4vw,32px);
-  }
-  /* imagen a sangre arriba, se funde con el fondo oscuro; sirve con o sin fondo propio */
-  .tq-fig{margin:0 calc(-1 * clamp(20px,5vw,36px));line-height:0;}
-  .tq-fig img{
-    display:block;width:100%;height:auto;max-height:340px;object-fit:cover;object-position:center;
-    -webkit-mask-image:linear-gradient(180deg,#000 55%,transparent 100%);
-            mask-image:linear-gradient(180deg,#000 55%,transparent 100%);
-  }
-  .tq-fig:not(:empty) + .tq-head{margin-top:-46px;position:relative;}
-  .tq-fig:empty + .tq-head{padding-top:clamp(26px,5vw,40px);}
-  .tequila-dot.active{background:var(--amber) !important;width:8px !important;height:8px !important;}
 
-  /* cabecera de experiencia */
-  .tq-head{text-align:center;margin-bottom:26px;}
-  .tq-exp{font-family:'Bodoni Moda',serif;font-size:clamp(1.7rem,6.5vw,2.1rem);color:var(--amber);font-weight:400;letter-spacing:-.01em;margin:0 0 2px;}
-  .tq-name{font-family:'Bodoni Moda',serif;font-size:1.3rem;color:var(--txt);font-weight:400;margin:0 0 10px;}
-  .tq-kind{display:block;color:var(--mut);font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 14px;}
-
-  /* pasos 01 → 02 → 03 (orden obligatorio) */
-  .tq-step{position:relative;padding-left:62px;margin:0 0 34px;min-height:44px;}
-  .tq-step:last-of-type{margin-bottom:0;}
-  .tq-num{
-    position:absolute;left:0;top:-4px;width:42px;text-align:center;
-    font-family:'Bodoni Moda',serif;font-size:2.6rem;line-height:1;color:var(--amber);font-weight:400;
-  }
-  .tq-step:not(:last-of-type)::after{
-    content:"";position:absolute;left:21px;top:50px;bottom:-26px;width:1px;
-    background:linear-gradient(180deg,var(--amber),rgba(199,154,82,.25));
-  }
-  .tq-step:not(:last-of-type)::before{
-    content:"";position:absolute;left:17px;bottom:-26px;width:8px;height:8px;
-    border-right:1px solid var(--amber);border-bottom:1px solid var(--amber);transform:rotate(45deg);
-  }
-  .tq-t{font-family:'Bodoni Moda',serif;font-size:1.3rem;color:var(--txt);font-weight:400;margin:0 0 4px;letter-spacing:.02em;}
-  .tq-ing{color:var(--mut);font-size:13px;line-height:1.5;margin:0 0 8px;}
-  .tq-sens{color:var(--amber);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin:0 0 6px;line-height:1.6;}
-  .tq-how{color:var(--mut);font-size:12px;line-height:1.55;margin:0;font-style:italic;}
-  .tq-badge{
-    display:inline-block;margin:0 0 8px;padding:3px 10px;border:1px solid rgba(199,154,82,.5);border-radius:999px;
-    color:var(--amber);font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-  }
-  /* mini copa Velvet: tequila abajo, cold foam arriba, sin mezclar */
-  .tq-layers{display:flex;align-items:center;gap:10px;margin:0 0 8px;}
-  .tq-glass{
-    display:flex;flex-direction:column;width:22px;height:30px;flex:none;overflow:hidden;
-    border:1px solid rgba(199,154,82,.6);border-radius:2px 2px 8px 8px;
-  }
-  .tq-glass i{display:block;width:100%;}
-  .tq-glass .f{height:42%;background:rgba(242,239,232,.85);}
-  .tq-glass .t{flex:1;background:var(--amber);}
-  .tq-layers span{color:var(--txt);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;line-height:1.5;}
-  .tq-route{
-    margin:26px 0 0;padding-top:16px;border-top:1px solid rgba(199,154,82,.2);
-    text-align:center;color:var(--txt);font-size:12px;letter-spacing:.1em;
-  }
-  .tq-price{display:inline-block;margin:0;padding:5px 14px;border:1px solid var(--amber);border-radius:999px;
-    font-family:'Archivo',sans-serif;font-weight:600;color:var(--amber);font-size:.9rem;letter-spacing:.02em;}
-  .tq-next{
-    display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:7px 16px;
-    border:1px solid rgba(199,154,82,.4);border-radius:999px;color:var(--amber);
-    font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
-  }
-  .tq-next b{width:6px;height:6px;border-radius:50%;background:var(--amber);animation:tqPulse 2s ease-in-out infinite;}
-  @keyframes tqPulse{0%,100%{opacity:.35;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}
-  @media (prefers-reduced-motion:reduce){.tq-next b{animation:none}}
-</style>
-<section class="blk" id="tequila-experience" style="position:relative;overflow:hidden;padding:clamp(48px,9vh,96px) 0;"><div class="wrap rv">
-
-<div style="text-align:center;margin-bottom:36px;">
-  <span class="lab" style="color:var(--amber);">⭐ EDICIÓN DEL MES</span>
-  <h2 style="font-size:clamp(2.4rem,8vw,4.2rem);margin-top:16px;margin-bottom:8px;">ISLA TEQUILA<br>EXPERIENCE</h2>
-  <p style="color:var(--amber);font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 14px;">3 SHOTS · 3 SENSACIONES · 1 RITUAL</p>
-  <p style="color:var(--mut);font-size:13px;line-height:1.6;max-width:42ch;margin:0 auto;">Dos experiencias de tequila. Cada una sigue un orden diseñado para transformar el sabor, la temperatura y la textura.</p>
-</div>
-
-<div class="tequila-slider" style="position:relative;max-width:600px;margin:0 auto;">
-  <div class="tequila-track">
-
-    <!-- EXPERIENCIA 01 · ISLA TROPICAL -->
-    <div class="tequila-slide" data-exp="01-tropical">
-      <div class="tequila-slide-inner">
-        <figure class="tq-fig"><img data-media="tequilaExp1" alt="Isla Tequila Experience 01 · Isla Tropical: Ola, Marea y Fuego" decoding="async"></figure>
-        <div class="tq-head">
-          <h3 class="tq-exp">EXPERIENCIA 01</h3>
-          <h4 class="tq-name">ISLA TROPICAL</h4>
-          <span class="tq-kind">Una evolución de temperatura y sabor. El orden importa.</span>
-          <span class="tq-price">9,90 € · los 3 pasos</span>
-        </div>
-
-        <div class="tq-step">
-          <span class="tq-num">01</span>
-          <h5 class="tq-t">OLA</h5>
-          <p class="tq-ing">Tequila blanco · piña · lima · agave · sal</p>
-          <p class="tq-sens">Frío · Fresco · Tropical</p>
-          <p class="tq-how">De un solo trago.</p>
-        </div>
-
-        <div class="tq-step">
-          <span class="tq-num">02</span>
-          <h5 class="tq-t">MAREA</h5>
-          <span class="tq-badge">Servido ligeramente templado</span>
-          <p class="tq-ing">Tequila blanco · tamarindo · lima · agave · sal</p>
-          <p class="tq-sens">Templado · Ácido · Aromático</p>
-          <p class="tq-how">Primero huélelo. Después déjalo unos segundos en boca.</p>
-        </div>
-
-        <div class="tq-step">
-          <span class="tq-num">03</span>
-          <h5 class="tq-t">FUEGO</h5>
-          <p class="tq-ing">Tequila reposado · mango · tamarindo · agave · lima</p>
-          <p class="tq-sens">Fruta · Dulce · Intenso</p>
-          <p class="tq-how">De un solo trago.</p>
-        </div>
-
-        <p class="tq-route">❄️ OLA → ☀️ MAREA → 🔥 FUEGO</p>
-      </div>
-    </div>
-
-    <!-- EXPERIENCIA 02 · ISLA TROPICAL · TEXTURA -->
-    <div class="tequila-slide" data-exp="02-tropical">
-      <div class="tequila-slide-inner" style="background:linear-gradient(135deg,rgba(199,154,82,.08),rgba(96,122,72,.06));">
-        <figure class="tq-fig"><img data-media="tequilaExp2" alt="Isla Tequila Experience 02 · Isla Tropical: Mango, Velvet y Maracuyá" decoding="async"></figure>
-        <div class="tq-head">
-          <h3 class="tq-exp">EXPERIENCIA 02</h3>
-          <h4 class="tq-name">ISLA TROPICAL</h4>
-          <span class="tq-kind">Textura · Cremosidad · Capas</span>
-          <span class="tq-price">11,90 € · los 3 pasos</span>
-        </div>
-
-        <div class="tq-step">
-          <span class="tq-num">01</span>
-          <h5 class="tq-t">MANGO</h5>
-          <p class="tq-ing">Tequila blanco · mango · agave</p>
-          <p class="tq-sens">Dulce · Tropical · Suave</p>
-          <p class="tq-how">De un solo trago.</p>
-        </div>
-
-        <div class="tq-step">
-          <span class="tq-num">02</span>
-          <h5 class="tq-t">VELVET</h5>
-          <div class="tq-layers"><span class="tq-glass" aria-hidden="true"><i class="f"></i><i class="t"></i></span><span>Cold foam arriba · Tequila abajo</span></div>
-          <p class="tq-ing">Tequila reposado · cold foam de mango · maracuyá · vainilla</p>
-          <p class="tq-sens">Cremoso · Tropical · Ácido · Vainilla</p>
-          <p class="tq-how">No remover. Beber directamente para experimentar primero el cold foam y después el tequila.</p>
-        </div>
-
-        <div class="tq-step">
-          <span class="tq-num">03</span>
-          <h5 class="tq-t">MARACUYÁ</h5>
-          <p class="tq-ing">Tequila blanco · maracuyá · lima · agave · menta</p>
-          <p class="tq-sens">Ácido · Fresco · Tropical · Herbal</p>
-          <p class="tq-how">De un solo trago.</p>
-        </div>
-
-        <p class="tq-route">🥭 MANGO → ☁️ VELVET → 🌿 MARACUYÁ</p>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- CONTROLES -->
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:28px;gap:16px;">
-    <button class="tequila-prev" aria-label="Experiencia anterior" style="flex:1;padding:14px 20px;border:1px solid var(--line);background:transparent;color:var(--txt);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s var(--ease);border-radius:4px;display:flex;align-items:center;justify-content:center;gap:8px;">
-      <span>←</span> 01
-    </button>
-    <div style="display:flex;gap:6px;flex:1;justify-content:center;">
-      <div class="tequila-dot" data-index="0" style="width:6px;height:6px;border-radius:50%;background:rgba(199,154,82,.3);transition:all .3s var(--ease);cursor:pointer;"></div>
-      <div class="tequila-dot" data-index="1" style="width:6px;height:6px;border-radius:50%;background:rgba(199,154,82,.3);transition:all .3s var(--ease);cursor:pointer;"></div>
-    </div>
-    <button class="tequila-next" aria-label="Experiencia siguiente" style="flex:1;padding:14px 20px;border:1px solid var(--line);background:transparent;color:var(--txt);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s var(--ease);border-radius:4px;display:flex;align-items:center;justify-content:center;gap:8px;border-color:var(--amber);color:var(--amber);">
-      02 <span>→</span>
-    </button>
-  </div>
-</div>
-
-<!-- EDICIÓN DEL MES · CIERRE -->
-<div class="rv" style="text-align:center;margin-top:40px;">
-  <span class="lab" style="color:var(--amber);">EDICIÓN DEL MES</span>
-  <p style="margin:10px 0 6px;color:var(--txt);font-family:'Bodoni Moda',serif;font-size:1.15rem;">“Esta ronda termina el 1 de octubre.”</p>
-  <p style="margin:0;color:var(--mut);font-size:12px;letter-spacing:.04em;">“Los sabores cambian. La experiencia también.”</p>
-  <span class="tq-next"><b></b>NEXT DROP · PRÓXIMA RONDA</span>
-</div>
-
-<!-- OPCIÓN COMBINADA · THE DOUBLE EXPERIENCE -->
-<div class="rv" style="max-width:600px;margin:32px auto 0;padding:clamp(20px,4vw,28px) clamp(20px,5vw,32px);border:1px solid var(--amber);border-radius:12px;background:linear-gradient(135deg,rgba(199,154,82,.14),rgba(96,122,72,.08));display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
-  <div>
-    <span class="lab" style="color:var(--amber);">🔥 THE DOUBLE EXPERIENCE</span>
-    <p style="margin:8px 0 0;color:var(--txt);font-size:14px;">Las dos experiencias · 6 pasos</p>
-  </div>
-  <span class="price" style="font-size:clamp(1.5rem,5vw,1.9rem);">19,90 €</span>
-</div>
-
-</div></section>
 
 <!-- ══════════ MOJITOS ══════════ -->
 <section class="blk" id="mojitos"><div class="wrap"><div class="shead rv"><h2 data-i18n="h_mojitos">Mojitos</h2><p class="k" data-i18n="sec_mojitos_note">Con fruta natural de la isla, a elegir sabor.</p></div><div class="ls plain"><div class="li rv"><h4 data-i18n="mojito_tradicional">Tradicional</h4><span class="price">7,50 €</span></div><div class="li rv"><h4 data-i18n="mojito_maracuya">Maracuyá</h4><span class="price">8,00 €</span></div><div class="li rv"><h4 data-i18n="mojito_mango">Mango</h4><span class="price">8,00 €</span></div><div class="li rv"><h4 data-i18n="mojito_coco">Coco</h4><span class="price">8,50 €</span></div><div class="li rv"><h4 data-i18n="mojito_fresa">Fresa</h4><span class="price">8,00 €</span></div><div class="li rv"><h4 data-i18n="mojito_pina">Piña</h4><span class="price">8,00 €</span></div></div><p class="ing rv" style="margin-top:22px" data-i18n="note_second_round">¿Segunda ronda? Cambia de fruta y pide algo al centro.</p></div></section>
@@ -1393,9 +1375,6 @@ function islaMedia(root){
       qa_lab_food: "For the table",
       qa_h_food: "Food",
       qa_cta_food: "See food",
-      lab_season: "Seasonal drink",
-      h_season: "Right now",
-      k_season: "Just one, hand-picked. When the season changes, so does it.",
       jump_brioche: "Go to Brioche",
       jump_share: "Go to Sharing plates",
       jump_extras: "Go to Extras",
@@ -1417,7 +1396,6 @@ function islaMedia(root){
       lab_dj: "My signature",
       lab_cocktails: "Signature cocktails",
       lab_food: "House signature",
-      lab_start: "Start here",
       lab_house: "The ISLA brioche",
       lab_fav: "House favourite",
       lab_top: "Best seller",
@@ -1500,7 +1478,46 @@ function islaMedia(root){
       "ing_ron-cola": "Rum · Cola",
       "ing_bimbombum": "Vodka · Cherry · Grapefruit · Granadilla · Soda",
       "ing_cuba-libre": "Rum · Cola · Lime",
-      "ing_papi-ven": "Brugal Rum · Strawberry · Grenadine"
+      "ing_papi-ven": "Brugal Rum · Strawberry · Grenadine",
+      au_tag: "Autumn Collection · Seasonal edition",
+      au_lead: "Autumn tastes different.",
+      au_desc: "Four signature cocktails. A tropical soul. Our house-made pumpkin takes centre stage.",
+      au_hint: "Swipe · 4 cocktails",
+      au_prev: "Previous cocktail",
+      au_next: "Next cocktail",
+      au_region: "Autumn Signatures: four signature cocktails",
+      au_track: "Seasonal cocktails. Use the keyboard arrow keys to move.",
+      au_carousel: "carousel",
+      au_slide: "slide",
+      au_dots: "Choose a cocktail",
+      au_star: "The main character · Signature cocktail",
+      au_c1_alt: "ISLA Don Pumpkin: amber cocktail served in a short glass over ice",
+      au_c2_alt: "ISLA Pumpkin Coconut: creamy cocktail in ivory and amber tones, served in a glass",
+      au_c3_alt: "ISLA Pumpkin Chai Sour: cocktail in amber and copper tones on a dark background",
+      au_c4_alt: "ISLA Pumpkin Old Fashioned: short glass with a large clear ice cube in amber and gold tones",
+      au_c1_aria: "1 of 4: ISLA Don Pumpkin",
+      au_c2_aria: "2 of 4: ISLA Pumpkin Coconut",
+      au_c3_aria: "3 of 4: ISLA Pumpkin Chai Sour",
+      au_c4_aria: "4 of 4: ISLA Pumpkin Old Fashioned",
+      au_d1: "Go to cocktail 1: ISLA Don Pumpkin",
+      au_d2: "Go to cocktail 2: ISLA Pumpkin Coconut",
+      au_d3: "Go to cocktail 3: ISLA Pumpkin Chai Sour",
+      au_d4: "Go to cocktail 4: ISLA Pumpkin Old Fashioned",
+      au_c1_desc: "Agave, spice and tropical character.",
+      au_c1_ing: "Don Julio Silver or Reposado tequila · House-made pumpkin · Fresh lime",
+      au_c1_prof: "Citrusy · Spiced · Bold",
+      au_c2_desc: "The tropics meet autumn.",
+      au_c2_ing: "White rum · House-made pumpkin · Coconut milk · Fresh lime",
+      au_c2_prof: "Tropical · Creamy · Spiced",
+      au_c3_desc: "Warm spice. Citrus finish.",
+      au_c3_ing: "Vodka · House-made pumpkin · Chai syrup · Fresh lemon",
+      au_c3_prof: "Aromatic · Citrusy · Spiced",
+      au_c4_desc: "Character, wood and spice.",
+      au_c4_ing: "Jack Daniel’s Old No. 7 · House-made pumpkin",
+      au_c4_prof: "Bold · Woody · Warm",
+      aria_menu: "Menu",
+      aria_lang: "Language",
+      skip: "Skip to content"
     },
     fr: {
       nav_dir: "Itinéraire",
@@ -1514,9 +1531,6 @@ function islaMedia(root){
       qa_lab_food: "À partager",
       qa_h_food: "Food",
       qa_cta_food: "Voir la carte food",
-      lab_season: "Cocktail de saison",
-      h_season: "Celui du moment",
-      k_season: "Un seul, choisi à la main. Quand la saison change, lui aussi.",
       jump_brioche: "Aller à Brioche",
       jump_share: "Aller au centre de la table",
       jump_extras: "Aller aux extras",
@@ -1538,7 +1552,6 @@ function islaMedia(root){
       lab_dj: "Ma signature",
       lab_cocktails: "Cocktails d'auteur",
       lab_food: "Signature de la maison",
-      lab_start: "Commencez ici",
       lab_house: "La brioche ISLA",
       lab_fav: "Le favori de la maison",
       lab_top: "Le plus demandé",
@@ -1621,7 +1634,46 @@ function islaMedia(root){
       "ing_ron-cola": "Rhum · Cola",
       "ing_bimbombum": "Vodka · Cerise · Pamplemousse · Granadilla · Soda",
       "ing_cuba-libre": "Rhum · Cola · Citron vert",
-      "ing_papi-ven": "Rhum Brugal · Fraise · Grenadine"
+      "ing_papi-ven": "Rhum Brugal · Fraise · Grenadine",
+      au_tag: "Autumn Collection · Édition de saison",
+      au_lead: "L’automne a un autre goût.",
+      au_desc: "Quatre cocktails signature. Une âme tropicale. Notre pumpkin maison en vedette.",
+      au_hint: "Glissez · 4 cocktails",
+      au_prev: "Cocktail précédent",
+      au_next: "Cocktail suivant",
+      au_region: "Autumn Signatures : quatre cocktails signature",
+      au_track: "Cocktails de saison. Utilisez les flèches du clavier pour naviguer.",
+      au_carousel: "carrousel",
+      au_slide: "diapositive",
+      au_dots: "Choisir un cocktail",
+      au_star: "Le protagoniste · Signature cocktail",
+      au_c1_alt: "ISLA Don Pumpkin : cocktail ambré servi dans un verre bas avec des glaçons",
+      au_c2_alt: "ISLA Pumpkin Coconut : cocktail crémeux aux tons ivoire et ambre, servi dans un verre en cristal",
+      au_c3_alt: "ISLA Pumpkin Chai Sour : cocktail aux tons ambre et cuivre sur fond sombre",
+      au_c4_alt: "ISLA Pumpkin Old Fashioned : verre bas avec un grand glaçon transparent aux tons ambre et or",
+      au_c1_aria: "1 sur 4 : ISLA Don Pumpkin",
+      au_c2_aria: "2 sur 4 : ISLA Pumpkin Coconut",
+      au_c3_aria: "3 sur 4 : ISLA Pumpkin Chai Sour",
+      au_c4_aria: "4 sur 4 : ISLA Pumpkin Old Fashioned",
+      au_d1: "Aller au cocktail 1 : ISLA Don Pumpkin",
+      au_d2: "Aller au cocktail 2 : ISLA Pumpkin Coconut",
+      au_d3: "Aller au cocktail 3 : ISLA Pumpkin Chai Sour",
+      au_d4: "Aller au cocktail 4 : ISLA Pumpkin Old Fashioned",
+      au_c1_desc: "Agave, épices et caractère tropical.",
+      au_c1_ing: "Tequila Don Julio Silver ou Reposado · Pumpkin maison · Citron vert frais",
+      au_c1_prof: "Acidulé · Épicé · Intense",
+      au_c2_desc: "Les tropiques rencontrent l’automne.",
+      au_c2_ing: "Rhum blanc · Pumpkin maison · Lait de coco · Citron vert frais",
+      au_c2_prof: "Tropical · Crémeux · Épicé",
+      au_c3_desc: "Épices chaudes. Finale acidulée.",
+      au_c3_ing: "Vodka · Pumpkin maison · Sirop de chai · Citron frais",
+      au_c3_prof: "Aromatique · Acidulé · Épicé",
+      au_c4_desc: "Caractère, bois et épices.",
+      au_c4_ing: "Jack Daniel’s Old No. 7 · Pumpkin maison",
+      au_c4_prof: "Intense · Boisé · Chaleureux",
+      aria_menu: "Menu",
+      aria_lang: "Langue",
+      skip: "Aller au contenu"
     }
   };
 
@@ -1630,12 +1682,25 @@ function islaMedia(root){
   var esDefaults = {};
   Array.prototype.forEach.call(nodes, function(el){ esDefaults[el.getAttribute('data-i18n')] = el.textContent; });
 
+  /* atributos traducibles: data-i18n-attrs="aria-label:clave,alt:otra" */
+  var attrItems = [];
+  Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-attrs]'), function(el){
+    el.getAttribute('data-i18n-attrs').split(',').forEach(function(p){
+      var kv = p.split(':');
+      attrItems.push({ el: el, attr: kv[0], key: kv[1], es: el.getAttribute(kv[0]) });
+    });
+  });
+
   function applyLang(lang){
     var dict = lang === 'es' ? esDefaults : translations[lang];
     if (!dict) return;
     Array.prototype.forEach.call(nodes, function(el){
       var k = el.getAttribute('data-i18n');
       if (dict[k]) el.textContent = dict[k];
+    });
+    attrItems.forEach(function(it){
+      var v = lang === 'es' ? it.es : translations[lang][it.key];
+      if (v) it.el.setAttribute(it.attr, v);
     });
     document.documentElement.lang = lang;
     Array.prototype.forEach.call(document.querySelectorAll('.lang button'), function(b){
@@ -1662,16 +1727,35 @@ function islaMedia(root){
   Array.prototype.forEach.call(sheet.querySelectorAll('a'), function(a){ a.addEventListener('click', closeMenu); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
 
+  /* resalta en la barra la categoría que se está viendo */
+  var spyLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a[href^="#"], .sheet > a[href^="#"]'));
+  var spyStarts = ['temporada','firmas','tropicales','food','cervezas'].map(function(id){ return { id: id, el: document.getElementById(id) }; });
+  var spyEnd = document.querySelector('.closing'), spyCur = '__init__';
+  function spy(){
+    var line = window.innerHeight * 0.4, active = null;
+    spyStarts.forEach(function(g){ if (g.el && g.el.getBoundingClientRect().top <= line) active = g.id; });
+    if (spyEnd && spyEnd.getBoundingClientRect().top <= line) active = null;
+    if (active === spyCur) return;
+    spyCur = active;
+    spyLinks.forEach(function(a){
+      if (a.getAttribute('href') === '#' + active) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    });
+  }
+
   var lastY = -1, ticking = false;
   function onScroll(){
     var y = window.pageYOffset;
     nav.classList.toggle('on', y > 60);
+    spy();
     if (par.length) parallax(y);
     lastY = y; ticking = false;
   }
   window.addEventListener('scroll', function(){
     if (!ticking){ ticking = true; window.requestAnimationFrame(onScroll); }
   }, { passive: true });
+
+  spy();
 
   /* ---------------- entradas y parallax ---------------- */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1777,231 +1861,60 @@ function islaMedia(root){
     hv.addEventListener('error', function(){ hv.remove(); });
   }
 
-  /* ────────────────────────── TEQUILA EXPERIENCE · ARTE GENERATIVO ──────────────────────────
-     Filosofía: cada trago es una sensación física, y cada sensación es un campo de fuerzas.
-     No dibujamos iconos — dejamos que partículas se muevan como se mueve la sensación misma:
-     el agua ondula, el fuego sube y titila, el hielo cae despacio y gira, el sol vibra con calor,
-     la noche respira con estrellas lentas. Ruido determinista con semilla por slide, para que
-     cada carga de página sea la misma coreografía cuidada — no aleatoriedad de una vez,
-     sino un patrón afinado que se repite con calma, como un ritual. ────────────────────────── */
-  var tequilaArt = (function(){
-    if (reduce) return { activate: function(){}, resize: function(){}, modeFor: function(){ return null; } };
+  /* ────────────────────────── AUTUMN SIGNATURES · CARRUSEL ──────────────────────────
+     Scroll lateral nativo con scroll-snap; JS solo sincroniza flechas, puntos y teclado.
+     Sin autoplay. El desplazamiento suave se desactiva con prefers-reduced-motion. */
+  (function(){
+    var track = document.getElementById('auTrack');
+    if (!track) return;
+    var cards = Array.prototype.slice.call(track.querySelectorAll('.au-card'));
+    var dots = Array.prototype.slice.call(document.querySelectorAll('#auDots .au-dot'));
+    var prev = document.getElementById('auPrev');
+    var next = document.getElementById('auNext');
+    var current = 0, ticking = false;
 
-    var canvases = Array.prototype.slice.call(document.querySelectorAll('.tequila-canvas'));
-    if (!canvases.length) return { activate: function(){}, resize: function(){}, modeFor: function(){ return null; } };
-
-    var amber = [199,154,82], olive = [96,122,72], cream = [242,239,232];
-
-    function mulberry32(a){
-      return function(){
-        a |= 0; a = (a + 0x6D2B79F5) | 0;
-        var t = Math.imul(a ^ (a >>> 15), 1 | a);
-        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-      };
+    function behavior(){ return reduce ? 'auto' : 'smooth'; }
+    function leftFor(i){
+      var pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+      return cards[i].offsetLeft - pad;
     }
-
-    function rgba(c, a){ return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
-    function lerp(a,b,t){ return a + (b - a) * t; }
-
-    /* --- configuración de partículas por sensación --- */
-    var CONF = {
-      ola:   { n: 46, seed: 1,  color: amber, speed: .35, kind: 'wave'   },
-      marea: { n: 60, seed: 2,  color: olive, speed: .5,  kind: 'drift'  },
-      fuego: { n: 55, seed: 3,  color: amber, speed: .9,  kind: 'ember'  },
-      ice:   { n: 40, seed: 4,  color: cream, speed: .3,  kind: 'fall'   },
-      sun:   { n: 34, seed: 5,  color: amber, speed: .55, kind: 'shimmer'},
-      night: { n: 70, seed: 6,  color: cream, speed: .15, kind: 'stars'  }
-    };
-
-    function makeParticles(mode, w, h){
-      var cfg = CONF[mode] || CONF.ola;
-      var rnd = mulberry32(cfg.seed * 9301 + 49297);
-      var ps = [];
-      for (var i = 0; i < cfg.n; i++){
-        ps.push({
-          x: rnd() * w, y: rnd() * h,
-          r: lerp(1, cfg.kind === 'ember' ? 3.2 : 2.4, rnd()),
-          ph: rnd() * Math.PI * 2,
-          sp: lerp(.5, 1.5, rnd()) * cfg.speed,
-          o: lerp(.25, .85, rnd())
-        });
-      }
-      return { cfg: cfg, ps: ps };
-    }
-
-    function step(state, w, h, t){
-      var cfg = state.cfg, ps = state.ps;
-      for (var i = 0; i < ps.length; i++){
-        var p = ps[i];
-        if (cfg.kind === 'wave'){
-          p.x += cfg.speed * .6;
-          if (p.x > w + 20) p.x = -20;
-          p.y += Math.sin(t * .0006 * p.sp + p.ph) * .6;
-        } else if (cfg.kind === 'drift'){
-          p.x += Math.sin(t * .0004 + p.ph) * .5;
-          p.y += Math.cos(t * .0003 * p.sp + p.ph) * .4 + .06;
-          if (p.y > h + 10) p.y = -10;
-        } else if (cfg.kind === 'ember'){
-          p.y -= cfg.speed * .35;
-          p.x += Math.sin(t * .0012 + p.ph) * .8;
-          if (p.y < -10){ p.y = h + 10; p.x = Math.random() * w; }
-        } else if (cfg.kind === 'fall'){
-          p.y += cfg.speed * .3;
-          p.x += Math.sin(t * .0009 + p.ph) * .4;
-          if (p.y > h + 10) p.y = -10;
-        } else if (cfg.kind === 'shimmer'){
-          p.x += Math.sin(t * .0008 + p.ph) * .5;
-          p.y += Math.cos(t * .0007 + p.ph * 1.3) * .5;
-        } else if (cfg.kind === 'stars'){
-          p.o = lerp(.2, .8, (Math.sin(t * .0006 + p.ph) + 1) / 2);
-        }
-      }
-    }
-
-    function draw(ctx, state, w, h, t){
-      ctx.clearRect(0, 0, w, h);
-      var cfg = state.cfg, ps = state.ps;
-      for (var i = 0; i < ps.length; i++){
-        var p = ps[i];
-        var tw = cfg.kind === 'stars' ? p.o : p.o * (0.7 + 0.3 * Math.sin(t * .002 + p.ph));
-        ctx.beginPath();
-        ctx.fillStyle = rgba(cfg.color, Math.max(0, tw));
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      if (state.cfg === CONF.ola){
-        ctx.strokeStyle = rgba(amber, .18);
-        ctx.lineWidth = 1;
-        for (var l = 0; l < 3; l++){
-          ctx.beginPath();
-          for (var x = 0; x <= w; x += 8){
-            var y = h * (0.3 + l * .22) + Math.sin(x * .02 + t * .0009 + l) * 10;
-            if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-          }
-          ctx.stroke();
-        }
-      }
-    }
-
-    var states = {};
-    canvases.forEach(function(cv){
-      var mode = cv.getAttribute('data-mode');
-      var ctx = cv.getContext('2d');
-      var dpr = Math.min(window.devicePixelRatio || 1, 2);
-      var w = cv.clientWidth || 600, h = cv.clientHeight || 440;
-      cv.width = w * dpr; cv.height = h * dpr;
-      ctx.scale(dpr, dpr);
-      states[mode] = { cv: cv, ctx: ctx, w: w, h: h, data: makeParticles(mode, w, h) };
-    });
-
-    var activeMode = null, raf = null;
-
-    function frame(t){
-      if (!activeMode) return;
-      var s = states[activeMode];
-      if (s){ step(s.data, s.w, s.h, t); draw(s.ctx, s.data, s.w, s.h, t); }
-      raf = window.requestAnimationFrame(frame);
-    }
-
-    function activate(mode){
-      if (activeMode === mode) return;
-      activeMode = mode;
-      if (raf) window.cancelAnimationFrame(raf);
-      if (mode && states[mode]) raf = window.requestAnimationFrame(frame);
-    }
-
-    function resize(){
-      Object.keys(states).forEach(function(mode){
-        var s = states[mode], cv = s.cv;
-        var dpr = Math.min(window.devicePixelRatio || 1, 2);
-        var w = cv.clientWidth || 600, h = cv.clientHeight || 440;
-        cv.width = w * dpr; cv.height = h * dpr;
-        s.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        s.w = w; s.h = h;
-        s.data = makeParticles(mode, w, h);
+    function closest(){
+      var x = track.scrollLeft, best = 0, bd = Infinity;
+      cards.forEach(function(c, i){
+        var d = Math.abs(leftFor(i) - x);
+        if (d < bd){ bd = d; best = i; }
       });
+      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 4) best = cards.length - 1;
+      return best;
     }
+    function paint(i){
+      current = i;
+      dots.forEach(function(d, k){ d.setAttribute('aria-current', String(k === i)); });
+      if (prev) prev.disabled = (i === 0);
+      if (next) next.disabled = (i === cards.length - 1);
+    }
+    function go(i){
+      i = Math.max(0, Math.min(cards.length - 1, i));
+      track.scrollTo({ left: leftFor(i), behavior: behavior() });
+      paint(i);
+    }
+    if (prev) prev.addEventListener('click', function(){ go(current - 1); });
+    if (next) next.addEventListener('click', function(){ go(current + 1); });
+    dots.forEach(function(d, i){ d.addEventListener('click', function(){ go(i); }); });
 
-    document.addEventListener('visibilitychange', function(){
-      if (document.hidden && raf){ window.cancelAnimationFrame(raf); raf = null; }
-      else if (!document.hidden && activeMode && !raf){ raf = window.requestAnimationFrame(frame); }
+    track.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowRight'){ e.preventDefault(); go(current + 1); }
+      else if (e.key === 'ArrowLeft'){ e.preventDefault(); go(current - 1); }
+      else if (e.key === 'Home'){ e.preventDefault(); go(0); }
+      else if (e.key === 'End'){ e.preventDefault(); go(cards.length - 1); }
     });
-
-    return { activate: activate, resize: resize, modeFor: function(idx, slides){
-      var slide = slides[idx];
-      var cv = slide && slide.querySelector('.tequila-canvas');
-      return cv ? cv.getAttribute('data-mode') : null;
-    } };
-  })();
-
-  /* ────────────────────────── TEQUILA EXPERIENCE · SCROLL LATERAL ────────────────────────── */
-  var tequilaSlider = (function(){
-    var track = document.querySelector('.tequila-track');
-    if (!track) return null;
-    var slides = Array.prototype.slice.call(track.querySelectorAll('.tequila-slide'));
-    var dots = Array.prototype.slice.call(document.querySelectorAll('.tequila-dot'));
-    var nextBtn = document.querySelector('.tequila-next');
-    var prevBtn = document.querySelector('.tequila-prev');
-    var currentIndex = 0;
-    var scrollTicking = false;
-
-    function slideWidth(){ return track.clientWidth; }
-
-    function setActive(idx){
-      currentIndex = idx;
-      var mode = tequilaArt.modeFor(idx, slides);
-      if (mode) tequilaArt.activate(mode);
-      dots.forEach(function(dot, i){ dot.classList.toggle('active', i === idx); });
-      if (prevBtn){
-        var atStart = idx === 0;
-        prevBtn.style.borderColor = atStart ? 'var(--line)' : 'var(--amber)';
-        prevBtn.style.color = atStart ? 'var(--mut)' : 'var(--txt)';
-        prevBtn.style.cursor = atStart ? 'not-allowed' : 'pointer';
-      }
-      if (nextBtn){
-        var atEnd = idx === slides.length - 1;
-        nextBtn.style.borderColor = atEnd ? 'var(--line)' : 'var(--amber)';
-        nextBtn.style.color = atEnd ? 'var(--mut)' : 'var(--amber)';
-        nextBtn.style.cursor = atEnd ? 'not-allowed' : 'pointer';
-      }
-    }
-
-    function goTo(idx){
-      if (idx < 0) idx = 0;
-      if (idx > slides.length - 1) idx = slides.length - 1;
-      track.scrollTo({ left: idx * slideWidth(), behavior: 'smooth' });
-      setActive(idx);
-    }
-
-    function next(){ goTo(currentIndex + 1); }
-    function prev(){ goTo(currentIndex - 1); }
-
-    if (nextBtn) nextBtn.addEventListener('click', next);
-    if (prevBtn) prevBtn.addEventListener('click', prev);
-
-    dots.forEach(function(dot){
-      dot.addEventListener('click', function(){
-        goTo(parseInt(dot.getAttribute('data-index'), 10));
-      });
-    });
-
-    /* mantiene los puntos sincronizados si el usuario hace scroll/swipe a mano */
     track.addEventListener('scroll', function(){
-      if (scrollTicking) return;
-      scrollTicking = true;
-      window.requestAnimationFrame(function(){
-        var idx = Math.round(track.scrollLeft / slideWidth());
-        if (idx !== currentIndex) setActive(idx);
-        scrollTicking = false;
-      });
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function(){ paint(closest()); ticking = false; });
     }, { passive: true });
-
-    window.addEventListener('resize', function(){ tequilaArt.resize(); goTo(currentIndex); });
-
-    setActive(0);
-
-    return { next: next, prev: prev, goTo: goTo };
+    window.addEventListener('resize', function(){ paint(closest()); });
+    paint(0);
   })();
 })();
 </script>
