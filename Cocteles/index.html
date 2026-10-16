@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="canonical" href="https://www.islabrunchbar.com/Cocteles/">
 
 <!-- ══════════ Open Graph ══════════ -->
-<meta property="og:type" content="restaurant">
+<meta property="og:type" content="website">
 <meta property="og:site_name" content="ISLA Bar">
 <meta property="og:title" content="Carta de Cócteles en Elche | ISLA Bar">
 <meta property="og:description" content="Firmas con tequila Don Julio, cócteles tropicales, mojitos de la casa, cervezas y platos para compartir. Coctelería en el centro de Elche.">
@@ -61,7 +61,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       ]
     },
     {
-      "@context": "https://schema.org",
+      "@type": "BarOrPub",
+      "@id": "https://www.islabrunchbar.com/Cocteles/#bar",
+      "name": "ISLA Bar",
+      "alternateName": "ISLA Brunch & Bar — Coctelería",
+      "description": "Coctelería de ISLA Brunch & Bar en el centro de Elche: cócteles de autor, firmas con tequila Don Julio, cócteles tropicales, cervezas y platos para compartir.",
+      "url": "https://www.islabrunchbar.com/Cocteles/",
+      "telephone": "+34697759434",
+      "priceRange": "€€",
+      "currenciesAccepted": "EUR",
+      "parentOrganization": {
+        "@id": "https://www.islabrunchbar.com/#restaurant"
+      },
+      "sameAs": [
+        "https://www.instagram.com/islabrunchbar/",
+        "https://www.tiktok.com/@islabrunchbar"
+      ],
+      "areaServed": {
+        "@type": "City",
+        "name": "Elche"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Carrer Mare de Déu del Carme, 11",
+        "addressLocality": "Elche",
+        "addressRegion": "Alicante",
+        "postalCode": "03201",
+        "addressCountry": "ES"
+      },
+      "hasMenu": {
+        "@id": "https://www.islabrunchbar.com/Cocteles/#menu"
+      },
+      "hasMap": "https://maps.google.com/?q=ISLA+Brunch+Bar+Elche"
+    },
+    {
       "@type": "Menu",
       "name": "Carta de Cócteles ISLA Bar",
       "inLanguage": "es",
@@ -167,43 +200,71 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               "@type": "MenuItem",
               "name": "Revuelto",
               "description": "Brioche con huevo revuelto, bacon, cebolla frita crujiente y salsa peach chipotle mayo.",
-              "offers": { "@type": "Offer", "price": "8.90", "priceCurrency": "EUR" }
+              "offers": {
+                "@type": "Offer",
+                "price": "8.90",
+                "priceCurrency": "EUR"
+              }
             },
             {
               "@type": "MenuItem",
               "name": "Serranito Brioche",
               "description": "Brioche, queso crema con ajo, jamón serrano, mozzarella, tomate cherry y miel.",
-              "offers": { "@type": "Offer", "price": "9.90", "priceCurrency": "EUR" }
+              "offers": {
+                "@type": "Offer",
+                "price": "9.90",
+                "priceCurrency": "EUR"
+              }
             },
             {
               "@type": "MenuItem",
               "name": "Fru Creation",
               "description": "Brioche con aguacate, huevo revuelto, tomate cherry y un toque de miel picante.",
-              "offers": { "@type": "Offer", "price": "8.90", "priceCurrency": "EUR" }
+              "offers": {
+                "@type": "Offer",
+                "price": "8.90",
+                "priceCurrency": "EUR"
+              }
             },
             {
               "@type": "MenuItem",
               "name": "Pulled Porky",
               "description": "Brioche con pulled pork, mozzarella y salsa sweet isla. Opcional: jalapeño o pepinillos.",
-              "offers": { "@type": "Offer", "price": "9.50", "priceCurrency": "EUR" }
+              "offers": {
+                "@type": "Offer",
+                "price": "10.50",
+                "priceCurrency": "EUR"
+              }
             },
             {
               "@type": "MenuItem",
               "name": "Nordic Brioche",
               "description": "Brioche con salmón ahumado, queso crema, rucula y salsa Sweet Isla.",
-              "offers": { "@type": "Offer", "price": "9.50", "priceCurrency": "EUR" }
+              "offers": {
+                "@type": "Offer",
+                "price": "9.50",
+                "priceCurrency": "EUR"
+              }
             },
             {
               "@type": "MenuItem",
               "name": "Brioche York Deluxe",
               "description": "Pan brioche, jamón York, huevo revuelto, mozzarella y salsa Isla.",
-              "offers": { "@type": "Offer", "price": "9.00", "priceCurrency": "EUR" }
+              "offers": {
+                "@type": "Offer",
+                "price": "9.00",
+                "priceCurrency": "EUR"
+              }
             },
             {
               "@type": "MenuItem",
               "name": "Island Chicken Brioche",
               "description": "Pan brioche con pechuga de pollo a la plancha, mozzarella, bacon crujiente, tomate cherry y salsa Isla.",
-              "offers": { "@type": "Offer", "price": "9.90", "priceCurrency": "EUR" }
+              "offers": {
+                "@type": "Offer",
+                "price": "9.90",
+                "priceCurrency": "EUR"
+              }
             }
           ]
         },
@@ -263,11 +324,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             },
             {
               "@type": "MenuItem",
-              "name": "Don July Tamarindo",
-              "description": "Ron oscuro · Pulpa de tamarindo · Lima · Sirope de caña",
+              "name": "Whisky Tamarindo",
+              "description": "Whisky Jack Daniel's · Pulpa de tamarindo · Lima · Sirope de caña",
               "offers": {
                 "@type": "Offer",
-                "price": "11.50",
+                "price": "10.50",
                 "priceCurrency": "EUR"
               }
             },
@@ -524,31 +585,51 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               "@type": "MenuItem",
               "name": "Radler Tropical",
               "description": "Cerveza Estrella Galicia · Limonada · Zumo de lima · Hielo",
-              "offers": { "@type": "Offer", "price": "5.50", "priceCurrency": "EUR" }
+              "offers": {
+                "@type": "Offer",
+                "price": "5.50",
+                "priceCurrency": "EUR"
+              }
             },
             {
               "@type": "MenuItem",
               "name": "Beer Margarita",
               "description": "Cerveza Estrella Galicia · Tequila · Triple Sec · Zumo de lima · Sirope de agave · Hielo · Borde de sal",
-              "offers": { "@type": "Offer", "price": "7.50", "priceCurrency": "EUR" }
+              "offers": {
+                "@type": "Offer",
+                "price": "7.50",
+                "priceCurrency": "EUR"
+              }
             },
             {
               "@type": "MenuItem",
               "name": "Michelada de Mango",
               "description": "Cerveza Estrella Galicia · Puré de mango · Zumo de lima · Callenas · Tajín · Sal · Hielo",
-              "offers": { "@type": "Offer", "price": "6.90", "priceCurrency": "EUR" }
+              "offers": {
+                "@type": "Offer",
+                "price": "6.90",
+                "priceCurrency": "EUR"
+              }
             },
             {
               "@type": "MenuItem",
               "name": "Chelada Tropical",
               "description": "Cerveza Estrella Galicia · Zumo de lima · Sal marina · Hielo · Borde de sal",
-              "offers": { "@type": "Offer", "price": "5.90", "priceCurrency": "EUR" }
+              "offers": {
+                "@type": "Offer",
+                "price": "5.90",
+                "priceCurrency": "EUR"
+              }
             },
             {
               "@type": "MenuItem",
               "name": "Beer Mojito",
               "description": "Cerveza Estrella Galicia · Zumo de lima · Hierbabuena fresca · Azúcar de caña líquido · Hielo",
-              "offers": { "@type": "Offer", "price": "6.50", "priceCurrency": "EUR" }
+              "offers": {
+                "@type": "Offer",
+                "price": "6.50",
+                "priceCurrency": "EUR"
+              }
             }
           ]
         },
@@ -627,10 +708,72 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               }
             }
           ]
+        },
+        {
+          "@type": "MenuSection",
+          "name": "Añade extras",
+          "description": "Extras para añadir a cualquier brioche o plato.",
+          "hasMenuItem": [
+            {
+              "@type": "MenuItem",
+              "name": "Extra bacon (extra)",
+              "offers": {
+                "@type": "Offer",
+                "price": "2.50",
+                "priceCurrency": "EUR"
+              }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Cebolla frita crujiente (extra)",
+              "offers": {
+                "@type": "Offer",
+                "price": "0.80",
+                "priceCurrency": "EUR"
+              }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Aguacate (extra)",
+              "offers": {
+                "@type": "Offer",
+                "price": "2.10",
+                "priceCurrency": "EUR"
+              }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Huevo revuelto (extra)",
+              "offers": {
+                "@type": "Offer",
+                "price": "1.50",
+                "priceCurrency": "EUR"
+              }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Miel (extra)",
+              "offers": {
+                "@type": "Offer",
+                "price": "0.50",
+                "priceCurrency": "EUR"
+              }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Miel picante (extra)",
+              "offers": {
+                "@type": "Offer",
+                "price": "0.90",
+                "priceCurrency": "EUR"
+              }
+            }
+          ]
         }
       ],
       "@id": "https://www.islabrunchbar.com/Cocteles/#menu",
-      "url": "https://www.islabrunchbar.com/Cocteles/"
+      "url": "https://www.islabrunchbar.com/Cocteles/",
+      "description": "Carta de cócteles de ISLA Bar en Elche: cócteles de autor de temporada, firmas con tequila Don Julio, cócteles tropicales, mojitos, cervezas y platos para compartir."
     }
   ]
 }
@@ -1295,7 +1438,7 @@ function islaMedia(root){
 <div class="li rv"><h4>Fru Creation</h4><span class="price">8,90 €</span><p class="ing" data-i18n="desc_fru-creation">Brioche con aguacate, huevo revuelto, tomate cherry y un toque de miel picante.</p></div>
 <div class="li rv"><h4>Nordic Brioche</h4><span class="price">9,50 €</span><p class="ing" data-i18n="desc_nordic-brioche">Brioche con salmón ahumado, queso crema, rucula y salsa Sweet Isla.</p></div>
 <div class="li rv"><h4>Brioche York Deluxe</h4><span class="price">9,00 €</span><p class="ing" data-i18n="desc_brioche-york-deluxe">Pan brioche, jamón York, huevo revuelto, mozzarella y salsa Isla.</p></div>
-<div class="li rv has-media"><div class="li-thumb mask"><video data-media="liPulled" muted loop playsinline aria-hidden="true"></video></div><div class="li-body"><h4><span class="lab" style="display:block;margin-bottom:6px" data-i18n="lab_new">Nuevo</span>Pulled Porky</h4><span class="price">9,50 €</span><p class="ing" data-i18n="desc_pulled-porky">Brioche con pulled pork, mozzarella y salsa sweet isla. Opcional: jalapeño o pepinillos.</p></div></div>
+<div class="li rv has-media"><div class="li-thumb mask"><video data-media="liPulled" muted loop playsinline aria-hidden="true"></video></div><div class="li-body"><h4><span class="lab" style="display:block;margin-bottom:6px" data-i18n="lab_new">Nuevo</span>Pulled Porky</h4><span class="price">10,50 €</span><p class="ing" data-i18n="desc_pulled-porky">Brioche con pulled pork, mozzarella y salsa sweet isla. Opcional: jalapeño o pepinillos.</p></div></div>
 </div>
 </div></section>
 
@@ -1456,7 +1599,7 @@ function islaMedia(root){
       "ing_chelada-tropical": "Estrella Galicia beer · Lime juice · Sea salt · Ice · Salt rim",
       "ing_beer-mojito": "Estrella Galicia beer · Lime juice · Fresh mint · Liquid cane sugar · Ice",
       "ing_don-julio-palomo-tamarindo": "Don Julio Reposado Tequila · Tamarind · Grapefruit · Lime · Soda",
-      "ing_don-july-tamarindo": "Dark rum · Tamarind pulp · Lime · Cane syrup",
+      "ing_don-july-tamarindo": "Jack Daniel's whiskey · Tamarind pulp · Lime · Cane syrup",
       "ing_don-julio-enamorado": "Don Julio Blanco Tequila · Mango · Passion fruit · Lime · Light syrup",
       "ing_don-julio-cherry-bomb": "Don Julio Silver Tequila · Cherry · Lime · Soda",
       "ing_mexican-sunset": "Don Julio Reposado Tequila · Orange · Grenadine · Sprite",
@@ -1612,7 +1755,7 @@ function islaMedia(root){
       "ing_chelada-tropical": "Bière Estrella Galicia · Jus de citron vert · Sel marin · Glace · Bord salé",
       "ing_beer-mojito": "Bière Estrella Galicia · Jus de citron vert · Menthe fraîche · Sucre de canne liquide · Glace",
       "ing_don-julio-palomo-tamarindo": "Tequila Don Julio Reposado · Tamarin · Pamplemousse · Citron vert · Soda",
-      "ing_don-july-tamarindo": "Rhum brun · Pulpe de tamarin · Citron vert · Sirop de canne",
+      "ing_don-july-tamarindo": "Whisky Jack Daniel's · Pulpe de tamarin · Citron vert · Sirop de canne",
       "ing_don-julio-enamorado": "Tequila Don Julio Blanco · Mangue · Fruit de la passion · Citron vert · Sirop léger",
       "ing_don-julio-cherry-bomb": "Tequila Don Julio Silver · Cerise · Citron vert · Soda",
       "ing_mexican-sunset": "Tequila Don Julio Reposado · Orange · Grenadine · Sprite",
