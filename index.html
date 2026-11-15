@@ -603,7 +603,9 @@ button { font-family: inherit; }
   opacity: .55;
 }
 .foot-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 16px; }
-.foot-links span { white-space: nowrap; }
+.foot-links span, .foot-links a { white-space: nowrap; }
+.foot-links a { color: inherit; text-decoration: none; }
+.foot-links a:hover, .foot-links a:focus-visible { text-decoration: underline; }
 .foot-last {
   display: flex;
   justify-content: space-between;
@@ -767,8 +769,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="panel-content">
       <p class="panel-eyebrow" data-en="By night" data-fr="Le soir">De noche</p>
-      <h2 class="panel-title" id="nightTitle" data-en="Dinner &amp; Cocktails" data-fr="Dîner &amp; Cocktails">Cócteles & Tardeo</h2>
-      <p class="panel-sub" id="nightSub" data-en="Signature cocktails and tardeo — ISLA transforms when the sun goes down." data-fr="Cocktails signature et tardeo  ISLA se transforme au coucher du soleil.">Cócteles, tardeo y buen ambiente cuando cae el sol.</p>
+      <h2 class="panel-title" id="nightTitle" data-en="Dinner &amp; Cocktails" data-fr="Dîner &amp; Cocktails">Cena &amp; Cócteles</h2>
+      <p class="panel-sub" id="nightSub" data-en="Signature cocktails and tardeo — ISLA transforms when the sun goes down." data-fr="Cocktails signature et tardeo — ISLA se transforme au coucher du soleil.">Cócteles, tardeo y buen ambiente cuando cae el sol.</p>
       <span class="panel-cta" data-en="See the cocktail list →" data-fr="Voir la carte cocktails →">Ver la carta →</span>
     </div>
   </a>
@@ -831,7 +833,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="seo-inner">
     <p class="seo-eyebrow">ISLA · ELCHE</p>
     <h2 id="seo-heading" class="seo-heading">Brunch · Matcha · Ube · Smoothies · Café · Cócteles</h2>
-    <p class="seo-intro">ISLA Brunch Bar es un local en el centro de Elche que cambia de ritmo durante el día: <strong>brunch, matcha, ube, smoothies, batidos de proteína y café</strong> durante el día; <strong>cena, tapas, tardeo y cócteles</strong> por la tarde y noche.</p>
+    <p class="seo-intro" id="seoIntro">ISLA Brunch Bar es un local en el centro de Elche que cambia de ritmo durante el día: <strong>brunch, matcha, ube, smoothies, batidos de proteína y café</strong> durante el día; <strong>cena, tapas, tardeo y cócteles</strong> por la tarde y noche.</p>
 
     <div class="seo-hook">
       <div class="seo-hook-copy">
@@ -906,7 +908,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span>Aviso legal</span>
         <span>Privacidad</span>
         <span>Cookies</span>
-        <span>Alérgenos</span>
+        <a href="/Alergenos/">Alérgenos</a>
       </div>
     </div>
     <div class="foot-last">
@@ -952,29 +954,105 @@ const DINNER_START = 18;
   subEl.setAttribute('data-fr', "Tapas, cocktails signature et tardeo au cœur d'Elche.");
 })();
 
-// ══════════ Idioma ES / EN / FR (mismo patrón que la carta) ══════════
+// ══════════ Idioma ES / EN / FR ══════════
 const SUPPORTED_LANGS = ['es', 'en', 'fr'];
 
+// Textos fuera de los paneles (sección SEO + pie). Clave = texto en español.
+const I18N = {
+  'Brunch · Matcha · Ube · Smoothies · Café · Cócteles': ['Brunch · Matcha · Ube · Smoothies · Coffee · Cocktails', 'Brunch · Matcha · Ube · Smoothies · Café · Cocktails'],
+  'TODO EL DÍA EN ISLA': ['ALL DAY AT ISLA', 'TOUTE LA JOURNÉE CHEZ ISLA'],
+  'De la primera taza al último cóctel.': ['From the first cup to the last cocktail.', 'De la première tasse au dernier cocktail.'],
+  'Una propuesta pensada para distintos momentos: desayunar, hacer brunch, tomar un matcha o un smoothie, merendar, quedar para el tardeo, cenar o tomar cócteles en el centro de Elche.': ['Made for every moment: breakfast, brunch, a matcha or a smoothie, an afternoon snack, tardeo with friends, dinner or cocktails in the heart of Elche.', 'Pensé pour chaque moment : petit-déjeuner, brunch, un matcha ou un smoothie, goûter, tardeo entre amis, dîner ou cocktails au cœur d’Elche.'],
+  'Explora el menú →': ['Explore the menu →', 'Découvrir le menu →'],
+  'Brunch': ['Brunch', 'Brunch'], 'Matcha': ['Matcha', 'Matcha'], 'Ube': ['Ube', 'Ube'], 'Smoothies': ['Smoothies', 'Smoothies'],
+  'Café': ['Coffee', 'Café'], 'Cócteles': ['Cocktails', 'Cocktails'],
+  'Brunch en Elche': ['Brunch in Elche', 'Brunch à Elche'],
+  'Bagels, pancakes, brioches, tostadas, bowls y otras opciones para desayunar y disfrutar del brunch.': ['Bagels, pancakes, brioches, toasts, bowls and more for breakfast and brunch.', 'Bagels, pancakes, brioches, tartines, bowls et autres options pour le petit-déjeuner et le brunch.'],
+  'Ver brunch →': ['See brunch →', 'Voir le brunch →'],
+  'Matcha y ube en Elche': ['Matcha and ube in Elche', 'Matcha et ube à Elche'],
+  'Matcha ceremonial y bebidas de ube en versiones frías y calientes, con diferentes combinaciones.': ['Ceremonial matcha and ube drinks, hot or iced, in different combinations.', 'Matcha cérémoniel et boissons à l’ube, chaudes ou froides, en différentes combinaisons.'],
+  'Ver bebidas →': ['See drinks →', 'Voir les boissons →'],
+  'Smoothies y batidos de proteína': ['Smoothies and protein shakes', 'Smoothies et shakes protéinés'],
+  'Smoothies de fruta y batidos de proteína para tomar a cualquier hora, con opciones de leche vegetal.': ['Fruit smoothies and protein shakes for any time of day, with plant-based milk options.', 'Smoothies de fruits et shakes protéinés à toute heure, avec des laits végétaux au choix.'],
+  'Ver smoothies →': ['See smoothies →', 'Voir les smoothies →'],
+  'Café y bebidas especiales': ['Coffee and specialty drinks', 'Café et boissons spéciales'],
+  'Café y bebidas frías y calientes para acompañar el brunch, hacer una pausa o merendar.': ['Hot and iced coffee and drinks to go with brunch, a break or an afternoon snack.', 'Café et boissons chaudes ou froides pour accompagner le brunch, faire une pause ou goûter.'],
+  'Ver menú →': ['See menu →', 'Voir le menu →'],
+  'Cena y platos para compartir': ['Dinner and sharing plates', 'Dîner et plats à partager'],
+  'Cuando cambia el día, ISLA incorpora tapas, cena y platos pensados para compartir.': ['When the day shifts, ISLA serves tapas, dinner and plates made for sharing.', 'Quand la journée change, ISLA propose des tapas, des dîners et des plats à partager.'],
+  'Ver carta →': ['See menu →', 'Voir la carte →'],
+  'Tardeo y cócteles en Elche': ['Tardeo and cocktails in Elche', 'Tardeo et cocktails à Elche'],
+  'Cócteles de autor, tardeo, cervezas y un ambiente diferente cuando cae el sol.': ['Signature cocktails, tardeo, beers and a different vibe when the sun goes down.', 'Cocktails signature, tardeo, bières et une ambiance différente au coucher du soleil.'],
+  'Ver cócteles →': ['See cocktails →', 'Voir les cocktails →'],
+  'ISLA en el centro de Elche': ['ISLA in the heart of Elche', 'ISLA au cœur d’Elche'],
+  'C/ Nuestra Señora del Carmen 11 · Elche. Un mismo lugar para brunch, matcha, ube, smoothies, café, cena, tardeo y cócteles.': ['C/ Nuestra Señora del Carmen 11 · Elche. One place for brunch, matcha, ube, smoothies, coffee, dinner, tardeo and cocktails.', 'C/ Nuestra Señora del Carmen 11 · Elche. Un seul lieu pour brunch, matcha, ube, smoothies, café, dîner, tardeo et cocktails.'],
+  'Preguntas frecuentes': ['Frequently asked questions', 'Questions fréquentes'],
+  '¿Dónde tomar brunch en Elche?': ['Where to have brunch in Elche?', 'Où prendre un brunch à Elche ?'],
+  'En ISLA Brunch Bar, en C/ Nuestra Señora del Carmen 11, en el centro de Elche. Tenemos bagels, pancakes, brioches, tostadas y otras opciones de brunch.': ['At ISLA Brunch Bar, C/ Nuestra Señora del Carmen 11, in the centre of Elche. We have bagels, pancakes, brioches, toasts and other brunch options.', 'Chez ISLA Brunch Bar, C/ Nuestra Señora del Carmen 11, au centre d’Elche. Bagels, pancakes, brioches, tartines et autres options de brunch.'],
+  '¿Dónde tomar matcha en Elche?': ['Where to have matcha in Elche?', 'Où boire un matcha à Elche ?'],
+  'En ISLA preparamos matcha ceremonial en diferentes versiones frías y calientes.': ['At ISLA we prepare ceremonial matcha in different hot and iced versions.', 'Chez ISLA, nous préparons du matcha cérémoniel en versions chaudes et froides.'],
+  '¿Dónde tomar smoothies en Elche?': ['Where to have smoothies in Elche?', 'Où boire des smoothies à Elche ?'],
+  'En ISLA tenemos smoothies de fruta y batidos de proteína, con diferentes opciones de leche.': ['At ISLA we have fruit smoothies and protein shakes, with different milk options.', 'Chez ISLA : smoothies de fruits et shakes protéinés, avec différents laits au choix.'],
+  '¿Tenéis ube?': ['Do you have ube?', 'Avez-vous de l’ube ?'],
+  'Sí. El ube forma parte de nuestra carta de bebidas y puedes consultarlo junto al resto del menú.': ['Yes. Ube is part of our drinks menu, alongside the rest of the menu.', 'Oui. L’ube fait partie de notre carte de boissons, avec le reste du menu.'],
+  '¿Dónde tomar cócteles y hacer tardeo en Elche?': ['Where to have cocktails and tardeo in Elche?', 'Où prendre un cocktail et faire le tardeo à Elche ?'],
+  'En ISLA, en el centro de Elche, con cócteles de autor, tardeo, tapas y opciones para cenar y compartir.': ['At ISLA, in the centre of Elche: signature cocktails, tardeo, tapas and dinner or sharing options.', 'Chez ISLA, au centre d’Elche : cocktails signature, tardeo, tapas et options pour dîner et partager.'],
+  'BRUNCH · MATCHA · UBE · SMOOTHIES · COCKTAILS': ['BRUNCH · MATCHA · UBE · SMOOTHIES · COCKTAILS', 'BRUNCH · MATCHA · UBE · SMOOTHIES · COCKTAILS'],
+  'DE DÍA': ['BY DAY', 'LE JOUR'], 'DE NOCHE': ['BY NIGHT', 'LE SOIR'],
+  'Café & Smoothies': ['Coffee & Smoothies', 'Café & Smoothies'],
+  'Tardeo': ['Tardeo', 'Tardeo'], 'Carta': ['Menu', 'Carte'],
+  'Elche': ['Elche', 'Elche'],
+  'Cómo llegar': ['Directions', 'Itinéraire'],
+  'Aviso legal': ['Legal notice', 'Mentions légales'], 'Privacidad': ['Privacy', 'Confidentialité'],
+  'Alérgenos': ['Allergens', 'Allergènes']
+};
+const I18N_HTML = {
+  seoIntro: [
+    'ISLA Brunch Bar is a place in the centre of Elche that changes pace through the day: <strong>brunch, matcha, ube, smoothies, protein shakes and coffee</strong> by day; <strong>dinner, tapas, tardeo and cocktails</strong> in the evening and at night.',
+    'ISLA Brunch Bar est un lieu au centre d’Elche qui change de rythme au fil de la journée : <strong>brunch, matcha, ube, smoothies, shakes protéinés et café</strong> en journée ; <strong>dîner, tapas, tardeo et cocktails</strong> en soirée.'
+  ]
+};
+
 function initI18n() {
+  // Texto simple fuera de los paneles
+  const sel = '.seo-section h2, .seo-section h3, .seo-section p, .seo-section summary, .seo-section a, .seo-hook-tags span, .foot-brand p, .foot-label, .foot-col a, .foot-links a, .foot-links span';
+  document.querySelectorAll(sel).forEach(el => {
+    if (el.hasAttribute('data-en') || el.id === 'seoIntro') return;
+    const key = el.textContent.replace(/\s+/g, ' ').trim();
+    const t = I18N[key];
+    if (t) { el.setAttribute('data-en', t[0]); el.setAttribute('data-fr', t[1]); }
+  });
+  // Párrafo con <strong>
+  Object.keys(I18N_HTML).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.setAttribute('data-en', I18N_HTML[id][0]); el.setAttribute('data-fr', I18N_HTML[id][1]); }
+  });
+  // Guardar el original en español de todo lo traducible
   document.querySelectorAll('[data-en], [data-fr]').forEach(el => {
-    el.setAttribute('data-es', el.textContent);
+    if (!el.hasAttribute('data-es')) el.setAttribute('data-es', el.innerHTML);
   });
 }
 
 function detectLang() {
+  try {
+    const saved = localStorage.getItem('isla-lang');
+    if (SUPPORTED_LANGS.includes(saved)) return saved;
+  } catch (e) {}
   const raw = (navigator.language || 'es').slice(0, 2).toLowerCase();
   return SUPPORTED_LANGS.includes(raw) ? raw : 'es';
 }
 
 function setLang(lang, btn) {
+  if (!SUPPORTED_LANGS.includes(lang)) lang = 'es';
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('on'));
   const activeBtn = btn || document.querySelector('.lang-btn[data-lang="' + lang + '"]');
   if (activeBtn) activeBtn.classList.add('on');
   document.documentElement.lang = lang;
+  try { localStorage.setItem('isla-lang', lang); } catch (e) {}
 
   document.querySelectorAll('[data-en], [data-fr]').forEach(el => {
     const val = el.getAttribute('data-' + lang) || el.getAttribute('data-es');
-    if (val !== null) el.textContent = val;
+    if (val !== null) el.innerHTML = val;
   });
 }
 
