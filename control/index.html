@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#103d35">
+  <meta name="description" content="ISLA CONTROL: inventario rápido, mermas, compras, caja y rutinas, sin cuotas ni Google Sheets.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
+  <title>ISLA CONTROL · Operaciones</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <div id="auth" class="auth-screen">
+    <div class="auth-head"><div class="mark">🌴</div><span>ISLA / OPERACIONES</span></div>
+    <div class="auth-card">
+      <span class="eyebrow">INVENTARIO SEGURO · SIN CUOTAS</span>
+      <h1 id="authTitle">ISLA CONTROL</h1>
+      <p id="authDescription">Tu control del negocio, sin depender de Google Sheets.</p>
+      <form id="authForm" autocomplete="off">
+        <label for="password" id="passwordLabel">Contraseña principal</label>
+        <input type="password" id="password" required minlength="12" autocomplete="current-password" spellcheck="false" placeholder="Tu contraseña de acceso">
+        <div id="confirmField" hidden><label for="confirmPassword">Repite la contraseña</label><input type="password" id="confirmPassword" autocomplete="new-password" placeholder="Repítela exactamente"></div>
+        <button class="btn primary wide" type="submit" id="authSubmit">Desbloquear inventario</button>
+      </form>
+      <div id="authError" class="form-error" role="alert" aria-live="polite"></div>
+      <div class="auth-bottom"><span>🔒 Cifrado AES-256 · datos locales</span><button id="restoreFromAuth" class="link-button" type="button">Restaurar copia</button></div>
+      <p class="privacy">Guarda la contraseña y exporta copias de seguridad. Si pierdes ambas, no podrás recuperar tu inventario.</p>
+    </div>
+  </div>
+  <div id="app" class="app-shell" hidden>
+    <aside class="sidebar">
+      <div class="logo"><div class="logo-icon">🌴</div><div><strong>ISLA<span>CONTROL</span></strong><small>BACKOFFICE / ELCHE</small></div></div>
+      <div class="side-caption">ESPACIO DE TRABAJO</div>
+      <nav id="sidebarNav" aria-label="Secciones">
+        <button data-nav="inicio" class="side-link active"><span>◫</span> Resumen</button>
+        <button data-nav="stock" class="side-link"><span>▤</span> Inventario</button>
+        <button data-nav="compras" class="side-link"><span>▣</span> Por comprar</button>
+        <button data-nav="operaciones" class="side-link"><span>✓</span> Operaciones</button>
+        <button data-nav="historial" class="side-link"><span>◷</span> Historial</button>
+      </nav>
+      <div class="side-bottom"><span class="online-dot"></span> En este dispositivo <button data-action="lock" class="lock-button">Cerrar sesión ↗</button></div>
+    </aside>
+    <div class="main-side">
+      <header class="topbar">
+        <div class="topbar-left"><span class="mini-logo">🌴</span><span class="topbar-brand">ISLA CONTROL</span><span class="crumb" id="crumb">/ Resumen</span></div>
+        <div class="topbar-right"><span class="secure-chip">⌑ Datos cifrados</span><button class="icon-action" data-nav="ajustes" aria-label="Ajustes" title="Ajustes">⚙</button></div>
+      </header>
+      <main id="content" tabindex="-1"></main>
+      <nav class="bottom-nav" aria-label="Navegación móvil">
+        <button data-nav="inicio"><span>◫</span>Inicio</button><button data-nav="stock"><span>▤</span>Stock</button>
+        <button data-nav="compras"><span>▣</span>Compras</button><button data-nav="operaciones"><span>✓</span>Control</button>
+        <button data-nav="ajustes"><span>⚙</span>Más</button>
+      </nav>
+    </div>
+  </div>
+  <dialog id="modal" aria-label="Formulario de ISLA CONTROL"><div id="modalBody"></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <input id="backupFile" type="file" hidden accept=".json,application/json">
+</body>
+</html>
