@@ -1201,7 +1201,7 @@ function islaMedia(root){
 
 <!-- ══════════ ACCESOS RÁPIDOS · Drinks / Food ══════════ -->
 <section class="quick" aria-label="Accesos rápidos">
-  <a href="#tropicales" class="q-item rv">
+  <a href="#firmas" class="q-item rv" data-fly>
     <div class="m mask" data-par><img data-media="qaDrinks" alt="" aria-hidden="true"  decoding="async"></div>
     <div class="c">
       <span class="lab" data-i18n="qa_lab_drinks">La barra</span>
@@ -2060,6 +2060,19 @@ function islaMedia(root){
     window.addEventListener('resize', function(){ paint(closest()); });
     paint(0);
   })();
+})();
+</script>
+<script>
+/* "Ver cócteles": salto directo a Don Julio, sin recorrer toda la página */
+(function(){
+  var a=document.querySelector('a[data-fly]'); if(!a) return;
+  a.addEventListener('click',function(e){
+    var t=document.getElementById('firmas'); if(!t) return;
+    e.preventDefault();
+    var y=t.getBoundingClientRect().top+window.pageYOffset-64;
+    window.scrollTo({top:y,behavior:'instant'});
+    if(history.replaceState) history.replaceState(null,'','#firmas');
+  });
 })();
 </script>
 </body>
