@@ -1383,6 +1383,34 @@ video.card-media {
 }
 .promo-banner p { font-size: 12px; opacity: 0.85; margin-top: 4px; line-height: 1.5; }
 .promo-banner strong { font-size: 14px; font-weight: 600; }
+
+/* ── ZUMO FRESH · ISLA FRESH (tropical: naranja cálido, crema, verde natural) ── */
+#sec-zumofresh{--zf-or:#E07A1F;--zf-or-dk:#B4520E;--zf-cream:#FFF7EA;--zf-sand:#FBEBD2;--zf-gr:#3B7A4A;--zf-gr-bg:#EAF3E6}
+#sec-zumofresh .eyebrow{color:var(--zf-or-dk);letter-spacing:.26em}
+#sec-zumofresh .sec-title{color:var(--zf-gr);letter-spacing:.06em}
+#sec-zumofresh .sec-note{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--bark-mid)}
+.zf-group{display:flex;align-items:center;gap:12px;margin:26px 0 12px;padding-bottom:10px;border-bottom:1.5px solid rgba(224,122,31,.28)}
+.zf-group-ico{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:21px;background:linear-gradient(135deg,var(--zf-sand),#FFE0B8)}
+.zf-group-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;letter-spacing:.05em;color:var(--zf-gr);line-height:1.15}
+.zf-num{color:var(--zf-or);margin-right:2px}
+.zf-group-tag{font-size:12px;color:var(--muted);font-weight:300;margin-top:2px}
+.zf-card{background:var(--zf-cream);border-color:rgba(224,122,31,.18)}
+.zf-card .item-name{display:flex;align-items:center;gap:8px;letter-spacing:.03em;font-weight:600;color:#2A3A2C}
+.zf-card .item-price{color:var(--zf-or-dk);font-size:19px;font-variant-numeric:tabular-nums;min-width:58px;text-align:right}
+.zf-ico{font-size:15px;line-height:1}
+.zf-ing{font-size:12.5px;color:var(--bark-mid);margin-top:5px;line-height:1.45}
+.zf-nut{font-size:10.5px;letter-spacing:.03em;color:var(--zf-gr);margin-top:4px;font-weight:500}
+.zf-nut>span:first-child{color:var(--zf-or);font-size:9px;margin-right:1px}
+.zf-spec{background:linear-gradient(135deg,#FFEFD6 0%,#FFE3BD 100%);border:1.5px solid var(--zf-or);box-shadow:0 4px 16px rgba(224,122,31,.18)}
+.zf-spec .item-name{font-size:16px;color:var(--zf-or-dk)}
+.zf-spec .item-price{font-size:21px}
+.zf-badge{display:inline-flex;align-items:center;gap:4px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#fff;background:var(--zf-gr);border-radius:20px;padding:3px 9px;margin-bottom:7px}
+.zf-build{background:var(--zf-gr-bg);border-color:rgba(59,122,74,.25)}
+.zf-build .item-price{color:var(--zf-gr)}
+.zf-build-row{margin-top:7px;padding-top:7px;border-top:1px dashed rgba(59,122,74,.25)}
+.zf-foot{margin-top:26px;text-align:center;padding:16px 10px 0;border-top:1.5px solid rgba(224,122,31,.28)}
+.zf-foot-main{font-size:10px;letter-spacing:.16em;font-weight:600;color:var(--zf-or-dk);line-height:1.7}
+.zf-foot-note{font-size:10.5px;color:var(--muted);font-weight:300;line-height:1.55;margin-top:6px}
 </style>
 <style id="landing-copied-from-085507">
 /* ---------- LANDING ---------- */
@@ -2733,8 +2761,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <header class="topbar">
     <h1 class="topbar-brand">
       <a href="https://www.islabrunchbar.com/" aria-label="ISLA Brunch Bar — Elche, ir a la web principal">
-        <span class="topbar-word">ISLA</span>
-        <span class="topbar-tag" aria-hidden="true">Brunch &amp; Bar</span>
+        <span class="topbar-stack"><span class="topbar-word">ISLA</span>
+        <span class="topbar-tag" aria-hidden="true">Brunch &amp; Bar</span></span>
         <span class="sr-only" data-en="ISLA Brunch &amp; Bar — Brunch, Matcha and Ube in Elche" data-fr="ISLA Brunch &amp; Bar — Brunch, Matcha et Ube à Elche"> Brunch &amp; Bar — Brunch, Matcha y Ube en Elche</span>
       </a>
     </h1>
@@ -2773,6 +2801,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button class="sub-tab" data-page="ube" onclick="showSub('ube',this,'beber')" role="tab" aria-selected="false">🔮 <span data-en="Ube" data-fr="Ube">Ube</span></button>
       <button class="sub-tab" data-page="cafe" onclick="showSub('cafe',this,'beber')" role="tab" aria-selected="false">☕ <span data-en="Coffee" data-fr="Café">Café</span></button>
       <button class="sub-tab" data-page="batidos" onclick="showSub('batidos',this,'beber')" role="tab" aria-selected="false">🥤 <span data-en="Smoothies" data-fr="Smoothies">Smoothies</span></button>
+      <button class="sub-tab" data-page="zumofresh" onclick="showSub('zumofresh',this,'beber')" role="tab" aria-selected="false">🍊 <span data-en="Zumo Fresh" data-fr="Zumo Fresh">Zumo Fresh</span></button>
       <button class="sub-tab" data-page="otras" onclick="showSub('otras',this,'beber')" role="tab" aria-selected="false">🍹 <span data-en="Other Drinks" data-fr="Autres Boissons">Otras</span></button>
     </div>
   </div>
@@ -2821,7 +2850,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  <span class="landing-copy">
  <span class="landing-kicker">ISLA DRINKS</span>
  <strong data-en="DRINK" data-fr="BOIRE">BEBER</strong>
- <span class="landing-desc">Matcha · Ube · Café · Smoothies</span>
+ <span class="landing-desc">Matcha · Ube · Café · Smoothies · Zumos</span>
  <span class="landing-action">Explorar <b>→</b></span>
  </span>
  </button>
@@ -3222,6 +3251,221 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="ctx-note i18n-html" data-en-html="🌿 <b>Plant-based milk</b> available on all coffees — +€0.50." data-fr-html="🌿 <b>Lait végétal</b> disponible sur tous les cafés — +0,50€.">🌿 <b>Leche vegetal</b> disponible en todos los cafés &mdash; +0,50€.</div>
   </section>
 
+  <!-- ══════════ ZUMO FRESH ══════════ -->
+  <section id="sec-zumofresh" class="page" role="tabpanel" tabindex="0" aria-label="Zumo Fresh">
+    <div class="sec-head">
+      <p class="eyebrow" data-en="Natural Fruit Collection" data-fr="Natural Fruit Collection">Natural Fruit Collection</p>
+      <h2 class="sec-title">ISLA FRESH</h2>
+      <p class="sec-note" data-en="Fruit juices, made fresh to order." data-fr="Des jus de fruits préparés minute.">Zumos de fruta preparados al momento.</p>
+    </div>
+
+    <div class="zf-group">
+      <span class="zf-group-ico" aria-hidden="true">🍊</span>
+      <div>
+        <p class="zf-group-name"><span class="zf-num">01</span> FRESH ORIGINALS</p>
+        <p class="zf-group-tag" data-en="The natural taste of every fruit." data-fr="Le goût naturel de chaque fruit.">El sabor natural de cada fruta.</p>
+      </div>
+    </div>
+    <div class="card zf-card">
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🍊</span>ORANGE FRESH</p>
+        <p class="item-price">2,50€</p>
+      </div>
+      <p class="zf-ing" data-en="Freshly squeezed orange" data-fr="Orange pressée fraîche">Naranja natural exprimida</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Vitamin C · Antioxidants" data-fr="Vitamine C · Antioxydants">Vitamina C · Antioxidantes</span></p>
+    </div>
+    <div class="card zf-card">
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🍓</span>STRAWBERRY FRESH</p>
+        <p class="item-price">4,50€</p>
+      </div>
+      <p class="zf-ing" data-en="Natural strawberry" data-fr="Fraise naturelle">Fresa natural</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Vitamin C · Polyphenols" data-fr="Vitamine C · Polyphénols">Vitamina C · Polifenoles</span></p>
+    </div>
+    <div class="card zf-card">
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🥭</span>GOLDEN MANGO</p>
+        <p class="item-price">4,90€</p>
+      </div>
+      <p class="zf-ing" data-en="Natural mango" data-fr="Mangue naturelle">Mango natural</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Vitamin C · Carotenoids" data-fr="Vitamine C · Caroténoïdes">Vitamina C · Carotenoides</span></p>
+    </div>
+    <div class="card zf-card">
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🧡</span>PASSION FRUIT</p>
+        <p class="item-price">4,90€</p>
+      </div>
+      <p class="zf-ing" data-en="Natural passion fruit" data-fr="Fruit de la passion naturel">Maracuyá natural</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Vitamin C · Pulp fiber" data-fr="Vitamine C · Fibres de la pulpe">Vitamina C · Fibra de pulpa</span></p>
+    </div>
+    <div class="card zf-card">
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🍍</span>PINEAPPLE FRESH</p>
+        <p class="item-price">4,70€</p>
+      </div>
+      <p class="zf-ing" data-en="Natural pineapple" data-fr="Ananas naturel">Piña natural</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Vitamin C · Manganese" data-fr="Vitamine C · Manganèse">Vitamina C · Manganeso</span></p>
+    </div>
+
+    <div class="zf-group">
+      <span class="zf-group-ico" aria-hidden="true">🍍</span>
+      <div>
+        <p class="zf-group-name"><span class="zf-num">02</span> TROPICAL MIXES</p>
+        <p class="zf-group-tag" data-en="Natural blends full of flavor." data-fr="Des mélanges naturels pleins de saveur.">Combinaciones naturales llenas de sabor.</p>
+      </div>
+    </div>
+    <div class="card zf-card zf-spec">
+      <span class="zf-badge"><span aria-hidden="true">★</span> <span data-en="House specialty" data-fr="Spécialité de la maison">Especialidad de la casa</span></span>
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🥭</span>TROPICAL GOLD</p>
+        <p class="item-price">5,20€</p>
+      </div>
+      <p class="zf-ing" data-en="Mango + Pineapple" data-fr="Mangue + Ananas">Mango + Piña</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Vitamin C · Carotenoids" data-fr="Vitamine C · Caroténoïdes">Vitamina C · Carotenoides</span></p>
+    </div>
+    <div class="card zf-card">
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🍓</span>PINK SUNRISE</p>
+        <p class="item-price">5,20€</p>
+      </div>
+      <p class="zf-ing" data-en="Strawberry + Orange" data-fr="Fraise + Orange">Fresa + Naranja</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Vitamin C · Polyphenols" data-fr="Vitamine C · Polyphénols">Vitamina C · Polifenoles</span></p>
+    </div>
+    <div class="card zf-card">
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🍊</span>GOLDEN SUNRISE</p>
+        <p class="item-price">5,20€</p>
+      </div>
+      <p class="zf-ing" data-en="Mango + Orange" data-fr="Mangue + Orange">Mango + Naranja</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Vitamin C · Provitamin A" data-fr="Vitamine C · Provitamine A">Vitamina C · Provitamina A</span></p>
+    </div>
+    <div class="card zf-card">
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🍍</span>PASSION PINE</p>
+        <p class="item-price">5,50€</p>
+      </div>
+      <p class="zf-ing" data-en="Passion fruit + Pineapple" data-fr="Fruit de la passion + Ananas">Maracuyá + Piña</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Vitamin C · Manganese" data-fr="Vitamine C · Manganèse">Vitamina C · Manganeso</span></p>
+    </div>
+    <div class="card zf-card">
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🧡</span>RED PASSION</p>
+        <p class="item-price">5,50€</p>
+      </div>
+      <p class="zf-ing" data-en="Strawberry + Passion fruit" data-fr="Fraise + Fruit de la passion">Fresa + Maracuyá</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Vitamin C · Polyphenols" data-fr="Vitamine C · Polyphénols">Vitamina C · Polifenoles</span></p>
+    </div>
+    <div class="card zf-card">
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🍋</span>CITRUS GLOW</p>
+        <p class="item-price">5,50€</p>
+      </div>
+      <p class="zf-ing" data-en="Pineapple + Orange + Lemon" data-fr="Ananas + Orange + Citron">Piña + Naranja + Limón</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Vitamin C · Citrus freshness" data-fr="Vitamine C · Fraîcheur d&#x27;agrume">Vitamina C · Frescura cítrica</span></p>
+    </div>
+    <div class="card zf-card zf-spec">
+      <span class="zf-badge"><span aria-hidden="true">★</span> <span data-en="House specialty" data-fr="Spécialité de la maison">Especialidad de la casa</span></span>
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🌴</span>ISLA PARADISE</p>
+        <p class="item-price">5,90€</p>
+      </div>
+      <p class="zf-ing" data-en="Mango + Pineapple + Passion fruit" data-fr="Mangue + Ananas + Fruit de la passion">Mango + Piña + Maracuyá</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Vitamin C · Carotenoids" data-fr="Vitamine C · Caroténoïdes">Vitamina C · Carotenoides</span></p>
+    </div>
+    <div class="card zf-card">
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🌅</span>TROPICAL SUNSET</p>
+        <p class="item-price">5,90€</p>
+      </div>
+      <p class="zf-ing" data-en="Mango + Strawberry + Orange" data-fr="Mangue + Fraise + Orange">Mango + Fresa + Naranja</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Vitamin C · Natural antioxidants" data-fr="Vitamine C · Antioxydants naturels">Vitamina C · Antioxidantes naturales</span></p>
+    </div>
+
+    <div class="zf-group">
+      <span class="zf-group-ico" aria-hidden="true">🥥</span>
+      <div>
+        <p class="zf-group-name"><span class="zf-num">03</span> COCO FRESH</p>
+        <p class="zf-group-tag" data-en="Tropical fruit with natural coconut water." data-fr="Fruits tropicaux à l&#x27;eau de coco naturelle.">Fruta tropical con agua de coco natural.</p>
+      </div>
+    </div>
+    <div class="card zf-card zf-spec">
+      <span class="zf-badge"><span aria-hidden="true">★</span> <span data-en="House specialty" data-fr="Spécialité de la maison">Especialidad de la casa</span></span>
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🥥</span>COCO PASSION</p>
+        <p class="item-price">5,50€</p>
+      </div>
+      <p class="zf-ing" data-en="Passion fruit + Coconut water + Lemon" data-fr="Fruit de la passion + Eau de coco + Citron">Maracuyá + Agua de coco + Limón</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Potassium · Vitamin C" data-fr="Potassium · Vitamine C">Potasio · Vitamina C</span></p>
+    </div>
+    <div class="card zf-card">
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🥥</span>PINK COCONUT</p>
+        <p class="item-price">5,50€</p>
+      </div>
+      <p class="zf-ing" data-en="Strawberry + Coconut water + Lemon" data-fr="Fraise + Eau de coco + Citron">Fresa + Agua de coco + Limón</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Vitamin C · Potassium" data-fr="Vitamine C · Potassium">Vitamina C · Potasio</span></p>
+    </div>
+    <div class="card zf-card">
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🥥</span>MANGO COCO BREEZE</p>
+        <p class="item-price">5,70€</p>
+      </div>
+      <p class="zf-ing" data-en="Mango + Coconut water" data-fr="Mangue + Eau de coco">Mango + Agua de coco</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Carotenoids · Potassium" data-fr="Caroténoïdes · Potassium">Carotenoides · Potasio</span></p>
+    </div>
+    <div class="card zf-card">
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🥥</span>PINEAPPLE COCO</p>
+        <p class="item-price">5,70€</p>
+      </div>
+      <p class="zf-ing" data-en="Pineapple + Coconut water" data-fr="Ananas + Eau de coco">Piña + Agua de coco</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Vitamin C · Potassium" data-fr="Vitamine C · Potassium">Vitamina C · Potasio</span></p>
+    </div>
+    <div class="card zf-card">
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🥥</span>ISLA COCO PARADISE</p>
+        <p class="item-price">5,90€</p>
+      </div>
+      <p class="zf-ing" data-en="Mango + Passion fruit + Coconut water" data-fr="Mangue + Fruit de la passion + Eau de coco">Mango + Maracuyá + Agua de coco</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Vitamin C · Carotenoids" data-fr="Vitamine C · Caroténoïdes">Vitamina C · Carotenoides</span></p>
+    </div>
+    <div class="card zf-card">
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🥥</span>COCONUT SUNRISE</p>
+        <p class="item-price">5,90€</p>
+      </div>
+      <p class="zf-ing" data-en="Pineapple + Orange + Coconut water" data-fr="Ananas + Orange + Eau de coco">Piña + Naranja + Agua de coco</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Vitamin C · Potassium" data-fr="Vitamine C · Potassium">Vitamina C · Potasio</span></p>
+    </div>
+    <div class="card zf-card">
+      <div class="card-row">
+        <p class="item-name"><span class="zf-ico" aria-hidden="true">🥥</span>ISLA PINK PARADISE</p>
+        <p class="item-price">6,20€</p>
+      </div>
+      <p class="zf-ing" data-en="Strawberry + Mango + Coconut water + Lemon" data-fr="Fraise + Mangue + Eau de coco + Citron">Fresa + Mango + Agua de coco + Limón</p>
+      <p class="zf-nut"><span aria-hidden="true">✦</span> <span data-en="Vitamin C · Polyphenols" data-fr="Vitamine C · Polyphénols">Vitamina C · Polifenoles</span></p>
+    </div>
+
+    <div class="zf-group">
+      <span class="zf-group-ico" aria-hidden="true">✨</span>
+      <div>
+        <p class="zf-group-name" data-en="BUILD YOUR OWN FRESH" data-fr="COMPOSEZ VOTRE FRESH">CREA TU PROPIO FRESH</p>
+        <p class="zf-group-tag" data-en="Mix your favorite fruits." data-fr="Combinez vos fruits préférés.">Combina tus frutas favoritas.</p>
+      </div>
+    </div>
+    <div class="card zf-card zf-build">
+      <div class="card-row"><p class="item-name" data-en="2 fruits" data-fr="2 fruits">2 frutas</p><p class="item-price">5,50€</p></div>
+      <div class="card-row zf-build-row"><p class="item-name" data-en="3 fruits" data-fr="3 fruits">3 frutas</p><p class="item-price">5,90€</p></div>
+      <div class="card-row zf-build-row"><p class="item-name" data-en="Extra coconut water" data-fr="Eau de coco en plus">Extra agua de coco</p><p class="item-price">+0,80€</p></div>
+      <p class="zf-ing" data-en="Available fruits: strawberry, mango, passion fruit, pineapple and orange." data-fr="Fruits disponibles : fraise, mangue, fruit de la passion, ananas et orange.">Frutas disponibles: fresa, mango, maracuyá, piña y naranja.</p>
+    </div>
+
+    <div class="zf-foot">
+      <p class="zf-foot-main" data-en="REAL FRUIT · FRESHLY MADE · NO ADDED SUGAR" data-fr="FRUIT RÉEL · PRÉPARÉS MINUTE · SANS SUCRE AJOUTÉ">FRUTA REAL · RECIÉN PREPARADOS · SIN AZÚCAR AÑADIDO</p>
+      <p class="zf-foot-note" data-en="These drinks contain sugars naturally present in the fruit. The nutritional contributions listed correspond to their ingredients." data-fr="Ces boissons contiennent les sucres naturellement présents dans les fruits. Les apports nutritionnels indiqués correspondent à leurs ingrédients.">Las bebidas contienen azúcares naturalmente presentes en las frutas. Los aportes nutricionales indicados corresponden a sus ingredientes.</p>
+    </div>
+  </section>
+
   <!-- OTRAS BEBIDAS -->
   <section id="sec-otras" class="page" role="tabpanel" tabindex="0" aria-label="Otras bebidas">
     <div class="sec-head">
@@ -3332,40 +3576,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="ctx-note i18n-html" data-en-html="<b>How it works:</b> Choose your base from <b>€3.90</b> · First fruit from €1.20 · Second fruit +€1.00 · Protein +€1.50 · 🌿 Plant-based Milk +€0.80." data-fr-html="<b>Comment ça marche :</b> Choisissez votre base à partir de <b>3,90€</b> · Premier fruit dès 1,20€ · Deuxième fruit +1,00€ · Protéine +1,50€ · 🌿 Lait Végétal +0,80€.">
       <b>Cómo funciona:</b> Base a elegir desde <b>3,90€</b> · Primera fruta desde 1,20€ · Segunda fruta +1,00€ · Proteína +1,50€ · 🌿 Leche Vegetal +0,80€.
-    </div>
-
-    <p class="group-label" data-en="Juices &amp; fresh drinks" data-fr="Jus &amp; boissons fraîches">Zumos &amp; bebidas frescas</p>
-    <div class="card">
-      <div class="card-row">
-        <p class="item-name">Morir Soñando</p>
-        <p class="item-price">4,00€</p>
-      </div>
-      <p class="item-desc" data-en="Orange juice and milk. The Caribbean classic." data-fr="Jus d'orange et lait. Le classique caribéen.">Zumo de naranja y leche. El clásico caribeño.</p>
-    </div>
-    <div class="card">
-      <div class="card-row">
-        <p class="item-name" data-en="Oat &amp; Lemon Drink" data-fr="Boisson Avoine-Citron">Avena con Limón</p>
-        <p class="item-price">4,00€</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-row">
-        <p class="item-name" data-en="Oat &amp; Passion Fruit Drink" data-fr="Boisson Avoine-Fruit de la Passion">Avena con Maracuyá</p>
-        <p class="item-price">4,00€</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-row">
-        <p class="item-name" data-en="Fresh Orange Juice" data-fr="Jus d'Orange Frais">Zumo de Naranja Natural</p>
-        <p class="item-price">2,50€</p>
-      </div>
-      <p class="item-desc" data-en="100% freshly squeezed." data-fr="100% pressé minute.">100% recién exprimido.</p>
-    </div>
-    <div class="card">
-      <div class="card-row">
-        <p class="item-name" data-en="Homemade Lemonade" data-fr="Limonade Maison">Limonada Casera</p>
-        <p class="item-price">3,50€</p>
-      </div>
     </div>
 
     <div class="card card-hero card-hero-sm">
@@ -5467,55 +5677,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 },
                 {
                   "@type": "MenuSection",
-                  "name": "Zumos & bebidas frescas",
+                  "name": "Cold Foam",
                   "hasMenuItem": [
-                    {
-                      "@type": "MenuItem",
-                      "name": "Morir Soñando",
-                      "description": "Zumo de naranja y leche. El clásico caribeño.",
-                      "offers": {
-                        "@type": "Offer",
-                        "price": "4.00",
-                        "priceCurrency": "EUR"
-                      }
-                    },
-                    {
-                      "@type": "MenuItem",
-                      "name": "Avena con Limón",
-                      "offers": {
-                        "@type": "Offer",
-                        "price": "4.00",
-                        "priceCurrency": "EUR"
-                      }
-                    },
-                    {
-                      "@type": "MenuItem",
-                      "name": "Avena con Maracuyá",
-                      "offers": {
-                        "@type": "Offer",
-                        "price": "4.00",
-                        "priceCurrency": "EUR"
-                      }
-                    },
-                    {
-                      "@type": "MenuItem",
-                      "name": "Zumo de Naranja Natural",
-                      "description": "100% recién exprimido.",
-                      "offers": {
-                        "@type": "Offer",
-                        "price": "2.50",
-                        "priceCurrency": "EUR"
-                      }
-                    },
-                    {
-                      "@type": "MenuItem",
-                      "name": "Limonada Casera",
-                      "offers": {
-                        "@type": "Offer",
-                        "price": "3.50",
-                        "priceCurrency": "EUR"
-                      }
-                    },
                     {
                       "@type": "MenuItem",
                       "name": "Cold Foam Batido",
@@ -5567,6 +5730,231 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       "offers": {
                         "@type": "Offer",
                         "price": "1.50",
+                        "priceCurrency": "EUR"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "@type": "MenuSection",
+              "name": "Zumo Fresh · ISLA FRESH",
+              "description": "Zumos naturales de fruta recién preparados, sin azúcar añadido: originales, mezclas tropicales y con agua de coco. Crea tu propio Fresh: 2 frutas 5,50€, 3 frutas 5,90€, extra agua de coco +0,80€.",
+              "hasMenuSection": [
+                {
+                  "@type": "MenuSection",
+                  "name": "Fresh Originals",
+                  "hasMenuItem": [
+                    {
+                      "@type": "MenuItem",
+                      "name": "ORANGE FRESH",
+                      "description": "Naranja natural exprimida. Vitamina C, Antioxidantes.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "2.50",
+                        "priceCurrency": "EUR"
+                      }
+                    },
+                    {
+                      "@type": "MenuItem",
+                      "name": "STRAWBERRY FRESH",
+                      "description": "Fresa natural. Vitamina C, Polifenoles.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "4.50",
+                        "priceCurrency": "EUR"
+                      }
+                    },
+                    {
+                      "@type": "MenuItem",
+                      "name": "GOLDEN MANGO",
+                      "description": "Mango natural. Vitamina C, Carotenoides.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "4.90",
+                        "priceCurrency": "EUR"
+                      }
+                    },
+                    {
+                      "@type": "MenuItem",
+                      "name": "PASSION FRUIT",
+                      "description": "Maracuyá natural. Vitamina C, Fibra de pulpa.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "4.90",
+                        "priceCurrency": "EUR"
+                      }
+                    },
+                    {
+                      "@type": "MenuItem",
+                      "name": "PINEAPPLE FRESH",
+                      "description": "Piña natural. Vitamina C, Manganeso.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "4.70",
+                        "priceCurrency": "EUR"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "@type": "MenuSection",
+                  "name": "Tropical Mixes",
+                  "hasMenuItem": [
+                    {
+                      "@type": "MenuItem",
+                      "name": "TROPICAL GOLD",
+                      "description": "Mango + Piña. Vitamina C, Carotenoides.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "5.20",
+                        "priceCurrency": "EUR"
+                      }
+                    },
+                    {
+                      "@type": "MenuItem",
+                      "name": "PINK SUNRISE",
+                      "description": "Fresa + Naranja. Vitamina C, Polifenoles.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "5.20",
+                        "priceCurrency": "EUR"
+                      }
+                    },
+                    {
+                      "@type": "MenuItem",
+                      "name": "GOLDEN SUNRISE",
+                      "description": "Mango + Naranja. Vitamina C, Provitamina A.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "5.20",
+                        "priceCurrency": "EUR"
+                      }
+                    },
+                    {
+                      "@type": "MenuItem",
+                      "name": "PASSION PINE",
+                      "description": "Maracuyá + Piña. Vitamina C, Manganeso.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "5.50",
+                        "priceCurrency": "EUR"
+                      }
+                    },
+                    {
+                      "@type": "MenuItem",
+                      "name": "RED PASSION",
+                      "description": "Fresa + Maracuyá. Vitamina C, Polifenoles.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "5.50",
+                        "priceCurrency": "EUR"
+                      }
+                    },
+                    {
+                      "@type": "MenuItem",
+                      "name": "CITRUS GLOW",
+                      "description": "Piña + Naranja + Limón. Vitamina C, Frescura cítrica.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "5.50",
+                        "priceCurrency": "EUR"
+                      }
+                    },
+                    {
+                      "@type": "MenuItem",
+                      "name": "ISLA PARADISE",
+                      "description": "Mango + Piña + Maracuyá. Vitamina C, Carotenoides.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "5.90",
+                        "priceCurrency": "EUR"
+                      }
+                    },
+                    {
+                      "@type": "MenuItem",
+                      "name": "TROPICAL SUNSET",
+                      "description": "Mango + Fresa + Naranja. Vitamina C, Antioxidantes naturales.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "5.90",
+                        "priceCurrency": "EUR"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "@type": "MenuSection",
+                  "name": "Coco Fresh",
+                  "hasMenuItem": [
+                    {
+                      "@type": "MenuItem",
+                      "name": "COCO PASSION",
+                      "description": "Maracuyá + Agua de coco + Limón. Potasio, Vitamina C.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "5.50",
+                        "priceCurrency": "EUR"
+                      }
+                    },
+                    {
+                      "@type": "MenuItem",
+                      "name": "PINK COCONUT",
+                      "description": "Fresa + Agua de coco + Limón. Vitamina C, Potasio.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "5.50",
+                        "priceCurrency": "EUR"
+                      }
+                    },
+                    {
+                      "@type": "MenuItem",
+                      "name": "MANGO COCO BREEZE",
+                      "description": "Mango + Agua de coco. Carotenoides, Potasio.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "5.70",
+                        "priceCurrency": "EUR"
+                      }
+                    },
+                    {
+                      "@type": "MenuItem",
+                      "name": "PINEAPPLE COCO",
+                      "description": "Piña + Agua de coco. Vitamina C, Potasio.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "5.70",
+                        "priceCurrency": "EUR"
+                      }
+                    },
+                    {
+                      "@type": "MenuItem",
+                      "name": "ISLA COCO PARADISE",
+                      "description": "Mango + Maracuyá + Agua de coco. Vitamina C, Carotenoides.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "5.90",
+                        "priceCurrency": "EUR"
+                      }
+                    },
+                    {
+                      "@type": "MenuItem",
+                      "name": "COCONUT SUNRISE",
+                      "description": "Piña + Naranja + Agua de coco. Vitamina C, Potasio.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "5.90",
+                        "priceCurrency": "EUR"
+                      }
+                    },
+                    {
+                      "@type": "MenuItem",
+                      "name": "ISLA PINK PARADISE",
+                      "description": "Fresa + Mango + Agua de coco + Limón. Vitamina C, Polifenoles.",
+                      "offers": {
+                        "@type": "Offer",
+                        "price": "6.20",
                         "priceCurrency": "EUR"
                       }
                     }
@@ -5890,11 +6278,11 @@ const state = {
 // Arquitectura:
 // Inicio → portada visual
 // Comer → Clásicos / Signature / Dulce / Centro de Mesa / Laboratorio
-// Beber → Matcha / Ube / Café / Smoothies / Otras
+// Beber → Matcha / Ube / Café / Smoothies / Zumo Fresh / Otras
 const catPages = {
   inicio: ['inicio'],
   comer: ['brioche','brunch','dulce','compartir','diy'],
-  beber: ['otono','matcha','ube','cafe','batidos','otras']
+  beber: ['otono','matcha','ube','cafe','batidos','zumofresh','otras']
 };
 
 const subNavs = {
@@ -6396,6 +6784,49 @@ body.menu-inside .isla-nav-shell::after{
   transition:width .12s linear;
   pointer-events:none;
 }
+
+/* ── LOGO ISLA: isla + palma + sol + olas ── */
+.isla-mark{display:block;overflow:visible}
+.landing-brand-lockup .isla-mark{width:clamp(78px,11vw,112px);height:auto;margin:0 auto 2px}
+.landing-wordmark{font-style:normal!important;font-weight:600;letter-spacing:.16em!important;padding-left:.16em;font-size:clamp(42px,6.4vw,66px)!important}
+.landing-tag{letter-spacing:.4em}
+.topbar-brand a{flex-direction:row!important;align-items:center;gap:10px!important}
+.topbar-brand .isla-mark{width:50px;height:auto;flex:none;color:#1F4A35}
+.topbar-stack{display:flex;flex-direction:column;gap:5px;white-space:nowrap}
+.topbar-word{font-style:normal!important;letter-spacing:.14em!important;font-size:27px!important;white-space:nowrap}
+.topbar-word::after{display:none!important}
+.topbar-tag{white-space:nowrap;letter-spacing:.3em!important}
+@media (max-width:370px){.topbar-brand .isla-mark{width:42px}.topbar-word{font-size:23px!important}}
+
+/* ── LOGO ISLA · emblema botánico (palma + sol + plumeria) ── */
+.isla-emblem{display:block;overflow:visible}
+.landing-brand-lockup{--gold:#E4C58A;--gold-f:rgba(228,197,138,.55);--lf:rgba(255,255,255,.1)}
+.landing-brand-lockup .isla-emblem{width:clamp(150px,42vw,230px);height:auto;margin:0 auto 4px}
+.landing-wordmark{letter-spacing:.3em!important;padding-left:.3em;font-size:clamp(38px,6vw,58px)!important}
+.landing-tag{display:flex!important;align-items:center;justify-content:center;gap:9px;letter-spacing:.3em!important;white-space:nowrap;font-size:7.5px!important}
+.landing-tag::before,.landing-tag::after{content:"";width:16px;height:1px;background:var(--gold);flex:none}
+.topbar-brand{--gold:#C8892E;--gold-f:#EDBE6A;--lf:rgba(31,74,53,.12)}
+.topbar-brand .isla-emblem{width:60px;height:auto;flex:none;color:#1F4A35}
+.topbar-brand a{gap:7px!important}
+.topbar-word{letter-spacing:.2em!important;font-size:22px!important}
+.topbar-tag{letter-spacing:.24em!important;font-size:6.5px!important}
+.topbar{gap:8px!important}
+@media (max-width:370px){.topbar-brand .isla-emblem{width:50px}.topbar-word{font-size:19px!important}.topbar-tag{letter-spacing:.18em!important}}
+
+/* Emblema ligero */
+.landing-brand-lockup .isla-emblem{width:clamp(104px,28vw,150px)!important;margin-bottom:8px!important}
+.landing-wordmark{font-size:clamp(34px,5.4vw,52px)!important;font-weight:500!important}
+.landing-tag::before,.landing-tag::after{opacity:.7}
+.topbar-brand .isla-emblem{width:46px!important}
+@media (max-width:370px){.topbar-brand .isla-emblem{width:40px!important}}
+
+/* Logo solo tipográfico */
+.landing-wordmark{font-size:clamp(46px,7vw,72px)!important;font-weight:500!important;letter-spacing:.3em!important;padding-left:.3em}
+.topbar-brand a{gap:4px!important;flex-direction:column!important;align-items:flex-start!important}
+.topbar-stack{gap:5px}
+.topbar-word{font-size:32px!important;font-weight:500!important;letter-spacing:.26em!important}
+.topbar-tag{font-size:7px!important;letter-spacing:.34em!important}
+@media (max-width:370px){.topbar-word{font-size:27px!important}}
 </style>
 <script id="isla-scroll-progress-js">
 (function(){
